@@ -6,7 +6,7 @@ import type { HeroProps } from "../types";
 export function Hero({ className = "" }: Readonly<HeroProps>) {
   return (
     <section
-      className={`flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8 ${className}`}
+      className={`relative z-10 flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8 ${className}`}
     >
       <div className="mx-auto w-full max-w-4xl text-center">
         <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-black dark:text-white sm:text-5xl md:text-6xl lg:text-7xl [font-family:var(--font-space-grotesk)]">
