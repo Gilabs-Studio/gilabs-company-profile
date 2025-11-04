@@ -12,6 +12,24 @@
   }
 }
 
+/* Tailwind v4 theme tokens for shadcn-style utilities */
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-border: oklch(90% 0.01 264);
+  --color-input: oklch(96% 0.005 264);
+  --color-ring: oklch(62% 0.2 264);
+  --color-primary: oklch(62% 0.2 264);
+  --color-primary-foreground: oklch(98% 0.02 264);
+  --color-secondary: oklch(96% 0.005 264);
+  --color-secondary-foreground: oklch(30% 0.02 264);
+  --color-muted: oklch(95% 0.01 264);
+  --color-muted-foreground: oklch(45% 0.02 264);
+  --color-accent: oklch(95% 0.01 264);
+  --color-accent-foreground: oklch(30% 0.02 264);
+  --radius: 0.5rem;
+}
+
 html,
 body {
   max-width: 100vw;
