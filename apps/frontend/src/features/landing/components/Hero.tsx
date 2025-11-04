@@ -1,6 +1,9 @@
 "use client";
 
 import { TextEffect } from "@/components/core/text-effect";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import { motion } from "framer-motion";
 import type { HeroProps } from "../types";
 
 export function Hero({ className = "" }: Readonly<HeroProps>) {
@@ -47,7 +50,7 @@ export function Hero({ className = "" }: Readonly<HeroProps>) {
             and websites
           </TextEffect>
         </h1>
-        <p className="mx-auto mb-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-xl md:text-2xl">
+        <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-xl md:text-2xl">
           <TextEffect
             per="char"
             delay={1.5}
@@ -83,6 +86,31 @@ export function Hero({ className = "" }: Readonly<HeroProps>) {
             that boost conversion with super minimalist and modern UI
           </TextEffect>
         </p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 2.5, duration: 0.6 }}
+          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+        >
+          <Button
+            size="lg"
+            className="group bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
+            asChild
+          >
+            <a href="#contact">
+              Start Your Project
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            className="border-zinc-300 dark:border-zinc-700"
+            asChild
+          >
+            <a href="#services">View Our Work</a>
+          </Button>
+        </motion.div>
       </div>
     </section>
   );
