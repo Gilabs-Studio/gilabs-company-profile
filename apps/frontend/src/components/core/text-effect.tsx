@@ -38,8 +38,9 @@ function extractText(node: ReactNode): string {
     if (isBrTag(node)) {
       return "\n";
     }
-    if (node.props.children) {
-      return extractText(node.props.children);
+    const nodeWithProps = node as { props?: { children?: ReactNode } };
+    if (nodeWithProps.props?.children) {
+      return extractText(nodeWithProps.props.children);
     }
   }
   return "";
