@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import type { ReactNode } from "react";
 
 interface SectionWrapperProps {
@@ -18,10 +18,10 @@ const fadeInUpVariants = {
     y: 0,
     transition: {
       duration: 0.6,
-      ease: [0.6, -0.05, 0.01, 0.99],
+      ease: [0.6, -0.05, 0.01, 0.99] as [number, number, number, number],
     },
   },
-};
+} satisfies Variants;
 
 export function SectionWrapper({
   children,
