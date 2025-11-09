@@ -1,11 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 const navigationItems = [
-  { label: "Services", href: "#services" },
+  { label: "Services", href: "/service" },
   { label: "Portofolio", href: "#portofolio" },
   { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
@@ -14,6 +15,7 @@ const navigationItems = [
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,11 +27,17 @@ export function Header() {
   }, []);
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
     setIsMobileMenuOpen(false);
     
-    // Smooth scroll to section
+    // If it's a route (starts with /), let Next.js handle it
+    if (href.startsWith("/")) {
+      // Don't prevent default, let Next.js Link handle navigation
+      return;
+    }
+    
+    // Smooth scroll to section (for hash links)
     if (href.startsWith("#")) {
+      e.preventDefault();
       const targetId = href.slice(1);
       const element = document.getElementById(targetId);
       if (element) {
@@ -74,17 +82,30 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8 lg:gap-12">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="text-sm lg:text-base font-normal text-white/80 hover:text-white transition-colors relative group"
-              >
-                {item.label}
-                <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
+            {navigationItems.map((item) => {
+              const isActive = pathname === item.href || (item.href.startsWith("#") && pathname === "/");
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={cn(
+                    "text-sm lg:text-base font-normal transition-colors relative group",
+                    isActive
+                      ? "text-white"
+                      : "text-white/80 hover:text-white"
+                  )}
+                >
+                  {item.label}
+                  <span
+                    className={cn(
+                      "absolute bottom-0 left-0 h-px bg-white transition-all duration-300",
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    )}
+                  />
+                </Link>
+              );
+            })}
           </div>
 
           {/* Mobile Menu Button */}
@@ -126,16 +147,24 @@ export function Header() {
           )}
         >
           <div className="py-4 space-y-4 border-t border-white/10 mt-2">
-            {navigationItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={(e) => handleNavClick(e, item.href)}
-                className="block text-base font-normal text-white/80 hover:text-white transition-colors py-2"
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navigationItems.map((item) => {
+              const isActive = pathname === item.href || (item.href.startsWith("#") && pathname === "/");
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={(e) => handleNavClick(e, item.href)}
+                  className={cn(
+                    "block text-base font-normal transition-colors py-2",
+                    isActive
+                      ? "text-white"
+                      : "text-white/80 hover:text-white"
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </nav>
