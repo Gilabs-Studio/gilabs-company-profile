@@ -15,7 +15,7 @@ export function ServiceOverview() {
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-black text-white pt-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 lg:pl-16">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 lg:pl-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center max-w-8xl">
           {/* Left: Headline */}
           <div className="space-y-6 sm:space-y-8">

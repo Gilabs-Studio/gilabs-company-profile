@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const navigationItems = [
   { label: "Services", href: "/service" },
-  { label: "Portofolio", href: "#portofolio" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "Blog", href: "#blog" },
   { label: "Contact", href: "#contact" },
 ];
