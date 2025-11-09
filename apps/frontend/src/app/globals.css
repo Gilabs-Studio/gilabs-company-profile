@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -15,15 +15,15 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #ffffff;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
 @keyframes fadeInUp {
@@ -35,4 +35,24 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Fade transition for sections */
+.section-fade {
+  transition: opacity 0.6s ease-in-out;
+}
+
+/* Scroll snap for section-based navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+.section-snap {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+/* Ensure main container supports scroll snap */
+main {
+  scroll-snap-type: y mandatory;
 }

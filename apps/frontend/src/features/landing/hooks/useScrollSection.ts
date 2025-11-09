@@ -1,0 +1,84 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+
+export function useScrollSection(totalSections: number) {
+  const [activeSection, setActiveSection] = useState(0);
+  const rafIdRef = useRef<number | null>(null);
+  const lastScrollTimeRef = useRef(0);
+  const isScrollingRef = useRef(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Throttle scroll events using requestAnimationFrame
+      if (rafIdRef.current) {
+        return;
+      }
+
+      rafIdRef.current = requestAnimationFrame(() => {
+        const scrollPosition = window.scrollY;
+        const windowHeight = window.innerHeight;
+        
+        // Calculate which section should be active based on scroll position
+        // Each section takes up 100vh
+        const sectionIndex = Math.floor(scrollPosition / windowHeight);
+        
+        // Clamp to valid section indices
+        const clampedIndex = Math.max(
+          0,
+          Math.min(sectionIndex, totalSections - 1)
+        );
+        
+        setActiveSection(clampedIndex);
+        rafIdRef.current = null;
+      });
+    };
+
+    // Detect aggressive scrolling (rapid scroll events)
+    const handleScrollStart = () => {
+      isScrollingRef.current = true;
+      const now = Date.now();
+      const timeSinceLastScroll = now - lastScrollTimeRef.current;
+      
+      // If scrolling too fast (< 50ms between events), slow it down
+      if (timeSinceLastScroll < 50 && timeSinceLastScroll > 0) {
+        // Slightly delay the section update to allow morphing to catch up
+        setTimeout(() => {
+          handleScroll();
+        }, 100);
+      } else {
+        handleScroll();
+      }
+      
+      lastScrollTimeRef.current = now;
+    };
+
+    const handleScrollEnd = () => {
+      isScrollingRef.current = false;
+      // Final update after scroll ends
+      handleScroll();
+    };
+
+    let scrollEndTimeout: NodeJS.Timeout;
+    const scrollEndHandler = () => {
+      clearTimeout(scrollEndTimeout);
+      scrollEndTimeout = setTimeout(handleScrollEnd, 150);
+    };
+
+    window.addEventListener("scroll", handleScrollStart, { passive: true });
+    window.addEventListener("scroll", scrollEndHandler, { passive: true });
+    handleScroll(); // Initial call
+
+    return () => {
+      window.removeEventListener("scroll", handleScrollStart);
+      window.removeEventListener("scroll", scrollEndHandler);
+      if (rafIdRef.current) {
+        cancelAnimationFrame(rafIdRef.current);
+      }
+      clearTimeout(scrollEndTimeout);
+    };
+  }, [totalSections]);
+
+  return { activeSection };
+}
+

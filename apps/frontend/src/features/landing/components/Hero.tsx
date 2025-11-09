@@ -1,116 +1,105 @@
 "use client";
 
-import { TextEffect } from "@/components/core/text-effect";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { motion } from "framer-motion";
-import type { HeroProps } from "../types";
+import { MorphingText } from "@/components/ui/morphing-text";
+import { cn } from "@/lib/utils";
+import { useScrollSection } from "@/features/landing/hooks/useScrollSection";
+import { ScrollProgress } from "./ScrollProgress";
 
-export function Hero({ className = "" }: Readonly<HeroProps>) {
+// All content sections
+const contentSections = [
+  {
+    heading: "We're Fast. And We Build Things That Last.",
+    body: [
+      "We don't have decades of experience.",
+      "What we have is speed, teamwork, and good energy.",
+      "We code fast — and we care about what we ship.",
+    ],
+    button: "Let's Build Something",
+  },
+  {
+    heading: "We're not a big company. We're a small team that loves building stuff.",
+    body: [
+      "We started because we like making things work — and making them fast.",
+      "We don't hide behind buzzwords or fake professionalism.",
+      "Just real people, solving real problems, with code and coffee.",
+    ],
+  },
+  {
+    heading: "We move quick. We stay in flow.",
+    body: [
+      "No long meetings. No endless waiting.",
+      "Just focus, good vibe, and getting things done.",
+      "When an idea clicks, we build. When we ship, we move on.",
+    ],
+  },
+  {
+    heading: "Wanna build something fast with us?",
+    body: [
+      "Drop us a message. Tell us your idea.",
+      "We'll see how far we can take it — together.",
+    ],
+    button: "Let's Talk",
+  },
+];
+
+const TOTAL_SECTIONS = contentSections.length;
+
+export function Hero() {
+  const { activeSection } = useScrollSection(TOTAL_SECTIONS);
+  const currentSection = contentSections[activeSection];
+  const isActive = true; // Always active since we're in one section
+
   return (
-    <section
-      className={`relative z-10 flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8 ${className}`}
-    >
-      <div className="mx-auto w-full max-w-4xl text-center">
-        <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-black dark:text-white sm:text-5xl md:text-6xl lg:text-7xl [font-family:var(--font-space-grotesk)]">
-          <TextEffect
-            per="char"
-            delay={0.5}
-            variants={{
-              container: {
-                hidden: {
-                  opacity: 0,
-                },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.05,
-                  },
-                },
-              },
-              item: {
-                hidden: {
-                  opacity: 0,
-                  rotateX: 90,
-                  y: 10,
-                },
-                visible: {
-                  opacity: 1,
-                  rotateX: 0,
-                  y: 0,
-                  transition: {
-                    duration: 0.2,
-                  },
-                },
-              },
-            }}
+    <section className="fixed inset-0 min-h-screen flex items-center bg-black text-white">
+      <ScrollProgress 
+        totalSections={TOTAL_SECTIONS} 
+        activeSection={activeSection}
+      />
+      <div className="w-full h-full flex items-center px-4 sm:px-6 lg:px-8 lg:pl-16">
+        <div className="max-w-4xl space-y-8 sm:space-y-12">
+          {/* Headline with Morphing Text */}
+          <div className="relative min-h-[4rem] sm:min-h-[5rem] md:min-h-[6rem] lg:min-h-[7rem] xl:min-h-[8rem]">
+            <MorphingText
+              text={currentSection.heading}
+              isActive={isActive}
+              textId="heading"
+              className="h-full text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-tight font-display"
+            />
+          </div>
+
+          {/* Body with Morphing */}
+          <div className="space-y-6 max-w-3xl">
+            {/* Render body texts - always use consistent textId for morphing */}
+            {currentSection.body.map((bodyText, index) => (
+              <div key={`${activeSection}-body-${index}`} className="relative min-h-[2rem]">
+                <MorphingText
+                  text={bodyText}
+                  isActive={isActive}
+                  textId={`body-${index + 1}`}
+                  className="h-full text-lg sm:text-xl md:text-2xl font-normal leading-relaxed"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Button with fade in/out animation */}
+          <div 
+            className={cn(
+              "pt-4 transition-opacity duration-1000 ease-in-out",
+              currentSection.button ? "opacity-100" : "opacity-0 pointer-events-none"
+            )}
           >
-            We build apps
-            <br />
-            and websites
-          </TextEffect>
-        </h1>
-        <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-xl md:text-2xl">
-          <TextEffect
-            per="char"
-            delay={1.5}
-            variants={{
-              container: {
-                hidden: {
-                  opacity: 0,
-                },
-                visible: {
-                  opacity: 1,
-                  transition: {
-                    staggerChildren: 0.05,
-                  },
-                },
-              },
-              item: {
-                hidden: {
-                  opacity: 0,
-                  rotateX: 90,
-                  y: 10,
-                },
-                visible: {
-                  opacity: 1,
-                  rotateX: 0,
-                  y: 0,
-                  transition: {
-                    duration: 0.2,
-                  },
-                },
-              },
-            }}
-          >
-            that boost conversion with super minimalist and modern UI
-          </TextEffect>
-        </p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 2.5, duration: 0.6 }}
-          className="flex flex-col items-center justify-center gap-4 sm:flex-row"
-        >
-          <Button
-            size="lg"
-            className="group bg-black text-white hover:bg-zinc-800 dark:bg-white dark:text-black dark:hover:bg-zinc-200"
-            asChild
-          >
-            <a href="#contact">
-              Start Your Project
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </a>
-          </Button>
-          <Button
-            size="lg"
-            variant="outline"
-            className="border-zinc-300 dark:border-zinc-700"
-            asChild
-          >
-            <a href="#services">View Our Work</a>
-          </Button>
-        </motion.div>
+            {currentSection.button && (
+              <Button
+                size="lg"
+                className="border border-white bg-black hover:bg-white hover:text-black font-bold text-base sm:text-lg px-8 py-6 rounded-none transition-all duration-200"
+              >
+                {currentSection.button}
+              </Button>
+            )}
+          </div>
+        </div>
       </div>
     </section>
   );
