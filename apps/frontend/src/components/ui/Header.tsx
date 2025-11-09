@@ -1,0 +1,145 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
+
+const navigationItems = [
+  { label: "Services", href: "#services" },
+  { label: "Portofolio", href: "#portofolio" },
+  { label: "Blog", href: "#blog" },
+  { label: "Contact", href: "#contact" },
+];
+
+export function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    setIsMobileMenuOpen(false);
+    
+    // Smooth scroll to section
+    if (href.startsWith("#")) {
+      const targetId = href.slice(1);
+      const element = document.getElementById(targetId);
+      if (element) {
+        // Account for header height
+        const headerHeight = 80; // Approximate header height
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+        
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
+      } else {
+        // If section doesn't exist yet, scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  };
+
+  return (
+    <header
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        isScrolled
+          ? "bg-black/80 backdrop-blur-sm border-b border-white/10"
+          : "bg-black/40 backdrop-blur-sm"
+      )}
+    >
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 lg:h-20">
+          {/* Logo */}
+          <Link
+            href="/"
+            className="text-xl sm:text-2xl font-bold font-display tracking-tight text-white hover:opacity-80 transition-opacity"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+          >
+            GiLabs
+          </Link>
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-8 lg:gap-12">
+            {navigationItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-sm lg:text-base font-normal text-white/80 hover:text-white transition-colors relative group"
+              >
+                {item.label}
+                <span className="absolute bottom-0 left-0 w-0 h-px bg-white transition-all duration-300 group-hover:w-full" />
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            type="button"
+            className="md:hidden text-white focus:outline-none"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+          >
+            <div className="w-6 h-6 flex flex-col justify-center gap-1.5">
+              <span
+                className={cn(
+                  "block h-px bg-white transition-all duration-300",
+                  isMobileMenuOpen ? "rotate-45 translate-y-2" : ""
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-px bg-white transition-all duration-300",
+                  isMobileMenuOpen ? "opacity-0" : ""
+                )}
+              />
+              <span
+                className={cn(
+                  "block h-px bg-white transition-all duration-300",
+                  isMobileMenuOpen ? "-rotate-45 -translate-y-2" : ""
+                )}
+              />
+            </div>
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div
+          className={cn(
+            "md:hidden overflow-hidden transition-all duration-300",
+            isMobileMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+          )}
+        >
+          <div className="py-4 space-y-4 border-t border-white/10 mt-2">
+            {navigationItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="block text-base font-normal text-white/80 hover:text-white transition-colors py-2"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      </nav>
+    </header>
+  );
+}
+
