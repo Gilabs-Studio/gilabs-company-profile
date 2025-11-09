@@ -46,12 +46,17 @@ const contentSections = [
 const TOTAL_SECTIONS = contentSections.length;
 
 export function Hero() {
-  const { activeSection } = useScrollSection(TOTAL_SECTIONS);
+  const { activeSection, isWithinHeroSections } = useScrollSection(TOTAL_SECTIONS);
   const currentSection = contentSections[activeSection];
-  const isActive = true; // Always active since we're in one section
+  const isActive = isWithinHeroSections; // Only active when within Hero sections
 
   return (
-    <section className="fixed inset-0 min-h-screen flex items-center bg-black text-white">
+    <section 
+      className={cn(
+        "fixed inset-0 min-h-screen flex items-center bg-black text-white transition-opacity duration-500",
+        isActive ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+      )}
+    >
       <ScrollProgress 
         totalSections={TOTAL_SECTIONS} 
         activeSection={activeSection}

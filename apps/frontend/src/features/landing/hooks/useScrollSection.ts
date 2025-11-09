@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 export function useScrollSection(totalSections: number) {
   const [activeSection, setActiveSection] = useState(0);
+  const [isWithinHeroSections, setIsWithinHeroSections] = useState(true);
   const rafIdRef = useRef<number | null>(null);
   const lastScrollTimeRef = useRef(0);
   const isScrollingRef = useRef(false);
@@ -23,7 +24,13 @@ export function useScrollSection(totalSections: number) {
         // Each section takes up 100vh
         const sectionIndex = Math.floor(scrollPosition / windowHeight);
         
-        // Clamp to valid section indices
+        // Check if we're still within Hero sections
+        const maxHeroScroll = totalSections * windowHeight;
+        const isWithin = scrollPosition < maxHeroScroll;
+        setIsWithinHeroSections(isWithin);
+        
+        // Clamp to valid section indices (0 to totalSections - 1)
+        // This ensures we only track Hero sections, not sections beyond
         const clampedIndex = Math.max(
           0,
           Math.min(sectionIndex, totalSections - 1)
@@ -79,6 +86,6 @@ export function useScrollSection(totalSections: number) {
     };
   }, [totalSections]);
 
-  return { activeSection };
+  return { activeSection, isWithinHeroSections };
 }
 
