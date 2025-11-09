@@ -8,8 +8,8 @@ import Link from "next/link";
 const navigationItems = [
   { label: "Services", href: "/service" },
   { label: "Portfolio", href: "/portfolio" },
-  { label: "Blog", href: "#blog" },
-  { label: "Contact", href: "#contact" },
+  { label: "Blog", href: "/blog" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export function Header() {
