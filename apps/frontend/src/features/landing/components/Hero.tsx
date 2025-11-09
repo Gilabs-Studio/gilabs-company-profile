@@ -1,7 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { MorphingText } from "@/components/ui/morphing-text";
+import { MorphingText, globalTextStore, globalMinHeightStore } from "@/components/ui/morphing-text";
 import { cn } from "@/lib/utils";
 import { useScrollSection } from "@/features/landing/hooks/useScrollSection";
 import { ScrollProgress } from "./ScrollProgress";
@@ -46,9 +48,35 @@ const contentSections = [
 const TOTAL_SECTIONS = contentSections.length;
 
 export function Hero() {
+  const pathname = usePathname();
   const { activeSection, isWithinHeroSections } = useScrollSection(TOTAL_SECTIONS);
   const currentSection = contentSections[activeSection];
   const isActive = isWithinHeroSections; // Only active when within Hero sections
+
+  // Reset global stores and scroll position when navigating to homepage to ensure morphing works correctly
+  useEffect(() => {
+    if (pathname === "/") {
+      // Clear global stores to reset morphing state
+      globalTextStore.clear();
+      globalMinHeightStore.clear();
+      
+      // Reset scroll position to top immediately (without smooth scroll to avoid delay)
+      // This ensures the scroll section hook calculates the correct activeSection
+      // Use both methods for maximum compatibility
+      if (globalThis.window !== undefined) {
+        // Try instant behavior first (modern browsers)
+        try {
+          globalThis.window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
+        } catch {
+          // Fallback for older browsers
+          globalThis.window.scrollTo(0, 0);
+        }
+        // Also set scrollTop directly as backup
+        document.documentElement.scrollTop = 0;
+        document.body.scrollTop = 0;
+      }
+    }
+  }, [pathname]);
 
   return (
     <section 

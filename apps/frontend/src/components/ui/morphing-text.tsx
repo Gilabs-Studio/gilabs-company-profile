@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 const morphTime = 1.5;
 
 // Global store to track previous text across all morphing text instances
-const globalTextStore = new Map<string, string>();
+export const globalTextStore = new Map<string, string>();
 
 // Global store to track min-height per textId for container layout
 export const globalMinHeightStore = new Map<string, string>();

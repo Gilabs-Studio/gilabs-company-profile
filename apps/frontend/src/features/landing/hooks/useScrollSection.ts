@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 export function useScrollSection(totalSections: number) {
   const [activeSection, setActiveSection] = useState(0);
@@ -8,6 +9,7 @@ export function useScrollSection(totalSections: number) {
   const rafIdRef = useRef<number | null>(null);
   const lastScrollTimeRef = useRef(0);
   const isScrollingRef = useRef(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,9 +76,16 @@ export function useScrollSection(totalSections: number) {
 
     window.addEventListener("scroll", handleScrollStart, { passive: true });
     window.addEventListener("scroll", scrollEndHandler, { passive: true });
-    handleScroll(); // Initial call
+    
+    // Initial call - use setTimeout to ensure DOM is ready and scroll position is set
+    // This is especially important when navigating from another page
+    // Small delay ensures scroll reset from Hero component has completed
+    const initTimeout = setTimeout(() => {
+      handleScroll();
+    }, pathname === "/" ? 10 : 0);
 
     return () => {
+      clearTimeout(initTimeout);
       window.removeEventListener("scroll", handleScrollStart);
       window.removeEventListener("scroll", scrollEndHandler);
       if (rafIdRef.current) {
@@ -84,7 +93,7 @@ export function useScrollSection(totalSections: number) {
       }
       clearTimeout(scrollEndTimeout);
     };
-  }, [totalSections]);
+  }, [totalSections, pathname]);
 
   return { activeSection, isWithinHeroSections };
 }
