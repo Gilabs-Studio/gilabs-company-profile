@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { blogData } from "../data/blog";
 import { BlogHeader } from "./BlogHeader";
+import { BlogImage } from "./BlogImage";
 
 export function BlogOverview() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -94,7 +94,7 @@ export function BlogOverview() {
                 {/* Image */}
                 {post.image && (
                   <div className="relative w-full aspect-video overflow-hidden bg-white/5 border border-white/10">
-                    <Image
+                    <BlogImage
                       src={post.image}
                       alt={post.imageAlt || post.title}
                       fill

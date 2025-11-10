@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
 import type { BlogPost } from "../types";
 import { BlogRecommendations } from "./BlogRecommendations";
+import { BlogImage } from "./BlogImage";
 
 interface BlogDetailProps {
   post: BlogPost;
@@ -310,7 +310,7 @@ export function BlogDetail({ post, relatedPosts }: BlogDetailProps) {
         {/* Featured Image */}
         {post.image && (
           <div className="relative w-full aspect-video overflow-hidden bg-white/5 border border-white/10 mb-8 sm:mb-12">
-            <Image
+            <BlogImage
               src={post.image}
               alt={post.imageAlt || post.title}
               fill
