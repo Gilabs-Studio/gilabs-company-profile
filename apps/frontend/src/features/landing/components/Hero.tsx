@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MorphingText, globalTextStore, globalMinHeightStore } from "@/components/ui/morphing-text";
 import { cn } from "@/lib/utils";
@@ -125,10 +126,13 @@ export function Hero() {
           >
             {currentSection.button && (
               <Button
+                asChild
                 size="lg"
                 className="border border-white bg-black hover:bg-white hover:text-black font-bold text-base sm:text-lg px-8 py-6 rounded-none transition-all duration-200"
               >
-                {currentSection.button}
+                <Link href="/contact">
+                  {currentSection.button}
+                </Link>
               </Button>
             )}
           </div>

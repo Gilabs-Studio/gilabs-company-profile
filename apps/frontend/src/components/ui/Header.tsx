@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
@@ -12,7 +12,7 @@ const navigationItems = [
   { label: "Contact", href: "/contact" },
 ];
 
-export function Header() {
+export const Header = memo(function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -179,5 +179,5 @@ export function Header() {
       </nav>
     </header>
   );
-}
+});
 

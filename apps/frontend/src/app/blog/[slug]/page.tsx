@@ -1,5 +1,4 @@
 import { notFound } from "next/navigation";
-import { Header } from "@/components/ui/Header";
 import { BlogDetail } from "@/features/blog/components/BlogDetail";
 import { getPostBySlug, getRelatedPosts } from "@/features/blog/data/blog";
 
@@ -20,12 +19,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const relatedPosts = getRelatedPosts(slug, 3);
 
   return (
-    <>
-      <Header />
-      <main className="relative bg-black">
-        <BlogDetail post={post} relatedPosts={relatedPosts} />
-      </main>
-    </>
+    <main className="relative bg-black">
+      <BlogDetail post={post} relatedPosts={relatedPosts} />
+    </main>
   );
 }
 
