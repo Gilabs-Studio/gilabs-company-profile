@@ -1,9 +1,16 @@
-"use client";
-
 import { Hero } from "@/features/landing/components/Hero";
+import { generateMetadata } from "@/lib/seo";
+import type { Metadata } from "next";
 
 // Must match the number of sections in Hero component
 const TOTAL_SECTIONS = 4;
+
+export const metadata: Metadata = generateMetadata({
+  title: "GiLabs - Web Development & Mobile Apps | Semarang, Indonesia",
+  description:
+    "Professional web development, mobile apps, and business systems. Building fast without breaking things. Based in Semarang, Indonesia.",
+  path: "/",
+});
 
 export default function HomePage() {
   return (
