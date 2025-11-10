@@ -29,16 +29,29 @@ export function BlogDetail({ post, relatedPosts }: BlogDetailProps) {
     return paragraphs.map((paragraph, index) => {
       const trimmed = paragraph.trim();
 
-      // Check if it's a heading (## Heading)
-      if (trimmed.startsWith("## ")) {
-        const heading = trimmed.replace(/^##\s+/, "");
+      // Check if it's a heading (# through ######)
+      const headingMatch = trimmed.match(/^(#{1,6})\s+(.+)$/);
+      if (headingMatch) {
+        const level = headingMatch[1]!.length;
+        const headingText = headingMatch[2]!;
+        
+        const headingClasses = {
+          1: "text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold font-display mt-10 mb-6 first:mt-0",
+          2: "text-2xl sm:text-3xl md:text-4xl font-bold font-display mt-8 mb-4 first:mt-0",
+          3: "text-xl sm:text-2xl md:text-3xl font-bold font-display mt-6 mb-3 first:mt-0",
+          4: "text-lg sm:text-xl md:text-2xl font-bold font-display mt-5 mb-3 first:mt-0",
+          5: "text-base sm:text-lg md:text-xl font-bold font-display mt-4 mb-2 first:mt-0",
+          6: "text-sm sm:text-base md:text-lg font-bold font-display mt-4 mb-2 first:mt-0",
+        };
+
+        const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
         return (
-          <h2
+          <HeadingTag
             key={index}
-            className="text-2xl sm:text-3xl md:text-4xl font-bold font-display mt-8 mb-4 first:mt-0"
+            className={headingClasses[level as keyof typeof headingClasses]}
           >
-            {parseInlineMarkdown(heading)}
-          </h2>
+            {parseInlineMarkdown(headingText)}
+          </HeadingTag>
         );
       }
 
