@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { blogData } from "../data/blog";
 import { BlogHeader } from "./BlogHeader";
@@ -76,10 +77,11 @@ export function BlogOverview() {
         {/* Blog Posts Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12">
           {filteredPosts.map((post, index) => (
-            <article
+            <Link
               key={post.id}
+              href={`/blog/${post.slug}`}
               className={cn(
-                "group relative transition-all duration-300",
+                "group relative transition-all duration-300 block",
                 "border-b-2 border-white/20 pb-6 sm:pb-8",
                 hoveredIndex === index
                   ? "border-white"
@@ -161,7 +163,7 @@ export function BlogOverview() {
                     : "opacity-0 group-hover:opacity-50"
                 )}
               />
-            </article>
+            </Link>
           ))}
         </div>
 
