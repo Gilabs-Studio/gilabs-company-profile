@@ -99,60 +99,63 @@ export function BlogDetail({ post, relatedPosts }: BlogDetailProps) {
     }> = [];
 
     // Find all code matches first (highest priority)
-    let match;
     codePattern.lastIndex = 0;
+    let match: RegExpExecArray | null;
     while ((match = codePattern.exec(text)) !== null) {
       matches.push({
         start: match.index,
         end: match.index + match[0].length,
         type: "code",
-        content: match[1],
+        content: match[1]!,
       });
     }
 
     // Find all link matches
     linkPattern.lastIndex = 0;
+    match = null;
     while ((match = linkPattern.exec(text)) !== null) {
       // Check if link overlaps with code
       const overlapsCode = matches.some(
         (m) =>
           m.type === "code" &&
-          m.start < match.index + match[0].length &&
-          m.end > match.index
+          m.start < match!.index + match![0].length &&
+          m.end > match!.index
       );
       if (!overlapsCode) {
         matches.push({
           start: match.index,
           end: match.index + match[0].length,
           type: "link",
-          content: match[1],
-          url: match[2],
+          content: match[1]!,
+          url: match[2]!,
         });
       }
     }
 
     // Find all bold matches
     boldPattern.lastIndex = 0;
+    match = null;
     while ((match = boldPattern.exec(text)) !== null) {
       // Check if bold overlaps with code or link
       const overlaps = matches.some(
         (m) =>
           (m.type === "code" || m.type === "link") &&
-          m.start < match.index + match[0].length &&
-          m.end > match.index
+          m.start < match!.index + match![0].length &&
+          m.end > match!.index
       );
       if (!overlaps) {
         matches.push({
           start: match.index,
           end: match.index + match[0].length,
           type: "bold",
-          content: match[1] || match[2],
+          content: match[1] || match[2] || "",
         });
       }
     }
 
     // Find all italic matches (not already part of bold or code)
     italicPattern.lastIndex = 0;
+    match = null;
     while ((match = italicPattern.exec(text)) !== null) {
       // Check if this is actually part of a bold pattern (double ** or __)
       const matchStart = match.index;
@@ -178,7 +181,7 @@ export function BlogDetail({ post, relatedPosts }: BlogDetailProps) {
           start: matchStart,
           end: matchEnd,
           type: "italic",
-          content: match[1] || match[2],
+          content: match[1] || match[2] || "",
         });
       }
     }
@@ -262,7 +265,8 @@ export function BlogDetail({ post, relatedPosts }: BlogDetailProps) {
 
   return (
     <article className="min-h-screen bg-black text-white pt-20 pb-20">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 lg:pl-8 max-w-4xl">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 lg:pl-8">
+        <div>
         {/* Back Link */}
         <Link
           href="/blog"
@@ -357,6 +361,7 @@ export function BlogDetail({ post, relatedPosts }: BlogDetailProps) {
             <span>←</span>
             <span>Back to Blog</span>
           </Link>
+        </div>
         </div>
       </div>
     </article>
