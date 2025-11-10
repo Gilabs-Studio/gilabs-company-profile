@@ -74,10 +74,61 @@ const useControlledMorphingText = ({
   // Trigger morph when section becomes active
   useEffect(() => {
     if (isActive) {
-      // Get previous text from global store BEFORE we update it
-      const storedText = globalTextStore.get(textId);
-      if (storedText && storedText !== text) {
-        previousTextRef.current = storedText;
+      // Cancel any ongoing animation first to prevent race conditions
+      if (animationFrameIdRef.current) {
+        cancelAnimationFrame(animationFrameIdRef.current);
+        animationFrameIdRef.current = null;
+      }
+      
+      // Get the currently displayed text from DOM (what's actually visible)
+      // This is more reliable than globalTextStore when switching quickly
+      const [current1, current2] = [text1Ref.current, text2Ref.current];
+      let currentlyDisplayedText = "";
+      
+      if (current1 && current2) {
+        // Check which text element is currently visible (has higher opacity)
+        // Handle both percentage strings ("100%") and decimal values
+        const getOpacityValue = (opacityStr: string): number => {
+          if (!opacityStr) return 0;
+          const parsed = parseFloat(opacityStr);
+          // If it's a percentage (e.g., "100%"), convert to 0-1 range
+          if (opacityStr.includes("%")) {
+            return parsed / 100;
+          }
+          // Otherwise assume it's already 0-1 range
+          return parsed;
+        };
+        
+        const opacity1 = getOpacityValue(current1.style.opacity);
+        const opacity2 = getOpacityValue(current2.style.opacity);
+        
+        // If we're in the middle of an animation, prefer text2 (the target) as starting point
+        // because that's what we're morphing TO, which is more relevant for rapid switches
+        if (isMorphingRef.current && current2.textContent && opacity2 > 0.05) {
+          currentlyDisplayedText = current2.textContent;
+        } else if (opacity1 > opacity2 && opacity1 > 0.1) {
+          // text1 is more visible
+          currentlyDisplayedText = current1.textContent || "";
+        } else if (opacity2 > opacity1 && opacity2 > 0.1) {
+          // text2 is more visible
+          currentlyDisplayedText = current2.textContent || "";
+        } else {
+          // If neither is visible, fall back to global store or previous text ref
+          const storedText = globalTextStore.get(textId);
+          currentlyDisplayedText = storedText || previousTextRef.current || "";
+        }
+      } else {
+        // Fallback to global store if refs aren't ready
+        const storedText = globalTextStore.get(textId);
+        currentlyDisplayedText = storedText || previousTextRef.current || "";
+      }
+      
+      // Update previousTextRef with the currently displayed text
+      if (currentlyDisplayedText && currentlyDisplayedText !== text) {
+        previousTextRef.current = currentlyDisplayedText;
+        // Also update spacer text to match currently displayed text to prevent layout shift
+        spacerTextRef.current = currentlyDisplayedText;
+        onSpacerUpdateRef.current?.(currentlyDisplayedText);
       }
       
       const shouldMorph = !wasActiveRef.current || (previousTextRef.current && previousTextRef.current !== text);
@@ -90,10 +141,9 @@ const useControlledMorphingText = ({
         layoutUpdatedRef.current = false; // Reset layout update flag
         
         // Set initial state
-        const [current1, current2] = [text1Ref.current, text2Ref.current];
         const container = containerRef.current;
         if (current1 && current2 && container) {
-          // If we have previous text (from global store), morph from previous to new
+          // If we have previous text (currently displayed), morph from previous to new
           if (previousTextRef.current && previousTextRef.current !== text) {
             current1.textContent = previousTextRef.current;
             current2.textContent = text;
