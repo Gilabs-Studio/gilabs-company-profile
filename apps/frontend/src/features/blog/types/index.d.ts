@@ -1,3 +1,18 @@
+export interface BlogPostSEO {
+  en: {
+    title: string;
+    description: string;
+    keywords: string[];
+    imageAlt?: string;
+  };
+  id: {
+    title: string;
+    description: string;
+    keywords: string[];
+    imageAlt?: string;
+  };
+}
+
 export interface BlogPost {
   id: string;
   slug: string;
@@ -14,6 +29,7 @@ export interface BlogPost {
   image?: string;
   imageAlt?: string;
   readTime?: number;
+  seo?: BlogPostSEO;
 }
 
 export interface BlogPageData {
