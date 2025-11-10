@@ -21,6 +21,7 @@ export const siteConfig = {
   ogImage: "/images/og-image.jpg",
   twitterHandle: "@gilabs",
   locale: "id_ID",
+  googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   company: {
     name: "GiLabs",
     email: "hello@gilabs.com",
@@ -117,6 +118,9 @@ export function generateMetadata({
       canonical: url,
     },
     metadataBase: new URL(siteConfig.url),
+    verification: {
+      google: siteConfig.googleSiteVerification,
+    },
   } satisfies Metadata;
 }
 
