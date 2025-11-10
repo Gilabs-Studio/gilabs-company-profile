@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { BlogImageFallback } from "./BlogImageFallback";
+import { ImageFallback } from "@/components/ui/ImageFallback";
 import { cn } from "@/lib/utils";
 
 interface BlogImageProps {
@@ -33,7 +33,7 @@ export function BlogImage({
           className
         )}
       >
-        <BlogImageFallback />
+        <ImageFallback />
       </div>
     );
   }

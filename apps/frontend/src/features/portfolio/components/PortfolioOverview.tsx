@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { portfolioData } from "../data/portfolio";
 import { PortfolioFilter } from "./PortfolioFilter";
 import type { PortfolioCategory } from "../types";
+import { ImageFallback } from "@/components/ui/ImageFallback";
 
 export function PortfolioOverview() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -89,7 +89,7 @@ export function PortfolioOverview() {
                       <div className="space-y-4 sm:space-y-6">
                         {/* Image */}
                         <div className="relative w-full aspect-video overflow-hidden bg-white/5 border border-white/10">
-                          <Image
+                          <ImageFallback
                             src={item.image}
                             alt={item.imageAlt || item.title}
                             fill

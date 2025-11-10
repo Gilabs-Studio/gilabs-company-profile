@@ -1,4 +1,4 @@
-export function BlogImageFallback() {
+export function ImageFallback() {
   return (
     <svg
       className="w-full h-full"
