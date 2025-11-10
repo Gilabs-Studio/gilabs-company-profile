@@ -26,6 +26,18 @@ export const Header = memo(function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     setIsMobileMenuOpen(false);
     
@@ -152,32 +164,52 @@ export const Header = memo(function Header() {
           </button>
         </div>
 
+        {/* Mobile Menu Overlay */}
+        {isMobileMenuOpen && (
+          <div
+            className="md:hidden fixed inset-0 bg-black z-[99]"
+            style={{
+              top: "var(--header-height, 4rem)",
+            }}
+            onClick={() => setIsMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
+        )}
+
         {/* Mobile Menu */}
         <div
           className={cn(
-            "md:hidden overflow-hidden transition-all duration-300",
-            isMobileMenuOpen ? "max-h-64 opacity-100" : "max-h-0 opacity-0"
+            "md:hidden fixed left-0 right-0 bg-black z-[100] transition-all duration-300",
+            isMobileMenuOpen 
+              ? "opacity-100 visible" 
+              : "opacity-0 invisible"
           )}
+          style={{
+            top: "var(--header-height, 4rem)",
+            maxHeight: isMobileMenuOpen ? "calc(100vh - var(--header-height, 4rem))" : "0",
+          }}
         >
-          <div className="py-4 space-y-4 border-t border-white/10 mt-2">
-            {navigationItems.map((item) => {
-              const isActive = pathname === item.href || (item.href.startsWith("#") && pathname === "/");
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className={cn(
-                    "block text-base font-normal transition-colors py-2",
-                    isActive
-                      ? "text-white"
-                      : "text-white/80 hover:text-white"
-                  )}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div className="space-y-4">
+              {navigationItems.map((item) => {
+                const isActive = pathname === item.href || (item.href.startsWith("#") && pathname === "/");
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className={cn(
+                      "block text-lg font-normal transition-colors py-3",
+                      isActive
+                        ? "text-white"
+                        : "text-white/80 hover:text-white"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
+            </div>
           </div>
         </div>
       </nav>
