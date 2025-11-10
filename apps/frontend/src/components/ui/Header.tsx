@@ -65,14 +65,18 @@ export const Header = memo(function Header() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-[100] transition-all duration-300",
+        "isolate", // Create new stacking context
         isScrolled
           ? "bg-black/80 backdrop-blur-sm"
           : "bg-black/40 backdrop-blur-sm"
       )}
+      style={{
+        height: "var(--header-height, 4rem)",
+      }}
     >
-      <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+      <nav className="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <Link
             href="/"

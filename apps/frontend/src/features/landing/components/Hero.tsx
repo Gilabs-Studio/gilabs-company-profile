@@ -82,16 +82,20 @@ export function Hero() {
   return (
     <section 
       className={cn(
-        "fixed inset-0 min-h-screen flex items-center bg-black text-white transition-opacity duration-500",
+        "fixed inset-0 min-h-screen bg-black text-white transition-opacity duration-500",
         isActive ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )}
+      style={{
+        top: "var(--header-height, 4rem)", // Start below header
+        height: "calc(100vh - var(--header-height, 4rem))", // Full height minus header
+      }}
     >
       <ScrollProgress 
         totalSections={TOTAL_SECTIONS} 
         activeSection={activeSection}
       />
-      <div className="w-full h-full flex items-center px-4 sm:px-6 lg:px-8 lg:pl-16">
-        <div className="max-w-4xl space-y-8 sm:space-y-12">
+      <div className="w-full h-full flex items-start px-4 sm:px-6 lg:px-8 lg:pl-16 overflow-y-auto">
+        <div className="max-w-4xl space-y-4 sm:space-y-6 pt-12 sm:pt-16 md:pt-20 lg:pt-24">
           {/* Headline with Morphing Text */}
           <div className="relative min-h-[4rem] sm:min-h-[5rem] md:min-h-[6rem] lg:min-h-[7rem] xl:min-h-[8rem]">
             <MorphingText
@@ -103,7 +107,7 @@ export function Hero() {
           </div>
 
           {/* Body with Morphing */}
-          <div className="space-y-6 max-w-3xl">
+          <div className="space-y-3 sm:space-y-4 max-w-3xl">
             {/* Render body texts - always use consistent textId for morphing */}
             {currentSection.body.map((bodyText, index) => (
               <div key={`${activeSection}-body-${index}`} className="relative min-h-[2rem]">
@@ -120,7 +124,7 @@ export function Hero() {
           {/* CTA Button with fade in/out animation */}
           <div 
             className={cn(
-              "pt-4 transition-opacity duration-1000 ease-in-out",
+              "transition-opacity duration-1000 ease-in-out",
               currentSection.button ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >

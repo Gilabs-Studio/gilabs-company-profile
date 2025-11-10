@@ -3,6 +3,13 @@
 :root {
   --background: #000000;
   --foreground: #ffffff;
+  --header-height: 4rem; /* h-16 = 64px for mobile */
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --header-height: 5rem; /* lg:h-20 = 80px for desktop */
+  }
 }
 
 @theme inline {
@@ -55,4 +62,9 @@ html {
 /* Ensure main container supports scroll snap */
 main {
   scroll-snap-type: y mandatory;
+}
+
+/* Utility class for header spacing - responsive padding top */
+.header-spacing {
+  padding-top: var(--header-height, 4rem);
 }
