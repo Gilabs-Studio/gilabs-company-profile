@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/ui/Header";
+import { FooterWrapper } from "@/components/ui/FooterWrapper";
 import { generateMetadata as generateSEOMetadata, generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo";
 import Script from "next/script";
 
@@ -56,6 +57,7 @@ export default function RootLayout({
         />
         <Header />
         {children}
+        <FooterWrapper />
       </body>
     </html>
   );
