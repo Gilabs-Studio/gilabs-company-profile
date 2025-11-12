@@ -23,7 +23,12 @@ export const siteConfig = {
   twitterHandle: "@gilabs",
   locale: "id_ID",
   alternateLocale: "en_US",
-  googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+  googleSiteVerification: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION
+    ? process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION.replace(
+        /^google-site-verification=/i,
+        ""
+      )
+    : undefined,
   themeColor: "#000000",
   backgroundColor: "#000000",
   company: {
