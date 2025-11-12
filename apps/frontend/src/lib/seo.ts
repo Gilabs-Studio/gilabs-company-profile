@@ -187,6 +187,12 @@ export function generateMetadata({
     // Manifest for PWA (handled by Next.js route handler at /manifest.ts)
     manifest: "/manifest.json",
     
+    // Theme color
+    themeColor: [
+      { media: "(prefers-color-scheme: light)", color: siteConfig.themeColor },
+      { media: "(prefers-color-scheme: dark)", color: siteConfig.themeColor },
+    ],
+    
     // Apple Web App
     appleWebApp: {
       capable: true,
@@ -206,10 +212,6 @@ export function generateMetadata({
       initialScale: 1,
       maximumScale: 5,
       userScalable: true,
-      themeColor: [
-        { media: "(prefers-color-scheme: light)", color: siteConfig.themeColor },
-        { media: "(prefers-color-scheme: dark)", color: siteConfig.themeColor },
-      ],
     },
     
     // Format detection

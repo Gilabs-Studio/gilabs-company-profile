@@ -44,7 +44,7 @@ export function BlogDetail({ post, relatedPosts }: BlogDetailProps) {
           6: "text-sm sm:text-base md:text-lg font-bold font-display mt-4 mb-2 first:mt-0",
         };
 
-        const HeadingTag = `h${level}` as keyof JSX.IntrinsicElements;
+        const HeadingTag = `h${level}` as keyof React.JSX.IntrinsicElements;
         return (
           <HeadingTag
             key={index}
