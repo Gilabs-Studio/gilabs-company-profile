@@ -6,9 +6,9 @@ import type { Metadata } from "next";
 const TOTAL_SECTIONS = 4;
 
 export const metadata: Metadata = generateMetadata({
-  title: "GiLabs - Web Development & Mobile Apps | Semarang, Indonesia",
+  title: "GiLabs - Software House Terbaik di Semarang | Web Development & Mobile Apps",
   description:
-    "Professional web development, mobile apps, and business systems. Building fast without breaking things. Based in Semarang, Indonesia.",
+    "Software House profesional di Semarang, Indonesia. Spesialis web development, mobile app development, dan business systems. Building fast without breaking things. Jasa pembuatan aplikasi dan website berkualitas tinggi dengan pengiriman cepat.",
   path: "/",
 });
 

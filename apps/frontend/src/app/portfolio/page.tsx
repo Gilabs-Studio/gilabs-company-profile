@@ -3,9 +3,9 @@ import { generateMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = generateMetadata({
-  title: "Portfolio - Our Work, Built Fast, Built Right",
+  title: "Portfolio Software House - Projek Web & Mobile App | GiLabs",
   description:
-    "Real projects, real results. Explore our portfolio of web applications, mobile apps, and business systems built for clients who needed speed without sacrificing quality.",
+    "Portfolio Software House GiLabs: Projek web development, mobile app development, dan business systems yang telah kami selesaikan. Real projects, real results. Built fast, built right.",
   path: "/portfolio",
 });
 

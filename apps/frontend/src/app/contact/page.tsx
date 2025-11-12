@@ -3,9 +3,9 @@ import { generateMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = generateMetadata({
-  title: "Contact Us - Let's Build Something Together",
+  title: "Kontak Software House GiLabs - Konsultasi Gratis | Semarang",
   description:
-    "Have a project in mind? Want to discuss your ideas? Contact GiLabs in Semarang, Indonesia. We're here to help turn your vision into reality.",
+    "Hubungi Software House GiLabs di Semarang, Indonesia. Konsultasi gratis untuk proyek web development, mobile app, dan business systems. Let's build something together.",
   path: "/contact",
 });
 

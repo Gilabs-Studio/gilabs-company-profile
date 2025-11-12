@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = generateMetadata({
-  title: "Privacy Policy",
+  title: "Privacy Policy - Software House GiLabs | Kebijakan Privasi",
   description:
-    "Privacy Policy for GiLabs. Learn how we collect, use, and protect your personal information.",
+    "Privacy Policy Software House GiLabs. Pelajari bagaimana kami mengumpulkan, menggunakan, dan melindungi informasi pribadi Anda. Kebijakan privasi untuk jasa software house di Semarang, Indonesia.",
   path: "/privacy",
 });
 

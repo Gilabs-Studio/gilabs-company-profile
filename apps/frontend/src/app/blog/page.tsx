@@ -3,9 +3,9 @@ import { generateMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = generateMetadata({
-  title: "Blog - Insights, Stories, and What We're Learning",
+  title: "Blog Software House - Tips Web Development & Mobile App | GiLabs",
   description:
-    "Thoughts on building products, working with clients, and the lessons we've learned along the way. Read our latest insights on web development, mobile apps, and business systems.",
+    "Blog Software House GiLabs: Insights, tips, dan pembelajaran tentang web development, mobile app development, dan business systems. Baca artikel terbaru dari tim Software House profesional di Semarang.",
   path: "/blog",
 });
 

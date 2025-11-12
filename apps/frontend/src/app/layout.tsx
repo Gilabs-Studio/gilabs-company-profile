@@ -3,7 +3,7 @@ import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/ui/Header";
 import { FooterWrapper } from "@/components/ui/FooterWrapper";
-import { generateMetadata as generateSEOMetadata, generateOrganizationSchema, generateWebsiteSchema } from "@/lib/seo";
+import { generateMetadata as generateSEOMetadata, generateOrganizationSchema, generateWebsiteSchema, generateFAQSchema } from "@/lib/seo";
 import Script from "next/script";
 
 const geistSans = Geist({
@@ -23,9 +23,9 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = generateSEOMetadata({
-  title: "GiLabs - Web Development & Mobile Apps | Semarang, Indonesia",
+  title: "GiLabs - Software House Terbaik di Semarang | Web Development & Mobile Apps",
   description:
-    "Professional web development, mobile apps, and business systems. Building fast without breaking things. Based in Semarang, Indonesia.",
+    "Software House profesional di Semarang, Indonesia. Spesialis web development, mobile app development, dan business systems. Building fast without breaking things. Jasa pembuatan aplikasi dan website berkualitas tinggi.",
 });
 
 export default function RootLayout({
@@ -35,6 +35,7 @@ export default function RootLayout({
 }>) {
   const organizationSchema = generateOrganizationSchema();
   const websiteSchema = generateWebsiteSchema();
+  const faqSchema = generateFAQSchema();
 
   return (
     <html lang="id">
@@ -53,6 +54,13 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(websiteSchema),
+          }}
+        />
+        <Script
+          id="faq-schema"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(faqSchema),
           }}
         />
         <Header />

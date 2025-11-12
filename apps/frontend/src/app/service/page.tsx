@@ -3,9 +3,9 @@ import { generateMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = generateMetadata({
-  title: "Services - Web Development, Mobile Apps & Business Systems",
+  title: "Layanan Software House - Web Development, Mobile Apps & Business Systems | GiLabs",
   description:
-    "We offer professional web development, mobile app development, and business systems. Fast delivery without compromising quality. Based in Semarang, Indonesia.",
+    "Layanan lengkap Software House GiLabs: Web Development, Mobile App Development, UI/UX Design, System Integration, dan Maintenance. Fast delivery tanpa mengorbankan kualitas. Software House terpercaya di Semarang, Indonesia.",
   path: "/service",
 });
 
