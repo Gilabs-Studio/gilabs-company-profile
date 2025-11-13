@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
@@ -52,32 +52,66 @@ export function Hero() {
   const pathname = usePathname();
   const { activeSection, isWithinHeroSections } = useScrollSection(TOTAL_SECTIONS);
   const currentSection = contentSections[activeSection];
-  const isActive = isWithinHeroSections; // Only active when within Hero sections
+  const isActive = isWithinHeroSections;
+  const contentRef = useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(1);
 
-  // Reset global stores and scroll position when navigating to homepage to ensure morphing works correctly
+  // Reset global stores and scroll position when navigating to homepage
   useEffect(() => {
     if (pathname === "/") {
-      // Clear global stores to reset morphing state
       globalTextStore.clear();
       globalMinHeightStore.clear();
       
-      // Reset scroll position to top immediately (without smooth scroll to avoid delay)
-      // This ensures the scroll section hook calculates the correct activeSection
-      // Use both methods for maximum compatibility
       if (globalThis.window !== undefined) {
-        // Try instant behavior first (modern browsers)
         try {
           globalThis.window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior });
         } catch {
-          // Fallback for older browsers
           globalThis.window.scrollTo(0, 0);
         }
-        // Also set scrollTop directly as backup
         document.documentElement.scrollTop = 0;
         document.body.scrollTop = 0;
       }
     }
   }, [pathname]);
+
+  // Auto-scale content to fit viewport
+  useEffect(() => {
+    const calculateScale = () => {
+      if (!contentRef.current) return;
+      
+      const container = contentRef.current;
+      const viewportHeight = window.innerHeight;
+      const headerHeight = parseInt(
+        getComputedStyle(document.documentElement)
+          .getPropertyValue('--header-height')
+          .replace('rem', '')
+      ) * 16 || 64;
+      
+      const availableHeight = viewportHeight - headerHeight - 64; // 64px for padding buffer
+      const contentHeight = container.scrollHeight;
+      
+      if (contentHeight > availableHeight) {
+        const newScale = availableHeight / contentHeight;
+        setScale(Math.max(newScale, 0.7)); // Minimum scale 0.7 (70%)
+      } else {
+        setScale(1);
+      }
+    };
+
+    // Calculate on mount and when active section changes
+    calculateScale();
+    
+    // Recalculate on window resize
+    window.addEventListener('resize', calculateScale);
+    
+    // Small delay to ensure morphing animation has settled
+    const timeoutId = setTimeout(calculateScale, 100);
+    
+    return () => {
+      window.removeEventListener('resize', calculateScale);
+      clearTimeout(timeoutId);
+    };
+  }, [activeSection, currentSection]);
 
   return (
     <section 
@@ -88,7 +122,6 @@ export function Hero() {
       style={{
         top: "var(--header-height, 4rem)",
         height: "calc(100vh - var(--header-height, 4rem))",
-        // Prevent internal scrolling, use page scroll only
         overflow: "hidden",
       }}
     >
@@ -96,15 +129,14 @@ export function Hero() {
         totalSections={TOTAL_SECTIONS} 
         activeSection={activeSection}
       />
-      {/* Container with proper constraints */}
+      
+      {/* Single container with centering and overflow prevention */}
       <div className="w-full h-full flex items-center justify-start px-4 sm:px-6 lg:px-8 lg:pl-16">
         <div 
-          className="max-w-4xl w-full space-y-4 sm:space-y-6"
+          ref={contentRef}
+          className="max-w-4xl w-full space-y-4 sm:space-y-6 transition-transform duration-300 origin-left"
           style={{
-            // Ensure content fits within viewport with proper padding
-            maxHeight: "calc(100vh - var(--header-height, 4rem) - 4rem)",
-            paddingTop: "clamp(2rem, 5vh, 4rem)",
-            paddingBottom: "clamp(2rem, 5vh, 4rem)",
+            transform: `scale(${scale})`,
           }}
         >
           {/* Headline with Morphing Text */}
@@ -117,26 +149,43 @@ export function Hero() {
             />
           </div>
 
-          {/* Body with Morphing */}
+          {/* Body with Morphing - always render 3 slots for consistency */}
           <div className="space-y-3 sm:space-y-4 max-w-3xl">
-            {/* Render body texts - always use consistent textId for morphing */}
-            {currentSection.body.map((bodyText, index) => (
-              <div key={`${activeSection}-body-${index}`} className="relative min-h-8">
-                <MorphingText
-                  text={bodyText}
-                  isActive={isActive}
-                  textId={`body-${index + 1}`}
-                  className="h-full text-lg sm:text-xl md:text-2xl font-normal leading-relaxed"
-                />
-              </div>
-            ))}
+            {[0, 1, 2].map((index) => {
+              const bodyText = currentSection.body[index];
+              return (
+                <div 
+                  key={`body-slot-${index}`} 
+                  className={cn(
+                    "relative transition-all duration-500 ease-out",
+                    bodyText 
+                      ? "min-h-8 opacity-100 scale-y-100" 
+                      : "h-0 opacity-0 scale-y-0 overflow-hidden pointer-events-none"
+                  )}
+                  style={{
+                    transformOrigin: "top",
+                  }}
+                >
+                  {bodyText && (
+                    <MorphingText
+                      text={bodyText}
+                      isActive={isActive}
+                      textId={`body-${index + 1}`}
+                      className="h-full text-lg sm:text-xl md:text-2xl font-normal leading-relaxed"
+                    />
+                  )}
+                </div>
+              );
+            })}
           </div>
 
           {/* CTA Button with fade in/out animation */}
           <div 
             className={cn(
-              "transition-opacity duration-1000 ease-in-out pt-2 sm:pt-4",
-              currentSection.button ? "opacity-100" : "opacity-0 pointer-events-none"
+              "transition-all duration-1000 ease-in-out pt-2 sm:pt-4",
+              currentSection.button 
+                ? "opacity-100 scale-100" 
+                : "opacity-0 scale-95 pointer-events-none h-0 overflow-hidden"
             )}
           >
             {currentSection.button && (
