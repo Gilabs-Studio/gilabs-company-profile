@@ -82,22 +82,33 @@ export function Hero() {
   return (
     <section 
       className={cn(
-        "fixed inset-0 min-h-screen bg-black text-white transition-opacity duration-500",
+        "fixed inset-0 bg-black text-white transition-opacity duration-500",
         isActive ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
       )}
       style={{
-        top: "var(--header-height, 4rem)", // Start below header
-        height: "calc(100vh - var(--header-height, 4rem))", // Full height minus header
+        top: "var(--header-height, 4rem)",
+        height: "calc(100vh - var(--header-height, 4rem))",
+        // Prevent internal scrolling, use page scroll only
+        overflow: "hidden",
       }}
     >
       <ScrollProgress 
         totalSections={TOTAL_SECTIONS} 
         activeSection={activeSection}
       />
-      <div className="w-full h-full flex items-start px-4 sm:px-6 lg:px-8 lg:pl-16 overflow-y-auto">
-        <div className="max-w-4xl space-y-4 sm:space-y-6 pt-12 sm:pt-16 md:pt-20 lg:pt-24">
+      {/* Container with proper constraints */}
+      <div className="w-full h-full flex items-center justify-start px-4 sm:px-6 lg:px-8 lg:pl-16">
+        <div 
+          className="max-w-4xl w-full space-y-4 sm:space-y-6"
+          style={{
+            // Ensure content fits within viewport with proper padding
+            maxHeight: "calc(100vh - var(--header-height, 4rem) - 4rem)",
+            paddingTop: "clamp(2rem, 5vh, 4rem)",
+            paddingBottom: "clamp(2rem, 5vh, 4rem)",
+          }}
+        >
           {/* Headline with Morphing Text */}
-          <div className="relative min-h-[4rem] sm:min-h-[5rem] md:min-h-[6rem] lg:min-h-[7rem] xl:min-h-[8rem]">
+          <div className="relative min-h-16 sm:min-h-20 md:min-h-24 lg:min-h-28 xl:min-h-32">
             <MorphingText
               text={currentSection.heading}
               isActive={isActive}
@@ -110,7 +121,7 @@ export function Hero() {
           <div className="space-y-3 sm:space-y-4 max-w-3xl">
             {/* Render body texts - always use consistent textId for morphing */}
             {currentSection.body.map((bodyText, index) => (
-              <div key={`${activeSection}-body-${index}`} className="relative min-h-[2rem]">
+              <div key={`${activeSection}-body-${index}`} className="relative min-h-8">
                 <MorphingText
                   text={bodyText}
                   isActive={isActive}
@@ -124,7 +135,7 @@ export function Hero() {
           {/* CTA Button with fade in/out animation */}
           <div 
             className={cn(
-              "transition-opacity duration-1000 ease-in-out",
+              "transition-opacity duration-1000 ease-in-out pt-2 sm:pt-4",
               currentSection.button ? "opacity-100" : "opacity-0 pointer-events-none"
             )}
           >

@@ -31,6 +31,19 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  /* Prevent overscroll and ensure proper scroll containment */
+  overscroll-behavior-y: none;
+  overflow-x: hidden;
+}
+
+/* Prevent document overflow on homepage */
+html.homepage-active {
+  overflow-x: hidden;
+}
+
+html.homepage-active body {
+  /* Ensure body doesn't create extra scroll space */
+  overflow-x: hidden;
 }
 
 @keyframes fadeInUp {

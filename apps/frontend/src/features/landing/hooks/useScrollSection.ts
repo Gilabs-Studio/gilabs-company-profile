@@ -21,24 +21,38 @@ export function useScrollSection(totalSections: number) {
       rafIdRef.current = requestAnimationFrame(() => {
         const scrollPosition = window.scrollY;
         const windowHeight = window.innerHeight;
+        const documentHeight = document.documentElement.scrollHeight;
         
-        // Calculate which section should be active based on scroll position
-        // Each section takes up 100vh
-        const sectionIndex = Math.floor(scrollPosition / windowHeight);
+        // Check if we're at the very bottom (scrollbar mentok)
+        // Use a small threshold to account for sub-pixel rendering
+        const scrolledToBottom = Math.abs(documentHeight - (scrollPosition + windowHeight)) < 2;
+        
+        // Calculate which section should be active
+        let sectionIndex: number;
+        
+        if (scrolledToBottom) {
+          // If scrollbar is at bottom, force show last section
+          sectionIndex = totalSections - 1;
+        } else {
+          // Calculate based on viewport position
+          // Divide total scrollable height into equal sections
+          const scrollableHeight = documentHeight - windowHeight;
+          const sectionHeight = scrollableHeight / totalSections;
+          sectionIndex = Math.floor(scrollPosition / sectionHeight);
+        }
         
         // Check if we're still within Hero sections
-        const maxHeroScroll = totalSections * windowHeight;
-        const isWithin = scrollPosition < maxHeroScroll;
+        const isWithin = sectionIndex < totalSections || scrolledToBottom;
         setIsWithinHeroSections(isWithin);
         
         // Clamp to valid section indices (0 to totalSections - 1)
-        // This ensures we only track Hero sections, not sections beyond
         const clampedIndex = Math.max(
           0,
           Math.min(sectionIndex, totalSections - 1)
         );
         
         setActiveSection(clampedIndex);
+        
         rafIdRef.current = null;
       });
     };
