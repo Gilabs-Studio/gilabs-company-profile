@@ -80,8 +80,8 @@ export const Header = memo(function Header() {
         "fixed top-0 left-0 right-0 z-[100] transition-all duration-300",
         "isolate", // Create new stacking context
         isScrolled
-          ? "bg-black/80 backdrop-blur-sm"
-          : "bg-black/40 backdrop-blur-sm"
+          ? "bg-black/90 backdrop-blur-md"
+          : "bg-linear-to-r from-black/90 via-black/50 to-transparent backdrop-blur-sm"
       )}
       style={{
         height: "var(--header-height, 4rem)",
