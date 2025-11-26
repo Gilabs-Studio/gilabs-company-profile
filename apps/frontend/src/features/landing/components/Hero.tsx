@@ -27,15 +27,19 @@ export function Hero() {
 
     // Animate headline
     if (headlineRef.current) {
-      // Split text for animation
-      const text = headlineRef.current.innerText;
-      const lines = text.split('\n').filter(Boolean);
+      // Manual HTML construction to preserve coloring while enabling animation
+      const lines = [
+        "We're <span class='text-primary'>Fast.</span>",
+        "And We Build",
+        "Things That <span class='text-primary'>Last.</span>"
+      ];
       
       headlineRef.current.innerHTML = lines
         .map(line => `<div class="overflow-hidden"><span class="inline-block transform-gpu">${line}</span></div>`)
         .join('');
 
-      const spans = headlineRef.current.querySelectorAll('span');
+      // Select the parent spans for animation
+      const spans = headlineRef.current.querySelectorAll('div > span');
       
       timeline.fromTo(
         spans,
@@ -142,7 +146,7 @@ export function Hero() {
             <Button
               asChild
               size="lg"
-              className="border border-white bg-black hover:bg-white hover:text-black font-bold text-base sm:text-lg px-8 py-6 rounded-none transition-all duration-200"
+              className="border-none bg-primary hover:bg-primary/90 text-white font-bold text-base sm:text-lg px-8 py-6 rounded-none transition-all duration-200 shadow-[0_0_20px_rgba(255,85,0,0.3)] hover:shadow-[0_0_30px_rgba(255,85,0,0.5)]"
             >
               <Link href="/contact">
                 Build My Software
