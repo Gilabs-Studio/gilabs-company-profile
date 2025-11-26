@@ -145,7 +145,7 @@ export function Hero() {
               className="border border-white bg-black hover:bg-white hover:text-black font-bold text-base sm:text-lg px-8 py-6 rounded-none transition-all duration-200"
             >
               <Link href="/contact">
-                Make Your Own Software
+                Build My Software
               </Link>
             </Button>
           </div>

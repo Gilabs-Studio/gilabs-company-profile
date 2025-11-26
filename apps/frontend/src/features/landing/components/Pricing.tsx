@@ -6,13 +6,19 @@ import { cn } from "@/lib/utils";
 
 export function Pricing() {
   return (
-    <section className="bg-black text-white py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto space-y-20">
+    <section className="relative z-10 -mt-32 pb-20 text-white">
+      {/* Gradient Top - Smooth transition from Hero */}
+      <div className="absolute top-0 left-0 right-0 h-32 bg-linear-to-b from-transparent to-black pointer-events-none" />
+      
+      {/* Solid Bottom Background */}
+      <div className="absolute top-32 left-0 right-0 bottom-0 bg-black pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto space-y-20 px-4 sm:px-6 lg:px-8 pt-12">
         
         {/* Section 1: Website Packages */}
         <div className="space-y-12">
           <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight mt-24">
               Paket Pembuatan Website Company Profile
             </h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
