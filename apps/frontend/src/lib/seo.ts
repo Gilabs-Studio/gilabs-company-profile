@@ -18,7 +18,7 @@ export const siteConfig = {
   shortName: "GiLabs",
   description:
     "GiLabs - Software House Terbaik di Semarang, Indonesia. Professional web development, mobile apps, dan business systems. Building fast without breaking things.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://gilabs.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://gilabs.id",
   ogImage: "/images/og-image.jpg",
   twitterHandle: "@gilabs",
   locale: "id_ID",
@@ -33,7 +33,7 @@ export const siteConfig = {
   backgroundColor: "#000000",
   company: {
     name: "GiLabs",
-    email: "hello@gilabs.com",
+    email: "hello@gilabs.id",
     phone: "+62 812-3741-1352",
     address: {
       street: "Semarang",

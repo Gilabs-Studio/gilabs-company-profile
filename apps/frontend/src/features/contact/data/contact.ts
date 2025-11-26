@@ -10,8 +10,8 @@ export const contactData: ContactPageData = {
     {
       id: "email",
       label: "Email",
-      value: "hello@gilabs.com",
-      href: "mailto:hello@gilabs.com",
+      value: "hello@gilabs.id",
+      href: "mailto:hello@gilabs.id",
     },
     {
       id: "phone",
