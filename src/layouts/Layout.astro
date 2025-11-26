@@ -1,17 +1,29 @@
 ---
 import "../styles/globals.css";
-const { lang = Astro.currentLocale || 'en' } = Astro.props;
+import LightRays from "../components/ui/LightRays";
+
+const { lang = Astro.currentLocale || 'en', title = 'Gilabs.id' } = Astro.props;
 ---
 <!doctype html>
-<html lang={lang}>
+<html lang={lang} class="scroll-smooth">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
-	<body>
+	<body class="bg-background text-foreground font-sans antialiased relative selection:bg-brand selection:text-white">
+    <div class="fixed inset-0 z-[-1] pointer-events-none">
+      <LightRays 
+        client:only="react"
+        raysColor="#FBFBFB" 
+        raysSpeed={0.5} 
+        lightSpread={0.5}
+        rayLength={1.5}
+        raysOrigin="top-center"
+      />
+    </div>
 		<slot />
 	</body>
 </html>

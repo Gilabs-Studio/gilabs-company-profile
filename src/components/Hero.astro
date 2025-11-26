@@ -1,0 +1,56 @@
+---
+import { pricingData } from '../data/pricing';
+
+const { lang } = Astro.props;
+const t = pricingData[lang].hero;
+
+const logos = [
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png",
+  "https://astro.build/assets/press/astro-icon-light.png",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/2560px-Nextjs-logo.svg.png",
+  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png"
+];
+---
+
+<section class="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
+  
+  <div class="container mx-auto px-4 text-center max-w-5xl relative z-10 pt-20">
+    {/* Conversion Conversion Element - Logo Marquee */}
+    <div class="mb-12 opacity-80 animate-fade-in">
+      <p class="text-xs font-bold uppercase tracking-widest text-muted-foreground mb-4">
+        {lang === 'en' ? 'Powering Next-Gen Tech' : 'Mendukung Teknologi Masa Depan'}
+      </p>
+      <div class="flex justify-center items-center gap-8 md:gap-12 flex-wrap grayscale hover:grayscale-0 transition-all duration-500">
+        {logos.map(logo => (
+          <img src={logo} alt="Tech Logo" class="h-8 md:h-10 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity" />
+        ))}
+      </div>
+    </div>
+    
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-8 text-foreground animate-slide-up leading-[1.1]" style="animation-delay: 0.1s;">
+      {t.title}
+    </h1>
+    
+    <div class="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto animate-slide-up space-y-2 font-light" style="animation-delay: 0.2s;">
+      {t.subtitle.map((line) => (
+        <p>{line}</p>
+      ))}
+    </div>
+    
+    <div class="flex flex-col items-center justify-center animate-slide-up" style="animation-delay: 0.3s;">
+      <a 
+        href="#contact" 
+        class="group relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white transition-all duration-200 bg-brand rounded-full hover:bg-brand/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand shadow-lg hover:shadow-brand/50 hover:-translate-y-1"
+      >
+        {lang === 'en' ? 'Build Your Software' : 'Bangun Software Anda'}
+        <svg class="w-5 h-5 ml-2 -mr-1 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+        </svg>
+      </a>
+      <p class="mt-4 text-sm text-muted-foreground">
+        {lang === 'en' ? 'No credit card required. Free consultation.' : 'Tanpa kartu kredit. Konsultasi gratis.'}
+      </p>
+    </div>
+  </div>
+</section>

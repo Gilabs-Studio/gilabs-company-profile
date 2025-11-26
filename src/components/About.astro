@@ -1,0 +1,70 @@
+---
+import { pricingData } from '../data/pricing';
+import { Zap, Coffee, Code2 } from 'lucide-react';
+
+const { lang } = Astro.props;
+const about = pricingData[lang].about;
+const process = pricingData[lang].process;
+const energy = pricingData[lang].energy;
+---
+
+<section id="about" class="py-20 md:py-32 relative border-b border-border/50">
+  <div class="container mx-auto px-4">
+    
+    {/* About Section */}
+    <div class="max-w-4xl mx-auto text-center mb-32">
+      <h2 class="text-3xl md:text-5xl font-bold mb-8 tracking-tight">{about.title}</h2>
+      <p class="text-xl md:text-2xl font-medium text-foreground mb-8 leading-relaxed">{about.subtitle}</p>
+      <div class="space-y-4 text-muted-foreground text-lg leading-relaxed max-w-2xl mx-auto">
+        {about.body.map(paragraph => (
+          <p>{paragraph}</p>
+        ))}
+      </div>
+    </div>
+
+    {/* Process Section - Redesigned as Cards */}
+    <div class="mb-32">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center justify-center p-3 bg-secondary/50 rounded-xl mb-6 backdrop-blur-sm">
+          <Zap className="w-6 h-6 text-foreground" />
+        </div>
+        <h3 class="text-3xl md:text-4xl font-bold mb-4">{process.title}</h3>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">{process.subtitle}</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        {process.body.map((step, index) => (
+          <div class="bg-background/40 backdrop-blur-sm border border-border/50 p-8 rounded-2xl hover:border-brand/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+            <span class="flex items-center justify-center w-12 h-12 rounded-full bg-brand/10 text-brand font-bold text-xl mb-6">
+              {index + 1}
+            </span>
+            <p class="text-lg font-medium">{step}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    {/* Energy Section */}
+    <div class="bg-secondary/30 backdrop-blur-md rounded-3xl p-8 md:p-16 text-center border border-white/10 relative overflow-hidden">
+      <div class="absolute inset-0 bg-linear-to-r from-brand/5 to-transparent opacity-50"></div>
+      <div class="relative z-10">
+        <div class="flex justify-center gap-4 mb-8">
+          <Coffee className="w-8 h-8 text-muted-foreground" />
+          <Code2 className="w-8 h-8 text-muted-foreground" />
+        </div>
+        <h3 class="text-3xl md:text-4xl font-bold mb-6">{energy.title}</h3>
+        <p class="font-medium mb-8 uppercase tracking-widest text-muted-foreground text-xs">{energy.subtitle}</p>
+        <div class="max-w-2xl mx-auto space-y-4 text-lg mb-12">
+          {energy.body.map(paragraph => (
+            <p>{paragraph}</p>
+          ))}
+        </div>
+        
+        <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-brand rounded-full hover:bg-brand/90 hover:shadow-lg hover:shadow-brand/20">
+          {lang === 'en' ? 'Start Your Project' : 'Mulai Proyek Anda'}
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>

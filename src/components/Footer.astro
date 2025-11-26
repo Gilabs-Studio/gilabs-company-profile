@@ -1,0 +1,54 @@
+---
+const { lang } = Astro.props;
+---
+
+<footer id="contact" class="py-20 border-t border-border/50 relative">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-4 gap-12 mb-16">
+      <div class="col-span-2">
+        <a href={`/${lang}`} class="text-2xl font-bold tracking-tighter mb-6 block">
+          GILABS<span class="text-brand">.ID</span>
+        </a>
+        <p class="text-muted-foreground max-w-sm mb-8 text-lg">
+          {lang === 'en' 
+            ? 'Building digital solutions for modern businesses. From company profiles to complex ERP systems.' 
+            : 'Membangun solusi digital untuk bisnis modern. Dari company profile hingga sistem ERP yang kompleks.'}
+        </p>
+        <div class="flex gap-4">
+          {/* Social Icons could go here */}
+        </div>
+      </div>
+      
+      <div>
+        <h4 class="font-bold mb-6 text-lg">{lang === 'en' ? 'Services' : 'Layanan'}</h4>
+        <ul class="space-y-4 text-muted-foreground">
+          <li><a href="#" class="hover:text-brand transition-colors">Web Development</a></li>
+          <li><a href="#" class="hover:text-brand transition-colors">ERP Systems</a></li>
+          <li><a href="#" class="hover:text-brand transition-colors">CRM Solutions</a></li>
+          <li><a href="#" class="hover:text-brand transition-colors">UI/UX Design</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="font-bold mb-6 text-lg">{lang === 'en' ? 'Contact' : 'Kontak'}</h4>
+        <ul class="space-y-4 text-muted-foreground">
+          <li>
+            <a href="mailto:hello@gilabs.id" class="hover:text-brand transition-colors">hello@gilabs.id</a>
+          </li>
+          <li>
+            <a href="tel:+6281234567890" class="hover:text-brand transition-colors">+62 812 3456 7890</a>
+          </li>
+          <li>Jakarta, Indonesia</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
+      <p>&copy; {new Date().getFullYear()} Gilabs.id. All rights reserved.</p>
+      <div class="flex gap-6">
+        <a href="#" class="hover:text-brand transition-colors">Privacy Policy</a>
+        <a href="#" class="hover:text-brand transition-colors">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>

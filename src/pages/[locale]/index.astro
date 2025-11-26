@@ -1,6 +1,14 @@
 ---
-import Welcome from '../../components/Welcome.astro';
 import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Hero from '../../components/Hero.astro';
+import About from '../../components/About.astro';
+import Services from '../../components/Services.astro';
+import PricingList from '../../components/PricingList.astro';
+import RevisionSystem from '../../components/RevisionSystem.astro';
+import ErpCrm from '../../components/ErpCrm.astro';
+import CtaSection from '../../components/CtaSection.astro';
+import Footer from '../../components/Footer.astro';
 
 export function getStaticPaths() {
   return [
@@ -12,6 +20,16 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 ---
 
-<Layout>
-	<Welcome />
+<Layout lang={locale} title="Gilabs.id - Premium Software Agency">
+  <Navbar lang={locale} />
+  <main>
+    <Hero lang={locale} />
+    <About lang={locale} />
+    <Services lang={locale} />
+    <PricingList lang={locale} />
+    <RevisionSystem lang={locale} />
+    <ErpCrm lang={locale} />
+    <CtaSection lang={locale} />
+  </main>
+  <Footer lang={locale} />
 </Layout>
