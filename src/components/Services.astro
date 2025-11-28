@@ -1,54 +1,16 @@
 ---
 import { pricingData } from '../data/pricing';
-import { ArrowRight } from 'lucide-react';
+import ScrollCardServices from './ScrollCardServices';
 
 const { lang } = Astro.props;
 const services = pricingData[lang].services;
+const ctaText = lang === 'en' ? 'Get Started' : 'Mulai Sekarang';
 ---
 
-<section id="services" class="py-20 md:py-32 relative">
-  <div class="container mx-auto px-4">
-    <div class="max-w-4xl mb-20">
-      <h2 class="text-4xl md:text-6xl font-bold mb-8 tracking-tight">{services.title}</h2>
-      <p class="text-xl text-muted-foreground max-w-2xl">{services.subtitle}</p>
-    </div>
-
-    <div class="grid gap-8">
-      {services.items.map((service, index) => (
-        <div class="group border border-border/50 bg-background/40 backdrop-blur-sm p-8 md:p-12 rounded-3xl hover:border-brand/50 transition-all duration-500 hover:shadow-2xl hover:shadow-brand/10 relative overflow-hidden">
-          <div class="absolute inset-0 bg-linear-to-br from-brand/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          
-          <div class="grid md:grid-cols-12 gap-8 relative z-10">
-            <div class="md:col-span-4 flex flex-col justify-between">
-              <div>
-                <h3 class="text-3xl md:text-4xl font-bold mb-4">{service.title}</h3>
-                <div class="h-1.5 w-12 bg-brand rounded-full mt-2 group-hover:w-24 transition-all duration-300"></div>
-              </div>
-              <div class="hidden md:block">
-                 <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-brand/10 text-brand group-hover:bg-brand group-hover:text-white transition-colors duration-300">
-                    <ArrowRight className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" />
-                 </span>
-              </div>
-            </div>
-            <div class="md:col-span-8 flex flex-col h-full">
-              <div class="space-y-4 mb-8 text-lg text-muted-foreground grow">
-                {service.body.map(paragraph => (
-                  <p>{paragraph}</p>
-                ))}
-              </div>
-              <div class="flex items-center justify-between pt-8 border-t border-border/50">
-                <span class="text-sm font-medium text-foreground bg-secondary/50 px-3 py-1 rounded-full">{service.tagline}</span>
-                <a href="#contact" class="md:hidden inline-flex items-center text-brand font-semibold hover:text-brand/80">
-                  {lang === 'en' ? 'Learn more' : 'Pelajari lebih lanjut'} <ArrowRight className="w-4 h-4 ml-2" />
-                </a>
-                <a href="#contact" class="hidden md:inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white transition-all duration-200 bg-foreground rounded-full hover:bg-brand hover:shadow-lg hover:-translate-y-0.5">
-                  {lang === 'en' ? 'Get Started' : 'Mulai Sekarang'}
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-</section>
+<ScrollCardServices
+  client:load
+  title={services.title}
+  subtitle={services.subtitle}
+  items={services.items}
+  ctaText={ctaText}
+/>
