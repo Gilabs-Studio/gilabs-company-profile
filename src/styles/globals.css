@@ -34,8 +34,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  --font-sans: "Raleway", system-ui, sans-serif;
-  --font-heading: "Raleway", system-ui, sans-serif;
+  --font-sans: "Noto Sans Syriac", system-ui, sans-serif;
+  --font-heading: "Noto Sans Syriac", system-ui, sans-serif;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -138,8 +138,18 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    font-weight: 200; /* Light 200 for better readability while maintaining minimalism */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  p {
+    font-weight: 200; /* Light 200 for better readability while maintaining minimalism */
+    letter-spacing: 0.01em; /* Slightly increase letter spacing for better contrast */
+    line-height: 1.6; /* Improve line height for readability */
   }
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading tracking-tight font-bold;
+    @apply font-heading tracking-tight;
+    font-weight: 400; /* Regular 400 for headers */
   }
 }

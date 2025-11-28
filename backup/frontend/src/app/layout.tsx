@@ -1,25 +1,15 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Noto_Sans_Syriac } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/ui/Header";
 import { FooterWrapper } from "@/components/ui/FooterWrapper";
 import { generateMetadata as generateSEOMetadata, generateOrganizationSchema, generateWebsiteSchema, generateFAQSchema } from "@/lib/seo";
 import Script from "next/script";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const notoSansSyriac = Noto_Sans_Syriac({
+  variable: "--font-noto-sans-syriac",
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["100", "200", "400"],
 });
 
 export const metadata: Metadata = generateSEOMetadata({
@@ -40,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="id">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${notoSansSyriac.variable} antialiased`}
       >
         <Script
           id="organization-schema"
