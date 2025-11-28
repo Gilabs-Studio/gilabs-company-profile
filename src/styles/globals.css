@@ -153,3 +153,13 @@
     font-weight: 400; /* Regular 400 for headers */
   }
 }
+
+/* Custom z-index utilities for layered effects */
+@layer utilities {
+  .z-15 {
+    z-index: 15;
+  }
+  .z-16 {
+    z-index: 16;
+  }
+}

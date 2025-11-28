@@ -3,6 +3,7 @@
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import { useEffect, useRef, useState } from 'react';
+import LightRays from './LightRays';
 
 // Fixed dimensions for desktop gallery images (16:10 aspect ratio for desktop screenshots)
 const COLUMN_WIDTH = 500;
@@ -12,9 +13,10 @@ const IMAGES_PER_COLUMN = 7; // Number of images per column for smooth looping
 
 interface ParallaxGalleryProps {
   images: string[];
+  lang?: string;
 }
 
-const ParallaxGallery = ({ images }: ParallaxGalleryProps) => {
+const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   const gallery = useRef<HTMLDivElement>(null);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
 
@@ -75,8 +77,12 @@ const ParallaxGallery = ({ images }: ParallaxGalleryProps) => {
   const column3Images = createColumnImages(Math.floor(validImages.length * 0.5));
   const column4Images = createColumnImages(Math.floor(validImages.length * 0.75));
 
+  const buttonText = lang === 'id' ? 'Lihat Portfolio' : 'View Portfolio';
+  const portfolioUrl = `/${lang}/portfolio`;
+
   return (
     <div className="relative w-full bg-background text-foreground overflow-visible">
+      {/* Parallax Gallery Content */}
       <motion.div
         ref={gallery}
         className="relative box-border flex h-[175vh] overflow-hidden bg-background z-10 w-full justify-center"
@@ -87,6 +93,52 @@ const ParallaxGallery = ({ images }: ParallaxGalleryProps) => {
         <Column images={column3Images} y={y3} />
         <Column images={column4Images} y={y4} />
       </motion.div>
+
+      {/* LightRays Overlay - synced with Layout's LightRays */}
+      <div className="absolute inset-0 z-15 pointer-events-none opacity-50">
+        <LightRays 
+          raysColor="#FBFBFB" 
+          raysSpeed={0.5} 
+          lightSpread={0.5}
+          rayLength={1.5}
+          raysOrigin="top-center"
+          followMouse={false}
+        />
+      </div>
+
+      {/* Background gradient overlay for depth effect */}
+      <div className="absolute inset-0 z-16 pointer-events-none bg-gradient-to-b from-background/30 via-transparent to-background/30" />
+
+      {/* Centered Portfolio Button */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
+        <motion.a
+          href={portfolioUrl}
+          className="pointer-events-auto inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-bold text-white bg-brand rounded-full shadow-2xl shadow-brand/30 hover:bg-brand/90 hover:shadow-brand/50 hover:scale-105 transition-all duration-300 backdrop-blur-sm border border-white/10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-5 h-5"
+          >
+            <rect width="7" height="7" x="3" y="3" rx="1" />
+            <rect width="7" height="7" x="14" y="3" rx="1" />
+            <rect width="7" height="7" x="14" y="14" rx="1" />
+            <rect width="7" height="7" x="3" y="14" rx="1" />
+          </svg>
+          {buttonText}
+        </motion.a>
+      </div>
     </div>
   );
 };
