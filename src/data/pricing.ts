@@ -14,6 +14,12 @@ export interface PricingData {
     subtitle: string[];
     cta: string;
   };
+  features: {
+    items: {
+      title: string;
+      description: string;
+    }[];
+  };
   about: {
     title: string;
     subtitle: string;
@@ -117,6 +123,26 @@ export const pricingData: Record<string, PricingData> = {
         "Kami coding cepat — dan kami peduli dengan apa yang kami kirim."
       ],
       cta: "Mari Bangun Sesuatu",
+    },
+    features: {
+      items: [
+        {
+          title: "Strategic-Driven Development.",
+          description: "Kami tidak hanya membuat fitur — kami membangun solusi yang relevan dengan tujuan bisnis Anda."
+        },
+        {
+          title: "Enterprise-Ready Architecture.",
+          description: "Teknologi dan struktur aplikasi dirancang untuk performa jangka panjang."
+        },
+        {
+          title: "Reliable Communication.",
+          description: "Progress jelas, laporan rutin, dan keputusan cepat di setiap tahap pengembangan."
+        },
+        {
+          title: "No Overpromise — Just Results.",
+          description: "Kami bekerja berdasarkan scope dan timeline realistis untuk menghindari revisi berulang."
+        }
+      ]
     },
     about: {
       title: "Kami bukan perusahaan besar.",
@@ -415,10 +441,30 @@ export const pricingData: Record<string, PricingData> = {
         "What we have is speed, teamwork, and good energy.",
         "We code fast — and we care about what we ship."
       ],
-      cta: "Let’s Build Something",
+      cta: "Let's Build Something",
+    },
+    features: {
+      items: [
+        {
+          title: "Strategic-Driven Development.",
+          description: "We don't just build features — we build solutions that align with your business goals."
+        },
+        {
+          title: "Enterprise-Ready Architecture.",
+          description: "Technology and application structure designed for long-term performance."
+        },
+        {
+          title: "Reliable Communication.",
+          description: "Clear progress, regular reports, and quick decisions at every development stage."
+        },
+        {
+          title: "No Overpromise — Just Results.",
+          description: "We work based on realistic scope and timeline to avoid repeated revisions."
+        }
+      ]
     },
     about: {
-      title: "We’re not a big company.",
+      title: "We're not a big company.",
       subtitle: "We’re a small team that loves building stuff.",
       body: [
         "We started because we like making things work — and making them fast.",

@@ -1,0 +1,43 @@
+---
+import { pricingData } from '../data/pricing';
+import { LottieIcon } from '../components/ui/LottieIcon';
+
+const { lang } = Astro.props;
+// @ts-ignore - features exists in PricingData interface
+const features = pricingData[lang].features;
+
+const iconPaths = [
+  '/icon/strategic-consulting.json',
+  '/icon/enterprise-development.json',
+  '/icon/discuss.json',
+  '/icon/award.json',
+];
+---
+
+<section class="py-20 md:py-32 relative border-b border-border/50">
+  <div class="container mx-auto px-4">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      {features.items.map((feature: { title: string; description: string }, index: number) => {
+        const iconPath = iconPaths[index];
+        return (
+          <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-brand/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col h-full">
+            <div class="mb-6 flex items-center justify-start">
+              <LottieIcon 
+                src={iconPath} 
+                className="w-20 h-20"
+                client:only="react"
+              />
+            </div>
+            <h3 class="text-xl md:text-2xl font-bold mb-4 text-foreground leading-tight">
+              {feature.title}
+            </h3>
+            <p class="text-muted-foreground text-base leading-relaxed flex-grow">
+              {feature.description}
+            </p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
