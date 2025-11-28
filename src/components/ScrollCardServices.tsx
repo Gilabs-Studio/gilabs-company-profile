@@ -202,7 +202,6 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
   const [isClient, setIsClient] = useState(false);
   const scrollSectionRef = useRef<HTMLElement>(null);
   const textContainerRef = useRef<HTMLDivElement>(null);
-  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setIsClient(true);
@@ -238,10 +237,6 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
             );
             
             setActiveIndex(newIndex);
-
-            if (progressRef.current) {
-              progressRef.current.style.width = `${(progress * 100)}%`;
-            }
           }
         });
       }, section);
@@ -307,73 +302,59 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
         ref={scrollSectionRef}
         className="relative h-screen bg-background overflow-hidden"
       >
-        {/* Background gradient effect */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-brand/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-brand/3 rounded-full blur-3xl" />
-        </div>
-
         <div className="container mx-auto px-4 h-full flex items-center">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
             {/* Left side - Text content */}
-            <div className="relative z-10 flex flex-col justify-center">
+            <div className="relative z-10 flex flex-col justify-center max-w-xl">
               {/* Dynamic service content */}
               <div ref={textContainerRef} className="relative">
                 <div className="service-text-content">
-                  <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 text-foreground">
+                  <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
                     {currentService?.title}
                   </h3>
                 </div>
                 
-                <div className="service-text-content space-y-4 mb-8">
+                <div className="service-text-content mt-8 space-y-3">
                   {currentService?.body.map((paragraph) => (
-                    <p key={paragraph.slice(0, 30)} className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                    <p key={paragraph.slice(0, 30)} className="text-muted-foreground leading-relaxed">
                       {paragraph}
                     </p>
                   ))}
                 </div>
 
-                <div className="service-text-content">
-                  <span className="inline-block text-sm font-medium text-brand bg-brand/10 px-4 py-2 rounded-full">
+                <div className="service-text-content mt-8">
+                  <p className="text-brand">
                     {currentService?.tagline}
-                  </span>
+                  </p>
                 </div>
 
                 {/* CTA Button */}
-                <div className="service-text-content mt-10">
+                <div className="service-text-content mt-12">
                   <a
                     href="#contact"
-                    className="inline-flex items-center justify-center px-8 py-4 text-sm font-bold text-primary-foreground bg-primary rounded-full hover:bg-brand transition-colors duration-300"
+                    className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium text-primary-foreground bg-primary rounded-full hover:bg-primary/90 transition-colors duration-300"
                   >
                     {ctaText}
                   </a>
                 </div>
               </div>
 
-              {/* Progress indicator */}
-              <div className="flex items-center gap-4 mt-12">
-                <div className="relative h-1 w-40 bg-border rounded-full overflow-hidden">
-                  <div
-                    ref={progressRef}
-                    className="absolute left-0 top-0 h-full bg-brand rounded-full transition-all duration-300"
-                    style={{ width: `${((activeIndex + 1) / items.length) * 100}%` }}
-                  />
-                </div>
-                <span className="text-sm text-muted-foreground font-medium">
+              {/* Service navigation dots */}
+              <div className="flex items-center gap-4 mt-16">
+                <span className="text-sm text-muted-foreground tabular-nums">
                   {String(activeIndex + 1).padStart(2, '0')} / {String(items.length).padStart(2, '0')}
                 </span>
               </div>
 
-              {/* Service navigation dots */}
-              <div className="flex gap-3 mt-6">
+              <div className="flex gap-2 mt-4">
                 {items.map((item, idx) => (
                   <button
                     key={item.title}
                     onClick={() => setActiveIndex(idx)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
                       idx === activeIndex
-                        ? 'bg-brand w-10'
-                        : 'bg-border hover:bg-muted-foreground w-2'
+                        ? 'bg-brand w-8'
+                        : 'bg-border hover:bg-muted-foreground w-1.5'
                     }`}
                     aria-label={`Go to service ${idx + 1}`}
                   />
