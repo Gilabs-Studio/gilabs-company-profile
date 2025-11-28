@@ -4,11 +4,9 @@ import { Menu, X } from 'lucide-react';
 const { lang } = Astro.props;
 
 const links = [
-  { href: `/${lang}`, label: lang === 'en' ? 'Home' : 'Beranda' },
-  { href: `/${lang}#about`, label: lang === 'en' ? 'About' : 'Tentang' },
   { href: `/${lang}#services`, label: lang === 'en' ? 'Services' : 'Layanan' },
-  { href: `/${lang}#pricing`, label: lang === 'en' ? 'Pricing' : 'Harga' },
-  { href: `/${lang}#erp`, label: 'ERP & CRM' },
+  { href: `/${lang}#portofolio`, label: lang === 'en' ? 'Portfolio' : 'Portofolio' },
+  { href: `/${lang}/blog`, label: lang === 'en' ? 'Blog' : 'Blog' },
   { href: `/${lang}#contact`, label: lang === 'en' ? 'Contact' : 'Kontak' },
 ];
 
@@ -19,13 +17,13 @@ const switchLangPath = currentPath.includes('/en')
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="navbar">
-  <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+  <div class="container mx-auto px-4 h-20 flex items-center">
     <a href={`/${lang}`} class="text-2xl font-bold tracking-tighter relative z-50">
       GILABS<span class="text-brand">.ID</span>
     </a>
 
     {/* Desktop Menu */}
-    <div class="hidden md:flex items-center gap-8 bg-background/50 backdrop-blur-md px-8 py-3 rounded-full border border-white/10 shadow-sm">
+    <div class="hidden md:flex items-center gap-6 ml-auto mr-4">
       {links.map(link => (
         <a href={link.href} class="text-sm font-medium text-muted-foreground hover:text-brand transition-colors">
           {link.label}
