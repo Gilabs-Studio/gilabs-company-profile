@@ -1,12 +1,21 @@
 ---
 import { pricingData } from '../data/pricing';
-import { Zap, Coffee, Code2, Music, Lightbulb, Moon, Sparkles } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import ParallaxGallery from './ui/ParallaxGallery';
+import { LottieIcon } from './ui/LottieIcon';
 
 const { lang } = Astro.props;
 const about = pricingData[lang].about;
 const process = pricingData[lang].process;
 const energy = pricingData[lang].energy;
+
+// Lottie icon paths for energy cards
+const energyIcons = [
+  '/icon/strategic-consulting.json',
+  '/icon/discuss.json',
+  '/icon/enterprise-development.json',
+  '/icon/award.json',
+];
 
 // Gallery images - 20 unique images for 4 columns x 5 rows
 const galleryImages = [
@@ -35,9 +44,37 @@ const galleryImages = [
   'https://images.unsplash.com/photo-1515187029135-18ee286d815b?w=800&q=80',
   'https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&q=80',
 ];
+
+// Energy card data for cleaner iteration
+const energyCards = [
+  { 
+    titleEn: 'Curiosity', 
+    titleId: 'Rasa Ingin Tahu',
+    descEn: 'We ask questions. We explore. We learn.',
+    descId: 'Kami bertanya. Kami menjelajah. Kami belajar.'
+  },
+  { 
+    titleEn: 'Jokes & Fun', 
+    titleId: 'Candaan & Fun',
+    descEn: 'Laughter keeps us creative and connected.',
+    descId: 'Tertawa membuat kami kreatif dan terhubung.'
+  },
+  { 
+    titleEn: 'Late Nights', 
+    titleId: 'Larut Malam',
+    descEn: 'When the best ideas come alive.',
+    descId: 'Saat ide terbaik muncul.'
+  },
+  { 
+    titleEn: 'Shared Vibes', 
+    titleId: 'Vibe Bersama',
+    descEn: 'Playlists that fuel our flow.',
+    descId: 'Playlist yang memicu alur kerja kami.'
+  },
+];
 ---
 
-<section id="about" class="relative border-b border-border/50">
+<section id="about" class="relative border-b border-border/50 bg-background">
   {/* Text Section - "Here's a sneak peek" */}
   <section id="sneak-peek">
     <div class="container mx-auto px-4">
@@ -49,121 +86,150 @@ const galleryImages = [
     <ParallaxGallery client:load images={galleryImages} lang={lang} />
   </section>
 
-  <div class="container mx-auto px-4 py-20 md:py-32">
-    {/* Process Section - Redesigned as Cards */}
-    <div class="mb-32">
+  <div class="container mx-auto px-4 py-24 md:py-32">
+    {/* Process Section - Minimalist White Background */}
+    <section class="mb-32">
+      {/* Header with generous whitespace */}
+      <div class="max-w-3xl mx-auto text-center mb-20">
+        <p class="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-4">
+          {process.subtitle}
+        </p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
+          {process.title}
+        </h2>
+      </div>
+
+      {/* Process Steps - Centered Card Layout */}
+      <div class="max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-3 gap-6 md:gap-12">
+          {process.body.map((step: string, index: number) => (
+            <div class="group relative text-center">
+              {/* Step number - centered */}
+              <div class="flex justify-center mb-6">
+                <span class="flex items-center justify-center w-14 h-14 text-2xl font-bold text-foreground border-2 border-foreground rounded-full transition-colors group-hover:bg-foreground group-hover:text-background">
+                  {index + 1}
+                </span>
+              </div>
+              {/* Step content - centered */}
+              <p class="text-lg md:text-xl text-foreground leading-relaxed">
+                {step}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Energy Section - Bento Grid Layout */}
+    <section class="relative">
+      {/* Header */}
       <div class="text-center mb-16">
-        <div class="inline-flex items-center justify-center p-3 bg-secondary/50 rounded-xl mb-6 backdrop-blur-sm">
-          <Zap className="w-6 h-6 text-foreground" />
-        </div>
-        <h3 class="text-3xl md:text-4xl font-bold mb-4">{process.title}</h3>
-        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">{process.subtitle}</p>
+        <p class="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-4">
+          {energy.subtitle}
+        </p>
+        <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6">
+          {energy.title}
+        </h2>
+        <p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+          {energy.body[0]}
+        </p>
       </div>
 
-      <div class="grid md:grid-cols-3 gap-8">
-        {process.body.map((step, index) => (
-          <div class="bg-background/40 backdrop-blur-sm border border-border/50 p-8 rounded-2xl hover:border-brand/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-            <span class="flex items-center justify-center w-12 h-12 rounded-full bg-brand/10 text-brand font-bold text-xl mb-6">
-              {index + 1}
-            </span>
-            <p class="text-lg font-medium">{step}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-
-    {/* Energy Section */}
-    <div class="relative">
-      {/* Background with gradient */}
-      <div class="bg-secondary/30 backdrop-blur-md rounded-3xl p-8 md:p-16 border border-white/10 relative overflow-hidden">
-        <div class="absolute inset-0 bg-linear-to-br from-brand/5 via-transparent to-brand/5 opacity-50"></div>
-        <div class="absolute top-0 right-0 w-64 h-64 bg-brand/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
-        <div class="absolute bottom-0 left-0 w-64 h-64 bg-brand/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-        
-        <div class="relative z-10">
-          {/* Header */}
-          <div class="text-center mb-12">
-            <div class="inline-flex items-center justify-center gap-3 p-4 bg-background/40 backdrop-blur-sm rounded-2xl mb-6 border border-border/50">
-              <Coffee className="w-6 h-6 text-brand" />
-              <Code2 className="w-6 h-6 text-brand" />
+      {/* Bento Grid */}
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-6">
+        {/* Large featured card - spans 8 cols - BLACK */}
+        <div class="md:col-span-8 bg-foreground text-background rounded-3xl p-8 md:p-12 relative overflow-hidden group">
+          <div class="relative z-10">
+            <div class="w-20 h-20 mb-8">
+              <LottieIcon 
+                client:visible 
+                src={energyIcons[0]} 
+                className="w-full h-full invert"
+              />
             </div>
-            <h3 class="text-3xl md:text-5xl font-bold mb-4 bg-linear-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
-              {energy.title}
+            <h3 class="text-2xl md:text-3xl font-bold mb-4">
+              {lang === 'en' ? energyCards[0].titleEn : energyCards[0].titleId}
             </h3>
-            <p class="font-medium mb-4 uppercase tracking-widest text-muted-foreground text-xs">{energy.subtitle}</p>
+            <p class="text-lg text-background/80 max-w-md leading-relaxed">
+              {lang === 'en' ? energyCards[0].descEn : energyCards[0].descId}
+            </p>
+            <p class="mt-6 text-sm text-background/60 leading-relaxed max-w-lg">
+              {energy.body[1]}
+            </p>
           </div>
+          {/* Decorative element */}
+          <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-background/10 rounded-full transition-transform duration-500 group-hover:scale-110" />
+        </div>
 
-          {/* Main Content */}
-          <div class="max-w-4xl mx-auto mb-12">
-            <div class="space-y-6 text-lg text-center mb-12">
-              {energy.body.map((paragraph, index) => (
-                <p class={index === 0 ? "text-xl md:text-2xl font-semibold text-foreground" : "text-muted-foreground leading-relaxed"}>
-                  {paragraph}
-                </p>
-              ))}
+        {/* Stacked cards - spans 4 cols */}
+        <div class="md:col-span-4 flex flex-col gap-4 md:gap-6">
+          {/* Card 2 - BLACK */}
+          <div class="flex-1 bg-foreground text-background rounded-3xl p-6 md:p-8 group hover:bg-foreground/90 transition-colors">
+            <div class="w-14 h-14 mb-4">
+              <LottieIcon 
+                client:visible 
+                src={energyIcons[1]} 
+                className="w-full h-full invert"
+              />
             </div>
-
-            {/* Vibe Cards Grid */}
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-              <div class="bg-background/60 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-brand/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-brand/10 mb-4 group-hover:bg-brand/20 transition-colors">
-                  <Lightbulb className="w-6 h-6 text-brand" />
-                </div>
-                <h4 class="font-bold text-sm mb-2 uppercase tracking-wider text-foreground">
-                  {lang === 'en' ? 'Curiosity' : 'Rasa Ingin Tahu'}
-                </h4>
-                <p class="text-xs text-muted-foreground leading-relaxed">
-                  {lang === 'en' ? 'We ask questions. We explore. We learn.' : 'Kami bertanya. Kami menjelajah. Kami belajar.'}
-                </p>
-              </div>
-
-              <div class="bg-background/60 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-brand/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-brand/10 mb-4 group-hover:bg-brand/20 transition-colors">
-                  <Sparkles className="w-6 h-6 text-brand" />
-                </div>
-                <h4 class="font-bold text-sm mb-2 uppercase tracking-wider text-foreground">
-                  {lang === 'en' ? 'Jokes & Fun' : 'Candaan & Fun'}
-                </h4>
-                <p class="text-xs text-muted-foreground leading-relaxed">
-                  {lang === 'en' ? 'Laughter keeps us creative and connected.' : 'Tertawa membuat kami kreatif dan terhubung.'}
-                </p>
-              </div>
-
-              <div class="bg-background/60 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-brand/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-brand/10 mb-4 group-hover:bg-brand/20 transition-colors">
-                  <Moon className="w-6 h-6 text-brand" />
-                </div>
-                <h4 class="font-bold text-sm mb-2 uppercase tracking-wider text-foreground">
-                  {lang === 'en' ? 'Late Nights' : 'Larut Malam'}
-                </h4>
-                <p class="text-xs text-muted-foreground leading-relaxed">
-                  {lang === 'en' ? 'When the best ideas come alive.' : 'Saat ide terbaik muncul.'}
-                </p>
-              </div>
-
-              <div class="bg-background/60 backdrop-blur-sm border border-border/50 rounded-xl p-6 hover:border-brand/50 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 group">
-                <div class="flex items-center justify-center w-12 h-12 rounded-xl bg-brand/10 mb-4 group-hover:bg-brand/20 transition-colors">
-                  <Music className="w-6 h-6 text-brand" />
-                </div>
-                <h4 class="font-bold text-sm mb-2 uppercase tracking-wider text-foreground">
-                  {lang === 'en' ? 'Shared Vibes' : 'Vibe Bersama'}
-                </h4>
-                <p class="text-xs text-muted-foreground leading-relaxed">
-                  {lang === 'en' ? 'Playlists that fuel our flow.' : 'Playlist yang memicu alur kerja kami.'}
-                </p>
-              </div>
-            </div>
+            <h3 class="text-xl font-bold mb-2">
+              {lang === 'en' ? energyCards[1].titleEn : energyCards[1].titleId}
+            </h3>
+            <p class="text-sm text-background/70 leading-relaxed">
+              {lang === 'en' ? energyCards[1].descEn : energyCards[1].descId}
+            </p>
           </div>
-          
-          {/* CTA Button */}
-          <div class="text-center">
-            <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-brand rounded-full hover:bg-brand/90 hover:shadow-lg hover:shadow-brand/20 hover:scale-105">
-              {lang === 'en' ? 'Start Your Project' : 'Mulai Proyek Anda'}
-            </a>
+          {/* Card 3 - BLACK */}
+          <div class="flex-1 bg-foreground text-background rounded-3xl p-6 md:p-8 group hover:bg-foreground/90 transition-colors">
+            <div class="w-14 h-14 mb-4">
+              <LottieIcon 
+                client:visible 
+                src={energyIcons[2]} 
+                className="w-full h-full invert"
+              />
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              {lang === 'en' ? energyCards[2].titleEn : energyCards[2].titleId}
+            </h3>
+            <p class="text-sm text-background/70 leading-relaxed">
+              {lang === 'en' ? energyCards[2].descEn : energyCards[2].descId}
+            </p>
           </div>
         </div>
-      </div>
-    </div>
 
+        {/* Bottom row - two equal cards */}
+        {/* Card 4 - BLACK */}
+        <div class="md:col-span-6 bg-foreground text-background rounded-3xl p-6 md:p-8 group hover:bg-foreground/90 transition-colors">
+          <div class="flex items-start gap-6">
+            <div class="w-16 h-16 shrink-0">
+              <LottieIcon 
+                client:visible 
+                src={energyIcons[3]} 
+                className="w-full h-full invert"
+              />
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2">
+                {lang === 'en' ? energyCards[3].titleEn : energyCards[3].titleId}
+              </h3>
+              <p class="text-sm text-background/70 leading-relaxed">
+                {lang === 'en' ? energyCards[3].descEn : energyCards[3].descId}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* CTA - Brutalist Style */}
+        <a 
+          href="#contact" 
+          class="md:col-span-6 group flex items-center justify-center rounded-3xl border-2 border-foreground hover:bg-foreground hover:text-background transition-colors duration-300"
+        >
+          <span class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight py-12 md:py-16">
+            {lang === 'en' ? 'Start Your Project' : 'Mulai Proyek Anda'}
+            <ArrowRight className="inline-block w-8 h-8 md:w-10 md:h-10 ml-3 transition-transform group-hover:translate-x-2" />
+          </span>
+        </a>
+      </div>
+    </section>
   </div>
 </section>
