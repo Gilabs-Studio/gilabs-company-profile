@@ -1,5 +1,5 @@
 ---
-import Layout from '../../../layouts/Layout.astro';
+import BlogLayout from '../../../layouts/BlogLayout.astro';
 import Navbar from '../../../components/Navbar.astro';
 import Footer from '../../../components/Footer.astro';
 import BlogDetail from '../../../components/blog/BlogDetail.astro';
@@ -40,11 +40,11 @@ const pageTitle = `${post.title} | Gilabs Software House`;
 const pageDescription = post.excerpt;
 ---
 
-<Layout lang={locale} title={pageTitle}>
+<BlogLayout lang={locale} title={pageTitle}>
   <Navbar lang={locale} />
   <main class="pt-20">
     <BlogDetail post={post} lang={locale || 'en'} />
   </main>
   <Footer lang={locale} />
-</Layout>
+</BlogLayout>
 

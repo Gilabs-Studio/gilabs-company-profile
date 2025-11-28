@@ -51,12 +51,14 @@ const totalPosts = blog.posts.length;
             ? 'Let\'s discuss how we can help bring your ideas to life.'
             : 'Mari diskusikan bagaimana kami dapat membantu mewujudkan ide Anda.'}
         </p>
-        <a 
-          href={`/${lang}#contact`}
-          class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-brand rounded-full hover:bg-brand/90 hover:shadow-lg hover:shadow-brand/20"
-        >
-          {lang === 'en' ? 'Get Started' : 'Mulai Sekarang'}
-        </a>
+        <div class="flex justify-center">
+          <a 
+            href={`/${lang}#contact`}
+            class="flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-brand rounded-full hover:bg-brand/90 hover:shadow-lg hover:shadow-brand/20"
+          >
+            {lang === 'en' ? 'Get Started' : 'Mulai Sekarang'}
+          </a>
+        </div>
       </div>
     </div>
   </div>
