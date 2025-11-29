@@ -14,13 +14,22 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
 		: 'index, follow';
 	
 	// Clone response and add header
+	// Check if header already exists to avoid duplication
+	const existingHeader = response.headers.get('X-Robots-Tag');
+	
 	const newResponse = new Response(response.body, {
 		status: response.status,
 		statusText: response.statusText,
 		headers: response.headers,
 	});
 	
-	newResponse.headers.set('X-Robots-Tag', robotsTag);
+	// Only set if not already set to avoid duplication
+	if (!existingHeader) {
+		newResponse.headers.set('X-Robots-Tag', robotsTag);
+	} else if (existingHeader !== robotsTag) {
+		// Replace if different value
+		newResponse.headers.set('X-Robots-Tag', robotsTag);
+	}
 	
 	return newResponse;
 };

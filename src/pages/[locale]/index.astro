@@ -22,13 +22,20 @@ const canonical = locale === 'en' ? `${siteUrl}/en` : `${siteUrl}/${locale}`;
 const description = locale === 'id' 
 	? 'Agen Software Premium yang mengkhususkan diri dalam pengembangan web, aplikasi mobile, dan solusi digital. Transformasikan bisnis Anda dengan teknologi terkini.'
 	: 'Premium Software Agency specializing in web development, mobile apps, and digital solutions. Transform your business with cutting-edge technology.';
+const title = locale === 'id'
+	? 'Gilabs.id - Agen Software Premium | Pengembangan Web & Mobile App'
+	: 'Gilabs.id - Premium Software Agency | Web & Mobile App Development';
+const keywords = locale === 'id'
+	? 'pengembangan web, pengembangan aplikasi mobile, agen software, solusi digital, desain UI/UX, software custom, web design, pengembangan aplikasi Indonesia, sistem ERP, sistem CRM, perusahaan pengembangan software, pengembangan aplikasi web, pengembangan aplikasi mobile, pengembangan e-commerce, software enterprise, transformasi digital, konsultasi software, perusahaan software Indonesia'
+	: 'web development, mobile app development, software agency, digital solutions, UI/UX design, custom software, web design, app development Indonesia, ERP system, CRM system, software development company, web application development, mobile application development, e-commerce development, enterprise software, digital transformation, software consulting, Indonesia software company';
 ---
 
 <Layout 
 	lang={locale} 
-	title="Gilabs.id - Premium Software Agency"
+	title={title}
 	description={description}
 	canonical={canonical}
+	keywords={keywords}
 >
   <Navbar lang={locale} />
   <main>

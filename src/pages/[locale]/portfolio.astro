@@ -223,16 +223,23 @@ const portfolioItems = [
 const content = portfolioData[locale as keyof typeof portfolioData];
 const siteUrl = 'https://gilabs.id';
 const canonical = locale === 'en' ? `${siteUrl}/en/portfolio` : `${siteUrl}/${locale}/portfolio`;
+const pageTitle = locale === 'en'
+	? `Our Portfolio - Projects & Case Studies | Gilabs.id`
+	: `Portfolio Kami - Proyek & Studi Kasus | Gilabs.id`;
 const pageDescription = locale === 'id'
 	? 'Lihat portfolio proyek-proyek yang telah kami bangun dengan passion dan presisi. Dari aplikasi web hingga mobile, UI/UX design hingga sistem enterprise.'
 	: 'View our portfolio of projects we\'ve built with passion and precision. From web applications to mobile apps, UI/UX design to enterprise systems.';
+const keywords = locale === 'en'
+	? 'portfolio, web development projects, mobile app projects, UI/UX design portfolio, software development case studies'
+	: 'portfolio, proyek pengembangan web, proyek aplikasi mobile, portfolio desain UI/UX, studi kasus pengembangan software';
 ---
 
 <Layout 
 	lang={locale} 
-	title={`${content.title} - Gilabs.id`}
+	title={pageTitle}
 	description={pageDescription}
 	canonical={canonical}
+	keywords={keywords}
 >
   <Navbar lang={locale} />
   
