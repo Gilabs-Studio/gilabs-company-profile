@@ -5,8 +5,7 @@ import { getWhatsAppLink } from '../lib/utils';
 const { lang } = Astro.props;
 
 const links = [
-  { href: `/${lang}#services`, label: lang === 'en' ? 'Services' : 'Layanan' },
-  { href: `/${lang}/portfolio`, label: lang === 'en' ? 'Portfolio' : 'Portofolio' },
+  { href: `/${lang}/services`, label: lang === 'en' ? 'Services' : 'Layanan' },
   { href: `/${lang}/blog`, label: lang === 'en' ? 'Blog' : 'Blog' },
   { href: getWhatsAppLink('navbar', lang), label: lang === 'en' ? 'Contact' : 'Kontak', external: true },
 ];

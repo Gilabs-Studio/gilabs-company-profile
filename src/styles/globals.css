@@ -178,6 +178,46 @@
   }
 }
 
+/* AI Gradient Text Animation */
+.ai-gradient-text {
+  background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7, #c084fc, #8b5cf6, #6366f1);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* AI Gradient Icon Animation */
+.ai-gradient-icon {
+  display: inline-block;
+  position: relative;
+}
+
+.ai-gradient-icon svg {
+  stroke: url(#ai-gradient);
+  filter: drop-shadow(0 0 3px rgba(139, 92, 246, 0.6));
+  animation: icon-glow 3s ease infinite;
+}
+
+@keyframes icon-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 3px rgba(139, 92, 246, 0.6)) drop-shadow(0 0 6px rgba(99, 102, 241, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 5px rgba(168, 85, 247, 0.8)) drop-shadow(0 0 10px rgba(139, 92, 246, 0.6));
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% center;
+  }
+  50% {
+    background-position: 100% center;
+  }
+}
+
 /* Custom z-index utilities for layered effects */
 @layer utilities {
   .z-15 {

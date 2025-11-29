@@ -111,6 +111,16 @@ export interface PricingData {
       desc: string;
     }[];
   };
+  aiAddons: {
+    title: string;
+    subtitle: string;
+    packages: {
+      name: string;
+      description: string;
+      price: string;
+      features: string[];
+    }[];
+  };
 }
 
 export const pricingData: Record<string, PricingData> = {
@@ -235,12 +245,13 @@ export const pricingData: Record<string, PricingData> = {
     },
     packages: [
       {
-        title: "Paket Basic (Astro – Static)",
-        description: "Cocok untuk klien yang hanya butuh website cepat & informatif.",
-        price: "Rp 1.200.000 – 2.500.000",
+        title: "Paket Basic (Static Website & Landing Page)",
+        description: "Cocok untuk klien yang hanya butuh website cepat & informatif atau landing page profesional.",
+        price: "Rp 500.000 – 2.500.000",
         revisions: ["2x revisi kecil", "1x revisi besar"],
         features: [
-          "3–5 halaman",
+          "Landing page (1 halaman) → Rp 500.000",
+          "3–5 halaman website",
           "SEO dasar",
           "Mobile responsive",
           "Loading < 1 detik"
@@ -248,17 +259,18 @@ export const pricingData: Record<string, PricingData> = {
         addons: [
           "Halaman tambahan → Rp 150.000 – 300.000",
           "Animasi icon (Lottie) → +150.000 / animasi",
-          "Parallax ringan → +200.000 – 400.000"
+          "Parallax ringan → +200.000 – 400.000",
+          "Form kontak → Termasuk"
         ]
       },
       {
-        title: "Paket Profesional (Astro – Semi Dynamic + Animations)",
+        title: "Paket Profesional (Semi Dynamic + Animations)",
         description: "Situs cepat tapi lebih modern & interaktif.",
         price: "Rp 3.000.000 – 4.500.000",
         revisions: ["4x revisi kecil", "2x revisi besar"],
         features: [
           "5–8 halaman",
-          "Animasi halus (Framer Motion / parallax)",
+          "Animasi halus",
           "Slider, gallery interaktif",
           "SEO advanced",
           "Performance 95–100"
@@ -270,7 +282,7 @@ export const pricingData: Record<string, PricingData> = {
         ]
       },
       {
-        title: "Paket Premium (Next.js – Scale Ready)",
+        title: "Paket Premium (Scale Ready)",
         description: "Untuk bisnis yang ingin website sekaligus fondasi aplikasi.",
         price: "Rp 6.000.000 – 12.000.000",
         revisions: ["6x revisi kecil", "3x revisi besar"],
@@ -278,7 +290,7 @@ export const pricingData: Record<string, PricingData> = {
           "SSR/SSG",
           "API routes",
           "Integrasi database (opsional)",
-          "Animasi Framer Motion",
+          "Animasi halus",
           "5–10 halaman"
         ],
         addons: [
@@ -287,7 +299,7 @@ export const pricingData: Record<string, PricingData> = {
           "Three.js → +1.000.000+",
           "Halaman SSR tambahan → 300.000 – 600.000"
         ]
-      }
+      },
     ],
     revisionSystem: {
       title: "Sistem Revisi — Berlaku Untuk Semua Paket",
@@ -319,29 +331,29 @@ export const pricingData: Record<string, PricingData> = {
       title: "Blog Setup",
       options: [
         {
-          name: "Astro (Static Blog)",
+          name: "Static Blog",
           price: "Rp 300.000 – 800.000"
         },
         {
-          name: "Next.js Blog (SSG/SSR)",
+          name: "Dynamic Blog (SSG/SSR)",
           price: "Rp 500.000 – 1.500.000"
         }
       ],
       addons: [
         "Pagination → +150.000",
         "Kategori/tag → +200.000",
-        "Panel admin sederhana (Next.js) → +800.000 – 2.000.000"
+        "Panel admin sederhana → +800.000 – 2.000.000"
       ]
     },
     store: {
       title: "Tambahan Halaman Toko",
       options: [
         {
-          name: "Astro — Katalog Produk (tanpa checkout)",
+          name: "Katalog Produk (tanpa checkout)",
           price: "Rp 800.000 – 1.500.000"
         },
         {
-          name: "Next.js — Mini Ecommerce",
+          name: "Mini Ecommerce",
           details: ["Cart + checkout", "CMS / database"],
           price: "Rp 3.000.000 – 8.000.000"
         }
@@ -374,7 +386,7 @@ export const pricingData: Record<string, PricingData> = {
               "Email automation (SMTP)",
               "Integrasi API WhatsApp",
               "Report builder",
-              "Integrasi Next.js + Supabase/Prisma"
+              "Integrasi database & API"
             ],
             price: "Rp 25.000.000 – 60.000.000"
           }
@@ -429,6 +441,79 @@ export const pricingData: Record<string, PricingData> = {
           name: "CRM Starter Package",
           price: "Rp 15–25 juta",
           desc: ""
+        }
+      ]
+    },
+    aiAddons: {
+      title: "Add-on AI Features",
+      subtitle: "Tingkatkan produk digital Anda dengan kecerdasan buatan. Pilih sesuai kebutuhan bisnis Anda.",
+      packages: [
+        {
+          name: "AI Text Feature",
+          description: "Fitur AI dasar untuk generate, summarize, dan chat assistant sederhana.",
+          price: "Rp 2.000.000 – 7.000.000",
+          features: [
+            "Auto-generate teks",
+            "Summarize konten",
+            "Chat assistant sederhana",
+            "FAQ bot",
+            "Simplify / rewrite text",
+            "Integrasi API + UI"
+          ]
+        },
+        {
+          name: "AI Recommendation / Scoring / Analysis",
+          description: "Sistem rekomendasi dan analisis data berbasis AI untuk produk atau layanan Anda.",
+          price: "Rp 5.000.000 – 15.000.000",
+          features: [
+            "Rekomendasi produk otomatis",
+            "Analisis data sederhana",
+            "Generate rekomendasi berdasarkan input user",
+            "Scoring otomatis (misal untuk CRM)",
+            "Data pre-processing",
+            "Prompt orchestration"
+          ]
+        },
+        {
+          name: "AI Chatbot Multi-context",
+          description: "Chatbot cerdas dengan memory dan konteks dokumen internal seperti Claude/ChatGPT custom.",
+          price: "Rp 12.000.000 – 35.000.000",
+          features: [
+            "Chat yang membaca data internal",
+            "Chat dengan memory",
+            "Chat dengan konteks dokumen",
+            "Chat yang access database",
+            "Document embedding",
+            "RAG sederhana",
+            "Caching & flow management"
+          ]
+        },
+        {
+          name: "AI + RAG (Document Upload + QA)",
+          description: "Sistem AI yang dapat membaca dan menjawab pertanyaan dari dokumen yang di-upload.",
+          price: "Rp 25.000.000 – 60.000.000",
+          features: [
+            "User upload PDF/Docs",
+            "Sistem chunking otomatis",
+            "Document embedding",
+            "Search + answer dari dokumen",
+            "Mini vector database",
+            "Multi-document support"
+          ]
+        },
+        {
+          name: "Fully Integrated AI Agent",
+          description: "AI agent yang dapat mengambil tindakan otomatis dalam sistem Anda.",
+          price: "Rp 40.000.000 – 120.000.000",
+          features: [
+            "AI untuk CRM yang bisa update pipeline otomatis",
+            "AI untuk ERP yang bisa create invoice otomatis",
+            "AI yang bisa menjalankan command tertentu",
+            "Multi-prompt orchestration",
+            "Error recovery",
+            "Integrasi database lengkap",
+            "Akses banyak modul sistem"
+          ]
         }
       ]
     }
@@ -554,12 +639,13 @@ export const pricingData: Record<string, PricingData> = {
     },
     packages: [
       {
-        title: "Basic Package (Astro – Static)",
-        description: "Suitable for clients who need a fast & informative website.",
-        price: "IDR 1,200,000 – 2,500,000",
+        title: "Basic Package (Static Website & Landing Page)",
+        description: "Suitable for clients who need a fast & informative website or professional landing page.",
+        price: "IDR 500,000 – 2,500,000",
         revisions: ["2x small revisions", "1x major revision"],
         features: [
-          "3–5 pages",
+          "Landing page (1 page) → IDR 500,000",
+          "3–5 pages website",
           "Basic SEO",
           "Mobile responsive",
           "Loading < 1 second"
@@ -567,17 +653,18 @@ export const pricingData: Record<string, PricingData> = {
         addons: [
           "Additional page → IDR 150,000 – 300,000",
           "Icon animation (Lottie) → +150,000 / animation",
-          "Light Parallax → +200,000 – 400,000"
+          "Light Parallax → +200,000 – 400,000",
+          "Contact form → Included"
         ]
       },
       {
-        title: "Professional Package (Astro – Semi Dynamic + Animations)",
+        title: "Professional Package",
         description: "Fast site but more modern & interactive.",
         price: "IDR 3,000,000 – 4,500,000",
         revisions: ["4x small revisions", "2x major revisions"],
         features: [
           "5–8 pages",
-          "Smooth animation (Framer Motion / parallax)",
+          "Smooth animation",
           "Slider, interactive gallery",
           "Advanced SEO",
           "Performance 95–100"
@@ -589,7 +676,7 @@ export const pricingData: Record<string, PricingData> = {
         ]
       },
       {
-        title: "Premium Package (Next.js – Scale Ready)",
+        title: "Premium Package (Scale Ready)",
         description: "For businesses wanting a website and application foundation.",
         price: "IDR 6,000,000 – 12,000,000",
         revisions: ["6x small revisions", "3x major revisions"],
@@ -597,7 +684,7 @@ export const pricingData: Record<string, PricingData> = {
           "SSR/SSG",
           "API routes",
           "Database integration (optional)",
-          "Framer Motion animation",
+          "Smooth animation",
           "5–10 pages"
         ],
         addons: [
@@ -606,7 +693,7 @@ export const pricingData: Record<string, PricingData> = {
           "Three.js → +1,000,000+",
           "Additional SSR page → 300,000 – 600,000"
         ]
-      }
+      },
     ],
     revisionSystem: {
       title: "Revision System — Applies to All Packages",
@@ -638,29 +725,29 @@ export const pricingData: Record<string, PricingData> = {
       title: "Blog Setup",
       options: [
         {
-          name: "Astro (Static Blog)",
+          name: "Static Blog",
           price: "IDR 300,000 – 800,000"
         },
         {
-          name: "Next.js Blog (SSG/SSR)",
+          name: "Dynamic Blog (SSG/SSR)",
           price: "IDR 500,000 – 1,500,000"
         }
       ],
       addons: [
         "Pagination → +150,000",
         "Category/tag → +200,000",
-        "Simple admin panel (Next.js) → +800,000 – 2,000,000"
+        "Simple admin panel → +800,000 – 2,000,000"
       ]
     },
     store: {
       title: "Store Add-ons",
       options: [
         {
-          name: "Astro — Product Catalog (no checkout)",
+          name: "Product Catalog (no checkout)",
           price: "IDR 800,000 – 1,500,000"
         },
         {
-          name: "Next.js — Mini Ecommerce",
+          name: "Mini Ecommerce",
           details: ["Cart + checkout", "CMS / database"],
           price: "IDR 3,000,000 – 8,000,000"
         }
@@ -693,7 +780,7 @@ export const pricingData: Record<string, PricingData> = {
               "Email automation (SMTP)",
               "WhatsApp API integration",
               "Report builder",
-              "Next.js + Supabase/Prisma integration"
+              "Database & API integration"
             ],
             price: "IDR 25,000,000 – 60,000,000"
           }
@@ -748,6 +835,79 @@ export const pricingData: Record<string, PricingData> = {
           name: "CRM Starter Package",
           price: "IDR 15–25 million",
           desc: ""
+        }
+      ]
+    },
+    aiAddons: {
+      title: "AI Features Add-ons",
+      subtitle: "Enhance your digital products with artificial intelligence. Choose according to your business needs.",
+      packages: [
+        {
+          name: "AI Text Feature",
+          description: "Basic AI features for generate, summarize, and simple chat assistant.",
+          price: "IDR 2,000,000 – 7,000,000",
+          features: [
+            "Auto-generate text",
+            "Summarize content",
+            "Simple chat assistant",
+            "FAQ bot",
+            "Simplify / rewrite text",
+            "API + UI integration"
+          ]
+        },
+        {
+          name: "AI Recommendation / Scoring / Analysis",
+          description: "AI-based recommendation and data analysis system for your products or services.",
+          price: "IDR 5,000,000 – 15,000,000",
+          features: [
+            "Automatic product recommendations",
+            "Simple data analysis",
+            "Generate recommendations based on user input",
+            "Automatic scoring (e.g., for CRM)",
+            "Data pre-processing",
+            "Prompt orchestration"
+          ]
+        },
+        {
+          name: "AI Chatbot Multi-context",
+          description: "Intelligent chatbot with memory and internal document context like custom Claude/ChatGPT.",
+          price: "IDR 12,000,000 – 35,000,000",
+          features: [
+            "Chat that reads internal data",
+            "Chat with memory",
+            "Chat with document context",
+            "Chat that accesses database",
+            "Document embedding",
+            "Simple RAG",
+            "Caching & flow management"
+          ]
+        },
+        {
+          name: "AI + RAG (Document Upload + QA)",
+          description: "AI system that can read and answer questions from uploaded documents.",
+          price: "IDR 25,000,000 – 60,000,000",
+          features: [
+            "User upload PDF/Docs",
+            "Automatic chunking system",
+            "Document embedding",
+            "Search + answer from documents",
+            "Mini vector database",
+            "Multi-document support"
+          ]
+        },
+        {
+          name: "Fully Integrated AI Agent",
+          description: "AI agent that can take automatic actions within your system.",
+          price: "IDR 40,000,000 – 120,000,000",
+          features: [
+            "AI for CRM that can update pipeline automatically",
+            "AI for ERP that can create invoices automatically",
+            "AI that can execute specific commands",
+            "Multi-prompt orchestration",
+            "Error recovery",
+            "Complete database integration",
+            "Access to multiple system modules"
+          ]
         }
       ]
     }
