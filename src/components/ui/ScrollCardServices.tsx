@@ -29,6 +29,15 @@ const ELASTIC_CONFIG = {
   duration: 1.2
 };
 
+// Placeholder images for service cards
+const placeholderImages = [
+  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop'
+];
+
 interface Slot {
   x: number;
   y: number;
@@ -107,14 +116,6 @@ const CardStack: React.FC<CardStackProps> = ({ items, activeIndex, isClient }) =
 
     animateCards();
   }, [isClient, activeIndex, items.length]);
-
-  const placeholderImages = [
-    'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop',
-    'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop'
-  ];
 
   return (
     <div 
@@ -216,12 +217,93 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
     let ctx: ReturnType<typeof import('gsap').gsap.context> | null = null;
     let scrollTriggerInstance: ReturnType<typeof import('gsap/ScrollTrigger').ScrollTrigger.create> | null = null;
 
+    const checkIsDesktop = () => globalThis.innerWidth >= 768;
+
+    const cleanupScrollTrigger = async () => {
+      try {
+        const { ScrollTrigger } = await import('gsap/ScrollTrigger');
+        
+        // Kill all scroll triggers that might be related to this section
+        ScrollTrigger.getAll().forEach(st => {
+          try {
+            if (st.trigger === section || 
+                (st.vars?.trigger && st.vars.trigger === section) ||
+                (typeof st.trigger === 'object' && st.trigger === section)) {
+              st.kill();
+            }
+          } catch (e) {
+            // Ignore errors when killing scroll triggers
+          }
+        });
+
+        // Properly cleanup ScrollTrigger instance
+        if (scrollTriggerInstance) {
+          try {
+            scrollTriggerInstance.kill();
+          } catch (e) {
+            // Ignore errors
+          }
+          scrollTriggerInstance = null;
+        }
+        
+        if (ctx) {
+          try {
+            ctx.revert();
+          } catch (e) {
+            // Ignore errors
+          }
+          ctx = null;
+        }
+        
+        // Ensure body overflow is reset
+        document.body.style.overflow = '';
+        document.body.style.height = '';
+        
+        // Unpin the section if it was pinned
+        if (section) {
+          section.style.position = '';
+          section.style.top = '';
+          section.style.left = '';
+          section.style.width = '';
+          section.style.height = '';
+        }
+        
+        // Refresh ScrollTrigger after cleanup
+        ScrollTrigger.refresh();
+      } catch (e) {
+        // If ScrollTrigger is not loaded, just reset styles
+        document.body.style.overflow = '';
+        document.body.style.height = '';
+        if (section) {
+          section.style.position = '';
+          section.style.top = '';
+          section.style.left = '';
+          section.style.width = '';
+          section.style.height = '';
+        }
+      }
+    };
+
     const initScrollTrigger = async () => {
+      // Check if we're on desktop (md and above)
+      if (!checkIsDesktop()) {
+        // Make sure to cleanup any existing scroll trigger on mobile
+        await cleanupScrollTrigger();
+        return;
+      }
+
       const gsapModule = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       const gsap = gsapModule.default;
       
       gsap.registerPlugin(ScrollTrigger);
+
+      // Kill any existing scroll triggers on this section first
+      ScrollTrigger.getAll().forEach(st => {
+        if (st.trigger === section || st.vars?.trigger === section) {
+          st.kill();
+        }
+      });
 
       // Refresh ScrollTrigger to ensure proper initialization
       ScrollTrigger.refresh();
@@ -260,24 +342,47 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
       }, 100);
     };
 
-    initScrollTrigger();
+    // Handle resize to cleanup/init scroll trigger when switching between mobile/desktop
+    let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
+    const handleResize = () => {
+      // Debounce resize handler
+      if (resizeTimeout) {
+        clearTimeout(resizeTimeout);
+      }
+      resizeTimeout = setTimeout(() => {
+        const isDesktopNow = checkIsDesktop();
+        if (isDesktopNow) {
+          // On desktop, init scroll trigger
+          requestAnimationFrame(() => {
+            initScrollTrigger();
+          });
+        } else {
+          // On mobile, cleanup scroll trigger
+          cleanupScrollTrigger();
+        }
+      }, 150);
+    };
+
+    // Initial check and setup
+    const isCurrentlyDesktop = checkIsDesktop();
+    if (isCurrentlyDesktop) {
+      requestAnimationFrame(() => {
+        initScrollTrigger();
+      });
+    } else {
+      // On mobile, make sure no scroll trigger exists immediately
+      cleanupScrollTrigger();
+    }
+
+    // Add resize listener
+    globalThis.addEventListener('resize', handleResize);
 
     return () => {
-      // Properly cleanup ScrollTrigger
-      if (scrollTriggerInstance) {
-        scrollTriggerInstance.kill();
-        scrollTriggerInstance = null;
+      if (resizeTimeout) {
+        clearTimeout(resizeTimeout);
       }
-      if (ctx) {
-        ctx.revert();
-        ctx = null;
-      }
-      // Ensure body overflow is reset
-      document.body.style.overflow = '';
-      // Refresh ScrollTrigger after cleanup
-      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
-        ScrollTrigger.refresh();
-      });
+      globalThis.removeEventListener('resize', handleResize);
+      cleanupScrollTrigger();
     };
   }, [isClient, items.length]);
 
@@ -332,12 +437,12 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
       {/* Section 2: Full viewport scroll-triggered grid */}
       <section
         ref={scrollSectionRef}
-        className="relative h-screen bg-background overflow-hidden"
+        className="relative min-h-screen md:h-screen bg-background overflow-visible md:overflow-hidden"
       >
-        <div className="container mx-auto px-4 h-full flex items-center">
+        <div className="container mx-auto px-4 min-h-screen md:h-full flex items-center md:items-center py-8 md:py-0">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
-            {/* Left side - Text content */}
-            <div className="relative z-10 flex flex-col justify-center max-w-xl">
+            {/* Left side - Text content (hidden on mobile) */}
+            <div className="relative z-10 hidden md:flex flex-col justify-center max-w-xl">
               {/* Dynamic service content */}
               <div ref={textContainerRef} className="relative">
                 <div className="service-text-content">
@@ -348,7 +453,7 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
                 
                 <div className="service-text-content mt-8 space-y-3">
                   {currentService?.body?.map((paragraph, idx) => (
-                    <p key={idx} className="text-muted-foreground leading-relaxed">
+                    <p key={`${currentService?.title}-paragraph-${idx}`} className="text-muted-foreground leading-relaxed">
                       {paragraph || ''}
                     </p>
                   ))}
@@ -408,35 +513,64 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
               />
             </div>
 
-            {/* Mobile cards - simple horizontal scroll */}
-            <div className="md:hidden overflow-x-auto pb-4 -mx-4 px-4">
-              <div className="flex gap-4" style={{ width: `${items.length * 280}px` }}>
-                {items.map((service, idx) => (
-                  <button
-                    key={service.title}
-                    type="button"
-                    onClick={() => setActiveIndex(idx)}
-                    className={`shrink-0 w-64 p-5 rounded-2xl border transition-all duration-300 cursor-pointer text-left ${
-                      idx === activeIndex
-                        ? 'border-brand bg-brand/5'
-                        : 'border-border bg-card'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2 mb-3">
-                      <span className="text-xs font-bold text-brand">
+            {/* Mobile cards - vertical layout */}
+            <div className="md:hidden w-full space-y-6 py-8">
+              {items.map((service, idx) => (
+                <div
+                  key={service.title}
+                  className="w-full rounded-2xl border border-border bg-card overflow-hidden shadow-lg"
+                >
+                  {/* Image */}
+                  <div className="h-48 w-full overflow-hidden bg-secondary">
+                    <img
+                      src={placeholderImages[idx % placeholderImages.length]}
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="p-5">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand/10 text-brand text-sm font-bold">
                         {String(idx + 1).padStart(2, '0')}
+                      </div>
+                      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                        Service
                       </span>
-                      <span className="text-xs text-muted-foreground">Service</span>
                     </div>
-                    <h3 className="text-lg font-bold text-card-foreground mb-2">
+
+                    <h3 className="text-xl font-bold text-card-foreground mb-2">
                       {service.title}
                     </h3>
-                    <p className="text-xs text-muted-foreground line-clamp-2">
+                    <p className="text-sm text-muted-foreground mb-4">
                       {service.body[0]}
                     </p>
-                  </button>
-                ))}
-              </div>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-border">
+                      <span className="text-sm text-brand font-medium">
+                        {service.tagline.replace('→ ', '')}
+                      </span>
+                      <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center">
+                        <svg
+                          className="w-5 h-5 text-brand"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M14 5l7 7m0 0l-7 7m7-7H3"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
