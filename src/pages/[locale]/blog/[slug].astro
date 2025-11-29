@@ -36,11 +36,18 @@ if (!post) {
   return Astro.redirect(`/${locale}/blog`);
 }
 
+const siteUrl = 'https://gilabs.id';
+const canonical = `${siteUrl}/${locale}/blog/${slug}`;
 const pageTitle = `${post.title} | Gilabs Software House`;
-const pageDescription = post.excerpt;
+const pageDescription = post.excerpt || 'Read our latest insights on web development, mobile apps, and technology trends from Gilabs Software House.';
 ---
 
-<BlogLayout lang={locale} title={pageTitle}>
+<BlogLayout 
+	lang={locale} 
+	title={pageTitle}
+	description={pageDescription}
+	canonical={canonical}
+>
   <Navbar lang={locale} />
   <main class="pt-20">
     <BlogDetail post={post} lang={locale || 'en'} />

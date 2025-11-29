@@ -2,7 +2,18 @@
 import "../styles/globals.css";
 import LightRays from "../components/ui/LightRays";
 
-const { lang = Astro.currentLocale || 'en', title = 'Gilabs.id' } = Astro.props;
+const { 
+	lang = Astro.currentLocale || 'en', 
+	title = 'Gilabs.id',
+	description = 'Premium Software Agency specializing in web development, mobile apps, and digital solutions. Transform your business with cutting-edge technology.',
+	canonical = Astro.url.href,
+	robots = 'index, follow',
+	noindex = false
+} = Astro.props;
+
+const siteUrl = 'https://gilabs.id';
+const fullCanonical = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
+const robotsContent = noindex ? 'noindex, nofollow' : robots;
 ---
 <!doctype html>
 <html lang={lang} class="scroll-smooth">
@@ -11,7 +22,35 @@ const { lang = Astro.currentLocale || 'en', title = 'Gilabs.id' } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		
+		<!-- Primary Meta Tags -->
 		<title>{title}</title>
+		<meta name="title" content={title} />
+		<meta name="description" content={description} />
+		<meta name="robots" content={robotsContent} />
+		<meta name="author" content="Gilabs.id" />
+		<meta name="publisher" content="Gilabs.id" />
+		
+		<!-- Canonical URL -->
+		<link rel="canonical" href={fullCanonical} />
+		
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={fullCanonical} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content="Gilabs.id" />
+		<meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_US'} />
+		
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		
+		<!-- Additional SEO -->
+		<meta name="language" content={lang === 'id' ? 'Indonesian' : 'English'} />
+		<meta name="geo.region" content={lang === 'id' ? 'ID' : 'US'} />
+		
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">

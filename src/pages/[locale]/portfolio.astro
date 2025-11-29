@@ -221,9 +221,19 @@ const portfolioItems = [
 ];
 
 const content = portfolioData[locale as keyof typeof portfolioData];
+const siteUrl = 'https://gilabs.id';
+const canonical = locale === 'en' ? `${siteUrl}/en/portfolio` : `${siteUrl}/${locale}/portfolio`;
+const pageDescription = locale === 'id'
+	? 'Lihat portfolio proyek-proyek yang telah kami bangun dengan passion dan presisi. Dari aplikasi web hingga mobile, UI/UX design hingga sistem enterprise.'
+	: 'View our portfolio of projects we\'ve built with passion and precision. From web applications to mobile apps, UI/UX design to enterprise systems.';
 ---
 
-<Layout lang={locale} title={`${content.title} - Gilabs.id`}>
+<Layout 
+	lang={locale} 
+	title={`${content.title} - Gilabs.id`}
+	description={pageDescription}
+	canonical={canonical}
+>
   <Navbar lang={locale} />
   
   <!-- Project Drawer Component -->

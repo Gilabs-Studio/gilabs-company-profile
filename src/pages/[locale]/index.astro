@@ -17,9 +17,19 @@ export function getStaticPaths() {
 }
 
 const { locale } = Astro.params;
+const siteUrl = 'https://gilabs.id';
+const canonical = locale === 'en' ? `${siteUrl}/en` : `${siteUrl}/${locale}`;
+const description = locale === 'id' 
+	? 'Agen Software Premium yang mengkhususkan diri dalam pengembangan web, aplikasi mobile, dan solusi digital. Transformasikan bisnis Anda dengan teknologi terkini.'
+	: 'Premium Software Agency specializing in web development, mobile apps, and digital solutions. Transform your business with cutting-edge technology.';
 ---
 
-<Layout lang={locale} title="Gilabs.id - Premium Software Agency">
+<Layout 
+	lang={locale} 
+	title="Gilabs.id - Premium Software Agency"
+	description={description}
+	canonical={canonical}
+>
   <Navbar lang={locale} />
   <main>
     <Hero lang={locale} />

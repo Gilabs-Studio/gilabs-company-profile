@@ -19,9 +19,17 @@ const description = locale === 'en'
   ? "Sorry, we couldn't find the page you're looking for."
   : 'Maaf, kami tidak dapat menemukan halaman yang Anda cari.';
 const buttonText = locale === 'en' ? 'Back to Home' : 'Kembali ke Beranda';
+const siteUrl = 'https://gilabs.id';
+const canonical = `${siteUrl}/404`;
 ---
 
-<Layout lang={locale} title={pageTitle}>
+<Layout 
+	lang={locale} 
+	title={pageTitle}
+	description={description}
+	canonical={canonical}
+	noindex={true}
+>
   <Navbar lang={locale} />
   <main class="min-h-screen flex items-center justify-center pt-20 pb-20">
     <div class="container mx-auto px-4 text-center">

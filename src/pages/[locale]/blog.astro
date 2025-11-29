@@ -14,6 +14,8 @@ export function getStaticPaths() {
 
 const { locale } = Astro.params;
 const blog = blogData[locale] || blogData['en'];
+const siteUrl = 'https://gilabs.id';
+const canonical = locale === 'en' ? `${siteUrl}/en/blog` : `${siteUrl}/${locale}/blog`;
 const pageTitle = locale === 'en' 
   ? `Blog - Insights & Updates | Gilabs Software House`
   : `Blog - Wawasan & Update | Gilabs Software House`;
@@ -22,7 +24,12 @@ const pageDescription = locale === 'en'
   : 'Baca wawasan terbaru kami tentang pengembangan web, aplikasi mobile, desain UI/UX, SEO, dan tren teknologi dari Gilabs Software House.';
 ---
 
-<Layout lang={locale} title={pageTitle}>
+<Layout 
+	lang={locale} 
+	title={pageTitle}
+	description={pageDescription}
+	canonical={canonical}
+>
   <Navbar lang={locale} />
   <main class="pt-20">
     <BlogOverview lang={locale} />
