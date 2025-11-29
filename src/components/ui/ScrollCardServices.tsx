@@ -219,16 +219,22 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
 
     let ctx: ReturnType<typeof import('gsap').gsap.context> | null = null;
     let scrollTriggerInstance: ReturnType<typeof import('gsap/ScrollTrigger').ScrollTrigger.create> | null = null;
+    let isCleaningUp = false;
 
     const checkIsDesktop = () => globalThis.innerWidth >= 768;
 
     const cleanupScrollTrigger = async () => {
+      if (isCleaningUp) return;
+      isCleaningUp = true;
+
       try {
         const { ScrollTrigger } = await import('gsap/ScrollTrigger');
         
-        // Kill all scroll triggers that might be related to this section
-        ScrollTrigger.getAll().forEach(st => {
+        // Kill ALL scroll triggers first to prevent any conflicts
+        const allTriggers = ScrollTrigger.getAll();
+        allTriggers.forEach(st => {
           try {
+            // Kill any scroll trigger that might be related to this section
             if (st.trigger === section || 
                 (st.vars?.trigger && st.vars.trigger === section) ||
                 (typeof st.trigger === 'object' && st.trigger === section)) {
@@ -258,9 +264,13 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
           ctx = null;
         }
         
-        // Ensure body overflow is reset
+        // Force reset all body styles that ScrollTrigger might have modified
         document.body.style.overflow = '';
         document.body.style.height = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
         
         // Unpin the section if it was pinned
         if (section) {
@@ -269,21 +279,43 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
           section.style.left = '';
           section.style.width = '';
           section.style.height = '';
+          section.style.transform = '';
         }
         
-        // Refresh ScrollTrigger after cleanup
-        ScrollTrigger.refresh();
+        // Also check for any wrapper elements that ScrollTrigger might have created
+        const wrappers = document.querySelectorAll('[data-scrolltrigger-wrapper]');
+        wrappers.forEach(wrapper => {
+          if (wrapper instanceof HTMLElement) {
+            wrapper.style.position = '';
+            wrapper.style.top = '';
+            wrapper.style.left = '';
+            wrapper.style.width = '';
+            wrapper.style.height = '';
+          }
+        });
+        
+        // Refresh ScrollTrigger after cleanup to ensure everything is reset
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+          isCleaningUp = false;
+        });
       } catch (e) {
         // If ScrollTrigger is not loaded, just reset styles
         document.body.style.overflow = '';
         document.body.style.height = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
         if (section) {
           section.style.position = '';
           section.style.top = '';
           section.style.left = '';
           section.style.width = '';
           section.style.height = '';
+          section.style.transform = '';
         }
+        isCleaningUp = false;
       }
     };
 
@@ -295,18 +327,42 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
         return;
       }
 
+      // First, ensure body styles are reset before initializing
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+
       const gsapModule = await import('gsap');
       const { ScrollTrigger } = await import('gsap/ScrollTrigger');
       const gsap = gsapModule.default;
       
       gsap.registerPlugin(ScrollTrigger);
 
-      // Kill any existing scroll triggers on this section first
-      ScrollTrigger.getAll().forEach(st => {
-        if (st.trigger === section || st.vars?.trigger === section) {
-          st.kill();
+      // Kill ALL existing scroll triggers first to prevent conflicts
+      const allTriggers = ScrollTrigger.getAll();
+      allTriggers.forEach(st => {
+        try {
+          // Kill any scroll trigger that might conflict
+          if (st.trigger === section || 
+              st.vars?.trigger === section ||
+              (typeof st.trigger === 'object' && st.trigger === section)) {
+            st.kill();
+          }
+        } catch (e) {
+          // Ignore errors
         }
       });
+
+      // Reset section styles before creating new trigger
+      if (section) {
+        section.style.position = '';
+        section.style.top = '';
+        section.style.left = '';
+        section.style.width = '';
+        section.style.height = '';
+        section.style.transform = '';
+      }
 
       // Refresh ScrollTrigger to ensure proper initialization
       ScrollTrigger.refresh();
@@ -319,6 +375,7 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
           pin: true,
           scrub: 0.3,
           anticipatePin: 1,
+          invalidateOnRefresh: true,
           onUpdate: self => {
             const progress = self.progress;
             const newIndex = Math.min(
@@ -330,19 +387,23 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
           },
           onLeave: () => {
             // Ensure scroll is not stuck when leaving the pinned section
-            ScrollTrigger.refresh();
+            requestAnimationFrame(() => {
+              ScrollTrigger.refresh();
+            });
           },
           onLeaveBack: () => {
             // Ensure scroll is not stuck when leaving back
-            ScrollTrigger.refresh();
+            requestAnimationFrame(() => {
+              ScrollTrigger.refresh();
+            });
           }
         });
       }, section);
 
       // Refresh after a short delay to ensure proper setup
-      setTimeout(() => {
+      requestAnimationFrame(() => {
         ScrollTrigger.refresh();
-      }, 100);
+      });
     };
 
     // Handle resize to cleanup/init scroll trigger when switching between mobile/desktop
@@ -380,12 +441,41 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
     // Add resize listener
     globalThis.addEventListener('resize', handleResize);
 
+    // Cleanup on page visibility change (when navigating away)
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        cleanupScrollTrigger();
+      }
+    };
+
+    // Cleanup before page unload
+    const handleBeforeUnload = () => {
+      cleanupScrollTrigger();
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    globalThis.addEventListener('beforeunload', handleBeforeUnload);
+
     return () => {
       if (resizeTimeout) {
         clearTimeout(resizeTimeout);
       }
       globalThis.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      globalThis.removeEventListener('beforeunload', handleBeforeUnload);
+      
+      // Force cleanup on unmount
       cleanupScrollTrigger();
+      
+      // Additional safety: reset body styles after a short delay
+      setTimeout(() => {
+        document.body.style.overflow = '';
+        document.body.style.height = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+      }, 100);
     };
   }, [isClient, items.length]);
 
