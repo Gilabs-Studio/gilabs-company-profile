@@ -1,0 +1,18 @@
+# robots.txt for gilabs.id
+# Generated for SEO compliance
+
+# Allow all search engines to crawl all content
+User-agent: *
+Allow: /
+
+# Disallow specific paths
+Disallow: /404
+Disallow: /api/
+
+# Sitemap location
+Sitemap: https://gilabs.id/sitemap-index.xml
+
+# Crawl delay (optional, in seconds)
+# User-agent: *
+# Crawl-delay: 1
+

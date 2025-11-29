@@ -53,6 +53,43 @@ const robotsContent = noindex ? 'noindex, nofollow' : robots;
 		<meta name="language" content={lang === 'id' ? 'Indonesian' : 'English'} />
 		<meta name="geo.region" content={lang === 'id' ? 'ID' : 'US'} />
 		
+		<!-- Structured Data (Schema.org) -->
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Organization",
+			"name": "Gilabs.id",
+			"alternateName": "Gilabs Software Agency",
+			"url": "https://gilabs.id",
+			"logo": "https://gilabs.id/favicon.svg",
+			"description": description,
+			"address": {
+				"@type": "PostalAddress",
+				"addressCountry": "ID"
+			},
+			"contactPoint": {
+				"@type": "ContactPoint",
+				"contactType": "Customer Service",
+				"availableLanguage": lang === 'id' ? "Indonesian" : "English"
+			},
+			"sameAs": [
+				"https://gilabs.id"
+			],
+			"areaServed": {
+				"@type": "Country",
+				"name": "Indonesia"
+			},
+			"knowsAbout": [
+				"Web Development",
+				"Mobile App Development",
+				"Software Development",
+				"Software House",
+				"UI/UX Design",
+				"Digital Solutions",
+				"ERP Systems",
+				"CRM Systems"
+			]
+		})} />
+		
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">

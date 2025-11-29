@@ -11,8 +11,21 @@ import compress from 'astro-compress';
 export default defineConfig({
   integrations: [
     react(),
-    sitemap(),
-    robotsTxt(),
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.7,
+      lastmod: new Date(),
+    }),
+    robotsTxt({
+      policy: [
+        {
+          userAgent: '*',
+          allow: '/',
+          disallow: ['/404', '/api/'],
+        },
+      ],
+      sitemap: 'https://gilabs.id/sitemap-index.xml',
+    }),
     compress()
   ],
 
