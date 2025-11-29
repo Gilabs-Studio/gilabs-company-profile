@@ -1,13 +1,13 @@
 ---
-import { pricingData } from '../data/pricing';
+import { pricingData } from '../../data/pricing';
 import { MessageCircle } from 'lucide-react';
-import { getWhatsAppLink } from '../lib/utils';
+import { getWhatsAppLink } from '../../lib/utils';
 
 const { lang } = Astro.props;
 const cta = pricingData[lang].ctaSection;
 ---
 
-<section class="py-20 md:py-32 relative bg-background">
+<section class="py-20 md:py-32 relative">
   <div class="container mx-auto px-4">
     <div class="bg-foreground text-background rounded-3xl p-12 md:p-24 text-center relative overflow-hidden shadow-2xl shadow-brand/20">
       {/* Background decoration */}

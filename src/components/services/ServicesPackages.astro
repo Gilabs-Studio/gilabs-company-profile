@@ -1,0 +1,84 @@
+---
+import { pricingData } from '../../data/pricing';
+import { getWhatsAppLink } from '../../lib/utils';
+import { CheckCircle2 } from 'lucide-react';
+
+const { lang } = Astro.props;
+const packages = pricingData[lang].packages;
+
+const content = {
+  en: {
+    title: 'Website Packages',
+    subtitle: 'Transparent pricing for every stage of your business.',
+    selectPackage: 'Select Package',
+    mostPopular: 'Most Popular',
+  },
+  id: {
+    title: 'Paket Website',
+    subtitle: 'Harga transparan untuk setiap tahap bisnis Anda.',
+    selectPackage: 'Pilih Paket',
+    mostPopular: 'Paling Populer',
+  },
+};
+
+const t = content[lang];
+---
+
+<section class="py-20 md:py-32 relative border-b border-border/50">
+  <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6">
+        {t.title}
+      </h2>
+      <p class="text-lg text-muted-foreground">
+        {t.subtitle}
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+      {packages.map((pkg, index) => (
+        <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl p-8 flex flex-col relative overflow-hidden hover:border-brand/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+          {index === 1 && (
+            <div class="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+              {t.mostPopular}
+            </div>
+          )}
+          
+          <div class="mb-6">
+            <h3 class="text-lg font-bold text-foreground mb-2">{pkg.title}</h3>
+            <p class="text-sm text-muted-foreground mb-6 leading-relaxed">{pkg.description}</p>
+            <p class="text-2xl font-bold text-foreground">{pkg.price}</p>
+          </div>
+          
+          <ul class="space-y-3 mb-8 flex-1">
+            {pkg.features.slice(0, 4).map((feature) => (
+              <li class="flex items-start gap-3 text-sm">
+                <CheckCircle2 className="w-5 h-5 text-foreground mt-0.5 shrink-0" />
+                <span class="text-foreground leading-relaxed">{feature}</span>
+              </li>
+            ))}
+            {pkg.revisions && (
+              <li class="flex items-start gap-3 text-sm text-muted-foreground pt-3 border-t border-border/50">
+                <span class="text-xs">⏱</span>
+                <span>{pkg.revisions.join(' · ')}</span>
+              </li>
+            )}
+          </ul>
+          
+          <a
+            href={getWhatsAppLink('services', lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class={`w-full py-3 rounded-xl text-sm font-bold text-center transition-all duration-200 ${
+              index === 1
+                ? 'bg-brand text-white hover:bg-brand/90'
+                : 'border border-border/50 hover:bg-foreground hover:text-background'
+            }`}
+          >
+            {t.selectPackage}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -111,7 +111,7 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
           </linearGradient>
         </defs>
       </svg>
-    <section id="pricing" className="py-24 md:py-32">
+    <section id="pricing" className="py-24 md:py-32 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="max-w-3xl mx-auto text-center mb-16">

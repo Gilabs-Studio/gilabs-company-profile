@@ -2,9 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
-import { pricingData } from '../../data/pricing';
-import { getWhatsAppLink } from '../../lib/utils';
-import { ArrowRight, CheckCircle2, Sparkles, Code, Smartphone, Palette, Settings, TrendingUp, Monitor, Network, LifeBuoy } from 'lucide-react';
+import ServicesHero from '../../components/services/ServicesHero.astro';
+import ServicesGrid from '../../components/services/ServicesGrid.astro';
+import ServicesPackages from '../../components/services/ServicesPackages.astro';
+import ServicesErpCrm from '../../components/services/ServicesErpCrm.astro';
+import ServicesAiAddons from '../../components/services/ServicesAiAddons.astro';
+import ServicesCta from '../../components/services/ServicesCta.astro';
 
 export function getStaticPaths() {
   return [
@@ -14,337 +17,37 @@ export function getStaticPaths() {
 }
 
 const { locale } = Astro.params;
-const services = pricingData[locale as 'id' | 'en'].services;
-const packages = pricingData[locale as 'id' | 'en'].packages;
-const aiAddons = pricingData[locale as 'id' | 'en'].aiAddons;
+const lang = locale as 'en' | 'id';
 
 const siteUrl = 'https://gilabs.id';
 const canonical = locale === 'en' ? `${siteUrl}/en/services` : `${siteUrl}/${locale}/services`;
 const pageTitle = locale === 'en'
-  ? `Our Services - Web, Mobile, UI/UX & More | Gilabs.id`
-  : `Layanan Kami - Web, Mobile, UI/UX & Lainnya | Gilabs.id`;
+  ? `Our Services - Web, Mobile, UI/UX, ERP & CRM | Gilabs.id`
+  : `Layanan Kami - Web, Mobile, UI/UX, ERP & CRM | Gilabs.id`;
 const pageDescription = locale === 'id'
-  ? 'Layanan lengkap pengembangan web, aplikasi mobile, desain UI/UX, sistem integrasi, dan maintenance. Solusi digital untuk bisnis Anda.'
-  : 'Complete services for web development, mobile apps, UI/UX design, system integration, and maintenance. Digital solutions for your business.';
-
-const serviceIcons = {
-  'Web Development': Monitor,
-  'Mobile Development': Smartphone,
-  'UI / UX Design': Palette,
-  'System & Integration': Network,
-  'Maintenance & Scaling': LifeBuoy,
-};
-
-const content = {
-  en: {
-    hero: {
-      title: 'What We Do.',
-      subtitle: 'We build digital products that actually work. No buzzwords, no endless process — just focus, speed, and care for quality.',
-    },
-    packages: {
-      title: 'Website Packages',
-      subtitle: 'Transparent pricing for every stage of your business.',
-    },
-    aiAddons: {
-      title: 'AI Features Add-ons',
-      subtitle: 'Enhance your product with artificial intelligence. From simple text generation to autonomous agents.',
-    },
-    cta: {
-      title: 'Ready to Start Your Project?',
-      subtitle: 'Let\'s discuss how we can help bring your ideas to life',
-      button: 'Get Started',
-    },
-  },
-  id: {
-    hero: {
-      title: 'Apa yang Kami Lakukan.',
-      subtitle: 'Kami membangun produk digital yang benar-benar berfungsi. Tanpa basa-basi, tanpa proses berbelit — hanya fokus, kecepatan, dan peduli pada kualitas.',
-    },
-    packages: {
-      title: 'Paket Website',
-      subtitle: 'Harga transparan untuk setiap tahap bisnis Anda.',
-    },
-    aiAddons: {
-      title: 'Add-on Fitur AI',
-      subtitle: 'Tingkatkan produk Anda dengan kecerdasan buatan. Dari generasi teks sederhana hingga agen otonom.',
-    },
-    cta: {
-      title: 'Siap Memulai Proyek Anda?',
-      subtitle: 'Mari diskusikan bagaimana kami bisa membantu mewujudkan ide Anda',
-      button: 'Mulai Sekarang',
-    },
-  },
-};
-
-const t = content[locale as 'en' | 'id'];
+  ? 'Layanan lengkap pengembangan web, aplikasi mobile, desain UI/UX, sistem integrasi, ERP, CRM, dan maintenance. Solusi digital untuk bisnis Anda.'
+  : 'Complete services for web development, mobile apps, UI/UX design, system integration, ERP, CRM, and maintenance. Digital solutions for your business.';
 ---
 
 <Layout 
-  lang={locale} 
+  lang={lang} 
   title={pageTitle}
   description={pageDescription}
   canonical={canonical}
   keywords={locale === 'id' 
-    ? 'layanan pengembangan web, layanan aplikasi mobile, layanan desain UI/UX, layanan sistem integrasi, maintenance website'
-    : 'web development services, mobile app services, UI/UX design services, system integration services, website maintenance'}
+    ? 'layanan pengembangan web, layanan aplikasi mobile, layanan desain UI/UX, layanan sistem integrasi, layanan ERP, layanan CRM, maintenance website'
+    : 'web development services, mobile app services, UI/UX design services, system integration services, ERP services, CRM services, website maintenance'}
 >
-  <Navbar lang={locale} />
+  <Navbar lang={lang} />
   
   <main class="min-h-screen bg-background">
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 md:pb-24 border-b border-border/50">
-      <div class="container mx-auto px-4">
-        <div class="max-w-3xl">
-          <h1 class="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-foreground mb-4">
-            {t.hero.title}
-          </h1>
-          <p class="text-lg md:text-xl text-muted-foreground leading-relaxed">
-            {t.hero.subtitle}
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services Detail Section -->
-    <section class="py-24 border-b border-border/50">
-      <div class="container mx-auto px-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.items.slice(0, 4).map((service) => {
-            const Icon = serviceIcons[service.title as keyof typeof serviceIcons] || Code;
-            
-            return (
-              <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl p-8 group hover:border-brand/50 transition-all duration-300">
-                <div class="w-10 h-10 rounded-lg bg-foreground/5 flex items-center justify-center mb-6 group-hover:bg-foreground/10 transition-colors">
-                  <Icon className="w-5 h-5 text-foreground" />
-                </div>
-                <h2 class="text-xl font-medium text-foreground mb-3">
-                  {service.title}
-                </h2>
-                <p class="text-sm leading-relaxed mb-6 text-muted-foreground">
-                  {service.body[0]}
-                </p>
-                <div class="pt-6 border-t border-border/50">
-                  <span class="text-xs font-medium text-foreground">{service.tagline}</span>
-                </div>
-              </div>
-            );
-          })}
-          
-          {/* Maintenance - Full Width */}
-          {services.items[4] && (
-            <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl p-8 group hover:border-brand/50 transition-all duration-300 col-span-1 md:col-span-2">
-              <div class="flex flex-col md:flex-row gap-6 md:items-center">
-                <div class="w-10 h-10 rounded-lg bg-foreground/5 flex items-center justify-center shrink-0 group-hover:bg-foreground/10 transition-colors">
-                  <LifeBuoy className="w-5 h-5 text-foreground" />
-                </div>
-                <div>
-                  <h2 class="text-xl font-medium text-foreground mb-2">
-                    {services.items[4].title}
-                  </h2>
-                  <p class="text-sm leading-relaxed mb-4 text-muted-foreground">
-                    {services.items[4].body[0]}
-                  </p>
-                  <span class="text-xs font-medium text-foreground">{services.items[4].tagline}</span>
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-
-    <!-- Website Packages Section -->
-    <section class="py-24 border-b border-border/50">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl font-medium tracking-tight text-foreground mb-4">{t.packages.title}</h2>
-          <p class="text-muted-foreground">{t.packages.subtitle}</p>
-        </div>
-        
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {packages.map((pkg, index) => (
-            <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-3xl p-8 flex flex-col relative overflow-hidden hover:border-brand/50 transition-all duration-300">
-              {index === 1 && (
-                <div class="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
-                  {locale === 'id' ? 'Paling Populer' : 'Most Popular'}
-                </div>
-              )}
-              
-              <div class="mb-6">
-                <h3 class="text-lg font-medium text-foreground">{pkg.title}</h3>
-                <p class="text-xs text-muted-foreground mt-2 h-8">{pkg.description}</p>
-              </div>
-              
-              <div class="mb-6">
-                <span class="text-3xl font-medium text-foreground tracking-tight">{pkg.price}</span>
-                {index === 1 && (
-                  <span class="text-sm text-muted-foreground block mt-1">
-                    {pkg.price.includes('–') ? locale === 'id' ? 'Range harga' : 'Price range' : locale === 'id' ? 'Harga mulai' : 'Starting price'}
-                  </span>
-                )}
-              </div>
-              
-              <ul class="space-y-4 mb-8 flex-1">
-                {pkg.features.slice(0, 4).map((feature) => (
-                  <li class="flex items-start gap-3 text-sm">
-                    <CheckCircle2 className="w-4 h-4 text-foreground mt-0.5 shrink-0" />
-                    <span class="text-foreground">{feature}</span>
-                  </li>
-                ))}
-                {pkg.revisions && (
-                  <li class="flex items-start gap-3 text-sm text-muted-foreground">
-                    <span class="text-xs">⏱</span>
-                    <span>{pkg.revisions.join(' · ')}</span>
-                  </li>
-                )}
-              </ul>
-              
-              <a
-                href={getWhatsAppLink('services', locale as 'en' | 'id')}
-                target="_blank"
-                rel="noopener noreferrer"
-                class={`w-full py-3 rounded-xl text-sm font-medium text-center transition-all ${
-                  index === 1
-                    ? 'bg-brand text-white hover:bg-brand/90'
-                    : 'border border-border/50 hover:bg-foreground hover:text-background'
-                }`}
-              >
-                {locale === 'id' ? 'Pilih Paket' : 'Select Package'}
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- AI Add-ons Section - Special Design -->
-    <section class="py-24">
-      <div class="container mx-auto px-4">
-        <div class="max-w-7xl mx-auto">
-          <div class="relative rounded-3xl overflow-hidden border border-indigo-500/50 bg-linear-to-br from-indigo-900/20 via-purple-900/20 to-transparent p-8 md:p-12" style="box-shadow: 0 0 40px -10px rgba(124, 58, 237, 0.3);">
-            <!-- Glow Effect -->
-            <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-600/20 blur-[100px] rounded-full pointer-events-none"></div>
-            
-            <div class="relative z-10 mb-12">
-              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/50 bg-indigo-500 text-xs font-medium text-white mb-4">
-                <Sparkles className="w-3 h-3" />
-                {locale === 'en' ? 'Intelligence Layer' : 'Lapisan Kecerdasan'}
-              </div>
-              <h2 class="text-3xl font-medium tracking-tight mb-4">
-                <span class="ai-gradient-text">{aiAddons.title}</span>
-              </h2>
-              <p class="text-muted-foreground max-w-2xl">{aiAddons.subtitle}</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-              {aiAddons.packages.slice(0, 3).map((aiPkg) => (
-                <div class="bg-background/80 backdrop-blur border border-border/50 p-6 rounded-xl hover:border-indigo-500/50 transition-colors">
-                  <h3 class="text-foreground font-medium mb-2">{aiPkg.name}</h3>
-                  <p class="text-xs text-muted-foreground mb-4 h-8 line-clamp-2">{aiPkg.description}</p>
-                  <div class="text-lg font-medium text-foreground mb-4">{aiPkg.price}</div>
-                  <ul class="text-xs text-muted-foreground space-y-2">
-                    {aiPkg.features.slice(0, 2).map((feature) => (
-                      <li>+ {feature}</li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-              
-              {/* RAG Card */}
-              {aiAddons.packages[3] && (
-                <div class="bg-background/80 backdrop-blur border border-border/50 p-6 rounded-xl hover:border-indigo-500/50 transition-colors">
-                  <h3 class="text-foreground font-medium mb-2">{aiAddons.packages[3].name}</h3>
-                  <p class="text-xs text-muted-foreground mb-4 h-8 line-clamp-2">{aiAddons.packages[3].description}</p>
-                  <div class="text-lg font-medium text-foreground mb-4">{aiAddons.packages[3].price}</div>
-                  <ul class="text-xs text-muted-foreground space-y-2">
-                    {aiAddons.packages[3].features.slice(0, 2).map((feature) => (
-                      <li>+ {feature}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              
-              {/* Full AI Agent - Special Card */}
-              {aiAddons.packages[4] && (
-                <div class="bg-background/80 backdrop-blur border border-border/50 p-6 rounded-xl hover:border-indigo-500/50 transition-colors md:col-span-2 lg:col-span-3 flex flex-col md:flex-row items-center justify-between gap-6">
-                  <div>
-                    <h3 class="text-foreground font-medium mb-2 flex items-center gap-2">
-                      {aiAddons.packages[4].name}
-                      <span class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">
-                        {locale === 'en' ? 'Advanced' : 'Tingkat Lanjut'}
-                      </span>
-                    </h3>
-                    <p class="text-sm text-muted-foreground max-w-xl">
-                      {aiAddons.packages[4].description}
-                    </p>
-                  </div>
-                  <div class="text-right">
-                    <div class="text-2xl font-medium text-foreground tracking-tight">{aiAddons.packages[4].price}</div>
-                    <div class="text-xs text-muted-foreground">
-                      {locale === 'en' ? 'Depending on complexity' : 'Tergantung kompleksitas'}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-24 border-t border-border/50">
-      <div class="container mx-auto px-4">
-        <div class="max-w-3xl mx-auto text-center">
-          <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground mb-6">
-            {t.cta.title}
-          </h2>
-          <p class="text-lg md:text-xl text-muted-foreground mb-8">
-            {t.cta.subtitle}
-          </p>
-          <a
-            href={getWhatsAppLink('services', locale as 'en' | 'id')}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="group inline-flex items-center justify-center gap-3 px-10 py-5 text-lg font-medium text-white bg-brand rounded-full hover:bg-brand/90 transition-all duration-200 shadow-lg hover:shadow-brand/50 hover:-translate-y-1"
-          >
-            {t.cta.button}
-            <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-          </a>
-        </div>
-      </div>
-    </section>
+    <ServicesHero lang={lang} />
+    <ServicesGrid lang={lang} />
+    <ServicesPackages lang={lang} />
+    <ServicesErpCrm lang={lang} />
+    <ServicesAiAddons lang={lang} />
+    <ServicesCta lang={lang} />
   </main>
   
-  <Footer lang={locale} />
+  <Footer lang={lang} />
 </Layout>
-
-<style>
-  .glass-card {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(10px);
-  }
-  .glass-card:hover {
-    border-color: rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.05);
-  }
-  
-  .ai-gradient-text {
-    background: linear-gradient(90deg, #6366f1, #8b5cf6, #a855f7, #c084fc, #8b5cf6, #6366f1);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: gradient-shift 3s ease infinite;
-  }
-  
-  @keyframes gradient-shift {
-    0%, 100% {
-      background-position: 0% center;
-    }
-    50% {
-      background-position: 100% center;
-    }
-  }
-</style>
