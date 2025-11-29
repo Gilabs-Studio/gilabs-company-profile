@@ -342,23 +342,25 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
               <div ref={textContainerRef} className="relative">
                 <div className="service-text-content">
                   <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground">
-                    {currentService?.title}
+                    {currentService?.title || ''}
                   </h3>
                 </div>
                 
                 <div className="service-text-content mt-8 space-y-3">
-                  {currentService?.body.map((paragraph) => (
-                    <p key={paragraph.slice(0, 30)} className="text-muted-foreground leading-relaxed">
-                      {paragraph}
+                  {currentService?.body?.map((paragraph, idx) => (
+                    <p key={idx} className="text-muted-foreground leading-relaxed">
+                      {paragraph || ''}
                     </p>
                   ))}
                 </div>
 
-                <div className="service-text-content mt-8">
-                  <p className="text-brand">
-                    {currentService?.tagline}
-                  </p>
-                </div>
+                {currentService?.tagline && (
+                  <div className="service-text-content mt-8">
+                    <p className="text-brand">
+                      {currentService.tagline}
+                    </p>
+                  </div>
+                )}
 
                 {/* CTA Button */}
                 <div className="service-text-content mt-12">

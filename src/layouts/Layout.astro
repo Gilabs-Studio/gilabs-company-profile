@@ -53,9 +53,6 @@ const robotsContent = noindex ? 'noindex, nofollow' : robots;
 		<meta name="language" content={lang === 'id' ? 'Indonesian' : 'English'} />
 		<meta name="geo.region" content={lang === 'id' ? 'ID' : 'US'} />
 		
-		<!-- Preload critical resources -->
-		<link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-		
 		<!-- Structured Data (Schema.org) -->
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
