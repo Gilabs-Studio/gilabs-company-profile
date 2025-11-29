@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { getWhatsAppLink } from '../../lib/utils';
 
 interface ServiceItem {
   title: string;
@@ -11,6 +12,7 @@ interface ScrollCardServicesProps {
   subtitle: string;
   items: ServiceItem[];
   ctaText: string;
+  lang?: 'en' | 'id';
 }
 
 interface CardStackProps {
@@ -197,7 +199,8 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
   title,
   subtitle,
   items,
-  ctaText
+  ctaText,
+  lang = 'id'
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [isClient, setIsClient] = useState(false);
@@ -470,7 +473,9 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
                 {/* CTA Button */}
                 <div className="service-text-content mt-12">
                   <a
-                    href="#contact"
+                    href={getWhatsAppLink('services', lang)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center px-8 py-4 text-sm font-medium text-primary-foreground bg-primary rounded-full hover:bg-primary/90 transition-colors duration-300"
                   >
                     {ctaText}

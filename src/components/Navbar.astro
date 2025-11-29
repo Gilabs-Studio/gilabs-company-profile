@@ -1,5 +1,6 @@
 ---
 import { Menu, X } from 'lucide-react';
+import { getWhatsAppLink } from '../lib/utils';
 
 const { lang } = Astro.props;
 
@@ -7,7 +8,7 @@ const links = [
   { href: `/${lang}#services`, label: lang === 'en' ? 'Services' : 'Layanan' },
   { href: `/${lang}/portfolio`, label: lang === 'en' ? 'Portfolio' : 'Portofolio' },
   { href: `/${lang}/blog`, label: lang === 'en' ? 'Blog' : 'Blog' },
-  { href: `/${lang}#contact`, label: lang === 'en' ? 'Contact' : 'Kontak' },
+  { href: getWhatsAppLink('navbar', lang), label: lang === 'en' ? 'Contact' : 'Kontak', external: true },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -25,7 +26,11 @@ const switchLangPath = currentPath.includes('/en')
     {/* Desktop Menu */}
     <div class="hidden md:flex items-center gap-6 ml-auto mr-4">
       {links.map(link => (
-        <a href={link.href} class="text-sm font-medium text-muted-foreground hover:text-brand transition-colors">
+        <a 
+          href={link.href} 
+          class="text-sm font-medium text-muted-foreground hover:text-brand transition-colors"
+          {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
           {link.label}
         </a>
       ))}
@@ -35,7 +40,7 @@ const switchLangPath = currentPath.includes('/en')
       <a href={switchLangPath} class="text-xs font-medium border border-border px-3 py-1.5 rounded-full hover:bg-secondary transition-colors uppercase">
         {lang === 'en' ? 'ID' : 'EN'}
       </a>
-      <a href={`/${lang}#contact`} class="text-sm font-bold bg-brand text-white px-5 py-2.5 rounded-full hover:bg-brand/90 transition-all hover:shadow-lg hover:shadow-brand/20">
+      <a href={getWhatsAppLink('navbar', lang)} target="_blank" rel="noopener noreferrer" class="text-sm font-bold bg-brand text-white px-5 py-2.5 rounded-full hover:bg-brand/90 transition-all hover:shadow-lg hover:shadow-brand/20">
         {lang === 'en' ? 'Get Started' : 'Mulai Sekarang'}
       </a>
     </div>
@@ -55,7 +60,11 @@ const switchLangPath = currentPath.includes('/en')
   <div id="mobile-menu" class="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
     <div class="flex flex-col items-center gap-8 text-center">
       {links.map(link => (
-        <a href={link.href} class="text-2xl font-bold text-foreground hover:text-brand transition-colors mobile-link">
+        <a 
+          href={link.href} 
+          class="text-2xl font-bold text-foreground hover:text-brand transition-colors mobile-link"
+          {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        >
           {link.label}
         </a>
       ))}
@@ -63,7 +72,7 @@ const switchLangPath = currentPath.includes('/en')
         <a href={switchLangPath} class="text-sm font-medium border border-border px-4 py-2 rounded-full hover:bg-secondary transition-colors uppercase">
           {lang === 'en' ? 'Switch to ID' : 'Ganti ke EN'}
         </a>
-        <a href={`/${lang}#contact`} class="text-lg font-bold bg-brand text-white px-8 py-3 rounded-full hover:bg-brand/90 transition-all shadow-lg shadow-brand/20">
+        <a href={getWhatsAppLink('navbar', lang)} target="_blank" rel="noopener noreferrer" class="text-lg font-bold bg-brand text-white px-8 py-3 rounded-full hover:bg-brand/90 transition-all shadow-lg shadow-brand/20">
           {lang === 'en' ? 'Get Started' : 'Mulai Sekarang'}
         </a>
       </div>

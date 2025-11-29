@@ -1,6 +1,7 @@
 ---
 import { pricingData } from '../data/pricing';
 import { Check, Plus } from 'lucide-react';
+import { getWhatsAppLink } from '../lib/utils';
 
 const { lang } = Astro.props;
 const t = pricingData[lang];
@@ -70,7 +71,7 @@ const t = pricingData[lang];
             )}
           </div>
 
-          <a href="#contact" class={`w-full py-3 px-6 rounded-xl font-bold text-center transition-all duration-200 ${index === 1 ? 'bg-brand text-white hover:bg-brand/90 shadow-lg shadow-brand/20' : 'bg-secondary/50 text-foreground hover:bg-secondary hover:text-brand'}`}>
+          <a href={getWhatsAppLink('pricing', lang)} target="_blank" rel="noopener noreferrer" class={`w-full py-3 px-6 rounded-xl font-bold text-center transition-all duration-200 ${index === 1 ? 'bg-brand text-white hover:bg-brand/90 shadow-lg shadow-brand/20' : 'bg-secondary/50 text-foreground hover:bg-secondary hover:text-brand'}`}>
             {lang === 'en' ? 'Select Plan' : 'Pilih Paket'}
           </a>
         </div>

@@ -3,6 +3,7 @@ import { pricingData } from '../data/pricing';
 import { ArrowRight } from 'lucide-react';
 import ParallaxGallery from './ui/ParallaxGallery';
 import { LottieIcon } from './ui/LottieIcon';
+import { getWhatsAppLink } from '../lib/utils';
 
 const { lang } = Astro.props;
 const about = pricingData[lang].about;
@@ -224,7 +225,9 @@ const energyCards = [
 
         {/* CTA - Brutalist Style */}
         <a 
-          href="#contact" 
+          href={getWhatsAppLink('about', lang)} 
+          target="_blank" 
+          rel="noopener noreferrer"
           class="md:col-span-6 group flex items-center justify-center rounded-3xl border-2 border-foreground hover:bg-foreground hover:text-background transition-colors duration-300"
         >
           <span class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight py-12 md:py-16">

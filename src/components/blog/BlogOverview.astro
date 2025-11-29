@@ -1,6 +1,7 @@
 ---
 import { blogData } from '../../data/blog';
 import BlogCard from './BlogCard.astro';
+import { getWhatsAppLink } from '../../lib/utils';
 
 const { lang } = Astro.props;
 const blog = blogData[lang] || blogData['en'];
@@ -53,7 +54,9 @@ const totalPosts = blog.posts.length;
         </p>
         <div class="flex justify-center">
           <a 
-            href={`/${lang}#contact`}
+            href={getWhatsAppLink('footer', lang)}
+            target="_blank"
+            rel="noopener noreferrer"
             class="flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-brand rounded-full hover:bg-brand/90 hover:shadow-lg hover:shadow-brand/20"
           >
             {lang === 'en' ? 'Get Started' : 'Mulai Sekarang'}

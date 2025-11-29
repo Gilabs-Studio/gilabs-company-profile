@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Check, Plus, ChevronDown } from 'lucide-react';
+import { getWhatsAppLink } from '../../lib/utils';
 
 interface PricingPackage {
   title: string;
@@ -215,7 +216,9 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
                 </div>
 
                 <a
-                  href="#contact"
+                  href={getWhatsAppLink('pricing', lang)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`w-full py-3 px-6 rounded-full font-medium text-center text-sm transition-colors duration-300 ${
                     index === 1
                       ? 'bg-brand text-white hover:bg-brand/90'
@@ -275,7 +278,9 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
                   )}
 
                   <a
-                    href="#contact"
+                    href={getWhatsAppLink('pricing', lang)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className={`w-full py-3 px-6 rounded-full font-medium text-center text-sm transition-colors duration-300 ${
                       index === 1
                         ? 'bg-brand text-white hover:bg-brand/90'
@@ -319,7 +324,9 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
                   <p className="text-2xl font-bold">{erpCrm.erp.fullPackage.split(': ')[1]}</p>
                 </div>
                 <a
-                  href="#contact"
+                  href={getWhatsAppLink('pricing', lang)}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="px-8 py-3 rounded-full font-medium text-sm bg-brand text-white hover:bg-brand/90 transition-colors duration-300 text-center"
                 >
                   {lang === 'en' ? 'Contact Us' : 'Hubungi Kami'}

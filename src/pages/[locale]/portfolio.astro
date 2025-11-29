@@ -4,6 +4,7 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/Footer.astro';
 import ProjectDrawer from '../../components/ui/ProjectDrawer';
 import { ArrowUpRight, ExternalLink } from 'lucide-react';
+import { getWhatsAppLink } from '../../lib/utils';
 
 export function getStaticPaths() {
   return [
@@ -373,7 +374,9 @@ const keywords = locale === 'en'
                 : 'Let\'s discuss how we can help bring your ideas to life.'}
             </p>
             <a
-              href="#contact"
+              href={getWhatsAppLink('footer', locale as 'en' | 'id')}
+              target="_blank"
+              rel="noopener noreferrer"
               class="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-white bg-brand rounded-full hover:bg-brand/90 hover:shadow-lg hover:shadow-brand/20 hover:scale-105 transition-all duration-200"
             >
               {locale === 'id' ? 'Mulai Proyek' : 'Start a Project'}
