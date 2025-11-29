@@ -214,6 +214,7 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
     if (!section) return;
 
     let ctx: ReturnType<typeof import('gsap').gsap.context> | null = null;
+    let scrollTriggerInstance: ReturnType<typeof import('gsap/ScrollTrigger').ScrollTrigger.create> | null = null;
 
     const initScrollTrigger = async () => {
       const gsapModule = await import('gsap');
@@ -222,13 +223,17 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
       
       gsap.registerPlugin(ScrollTrigger);
 
+      // Refresh ScrollTrigger to ensure proper initialization
+      ScrollTrigger.refresh();
+
       ctx = gsap.context(() => {
-        ScrollTrigger.create({
+        scrollTriggerInstance = ScrollTrigger.create({
           trigger: section,
           start: 'top top',
           end: () => `+=${items.length * 100}%`,
           pin: true,
           scrub: 0.3,
+          anticipatePin: 1,
           onUpdate: self => {
             const progress = self.progress;
             const newIndex = Math.min(
@@ -237,15 +242,42 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
             );
             
             setActiveIndex(newIndex);
+          },
+          onLeave: () => {
+            // Ensure scroll is not stuck when leaving the pinned section
+            ScrollTrigger.refresh();
+          },
+          onLeaveBack: () => {
+            // Ensure scroll is not stuck when leaving back
+            ScrollTrigger.refresh();
           }
         });
       }, section);
+
+      // Refresh after a short delay to ensure proper setup
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 100);
     };
 
     initScrollTrigger();
 
     return () => {
-      ctx?.revert();
+      // Properly cleanup ScrollTrigger
+      if (scrollTriggerInstance) {
+        scrollTriggerInstance.kill();
+        scrollTriggerInstance = null;
+      }
+      if (ctx) {
+        ctx.revert();
+        ctx = null;
+      }
+      // Ensure body overflow is reset
+      document.body.style.overflow = '';
+      // Refresh ScrollTrigger after cleanup
+      import('gsap/ScrollTrigger').then(({ ScrollTrigger }) => {
+        ScrollTrigger.refresh();
+      });
     };
   }, [isClient, items.length]);
 

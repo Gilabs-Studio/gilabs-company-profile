@@ -29,6 +29,70 @@ const { lang = Astro.currentLocale || 'en', title = 'Gilabs.id' } = Astro.props;
     </div>
 		<slot />
 	</body>
+
+<script>
+  // Safety check to prevent scroll from getting stuck
+  // This ensures body overflow is always reset properly
+  (function() {
+    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let scrollStuckCount = 0;
+    const MAX_STUCK_COUNT = 3;
+
+    function checkScrollHealth() {
+      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      // If scroll position hasn't changed but user is trying to scroll, reset overflow
+      if (currentScrollTop === lastScrollTop && document.body.style.overflow === 'hidden') {
+        scrollStuckCount++;
+        
+        if (scrollStuckCount >= MAX_STUCK_COUNT) {
+          // Force reset body styles if scroll appears stuck
+          document.body.style.overflow = '';
+          document.body.style.position = '';
+          document.body.style.width = '';
+          scrollStuckCount = 0;
+        }
+      } else {
+        scrollStuckCount = 0;
+      }
+      
+      lastScrollTop = currentScrollTop;
+    }
+
+    // Check scroll health periodically
+    setInterval(checkScrollHealth, 100);
+
+    // Also check on visibility change (when console is opened/closed)
+    document.addEventListener('visibilitychange', () => {
+      // Reset any stuck overflow states when page becomes visible
+      if (!document.hidden) {
+        const hasOverflowHidden = document.body.style.overflow === 'hidden';
+        const hasPositionFixed = document.body.style.position === 'fixed';
+        
+        // Only reset if no modal/drawer is actually open
+        // Check if mobile menu is closed
+        const mobileMenu = document.getElementById('mobile-menu');
+        const isMobileMenuOpen = mobileMenu && !mobileMenu.classList.contains('opacity-0');
+        
+        // Check if project drawer is open (check for backdrop)
+        const hasBackdrop = document.querySelector('.fixed.inset-0.bg-black\\/60');
+        
+        if (!isMobileMenuOpen && !hasBackdrop && (hasOverflowHidden || hasPositionFixed)) {
+          document.body.style.overflow = '';
+          document.body.style.position = '';
+          document.body.style.width = '';
+        }
+      }
+    });
+
+    // Ensure scroll is enabled on page load
+    window.addEventListener('load', () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    });
+  })();
+</script>
 </html>
 
 <style>

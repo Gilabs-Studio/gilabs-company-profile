@@ -55,12 +55,18 @@ const ProjectDrawer = ({ lang = 'en' }: ProjectDrawerProps) => {
     const handleOpenDrawer = (e: CustomEvent) => {
       setProject(e.detail);
       setIsOpen(true);
+      // Prevent scroll on body
       document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
     };
 
     const handleCloseDrawer = () => {
       setIsOpen(false);
+      // Reset body styles
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     };
 
     window.addEventListener('open-project-drawer', handleOpenDrawer as EventListener);
@@ -69,13 +75,19 @@ const ProjectDrawer = ({ lang = 'en' }: ProjectDrawerProps) => {
     return () => {
       window.removeEventListener('open-project-drawer', handleOpenDrawer as EventListener);
       window.removeEventListener('close-project-drawer', handleCloseDrawer);
+      // Ensure body is always reset on cleanup
       document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
     };
   }, []);
 
   const handleClose = () => {
     setIsOpen(false);
+    // Reset body styles
     document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.width = '';
   };
 
   // Handle escape key
