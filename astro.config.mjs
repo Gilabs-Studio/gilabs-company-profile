@@ -26,7 +26,19 @@ export default defineConfig({
       ],
       sitemap: 'https://gilabs.id/sitemap-index.xml',
     }),
-    compress()
+    compress({
+      css: true,
+      html: {
+        removeAttributeQuotes: false,
+        collapseWhitespace: true,
+        removeComments: true,
+        minifyCSS: true,
+        minifyJS: true,
+      },
+      image: false, // Let Astro handle images
+      svg: true,
+      js: true,
+    })
   ],
 
   vite: {

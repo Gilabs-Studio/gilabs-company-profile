@@ -4,12 +4,13 @@ import { pricingData } from '../data/pricing';
 const { lang } = Astro.props;
 const t = pricingData[lang].hero;
 
+// Optimized logo URLs with smaller sizes for better performance
 const logos = [
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/1200px-Go_Logo_Blue.svg.png",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/2048px-Tailwind_CSS_Logo.svg.png",
-  "https://astro.build/assets/press/astro-icon-light.png",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/2560px-Nextjs-logo.svg.png",
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/1200px-Typescript_logo_2020.svg.png"
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/200px-Go_Logo_Blue.svg.png", alt: "Go Logo" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/200px-Tailwind_CSS_Logo.svg.png", alt: "Tailwind CSS Logo" },
+  { src: "https://astro.build/assets/press/astro-icon-light.png", alt: "Astro Logo" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/200px-Nextjs-logo.svg.png", alt: "Next.js Logo" },
+  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/200px-Typescript_logo_2020.svg.png", alt: "TypeScript Logo" }
 ];
 ---
 
@@ -22,8 +23,16 @@ const logos = [
         {lang === 'en' ? 'Powering Next-Gen Tech' : 'Mendukung Teknologi Masa Depan'}
       </p>
       <div class="flex justify-center items-center gap-8 md:gap-12 flex-wrap transition-all duration-500">
-        {logos.map(logo => (
-          <img src={logo} alt="Tech Logo" class="h-4 md:h-5 w-auto object-contain opacity-60" />
+        {logos.map((logo, idx) => (
+          <img 
+            src={logo.src} 
+            alt={logo.alt} 
+            class="h-4 md:h-5 w-auto object-contain opacity-60" 
+            loading="lazy"
+            width="80"
+            height="20"
+            decoding="async"
+          />
         ))}
       </div>
     </div>

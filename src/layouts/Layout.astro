@@ -53,6 +53,9 @@ const robotsContent = noindex ? 'noindex, nofollow' : robots;
 		<meta name="language" content={lang === 'id' ? 'Indonesian' : 'English'} />
 		<meta name="geo.region" content={lang === 'id' ? 'ID' : 'US'} />
 		
+		<!-- Preload critical resources -->
+		<link rel="preload" href="https://fonts.gstatic.com/s/inter/v18/UcC73FwrK3iLTeHuS_fvQtMwCp50KnMa1ZL7.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
+		
 		<!-- Structured Data (Schema.org) -->
 		<script type="application/ld+json" set:html={JSON.stringify({
 			"@context": "https://schema.org",
@@ -90,9 +93,11 @@ const robotsContent = noindex ? 'noindex, nofollow' : robots;
 			]
 		})} />
 		
+    <!-- Google Fonts - Optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet" /></noscript>
 	</head>
 	<body class="bg-background text-foreground font-sans antialiased relative selection:bg-brand selection:text-white">
     <div class="fixed inset-0 z-[-1] pointer-events-none">
@@ -110,64 +115,84 @@ const robotsContent = noindex ? 'noindex, nofollow' : robots;
 
 <script>
   // Safety check to prevent scroll from getting stuck
-  // This ensures body overflow is always reset properly
+  // Optimized to avoid forced reflows using requestAnimationFrame
   (function() {
-    let lastScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    let lastScrollTop = 0;
     let scrollStuckCount = 0;
     const MAX_STUCK_COUNT = 3;
+    let rafId: number | null = null;
 
     function checkScrollHealth() {
-      const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      // If scroll position hasn't changed but user is trying to scroll, reset overflow
-      if (currentScrollTop === lastScrollTop && document.body.style.overflow === 'hidden') {
-        scrollStuckCount++;
+      // Use requestAnimationFrame to batch DOM reads and avoid forced reflow
+      rafId = requestAnimationFrame(() => {
+        const currentScrollTop = window.scrollY || window.pageYOffset || 0;
         
-        if (scrollStuckCount >= MAX_STUCK_COUNT) {
-          // Force reset body styles if scroll appears stuck
-          document.body.style.overflow = '';
-          document.body.style.position = '';
-          document.body.style.width = '';
+        // If scroll position hasn't changed but user is trying to scroll, reset overflow
+        if (currentScrollTop === lastScrollTop && document.body.style.overflow === 'hidden') {
+          scrollStuckCount++;
+          
+          if (scrollStuckCount >= MAX_STUCK_COUNT) {
+            // Force reset body styles if scroll appears stuck
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+            scrollStuckCount = 0;
+          }
+        } else {
           scrollStuckCount = 0;
         }
-      } else {
-        scrollStuckCount = 0;
-      }
-      
-      lastScrollTop = currentScrollTop;
+        
+        lastScrollTop = currentScrollTop;
+      });
     }
 
-    // Check scroll health periodically
-    setInterval(checkScrollHealth, 100);
+    // Check scroll health periodically using requestAnimationFrame
+    function scheduleCheck() {
+      checkScrollHealth();
+      setTimeout(scheduleCheck, 100);
+    }
+    
+    scheduleCheck();
 
     // Also check on visibility change (when console is opened/closed)
     document.addEventListener('visibilitychange', () => {
-      // Reset any stuck overflow states when page becomes visible
-      if (!document.hidden) {
-        const hasOverflowHidden = document.body.style.overflow === 'hidden';
-        const hasPositionFixed = document.body.style.position === 'fixed';
-        
-        // Only reset if no modal/drawer is actually open
-        // Check if mobile menu is closed
-        const mobileMenu = document.getElementById('mobile-menu');
-        const isMobileMenuOpen = mobileMenu && !mobileMenu.classList.contains('opacity-0');
-        
-        // Check if project drawer is open (check for backdrop)
-        const hasBackdrop = document.querySelector('.fixed.inset-0.bg-black\\/60');
-        
-        if (!isMobileMenuOpen && !hasBackdrop && (hasOverflowHidden || hasPositionFixed)) {
-          document.body.style.overflow = '';
-          document.body.style.position = '';
-          document.body.style.width = '';
+      // Use requestAnimationFrame to avoid forced reflow
+      requestAnimationFrame(() => {
+        if (!document.hidden) {
+          const hasOverflowHidden = document.body.style.overflow === 'hidden';
+          const hasPositionFixed = document.body.style.position === 'fixed';
+          
+          // Only reset if no modal/drawer is actually open
+          // Check if mobile menu is closed
+          const mobileMenu = document.getElementById('mobile-menu');
+          const isMobileMenuOpen = mobileMenu && !mobileMenu.classList.contains('opacity-0');
+          
+          // Check if project drawer is open (check for backdrop)
+          const hasBackdrop = document.querySelector('.fixed.inset-0.bg-black\\/60');
+          
+          if (!isMobileMenuOpen && !hasBackdrop && (hasOverflowHidden || hasPositionFixed)) {
+            document.body.style.overflow = '';
+            document.body.style.position = '';
+            document.body.style.width = '';
+          }
         }
-      }
+      });
     });
 
     // Ensure scroll is enabled on page load
     window.addEventListener('load', () => {
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      requestAnimationFrame(() => {
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+      });
+    });
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', () => {
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
     });
   })();
 </script>

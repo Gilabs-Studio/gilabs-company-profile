@@ -173,6 +173,8 @@ const Column = ({ images, y }: ColumnProps) => {
           }}
         >
           <img
+            loading="lazy"
+            decoding="async"
             src={src}
             alt=""
             className="pointer-events-none object-cover"
