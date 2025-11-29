@@ -16,6 +16,11 @@ const iconPaths = [
 
 <section class="py-20 md:py-32 relative border-b border-border/50">
   <div class="container mx-auto px-4">
+    <div class="max-w-3xl mx-auto text-center mb-16">
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6">
+        {lang === 'en' ? 'Why Choose Us' : 'Mengapa Pilih Kami'}
+      </h2>
+    </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
       {features.items.map((feature: { title: string; description: string }, index: number) => {
         const iconPath = iconPaths[index];

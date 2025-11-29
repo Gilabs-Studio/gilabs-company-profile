@@ -156,9 +156,9 @@ const CardStack: React.FC<CardStackProps> = ({ items, activeIndex, isClient }) =
 
             {/* Card title & description */}
             <div className="flex-1">
-              <h4 className="text-2xl font-bold text-card-foreground mb-3">
+              <h3 className="text-2xl font-bold text-card-foreground mb-3">
                 {service.title}
-              </h4>
+              </h3>
               <p className="text-sm text-muted-foreground line-clamp-2">
                 {service.body[0]}
               </p>
@@ -383,13 +383,16 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
                   <button
                     key={item.title}
                     onClick={() => setActiveIndex(idx)}
-                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                    className={`h-2 w-2 rounded-full transition-all duration-300 min-w-[44px] min-h-[44px] flex items-center justify-center ${
                       idx === activeIndex
-                        ? 'bg-brand w-8'
-                        : 'bg-border hover:bg-muted-foreground w-1.5'
+                        ? 'bg-brand w-12'
+                        : 'bg-border hover:bg-muted-foreground'
                     }`}
                     aria-label={`Go to service ${idx + 1}`}
-                  />
+                    aria-current={idx === activeIndex ? 'true' : 'false'}
+                  >
+                    <span className="sr-only">Service {idx + 1}</span>
+                  </button>
                 ))}
               </div>
             </div>
@@ -423,9 +426,9 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
                       </span>
                       <span className="text-xs text-muted-foreground">Service</span>
                     </div>
-                    <h4 className="text-lg font-bold text-card-foreground mb-2">
+                    <h3 className="text-lg font-bold text-card-foreground mb-2">
                       {service.title}
-                    </h4>
+                    </h3>
                     <p className="text-xs text-muted-foreground line-clamp-2">
                       {service.body[0]}
                     </p>

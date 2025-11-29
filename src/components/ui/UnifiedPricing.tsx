@@ -91,15 +91,17 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
 
         {/* Tab Navigation */}
         <div className="flex justify-center mb-16">
-          <div className="inline-flex p-1 bg-secondary rounded-full">
+          <div className="inline-flex p-1 bg-secondary/80 rounded-full" role="tablist">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                role="tab"
+                aria-selected={activeTab === tab.id}
+                className={`px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 min-h-[44px] ${
                   activeTab === tab.id
                     ? 'bg-primary text-primary-foreground'
-                    : 'text-muted-foreground hover:text-foreground'
+                    : 'text-foreground/70 hover:text-foreground bg-transparent'
                 }`}
               >
                 {tab.label}
@@ -356,10 +358,10 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
               <div className="grid md:grid-cols-2 gap-8 mb-8">
                 {/* Small Revisions */}
                 <div>
-                  <h4 className="font-medium mb-4">{revisionSystem.small.title}</h4>
+                  <h3 className="font-medium mb-4 text-foreground">{revisionSystem.small.title}</h3>
                   <ul className="space-y-2">
                     {revisionSystem.small.items.map((item) => (
-                      <li key={item} className="text-sm text-muted-foreground">
+                      <li key={item} className="text-sm text-foreground/80">
                         {item}
                       </li>
                     ))}
@@ -368,10 +370,10 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
 
                 {/* Large Revisions */}
                 <div>
-                  <h4 className="font-medium mb-4">{revisionSystem.large.title}</h4>
+                  <h3 className="font-medium mb-4 text-foreground">{revisionSystem.large.title}</h3>
                   <ul className="space-y-2">
                     {revisionSystem.large.items.map((item) => (
-                      <li key={item} className="text-sm text-muted-foreground">
+                      <li key={item} className="text-sm text-foreground/80">
                         {item}
                       </li>
                     ))}
