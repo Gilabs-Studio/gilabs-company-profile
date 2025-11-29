@@ -4,13 +4,14 @@ import { pricingData } from '../data/pricing';
 const { lang } = Astro.props;
 const t = pricingData[lang].hero;
 
-// Optimized logo URLs with smaller sizes for better performance
+// Using local SVG files for better performance (no external requests, smaller size, better caching)
 const logos = [
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Go_Logo_Blue.svg/200px-Go_Logo_Blue.svg.png", alt: "Go Logo" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/200px-Tailwind_CSS_Logo.svg.png", alt: "Tailwind CSS Logo" },
-  { src: "https://astro.build/assets/press/astro-icon-light.png", alt: "Astro Logo" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Nextjs-logo.svg/200px-Nextjs-logo.svg.png", alt: "Next.js Logo" },
-  { src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Typescript_logo_2020.svg/200px-Typescript_logo_2020.svg.png", alt: "TypeScript Logo" }
+  { src: "/logo/go-svgrepo-com.svg", alt: "Go Logo" },
+  { src: "/logo/tailwind-svgrepo-com.svg", alt: "Tailwind CSS Logo" },
+  { src: "/logo/astro-svgrepo-com.svg", alt: "Astro Logo" },
+  { src: "/logo/nextjs-icon-svgrepo-com.svg", alt: "Next.js Logo" },
+  { src: "/logo/typescript-svgrepo-com.svg", alt: "TypeScript Logo" },
+  { src: "/logo/supabase-logo-icon.svg", alt: "Supabase Logo" }
 ];
 ---
 
@@ -27,10 +28,10 @@ const logos = [
           <img 
             src={logo.src} 
             alt={logo.alt} 
-            class="h-4 md:h-5 w-auto object-contain opacity-60" 
-            loading="lazy"
-            width="80"
-            height="20"
+            class="h-8 md:h-10 lg:h-12 w-auto object-contain opacity-60 hover:opacity-100 transition-opacity duration-300" 
+            loading="eager"
+            width="120"
+            height="48"
             decoding="async"
           />
         ))}
