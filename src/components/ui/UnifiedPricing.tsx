@@ -173,16 +173,16 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
             {packages.map((pkg, index) => (
               <div
                 key={pkg.title}
-                className={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 ${
+                className={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 overflow-hidden ${
                   index === 1
                     ? 'border-primary bg-primary text-primary-foreground'
                     : 'border-border bg-background hover:border-primary/50'
                 }`}
               >
                 {index === 1 && (
-                  <span className="absolute -top-3 left-6 px-3 py-1 bg-brand text-white text-xs font-medium rounded-full">
-                    {lang === 'en' ? 'Popular' : 'Populer'}
-                  </span>
+                  <div className="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+                    {lang === 'en' ? 'Most Popular' : 'Paling Populer'}
+                  </div>
                 )}
 
                 <div className="mb-8">
