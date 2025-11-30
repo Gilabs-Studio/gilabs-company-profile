@@ -39,6 +39,10 @@ export function getWhatsAppLink(template: string, lang: 'en' | 'id' = 'id'): str
     footer: {
       en: 'Hello! I\'d like to talk about my project. When would be a good time to discuss?',
       id: 'Halo! Saya ingin berbicara tentang proyek saya. Kapan waktu yang baik untuk berdiskusi?'
+    },
+    gallery: {
+      en: 'Hello! I\'m interested in your services. Can we discuss how you can help with my project?',
+      id: 'Halo! Saya tertarik dengan layanan Anda. Bisakah kita diskusikan bagaimana Anda dapat membantu dengan proyek saya?'
     }
   };
   

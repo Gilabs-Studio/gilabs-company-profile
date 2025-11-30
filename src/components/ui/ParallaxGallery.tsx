@@ -4,6 +4,7 @@ import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import { useEffect, useRef, useState } from 'react';
 import LightRays from './LightRays';
+import { getWhatsAppLink } from '../../lib/utils';
 
 // Fixed dimensions for desktop gallery images (16:10 aspect ratio for desktop screenshots)
 const COLUMN_WIDTH = 500;
@@ -77,8 +78,8 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   const column3Images = createColumnImages(Math.floor(validImages.length * 0.5));
   const column4Images = createColumnImages(Math.floor(validImages.length * 0.75));
 
-  const buttonText = lang === 'id' ? 'Lihat Portfolio' : 'View Portfolio';
-  const portfolioUrl = `/${lang}/portfolio`;
+  const buttonText = lang === 'id' ? 'Hubungi Kami' : 'Contact Us';
+  const contactUrl = getWhatsAppLink('gallery', lang as 'en' | 'id');
 
   return (
     <div className="relative w-full bg-background text-foreground overflow-visible">
@@ -109,10 +110,12 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
       {/* Background gradient overlay for depth effect */}
       <div className="absolute inset-0 z-16 pointer-events-none bg-gradient-to-b from-background/30 via-transparent to-background/30" />
 
-      {/* Centered Portfolio Button */}
+      {/* Centered Contact Button */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
         <motion.a
-          href={portfolioUrl}
+          href={contactUrl}
+          target="_blank"
+          rel="noopener noreferrer"
           className="pointer-events-auto inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-bold text-white bg-brand rounded-full shadow-2xl shadow-brand/30 hover:bg-brand/90 hover:shadow-brand/50 hover:scale-105 transition-all duration-300 backdrop-blur-sm border border-white/10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -131,10 +134,7 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
             strokeLinejoin="round"
             className="w-5 h-5"
           >
-            <rect width="7" height="7" x="3" y="3" rx="1" />
-            <rect width="7" height="7" x="14" y="3" rx="1" />
-            <rect width="7" height="7" x="14" y="14" rx="1" />
-            <rect width="7" height="7" x="3" y="14" rx="1" />
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
           </svg>
           {buttonText}
         </motion.a>
