@@ -6,10 +6,15 @@ import { useEffect, useRef, useState } from 'react';
 import LightRays from './LightRays';
 import { getWhatsAppLink } from '../../lib/utils';
 
-// Fixed dimensions for desktop gallery images (16:10 aspect ratio for desktop screenshots)
-const COLUMN_WIDTH = 500;
-const IMAGE_HEIGHT = 312;
-const GAP = 20;
+// Responsive dimensions
+const getDimensions = (isMobile: boolean) => ({
+  columnWidth: isMobile ? 160 : 500,
+  imageHeight: isMobile ? 100 : 312,
+  gap: isMobile ? 12 : 20,
+  columns: isMobile ? 2 : 4,
+  containerHeight: isMobile ? '100vh' : '175vh',
+});
+
 const IMAGES_PER_COLUMN = 7; // Number of images per column for smooth looping
 
 interface ParallaxGalleryProps {
@@ -20,6 +25,7 @@ interface ParallaxGalleryProps {
 const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   const gallery = useRef<HTMLDivElement>(null);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
   const { scrollYProgress } = useScroll({
     target: gallery,
@@ -27,13 +33,20 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   });
 
   const { height } = dimension;
-  const y = useTransform(scrollYProgress, [0, 1], [0, height * 2]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * 3.3]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3]);
+  const dimensions = getDimensions(isMobile);
+  
+  // Adjust parallax speeds for mobile (less movement)
+  const y = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 1.2 : 2)]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 1.8 : 3.3)]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.8 : 1.25)]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 1.5 : 3)]);
 
-  // Scale transform: start from large (1.5) and progressively shrink to normal size (1)
-  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [1.5, 1.2, 1]);
+  // Scale transform: less aggressive on mobile
+  const scale = useTransform(
+    scrollYProgress, 
+    [0, 0.5, 1], 
+    isMobile ? [1.1, 1.05, 1] : [1.5, 1.2, 1]
+  );
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -45,7 +58,10 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
     };
 
     const resize = () => {
-      setDimension({ width: window.innerWidth, height: window.innerHeight });
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      setDimension({ width, height });
+      setIsMobile(width < 768); // Mobile breakpoint at 768px
     };
 
     window.addEventListener('resize', resize);
@@ -86,13 +102,22 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
       {/* Parallax Gallery Content */}
       <motion.div
         ref={gallery}
-        className="relative box-border flex h-[175vh] overflow-hidden bg-background z-10 w-full justify-center"
-        style={{ scale, gap: GAP, padding: GAP }}
+        className="relative box-border flex overflow-hidden bg-background z-10 w-full justify-center"
+        style={{ 
+          scale, 
+          gap: dimensions.gap, 
+          padding: dimensions.gap,
+          height: dimensions.containerHeight,
+        }}
       >
-        <Column images={column1Images} y={y} />
-        <Column images={column2Images} y={y2} />
-        <Column images={column3Images} y={y3} />
-        <Column images={column4Images} y={y4} />
+        <Column images={column1Images} y={y} dimensions={dimensions} />
+        <Column images={column2Images} y={y2} dimensions={dimensions} />
+        {!isMobile && (
+          <>
+            <Column images={column3Images} y={y3} dimensions={dimensions} />
+            <Column images={column4Images} y={y4} dimensions={dimensions} />
+          </>
+        )}
       </motion.div>
 
       {/* LightRays Overlay - synced with Layout's LightRays */}
@@ -116,7 +141,7 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
           href={contactUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="pointer-events-auto inline-flex items-center justify-center gap-3 px-8 py-4 text-lg font-bold text-white bg-brand rounded-full shadow-2xl shadow-brand/30 hover:bg-brand/90 hover:shadow-brand/50 hover:scale-105 transition-all duration-300 backdrop-blur-sm border border-white/10"
+          className="pointer-events-auto inline-flex items-center justify-center gap-2 md:gap-3 px-4 md:px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white bg-brand rounded-full shadow-2xl shadow-brand/30 hover:bg-brand/90 hover:shadow-brand/50 hover:scale-105 transition-all duration-300 backdrop-blur-sm border border-white/10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
@@ -146,9 +171,10 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
 type ColumnProps = {
   images: string[];
   y: MotionValue<number>;
+  dimensions: ReturnType<typeof getDimensions>;
 };
 
-const Column = ({ images, y }: ColumnProps) => {
+const Column = ({ images, y, dimensions }: ColumnProps) => {
   // Filter out empty or invalid images
   const validImages = images.filter(img => img && img.trim() !== '');
 
@@ -157,10 +183,10 @@ const Column = ({ images, y }: ColumnProps) => {
       className="relative flex flex-col first:top-[-45%] nth-2:top-[-95%] nth-3:top-[-45%] nth-4:top-[-75%]"
       style={{ 
         y,
-        width: COLUMN_WIDTH,
-        minWidth: COLUMN_WIDTH,
-        maxWidth: COLUMN_WIDTH,
-        gap: GAP,
+        width: dimensions.columnWidth,
+        minWidth: dimensions.columnWidth,
+        maxWidth: dimensions.columnWidth,
+        gap: dimensions.gap,
       }}
     >
       {validImages.map((src, index) => (
@@ -168,21 +194,20 @@ const Column = ({ images, y }: ColumnProps) => {
           key={`${src}-${index}`} 
           className="relative overflow-hidden rounded-lg shrink-0"
           style={{ 
-            width: COLUMN_WIDTH,
-            height: IMAGE_HEIGHT,
+            width: dimensions.columnWidth,
+            height: dimensions.imageHeight,
           }}
         >
           <img
-            loading="lazy"
+            loading={index < 3 ? "eager" : "lazy"}
             decoding="async"
             src={src}
             alt=""
             className="pointer-events-none object-cover"
             style={{ 
-              width: COLUMN_WIDTH,
-              height: IMAGE_HEIGHT,
+              width: dimensions.columnWidth,
+              height: dimensions.imageHeight,
             }}
-            loading={index < 3 ? "eager" : "lazy"}
           />
         </div>
       ))}
