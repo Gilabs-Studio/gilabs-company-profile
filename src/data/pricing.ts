@@ -167,9 +167,10 @@ export const pricingData: Record<string, PricingData> = {
       title: "Kami bergerak cepat. Kami tetap dalam alur.",
       subtitle: "Cara Kami Bekerja",
       body: [
+        "**PRD** dulu. Baru kami membangun.",
         "Tidak ada rapat panjang. Tidak ada penantian tanpa akhir.",
         "Hanya fokus, suasana yang baik, dan menyelesaikan pekerjaan.",
-        "Ketika ide muncul, kami membangun. Ketika kami mengirim, kami bergerak maju."
+        "Ketika **PRD** jelas, kami membangun. Ketika kami mengirim, kami bergerak maju."
       ]
     },
     services: {
@@ -561,9 +562,10 @@ export const pricingData: Record<string, PricingData> = {
       title: "We move quick. We stay in flow.",
       subtitle: "How We Work",
       body: [
+        "**PRD** first. Then we build.",
         "No long meetings. No endless waiting.",
         "Just focus, good vibe, and getting things done.",
-        "When an idea clicks, we build. When we ship, we move on."
+        "When **PRD** is clear, we build. When we ship, we move on."
       ]
     },
     services: {
