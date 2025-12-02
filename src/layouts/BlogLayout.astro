@@ -20,7 +20,15 @@ const robotsContent = noindex ? 'noindex, nofollow' : robots;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
+		
+		<!-- Favicons - Multiple formats for Google Search compatibility -->
+		<link rel="icon" type="image/x-icon" href="/favicon.ico" />
+		<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48x48.png" />
+		<link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
+		<link rel="icon" type="image/png" sizes="144x144" href="/favicon-144x144.png" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		
 		<meta name="generator" content={Astro.generator} />
 		
 		<!-- Primary Meta Tags -->
@@ -59,7 +67,7 @@ const robotsContent = noindex ? 'noindex, nofollow' : robots;
 			"name": "Gilabs.id",
 			"alternateName": "Gilabs Software Agency",
 			"url": "https://gilabs.id",
-			"logo": "https://gilabs.id/favicon.svg",
+			"logo": "https://gilabs.id/favicon-144x144.png",
 			"description": description,
 			"address": {
 				"@type": "PostalAddress",
