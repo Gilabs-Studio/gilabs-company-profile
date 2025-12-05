@@ -7,37 +7,37 @@ const { lang } = Astro.props;
 const t = pricingData[lang];
 ---
 
-<section id="pricing" class="py-20 relative">
+<section id="pricing" class="py-8 sm:py-12 md:py-16 lg:py-20 relative">
   <div class="container mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">{lang === 'en' ? 'Website Packages' : 'Paket Website'}</h2>
-      <p class="text-muted-foreground max-w-2xl mx-auto">
+    <div class="text-center mb-8 sm:mb-12 md:mb-16">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4 leading-tight">{lang === 'en' ? 'Website Packages' : 'Paket Website'}</h2>
+      <p class="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto px-4">
         {lang === 'en' ? 'Choose the perfect package for your business needs.' : 'Pilih paket yang sesuai dengan kebutuhan bisnis Anda.'}
       </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
       {t.packages.map((pkg, index) => (
-        <div class={`relative flex flex-col p-8 rounded-2xl border transition-all duration-300 ${index === 1 ? 'border-brand shadow-2xl shadow-brand/10 scale-105 z-10 bg-background/60 backdrop-blur-md' : 'border-border/50 bg-background/40 backdrop-blur-sm hover:border-brand/50'}`}>
+        <div class={`relative flex flex-col p-4 sm:p-6 md:p-8 rounded-2xl border transition-all duration-300 ${index === 1 ? 'border-brand shadow-2xl shadow-brand/10 sm:scale-105 z-10 bg-background/60 backdrop-blur-md' : 'border-border/50 bg-background/40 backdrop-blur-sm hover:border-brand/50'}`}>
           {index === 1 && (
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1 bg-brand text-white text-xs font-bold uppercase tracking-wider rounded-full shadow-lg shadow-brand/20">
+            <div class="absolute -top-3 sm:-top-4 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-0.5 sm:py-1 bg-brand text-white text-[0.65rem] sm:text-xs font-bold uppercase tracking-wider rounded-full shadow-lg shadow-brand/20">
               Most Popular
             </div>
           )}
           
-          <div class="mb-8">
-            <h3 class="text-xl font-bold mb-2">{pkg.title}</h3>
-            <p class="text-sm text-muted-foreground mb-6 h-10">{pkg.description}</p>
-            <div class="text-2xl font-bold text-foreground">{pkg.price}</div>
+          <div class="mb-4 sm:mb-6 md:mb-8">
+            <h3 class="text-lg sm:text-xl font-bold mb-2">{pkg.title}</h3>
+            <p class="text-xs sm:text-sm text-muted-foreground mb-4 sm:mb-6 min-h-[2.5rem] sm:h-10">{pkg.description}</p>
+            <div class="text-xl sm:text-2xl font-bold text-foreground">{pkg.price}</div>
           </div>
 
-          <div class="space-y-6 mb-8 flex-1">
+          <div class="space-y-4 sm:space-y-6 mb-4 sm:mb-6 md:mb-8 flex-1">
             <div>
-              <div class="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Includes</div>
-              <ul class="space-y-3">
+              <div class="text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 sm:mb-3">Includes</div>
+              <ul class="space-y-2 sm:space-y-3">
                 {pkg.features.map(feature => (
-                  <li class="flex items-start gap-3 text-sm">
-                    <Check className={`w-5 h-5 shrink-0 ${index === 1 ? 'text-brand' : 'text-muted-foreground'}`} />
+                  <li class="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm">
+                    <Check className={`w-4 h-4 sm:w-5 sm:h-5 shrink-0 mt-0.5 ${index === 1 ? 'text-brand' : 'text-muted-foreground'}`} />
                     <span>{feature}</span>
                   </li>
                 ))}
@@ -45,10 +45,10 @@ const t = pricingData[lang];
             </div>
 
             <div>
-              <div class="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Revisions</div>
-              <ul class="space-y-3">
+              <div class="text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 sm:mb-3">Revisions</div>
+              <ul class="space-y-2 sm:space-y-3">
                 {pkg.revisions.map(rev => (
-                  <li class="flex items-start gap-3 text-sm text-muted-foreground">
+                  <li class="flex items-start gap-2 sm:gap-3 text-xs sm:text-sm text-muted-foreground">
                     <span class={`w-1.5 h-1.5 rounded-full mt-2 shrink-0 ${index === 1 ? 'bg-brand' : 'bg-muted-foreground'}`}></span>
                     <span>{rev}</span>
                   </li>
@@ -58,11 +58,11 @@ const t = pricingData[lang];
 
             {pkg.addons && (
               <div>
-                <div class="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Add-ons Available</div>
-                <ul class="space-y-2">
+                <div class="text-[0.65rem] sm:text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2 sm:mb-3">Add-ons Available</div>
+                <ul class="space-y-1.5 sm:space-y-2">
                   {pkg.addons.map(addon => (
-                    <li class="flex items-start gap-2 text-xs text-muted-foreground">
-                      <Plus className="w-3 h-3 mt-1 shrink-0" />
+                    <li class="flex items-start gap-2 text-[0.65rem] sm:text-xs text-muted-foreground">
+                      <Plus className="w-3 h-3 mt-0.5 sm:mt-1 shrink-0" />
                       <span>{addon}</span>
                     </li>
                   ))}
@@ -71,7 +71,7 @@ const t = pricingData[lang];
             )}
           </div>
 
-          <a href={getWhatsAppLink('pricing', lang)} target="_blank" rel="noopener noreferrer" class={`w-full py-3 px-6 rounded-xl font-bold text-center transition-all duration-200 ${index === 1 ? 'bg-brand text-white hover:bg-brand/90 shadow-lg shadow-brand/20' : 'bg-secondary/50 text-foreground hover:bg-secondary hover:text-brand'}`}>
+          <a href={getWhatsAppLink('pricing', lang)} target="_blank" rel="noopener noreferrer" class={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl font-bold text-sm sm:text-base text-center transition-all duration-200 ${index === 1 ? 'bg-brand text-white hover:bg-brand/90 shadow-lg shadow-brand/20' : 'bg-secondary/50 text-foreground hover:bg-secondary hover:text-brand'}`}>
             {lang === 'en' ? 'Select Plan' : 'Pilih Paket'}
           </a>
         </div>
