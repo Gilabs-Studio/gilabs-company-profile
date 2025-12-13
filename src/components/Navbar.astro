@@ -54,68 +54,10 @@ const switchLangPath = currentPath.includes('/en')
       </div>
     </button>
   </div>
-
-  {/* Mobile Menu */}
-  <div id="mobile-menu" class="fixed inset-0 bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
-    <div class="flex flex-col items-center gap-8 text-center">
-      {links.map(link => (
-        <a 
-          href={link.href} 
-          class="text-2xl font-bold text-foreground hover:text-brand transition-colors mobile-link"
-          {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-        >
-          {link.label}
-        </a>
-      ))}
-      <div class="flex flex-col items-center gap-6 mt-8">
-        <a href={switchLangPath} class="text-sm font-medium border border-border px-4 py-2 rounded-full hover:bg-secondary transition-colors uppercase">
-          {lang === 'en' ? 'Switch to ID' : 'Ganti ke EN'}
-        </a>
-        <a href={getWhatsAppLink('navbar', lang)} target="_blank" rel="noopener noreferrer" class="text-lg font-bold bg-brand text-white px-8 py-3 rounded-full hover:bg-brand/90 transition-all shadow-lg shadow-brand/20">
-          {lang === 'en' ? 'Get Started' : 'Mulai Sekarang'}
-        </a>
-      </div>
-    </div>
-  </div>
 </nav>
 
 <script>
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const iconMenu = document.getElementById('icon-menu');
-  const iconClose = document.getElementById('icon-close');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
   const navbar = document.getElementById('navbar');
-
-  function toggleMenu() {
-    if (!mobileMenu || !iconMenu || !iconClose) return;
-    
-    const isClosed = mobileMenu.classList.contains('opacity-0');
-    
-    if (isClosed) {
-      mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-      iconMenu.classList.add('hidden');
-      iconClose.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      // Prevent scroll on body
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
-    } else {
-      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-      iconMenu.classList.remove('hidden');
-      iconClose.classList.add('hidden');
-      // Reset body styles
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
-    }
-  }
-
-  menuToggle?.addEventListener('click', toggleMenu);
-
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', toggleMenu);
-  });
 
   // Hide/show navbar on scroll
   let lastScrollY = window.scrollY;
