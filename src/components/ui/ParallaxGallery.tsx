@@ -174,6 +174,71 @@ type ColumnProps = {
   dimensions: ReturnType<typeof getDimensions>;
 };
 
+// Individual image component with blur placeholder
+const BlurImage = ({ src, index, dimensions }: { src: string; index: number; dimensions: ReturnType<typeof getDimensions> }) => {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    // Preload the actual image in background
+    const img = new Image();
+    img.src = src;
+    
+    img.onload = () => {
+      setImageLoaded(true);
+    };
+
+    img.onerror = () => {
+      // Mark as loaded even on error to stop showing placeholder
+      setImageLoaded(true);
+    };
+
+    return () => {
+      img.onload = null;
+      img.onerror = null;
+    };
+  }, [src]);
+
+  return (
+    <div 
+      className="relative overflow-hidden rounded-lg shrink-0 bg-muted"
+      style={{ 
+        width: dimensions.columnWidth,
+        height: dimensions.imageHeight,
+      }}
+    >
+      {/* Minimal blur placeholder - shows immediately while image loads */}
+      {!imageLoaded && (
+        <div
+          className="absolute inset-0 pointer-events-none bg-muted/50"
+          style={{ 
+            width: dimensions.columnWidth,
+            height: dimensions.imageHeight,
+          }}
+          aria-hidden="true"
+        />
+      )}
+      
+      {/* Actual image - loads in background */}
+      <img
+        ref={imgRef}
+        loading={index < 2 ? "eager" : "lazy"}
+        decoding="async"
+        src={src}
+        alt=""
+        className={`pointer-events-none object-cover transition-opacity duration-300 ${
+          imageLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+        style={{ 
+          width: dimensions.columnWidth,
+          height: dimensions.imageHeight,
+        }}
+        onLoad={() => setImageLoaded(true)}
+      />
+    </div>
+  );
+};
+
 const Column = ({ images, y, dimensions }: ColumnProps) => {
   // Filter out empty or invalid images
   const validImages = images.filter(img => img && img.trim() !== '');
@@ -190,26 +255,12 @@ const Column = ({ images, y, dimensions }: ColumnProps) => {
       }}
     >
       {validImages.map((src, index) => (
-        <div 
-          key={`${src}-${index}`} 
-          className="relative overflow-hidden rounded-lg shrink-0"
-          style={{ 
-            width: dimensions.columnWidth,
-            height: dimensions.imageHeight,
-          }}
-        >
-          <img
-            loading={index < 3 ? "eager" : "lazy"}
-            decoding="async"
-            src={src}
-            alt=""
-            className="pointer-events-none object-cover"
-            style={{ 
-              width: dimensions.columnWidth,
-              height: dimensions.imageHeight,
-            }}
-          />
-        </div>
+        <BlurImage 
+          key={`${src}-${index}`}
+          src={src}
+          index={index}
+          dimensions={dimensions}
+        />
       ))}
     </motion.div>
   );
