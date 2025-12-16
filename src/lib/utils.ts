@@ -9,9 +9,10 @@ export function cn(...inputs: ClassValue[]) {
  * Generate WhatsApp API link with pre-filled message template
  * @param template - The message template type
  * @param lang - Language ('en' or 'id')
+ * @param planName - Optional plan/package name to include in the message
  * @returns WhatsApp API link with encoded message
  */
-export function getWhatsAppLink(template: string, lang: 'en' | 'id' = 'id'): string {
+export function getWhatsAppLink(template: string, lang: 'en' | 'id' = 'id', planName?: string): string {
   const phoneNumber = '6281225974393';
   const baseUrl = `https://wa.me/${phoneNumber}`;
   
@@ -46,7 +47,17 @@ export function getWhatsAppLink(template: string, lang: 'en' | 'id' = 'id'): str
     }
   };
   
-  const message = templates[template]?.[lang] || templates[template]?.['id'] || 'Halo! Saya tertarik dengan layanan Anda.';
+  let message = templates[template]?.[lang] || templates[template]?.['id'] || 'Halo! Saya tertarik dengan layanan Anda.';
+  
+  // If planName is provided and template is pricing, customize the message
+  if (planName && template === 'pricing') {
+    if (lang === 'en') {
+      message = `Hello! I'm interested in the "${planName}" package. Can we discuss the details and pricing?`;
+    } else {
+      message = `Halo! Saya tertarik dengan paket "${planName}". Bisakah kita diskusikan detail dan harganya?`;
+    }
+  }
+  
   const encodedMessage = encodeURIComponent(message);
   
   return `${baseUrl}?text=${encodedMessage}`;

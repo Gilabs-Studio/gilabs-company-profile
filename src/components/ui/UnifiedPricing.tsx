@@ -272,7 +272,7 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
                 </div>
 
                 <a
-                  href={getWhatsAppLink('pricing', lang)}
+                  href={getWhatsAppLink('pricing', lang, pkg.title)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className={`w-full py-3 px-6 rounded-full font-medium text-center text-sm transition-colors duration-300 ${
@@ -334,7 +334,7 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
                   )}
 
                   <a
-                    href={getWhatsAppLink('pricing', lang)}
+                    href={getWhatsAppLink('pricing', lang, pkg.name)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`w-full py-3 px-6 rounded-full font-medium text-center text-sm transition-colors duration-300 ${
@@ -442,7 +442,7 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
                   <p className="text-2xl font-bold">{erpCrm.erp.fullPackage.split(': ')[1]}</p>
                 </div>
                 <a
-                  href={getWhatsAppLink('pricing', lang)}
+                  href={getWhatsAppLink('pricing', lang, erpCrm.erp.fullPackage.split(': ')[0])}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="px-8 py-3 rounded-full font-medium text-sm bg-brand text-white hover:bg-brand/90 transition-colors duration-300 text-center"

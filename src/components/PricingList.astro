@@ -71,7 +71,7 @@ const t = pricingData[lang];
             )}
           </div>
 
-          <a href={getWhatsAppLink('pricing', lang)} target="_blank" rel="noopener noreferrer" class={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl font-bold text-sm sm:text-base text-center transition-all duration-200 ${index === 1 ? 'bg-brand text-white hover:bg-brand/90 shadow-lg shadow-brand/20' : 'bg-secondary/50 text-foreground hover:bg-secondary hover:text-brand'}`}>
+          <a href={getWhatsAppLink('pricing', lang, pkg.title)} target="_blank" rel="noopener noreferrer" class={`w-full py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl font-bold text-sm sm:text-base text-center transition-all duration-200 ${index === 1 ? 'bg-brand text-white hover:bg-brand/90 shadow-lg shadow-brand/20' : 'bg-secondary/50 text-foreground hover:bg-secondary hover:text-brand'}`}>
             {lang === 'en' ? 'Select Plan' : 'Pilih Paket'}
           </a>
         </div>
