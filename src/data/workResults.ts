@@ -1,8 +1,6 @@
 export interface ProjectImage {
   title: string;
   image: string;
-  bannerLight?: string;
-  bannerDark?: string;
 }
 
 export interface ProjectFeatureSection {
@@ -58,20 +56,20 @@ export const workResultsProjects: WorkResultProject[] = [
     image: [
       { 
         title: 'banner', 
-        image: '/image/sitama-banner.webp',
-        bannerLight: '/image/sitama-banner-light.webp',
-        bannerDark: '/image/sitama-banner-dark.webp'
+        image: '/work/sitama/converted-8.webp'
       },
-      { title: 'Login', image: '/image/sitama-login.webp' },
-      { title: 'Dashboard Student', image: '/image/sitama-dashboard-student.webp' },
-      { title: 'Guidance', image: '/image/sitama-guidance.webp' },
-      { title: 'Logbook Page', image: '/image/sitama-logbook.webp' },
-      { title: 'Add Guidance', image: '/image/sitama-add-guidance.webp' },
-      { title: 'Profile', image: '/image/sitama-profile.webp' },
-      { title: 'Dashboard Lecturer', image: '/image/sitama-dashboard-lecturer.webp' },
-      { title: 'Detail Student', image: '/image/sitama-detail-student.webp' },
-      { title: 'Guidance Action', image: '/image/sitama-guidance-action.webp' },
-      { title: 'Score Page', image: '/image/sitama-score.webp' }
+      { title: 'Login', image: '/work/sitama/converted.webp' },
+      { title: 'Dashboard Student', image: '/work/sitama/converted-1.webp' },
+      { title: 'Guidance', image: '/work/sitama/converted-2.webp' },
+      { title: 'Logbook Page', image: '/work/sitama/converted-3.webp' },
+      { title: 'Add Guidance', image: '/work/sitama/converted-4.webp' },
+      { title: 'Profile', image: '/work/sitama/converted-5.webp' },
+      { title: 'Dashboard Lecturer', image: '/work/sitama/converted-6.webp' },
+      { title: 'Detail Student', image: '/work/sitama/converted-7.webp' },
+      { title: 'Guidance Action', image: '/work/sitama/converted-8.webp' },
+      { title: 'Score Page', image: '/work/sitama/converted-9.webp' },
+      { title: 'Additional 1', image: '/work/sitama/converted-10.webp' },
+      { title: 'Additional 2', image: '/work/sitama/converted-11.webp' }
     ]
   },
   {
@@ -139,19 +137,19 @@ export const workResultsProjects: WorkResultProject[] = [
     image: [
       {
         title: 'banner',
-        image: '/image/fiber-monitoring-banner.webp',
-        bannerLight: '/image/fiber-monitoring-banner-light.webp',
-        bannerDark: '/image/fiber-monitoring-banner-dark.webp'
+        image: '/work/FiberMonitoringImages/3.png'
       },
-      { title: 'admin dashboard', image: '/image/fiber-monitoring-admin-dashboard.webp' },
-      { title: 'notification', image: '/image/fiber-monitoring-notification.webp' },
-      { title: 'project list', image: '/image/fiber-monitoring-project-list.webp' },
-      { title: 'map', image: '/image/fiber-monitoring-map.webp' },
-      { title: 'add project', image: '/image/fiber-monitoring-add-project.webp' },
-      { title: 'user management', image: '/image/fiber-monitoring-user-management.webp' },
-      { title: 'project detail', image: '/image/fiber-monitoring-project-detail.webp' },
-      { title: 'add milestone photo', image: '/image/fiber-monitoring-add-milestone.webp' },
-      { title: 'add daily report', image: '/image/fiber-monitoring-add-daily-report.webp' }
+      { title: 'admin dashboard', image: '/work/FiberMonitoringImages/adminDashboard.png' },
+      { title: 'notification', image: '/work/FiberMonitoringImages/notification.png' },
+      { title: 'project list', image: '/work/FiberMonitoringImages/projectList.png' },
+      { title: 'map', image: '/work/FiberMonitoringImages/map.png' },
+      { title: 'add project', image: '/work/FiberMonitoringImages/addProject.png' },
+      { title: 'user management', image: '/work/FiberMonitoringImages/userManagement.png' },
+      { title: 'project detail', image: '/work/FiberMonitoringImages/projectDetail.png' },
+      { title: 'add milestone photo', image: '/work/FiberMonitoringImages/addMilestone.png' },
+      { title: 'add daily report', image: '/work/FiberMonitoringImages/addDailyReport.png' },
+      { title: 'login white', image: '/work/FiberMonitoringImages/loginWhite.png' },
+      { title: 'login black', image: '/work/FiberMonitoringImages/loginBlack.png' }
     ]
   },
   {
@@ -191,21 +189,15 @@ export const workResultsProjects: WorkResultProject[] = [
     image: [
       {
         title: 'banner',
-        image: '/image/portfolio-marketer-banner.webp',
-        bannerLight: '/image/portfolio-marketer-banner-light.webp',
-        bannerDark: '/image/portfolio-marketer-banner-dark.webp'
+        image: '/work/PortofolioMarketerImages/2.png'
       },
-      { title: 'menu', image: '/image/portfolio-marketer-menu.webp' },
-      { title: 'quotes', image: '/image/portfolio-marketer-addon.webp' },
-      { title: 'experience', image: '/image/portfolio-marketer-experience.webp' },
-      { title: 'quotes', image: '/image/portfolio-marketer-quotes.webp' },
-      { title: 'horizontal scroll', image: '/image/portfolio-marketer-project-list-1.webp' },
-      { title: 'project list', image: '/image/portfolio-marketer-project-list-2.webp' },
-      { title: 'get connect', image: '/image/portfolio-marketer-get-connect.webp' },
-      { title: 'project detail', image: '/image/portfolio-marketer-project-detail.webp' },
-      { title: 'expertise', image: '/image/portfolio-marketer-project-detail-expertise.webp' },
-      { title: 'showcase coursel', image: '/image/portfolio-marketer-project-detail-showcase.webp' },
-      { title: 'end', image: '/image/portfolio-marketer-project-detail-end.webp' }
+      { title: 'menu', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-12-09 Adhara Eka - Portfolio.webp' },
+      { title: 'quotes', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-12-24 Adhara Eka - Portfolio.webp' },
+      { title: 'experience', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-12-38 Adhara Eka - Portfolio.webp' },
+      { title: 'project list 1', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-12-49 Adhara Eka - Portfolio.webp' },
+      { title: 'project list 2', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-13-18 Adhara Eka - Portfolio.webp' },
+      { title: 'project detail', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-13-44 Adhara Eka - Portfolio.webp' },
+      { title: 'end', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-14-40 Adhara Eka - Portfolio.webp' }
     ]
   }
 ];
