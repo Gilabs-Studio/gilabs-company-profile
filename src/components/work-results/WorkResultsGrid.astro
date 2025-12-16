@@ -1,0 +1,65 @@
+---
+import { workResultsProjects } from '../../data/workResults';
+import WorkResultsCard from './WorkResultsCard.astro';
+
+const { lang } = Astro.props;
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4">
+    <!-- Projects Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 mb-16">
+      {workResultsProjects.map((project) => (
+        <WorkResultsCard project={project} lang={lang as 'en' | 'id'} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initDrawerHandlers() {
+    const articles = document.querySelectorAll('.work-result-card[data-project]');
+    
+    function openDrawer(projectData) {
+      if (!projectData) return;
+      
+      try {
+        const project = JSON.parse(projectData);
+        const event = new CustomEvent('open-work-result-drawer', { 
+          detail: project,
+          bubbles: true 
+        });
+        globalThis.dispatchEvent(event);
+      } catch (error) {
+        console.error('Error parsing project data:', error);
+      }
+    }
+
+    articles.forEach(article => {
+      const newArticle = article.cloneNode(true);
+      article.parentNode?.replaceChild(newArticle, article);
+    });
+    
+    document.querySelectorAll('.work-result-card[data-project]').forEach(article => {
+      article.addEventListener('click', function(e) {
+        const target = e.target;
+        if (target.closest('a')) return;
+        
+        const projectData = this.getAttribute('data-project');
+        if (projectData) {
+          openDrawer(projectData);
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initDrawerHandlers);
+  } else {
+    initDrawerHandlers();
+  }
+
+  setTimeout(initDrawerHandlers, 100);
+  setTimeout(initDrawerHandlers, 500);
+</script>
+
