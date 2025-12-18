@@ -3,12 +3,14 @@ import { workResultsProjects } from '../data/workResults';
 import { ArrowRight, ExternalLink } from 'lucide-react';
 
 const { lang } = Astro.props;
+const projects = workResultsProjects[lang] || workResultsProjects['en'];
 
 // Get the 3 featured portfolios: CRM, Fiber Monitoring, and Portfolio Website
+// Titles are the same in both languages for these projects
 const featuredProjects = [
-  workResultsProjects.find(p => p.title === 'CRM Pharmaceutical'),
-  workResultsProjects.find(p => p.title === 'Fiber Monitoring Project'),
-  workResultsProjects.find(p => p.title === 'Portfolio Website Digital Marketer'),
+  projects.find(p => p.title === 'CRM Pharmaceutical'),
+  projects.find(p => p.title === 'Fiber Monitoring Project'),
+  projects.find(p => p.title === 'Portfolio Website Digital Marketer'),
 ].filter((p): p is NonNullable<typeof p> => p !== undefined);
 
 const labels = {
@@ -19,6 +21,7 @@ const labels = {
     viewMore: 'View All Projects',
     viewProject: 'View Project',
     technologies: 'Technologies',
+    moreTech: 'more',
   },
   id: {
     subtitle: 'Hasil Pekerjaan Kami',
@@ -27,6 +30,7 @@ const labels = {
     viewMore: 'Lihat Semua Proyek',
     viewProject: 'Lihat Proyek',
     technologies: 'Teknologi',
+    moreTech: 'lainnya',
   },
 };
 
@@ -114,7 +118,7 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
                   ))}
                   {techCount > 4 && (
                     <span class="px-2 py-1 text-xs font-medium bg-secondary/50 text-muted-foreground rounded">
-                      +{techCount - 4} more
+                      +{techCount - 4} {t.moreTech}
                     </span>
                   )}
                 </div>

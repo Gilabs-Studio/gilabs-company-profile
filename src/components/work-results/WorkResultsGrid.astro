@@ -3,13 +3,14 @@ import { workResultsProjects } from '../../data/workResults';
 import WorkResultsCard from './WorkResultsCard.astro';
 
 const { lang } = Astro.props;
+const projects = workResultsProjects[lang] || workResultsProjects['en'];
 ---
 
 <section class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4">
     <!-- Projects Grid -->
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 lg:gap-10 mb-16">
-      {workResultsProjects.map((project) => (
+      {projects.map((project) => (
         <WorkResultsCard project={project} lang={lang as 'en' | 'id'} />
       ))}
     </div>
