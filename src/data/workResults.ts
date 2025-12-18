@@ -199,6 +199,160 @@ export const workResultsProjects: WorkResultProject[] = [
       { title: 'project detail', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-13-44 Adhara Eka - Portfolio.webp' },
       { title: 'end', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-14-40 Adhara Eka - Portfolio.webp' }
     ]
+  },
+  {
+    title: 'CRM Pharmaceutical',
+    description: 'Intelligent Healthcare CRM with AI-Powered Insights. A comprehensive, enterprise-grade CRM platform designed specifically for pharmaceutical and healthcare companies. Features 20+ backend modules, real-time notifications, AI chatbot integration, and advanced analytics for managing accounts, leads, deals, visit reports, and sales pipeline.',
+    technologies: [
+      'Go 1.25.4',
+      'Gin Framework',
+      'Next.js 16',
+      'React 19',
+      'TypeScript',
+      'PostgreSQL',
+      'GORM',
+      'TanStack Query',
+      'Zustand',
+      'shadcn/ui',
+      'Radix UI',
+      'Tailwind CSS',
+      'JWT',
+      'WebSocket',
+      'Cerebras AI',
+      'Cloudflare R2',
+      'Docker'
+    ],
+    githubUrl: '#',
+    type: 'real',
+    features: {
+      sections: [
+        {
+          title: 'Backend Architecture & Security',
+          items: [
+            'Layered architecture (Handler → Service → Repository)',
+            'Multi-level rate limiting (IP, email, global)',
+            'JWT authentication with token rotation',
+            'Role-based and permission-based access control (RBAC)',
+            'CORS whitelist and HSTS security',
+            'bcrypt password hashing',
+            'WebSocket hub for real-time notifications',
+            'Background workers for reminders and token cleanup',
+            'Production-safe database migrations',
+            'File storage abstraction (Local/R2)'
+          ]
+        },
+        {
+          title: 'Core CRM Modules',
+          items: [
+            'Account & Contact Management with categorization',
+            'Lead Management with scoring (0-100) and conversion',
+            'Sales Pipeline with Kanban board and deal tracking',
+            'Product Management with categories and pricing',
+            'Task & Reminder Management with priority levels',
+            'Visit Reports with GPS tracking and photo uploads',
+            'User Management with roles and permissions',
+            'Dashboard with real-time KPIs and statistics',
+            'Reports module with Excel export functionality',
+            'Activity tracking and timeline visualization'
+          ]
+        },
+        {
+          title: 'AI & Analytics Features',
+          items: [
+            'AI Chatbot with Cerebras LLM integration',
+            'Context-aware AI responses for CRM data',
+            'Visit report analysis and insights',
+            'AI settings management and model selection',
+            'Sales funnel visualization and analytics',
+            'Sales performance reports',
+            'Pipeline forecasting and statistics',
+            'Lead scoring and prioritization',
+            'Real-time dashboard metrics',
+            'Activity trends and visit statistics'
+          ]
+        },
+        {
+          title: 'Frontend Features',
+          items: [
+            'Feature-based architecture with TypeScript',
+            'TanStack Query for server state management',
+            'Zustand for client state management',
+            'React Hook Form with Zod validation',
+            'Responsive design with Tailwind CSS',
+            'Dark/Light theme support',
+            'Internationalization (i18n) with next-intl',
+            'Real-time WebSocket notifications',
+            'Drag-and-drop Kanban boards',
+            'Data tables with sorting, filtering, and pagination',
+            'Form validation and error handling',
+            'Loading states and empty states'
+          ]
+        },
+        {
+          title: 'Infrastructure & DevOps',
+          items: [
+            'Docker support with multi-stage builds',
+            'Docker Compose for development and production',
+            'PostgreSQL database with GORM AutoMigrate',
+            'Cloudflare R2 for production file storage',
+            'Environment-based configuration',
+            'Standalone Next.js build optimization',
+            'Code splitting and image optimization',
+            'Production-ready deployment configuration'
+          ]
+        }
+      ]
+    },
+    image: [
+      {
+        title: 'banner',
+        image: '/work/CRMFarmasi/banner.png'
+      },
+      {
+        title: 'Dashboard Light',
+        image: '/work/CRMFarmasi/dashboardLight.png'
+      },
+      {
+        title: 'Dashboard Dark',
+        image: '/work/CRMFarmasi/dashboardDark.png'
+      },
+      {
+        title: 'User Management',
+        image: '/work/CRMFarmasi/userManagement.jpg'
+      },
+      {
+        title: 'Account & Contact Management',
+        image: '/work/CRMFarmasi/accoutn&contactManager.jpg'
+      },
+      {
+        title: 'Lead Management',
+        image: '/work/CRMFarmasi/leadManagement.jpg'
+      },
+      {
+        title: 'Sales Pipeline',
+        image: '/work/CRMFarmasi/salesPipeline.jpg'
+      },
+      {
+        title: 'Visit Reports',
+        image: '/work/CRMFarmasi/visitReports.jpg'
+      },
+      {
+        title: 'Task & Reminder Management',
+        image: '/work/CRMFarmasi/taskReminder.jpg'
+      },
+      {
+        title: 'Reports',
+        image: '/work/CRMFarmasi/reports.jpg'
+      },
+      {
+        title: 'AI Chatbot',
+        image: '/work/CRMFarmasi/ai.jpg'
+      },
+      {
+        title: 'AI Chatbot Insights',
+        image: '/work/CRMFarmasi/ai2.jpg'
+      }
+    ]
   }
 ];
 
