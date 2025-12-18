@@ -4,7 +4,6 @@ import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import { useEffect, useRef, useState } from 'react';
 import LightRays from './LightRays';
-import { getWhatsAppLink } from '../../lib/utils';
 
 // Responsive dimensions
 const getDimensions = (isMobile: boolean) => ({
@@ -52,6 +51,9 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
     const lenis = new Lenis();
     let rafId: number;
 
+    // Expose Lenis instance to window for drawer to access
+    (globalThis as any).lenis = lenis;
+
     const raf = (time: number) => {
       lenis.raf(time);
       rafId = requestAnimationFrame(raf);
@@ -64,14 +66,35 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
       setIsMobile(width < 768); // Mobile breakpoint at 768px
     };
 
+    // Check if drawer is open and prevent Lenis from handling wheel events
+    const checkDrawerAndHandleWheel = (e: WheelEvent) => {
+      const drawer = document.querySelector('[data-vaul-drawer][data-state="open"]');
+      const target = e.target as HTMLElement;
+      
+      // If drawer is open and wheel event is inside drawer, prevent Lenis from handling it
+      // but allow native browser scrolling to work
+      if (drawer && (drawer.contains(target) || target.closest('[data-vaul-drawer]'))) {
+        e.stopPropagation();
+        // Don't preventDefault - allow native scroll to work
+      }
+    };
+
+    // Listen for wheel events in capture phase to intercept before Lenis
+    window.addEventListener('wheel', checkDrawerAndHandleWheel, { capture: true, passive: false });
+
     window.addEventListener('resize', resize);
     rafId = requestAnimationFrame(raf);
     resize();
 
     return () => {
       window.removeEventListener('resize', resize);
+      window.removeEventListener('wheel', checkDrawerAndHandleWheel, { capture: true } as any);
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      // Clean up global reference
+      if ((globalThis as any).lenis === lenis) {
+        delete (globalThis as any).lenis;
+      }
     };
   }, []);
 
@@ -94,8 +117,8 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   const column3Images = createColumnImages(Math.floor(validImages.length * 0.5));
   const column4Images = createColumnImages(Math.floor(validImages.length * 0.75));
 
-  const buttonText = lang === 'id' ? 'Hubungi Kami' : 'Contact Us';
-  const contactUrl = getWhatsAppLink('gallery', lang as 'en' | 'id');
+  const buttonText = lang === 'id' ? 'Lihat Semua Proyek' : 'View All Projects';
+  const workResultsUrl = lang === 'id' ? '/id/work-results' : '/en/work-results';
 
   return (
     <div className="relative w-full bg-background text-foreground overflow-visible">
@@ -135,12 +158,10 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
       {/* Background gradient overlay for depth effect */}
       <div className="absolute inset-0 z-16 pointer-events-none bg-gradient-to-b from-background/30 via-transparent to-background/30" />
 
-      {/* Centered Contact Button */}
+      {/* Centered View All Projects Button */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
         <motion.a
-          href={contactUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={workResultsUrl}
           className="pointer-events-auto inline-flex items-center justify-center gap-2 md:gap-3 px-4 md:px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white bg-brand rounded-full shadow-2xl shadow-brand/30 hover:bg-brand/90 hover:shadow-brand/50 hover:scale-105 transition-all duration-300 backdrop-blur-sm border border-white/10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -159,7 +180,7 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
             strokeLinejoin="round"
             className="w-5 h-5"
           >
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            <path d="M5 12h14M12 5l7 7-7 7" />
           </svg>
           {buttonText}
         </motion.a>

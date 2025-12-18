@@ -22,6 +22,7 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
   const [touchStart, setTouchStart] = useState(0);
   const [touchEnd, setTouchEnd] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const labels = {
     en: {
@@ -45,19 +46,57 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
       setProject(e.detail);
       setIsOpen(true);
       setCurrentImageIndex(0);
+      
+      // Pause Lenis smooth scroll when drawer opens to prevent scroll conflicts
+      const lenisInstance = (globalThis as any).lenis;
+      if (lenisInstance) {
+        lenisInstance.stop();
+      }
+    };
+
+    const handleCloseDrawer = () => {
+      // Resume Lenis smooth scroll when drawer closes
+      const lenisInstance = (globalThis as any).lenis;
+      if (lenisInstance) {
+        lenisInstance.start();
+      }
     };
 
     globalThis.addEventListener('open-work-result-drawer', handleOpenDrawer as EventListener);
+    
+    // Listen for drawer close
+    const drawerElement = document.querySelector('[data-vaul-drawer]');
+    if (drawerElement) {
+      const observer = new MutationObserver(() => {
+        const isOpen = drawerElement.getAttribute('data-state') === 'open';
+        if (isOpen === false) {
+          handleCloseDrawer();
+        }
+      });
+      observer.observe(drawerElement, { attributes: true, attributeFilter: ['data-state'] });
+    }
 
     return () => {
       globalThis.removeEventListener('open-work-result-drawer', handleOpenDrawer as EventListener);
+      handleCloseDrawer(); // Ensure Lenis is resumed on cleanup
     };
   }, []);
 
-  // Reset image index when drawer closes
+  // Reset image index when drawer closes and handle Lenis
   useEffect(() => {
     if (!isOpen) {
       setCurrentImageIndex(0);
+      // Resume Lenis smooth scroll when drawer closes
+      const lenisInstance = (globalThis as any).lenis;
+      if (lenisInstance) {
+        lenisInstance.start();
+      }
+    } else {
+      // Pause Lenis smooth scroll when drawer opens
+      const lenisInstance = (globalThis as any).lenis;
+      if (lenisInstance) {
+        lenisInstance.stop();
+      }
     }
   }, [isOpen]);
 
@@ -108,10 +147,10 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
 
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen} direction="right">
-      <DrawerContent className="max-w-3xl">
+      <DrawerContent className="max-w-3xl h-full flex flex-col">
         {project && (
           <>
-            <DrawerHeader>
+            <DrawerHeader className="shrink-0">
               <div className="flex items-center justify-between">
                 <div className="flex-1">
                   <span className="inline-block px-3 py-1 text-xs font-medium bg-brand/10 text-brand rounded-full mb-2">
@@ -125,7 +164,19 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
               </div>
             </DrawerHeader>
 
-            <div className="overflow-y-auto px-6 pb-6">
+            <div 
+              ref={scrollContainerRef}
+              className="flex-1 overflow-y-auto px-6 pb-6 min-h-0"
+              style={{
+                WebkitOverflowScrolling: 'touch',
+                overscrollBehavior: 'contain',
+              }}
+              onWheel={(e) => {
+                // Stop propagation to prevent Lenis from intercepting the wheel event
+                // This allows native browser scrolling to work in the drawer
+                e.stopPropagation();
+              }}
+            >
               {/* Image Slider */}
               {images.length > 0 && (
                 <div className="relative mb-6">

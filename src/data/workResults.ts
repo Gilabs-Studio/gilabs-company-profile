@@ -204,10 +204,10 @@ export const workResultsProjects: WorkResultProject[] = [
     title: 'CRM Pharmaceutical',
     description: 'Intelligent Healthcare CRM with AI-Powered Insights. A comprehensive, enterprise-grade CRM platform designed specifically for pharmaceutical and healthcare companies. Features 20+ backend modules, real-time notifications, AI chatbot integration, and advanced analytics for managing accounts, leads, deals, visit reports, and sales pipeline.',
     technologies: [
-      'Go 1.25.4',
+      'Go',
       'Gin Framework',
-      'Next.js 16',
-      'React 19',
+      'Next.js',
+      'React',
       'TypeScript',
       'PostgreSQL',
       'GORM',

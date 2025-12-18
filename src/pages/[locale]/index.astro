@@ -5,6 +5,8 @@ import Hero from '../../components/Hero.astro';
 import Features from '../../components/Features.astro';
 import About from '../../components/About.astro';
 import Services from '../../components/Services.astro';
+import PortfolioShowcase from '../../components/PortfolioShowcase.astro';
+import WorkResultDrawer from '../../components/ui/WorkResultDrawer';
 import Pricing from '../../components/Pricing.astro';
 import CtaSection from '../../components/CtaSection.astro';
 import Footer from '../../components/Footer.astro';
@@ -38,9 +40,14 @@ const keywords = locale === 'id'
 	keywords={keywords}
 >
   <Navbar lang={locale} />
+  
+  <!-- Work Result Drawer Component -->
+  <WorkResultDrawer client:load lang={locale} />
+  
   <main>
     <Hero lang={locale} />
     <Features lang={locale} />
+    <PortfolioShowcase lang={locale} />
     <About lang={locale} />
     <Services lang={locale} />
     <Pricing lang={locale} />
