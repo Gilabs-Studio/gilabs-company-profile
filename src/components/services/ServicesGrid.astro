@@ -6,37 +6,38 @@ const { lang } = Astro.props;
 const services = pricingData[lang].services;
 
 const iconPaths = [
-  '/icon/strategic-consulting.json',
-  '/icon/enterprise-development.json',
-  '/icon/discuss.json',
-  '/icon/award.json',
-  '/icon/strategic-consulting.json',
+  '/icon/web-developer.json',
+  '/icon/mobile.json',
+  '/icon/system.json',
+  '/icon/maintenance.json',
 ];
 ---
 
-<section class="py-20 md:py-32 relative border-b border-border/50">
+<section class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4">
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      {services.items.map((service, index) => (
-        <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl p-8 hover:border-brand/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col h-full">
-          <div class="mb-6 flex items-center justify-start">
-            <LottieIcon 
-              src={iconPaths[index]} 
-              className="w-20 h-20"
-              client:only="react"
-            />
+    <div class="max-w-6xl mx-auto">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        {services.items.map((service, index) => (
+          <div class="flex flex-col items-center text-center">
+            <div class="w-16 h-16 md:w-20 md:h-20 mb-6 flex items-center justify-center">
+              <LottieIcon 
+                src={iconPaths[index]} 
+                className="w-full h-full"
+                client:only="react"
+              />
+            </div>
+            <h3 class="text-base md:text-lg font-semibold text-foreground mb-3">
+              {service.title}
+            </h3>
+            <p class="text-sm text-muted-foreground mb-4 line-clamp-3">
+              {service.body[0]}
+            </p>
+            <p class="text-xs md:text-sm font-medium text-brand">
+              {service.tagline.replace('→ ', '')}
+            </p>
           </div>
-          <h2 class="text-xl md:text-2xl font-bold mb-4 text-foreground leading-tight">
-            {service.title}
-          </h2>
-          <p class="text-muted-foreground text-base leading-relaxed flex-grow mb-4">
-            {service.body[0]}
-          </p>
-          <p class="text-sm text-brand font-medium">
-            {service.tagline.replace('→ ', '')}
-          </p>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 </section>

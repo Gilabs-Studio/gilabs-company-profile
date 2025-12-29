@@ -228,50 +228,39 @@ export const pricingData: Record<string, PricingData> = {
         {
           title: "Web Development",
           body: [
-            "Website yang bergerak cepat dan terasa pas.",
-            "Dari landing page hingga platform full-stack, kami membangun pengalaman web yang bersih, cepat, dan mudah digunakan.",
-            "Baik itu situs pertama Anda atau dashboard yang kompleks, kami memastikan semuanya berjalan lancar dan terlihat solid di setiap layar."
+            "Website modern untuk company profile, landing page, atau marketing site. Fokus pada informasi dan branding bisnis Anda.",
+            "Dari website sederhana hingga platform full-stack dengan backend, database, dan fitur kompleks.",
+            "Kami memastikan semuanya berjalan lancar, cepat, dan terlihat solid di setiap layar."
           ],
-          tagline: "→ Frontend, Backend, API — semua ditangani dengan alur yang sama."
+          tagline: "→ Rp 5.000.000 – 80.000.000+"
         },
         {
-          title: "Mobile Development",
+          title: "Mobile App Development",
           body: [
-            "Aplikasi yang mengikuti pengguna Anda ke mana saja.",
-            "Kami membuat aplikasi lintas platform yang terasa alami dan cepat dibangun.",
+            "Aplikasi mobile cross-platform yang dirancang khusus untuk workflow bisnis Anda.",
             "Dirancang untuk berkinerja baik, mudah diperbarui, dan tumbuh bersama produk Anda.",
-            "Flutter adalah senjata utama kami, kecepatan adalah kebiasaan kami."
+            "Satu basis kode untuk iOS & Android — lancar di mana saja."
           ],
-          tagline: "→ Satu basis kode. Lancar di mana saja."
-        },
-        {
-          title: "UI / UX Design",
-          body: [
-            "Sederhana, indah, dan dibuat untuk manusia.",
-            "Kami tidak mendesain berlebihan — kami mendesain apa yang penting.",
-            "Antarmuka yang membantu orang melakukan hal-hal dengan mudah, tanpa berpikir terlalu keras.",
-            "Setiap piksel memiliki alasan, dan setiap alur terasa alami."
-          ],
-          tagline: "→ Cepat digunakan. Mudah dicintai."
+          tagline: "→ Rp 20.000.000 – 80.000.000"
         },
         {
           title: "System & Integration",
           body: [
-            "Hal-hal yang saling berbicara.",
+            "Sistem enterprise lengkap dengan multiple modules dan integrasi kompleks.",
             "Kami menghubungkan alat, database, dan API Anda sehingga semuanya berjalan bersama seperti satu sistem.",
             "Lebih sedikit pekerjaan manual, lebih sedikit menunggu, lebih banyak otomatisasi."
           ],
-          tagline: "→ Bangun sekali. Terhubung selamanya."
+          tagline: "→ Rp 150.000.000 – 800.000.000+"
         },
         {
-          title: "Maintenance & Scaling",
+          title: "Maintenance & Support",
           body: [
             "Kami tidak menghilang setelah peluncuran.",
-            "Butuh pembaruan? Perbaikan? Desain ulang?",
-            "Kami tetap ada untuk menjaga semuanya berjalan cepat dan aman — sama seperti saat kami membangunnya.",
+            "Jaminan aplikasi Anda selalu berjalan optimal dengan support berkelanjutan.",
+            "Dari basic maintenance hingga enterprise support dengan SLA guarantee.",
             "Anggap kami sebagai kru pit teknologi Anda."
           ],
-          tagline: "→ Jaga produk Anda tetap hidup dan cepat."
+          tagline: "→ Rp 2.000.000 – 20.000.000/bulan"
         }
       ]
     },
@@ -691,50 +680,39 @@ export const pricingData: Record<string, PricingData> = {
         {
           title: "Web Development",
           body: [
-            "Websites that move fast and feel right.",
-            "From landing pages to full-stack platforms, we build web experiences that are clean, fast, and easy to use.",
-            "Whether it’s your first site or a complex dashboard, we make sure it runs smooth and looks solid on every screen."
+            "Modern websites for company profile, landing page, or marketing site. Focus on information and business branding.",
+            "From simple websites to full-stack platforms with backend, database, and complex features.",
+            "We make sure everything runs smooth, fast, and looks solid on every screen."
           ],
-          tagline: "→ Frontend, Backend, APIs — all handled by the same flow."
+          tagline: "→ IDR 5,000,000 – 80,000,000+"
         },
         {
-          title: "Mobile Development",
+          title: "Mobile App Development",
           body: [
-            "Apps that follow your users anywhere.",
-            "We craft cross-platform apps that feel natural and quick to build.",
+            "Cross-platform mobile applications designed specifically for your business workflow.",
             "Designed to perform well, update easily, and grow with your product.",
-            "Flutter is our main weapon, speed is our habit."
+            "One codebase for iOS & Android — smooth everywhere."
           ],
-          tagline: "→ One codebase. Smooth everywhere."
-        },
-        {
-          title: "UI / UX Design",
-          body: [
-            "Simple, beautiful, and made for humans.",
-            "We don’t overdesign — we design what matters.",
-            "Interfaces that help people do things easily, without thinking too hard.",
-            "Every pixel has a reason, and every flow feels natural."
-          ],
-          tagline: "→ Fast to use. Easy to love."
+          tagline: "→ IDR 20,000,000 – 80,000,000"
         },
         {
           title: "System & Integration",
           body: [
-            "Things that talk to each other.",
+            "Complete enterprise systems with multiple modules and complex integrations.",
             "We connect your tools, databases, and APIs so everything runs together like a single system.",
             "Less manual work, less waiting, more automation."
           ],
-          tagline: "→ Build once. Connect forever."
+          tagline: "→ IDR 150,000,000 – 800,000,000+"
         },
         {
-          title: "Maintenance & Scaling",
+          title: "Maintenance & Support",
           body: [
-            "We don’t disappear after launch.",
-            "Need updates? Fixes? A redesign?",
-            "We stay around to keep things running fast and safe — just like when we built it.",
+            "We don't disappear after launch.",
+            "Ensure your application always runs optimally with ongoing support.",
+            "From basic maintenance to enterprise support with SLA guarantee.",
             "Think of us as your tech pit-crew."
           ],
-          tagline: "→ Keep your product alive and fast."
+          tagline: "→ IDR 2,000,000 – 20,000,000/month"
         }
       ]
     },

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { getWhatsAppLink } from '../../lib/utils';
+import { LottieIcon } from './LottieIcon';
 
 interface ServiceItem {
   title: string;
@@ -31,13 +32,12 @@ const ELASTIC_CONFIG = {
   duration: 1.2
 };
 
-// Placeholder images for service cards
-const placeholderImages = [
-  'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&h=600&fit=crop'
+// Icon paths for service cards
+const serviceIcons = [
+  '/icon/web-developer.json',
+  '/icon/mobile.json',
+  '/icon/system.json',
+  '/icon/maintenance.json',
 ];
 
 interface Slot {
@@ -135,58 +135,13 @@ const CardStack: React.FC<CardStackProps> = ({ items, activeIndex, isClient }) =
           ref={el => { cardsRef.current[idx] = el; }}
           className="absolute top-1/2 left-1/2 w-[520px] h-[420px] rounded-2xl border border-border bg-card overflow-hidden shadow-2xl transform-3d will-change-transform backface-hidden"
         >
-          {/* Placeholder Image */}
-          <div className="h-44 w-full overflow-hidden bg-secondary">
-            <img
-              src={placeholderImages[idx % placeholderImages.length]}
-              alt={service.title}
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-          </div>
-
-          {/* Card Content */}
-          <div className="p-6 flex flex-col h-[calc(100%-11rem)]">
-            {/* Card header */}
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex items-center justify-center w-11 h-11 rounded-full bg-brand/10 text-brand text-sm font-bold">
-                {String(idx + 1).padStart(2, '0')}
-              </div>
-              <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                Service
-              </span>
-            </div>
-
-            {/* Card title & description */}
-            <div className="flex-1">
-              <h3 className="text-2xl font-bold text-card-foreground mb-3">
-                {service.title}
-              </h3>
-              <p className="text-sm text-muted-foreground line-clamp-2">
-                {service.body[0]}
-              </p>
-            </div>
-
-            {/* Card footer */}
-            <div className="flex items-center justify-between pt-4 border-t border-border mt-auto">
-              <span className="text-sm text-brand font-medium">
-                {service.tagline.replace('→ ', '')}
-              </span>
-              <div className="w-11 h-11 rounded-full bg-brand/10 flex items-center justify-center hover:bg-brand group transition-colors cursor-pointer">
-                <svg
-                  className="w-5 h-5 text-brand group-hover:text-white transition-colors"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M14 5l7 7m0 0l-7 7m7-7H3"
-                  />
-                </svg>
-              </div>
+          {/* Card Content - Icon Only */}
+          <div className="p-8 flex items-center justify-center h-full">
+            <div className="w-64 h-64 flex items-center justify-center">
+              <LottieIcon 
+                src={serviceIcons[idx % serviceIcons.length]} 
+                className="w-full h-full"
+              />
             </div>
           </div>
         </div>
@@ -552,13 +507,6 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
                   ))}
                 </div>
 
-                {currentService?.tagline && (
-                  <div className="service-text-content mt-8">
-                    <p className="text-brand">
-                      {currentService.tagline}
-                    </p>
-                  </div>
-                )}
 
                 {/* CTA Button */}
                 <div className="service-text-content mt-12">
@@ -613,56 +561,26 @@ const ScrollCardServices: React.FC<ScrollCardServicesProps> = ({
               {items.map((service, idx) => (
                 <div
                   key={service.title}
-                  className="w-full rounded-2xl border border-border bg-card overflow-hidden shadow-lg"
+                  className="w-full rounded-xl border border-border bg-card overflow-hidden"
                 >
-                  {/* Image */}
-                  <div className="h-48 w-full overflow-hidden bg-secondary">
-                    <img
-                      src={placeholderImages[idx % placeholderImages.length]}
-                      alt={service.title}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-
                   {/* Card Content */}
-                  <div className="p-5">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="flex items-center justify-center w-10 h-10 rounded-full bg-brand/10 text-brand text-sm font-bold">
-                        {String(idx + 1).padStart(2, '0')}
+                  <div className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-12 h-12 flex items-center justify-center shrink-0">
+                        <LottieIcon 
+                          src={serviceIcons[idx % serviceIcons.length]} 
+                          className="w-full h-full"
+                        />
                       </div>
-                      <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                        Service
-                      </span>
+                      <div className="flex-1">
+                        <h3 className="text-lg font-semibold text-card-foreground">
+                          {service.title}
+                        </h3>
+                      </div>
                     </div>
-
-                    <h3 className="text-xl font-bold text-card-foreground mb-2">
-                      {service.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground mb-4">
+                    <p className="text-sm text-muted-foreground leading-relaxed">
                       {service.body[0]}
                     </p>
-
-                    <div className="flex items-center justify-between pt-4 border-t border-border">
-                      <span className="text-sm text-brand font-medium">
-                        {service.tagline.replace('→ ', '')}
-                      </span>
-                      <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center">
-                        <svg
-                          className="w-5 h-5 text-brand"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M14 5l7 7m0 0l-7 7m7-7H3"
-                          />
-                        </svg>
-                      </div>
-                    </div>
                   </div>
                 </div>
               ))}
