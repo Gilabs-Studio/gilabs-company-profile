@@ -81,6 +81,13 @@ export interface PricingData {
   erpCrm: {
     title: string;
     description: string;
+    cta?: {
+      title: string;
+      subtitle: string;
+      timeline: string;
+      description: string;
+      button: string;
+    };
     crm: {
       title: string;
       description: string;
@@ -103,6 +110,34 @@ export interface PricingData {
     title: string;
     items: string[];
   };
+  recurringRevenue: {
+    title: string;
+    subtitle: string;
+    description: string;
+    maintenance: {
+      title: string;
+      label: string;
+      description: string;
+      packages: {
+        name: string;
+        price: string;
+        features: string[];
+        sla?: string;
+      }[];
+    };
+    licensing: {
+      title: string;
+      label: string;
+      description: string;
+      packages: {
+        name: string;
+        setupPrice: string;
+        monthlyPrice: string;
+        features: string[];
+        bestFor: string;
+      }[];
+    };
+  };
   recommendations: {
     title: string;
     items: {
@@ -119,6 +154,19 @@ export interface PricingData {
       description: string;
       price: string;
       features: string[];
+    }[];
+  };
+  customSoftware: {
+    title: string;
+    subtitle: string;
+    description: string;
+    packages: {
+      name: string;
+      description: string;
+      price: string;
+      features: string[];
+      revisions?: string[];
+      bestFor: string;
     }[];
   };
 }
@@ -246,87 +294,72 @@ export const pricingData: Record<string, PricingData> = {
     },
     packages: [
       {
-        title: "Paket Basic (Static Website & Landing Page)",
-        description: "Cocok untuk klien yang hanya butuh website cepat & informatif atau landing page profesional.",
-        price: "Rp 500.000 – 2.500.000",
-        revisions: ["2x revisi kecil", "1x revisi besar"],
+        title: "Website Development",
+        description: "Website modern untuk company profile, landing page, atau marketing site. Fokus pada informasi dan branding bisnis Anda.",
+        price: "Rp 5.000.000 – 20.000.000",
+        revisions: ["Revisi termasuk dalam development", "Post-launch support tersedia"],
         features: [
-          "Landing page (1 halaman) → Rp 500.000",
-          "3–5 halaman website",
-          "SEO dasar",
+          "Modern tech stack (Next.js / Astro)",
+          "SEO optimized",
           "Mobile responsive",
-          "Loading < 1 detik"
+          "Fast loading (< 1 detik)",
+          "CMS integration (opsional)",
+          "Contact form & basic integrations"
         ],
-        addons: [
-          "Halaman tambahan → Rp 150.000 – 300.000",
-          "Animasi icon (Lottie) → +150.000 / animasi",
-          "Parallax ringan → +200.000 – 400.000",
-          "Form kontak → Termasuk"
-        ]
+        addons: []
       },
       {
-        title: "Paket Profesional (Semi Dynamic + Animations)",
-        description: "Situs cepat tapi lebih modern & interaktif.",
-        price: "Rp 3.000.000 – 4.500.000",
-        revisions: ["4x revisi kecil", "2x revisi besar"],
+        title: "Mobile App Development",
+        description: "Aplikasi mobile cross-platform yang dirancang khusus untuk workflow bisnis Anda.",
+        price: "Rp 20.000.000 – 80.000.000",
+        revisions: ["Revisi termasuk dalam development", "Post-launch support tersedia"],
         features: [
-          "5–8 halaman",
-          "Animasi halus",
-          "Slider, gallery interaktif",
-          "SEO advanced",
-          "Performance 95–100"
+          "Cross-platform (iOS & Android)",
+          "Custom UI/UX design",
+          "Backend API integration",
+          "Push notifications",
+          "Offline capability",
+          "App store deployment"
         ],
-        addons: [
-          "Three.js hero → 700.000 – 1.500.000",
-          "Parallax complex → +300.000 – 600.000",
-          "Halaman tambahan → Rp 200.000 – 300.000"
-        ]
+        addons: []
       },
       {
-        title: "Paket Premium (Scale Ready)",
-        description: "Untuk bisnis yang ingin website sekaligus fondasi aplikasi.",
-        price: "Rp 6.000.000 – 12.000.000",
-        revisions: ["6x revisi kecil", "3x revisi besar"],
+        title: "Custom Software Development",
+        description: "Software custom yang dibuat khusus sesuai kebutuhan unik bisnis Anda.",
+        price: "Rp 15.000.000 – 200.000.000+",
+        revisions: ["Revisi termasuk dalam development", "Dedicated project manager"],
         features: [
-          "SSR/SSG",
-          "API routes",
-          "Integrasi database (opsional)",
-          "Animasi halus",
-          "5–10 halaman"
+          "Full-stack development",
+          "Custom architecture",
+          "Database design",
+          "API development",
+          "Integration dengan sistem existing",
+          "Scalable & maintainable code"
         ],
-        addons: [
-          "Dashboard mini → 2.000.000 – 5.000.000",
-          "Integrasi database → 1.000.000 – 3.000.000",
-          "Three.js → +1.000.000+",
-          "Halaman SSR tambahan → 300.000 – 600.000"
-        ]
+        addons: []
       },
     ],
     revisionSystem: {
-      title: "Sistem Revisi — Berlaku Untuk Semua Paket",
+      title: "Development Process",
       small: {
-        title: "Revisi Kecil (UI minor)",
+        title: "Included in Development",
         items: [
-          "Ganti warna",
-          "Ganti teks",
-          "Perbaikan layout kecil",
-          "Ubah icon / gambar",
-          "(Estimasi pengerjaan: ≤ 15 menit per item)"
+          "Revisi UI/UX selama development",
+          "Bug fixes & adjustments",
+          "Performance optimization",
+          "Responsive design refinement"
         ]
       },
       large: {
-        title: "Revisi Besar (Perubahan struktural)",
+        title: "Post-Launch Support",
         items: [
-          "Ubah layout keseluruhan",
-          "Ubah desain hero section",
-          "Tambah fitur kecil (tanpa coding backend)",
-          "Redesign halaman"
+          "Maintenance packages available",
+          "Feature updates (separate quote)",
+          "Ongoing support & monitoring",
+          "Custom development requests"
         ]
       },
-      extra: [
-        "Revisi kecil tambahan → Rp 30.000 – 50.000",
-        "Revisi besar tambahan → Rp 150.000 – 300.000"
-      ]
+      extra: []
     },
     blog: {
       title: "Blog Setup",
@@ -361,55 +394,26 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     erpCrm: {
-      title: "Paket ERP & CRM — Full Web App",
-      description: "Ini biasanya proyek besar — harga menyesuaikan kompleksitas.",
+      title: "Enterprise System Development",
+      description: "Sistem enterprise lengkap dengan multiple modules dan integrasi kompleks. Dikembangkan melalui konsultasi mendalam untuk memahami kebutuhan bisnis Anda.",
+      cta: {
+        title: "By Consultation Only",
+        subtitle: "Typical budget: Rp 150.000.000 – 1.500.000.000",
+        timeline: "Timeline: 3–12 bulan",
+        description: "Hubungi kami untuk proposal custom sesuai kebutuhan bisnis Anda.",
+        button: "Request Proposal"
+      },
       crm: {
-        title: "CRM (Customer Relationship Management)",
-        description: "Untuk bisnis yang ingin mengelola customer, sales, dan follow up.",
-        packages: [
-          {
-            name: "Paket CRM Basic",
-            features: [
-              "Manajemen customer",
-              "Pipeline leads",
-              "Activity log",
-              "Sales dashboard",
-              "Export Excel"
-            ],
-            price: "Rp 10.000.000 – 25.000.000",
-            revisions: ["8x revisi kecil", "4x revisi besar"]
-          },
-          {
-            name: "Paket CRM Pro",
-            features: [
-              "Team management",
-              "Permissions & roles",
-              "Email automation (SMTP)",
-              "Integrasi API WhatsApp",
-              "Report builder",
-              "Integrasi database & API"
-            ],
-            price: "Rp 25.000.000 – 60.000.000"
-          }
-        ]
+        title: "CRM & Sales Management System",
+        description: "Sistem untuk mengelola customer, sales pipeline, dan workflow tim.",
+        packages: []
       },
       erp: {
-        title: "ERP (Enterprise Resource Planning)",
-        description: "ERP itu jauh lebih kompleks — modul per modul.",
-        modules: [
-          "Modul Inventory → Rp 8.000.000 – 15.000.000",
-          "Modul Purchasing → Rp 6.000.000 – 12.000.000",
-          "Modul Invoicing & Finance → Rp 10.000.000 – 20.000.000",
-          "Modul HR & Absensi → Rp 12.000.000 – 25.000.000",
-          "Modul Production → Rp 15.000.000 – 30.000.000",
-          "Modul CRM-terintegrasi → Rp 15.000.000 – 30.000.000"
-        ],
-        fullPackage: "ERP Full Package (6–12 modul): Rp 80.000.000 – 250.000.000",
-        revisions: [
-          "Revisi kecil → gratis selama development",
-          "Revisi besar → 3x (sisanya bayar per request)",
-          "Change request tambahan → Rp 300.000 – 1.000.000 per item"
-        ]
+        title: "ERP & Business Management System",
+        description: "Sistem manajemen bisnis terintegrasi dengan multiple modules.",
+        modules: [],
+        fullPackage: "Enterprise solutions dikembangkan melalui discovery phase & custom proposal",
+        revisions: []
       }
     },
     maintenance: {
@@ -446,77 +450,189 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     aiAddons: {
-      title: "Add-on AI Features",
-      subtitle: "Tingkatkan produk digital Anda dengan kecerdasan buatan. Pilih sesuai kebutuhan bisnis Anda.",
+      title: "Smart Automation & Intelligent Features",
+      subtitle: "Tingkatkan efisiensi operasional dengan fitur otomatisasi dan analisis cerdas.",
       packages: [
         {
-          name: "AI Text Feature",
-          description: "Fitur AI dasar untuk generate, summarize, dan chat assistant sederhana.",
-          price: "Rp 2.000.000 – 7.000.000",
-          features: [
-            "Auto-generate teks",
-            "Summarize konten",
-            "Chat assistant sederhana",
-            "FAQ bot",
-            "Simplify / rewrite text",
-            "Integrasi API + UI"
-          ]
-        },
-        {
-          name: "AI Recommendation / Scoring / Analysis",
-          description: "Sistem rekomendasi dan analisis data berbasis AI untuk produk atau layanan Anda.",
+          name: "Auto Lead Scoring & Analysis",
+          description: "Sistem otomatis untuk scoring leads dan analisis data sales.",
           price: "Rp 5.000.000 – 15.000.000",
           features: [
-            "Rekomendasi produk otomatis",
-            "Analisis data sederhana",
-            "Generate rekomendasi berdasarkan input user",
-            "Scoring otomatis (misal untuk CRM)",
-            "Data pre-processing",
-            "Prompt orchestration"
+            "Auto lead scoring untuk sales team",
+            "Analisis data sales otomatis",
+            "Generate rekomendasi berdasarkan data",
+            "Report generator otomatis",
+            "Integration dengan CRM existing"
           ]
         },
         {
-          name: "AI Chatbot Multi-context",
-          description: "Chatbot cerdas dengan memory dan konteks dokumen internal seperti Claude/ChatGPT custom.",
-          price: "Rp 12.000.000 – 35.000.000",
+          name: "Smart Report & Analytics",
+          description: "Sistem pelaporan dan analitik otomatis untuk manajemen.",
+          price: "Rp 8.000.000 – 25.000.000",
           features: [
-            "Chat yang membaca data internal",
-            "Chat dengan memory",
-            "Chat dengan konteks dokumen",
-            "Chat yang access database",
-            "Document embedding",
-            "RAG sederhana",
-            "Caching & flow management"
+            "Auto report generator",
+            "Data visualization dashboard",
+            "Predictive analytics",
+            "Custom metrics & KPIs",
+            "Scheduled reports"
           ]
         },
         {
-          name: "AI + RAG (Document Upload + QA)",
-          description: "Sistem AI yang dapat membaca dan menjawab pertanyaan dari dokumen yang di-upload.",
+          name: "Intelligent Document Processing",
+          description: "Sistem yang dapat membaca, memproses, dan menjawab pertanyaan dari dokumen.",
           price: "Rp 25.000.000 – 60.000.000",
           features: [
-            "User upload PDF/Docs",
-            "Sistem chunking otomatis",
-            "Document embedding",
-            "Search + answer dari dokumen",
-            "Mini vector database",
-            "Multi-document support"
+            "Document upload & processing",
+            "Auto extract information",
+            "Search & answer dari dokumen",
+            "Multi-document support",
+            "Integration dengan workflow existing"
           ]
         },
         {
-          name: "Fully Integrated AI Agent",
-          description: "AI agent yang dapat mengambil tindakan otomatis dalam sistem Anda.",
+          name: "Workflow Automation System",
+          description: "Sistem otomatisasi workflow yang dapat mengambil tindakan otomatis dalam sistem Anda.",
           price: "Rp 40.000.000 – 120.000.000",
           features: [
-            "AI untuk CRM yang bisa update pipeline otomatis",
-            "AI untuk ERP yang bisa create invoice otomatis",
-            "AI yang bisa menjalankan command tertentu",
-            "Multi-prompt orchestration",
-            "Error recovery",
-            "Integrasi database lengkap",
-            "Akses banyak modul sistem"
+            "Auto update pipeline (CRM)",
+            "Auto create invoice (ERP)",
+            "Smart decision making",
+            "Multi-system integration",
+            "Error handling & recovery",
+            "Custom business rules"
           ]
         }
       ]
+    },
+    customSoftware: {
+      title: "Custom Software Development",
+      subtitle: "Solusi Software yang Dibuat Khusus untuk Bisnis Anda",
+      description: "Kami membangun software custom yang disesuaikan dengan kebutuhan unik bisnis Anda. Dari aplikasi web hingga mobile, dari sistem manajemen hingga integrasi kompleks — semua dibuat khusus untuk Anda.",
+      packages: [
+        {
+          name: "Custom Software Development",
+          description: "Aplikasi web & mobile yang disesuaikan dengan proses bisnis Anda. Untuk bisnis yang berkembang, sistem internal, atau tools operasional.",
+          price: "Rp 20.000.000 – 120.000.000",
+          bestFor: "Bisnis yang berkembang, sistem internal, MVP & tools operasional",
+          features: [
+            "Web & Mobile applications",
+            "Tailored to your business processes",
+            "Internal systems & dashboards",
+            "MVP development",
+            "Operational tools",
+            "Custom integrations",
+            "Dedicated project manager"
+          ],
+          revisions: ["Revisi termasuk dalam development", "Post-launch support tersedia"]
+        },
+        {
+          name: "Enterprise Software Solution",
+          description: "Sistem enterprise lengkap dengan multiple modules dan integrasi kompleks.",
+          price: "Rp 150.000.000 – 800.000.000+",
+          bestFor: "Perusahaan besar yang butuh sistem terintegrasi dan scalable",
+          features: [
+            "Multiple modules & features",
+            "Complex integrations",
+            "Scalable architecture",
+            "Advanced security & compliance",
+            "Custom reporting & analytics",
+            "Team collaboration tools",
+            "Dedicated project manager",
+            "SLA guarantee",
+            "Security audit & certification",
+            "Training & documentation"
+          ],
+          revisions: ["Unlimited revisi kecil selama development", "10x revisi besar"]
+        }
+      ]
+    },
+    recurringRevenue: {
+      title: "Recurring Revenue Solutions",
+      subtitle: "Revenue Berkelanjutan untuk Bisnis yang Stabil",
+      description: "Bangun revenue yang stabil dan berkelanjutan dengan paket maintenance dan licensing. Dapatkan support berkelanjutan dan akses ke sistem yang terus berkembang.",
+      maintenance: {
+        title: "Maintenance & Support Plans",
+        label: "Maintenance & Support",
+        description: "Jaminan aplikasi Anda selalu berjalan optimal dengan support berkelanjutan.",
+        packages: [
+          {
+            name: "Basic Maintenance",
+            price: "Rp 2.000.000/bulan",
+            features: [
+              "Bug fixes & security updates",
+              "Server monitoring",
+              "Backup harian",
+              "Email support (5 hari kerja)",
+              "Update minor (bulanan)"
+            ],
+            sla: "Response time: 48 jam"
+          },
+          {
+            name: "Pro Maintenance",
+            price: "Rp 5.000.000/bulan",
+            features: [
+              "Semua fitur Basic",
+              "Performance optimization",
+              "Feature updates kecil",
+              "Priority support (24/7)",
+              "Monthly health check",
+              "Uptime monitoring & alerts"
+            ],
+            sla: "Response time: 4 jam"
+          },
+          {
+            name: "Enterprise Maintenance",
+            price: "Rp 10.000.000 – 20.000.000/bulan",
+            features: [
+              "Semua fitur Pro",
+              "Dedicated support team",
+              "Custom feature development",
+              "SLA guarantee (99.9% uptime)",
+              "Quarterly strategy review",
+              "Security audit & compliance",
+              "On-site support (opsional)"
+            ],
+            sla: "Response time: 1 jam, 99.9% uptime SLA"
+          }
+        ]
+      },
+      licensing: {
+        title: "Software Licensing (White-label)",
+        label: "Licensing Plans",
+        description: "Akses ke sistem base + customization. Bayar sekali untuk setup, lalu monthly license untuk akses berkelanjutan.",
+        packages: [
+          {
+            name: "CRM Base License",
+            setupPrice: "Rp 50.000.000",
+            monthlyPrice: "Rp 3.000.000 – 5.000.000/bulan",
+            bestFor: "Perusahaan yang butuh CRM dengan customization terbatas",
+            features: [
+              "Base CRM system (ready-to-use)",
+              "Custom branding & logo",
+              "Basic customization (5 modul)",
+              "User management (hingga 50 users)",
+              "Monthly updates & bug fixes",
+              "Email support"
+            ]
+          },
+          {
+            name: "Enterprise License",
+            setupPrice: "Rp 100.000.000 – 200.000.000",
+            monthlyPrice: "Rp 10.000.000 – 20.000.000/bulan",
+            bestFor: "Perusahaan besar yang butuh sistem lengkap dengan customization penuh",
+            features: [
+              "Full system access (CRM + ERP modules)",
+              "Unlimited customization",
+              "Unlimited users",
+              "Priority development queue",
+              "Dedicated account manager",
+              "Custom integrations",
+              "White-label support",
+              "Source code access (opsional)"
+            ]
+          }
+        ]
+      }
     }
   },
   en: {
@@ -641,87 +757,72 @@ export const pricingData: Record<string, PricingData> = {
     },
     packages: [
       {
-        title: "Basic Package (Static Website & Landing Page)",
-        description: "Suitable for clients who need a fast & informative website or professional landing page.",
-        price: "IDR 500,000 – 2,500,000",
-        revisions: ["2x small revisions", "1x major revision"],
+        title: "Website Development",
+        description: "Modern websites for company profile, landing page, or marketing site. Focus on information and business branding.",
+        price: "IDR 5,000,000 – 20,000,000",
+        revisions: ["Revisions included in development", "Post-launch support available"],
         features: [
-          "Landing page (1 page) → IDR 500,000",
-          "3–5 pages website",
-          "Basic SEO",
+          "Modern tech stack (Next.js / Astro)",
+          "SEO optimized",
           "Mobile responsive",
-          "Loading < 1 second"
+          "Fast loading (< 1 second)",
+          "CMS integration (optional)",
+          "Contact form & basic integrations"
         ],
-        addons: [
-          "Additional page → IDR 150,000 – 300,000",
-          "Icon animation (Lottie) → +150,000 / animation",
-          "Light Parallax → +200,000 – 400,000",
-          "Contact form → Included"
-        ]
+        addons: []
       },
       {
-        title: "Professional Package",
-        description: "Fast site but more modern & interactive.",
-        price: "IDR 3,000,000 – 4,500,000",
-        revisions: ["4x small revisions", "2x major revisions"],
+        title: "Mobile App Development",
+        description: "Cross-platform mobile applications designed specifically for your business workflow.",
+        price: "IDR 20,000,000 – 80,000,000",
+        revisions: ["Revisions included in development", "Post-launch support available"],
         features: [
-          "5–8 pages",
-          "Smooth animation",
-          "Slider, interactive gallery",
-          "Advanced SEO",
-          "Performance 95–100"
+          "Cross-platform (iOS & Android)",
+          "Custom UI/UX design",
+          "Backend API integration",
+          "Push notifications",
+          "Offline capability",
+          "App store deployment"
         ],
-        addons: [
-          "Three.js hero → 700,000 – 1,500,000",
-          "Complex Parallax → +300,000 – 600.000",
-          "Additional page → IDR 200,000 – 300,000"
-        ]
+        addons: []
       },
       {
-        title: "Premium Package (Scale Ready)",
-        description: "For businesses wanting a website and application foundation.",
-        price: "IDR 6,000,000 – 12,000,000",
-        revisions: ["6x small revisions", "3x major revisions"],
+        title: "Custom Software Development",
+        description: "Custom software built specifically according to your unique business needs.",
+        price: "IDR 15,000,000 – 200,000,000+",
+        revisions: ["Revisions included in development", "Dedicated project manager"],
         features: [
-          "SSR/SSG",
-          "API routes",
-          "Database integration (optional)",
-          "Smooth animation",
-          "5–10 pages"
+          "Full-stack development",
+          "Custom architecture",
+          "Database design",
+          "API development",
+          "Integration with existing systems",
+          "Scalable & maintainable code"
         ],
-        addons: [
-          "Mini Dashboard → 2,000,000 – 5,000,000",
-          "Database integration → 1,000,000 – 3,000,000",
-          "Three.js → +1,000,000+",
-          "Additional SSR page → 300,000 – 600,000"
-        ]
+        addons: []
       },
     ],
     revisionSystem: {
-      title: "Revision System — Applies to All Packages",
+      title: "Development Process",
       small: {
-        title: "Small Revision (Minor UI)",
+        title: "Included in Development",
         items: [
-          "Change color",
-          "Change text",
-          "Minor layout fix",
-          "Change icon / image",
-          "(Est. time: ≤ 15 mins per item)"
+          "UI/UX revisions during development",
+          "Bug fixes & adjustments",
+          "Performance optimization",
+          "Responsive design refinement"
         ]
       },
       large: {
-        title: "Major Revision (Structural Change)",
+        title: "Post-Launch Support",
         items: [
-          "Change overall layout",
-          "Change hero section design",
-          "Add small feature (no backend coding)",
-          "Redesign page"
+          "Maintenance packages available",
+          "Feature updates (separate quote)",
+          "Ongoing support & monitoring",
+          "Custom development requests"
         ]
       },
-      extra: [
-        "Extra small revision → IDR 30,000 – 50,000",
-        "Extra major revision → IDR 150,000 – 300,000"
-      ]
+      extra: []
     },
     blog: {
       title: "Blog Setup",
@@ -756,55 +857,26 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     erpCrm: {
-      title: "ERP & CRM Packages — Full Web App",
-      description: "These are usually large projects — price depends on complexity.",
+      title: "Enterprise System Development",
+      description: "Complete enterprise systems with multiple modules and complex integrations. Developed through in-depth consultation to understand your business needs.",
+      cta: {
+        title: "By Consultation Only",
+        subtitle: "Typical budget: IDR 150,000,000 – 1,500,000,000",
+        timeline: "Timeline: 3–12 months",
+        description: "Contact us for a custom proposal tailored to your business needs.",
+        button: "Request Proposal"
+      },
       crm: {
-        title: "CRM (Customer Relationship Management)",
-        description: "For businesses managing customers, sales, and follow-ups.",
-        packages: [
-          {
-            name: "Basic CRM Package",
-            features: [
-              "Customer management",
-              "Leads pipeline",
-              "Activity log",
-              "Sales dashboard",
-              "Export Excel"
-            ],
-            price: "IDR 10,000,000 – 25,000,000",
-            revisions: ["8x small revisions", "4x major revisions"]
-          },
-          {
-            name: "Pro CRM Package",
-            features: [
-              "Team management",
-              "Permissions & roles",
-              "Email automation (SMTP)",
-              "WhatsApp API integration",
-              "Report builder",
-              "Database & API integration"
-            ],
-            price: "IDR 25,000,000 – 60,000,000"
-          }
-        ]
+        title: "CRM & Sales Management System",
+        description: "Systems for managing customers, sales pipeline, and team workflow.",
+        packages: []
       },
       erp: {
-        title: "ERP (Enterprise Resource Planning)",
-        description: "ERP is much more complex — module by module.",
-        modules: [
-          "Inventory Module → IDR 8,000,000 – 15,000,000",
-          "Purchasing Module → IDR 6,000,000 – 12,000,000",
-          "Invoicing & Finance Module → IDR 10,000,000 – 20,000,000",
-          "HR & Attendance Module → IDR 12,000,000 – 25,000,000",
-          "Production Module → IDR 15,000,000 – 30,000,000",
-          "Integrated CRM Module → IDR 15,000,000 – 30,000,000"
-        ],
-        fullPackage: "ERP Full Package (6–12 modules): IDR 80,000,000 – 250,000,000",
-        revisions: [
-          "Small revisions → free during development",
-          "Major revisions → 3x (rest paid per request)",
-          "Additional change request → IDR 300,000 – 1,000,000 per item"
-        ]
+        title: "ERP & Business Management System",
+        description: "Integrated business management systems with multiple modules.",
+        modules: [],
+        fullPackage: "Enterprise solutions developed through discovery phase & custom proposal",
+        revisions: []
       }
     },
     maintenance: {
@@ -841,77 +913,189 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     aiAddons: {
-      title: "AI Features Add-ons",
-      subtitle: "Enhance your digital products with artificial intelligence. Choose according to your business needs.",
+      title: "Smart Automation & Intelligent Features",
+      subtitle: "Increase operational efficiency with automation and intelligent analysis features.",
       packages: [
         {
-          name: "AI Text Feature",
-          description: "Basic AI features for generate, summarize, and simple chat assistant.",
-          price: "IDR 2,000,000 – 7,000,000",
-          features: [
-            "Auto-generate text",
-            "Summarize content",
-            "Simple chat assistant",
-            "FAQ bot",
-            "Simplify / rewrite text",
-            "API + UI integration"
-          ]
-        },
-        {
-          name: "AI Recommendation / Scoring / Analysis",
-          description: "AI-based recommendation and data analysis system for your products or services.",
+          name: "Auto Lead Scoring & Analysis",
+          description: "Automated system for lead scoring and sales data analysis.",
           price: "IDR 5,000,000 – 15,000,000",
           features: [
-            "Automatic product recommendations",
-            "Simple data analysis",
-            "Generate recommendations based on user input",
-            "Automatic scoring (e.g., for CRM)",
-            "Data pre-processing",
-            "Prompt orchestration"
+            "Auto lead scoring for sales team",
+            "Automated sales data analysis",
+            "Generate recommendations based on data",
+            "Automated report generator",
+            "Integration with existing CRM"
           ]
         },
         {
-          name: "AI Chatbot Multi-context",
-          description: "Intelligent chatbot with memory and internal document context like custom Claude/ChatGPT.",
-          price: "IDR 12,000,000 – 35,000,000",
+          name: "Smart Report & Analytics",
+          description: "Automated reporting and analytics system for management.",
+          price: "IDR 8,000,000 – 25,000,000",
           features: [
-            "Chat that reads internal data",
-            "Chat with memory",
-            "Chat with document context",
-            "Chat that accesses database",
-            "Document embedding",
-            "Simple RAG",
-            "Caching & flow management"
+            "Auto report generator",
+            "Data visualization dashboard",
+            "Predictive analytics",
+            "Custom metrics & KPIs",
+            "Scheduled reports"
           ]
         },
         {
-          name: "AI + RAG (Document Upload + QA)",
-          description: "AI system that can read and answer questions from uploaded documents.",
+          name: "Intelligent Document Processing",
+          description: "System that can read, process, and answer questions from documents.",
           price: "IDR 25,000,000 – 60,000,000",
           features: [
-            "User upload PDF/Docs",
-            "Automatic chunking system",
-            "Document embedding",
-            "Search + answer from documents",
-            "Mini vector database",
-            "Multi-document support"
+            "Document upload & processing",
+            "Auto extract information",
+            "Search & answer from documents",
+            "Multi-document support",
+            "Integration with existing workflow"
           ]
         },
         {
-          name: "Fully Integrated AI Agent",
-          description: "AI agent that can take automatic actions within your system.",
+          name: "Workflow Automation System",
+          description: "Workflow automation system that can take automatic actions within your system.",
           price: "IDR 40,000,000 – 120,000,000",
           features: [
-            "AI for CRM that can update pipeline automatically",
-            "AI for ERP that can create invoices automatically",
-            "AI that can execute specific commands",
-            "Multi-prompt orchestration",
-            "Error recovery",
-            "Complete database integration",
-            "Access to multiple system modules"
+            "Auto update pipeline (CRM)",
+            "Auto create invoice (ERP)",
+            "Smart decision making",
+            "Multi-system integration",
+            "Error handling & recovery",
+            "Custom business rules"
           ]
         }
       ]
+    },
+    customSoftware: {
+      title: "Custom Software Development",
+      subtitle: "Tailored Software Solutions Built for Your Business",
+      description: "We build custom software tailored to your unique business needs. From web to mobile applications, from management systems to complex integrations — all built specifically for you.",
+      packages: [
+        {
+          name: "Custom Software Development",
+          description: "Web & Mobile applications tailored to your business processes. For growing businesses, internal systems, or operational tools.",
+          price: "IDR 20,000,000 – 120,000,000",
+          bestFor: "Growing businesses, internal systems, MVP & operational tools",
+          features: [
+            "Web & Mobile applications",
+            "Tailored to your business processes",
+            "Internal systems & dashboards",
+            "MVP development",
+            "Operational tools",
+            "Custom integrations",
+            "Dedicated project manager"
+          ],
+          revisions: ["Revisions included in development", "Post-launch support available"]
+        },
+        {
+          name: "Enterprise Software Solution",
+          description: "Complete enterprise system with multiple modules and complex integrations.",
+          price: "IDR 150,000,000 – 800,000,000+",
+          bestFor: "Large companies needing integrated and scalable systems",
+          features: [
+            "Multiple modules & features",
+            "Complex integrations",
+            "Scalable architecture",
+            "Advanced security & compliance",
+            "Custom reporting & analytics",
+            "Team collaboration tools",
+            "Dedicated project manager",
+            "SLA guarantee",
+            "Security audit & certification",
+            "Training & documentation"
+          ],
+          revisions: ["Unlimited small revisions during development", "10x major revisions"]
+        }
+      ]
+    },
+    recurringRevenue: {
+      title: "Recurring Revenue Solutions",
+      subtitle: "Sustainable Revenue for Stable Business",
+      description: "Build stable and sustainable revenue with maintenance and licensing packages. Get ongoing support and access to continuously evolving systems.",
+      maintenance: {
+        title: "Maintenance & Support Plans",
+        label: "Maintenance & Support",
+        description: "Ensure your application always runs optimally with ongoing support.",
+        packages: [
+          {
+            name: "Basic Maintenance",
+            price: "IDR 2,000,000/month",
+            features: [
+              "Bug fixes & security updates",
+              "Server monitoring",
+              "Daily backups",
+              "Email support (5 business days)",
+              "Minor updates (monthly)"
+            ],
+            sla: "Response time: 48 hours"
+          },
+          {
+            name: "Pro Maintenance",
+            price: "IDR 5,000,000/month",
+            features: [
+              "All Basic features",
+              "Performance optimization",
+              "Small feature updates",
+              "Priority support (24/7)",
+              "Monthly health check",
+              "Uptime monitoring & alerts"
+            ],
+            sla: "Response time: 4 hours"
+          },
+          {
+            name: "Enterprise Maintenance",
+            price: "IDR 10,000,000 – 20,000,000/month",
+            features: [
+              "All Pro features",
+              "Dedicated support team",
+              "Custom feature development",
+              "SLA guarantee (99.9% uptime)",
+              "Quarterly strategy review",
+              "Security audit & compliance",
+              "On-site support (optional)"
+            ],
+            sla: "Response time: 1 hour, 99.9% uptime SLA"
+          }
+        ]
+      },
+      licensing: {
+        title: "Software Licensing (White-label)",
+        label: "Licensing Plans",
+        description: "Access to base system + customization. Pay once for setup, then monthly license for ongoing access.",
+        packages: [
+          {
+            name: "CRM Base License",
+            setupPrice: "IDR 50,000,000",
+            monthlyPrice: "IDR 3,000,000 – 5,000,000/month",
+            bestFor: "Companies needing CRM with limited customization",
+            features: [
+              "Base CRM system (ready-to-use)",
+              "Custom branding & logo",
+              "Basic customization (5 modules)",
+              "User management (up to 50 users)",
+              "Monthly updates & bug fixes",
+              "Email support"
+            ]
+          },
+          {
+            name: "Enterprise License",
+            setupPrice: "IDR 100,000,000 – 200,000,000",
+            monthlyPrice: "IDR 10,000,000 – 20,000,000/month",
+            bestFor: "Large companies needing complete system with full customization",
+            features: [
+              "Full system access (CRM + ERP modules)",
+              "Unlimited customization",
+              "Unlimited users",
+              "Priority development queue",
+              "Dedicated account manager",
+              "Custom integrations",
+              "White-label support",
+              "Source code access (optional)"
+            ]
+          }
+        ]
+      }
     }
   }
 };

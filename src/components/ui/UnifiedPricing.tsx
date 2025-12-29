@@ -61,15 +61,60 @@ interface AiAddons {
   packages: AiAddonPackage[];
 }
 
+interface CustomSoftwarePackage {
+  name: string;
+  description: string;
+  price: string;
+  features: string[];
+  revisions?: string[];
+  bestFor: string;
+}
+
+interface CustomSoftware {
+  title: string;
+  subtitle: string;
+  description: string;
+  packages: CustomSoftwarePackage[];
+}
+
+interface RecurringRevenue {
+  title: string;
+  subtitle: string;
+  description: string;
+  maintenance: {
+    title: string;
+    description: string;
+    packages: {
+      name: string;
+      price: string;
+      features: string[];
+      sla?: string;
+    }[];
+  };
+  licensing: {
+    title: string;
+    description: string;
+    packages: {
+      name: string;
+      setupPrice: string;
+      monthlyPrice: string;
+      features: string[];
+      bestFor: string;
+    }[];
+  };
+}
+
 interface UnifiedPricingProps {
   lang: 'en' | 'id';
   packages: PricingPackage[];
   revisionSystem: RevisionSystem;
   erpCrm: ErpCrm;
   aiAddons?: AiAddons;
+  customSoftware?: CustomSoftware;
+  recurringRevenue?: RecurringRevenue;
 }
 
-type TabType = 'website' | 'crm' | 'erp' | 'ai';
+type TabType = 'custom' | 'recurring' | 'website' | 'crm' | 'erp' | 'ai';
 
 const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
   lang,
@@ -77,15 +122,17 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
   revisionSystem,
   erpCrm,
   aiAddons,
+  customSoftware,
+  recurringRevenue,
 }) => {
-  const [activeTab, setActiveTab] = useState<TabType>('website');
+  const [activeTab, setActiveTab] = useState<TabType>(customSoftware ? 'custom' : recurringRevenue ? 'recurring' : 'website');
   const [showRevisions, setShowRevisions] = useState(false);
+  const [recurringSubTab, setRecurringSubTab] = useState<'maintenance' | 'licensing'>('maintenance');
 
   const tabs: { id: TabType; label: string }[] = [
-    { id: 'website', label: 'Website' },
-    { id: 'crm', label: 'CRM' },
-    { id: 'erp', label: 'ERP' },
-    ...(aiAddons ? [{ id: 'ai' as TabType, label: 'AI' }] : []),
+    ...(customSoftware ? [{ id: 'custom' as TabType, label: lang === 'en' ? 'Custom Software' : 'Software Custom' }] : []),
+    ...(recurringRevenue ? [{ id: 'recurring' as TabType, label: lang === 'en' ? 'Recurring Plans' : 'Paket Berulang' }] : []),
+    ...(aiAddons ? [{ id: 'ai' as TabType, label: lang === 'en' ? 'Smart Automation' : 'Otomatisasi Cerdas' }] : []),
   ];
 
   return (
@@ -119,12 +166,12 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
             {lang === 'en' ? 'Pricing' : 'Harga'}
           </p>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-foreground mb-6">
-            {lang === 'en' ? 'Choose Your Plan' : 'Pilih Paket Anda'}
+            {lang === 'en' ? 'Product-Focused Solution Partner' : 'Partner Solusi Berfokus Produk'}
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground text-lg">
             {lang === 'en'
-              ? 'Transparent pricing for every scale of business.'
-              : 'Harga transparan untuk setiap skala bisnis.'}
+              ? 'We help scale your operational sales & internal workflow. Not just building apps—we build sustainable business solutions with recurring value.'
+              : 'Kami membantu scaling operasional sales & workflow internal perusahaan Anda. Bukan hanya membangun aplikasi—kami membangun solusi bisnis berkelanjutan dengan nilai berulang.'}
           </p>
         </div>
 
@@ -167,178 +214,103 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
           </div>
         </div>
 
-        {/* Website Packages */}
-        {activeTab === 'website' && (
-          <div className="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {packages.map((pkg, index) => (
-              <div
-                key={pkg.title}
-                className={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 overflow-hidden ${
-                  index === 1
-                    ? 'border-primary bg-primary text-primary-foreground'
-                    : 'border-border bg-background hover:border-primary/50'
-                }`}
-              >
-                {index === 1 && (
-                  <div className="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
-                    {lang === 'en' ? 'Most Popular' : 'Paling Populer'}
-                  </div>
-                )}
+        {/* Custom Software Packages */}
+        {activeTab === 'custom' && customSoftware && (
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-bold mb-4">{customSoftware.title}</h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto">{customSoftware.description}</p>
+            </div>
 
-                <div className="mb-8">
-                  <h3 className="text-lg font-bold mb-2">{pkg.title}</h3>
-                  <p
-                    className={`text-sm mb-6 ${
-                      index === 1 ? 'text-primary-foreground/70' : 'text-muted-foreground'
-                    }`}
-                  >
-                    {pkg.description}
-                  </p>
-                  <p className="text-2xl font-bold">{pkg.price}</p>
-                </div>
+            <div className="grid md:grid-cols-2 gap-6 mb-8">
+              {customSoftware.packages.map((pkg, index) => (
+                <div
+                  key={pkg.name}
+                  className={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 overflow-hidden ${
+                    index === 1
+                      ? 'border-primary bg-primary text-primary-foreground scale-105 z-10'
+                      : 'border-border bg-background hover:border-primary/50'
+                  }`}
+                >
+                  {index === customSoftware.packages.length - 1 && (
+                    <div className="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+                      {lang === 'en' ? 'Enterprise' : 'Enterprise'}
+                    </div>
+                  )}
 
-                <div className="space-y-6 mb-8 flex-1">
-                  {/* Features */}
-                  <div>
+                  <div className="mb-8">
+                    <h3 className="text-lg font-bold mb-2">{pkg.name}</h3>
                     <p
-                      className={`text-xs font-medium uppercase tracking-wider mb-3 ${
-                        index === 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'
+                      className={`text-sm mb-4 ${
+                        index === customSoftware.packages.length - 1 ? 'text-primary-foreground/70' : 'text-muted-foreground'
                       }`}
                     >
-                      {lang === 'en' ? 'Includes' : 'Termasuk'}
+                      {pkg.description}
                     </p>
-                    <ul className="space-y-2">
-                      {pkg.features.map((feature) => (
-                        <li key={feature} className="flex items-start gap-3 text-sm">
-                          <Check
-                            className={`w-4 h-4 mt-0.5 shrink-0 ${
-                              index === 1 ? 'text-brand' : 'text-muted-foreground'
-                            }`}
-                          />
-                          <span>{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* Revisions */}
-                  <div>
+                    <p className="text-2xl font-bold mb-2">{pkg.price}</p>
                     <p
-                      className={`text-xs font-medium uppercase tracking-wider mb-3 ${
-                        index === 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'
+                      className={`text-xs ${
+                        index === customSoftware.packages.length - 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'
                       }`}
                     >
-                      {lang === 'en' ? 'Revisions' : 'Revisi'}
+                      {pkg.bestFor}
                     </p>
-                    <ul className="space-y-1.5">
-                      {pkg.revisions.map((rev) => (
-                        <li
-                          key={rev}
-                          className={`text-sm ${
-                            index === 1 ? 'text-primary-foreground/70' : 'text-muted-foreground'
-                          }`}
-                        >
-                          {rev}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
 
-                  {/* Add-ons */}
-                  {pkg.addons && pkg.addons.length > 0 && (
+                  <div className="space-y-6 mb-8 flex-1">
                     <div>
                       <p
                         className={`text-xs font-medium uppercase tracking-wider mb-3 ${
-                          index === 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'
+                          index === customSoftware.packages.length - 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'
                         }`}
                       >
-                        {lang === 'en' ? 'Add-ons' : 'Tambahan'}
+                        {lang === 'en' ? 'Includes' : 'Termasuk'}
                       </p>
-                      <ul className="space-y-1.5">
-                        {pkg.addons.map((addon) => (
-                          <li
-                            key={addon}
-                            className={`flex items-start gap-2 text-xs ${
-                              index === 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'
-                            }`}
-                          >
-                            <Plus className="w-3 h-3 mt-0.5 shrink-0" />
-                            <span>{addon}</span>
+                      <ul className="space-y-2">
+                        {pkg.features.map((feature) => (
+                          <li key={feature} className="flex items-start gap-3 text-sm">
+                            <Check
+                              className={`w-4 h-4 mt-0.5 shrink-0 ${
+                                index === customSoftware.packages.length - 1 ? 'text-brand' : 'text-muted-foreground'
+                              }`}
+                            />
+                            <span>{feature}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                  )}
-                </div>
 
-                <a
-                  href={getWhatsAppLink('pricing', lang, pkg.title)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`w-full py-3 px-6 rounded-full font-medium text-center text-sm transition-colors duration-300 ${
-                    index === 1
-                      ? 'bg-brand text-white hover:bg-brand/90'
-                      : 'bg-primary text-primary-foreground hover:bg-primary/90'
-                  }`}
-                >
-                  {lang === 'en' ? 'Get Started' : 'Mulai'}
-                </a>
-              </div>
-            ))}
-          </div>
-        )}
-
-        {/* CRM Packages */}
-        {activeTab === 'crm' && (
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <p className="text-muted-foreground">{erpCrm.crm.description}</p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              {erpCrm.crm.packages.map((pkg, index) => (
-                <div
-                  key={pkg.name}
-                  className={`flex flex-col p-8 rounded-3xl border transition-all duration-300 ${
-                    index === 1
-                      ? 'border-primary bg-primary text-primary-foreground'
-                      : 'border-border bg-background hover:border-primary/50'
-                  }`}
-                >
-                  <div className="mb-8">
-                    <h3 className="text-lg font-bold mb-4">{pkg.name}</h3>
-                    <p className="text-2xl font-bold">{pkg.price}</p>
-                  </div>
-
-                  <ul className="space-y-2 mb-8 flex-1">
-                    {pkg.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3 text-sm">
-                        <Check
-                          className={`w-4 h-4 mt-0.5 shrink-0 ${
-                            index === 1 ? 'text-brand' : 'text-muted-foreground'
+                    {pkg.revisions && (
+                      <div>
+                        <p
+                          className={`text-xs font-medium uppercase tracking-wider mb-3 ${
+                            index === customSoftware.packages.length - 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'
                           }`}
-                        />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {pkg.revisions && (
-                    <p
-                      className={`text-xs mb-6 ${
-                        index === 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'
-                      }`}
-                    >
-                      {pkg.revisions.join(' · ')}
-                    </p>
-                  )}
+                        >
+                          {lang === 'en' ? 'Revisions' : 'Revisi'}
+                        </p>
+                        <ul className="space-y-1.5">
+                          {pkg.revisions.map((rev) => (
+                            <li
+                              key={rev}
+                              className={`text-sm ${
+                                index === customSoftware.packages.length - 1 ? 'text-primary-foreground/70' : 'text-muted-foreground'
+                              }`}
+                            >
+                              {rev}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
 
                   <a
                     href={getWhatsAppLink('pricing', lang, pkg.name)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`w-full py-3 px-6 rounded-full font-medium text-center text-sm transition-colors duration-300 ${
-                      index === 1
+                      index === customSoftware.packages.length - 1
                         ? 'bg-brand text-white hover:bg-brand/90'
                         : 'bg-primary text-primary-foreground hover:bg-primary/90'
                     }`}
@@ -351,64 +323,235 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
           </div>
         )}
 
-        {/* AI Add-ons - Special Section */}
-        {activeTab === 'ai' && aiAddons && (
-          <div className="max-w-7xl mx-auto">
-            <div className="relative rounded-3xl overflow-hidden border border-indigo-500/50 bg-linear-to-br from-indigo-900/20 via-purple-900/20 to-transparent p-8 md:p-12" style={{ boxShadow: '0 0 40px -10px rgba(124, 58, 237, 0.3)' }}>
-              {/* Glow Effect */}
-              <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/20 blur-[100px] rounded-full pointer-events-none"></div>
+        {/* Recurring Revenue Packages */}
+        {activeTab === 'recurring' && recurringRevenue && (
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-bold mb-4">{recurringRevenue.title}</h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto mb-6">{recurringRevenue.description}</p>
               
-              <div className="relative z-10 mb-12">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-500/50 bg-indigo-500 text-xs font-medium text-white mb-4">
-                  <Sparkles className="w-3 h-3" />
-                  {lang === 'en' ? 'Intelligence Layer' : 'Lapisan Kecerdasan'}
-                </div>
-                <h3 className="text-3xl font-medium tracking-tight mb-4">
-                  <span className="ai-gradient-text">{aiAddons.title}</span>
-                </h3>
-                <p className="text-muted-foreground max-w-2xl">{aiAddons.subtitle}</p>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 relative z-10">
-                {aiAddons.packages.slice(0, 3).map((aiPkg, index) => (
-                  <div
-                    key={aiPkg.name}
-                    className="bg-background/80 backdrop-blur border border-border/50 p-6 rounded-xl hover:border-indigo-500/50 transition-colors"
+              {/* Sub-tabs for Maintenance vs Licensing */}
+              <div className="flex justify-center mb-8">
+                <div className="inline-flex p-1 bg-secondary/80 rounded-full">
+                  <button
+                    onClick={() => setRecurringSubTab('maintenance')}
+                    className={`px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                      recurringSubTab === 'maintenance'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-foreground/70 hover:text-foreground bg-transparent'
+                    }`}
                   >
-                    <h3 className="text-foreground font-medium mb-2">{aiPkg.name}</h3>
-                    <p className="text-xs text-muted-foreground mb-4 h-8 line-clamp-2">{aiPkg.description}</p>
-                    <div className="text-lg font-medium text-foreground mb-4">{aiPkg.price}</div>
-                    <ul className="text-xs text-muted-foreground space-y-2">
-                      {aiPkg.features.slice(0, 2).map((feature) => (
-                        <li key={feature}>+ {feature}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-                
-                {/* Full AI Agent - Special Card */}
-                {aiAddons.packages[4] && (
-                  <div className="bg-background/80 backdrop-blur border border-border/50 p-6 rounded-xl hover:border-indigo-500/50 transition-colors md:col-span-2 lg:col-span-3 flex flex-col md:flex-row items-center justify-between gap-6">
-                    <div>
-                      <h3 className="text-foreground font-medium mb-2 flex items-center gap-2">
-                        {aiAddons.packages[4].name}
-                        <span className="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded font-medium">
-                          {lang === 'en' ? 'Advanced' : 'Tingkat Lanjut'}
-                        </span>
-                      </h3>
-                      <p className="text-sm text-muted-foreground max-w-xl">
-                        {aiAddons.packages[4].description}
-                      </p>
-                    </div>
-                    <div className="text-right">
-                      <div className="text-2xl font-medium text-foreground tracking-tight">{aiAddons.packages[4].price}</div>
-                      <div className="text-xs text-muted-foreground">
-                        {lang === 'en' ? 'Depending on complexity' : 'Tergantung kompleksitas'}
-                      </div>
-                    </div>
-                  </div>
-                )}
+                    {recurringRevenue.maintenance.label || recurringRevenue.maintenance.title}
+                  </button>
+                  <button
+                    onClick={() => setRecurringSubTab('licensing')}
+                    className={`px-6 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
+                      recurringSubTab === 'licensing'
+                        ? 'bg-primary text-primary-foreground'
+                        : 'text-foreground/70 hover:text-foreground bg-transparent'
+                    }`}
+                  >
+                    {recurringRevenue.licensing.label || recurringRevenue.licensing.title}
+                  </button>
+                </div>
               </div>
+            </div>
+
+            {/* Maintenance Plans */}
+            {recurringSubTab === 'maintenance' && (
+              <div>
+                <p className="text-center text-muted-foreground mb-8">{recurringRevenue.maintenance.description}</p>
+                <div className="grid md:grid-cols-3 gap-6">
+                  {recurringRevenue.maintenance.packages.map((pkg, index) => (
+                    <div
+                      key={pkg.name}
+                      className={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 overflow-hidden ${
+                        index === 1
+                          ? 'border-primary bg-primary text-primary-foreground scale-105 z-10'
+                          : 'border-border bg-background hover:border-primary/50'
+                      }`}
+                    >
+                      {index === 1 && (
+                        <div className="absolute top-0 right-0 bg-brand text-white text-[10px] font-bold px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+                          {lang === 'en' ? 'Most Popular' : 'Paling Populer'}
+                        </div>
+                      )}
+
+                      <div className="mb-8">
+                        <h3 className="text-lg font-bold mb-2">{pkg.name}</h3>
+                        <p className="text-2xl font-bold mb-2">{pkg.price}</p>
+                        {pkg.sla && (
+                          <p className={`text-xs ${index === 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'}`}>
+                            {pkg.sla}
+                          </p>
+                        )}
+                      </div>
+
+                      <ul className="space-y-2 mb-8 flex-1">
+                        {pkg.features.map((feature) => (
+                          <li key={feature} className="flex items-start gap-3 text-sm">
+                            <Check
+                              className={`w-4 h-4 mt-0.5 shrink-0 ${
+                                index === 1 ? 'text-brand' : 'text-muted-foreground'
+                              }`}
+                            />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <a
+                        href={getWhatsAppLink('pricing', lang, pkg.name)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-full py-3 px-6 rounded-full font-medium text-center text-sm transition-colors duration-300 ${
+                          index === 1
+                            ? 'bg-brand text-white hover:bg-brand/90'
+                            : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                        }`}
+                      >
+                        {lang === 'en' ? 'Get Started' : 'Mulai'}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Licensing Plans */}
+            {recurringSubTab === 'licensing' && (
+              <div>
+                <p className="text-center text-muted-foreground mb-8">{recurringRevenue.licensing.description}</p>
+                <div className="grid md:grid-cols-2 gap-6">
+                  {recurringRevenue.licensing.packages.map((pkg, index) => (
+                    <div
+                      key={pkg.name}
+                      className={`relative flex flex-col p-8 rounded-3xl border transition-all duration-300 ${
+                        index === 1
+                          ? 'border-primary bg-primary text-primary-foreground'
+                          : 'border-border bg-background hover:border-primary/50'
+                      }`}
+                    >
+                      <div className="mb-8">
+                        <h3 className="text-lg font-bold mb-2">{pkg.name}</h3>
+                        <p className={`text-sm mb-4 ${index === 1 ? 'text-primary-foreground/70' : 'text-muted-foreground'}`}>
+                          {pkg.bestFor}
+                        </p>
+                        <div className="space-y-2">
+                          <div>
+                            <p className={`text-xs ${index === 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'}`}>
+                              {lang === 'en' ? 'Setup Fee' : 'Biaya Setup'}
+                            </p>
+                            <p className="text-xl font-bold">{pkg.setupPrice}</p>
+                          </div>
+                          <div>
+                            <p className={`text-xs ${index === 1 ? 'text-primary-foreground/60' : 'text-muted-foreground'}`}>
+                              {lang === 'en' ? 'Monthly License' : 'Lisensi Bulanan'}
+                            </p>
+                            <p className="text-xl font-bold">{pkg.monthlyPrice}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ul className="space-y-2 mb-8 flex-1">
+                        {pkg.features.map((feature) => (
+                          <li key={feature} className="flex items-start gap-3 text-sm">
+                            <Check
+                              className={`w-4 h-4 mt-0.5 shrink-0 ${
+                                index === 1 ? 'text-brand' : 'text-muted-foreground'
+                              }`}
+                            />
+                            <span>{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <a
+                        href={getWhatsAppLink('pricing', lang, pkg.name)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`w-full py-3 px-6 rounded-full font-medium text-center text-sm transition-colors duration-300 ${
+                          index === 1
+                            ? 'bg-brand text-white hover:bg-brand/90'
+                            : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                        }`}
+                      >
+                        {lang === 'en' ? 'Get Started' : 'Mulai'}
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Enterprise - By Consultation Only */}
+        {activeTab === 'crm' && erpCrm && erpCrm.cta && (
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold mb-4">{erpCrm.title}</h3>
+              <p className="text-muted-foreground mb-8">{erpCrm.description}</p>
+              
+              <div className="bg-primary/10 border border-primary/20 rounded-3xl p-12 text-center">
+                <p className="text-sm font-medium uppercase tracking-wider text-muted-foreground mb-2">
+                  {erpCrm.cta.title}
+                </p>
+                <p className="text-3xl font-bold mb-2">{erpCrm.cta.subtitle}</p>
+                <p className="text-muted-foreground mb-6">{erpCrm.cta.timeline}</p>
+                <p className="text-muted-foreground mb-8 max-w-xl mx-auto">{erpCrm.cta.description}</p>
+                <a
+                  href={getWhatsAppLink('pricing', lang, 'Enterprise')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block px-8 py-4 rounded-full font-medium bg-brand text-white hover:bg-brand/90 transition-colors duration-300"
+                >
+                  {erpCrm.cta.button}
+                </a>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Smart Automation - Simplified Section */}
+        {activeTab === 'ai' && aiAddons && (
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl font-bold mb-4">{aiAddons.title}</h3>
+              <p className="text-muted-foreground max-w-2xl mx-auto">{aiAddons.subtitle}</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              {aiAddons.packages.map((pkg, index) => (
+                <div
+                  key={pkg.name}
+                  className="flex flex-col p-8 rounded-3xl border border-border bg-background hover:border-primary/50 transition-all duration-300"
+                >
+                  <div className="mb-6">
+                    <h3 className="text-lg font-bold mb-2">{pkg.name}</h3>
+                    <p className="text-sm text-muted-foreground mb-4">{pkg.description}</p>
+                    <p className="text-2xl font-bold">{pkg.price}</p>
+                  </div>
+
+                  <ul className="space-y-2 mb-8 flex-1">
+                    {pkg.features.map((feature) => (
+                      <li key={feature} className="flex items-start gap-3 text-sm">
+                        <Check className="w-4 h-4 mt-0.5 shrink-0 text-muted-foreground" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a
+                    href={getWhatsAppLink('pricing', lang, pkg.name)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full py-3 px-6 rounded-full font-medium text-center text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-300"
+                  >
+                    {lang === 'en' ? 'Get Started' : 'Mulai'}
+                  </a>
+                </div>
+              ))}
             </div>
           </div>
         )}
