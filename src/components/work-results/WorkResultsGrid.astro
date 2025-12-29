@@ -19,8 +19,6 @@ const projects = workResultsProjects[lang] || workResultsProjects['en'];
 
 <script>
   function initDrawerHandlers() {
-    const articles = document.querySelectorAll('.work-result-card[data-project]');
-    
     function openDrawer(projectData) {
       if (!projectData) return;
       
@@ -36,15 +34,37 @@ const projects = workResultsProjects[lang] || workResultsProjects['en'];
       }
     }
 
+    // Remove old event listeners by cloning
+    const articles = document.querySelectorAll('.work-result-card[data-project]');
     articles.forEach(article => {
       const newArticle = article.cloneNode(true);
       article.parentNode?.replaceChild(newArticle, article);
     });
-    
+
+    // Use event delegation on document for better reliability
+    document.addEventListener('click', function(e) {
+      // Handle button overlay clicks
+      const button = e.target.closest('.work-result-card-btn[data-project]');
+      if (button) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const projectData = button.getAttribute('data-project');
+        if (projectData) {
+          openDrawer(projectData);
+          return;
+        }
+      }
+    });
+
+    // Handle clicks on entire card
     document.querySelectorAll('.work-result-card[data-project]').forEach(article => {
       article.addEventListener('click', function(e) {
         const target = e.target;
-        if (target.closest('a')) return;
+        // Skip if clicking on GitHub link or button overlay
+        if (target.closest('a[href]') || target.closest('.work-result-card-btn')) {
+          return;
+        }
         
         const projectData = this.getAttribute('data-project');
         if (projectData) {
