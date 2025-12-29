@@ -550,7 +550,6 @@ export const pricingData: Record<string, PricingData> = {
             features: [
               "Bug fixes & security updates",
               "Server monitoring",
-              "Backup harian",
               "Email support (5 hari kerja)",
               "Update minor (bulanan)"
             ],
@@ -1002,7 +1001,6 @@ export const pricingData: Record<string, PricingData> = {
             features: [
               "Bug fixes & security updates",
               "Server monitoring",
-              "Daily backups",
               "Email support (5 business days)",
               "Minor updates (monthly)"
             ],
