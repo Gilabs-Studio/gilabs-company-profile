@@ -2,7 +2,7 @@
 
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
-import { useEffect, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import LightRays from './LightRays';
 
 // Responsive dimensions
@@ -13,8 +13,6 @@ const getDimensions = (isMobile: boolean) => ({
   columns: isMobile ? 2 : 4,
   containerHeight: isMobile ? '100vh' : '175vh',
 });
-
-const IMAGES_PER_COLUMN = 7; // Number of images per column for smooth looping
 
 interface ParallaxGalleryProps {
   images: string[];
@@ -34,17 +32,17 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   const { height } = dimension;
   const dimensions = getDimensions(isMobile);
   
-  // Adjust parallax speeds for mobile (less movement)
-  const y = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 1.2 : 2)]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 1.8 : 3.3)]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.8 : 1.25)]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 1.5 : 3)]);
+  // Adjust parallax speeds
+  const y = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.3 : 0.5)]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.6 : 1.0)]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.25 : 0.4)]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.45 : 0.8)]);
 
-  // Scale transform: less aggressive on mobile
+  // Scale transform:
   const scale = useTransform(
     scrollYProgress, 
-    [0, 0.5, 1], 
-    isMobile ? [1.1, 1.05, 1] : [1.5, 1.2, 1]
+    [0, 1], 
+    isMobile ? [1.05, 1] : [1.15, 1]
   );
 
   useEffect(() => {
@@ -98,27 +96,30 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
     };
   }, []);
 
-  // Filter out empty or invalid images
-  const validImages = images.filter(img => img && img.trim() !== '');
+  // Filter out empty or invalid images - memoized
+  const validImages = useMemo(
+    () => images.filter(img => img && img.trim() !== ''),
+    [images]
+  );
   
-  // Create looped images for each column - each column gets different starting point
-  const createColumnImages = (startIndex: number) => {
-    const columnImages: string[] = [];
-    for (let i = 0; i < IMAGES_PER_COLUMN; i++) {
-      const imageIndex = (startIndex + i) % validImages.length;
-      columnImages.push(validImages[imageIndex]);
-    }
-    return columnImages;
-  };
-
-  // Each column starts from different offset for variety
-  const column1Images = createColumnImages(0);
-  const column2Images = createColumnImages(Math.floor(validImages.length * 0.25));
-  const column3Images = createColumnImages(Math.floor(validImages.length * 0.5));
-  const column4Images = createColumnImages(Math.floor(validImages.length * 0.75));
+  // Distribute images evenly across columns WITHOUT duplication
+  // Each image appears only once in the gallery
+  const columnImages = useMemo(() => {
+    const numColumns = isMobile ? 2 : 4;
+    const columns: string[][] = Array.from({ length: numColumns }, () => []);
+    
+    // Distribute images across columns (round-robin)
+    validImages.forEach((img, index) => {
+      columns[index % numColumns].push(img);
+    });
+    
+    return columns;
+  }, [validImages, isMobile]);
 
   const buttonText = lang === 'id' ? 'Lihat Semua Proyek' : 'View All Projects';
   const workResultsUrl = lang === 'id' ? '/id/work-results' : '/en/work-results';
+
+  const yTransforms = [y, y2, y3, y4];
 
   return (
     <div className="relative w-full bg-background text-foreground overflow-visible">
@@ -131,16 +132,18 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
           gap: dimensions.gap, 
           padding: dimensions.gap,
           height: dimensions.containerHeight,
+          willChange: 'transform',
         }}
       >
-        <Column images={column1Images} y={y} dimensions={dimensions} />
-        <Column images={column2Images} y={y2} dimensions={dimensions} />
-        {!isMobile && (
-          <>
-            <Column images={column3Images} y={y3} dimensions={dimensions} />
-            <Column images={column4Images} y={y4} dimensions={dimensions} />
-          </>
-        )}
+        {columnImages.map((images, colIndex) => (
+          <Column 
+            key={colIndex}
+            images={images} 
+            y={yTransforms[colIndex]} 
+            dimensions={dimensions}
+            columnIndex={colIndex}
+          />
+        ))}
       </motion.div>
 
       {/* LightRays Overlay - synced with Layout's LightRays */}
@@ -193,32 +196,20 @@ type ColumnProps = {
   images: string[];
   y: MotionValue<number>;
   dimensions: ReturnType<typeof getDimensions>;
+  columnIndex: number;
 };
 
-// Individual image component with blur placeholder
-const BlurImage = ({ src, index, dimensions }: { src: string; index: number; dimensions: ReturnType<typeof getDimensions> }) => {
+// Individual image component with blur placeholder - memoized for performance
+const BlurImage = memo(({ src, isEager, dimensions }: { 
+  src: string; 
+  isEager: boolean; 
+  dimensions: ReturnType<typeof getDimensions>;
+}) => {
   const [imageLoaded, setImageLoaded] = useState(false);
-  const imgRef = useRef<HTMLImageElement>(null);
 
-  useEffect(() => {
-    // Preload the actual image in background
-    const img = new Image();
-    img.src = src;
-    
-    img.onload = () => {
-      setImageLoaded(true);
-    };
-
-    img.onerror = () => {
-      // Mark as loaded even on error to stop showing placeholder
-      setImageLoaded(true);
-    };
-
-    return () => {
-      img.onload = null;
-      img.onerror = null;
-    };
-  }, [src]);
+  const handleLoad = useCallback(() => {
+    setImageLoaded(true);
+  }, []);
 
   return (
     <div 
@@ -226,24 +217,21 @@ const BlurImage = ({ src, index, dimensions }: { src: string; index: number; dim
       style={{ 
         width: dimensions.columnWidth,
         height: dimensions.imageHeight,
+        willChange: 'transform',
+        contain: 'layout style paint',
       }}
     >
       {/* Minimal blur placeholder - shows immediately while image loads */}
       {!imageLoaded && (
         <div
-          className="absolute inset-0 pointer-events-none bg-muted/50"
-          style={{ 
-            width: dimensions.columnWidth,
-            height: dimensions.imageHeight,
-          }}
+          className="absolute inset-0 pointer-events-none bg-muted/50 animate-pulse"
           aria-hidden="true"
         />
       )}
       
       {/* Actual image - loads in background */}
       <img
-        ref={imgRef}
-        loading={index < 2 ? "eager" : "lazy"}
+        loading={isEager ? "eager" : "lazy"}
         decoding="async"
         src={src}
         alt=""
@@ -254,38 +242,44 @@ const BlurImage = ({ src, index, dimensions }: { src: string; index: number; dim
           width: dimensions.columnWidth,
           height: dimensions.imageHeight,
         }}
-        onLoad={() => setImageLoaded(true)}
+        onLoad={handleLoad}
       />
     </div>
   );
-};
+});
 
-const Column = ({ images, y, dimensions }: ColumnProps) => {
-  // Filter out empty or invalid images
-  const validImages = images.filter(img => img && img.trim() !== '');
+BlurImage.displayName = 'BlurImage';
 
+// Column offsets for visual variety - minimized to prevent hiding content
+// Kept very close to 0 to ensure top images are always visible
+const COLUMN_OFFSETS = ['0%', '-8%', '-3%', '-10%'];
+
+const Column = memo(({ images, y, dimensions, columnIndex }: ColumnProps) => {
   return (
     <motion.div
-      className="relative flex flex-col first:top-[-45%] nth-2:top-[-95%] nth-3:top-[-45%] nth-4:top-[-75%]"
+      className="relative flex flex-col"
       style={{ 
         y,
+        top: COLUMN_OFFSETS[columnIndex] ?? '0%',
         width: dimensions.columnWidth,
         minWidth: dimensions.columnWidth,
         maxWidth: dimensions.columnWidth,
         gap: dimensions.gap,
+        willChange: 'transform',
       }}
     >
-      {validImages.map((src, index) => (
+      {images.map((src, index) => (
         <BlurImage 
-          key={`${src}-${index}`}
+          key={src}
           src={src}
-          index={index}
+          isEager={index < 2}
           dimensions={dimensions}
         />
       ))}
     </motion.div>
   );
-};
+});
+
+Column.displayName = 'Column';
 
 export default ParallaxGallery;
-
