@@ -233,7 +233,7 @@ const BlurImage = memo(({ src, isEager, dimensions }: {
       <img
         loading={isEager ? "eager" : "lazy"}
         decoding="async"
-        src={src}
+        src={encodeURI(src)}
         alt=""
         className={`pointer-events-none object-cover transition-opacity duration-300 ${
           imageLoaded ? 'opacity-100' : 'opacity-0'
@@ -250,9 +250,8 @@ const BlurImage = memo(({ src, isEager, dimensions }: {
 
 BlurImage.displayName = 'BlurImage';
 
-// Column offsets for visual variety - minimized to prevent hiding content
-// Kept very close to 0 to ensure top images are always visible
-const COLUMN_OFFSETS = ['0%', '-8%', '-3%', '-10%'];
+// Column offsets for visual variety - creates staggered effect
+const COLUMN_OFFSETS = ['-5%', '-15%', '0%', '-8%'];
 
 const Column = memo(({ images, y, dimensions, columnIndex }: ColumnProps) => {
   return (
