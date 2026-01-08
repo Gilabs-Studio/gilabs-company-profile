@@ -16,12 +16,12 @@ const logos = [
 ];
 ---
 
-<section class="relative min-h-screen flex flex-col items-center justify-center overflow-visible py-8 md:py-12 lg:py-20">
+<section class="relative h-screen flex flex-col items-center justify-center overflow-hidden pt-20 sm:pt-24 lg:pt-28 xl:pt-32 pb-8 md:pb-12">
   
   <div class="container mx-auto px-4 text-center max-w-5xl relative z-10 pt-8 md:pt-12 pb-8 md:pb-12">
     {/* Conversion Conversion Element - Logo Marquee */}
     <div class="mb-6 md:mb-8 lg:mb-12 opacity-80 animate-fade-in">
-      <p class="text-[0.65rem] sm:text-[0.7rem] font-bold uppercase tracking-widest text-muted-foreground mb-3 md:mb-4">
+      <p class="text-[0.6rem] sm:text-xs md:text-xs lg:text-sm font-bold uppercase tracking-widest text-muted-foreground mb-3 md:mb-4">
         {lang === 'en' ? 'Powering Next-Gen Tech' : 'Mendukung Teknologi Masa Depan'}
       </p>
       <div class="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12 flex-wrap transition-all duration-500">
@@ -43,7 +43,7 @@ const logos = [
       {t.title}
     </h1>
     
-    <div class="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-6 md:mb-8 lg:mb-12 max-w-3xl mx-auto animate-slide-up space-y-1 md:space-y-2 font-light px-4" style="animation-delay: 0.2s;">
+    <div class="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-muted-foreground mb-6 md:mb-8 lg:mb-12 max-w-3xl mx-auto animate-slide-up space-y-1 md:space-y-2 font-light px-4" style="animation-delay: 0.2s;">
       {t.subtitle.map((line) => (
         <p>{line}</p>
       ))}
