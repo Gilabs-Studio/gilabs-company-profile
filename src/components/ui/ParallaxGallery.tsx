@@ -2,7 +2,7 @@
 
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
-import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useEffect, useMemo, useRef, useState } from 'react';
 import LightRays from './LightRays';
 
 // Responsive dimensions
@@ -199,50 +199,25 @@ type ColumnProps = {
   columnIndex: number;
 };
 
-// Individual image component with blur placeholder - memoized for performance
-const BlurImage = memo(({ src, isEager, dimensions }: { 
+// Simple image component - no complex loading states, just render the image
+const BlurImage = memo(({ src, dimensions }: { 
   src: string; 
-  isEager: boolean; 
   dimensions: ReturnType<typeof getDimensions>;
 }) => {
-  const [imageLoaded, setImageLoaded] = useState(false);
-
-  const handleLoad = useCallback(() => {
-    setImageLoaded(true);
-  }, []);
-
   return (
     <div 
       className="relative overflow-hidden rounded-lg shrink-0 bg-muted"
       style={{ 
         width: dimensions.columnWidth,
         height: dimensions.imageHeight,
-        willChange: 'transform',
-        contain: 'layout style paint',
       }}
     >
-      {/* Minimal blur placeholder - shows immediately while image loads */}
-      {!imageLoaded && (
-        <div
-          className="absolute inset-0 pointer-events-none bg-muted/50 animate-pulse"
-          aria-hidden="true"
-        />
-      )}
-      
-      {/* Actual image - loads in background */}
       <img
-        loading={isEager ? "eager" : "lazy"}
+        loading="eager"
         decoding="async"
         src={encodeURI(src)}
         alt=""
-        className={`pointer-events-none object-cover transition-opacity duration-300 ${
-          imageLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-        style={{ 
-          width: dimensions.columnWidth,
-          height: dimensions.imageHeight,
-        }}
-        onLoad={handleLoad}
+        className="w-full h-full object-cover"
       />
     </div>
   );
@@ -267,11 +242,10 @@ const Column = memo(({ images, y, dimensions, columnIndex }: ColumnProps) => {
         willChange: 'transform',
       }}
     >
-      {images.map((src, index) => (
+      {images.map((src) => (
         <BlurImage 
           key={src}
           src={src}
-          isEager={index < 2}
           dimensions={dimensions}
         />
       ))}
