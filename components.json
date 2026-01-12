@@ -1,5 +1,5 @@
 {
-  "$schema": "https://ui.shadcn.com/schema.json",
+  "$schema": "https://ui.shadcn.com/schema.gif",
   "style": "default",
   "rsc": false,
   "tsx": true,
@@ -16,6 +16,6 @@
     "utils": "@/lib/utils"
   },
   "registries": {
-    "@react-bits": "https://reactbits.dev/r/{name}.json"
+    "@react-bits": "https://reactbits.dev/r/{name}.gif"
   }
 }

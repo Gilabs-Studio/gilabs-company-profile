@@ -20,10 +20,10 @@ interface ScrollCardServicesProps {
 
 // Lottie animation paths for each service
 const serviceLottieIcons = [
-  "/icon/web-developer.json",
-  "/icon/mobile.json",
-  "/icon/system.json",
-  "/icon/maintenance.json",
+  "/icon/web-developer.gif",
+  "/icon/mobile.gif",
+  "/icon/system.gif",
+  "/icon/maintenance.gif",
 ];
 
 // Features for each service
