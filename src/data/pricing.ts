@@ -147,14 +147,24 @@ export interface PricingData {
     }[];
   };
   aiAddons: {
-    title: string;
-    subtitle: string;
-    packages: {
-      name: string;
+    tabLabel: string;
+    headline: string;
+    eyebrow: string;
+    narrative: string;
+    impacts: {
+      stat: string;
+      label: string;
       description: string;
-      price: string;
-      features: string[];
     }[];
+    useCases: {
+      title: string;
+      items: string[];
+    };
+    pricingNote: string;
+    cta: {
+      primary: string;
+      secondary: string;
+    };
   };
   customSoftware: {
     title: string;
@@ -439,59 +449,25 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     aiAddons: {
-      title: "Smart Automation & Intelligent Features",
-      subtitle: "Tingkatkan efisiensi operasional dengan fitur otomatisasi dan analisis cerdas.",
-      packages: [
-        {
-          name: "Auto Lead Scoring & Analysis",
-          description: "Sistem otomatis untuk scoring leads dan analisis data sales.",
-          price: "Rp 5.000.000 – 15.000.000",
-          features: [
-            "Auto lead scoring untuk sales team",
-            "Analisis data sales otomatis",
-            "Generate rekomendasi berdasarkan data",
-            "Report generator otomatis",
-            "Integration dengan CRM existing"
-          ]
-        },
-        {
-          name: "Smart Report & Analytics",
-          description: "Sistem pelaporan dan analitik otomatis untuk manajemen.",
-          price: "Rp 8.000.000 – 25.000.000",
-          features: [
-            "Auto report generator",
-            "Data visualization dashboard",
-            "Predictive analytics",
-            "Custom metrics & KPIs",
-            "Scheduled reports"
-          ]
-        },
-        {
-          name: "Intelligent Document Processing",
-          description: "Sistem yang dapat membaca, memproses, dan menjawab pertanyaan dari dokumen.",
-          price: "Rp 25.000.000 – 60.000.000",
-          features: [
-            "Document upload & processing",
-            "Auto extract information",
-            "Search & answer dari dokumen",
-            "Multi-document support",
-            "Integration dengan workflow existing"
-          ]
-        },
-        {
-          name: "Workflow Automation System",
-          description: "Sistem otomatisasi workflow yang dapat mengambil tindakan otomatis dalam sistem Anda.",
-          price: "Rp 40.000.000 – 120.000.000",
-          features: [
-            "Auto update pipeline (CRM)",
-            "Auto create invoice (ERP)",
-            "Smart decision making",
-            "Multi-system integration",
-            "Error handling & recovery",
-            "Custom business rules"
-          ]
-        }
-      ]
+      tabLabel: "Otomatisasi Cerdas",
+      headline: "Bagaimana jika operasional Anda berjalan tanpa follow-up manual?",
+      eyebrow: "Lapisan Kecerdasan",
+      narrative: "Kami membantu tim menghilangkan tugas berulang dengan mengotomatisasi persetujuan, pelaporan, dan sinkronisasi data antar sistem. Dari routing lead dan invoicing hingga pemeriksaan compliance dan notifikasi — otomatisasi kami menyesuaikan dengan cara kerja tim Anda, bukan sebaliknya.",
+      impacts: [
+        { stat: "60%", label: "Pengurangan operasi manual", description: "Otomatisasi tugas berulang dan bebaskan tim Anda" },
+        { stat: "Nol", label: "Kesalahan manusia dalam workflow", description: "Minimalisir kesalahan dalam proses persetujuan & pelaporan" },
+        { stat: "Semua", label: "Integrasi sistem", description: "Hubungkan ERP, CRM, tools internal, dan API pihak ketiga" },
+        { stat: "∞", label: "Otomatisasi yang scalable", description: "Otomatisasi yang tumbuh bersama bisnis Anda" }
+      ],
+      useCases: {
+        title: "Apa yang bisa diotomatisasi?",
+        items: ["Routing & scoring lead", "Pembuatan invoice", "Workflow persetujuan", "Pemeriksaan compliance", "Penjadwalan laporan", "Sinkronisasi data", "Sistem notifikasi", "Update pipeline"]
+      },
+      pricingNote: "Harga ditentukan setelah memahami kebutuhan workflow dan integrasi Anda.",
+      cta: {
+        primary: "Jelajahi Peluang Otomasi",
+        secondary: "Konsultasi gratis untuk mengidentifikasi use case otomasi"
+      }
     },
     customSoftware: {
       title: "Custom Software Development",
@@ -538,7 +514,7 @@ export const pricingData: Record<string, PricingData> = {
     recurringRevenue: {
       title: "Recurring Revenue Solutions",
       subtitle: "Revenue Berkelanjutan untuk Bisnis yang Stabil",
-      description: "Bangun revenue yang stabil dan berkelanjutan dengan paket maintenance dan licensing. Dapatkan support berkelanjutan dan akses ke sistem yang terus berkembang.",
+      description: "Bangun revenue yang stabil dan berkelanjutan dengan paket maintenance dan licensing. Anda membayar untuk mengurangi risiko, bukan untuk menambah fitur.",
       maintenance: {
         title: "Maintenance & Support Plans",
         label: "Maintenance & Support",
@@ -890,59 +866,25 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     aiAddons: {
-      title: "Smart Automation & Intelligent Features",
-      subtitle: "Increase operational efficiency with automation and intelligent analysis features.",
-      packages: [
-        {
-          name: "Auto Lead Scoring & Analysis",
-          description: "Automated system for lead scoring and sales data analysis.",
-          price: "IDR 5,000,000 – 15,000,000",
-          features: [
-            "Auto lead scoring for sales team",
-            "Automated sales data analysis",
-            "Generate recommendations based on data",
-            "Automated report generator",
-            "Integration with existing CRM"
-          ]
-        },
-        {
-          name: "Smart Report & Analytics",
-          description: "Automated reporting and analytics system for management.",
-          price: "IDR 8,000,000 – 25,000,000",
-          features: [
-            "Auto report generator",
-            "Data visualization dashboard",
-            "Predictive analytics",
-            "Custom metrics & KPIs",
-            "Scheduled reports"
-          ]
-        },
-        {
-          name: "Intelligent Document Processing",
-          description: "System that can read, process, and answer questions from documents.",
-          price: "IDR 25,000,000 – 60,000,000",
-          features: [
-            "Document upload & processing",
-            "Auto extract information",
-            "Search & answer from documents",
-            "Multi-document support",
-            "Integration with existing workflow"
-          ]
-        },
-        {
-          name: "Workflow Automation System",
-          description: "Workflow automation system that can take automatic actions within your system.",
-          price: "IDR 40,000,000 – 120,000,000",
-          features: [
-            "Auto update pipeline (CRM)",
-            "Auto create invoice (ERP)",
-            "Smart decision making",
-            "Multi-system integration",
-            "Error handling & recovery",
-            "Custom business rules"
-          ]
-        }
-      ]
+      tabLabel: "Smart Automation",
+      headline: "What if your operations run without manual follow-ups?",
+      eyebrow: "Intelligence Layer",
+      narrative: "We help teams eliminate repetitive tasks by automating approvals, reporting, and data synchronization across systems. From lead routing and invoicing to compliance checks and notifications — our automation adapts to how your team works, not the other way around.",
+      impacts: [
+        { stat: "60%", label: "Reduction in manual operations", description: "Automate repetitive tasks and free up your team" },
+        { stat: "Zero", label: "Human errors in workflows", description: "Minimize mistakes in approval & reporting processes" },
+        { stat: "Any", label: "System integration", description: "Connect ERP, CRM, internal tools, and third-party APIs" },
+        { stat: "∞", label: "Scalable automation", description: "Automation that grows with your business" }
+      ],
+      useCases: {
+        title: "What can be automated?",
+        items: ["Lead routing & scoring", "Invoice generation", "Approval workflows", "Compliance checks", "Report scheduling", "Data synchronization", "Notification systems", "Pipeline updates"]
+      },
+      pricingNote: "Pricing is determined after understanding your workflow and integration needs.",
+      cta: {
+        primary: "Explore Automation Opportunities",
+        secondary: "Free consultation to identify automation use cases"
+      }
     },
     customSoftware: {
       title: "Custom Software Development",
@@ -989,7 +931,7 @@ export const pricingData: Record<string, PricingData> = {
     recurringRevenue: {
       title: "Recurring Revenue Solutions",
       subtitle: "Sustainable Revenue for Stable Business",
-      description: "Build stable and sustainable revenue with maintenance and licensing packages. Get ongoing support and access to continuously evolving systems.",
+      description: "Build stable and sustainable revenue with maintenance and licensing packages. You pay to reduce risk, not to add features.",
       maintenance: {
         title: "Maintenance & Support Plans",
         label: "Maintenance & Support",

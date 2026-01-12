@@ -46,19 +46,34 @@ interface ErpCrm {
     fullPackage: string;
     revisions: string[];
   };
-}
-
-interface AiAddonPackage {
-  name: string;
-  description: string;
-  price: string;
-  features: string[];
+  cta?: {
+    title: string;
+    subtitle: string;
+    timeline: string;
+    description: string;
+    button: string;
+  };
 }
 
 interface AiAddons {
-  title: string;
-  subtitle: string;
-  packages: AiAddonPackage[];
+  tabLabel: string;
+  headline: string;
+  eyebrow: string;
+  narrative: string;
+  impacts: {
+    stat: string;
+    label: string;
+    description: string;
+  }[];
+  useCases: {
+    title: string;
+    items: string[];
+  };
+  pricingNote: string;
+  cta: {
+    primary: string;
+    secondary: string;
+  };
 }
 
 interface CustomSoftwarePackage {
@@ -83,6 +98,7 @@ interface RecurringRevenue {
   description: string;
   maintenance: {
     title: string;
+    label: string;
     description: string;
     packages: {
       name: string;
@@ -93,6 +109,7 @@ interface RecurringRevenue {
   };
   licensing: {
     title: string;
+    label: string;
     description: string;
     packages: {
       name: string;
@@ -132,7 +149,7 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
   const tabs: { id: TabType; label: string }[] = [
     ...(customSoftware ? [{ id: 'custom' as TabType, label: lang === 'en' ? 'Custom Software' : 'Software Custom' }] : []),
     ...(recurringRevenue ? [{ id: 'recurring' as TabType, label: lang === 'en' ? 'Recurring Plans' : 'Paket Berulang' }] : []),
-    ...(aiAddons ? [{ id: 'ai' as TabType, label: lang === 'en' ? 'Smart Automation' : 'Otomatisasi Cerdas' }] : []),
+    ...(aiAddons ? [{ id: 'ai' as TabType, label: aiAddons.tabLabel }] : []),
   ];
 
   return (
@@ -513,45 +530,63 @@ const UnifiedPricing: React.FC<UnifiedPricingProps> = ({
           </div>
         )}
 
-        {/* Smart Automation - Simplified Section */}
+        {/* Smart Automation - Storytelling Section */}
         {activeTab === 'ai' && aiAddons && (
           <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-12">
-              <h3 className="text-2xl font-bold mb-4">{aiAddons.title}</h3>
-              <p className="text-muted-foreground max-w-2xl mx-auto">{aiAddons.subtitle}</p>
+            {/* Eyebrow + Headline */}
+            <div className="text-center mb-16">
+              <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground mb-4">
+                {aiAddons.eyebrow}
+              </p>
+              <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6">
+                {aiAddons.headline}
+              </h3>
+              <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mx-auto">
+                {aiAddons.narrative}
+              </p>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {aiAddons.packages.map((pkg, index) => (
+            {/* Impact Stats Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+              {aiAddons.impacts.map((impact, index) => (
                 <div
-                  key={pkg.name}
-                  className="flex flex-col p-8 rounded-3xl border border-border bg-background hover:border-primary/50 transition-all duration-300"
+                  key={index}
+                  className="p-6 rounded-2xl border border-border bg-background hover:border-primary/50 transition-all duration-300 text-center"
                 >
-                  <div className="mb-6">
-                    <h3 className="text-lg font-bold mb-2">{pkg.name}</h3>
-                    <p className="text-sm text-muted-foreground mb-4">{pkg.description}</p>
-                    <p className="text-2xl font-bold">{pkg.price}</p>
-                  </div>
-
-                  <ul className="space-y-2 mb-8 flex-1">
-                    {pkg.features.map((feature) => (
-                      <li key={feature} className="flex items-start gap-3 text-sm">
-                        <Check className="w-4 h-4 mt-0.5 shrink-0 text-muted-foreground" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <a
-                    href={getWhatsAppLink('pricing', lang, pkg.name)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full py-3 px-6 rounded-full font-medium text-center text-sm bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-300"
-                  >
-                    {lang === 'en' ? 'Get Started' : 'Mulai'}
-                  </a>
+                  <p className="text-4xl md:text-5xl font-bold text-primary mb-2">{impact.stat}</p>
+                  <p className="text-sm font-medium mb-2">{impact.label}</p>
+                  <p className="text-xs text-muted-foreground">{impact.description}</p>
                 </div>
               ))}
+            </div>
+
+            {/* Use Cases */}
+            <div className="max-w-4xl mx-auto mb-16">
+              <h4 className="text-xl font-bold text-center mb-8">{aiAddons.useCases.title}</h4>
+              <div className="flex flex-wrap justify-center gap-3">
+                {aiAddons.useCases.items.map((item, index) => (
+                  <span
+                    key={index}
+                    className="px-4 py-2 rounded-full bg-secondary text-sm text-foreground/80 hover:bg-secondary/80 transition-colors"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Pricing Note + CTA */}
+            <div className="max-w-2xl mx-auto text-center">
+              <p className="text-sm text-muted-foreground mb-6">{aiAddons.pricingNote}</p>
+              <a
+                href={getWhatsAppLink('pricing', lang, 'Smart Automation')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-8 py-4 rounded-full font-medium bg-primary text-primary-foreground hover:bg-primary/90 transition-colors duration-300"
+              >
+                {aiAddons.cta.primary}
+              </a>
+              <p className="text-xs text-muted-foreground mt-4">{aiAddons.cta.secondary}</p>
             </div>
           </div>
         )}
