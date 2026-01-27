@@ -154,6 +154,92 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       ]
     },
     {
+      title: 'Evalique Assessment Platform',
+      description: 'AI-powered assessment and training evaluation platform designed to help organizations create, manage, and analyze training assessment results comprehensively.',
+      technologies: [
+        'Next.js 16',
+        'React 19',
+        'TypeScript',
+        'Tailwind CSS v4',
+        'Go',
+        'Gin Framework',
+        'PostgreSQL',
+        'GORM',
+        'Redis',
+        'Cerebras AI',
+        'Docker',
+        'Turborepo'
+      ],
+      githubUrl: '#',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'AI-Powered Assessment Generator',
+            items: [
+              'Automatic question generation using Cerebras AI',
+              'Supports Multiple Choice, True/False, Essay, Heading, Text, Divider',
+              'Organized assessment structure with sections and context',
+              'Customizable difficulty, topic, and question count'
+            ]
+          },
+          {
+            title: 'Google Spreadsheet Integration',
+            items: [
+              'Auto-sync assessment results to Google Sheets',
+              'OAuth2 authentication with Google',
+              'Real-time, manual, or scheduled sync options',
+              'Structured data export with multiple sheets'
+            ]
+          },
+          {
+            title: 'Comprehensive Analytics & Insights',
+            items: [
+              'Real-time metrics: Visits, Submissions, Completion Rate',
+              'Demographic breakdown: Devices, Browsers, OS, Locations',
+              'Funnel Analysis and Drop-off tracking',
+              'per-question performance analysis'
+            ]
+          },
+          {
+            title: 'Assessment Management',
+            items: [
+              'Question Bank with categories and competencies',
+              'Various assessment types: Pre-training, Post-training, Skill evaluation',
+              'Flexible scoring: Auto-scoring and Manual review'
+            ]
+          },
+          {
+            title: 'User & Access Management',
+            items: [
+              'RBAC (Admin, Training Admin, Assessor, Participant)',
+              'Dynamic permissions per role',
+              'Audit trails with GeoIP tracking',
+              'JWT-based authentication with token rotation'
+            ]
+          }
+        ]
+      },
+      image: [
+        {
+          title: 'banner',
+          image: '/work/evalique/Screenshot 2026-01-27 at 20-07-47 Evalique.webp'
+        },
+        { title: 'Dashboard', image: '/work/evalique/Screenshot from 2026-01-27 20-08-53.webp' },
+        { title: 'Assessment Builder', image: '/work/evalique/Screenshot from 2026-01-27 20-11-49.webp' },
+        { title: 'Question Bank', image: '/work/evalique/Screenshot from 2026-01-27 20-12-00.webp' },
+        { title: 'AI Generator', image: '/work/evalique/Screenshot from 2026-01-27 20-12-10.webp' },
+        { title: 'Integration Settings', image: '/work/evalique/Screenshot from 2026-01-27 20-12-18.webp' },
+        { title: 'Sync History', image: '/work/evalique/Screenshot from 2026-01-27 20-12-23.webp' },
+        { title: 'Analytics Overview', image: '/work/evalique/Screenshot from 2026-01-27 20-12-33.webp' },
+        { title: 'Funnel Analysis', image: '/work/evalique/Screenshot from 2026-01-27 20-12-48.webp' },
+        { title: 'Submission Detail', image: '/work/evalique/Screenshot from 2026-01-27 20-12-54.webp' },
+        { title: 'User Management', image: '/work/evalique/Screenshot from 2026-01-27 20-13-32.webp' },
+        { title: 'Role Permissions', image: '/work/evalique/Screenshot from 2026-01-27 20-13-37.webp' },
+        { title: 'Audit Logs', image: '/work/evalique/Screenshot from 2026-01-27 20-14-04.webp' }
+      ]
+    },
+    {
       title: 'Portfolio Website Digital Marketer',
       description: 'A modern, interactive portfolio website to showcase creative projects, professional experience, and contact information. Built with Next.js and React, featuring smooth animations, project galleries, and a responsive design.',
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
@@ -484,6 +570,92 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
         { title: 'tambah laporan harian', image: '/work/FiberMonitoringImages/addDailyReport.png' },
         { title: 'login putih', image: '/work/FiberMonitoringImages/loginWhite.png' },
         { title: 'login hitam', image: '/work/FiberMonitoringImages/loginBlack.png' }
+      ]
+    },
+    {
+      title: 'Evalique Assessment Platform',
+      description: 'Platform assessment dan evaluasi pelatihan berbasis AI yang dirancang untuk memudahkan organisasi dalam membuat, mengelola, dan menganalisis hasil assessment training secara komprehensif.',
+      technologies: [
+        'Next.js 16',
+        'React 19',
+        'TypeScript',
+        'Tailwind CSS v4',
+        'Go',
+        'Gin Framework',
+        'PostgreSQL',
+        'GORM',
+        'Redis',
+        'Cerebras AI',
+        'Docker',
+        'Turborepo'
+      ],
+      githubUrl: '#',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'AI-Powered Assessment Generator',
+            items: [
+              'Generate soal otomatis menggunakan Cerebras AI',
+              'Mendukung tipe soal: Pilihan Ganda, Benar/Salah, Essay',
+              'Struktur assessment terorganisir dengan sections dan context',
+              'Kustomisasi tingkat kesulitan, topik, dan jumlah soal'
+            ]
+          },
+          {
+            title: 'Integrasi Google Spreadsheet',
+            items: [
+              'Sinkronisasi otomatis hasil assessment ke Google Sheets',
+              'Autentikasi OAuth2 dengan Google',
+              'Opsi sinkronisasi: Real-time, manual, atau terjadwal',
+              'Ekspor data terstruktur dengan multiple sheets'
+            ]
+          },
+          {
+            title: 'Analitik & Insight Komprehensif',
+            items: [
+              'Metrik real-time: Kunjungan, Submission, Tingkat Penyelesaian',
+              'Breakdown demografis: Perangkat, Browser, OS, Lokasi',
+              'Analisis Funnel dan pelacakan Drop-off',
+              'Analisis performa per-pertanyaan'
+            ]
+          },
+          {
+            title: 'Manajemen Assessment',
+            items: [
+              'Bank Soal dengan kategori dan kompetensi',
+              'Berbagai tipe assessment: Pre-training, Post-training, Evaluasi Skill',
+              'Penilaian fleksibel: Auto-scoring dan review manual'
+            ]
+          },
+          {
+            title: 'Manajemen User & Akses',
+            items: [
+              'RBAC (Admin, Training Admin, Assessor, Peserta)',
+              'Izin dinamis per peran',
+              'Audit trail dengan pelacakan GeoIP',
+              'Autentikasi berbasis JWT dengan rotasi token'
+            ]
+          }
+        ]
+      },
+      image: [
+        {
+          title: 'banner',
+          image: '/work/evalique/Screenshot 2026-01-27 at 20-07-47 Evalique.webp'
+        },
+        { title: 'Dashboard', image: '/work/evalique/Screenshot from 2026-01-27 20-08-53.webp' },
+        { title: 'Assessment Builder', image: '/work/evalique/Screenshot from 2026-01-27 20-11-49.webp' },
+        { title: 'Question Bank', image: '/work/evalique/Screenshot from 2026-01-27 20-12-00.webp' },
+        { title: 'AI Generator', image: '/work/evalique/Screenshot from 2026-01-27 20-12-10.webp' },
+        { title: 'Integration Settings', image: '/work/evalique/Screenshot from 2026-01-27 20-12-18.webp' },
+        { title: 'Sync History', image: '/work/evalique/Screenshot from 2026-01-27 20-12-23.webp' },
+        { title: 'Analytics Overview', image: '/work/evalique/Screenshot from 2026-01-27 20-12-33.webp' },
+        { title: 'Funnel Analysis', image: '/work/evalique/Screenshot from 2026-01-27 20-12-48.webp' },
+        { title: 'Submission Detail', image: '/work/evalique/Screenshot from 2026-01-27 20-12-54.webp' },
+        { title: 'User Management', image: '/work/evalique/Screenshot from 2026-01-27 20-13-32.webp' },
+        { title: 'Role Permissions', image: '/work/evalique/Screenshot from 2026-01-27 20-13-37.webp' },
+        { title: 'Audit Logs', image: '/work/evalique/Screenshot from 2026-01-27 20-14-04.webp' }
       ]
     },
     {
