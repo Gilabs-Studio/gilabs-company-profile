@@ -1,6 +1,6 @@
 ---
 import { WorkResultProject } from '../../data/workResults';
-import { Github, ExternalLink } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 interface Props {
   project: WorkResultProject;
@@ -73,25 +73,7 @@ const t = labels[lang] || labels.en;
   
   <!-- Content -->
   <div class="p-6">
-    <!-- Type Badge -->
-    <div class="flex items-center justify-between mb-3">
-      <span class="inline-block px-3 py-1 text-xs font-medium bg-brand/10 text-brand rounded-full">
-        {project.type === 'real' ? t.production : t.demo}
-      </span>
-      {project.githubUrl && (
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-muted-foreground hover:text-brand transition-colors z-10 relative"
-          onclick="event.stopPropagation(); event.preventDefault(); window.open(this.href, '_blank', 'noopener,noreferrer');"
-        >
-          <Github className="w-4 h-4" />
-        </a>
-      )}
-    </div>
-    
-    <!-- Title -->
+z    <!-- Title -->
     <h3 class="text-xl font-bold mb-2 group-hover:text-brand transition-colors">
       {project.title}
     </h3>
