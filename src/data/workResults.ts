@@ -223,7 +223,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/evalique/Screenshot 2026-01-27 at 20-07-47 Evalique.webp'
+          image: '/work/evalique/banner.png'
         },
         { title: 'Dashboard', image: '/work/evalique/Screenshot from 2026-01-27 20-08-53.webp' },
         { title: 'Assessment Builder', image: '/work/evalique/Screenshot from 2026-01-27 20-11-49.webp' },
@@ -642,7 +642,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/evalique/Screenshot 2026-01-27 at 20-07-47 Evalique.webp'
+          image: '/work/evalique/banner.png'
         },
         { title: 'Dashboard', image: '/work/evalique/Screenshot from 2026-01-27 20-08-53.webp' },
         { title: 'Assessment Builder', image: '/work/evalique/Screenshot from 2026-01-27 20-11-49.webp' },
