@@ -288,6 +288,103 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       ]
     },
     {
+      title: 'SalesView',
+      description: 'Comprehensive Customer Relationship Management (CRM) platform designed specifically for the healthcare industry. This application helps sales teams and management in managing leads, monitoring sales performance, scheduling visits, and visualizing geographic data in real-time. Built with modern architecture based on Next.js 16 for high performance and scalability.',
+      technologies: [
+        'Next.js 16',
+        'TypeScript 5.9',
+        'TurboRepo',
+        'PNPM',
+        'TanStack Query v5',
+        'Zustand',
+        'Tailwind CSS v4',
+        'Radix UI',
+        'Framer Motion',
+        'Lucide React',
+        'React Hook Form',
+        'Zod',
+        'Leaflet',
+        'React Leaflet',
+        'Recharts',
+        'React Big Calendar',
+        'date-fns',
+        'Moment.js'
+      ],
+      githubUrl: '#',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'Modern Architecture & High Performance',
+            items: [
+              'Next.js 16 App Router with Server-Side Rendering',
+              'Monorepo structure using TurboRepo for modular development',
+              'Efficient server state management with TanStack Query (caching & revalidation)',
+              'Lightweight client state management with Zustand',
+              'Responsive and interactive UI with Framer Motion animations'
+            ]
+          },
+          {
+            title: 'Advanced Data Visualization',
+            items: [
+              'Rich Sales Overview dashboard with comprehensive analytics',
+              'Deep analytical charts using Recharts',
+              'Leaflet Maps integration for sales territory mapping and accurate client location',
+              'Real-time performance metrics and KPIs',
+              'Interactive data tables and reports'
+            ]
+          },
+          {
+            title: 'Sales Management Features',
+            items: [
+              'Lead Management with lead scoring and tracking',
+              'Sales Pipeline visualization with Kanban board',
+              'Visit scheduling and management',
+              'Task and reminder system',
+              'Route optimization for field sales',
+              'Customer account and contact management'
+            ]
+          },
+          {
+            title: 'Security & Validation',
+            items: [
+              'Full TypeScript implementation for type safety',
+              'Zod schema validation for complex forms',
+              'React Hook Form for form handling',
+              'Strong type safety minimizing runtime errors',
+              'Secure authentication and authorization'
+            ]
+          },
+          {
+            title: 'Consistent Design System',
+            items: [
+              'Tailwind CSS v4 for modern styling',
+              'Radix UI headless components ensuring full accessibility',
+              'Consistent design across the entire application',
+              'Responsive design for desktop and mobile',
+              'Dark/Light theme support'
+            ]
+          }
+        ]
+      },
+      image: [
+        {
+          title: 'banner',
+          image: '/work/salesview/banner.png'
+        },
+        { title: 'Dashboard Overview', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-39 CRM Healthcare Platform.webp' },
+        { title: 'Route Optimization', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-52 CRM Healthcare Platform.webp' },
+        { title: 'Lead Management', image: '/work/salesview/Screenshot 2026-01-30 at 12-35-16 CRM Healthcare Platform.webp' },
+        { title: 'Sales Pipeline', image: '/work/salesview/Screenshot 2026-01-30 at 12-35-55 CRM Healthcare Platform.webp' },
+        { title: 'Schedule Management', image: '/work/salesview/Screenshot 2026-01-30 at 12-36-06 CRM Healthcare Platform.webp' },
+        { title: 'Visit Reports', image: '/work/salesview/Screenshot 2026-01-30 at 12-36-53 CRM Healthcare Platform.webp' },
+        { title: 'Task Details', image: '/work/salesview/Screenshot 2026-01-30 at 12-38-03 CRM Healthcare Platform.webp' },
+        { title: 'Product Analytics', image: '/work/salesview/Screenshot 2026-01-30 at 12-38-45 CRM Healthcare Platform.webp' },
+        { title: 'Territory Management', image: '/work/salesview/Screenshot 2026-01-30 at 12-39-04 CRM Healthcare Platform.webp' },
+        { title: 'AI Chatbot', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-26 CRM Healthcare Platform.webp' }
+      ]
+    },
+    {
       title: 'CRM Pharmaceutical',
       description: 'Intelligent Healthcare CRM with AI-Powered Insights. A comprehensive, enterprise-grade CRM platform designed specifically for pharmaceutical and healthcare companies. Features 20+ backend modules, real-time notifications, AI chatbot integration, and advanced analytics for managing accounts, leads, deals, visit reports, and sales pipeline.',
       technologies: [
@@ -704,6 +801,103 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
         { title: 'daftar proyek 2', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-13-18 Adhara Eka - Portfolio.webp' },
         { title: 'detail proyek', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-13-44 Adhara Eka - Portfolio.webp' },
         { title: 'akhir', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-14-40 Adhara Eka - Portfolio.webp' }
+      ]
+    },
+    {
+      title: 'SalesView',
+      description: 'Platform Customer Relationship Management (CRM) komprehensif yang dirancang khusus untuk industri kesehatan. Aplikasi ini membantu tim penjualan dan manajemen dalam mengelola prospek, memantau kinerja penjualan, menjadwalkan kunjungan, dan memvisualisasikan data geografis secara real-time. Dibangun dengan arsitektur modern berbasis Next.js 16 untuk performa tinggi dan skalabilitas.',
+      technologies: [
+        'Next.js 16',
+        'TypeScript 5.9',
+        'TurboRepo',
+        'PNPM',
+        'TanStack Query v5',
+        'Zustand',
+        'Tailwind CSS v4',
+        'Radix UI',
+        'Framer Motion',
+        'Lucide React',
+        'React Hook Form',
+        'Zod',
+        'Leaflet',
+        'React Leaflet',
+        'Recharts',
+        'React Big Calendar',
+        'date-fns',
+        'Moment.js'
+      ],
+      githubUrl: '#',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'Arsitektur Modern & Performa Tinggi',
+            items: [
+              'Next.js 16 App Router dengan Server-Side Rendering',
+              'Struktur Monorepo menggunakan TurboRepo untuk pengembangan modular',
+              'Manajemen state server yang efisien dengan TanStack Query (caching & revalidation)',
+              'Manajemen state client yang ringan dengan Zustand',
+              'UI responsif dan interaktif dengan animasi Framer Motion yang halus'
+            ]
+          },
+          {
+            title: 'Visualisasi Data Lanjutan',
+            items: [
+              'Dashboard Sales Overview yang kaya data dengan analitik komprehensif',
+              'Grafik analitik mendalam menggunakan Recharts',
+              'Integrasi Leaflet Maps untuk pemetaan wilayah penjualan dan lokasi klien yang akurat',
+              'Metrik performa dan KPI real-time',
+              'Tabel data interaktif dan laporan'
+            ]
+          },
+          {
+            title: 'Fitur Manajemen Penjualan',
+            items: [
+              'Manajemen Lead dengan scoring dan pelacakan prospek',
+              'Visualisasi Sales Pipeline dengan papan Kanban',
+              'Penjadwalan dan manajemen kunjungan',
+              'Sistem tugas dan pengingat',
+              'Optimasi rute untuk sales lapangan',
+              'Manajemen akun pelanggan dan kontak'
+            ]
+          },
+          {
+            title: 'Keamanan & Validasi',
+            items: [
+              'Implementasi TypeScript penuh untuk keamanan tipe data',
+              'Validasi schema Zod untuk formulir kompleks',
+              'React Hook Form untuk penanganan formulir',
+              'Keamanan tipe yang kuat meminimalisir runtime errors',
+              'Autentikasi dan otorisasi yang aman'
+            ]
+          },
+          {
+            title: 'Desain Sistem Konsisten',
+            items: [
+              'Tailwind CSS v4 untuk styling modern',
+              'Komponen Radix UI (headless UI) memastikan aksesibilitas penuh',
+              'Konsistensi desain di seluruh aplikasi',
+              'Desain responsif untuk desktop dan mobile',
+              'Dukungan tema gelap/terang'
+            ]
+          }
+        ]
+      },
+      image: [
+        {
+          title: 'banner',
+          image: '/work/salesview/banner.png'
+        },
+        { title: 'Ringkasan Dashboard', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-39 CRM Healthcare Platform.webp' },
+        { title: 'Optimasi Rute', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-52 CRM Healthcare Platform.webp' },
+        { title: 'Manajemen Lead', image: '/work/salesview/Screenshot 2026-01-30 at 12-35-16 CRM Healthcare Platform.webp' },
+        { title: 'Sales Pipeline', image: '/work/salesview/Screenshot 2026-01-30 at 12-35-55 CRM Healthcare Platform.webp' },
+        { title: 'Manajemen Jadwal', image: '/work/salesview/Screenshot 2026-01-30 at 12-36-06 CRM Healthcare Platform.webp' },
+        { title: 'Laporan Kunjungan', image: '/work/salesview/Screenshot 2026-01-30 at 12-36-53 CRM Healthcare Platform.webp' },
+        { title: 'Detail Tugas', image: '/work/salesview/Screenshot 2026-01-30 at 12-38-03 CRM Healthcare Platform.webp' },
+        { title: 'Analitik Produk', image: '/work/salesview/Screenshot 2026-01-30 at 12-38-45 CRM Healthcare Platform.webp' },
+        { title: 'Manajemen Wilayah', image: '/work/salesview/Screenshot 2026-01-30 at 12-39-04 CRM Healthcare Platform.webp' },
+        { title: 'AI Chatbot', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-26 CRM Healthcare Platform.webp' }
       ]
     },
     {

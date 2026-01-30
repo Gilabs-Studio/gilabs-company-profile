@@ -5,10 +5,10 @@ import { ArrowRight, ExternalLink } from 'lucide-react';
 const { lang } = Astro.props;
 const projects = workResultsProjects[lang] || workResultsProjects['en'];
 
-// Get the 3 featured portfolios: CRM, Fiber Monitoring, and Portfolio Website
+// Get the 3 featured portfolios: SalesView, Fiber Monitoring, and Evalique
 // Titles are the same in both languages for these projects
 const featuredProjects = [
-  projects.find(p => p.title === 'CRM Pharmaceutical'),
+  projects.find(p => p.title === 'SalesView'),
   projects.find(p => p.title === 'Fiber Monitoring Project'),
   projects.find(p => p.title === 'Evalique Assessment Platform'),
 ].filter((p): p is NonNullable<typeof p> => p !== undefined);
