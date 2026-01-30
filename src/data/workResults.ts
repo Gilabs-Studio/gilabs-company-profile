@@ -76,19 +76,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
     {
       title: 'Fiber Monitoring Project',
       description: 'A monorepo for the Fiber Monitoring Project with different user roles for managing fiber optic installation and monitoring. This project is a comprehensive solution for monitoring fiber optic installation projects. It consists of two main applications: Admin (dashboard for administrators to manage projects, view reports, and monitor overall progress) and Waspang (user interface for field workers to submit reports, track milestones, and manage project documentation).',
-      technologies: [
-        'Next.js',
-        'Tailwind CSS',
-        'shadcn/ui',
-        'Supabase (Auth, Supabase-js)',
-        'Turborepo',
-        'React',
-        'Leaflet',
-        'TypeScript',
-        'Docker',
-        'ExcelJS',
-        'jsPDF'
-      ],
+      technologies: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Turborepo'],
       githubUrl: 'https://github.com/Kevin5621/fiber-monitoring-project',
       type: 'real',
       features: {
@@ -156,20 +144,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
     {
       title: 'Evalique Assessment Platform',
       description: 'AI-powered assessment and training evaluation platform designed to help organizations create, manage, and analyze training assessment results comprehensively.',
-      technologies: [
-        'Next.js 16',
-        'React 19',
-        'TypeScript',
-        'Tailwind CSS v4',
-        'Go',
-        'Gin Framework',
-        'PostgreSQL',
-        'GORM',
-        'Redis',
-        'Cerebras AI',
-        'Docker',
-        'Turborepo'
-      ],
+      technologies: ['Next.js', 'TypeScript', 'Go', 'PostgreSQL', 'Cerebras AI', 'Turborepo'],
       githubUrl: '#',
       type: 'real',
       features: {
@@ -290,26 +265,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
     {
       title: 'SalesView',
       description: 'Comprehensive Customer Relationship Management (CRM) platform designed specifically for the healthcare industry. This application helps sales teams and management in managing leads, monitoring sales performance, scheduling visits, and visualizing geographic data in real-time. Built with modern architecture based on Next.js 16 for high performance and scalability.',
-      technologies: [
-        'Next.js 16',
-        'TypeScript 5.9',
-        'TurboRepo',
-        'PNPM',
-        'TanStack Query v5',
-        'Zustand',
-        'Tailwind CSS v4',
-        'Radix UI',
-        'Framer Motion',
-        'Lucide React',
-        'React Hook Form',
-        'Zod',
-        'Leaflet',
-        'React Leaflet',
-        'Recharts',
-        'React Big Calendar',
-        'date-fns',
-        'Moment.js'
-      ],
+      technologies: ['Next.js', 'TypeScript', 'TanStack Query', 'Tailwind CSS', 'TurboRepo'],
       githubUrl: '#',
       type: 'real',
       features: {
@@ -387,25 +343,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
     {
       title: 'CRM Pharmaceutical',
       description: 'Intelligent Healthcare CRM with AI-Powered Insights. A comprehensive, enterprise-grade CRM platform designed specifically for pharmaceutical and healthcare companies. Features 20+ backend modules, real-time notifications, AI chatbot integration, and advanced analytics for managing accounts, leads, deals, visit reports, and sales pipeline.',
-      technologies: [
-        'Go',
-        'Gin Framework',
-        'Next.js',
-        'React',
-        'TypeScript',
-        'PostgreSQL',
-        'GORM',
-        'TanStack Query',
-        'Zustand',
-        'shadcn/ui',
-        'Radix UI',
-        'Tailwind CSS',
-        'JWT',
-        'WebSocket',
-        'Cerebras AI',
-        'Cloudflare R2',
-        'Docker'
-      ],
+      technologies: ['Go', 'Next.js', 'TypeScript', 'PostgreSQL', 'Cerebras AI'],
       githubUrl: '#',
       type: 'real',
       features: {
@@ -592,19 +530,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
     {
       title: 'Fiber Monitoring Project',
       description: 'Monorepo untuk Fiber Monitoring Project dengan berbagai peran pengguna untuk mengelola instalasi dan monitoring fiber optik. Proyek ini adalah solusi komprehensif untuk memantau proyek instalasi fiber optik. Terdiri dari dua aplikasi utama: Admin (dashboard untuk administrator mengelola proyek, melihat laporan, dan memantau progres keseluruhan) dan Waspang (antarmuka pengguna untuk pekerja lapangan mengirim laporan, melacak milestone, dan mengelola dokumentasi proyek).',
-      technologies: [
-        'Next.js',
-        'Tailwind CSS',
-        'shadcn/ui',
-        'Supabase (Auth, Supabase-js)',
-        'Turborepo',
-        'React',
-        'Leaflet',
-        'TypeScript',
-        'Docker',
-        'ExcelJS',
-        'jsPDF'
-      ],
+      technologies: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind CSS', 'Turborepo'],
       githubUrl: 'https://github.com/Kevin5621/fiber-monitoring-project',
       type: 'real',
       features: {
@@ -672,20 +598,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
     {
       title: 'Evalique Assessment Platform',
       description: 'Platform assessment dan evaluasi pelatihan berbasis AI yang dirancang untuk memudahkan organisasi dalam membuat, mengelola, dan menganalisis hasil assessment training secara komprehensif.',
-      technologies: [
-        'Next.js 16',
-        'React 19',
-        'TypeScript',
-        'Tailwind CSS v4',
-        'Go',
-        'Gin Framework',
-        'PostgreSQL',
-        'GORM',
-        'Redis',
-        'Cerebras AI',
-        'Docker',
-        'Turborepo'
-      ],
+      technologies: ['Next.js', 'TypeScript', 'Go', 'PostgreSQL', 'Cerebras AI', 'Turborepo'],
       githubUrl: '#',
       type: 'real',
       features: {
@@ -806,26 +719,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
     {
       title: 'SalesView',
       description: 'Platform Customer Relationship Management (CRM) komprehensif yang dirancang khusus untuk industri kesehatan. Aplikasi ini membantu tim penjualan dan manajemen dalam mengelola prospek, memantau kinerja penjualan, menjadwalkan kunjungan, dan memvisualisasikan data geografis secara real-time. Dibangun dengan arsitektur modern berbasis Next.js 16 untuk performa tinggi dan skalabilitas.',
-      technologies: [
-        'Next.js 16',
-        'TypeScript 5.9',
-        'TurboRepo',
-        'PNPM',
-        'TanStack Query v5',
-        'Zustand',
-        'Tailwind CSS v4',
-        'Radix UI',
-        'Framer Motion',
-        'Lucide React',
-        'React Hook Form',
-        'Zod',
-        'Leaflet',
-        'React Leaflet',
-        'Recharts',
-        'React Big Calendar',
-        'date-fns',
-        'Moment.js'
-      ],
+      technologies: ['Next.js', 'TypeScript', 'TanStack Query', 'Tailwind CSS', 'TurboRepo'],
       githubUrl: '#',
       type: 'real',
       features: {
@@ -903,25 +797,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
     {
       title: 'CRM Pharmaceutical',
       description: 'CRM Healthcare Cerdas dengan Insight Berbasis AI. Platform CRM tingkat enterprise yang komprehensif dirancang khusus untuk perusahaan farmasi dan healthcare. Menampilkan 20+ modul backend, notifikasi real-time, integrasi AI chatbot, dan analitik canggih untuk mengelola akun, lead, deal, laporan kunjungan, dan sales pipeline.',
-      technologies: [
-        'Go',
-        'Gin Framework',
-        'Next.js',
-        'React',
-        'TypeScript',
-        'PostgreSQL',
-        'GORM',
-        'TanStack Query',
-        'Zustand',
-        'shadcn/ui',
-        'Radix UI',
-        'Tailwind CSS',
-        'JWT',
-        'WebSocket',
-        'Cerebras AI',
-        'Cloudflare R2',
-        'Docker'
-      ],
+      technologies: ['Go', 'Next.js', 'TypeScript', 'PostgreSQL', 'Cerebras AI'],
       githubUrl: '#',
       type: 'real',
       features: {
