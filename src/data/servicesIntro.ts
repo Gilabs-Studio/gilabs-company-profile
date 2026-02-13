@@ -18,6 +18,8 @@ export interface ServicesIntroData {
     title: string;
     subtitle: string;
     description: string[];
+    tagsLeft: string[];
+    tagsRight: string[];
   };
   problem: {
     title: string;
@@ -74,11 +76,12 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
     hero: {
       eyebrow: "The Future of Business Software",
       title: "Own Your Software. Stop Renting.",
-      subtitle: "Break free from endless SaaS subscriptions",
+      subtitle: "Break free from subscription traps",
       description: [
-        "SaaS pricing is spiraling out of control. Per-user, per-month fees that never end. AI disruption making subscription models obsolete.",
-        "We build custom software with unlimited users, no recurring fees, and full ownership. Your business, your software, your terms.",
+        "We build custom software with unlimited users and full ownership. Your business, your software, your terms.",
       ],
+      tagsLeft: ["Unlimited Users", "Full Ownership", "Low Maintenance Costs"],
+      tagsRight: ["AI Custom Core", "No Hidden Costs", "Lifetime Asset"],
     },
     problem: {
       title: "The SaaS Trap",
@@ -239,11 +242,12 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
     hero: {
       eyebrow: "Masa Depan Software Bisnis",
       title: "Miliki Software Anda. Berhenti Menyewa.",
-      subtitle: "Lepaskan diri dari subscription SaaS yang tak berujung",
+      subtitle: "Lepaskan diri dari jebakan subscription",
       description: [
-        "Harga SaaS terus melonjak tak terkendali. Biaya per user, per bulan yang tak pernah berhenti. Disrupsi AI membuat model subscription menjadi usang.",
-        "Kami membangun software custom dengan unlimited users, tanpa biaya berulang, dan full ownership. Bisnis Anda, software Anda, aturan Anda.",
+        "Kami membangun software custom dengan unlimited users dan full ownership. Bisnis Anda, software Anda, aturan Anda.",
       ],
+      tagsLeft: ["Unlimited Users", "Hak Milik Penuh", "Maintenance Terukur"],
+      tagsRight: ["Inti AI Kustom", "Tanpa Biaya Tersembunyi", "Aset Selamanya"],
     },
     problem: {
       title: "Jebakan SaaS",
