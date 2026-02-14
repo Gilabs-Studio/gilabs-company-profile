@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Hero from '../../components/sections/Hero.astro';
 import Hook from '../../components/sections/Hook.astro';
+import Architecture from '../../components/sections/Architecture.astro';
 import Problem from '../../components/sections/Problem.astro';
 import Features from '../../components/sections/Features.astro';
 import Portfolio from '../../components/sections/Portfolio.astro';
@@ -63,7 +64,8 @@ const keywords = locale === 'id'
     {/* 4. The Philosophy (Stop Renting. Start Owning.) */}
     <Hook lang={locale} />
 
-    {/* 5. The Solution (Merged with Philosophy) */}
+    {/* 5. The Architecture (Ownership-Based Software Architecture) */}
+    <Architecture lang={locale} />
 
     {/* 6. Portfolio Proof (Validation - demonstrates capability) */}
     <Portfolio lang={locale} />

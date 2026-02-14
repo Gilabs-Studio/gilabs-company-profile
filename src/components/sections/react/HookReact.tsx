@@ -25,11 +25,11 @@ const Section2React: React.FC<Section2ReactProps> = ({ lang }) => {
             transition={{ duration: 0.5 }}
             className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12"
           >
-            <div className="h-px w-6 sm:w-12 bg-border/60" />
+            <div className="h-px w-6 sm:w-12 bg-primary/10" />
             <span className="text-muted-foreground font-serif italic text-sm sm:text-base">
               {data.hero.eyebrow}
             </span>
-            <div className="h-px w-6 sm:w-12 bg-border/60" />
+            <div className="h-px w-6 sm:w-12 bg-primary/10" />
           </motion.div>
 
           {/* Main Title */}
@@ -58,50 +58,6 @@ const Section2React: React.FC<Section2ReactProps> = ({ lang }) => {
             <p>{data.hero.description[0]}</p>
           </motion.div>
 
-          {/* Part 3: The Solution (Ownership Architecture) */}
-          <div className="mt-24 sm:mt-32 md:mt-40 text-left">
-            <div className="text-center mb-12 sm:mb-16">
-              <span className="inline-block text-brand text-sm font-medium uppercase tracking-[0.2em] mb-4">
-                {data.solution.tagline}
-              </span>
-              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4 leading-tight">
-                Ownership-Based Software Architecture
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8 text-left">
-              {data.solution.benefits.map((benefit, idx) => (
-                <motion.div
-                  key={benefit.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 0.2 + (idx * 0.1) }}
-                  className="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl p-6 sm:p-8 hover:border-brand/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 flex flex-col h-full"
-                >
-                  <div className="mb-4 sm:mb-6 flex items-center justify-start">
-                    {/* @ts-ignore */}
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center">
-                      <img src={benefit.icon} alt={benefit.title} className="w-full h-full object-contain" />
-                    </div>
-                  </div>
-                  <h3 className="text-lg sm:text-xl font-bold mb-3 text-foreground leading-tight">
-                    {benefit.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm leading-relaxed grow mb-4">
-                    {benefit.description}
-                  </p>
-                  {benefit.stats && (
-                    <div className="mt-auto">
-                      <span className="inline-block px-3 py-1 bg-brand/10 text-brand text-xs font-semibold rounded-full">
-                        {benefit.stats}
-                      </span>
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* Floating Tags - Left Side */}
