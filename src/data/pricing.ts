@@ -11,7 +11,8 @@ export interface PricingPackage {
 export interface PricingData {
   hero: {
     title: string;
-    subtitle: string[];
+    eyebrow: string;
+    subtitle: string;
     cta: string;
   };
   features: {
@@ -185,11 +186,8 @@ export const pricingData: Record<string, PricingData> = {
   id: {
     hero: {
       title: "Solusi Software Bisnis yang Custom & Scalable.",
-      subtitle: [
-        "Kami membangun sistem software yang disesuaikan dengan workflow operasional Anda.",
-        "Bukan sekadar coding cepat—kami mendesain arsitektur yang siap tumbuh bersama bisnis Anda.",
-        "Fokus pada efisiensi, stabilitas, dan kepemilikan penuh aset digital Anda."
-      ],
+      eyebrow: "Mendukung Teknologi Masa Depan",
+      subtitle: "Kami membangun sistem software yang disesuaikan dengan workflow operasional Anda. Bukan sekadar coding cepat—kami mendesain arsitektur yang siap tumbuh bersama bisnis Anda. Fokus pada efisiensi, stabilitas, dan kepemilikan penuh aset digital Anda.",
       cta: "Konsultasikan Kebutuhan Anda",
     },
     features: {
@@ -601,11 +599,8 @@ export const pricingData: Record<string, PricingData> = {
   en: {
     hero: {
       title: "Custom Business Systems. Built for Scale.",
-      subtitle: [
-        "We design and build tailored software solutions for growing enterprises.",
-        "Not just fast coding—we engineer architectures ready to scale with your business.",
-        "Focus on efficiency, stability, and full ownership of your digital assets."
-      ],
+      eyebrow: "Powering Next-Gen Tech",
+      subtitle: "We design and build tailored software solutions for growing enterprises. We engineer architectures ready to scale with your business. Focus on efficiency, stability, and full ownership of your digital assets.",
       cta: "Consult Your Needs",
     },
     features: {
