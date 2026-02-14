@@ -1,19 +1,11 @@
 ---
-import { pricingData } from '../data/pricing';
+import { pricingData } from '../../data/pricing';
+import { LottieIcon } from '../ui/LottieIcon';
+import { getWhatsAppLink } from '../../lib/utils';
 import { ArrowRight } from 'lucide-react';
-import ParallaxGallery from './ui/ParallaxGallery';
-import { LottieIcon } from './ui/LottieIcon';
-import { getWhatsAppLink } from '../lib/utils';
 
 const { lang } = Astro.props;
-const about = pricingData[lang].about;
-const process = pricingData[lang].process;
 const energy = pricingData[lang].energy;
-
-// Function to convert markdown bold to HTML
-function markdownToHtml(text: string): string {
-  return text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-}
 
 // Lottie icon paths for energy cards
 const energyIcons = [
@@ -21,36 +13,6 @@ const energyIcons = [
   '/icon/disguise.gif',
   '/icon/night.gif',
   '/icon/happy-friends.gif',
-];
-
-// Gallery images - Using local images from /public/image folder
-// All images are WebP format for optimal performance
-const galleryImages = [
-  // Column 1
-  '/image/Screenshot 2025-11-29 at 09-38-07 Top Gun Barber Shop - Look Sharp. Feel Top.webp',
-  '/image/Screenshot 2025-11-29 at 09-28-15 Fiber Monitoring.webp',
-  '/image/Screenshot 2025-11-29 at 09-28-32 Fiber Monitoring.webp',
-
-  // Column 2
-  '/image/Screenshot 2025-11-29 at 09-29-54 Fiber Monitoring.webp',
-  '/image/Screenshot 2025-11-29 at 09-38-23 Jade Inc - Field Research & Coordination Services.webp',
-  '/image/Screenshot 2025-11-29 at 09-55-57 CleanLink - Laundry Service Management System.webp',
-  '/image/Screenshot 2025-11-29 at 09-38-44 Savlo — Simple Secure Financing for Small Businesses.webp',
-  '/image/Screenshot 2025-11-29 at 08-52-19 Fiber Monitoring.webp',
-
-  // Column 3
-  '/image/Screenshot 2026-01-07 at 19-49-13 CRM Healthcare Platform.webp',
-  '/image/Screenshot 2026-01-07 at 19-48-42 CRM Healthcare Platform.webp',
-  '/image/Screenshot 2025-11-29 at 09-32-48 Adhara Eka - Portfolio.webp',
-  '/image/Screenshot 2025-11-29 at 09-37-04 Top Gun Barber Shop - Look Sharp. Feel Top.webp',
-  '/image/Screenshot 2025-11-29 at 09-29-20 Fiber Monitoring.webp',
-  
-  // Column 4
-  '/image/Screenshot 2026-01-07 at 19-49-59 CRM Healthcare Platform.webp',
-  '/image/Screenshot 2025-11-29 at 09-40-02 Savlo — Simple Secure Financing for Small Businesses.webp',
-  '/image/Screenshot 2025-11-29 at 09-38-14 Top Gun Barber Shop - Look Sharp. Feel Top.webp',
-  '/image/Screenshot 2025-11-29 at 09-33-07 Adhara Eka - Portfolio.webp',
-  '/image/Screenshot 2025-11-29 at 09-37-26 Top Gun Barber Shop - Look Sharp. Feel Top.webp',
 ];
 
 // Energy card data for cleaner iteration
@@ -82,50 +44,8 @@ const energyCards = [
 ];
 ---
 
-<section id="about" class="relative border-b border-border/50 bg-background">
-  {/* Text Section - "Here's a sneak peek" */}
-  <section id="sneak-peek">
-    <div class="container mx-auto px-4">
-    </div>
-  </section>
-
-  {/* Parallax Gallery Section */}
-  <section id="design-showcase" class="relative bg-background flex items-center justify-center overflow-hidden z-10 w-full">
-    <ParallaxGallery client:load images={galleryImages} lang={lang} />
-  </section>
-
-  <div class="container mx-auto px-4 py-24 md:py-32">
-    {/* Process Section - Minimalist White Background */}
-    <section class="mb-16 sm:mb-20 md:mb-24 lg:mb-32">
-      {/* Header with generous whitespace */}
-      <div class="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4">
-        <p class="text-[0.65rem] sm:text-xs font-medium uppercase tracking-widest text-muted-foreground mb-3 md:mb-4">
-          {process.subtitle}
-        </p>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground leading-tight">
-          {process.title}
-        </h2>
-      </div>
-
-      {/* Process Steps - Centered Card Layout */}
-      <div class="max-w-5xl mx-auto px-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 lg:gap-12">
-          {process.body.map((step: string, index: number) => (
-            <div class="group relative text-center">
-              {/* Step number - centered */}
-              <div class="flex justify-center mb-4 sm:mb-5 md:mb-6">
-                <span class="flex items-center justify-center w-12 h-12 sm:w-12 sm:h-12 md:w-14 md:h-14 text-xl sm:text-2xl font-bold text-foreground border-2 border-foreground rounded-full transition-colors group-hover:bg-foreground group-hover:text-background">
-                  {index + 1}
-                </span>
-              </div>
-              {/* Step content - centered */}
-              <p class="text-base sm:text-lg md:text-xl text-foreground leading-relaxed px-2" set:html={markdownToHtml(step)} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
+<section class="py-24 md:py-32 bg-background">
+  <div class="container mx-auto px-4">
     {/* Energy Section - Bento Grid Layout */}
     <section class="relative">
       {/* Header */}

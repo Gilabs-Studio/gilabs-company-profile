@@ -1,6 +1,6 @@
 ---
-import { workResultsProjects } from '../data/workResults';
-import { ArrowRight, ExternalLink } from 'lucide-react';
+import { workResultsProjects } from '../../data/workResults';
+import { ExternalLink } from 'lucide-react';
 
 const { lang } = Astro.props;
 const projects = workResultsProjects[lang] || workResultsProjects['en'];
@@ -170,11 +170,3 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
   setTimeout(initPortfolioShowcase, 100);
   setTimeout(initPortfolioShowcase, 500);
 </script>
-
-<style>
-  /* Smooth scroll behavior for anchor links */
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
-
