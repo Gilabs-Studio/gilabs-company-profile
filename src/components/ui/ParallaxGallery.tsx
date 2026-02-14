@@ -165,10 +165,10 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-20">
         <motion.a
           href={workResultsUrl}
-          className="pointer-events-auto inline-flex items-center justify-center gap-2 md:gap-3 px-4 md:px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white bg-brand rounded-full shadow-2xl shadow-brand/30 hover:bg-brand/90 hover:shadow-brand/50 hover:scale-105 transition-all duration-300 backdrop-blur-sm border border-white/10"
+          className="pointer-events-auto inline-flex items-center justify-center gap-2 md:gap-3 px-4 md:px-8 py-3 md:py-4 text-base md:text-lg font-bold text-white bg-brand rounded-full shadow-2xl shadow-brand/30 hover:bg-brand/90 hover:shadow-brand/50 hover:scale-105 backdrop-blur-sm border border-white/10"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.3, delay: 0.1 }}
           viewport={{ once: true }}
         >
           <svg
