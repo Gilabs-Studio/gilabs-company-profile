@@ -80,37 +80,32 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
       description: [
         "We build custom software with unlimited users and full ownership. Your business, your software, your terms.",
       ],
-      tagsLeft: ["Unlimited Users", "Full Ownership", "Low Maintenance Costs"],
-      tagsRight: ["AI Custom Core", "No Hidden Costs", "Lifetime Asset"],
+      tagsLeft: ["Unlimited Seats", "Source Code Access", "Private Infrastructure"],
+      tagsRight: ["Long-Term Asset", "No Vendor Lock-in", "Enterprise Grade"],
     },
     problem: {
-      title: "The SaaS Trap",
-      subtitle: "Why subscription models are holding your business back",
+      title: "The Strategic Cost of Renting Software",
+      subtitle: "Evaluate if subscription models align with your long-term growth",
       challenges: [
         {
-          title: "Endless Monthly Fees",
-          description: "Pay $50-500 per user, every month, forever. Costs balloon as your team grows. You never own anything.",
+          title: "Recurring Overhead",
+          description: "Subscription models introduce recurring operational costs that compound over time. Ownership eliminates this long-term liability.",
           icon: "/icon/expensive.gif",
         },
         {
-          title: "Limited Customization",
-          description: "Forced to adapt your workflow to their software. Features you need? Pay extra. Features you don't? Still paying.",
+          title: "Workflow Constraints",
+          description: "Off-the-shelf software often requires adapting your processes. Custom solutions align perfectly with your operational requirements.",
           icon: "/icon/limited.gif",
         },
         {
-          title: "Vendor Lock-In",
-          description: "Your data, their platform. Want to leave? Export nightmare. Price increase? Accept or lose everything.",
+          title: "Data Sovereignty",
+          description: "Relying on external platforms can create dependency risks. We engineer systems where you maintain full control of your data assets.",
           icon: "/icon/locked.gif",
-        },
-        {
-          title: "AI Disruption",
-          description: "AI tools are commoditizing SaaS features. Why pay monthly for what AI can do cheaper or free?",
-          icon: "/icon/artificial-intelligence.gif",
         },
       ],
     },
     solution: {
-      title: "Custom Software: Built for You, Owned by You",
+      title: "Our Solution: Built for You, Owned by You",
       subtitle: "One-time investment. Lifetime value.",
       tagline: "Stop renting. Start owning.",
       benefits: [
@@ -128,25 +123,13 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
         },
         {
           icon: "/icon/custom.gif",
-          title: "Built Exactly for Your Workflow",
+          title: "Custom Workflow",
           description: "Not generic software. Purpose-built for how YOU work. Every feature serves your business needs.",
           stats: "Custom fit",
         },
         {
-          icon: "/icon/integration.gif",
-          title: "AI-Ready Integration",
-          description: "Future-proof with AI integration. Automate workflows, enhance features with latest AI. Stay ahead of disruption.",
-          stats: "AI-powered",
-        },
-        {
-          icon: "/icon/savings.gif",
-          title: "ROI in 12-24 Months",
-          description: "One-time cost vs. endless subscriptions. Break even in 1-2 years, save millions over 5 years.",
-          stats: "Break even: 12-24mo",
-        },
-        {
           icon: "/icon/scalable.gif",
-          title: "Scales With Your Growth",
+          title: "Scalable Architecture",
           description: "Built to handle 10x growth. Add features when you need them. Your timeline, your budget.",
           stats: "10x scalable",
         },
@@ -246,37 +229,32 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
       description: [
         "Kami membangun software custom dengan unlimited users dan full ownership. Bisnis Anda, software Anda, aturan Anda.",
       ],
-      tagsLeft: ["Unlimited Users", "Hak Milik Penuh", "Maintenance Terukur"],
-      tagsRight: ["Inti AI Kustom", "Tanpa Biaya Tersembunyi", "Aset Selamanya"],
+      tagsLeft: ["Unlimited Seats", "Akses Source Code", "Infrastruktur Privat"],
+      tagsRight: ["Aset Jangka Panjang", "Tanpa Vendor Lock-in", "Enterprise Grade"],
     },
     problem: {
-      title: "Jebakan SaaS",
-      subtitle: "Mengapa model subscription menghambat pertumbuhan bisnis Anda",
+      title: "Biaya Strategis Sewa Software",
+      subtitle: "Evaluasi apakah model subscription sejalan dengan pertumbuhan jangka panjang Anda",
       challenges: [
         {
-          title: "Biaya Bulanan Tanpa Akhir",
-          description: "Bayar Rp 700rb - 7jt per user, setiap bulan, selamanya. Biaya membengkak saat tim bertambah. Anda tidak pernah memiliki apapun.",
+          title: "Beban Operasional Berulang",
+          description: "Model berlangganan menciptakan biaya operasional rutin yang terakumulasi. Kepemilikan software menghilangkan liabilitas jangka panjang ini.",
           icon: "/icon/expensive.gif",
         },
         {
-          title: "Kustomisasi Terbatas",
-          description: "Terpaksa menyesuaikan workflow Anda dengan software mereka. Fitur yang dibutuhkan? Bayar ekstra. Fitur yang tidak? Tetap bayar.",
+          title: "Keterbatasan Workflow",
+          description: "Software generik seringkali mengharuskan penyesuaian proses. Solusi custom selaras sempurna dengan kebutuhan operasional Anda.",
           icon: "/icon/limited.gif",
         },
         {
-          title: "Terkunci Vendor",
-          description: "Data Anda, platform mereka. Mau pindah? Ekspor data mimpi buruk. Harga naik? Terima atau kehilangan semua.",
+          title: "Kedaulatan Data",
+          description: "Bergantung pada platform eksternal membawa risiko dependensi. Kami merancang sistem di mana Anda memegang kendali penuh aset data.",
           icon: "/icon/locked.gif",
-        },
-        {
-          title: "Disrupsi AI",
-          description: "AI tools membuat fitur SaaS jadi komoditas. Mengapa bayar bulanan untuk yang bisa AI lakukan lebih murah atau gratis?",
-          icon: "/icon/artificial-intelligence.gif",
         },
       ],
     },
     solution: {
-      title: "Software Custom: Dibangun untuk Anda, Dimiliki oleh Anda",
+      title: "Solusi Kami: Dibangun untuk Anda, Dimiliki oleh Anda",
       subtitle: "Investasi sekali. Value selamanya.",
       tagline: "Berhenti menyewa. Mulai memiliki.",
       benefits: [
@@ -294,25 +272,13 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
         },
         {
           icon: "/icon/custom.gif",
-          title: "Dibangun Sesuai Workflow Anda",
+          title: "Custom Workflow",
           description: "Bukan software generik. Dibuat khusus untuk cara kerja ANDA. Setiap fitur melayani kebutuhan bisnis Anda.",
           stats: "Custom fit",
         },
         {
-          icon: "/icon/integration.gif",
-          title: "AI-Ready Integration",
-          description: "Future-proof dengan integrasi AI. Otomatisasi workflow, tingkatkan fitur dengan AI terbaru. Tetap unggul dari disrupsi.",
-          stats: "AI-powered",
-        },
-        {
-          icon: "/icon/savings.gif",
-          title: "ROI dalam 12-24 Bulan",
-          description: "Biaya sekali vs subscription tanpa akhir. Break even 1-2 tahun, hemat miliaran dalam 5 tahun.",
-          stats: "Break even: 12-24bln",
-        },
-        {
           icon: "/icon/scalable.gif",
-          title: "Scale Seiring Pertumbuhan",
+          title: "Scalable Architecture",
           description: "Dibangun untuk menangani pertumbuhan 10x lipat. Tambah fitur saat butuh. Timeline Anda, budget Anda.",
           stats: "10x scalable",
         },

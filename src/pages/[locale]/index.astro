@@ -4,13 +4,10 @@ import Navbar from '../../components/Navbar.astro';
 import Hero from '../../components/sections/Hero.astro';
 import Hook from '../../components/sections/Hook.astro';
 import Problem from '../../components/sections/Problem.astro';
-import Agitate from '../../components/sections/Agitate.astro';
-import Solution from '../../components/sections/Solution.astro';
-import Proof from '../../components/sections/Proof.astro';
-import CTA from '../../components/sections/CTA.astro';
 import Features from '../../components/sections/Features.astro';
 import Portfolio from '../../components/sections/Portfolio.astro';
 import Showcase from '../../components/sections/Showcase.astro';
+import TrackRecord from '../../components/sections/TrackRecord.astro';
 import Process from '../../components/sections/Process.astro';
 import Trust from '../../components/sections/Trust.astro';
 import Offer from '../../components/sections/Offer.astro';
@@ -54,19 +51,37 @@ const keywords = locale === 'id'
   <WorkResultDrawer client:load lang={locale} />
   
   <main>
+    {/* 1. Hero (Positioning & Identity) */}
     <Hero lang={locale} />
-    <Hook lang={locale} />
-    <Problem lang={locale} />
-    <Agitate lang={locale} />
-    <Solution lang={locale} />
-    <Proof lang={locale} />
-    <CTA lang={locale} />
-    <Features lang={locale} />
-    <Portfolio lang={locale} />
+
+    {/* 2. Visual Proof (Showcase screens - establishment of trust) */}
     <Showcase lang={locale} />
-    <Process lang={locale} />
-    <Trust lang={locale} />
+    
+    {/* 3. The Problem (The Hidden Cost of Renting) */}
+    <Problem lang={locale} />
+
+    {/* 4. The Philosophy (Stop Renting. Start Owning.) */}
+    <Hook lang={locale} />
+
+    {/* 5. The Solution (Merged with Philosophy) */}
+
+    {/* 6. Portfolio Proof (Validation - demonstrates capability) */}
+    <Portfolio lang={locale} />
+
+    {/* 7. Services (The Offer) */}
     <Offer lang={locale} />
+
+    {/* 8. Process (Transparent workflow) */}
+    <Process lang={locale} />
+
+    {/* 9. Track Record (Social Proof) */}
+    <TrackRecord lang={locale} />
+
+    {/* 10. Why Choose Us (Final reinforcement) */}
+    <Features lang={locale} />
+
+    {/* 10. Culture & Final CTA */}
+    <Trust lang={locale} />
     <FinalCTA lang={locale} />
   </main>
   <Footer lang={locale} />

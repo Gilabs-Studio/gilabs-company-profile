@@ -184,13 +184,13 @@ export interface PricingData {
 export const pricingData: Record<string, PricingData> = {
   id: {
     hero: {
-      title: "Kami Cepat. Dan Kami Bangun Hal yang Bertahan Lama.",
+      title: "Solusi Software Bisnis yang Custom & Scalable.",
       subtitle: [
-        "Kami tidak punya pengalaman puluhan tahun.",
-        "Yang kami punya adalah kecepatan, kerja tim, dan energi yang baik.",
-        "Kami coding cepat — dan kami peduli dengan apa yang kami kirim."
+        "Kami membangun sistem software yang disesuaikan dengan workflow operasional Anda.",
+        "Bukan sekadar coding cepat—kami mendesain arsitektur yang siap tumbuh bersama bisnis Anda.",
+        "Fokus pada efisiensi, stabilitas, dan kepemilikan penuh aset digital Anda."
       ],
-      cta: "Mari Bangun Sesuatu",
+      cta: "Konsultasikan Kebutuhan Anda",
     },
     features: {
       items: [
@@ -225,14 +225,13 @@ export const pricingData: Record<string, PricingData> = {
       title: "Kami bergerak cepat. Kami tetap dalam alur.",
       subtitle: "Cara Kami Bekerja",
       body: [
-        "**PRD** dulu. Baru kami membangun.",
-        "Tidak ada rapat panjang. Tidak ada penantian tanpa akhir.",
-        "Hanya fokus, suasana yang baik, dan menyelesaikan pekerjaan.",
-        "Ketika **PRD** jelas, kami membangun. Ketika kami mengirim, kami bergerak maju."
+        "**Lingkup & Biaya Tetap** <br> Kami mendefinisikan semuanya di awal. Tanpa biaya tersembunyi.",
+        "**Eksekusi Terstruktur** <br> Eksekusi terstruktur dengan friksi operasional minimal. Kami menghargai waktu Anda.",
+        "**Progres Mingguan** <br> Anda menerima versi yang sudah di-deploy setiap minggu."
       ]
     },
     services: {
-      title: "Apa yang Kami Lakukan — dan Kami Lakukan dengan Cepat.",
+      title: "Kapabilitas Inti Kami",
       subtitle: "Kami membangun produk digital yang benar-benar berfungsi. Tanpa basa-basi, tanpa proses berbelit — hanya fokus, kecepatan, dan peduli pada kualitas.",
       items: [
         {
@@ -601,13 +600,13 @@ export const pricingData: Record<string, PricingData> = {
   },
   en: {
     hero: {
-      title: "We’re Fast. And We Build Things That Last.",
+      title: "Custom Business Systems. Built for Scale.",
       subtitle: [
-        "We don’t have decades of experience.",
-        "What we have is speed, teamwork, and good energy.",
-        "We code fast — and we care about what we ship."
+        "We design and build tailored software solutions for growing enterprises.",
+        "Not just fast coding—we engineer architectures ready to scale with your business.",
+        "Focus on efficiency, stability, and full ownership of your digital assets."
       ],
-      cta: "Let's Build Something",
+      cta: "Consult Your Needs",
     },
     features: {
       items: [
@@ -642,14 +641,13 @@ export const pricingData: Record<string, PricingData> = {
       title: "We move quick. We stay in flow.",
       subtitle: "How We Work",
       body: [
-        "**PRD** first. Then we build.",
-        "No long meetings. No endless waiting.",
-        "Just focus, good vibe, and getting things done.",
-        "When **PRD** is clear, we build. When we ship, we move on."
+        "**Fixed Scope & Cost** <br> We define everything upfront. No hidden fees, no surprise billings.",
+        "**Structured Execution** <br> Structured execution with minimal operational friction. We respect your time.",
+        "**Weekly Progress** <br> You get a deployed version every week. You see the progress, you feel the speed."
       ]
     },
     services: {
-      title: "What We Do — and What We Do Fast.",
+      title: "Our Core Capabilities",
       subtitle: "We build digital products that actually work. No buzzwords, no endless process — just focus, speed, and care for quality.",
       items: [
         {

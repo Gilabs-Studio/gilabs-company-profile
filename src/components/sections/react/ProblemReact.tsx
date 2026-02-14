@@ -20,7 +20,7 @@ const Section3React: React.FC<Section3ReactProps> = ({ lang }) => {
             {data.problem.subtitle}
           </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {data.problem.challenges.map((challenge) => (
             <div
               key={challenge.title}
@@ -28,7 +28,7 @@ const Section3React: React.FC<Section3ReactProps> = ({ lang }) => {
             >
               <div className="mb-4 sm:mb-6 flex items-center justify-start">
                 <LottieIcon
-                  src="/icon/artificial-intelligence.gif"
+                  src={challenge.icon}
                   className="w-16 h-16 sm:w-20 sm:h-20"
                 />
               </div>
