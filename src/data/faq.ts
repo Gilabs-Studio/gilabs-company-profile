@@ -15,28 +15,36 @@ export const faqData: Record<string, FAQData> = {
     subtitle: "Everything you need to know about partnering with Gilabs",
     items: [
       {
-        question: "How do you handle time zone differences?",
-        answer: "We are experienced in working with international clients across the US, Europe, and Australia. Our team operates with overlapping hours to ensure daily syncs, real-time collaboration, and smooth communication. We use async tools like Slack, Jira, and recorded Loom updates to keep progress moving 24/7.",
+        question: "How do you handle data security and compliance?",
+        answer: "We implement secure development practices, role-based access, and audit logging. Our infrastructure uses isolation techniques, and we ensure data agreements (NDA) are in place. Our processes align with ISO practices and GDPR awareness to ensure enterprise-grade security.",
       },
       {
-        question: "Do I own the Intellectual Property (IP)?",
-        answer: "Yes, absolutely. Once the project is paid for, you own 100% of the source code, design assets, and intellectual property. We work as your technology partner, not a vendor holding your IP hostage.",
+        question: "Who owns the source code and infrastructure?",
+        answer: "The client retains full ownership of the source code and design assets. We provide full repository access and offer independent hosting options to ensure no proprietary lock-in. Comprehensive documentation is always provided for independent maintenance.",
       },
       {
-        question: "Can you handle enterprise-grade security and scalability?",
-        answer: "Our team specializes in building high-performance, secure, and scalable systems. We follow industry best practices for data protection (SOC2 compliance readiness, GDPR), secure coding standards, and scalable cloud infrastructure (AWS/GCP) to support your growth from thousands to millions of users.",
+        question: "How do you ensure long-term maintainability?",
+        answer: "We follow clean architecture principles, strict documentation standards, and rigorous code review processes. By adhering to version control best practices and providing structured handovers, we ensure your system remains manageable long after launch.",
       },
       {
-        question: "What if I have an existing legacy system?",
-        answer: "We excel at digital transformation. We can audit your existing legacy code, propose a modernization strategy (refactor vs. rewrite), and progressively migrate your system to modern technologies without disrupting your daily business operations.",
+        question: "What happens if the project scope changes?",
+        answer: "We use a structured change request process that includes impact analysis for both timeline and cost. This transparent adjustment ensures no surprise billing and maintains governance throughout the project's evolution.",
       },
       {
-        question: "How does the engagement model work?",
-        answer: "We offer flexible engagement models tailored to your needs: Dedicated Teams for long-term product development, Fixed Price for well-defined projects, or Staff Augmentation to extend your existing team. We'll help you choose the best model for your goals.",
+        question: "Do you work with internal IT teams?",
+        answer: "Yes, we frequently collaborate with in-house tech teams. We coordinate through shared repositories, technical alignment meetings, and clear API/integration documentation to ensure seamless partnership.",
       },
       {
-        question: "What is your tech stack?",
-        answer: "We use modern, battle-tested technologies including React/Next.js for frontend, Node.js/Go/Python for backend, and React Native/Flutter for mobile. We choose the right tools for the job to ensure performance, maintainability, and scalability.",
+        question: "What is your delivery model?",
+        answer: "We offer fixed-scope options with milestone-based execution. We provide weekly deployed builds and clear reporting to ensure predictability and transparency in every phase of development.",
+      },
+      {
+        question: "What kind of support do you provide post-launch?",
+        answer: "We offer SLA-based support options, including proactive monitoring, performance optimization, security patching, and upgrade roadmap planning to ensure your product remains competitive and secure.",
+      },
+      {
+        question: "How do you manage intellectual property and confidentiality?",
+        answer: "We sign NDAs before project commencement. All intellectual property is fully transferred upon payment completion. We guarantee no reuse of proprietary logic and maintain secure repository access control at all times.",
       },
     ],
   },
@@ -45,28 +53,36 @@ export const faqData: Record<string, FAQData> = {
     subtitle: "Semua yang perlu Anda ketahui tentang bermitra dengan Gilabs",
     items: [
       {
-        question: "Bagaimana Anda menangani perbedaan zona waktu?",
-        answer: "Kami berpengalaman bekerja dengan klien internasional di AS, Eropa, dan Australia. Tim kami bekerja dengan jam overlapping untuk memastikan sinkronisasi harian, kolaborasi real-time, dan komunikasi yang lancar. Kami menggunakan alat asinkron seperti Slack, Jira, dan update Loom untuk menjaga progress berjalan 24/7.",
+        question: "Bagaimana Anda menangani keamanan data dan kepatuhan?",
+        answer: "Kami menerapkan praktik pengembangan yang aman, akses berbasis peran, dan audit logging. Infrastruktur kami menggunakan teknik isolasi, dan kami memastikan adanya dokumen hukum yang jelas (NDA). Proses kami selaras dengan praktik ISO dan kesadaran GDPR untuk menjamin keamanan kelas enterprise.",
       },
       {
-        question: "Apakah saya memiliki Hak Kekayaan Intelektual (IP)?",
-        answer: "Ya, tentu saja. Setelah proyek lunas, Anda memiliki 100% source code, aset desain, dan hak kekayaan intelektual. Kami bekerja sebagai mitra teknologi Anda, bukan vendor yang menyandera IP Anda.",
+        question: "Siapa pemilik source code dan infrastrukturnya?",
+        answer: "Klien memegang kepemilikan penuh atas source code dan aset desain. Kami memberikan akses repositori penuh dan menawarkan opsi hosting independen untuk memastikan tidak ada ketergantungan vendor (no lock-in). Dokumentasi lengkap selalu disediakan untuk pemeliharaan mandiri.",
       },
       {
-        question: "Bisakah Anda menangani keamanan dan skalabilitas kelas enterprise?",
-        answer: "Tim kami berspesialisasi dalam membangun sistem berkinerja tinggi, aman, dan scalable. Kami mengikuti standar industri terbaik untuk perlindungan data (kesiapan SOC2, GDPR), standar coding yang aman, dan infrastruktur cloud yang scalable (AWS/GCP) untuk mendukung pertumbuhan Anda dari ribuan hingga jutaan pengguna.",
+        question: "Bagaimana Anda menjamin pemeliharaan jangka panjang?",
+        answer: "Kami mengikuti prinsip clean architecture, standar dokumentasi yang ketat, dan proses code review yang teliti. Dengan mematuhi best practice kontrol versi dan menyediakan serah terima yang terstruktur, kami memastikan sistem Anda tetap mudah dikelola dalam jangka panjang.",
       },
       {
-        question: "Bagaimana jika saya memiliki sistem legacy yang sudah ada?",
-        answer: "Kami ahli dalam transformasi digital. Kami dapat mengaudit kode legacy Anda, mengusulkan strategi modernisasi (refactor vs. rewrite), dan secara progresif memigrasikan sistem Anda ke teknologi modern tanpa mengganggu operasional bisnis sehari-hari Anda.",
+        question: "Apa yang terjadi jika lingkup (scope) proyek berubah?",
+        answer: "Kami menggunakan proses permintaan perubahan (change request) yang terstruktur, mencakup analisis dampak terhadap linimasa dan biaya. Penyesuaian transparan ini memastikan tidak ada tagihan tak terduga dan menjaga tata kelola proyek tetap terjaga.",
       },
       {
-        question: "Bagaimana model kerjasamanya?",
-        answer: "Kami menawarkan model kerjasama fleksibel yang disesuaikan dengan kebutuhan Anda: Dedicated Team untuk pengembangan produk jangka panjang, Fixed Price untuk proyek yang terdefinisi dengan baik, atau Staff Augmentation untuk memperluas tim Anda yang sudah ada. Kami akan membantu Anda memilih model terbaik untuk tujuan Anda.",
+        question: "Apakah Anda bekerja dengan tim IT internal?",
+        answer: "Ya, kami sering berkolaborasi dengan tim teknis internal klien. Kami berkoordinasi melalui repositori bersama, rapat penyelarasan teknis, serta koordinasi API dan integrasi untuk memastikan kemitraan yang mulus.",
       },
       {
-        question: "Apa tech stack yang Anda gunakan?",
-        answer: "Kami menggunakan teknologi modern yang teruji termasuk React/Next.js untuk frontend, Node.js/Go/Python untuk backend, dan React Native/Flutter untuk mobile. Kami memilih alat yang tepat untuk pekerjaan tersebut guna memastikan kinerja, maintainability, dan skalabilitas.",
+        question: "Apa model pengiriman (delivery model) Anda?",
+        answer: "Kami menawarkan opsi lingkup tetap (fixed scope) dengan eksekusi berbasis milestone. Kami menyediakan build yang dideploy mingguan dan pelaporan yang jelas untuk memastikan prediktabilitas dan transparansi.",
+      },
+      {
+        question: "Dukungan apa yang Anda berikan setelah peluncuran?",
+        answer: "Kami menawarkan opsi dukungan berbasis SLA, termasuk pemantauan proaktif, optimasi performa, penambalan keamanan (security patching), dan perencanaan peta jalan (roadmap) pembaruan.",
+      },
+      {
+        question: "Bagaimana Anda mengelola kekayaan intelektual dan kerahasiaan?",
+        answer: "Kami menandatangani NDA sebelum proyek dimulai. Seluruh Hak Kekayaan Intelektual (IP) dialihkan sepenuhnya setelah pelunasan pembayaran. Kami menjamin tidak ada penggunaan ulang logika kepemilikan dan menjaga kontrol akses repositori yang aman.",
       },
     ],
   },
