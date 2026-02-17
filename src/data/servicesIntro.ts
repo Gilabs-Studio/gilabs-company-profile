@@ -75,10 +75,10 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
   en: {
     hero: {
       eyebrow: "The Future of Business Software",
-      title: "Own the System.\nOwn the Advantage",
+      title: "Infrastructure That Compounds\nNot Liability That Drains",
       subtitle: "Stop paying rent on your software",
       description: [
-        "We architect ownership-based software systems. Your business, your digital asset, your strategic advantage.",
+        "We architect transfer-ready infrastructure. Your business, your balance-sheet value, your competitive moat.",
       ],
       tagsLeft: ["Unlimited Seats", "Source Code Access", "Private Infrastructure"],
       tagsRight: ["Long-Term Asset", "No Vendor Lock-in", "Enterprise Grade"],
@@ -221,18 +221,18 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
       insight: "Save $180,000 over 5 years. That's 150% ROI. And you own the software forever.",
     },
     cta: {
-      title: "Stop Paying Rent\nBuild a Digital Asset",
-      subtitle: "Make a strategic investment, not a recurring expense. Let's calculate your ROI and architect your ownership-based system.",
-      button: "Schedule a Strategic Consultation",
+      title: "Ready to Build Your Software?",
+      subtitle: "Let's talk about your project and how we can help.",
+      button: "Get Started",
     },
   },
   id: {
     hero: {
       eyebrow: "Masa Depan Software Bisnis",
-      title: "Miliki Software Anda\nBangun Aset Digital",
+      title: "Infrastruktur yang Berkembang\nBukan Liabilitas yang Menguras",
       subtitle: "Berhenti membayar sewa untuk software Anda",
       description: [
-        "Kami merancang sistem software berbasis kepemilikan. Bisnis Anda, aset digital Anda, keunggulan strategis Anda.",
+        "Kami merancang infrastruktur transfer-ready. Bisnis Anda, nilai balance sheet Anda, competitive moat Anda.",
       ],
       tagsLeft: ["Unlimited Seats", "Akses Source Code", "Infrastruktur Privat"],
       tagsRight: ["Aset Jangka Panjang", "Tanpa Vendor Lock-in", "Enterprise Grade"],
@@ -375,9 +375,9 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
       insight: "Hemat Rp 2,5M dalam 5 tahun. ROI 150%. Dan Anda memiliki software selamanya.",
     },
     cta: {
-      title: "Berhenti Membayar Sewa\nBangun Aset Digital",
-      subtitle: "Buat investasi strategis, bukan biaya berulang. Mari hitung ROI Anda dan rancang sistem berbasis kepemilikan Anda.",
-      button: "Jadwalkan Konsultasi Strategis",
+      title: "Siap Membangun Software Anda?",
+      subtitle: "Mari diskusikan project Anda dan bagaimana kami bisa membantu.",
+      button: "Mulai Sekarang",
     },
   },
 };

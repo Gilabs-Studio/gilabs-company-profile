@@ -231,7 +231,7 @@ export default function ScrollCardServices({
   }
 
   return (
-    <section id="services" className="bg-background">
+    <section id="services">
       {/* Section Header */}
       <div className="container mx-auto px-4 md:px-6 pt-20 md:pt-28 pb-12 md:pb-16">
         <motion.div

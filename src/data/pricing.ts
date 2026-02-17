@@ -194,7 +194,7 @@ export const pricingData: Record<string, PricingData> = {
     hero: {
       title: "Miliki Software Anda\nBangun Aset Digital",
       eyebrow: "Mendukung Teknologi Masa Depan",
-      subtitle: "Kami merancang sistem software berbasis kepemilikan untuk enterprise yang menghargai fleksibilitas strategis. Bisnis Anda, aset digital Anda, keunggulan kompetitif Anda.",
+      subtitle: "Kami membangun software custom untuk bisnis. Project Anda, kesuksesan Anda.",
       cta: "Bangun Aset Digital Anda",
     },
     features: {
@@ -221,7 +221,7 @@ export const pricingData: Record<string, PricingData> = {
       title: "Keahlian Boutique. Kemampuan Enterprise. Kemitraan Jangka Panjang.",
       subtitle: "Mitra Teknologi Strategis",
       body: [
-        "Kami selektif—kami bekerja dengan klien yang menghargai kepemilikan dan fleksibilitas strategis.",
+        "Kami selektif—kami bekerja dengan klien yang menghargai kontrol infrastruktur dan otonomi strategis.",
         "Tim senior, pengiriman terfokus. Tanpa birokrasi, hanya hasil.",
         "Kami menjadi perpanjangan strategi teknologi Anda, bukan hanya vendor.",
         "Kemitraan strategis jangka panjang dibangun atas kepercayaan dan hasil bersama."
@@ -237,33 +237,33 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     services: {
-      title: "Kapabilitas Inti Kami",
-      subtitle: "Kami membangun produk digital yang benar-benar berfungsi. Tanpa basa-basi, tanpa proses berbelit — hanya fokus, kecepatan, dan peduli pada kualitas.",
+      title: "Layanan Kami",
+      subtitle: "Kami membangun software custom sesuai kebutuhan bisnis Anda.",
       items: [
         {
           title: "Web Development",
           body: [
-            "Website modern untuk company profile, landing page, atau marketing site. Fokus pada informasi dan branding bisnis Anda.",
-            "Dari website sederhana hingga platform full-stack dengan backend, database, dan fitur kompleks.",
-            "Kami memastikan semuanya berjalan lancar, cepat, dan terlihat solid di setiap layar."
+            "Website dan aplikasi web modern.",
+            "Dari company profile hingga platform full-stack dengan backend dan database.",
+            "Cepat, responsive, dan dibangun untuk bertahan lama."
           ],
           tagline: "→ Rp 5.000.000 – 80.000.000+"
         },
         {
           title: "Mobile App Development",
           body: [
-            "Aplikasi mobile cross-platform yang dirancang khusus untuk workflow bisnis Anda.",
-            "Dirancang untuk berkinerja baik, mudah diperbarui, dan tumbuh bersama produk Anda.",
-            "Satu basis kode untuk iOS & Android — lancar di mana saja."
+            "Aplikasi mobile cross-platform untuk iOS dan Android.",
+            "Satu codebase, multiple platform. Cepat, reliable, mudah dirawat.",
+            "Dibangun untuk berkembang bersama bisnis Anda."
           ],
           tagline: "→ Rp 20.000.000 – 80.000.000"
         },
         {
           title: "System & Integration",
           body: [
-            "Sistem enterprise lengkap dengan multiple modules dan integrasi kompleks.",
-            "Kami menghubungkan alat, database, dan API Anda sehingga semuanya berjalan bersama seperti satu sistem.",
-            "Lebih sedikit pekerjaan manual, lebih sedikit menunggu, lebih banyak otomatisasi."
+            "Sistem enterprise lengkap dengan multiple modules dan integrasi.",
+            "Kami menghubungkan tools, database, dan API Anda menjadi satu sistem yang seamless.",
+            "Lebih sedikit pekerjaan manual, lebih banyak otomatisasi."
           ],
           tagline: "→ Rp 150.000.000 – 800.000.000+"
         },
@@ -271,19 +271,18 @@ export const pricingData: Record<string, PricingData> = {
           title: "Maintenance & Support",
           body: [
             "Kami tidak menghilang setelah peluncuran.",
-            "Jaminan aplikasi Anda selalu berjalan optimal dengan support berkelanjutan.",
-            "Dari basic maintenance hingga enterprise support dengan SLA guarantee.",
-            "Anggap kami sebagai kru pit teknologi Anda."
+            "Support dan maintenance berkelanjutan untuk menjaga sistem Anda berjalan lancar.",
+            "Dari basic maintenance hingga enterprise support dengan SLA."
           ],
           tagline: "→ Rp 2.000.000 – 20.000.000/bulan"
         }
       ]
     },
     energy: {
-      title: "Pendekatan Kemitraan Strategis",
+      title: "Cara Kami Bekerja",
       subtitle: "Dibangun untuk Kesuksesan Jangka Panjang",
       body: [
-        "Kami berpikir dalam horizon 5 tahun, bukan sprint proyek. Kesuksesan Anda adalah kesuksesan kami—kami berinvestasi dalam hasil jangka panjang Anda.",
+        "Kami mengukur dua kali, memotong sekali. Akurasi adalah harga mati.",
         "Kami merancang aset digital jangka panjang, bukan hanya membangun fitur. Setiap sistem dirancang untuk transfer, bukan dependensi.",
         "Kami fokus pada hasil strategis dan dampak bisnis yang terukur, bukan hanya pengiriman teknis."
       ]
@@ -302,12 +301,12 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     ctaSection: {
-      title: "Berhenti Membayar Sewa\nBangun Aset Digital",
+      title: "Siap Membangun Software Anda?",
       subtitle: [
-        "Buat investasi strategis, bukan biaya berulang.",
-        "Mari hitung ROI Anda dan rancang sistem berbasis kepemilikan Anda."
+        "Mari diskusikan project Anda dan bagaimana kami bisa membantu.",
+        "Mulai hari ini."
       ],
-      button: "Jadwalkan Konsultasi Strategis"
+      button: "Mulai Sekarang"
     },
     packages: [
       {
@@ -621,7 +620,7 @@ export const pricingData: Record<string, PricingData> = {
     hero: {
       title: "Own the System\nOwn the Advantage",
       eyebrow: "Powering Next-Gen Tech",
-      subtitle: "We architect ownership-based software systems for enterprises that value strategic flexibility. Your business, your digital asset, your competitive advantage.",
+      subtitle: "We build custom software for businesses. Your project, your success.",
       cta: "Build Your Digital Asset",
     },
     features: {
@@ -648,7 +647,7 @@ export const pricingData: Record<string, PricingData> = {
       title: "Boutique Expertise. Enterprise Capability. Long-Term Partnerships.",
       subtitle: "Strategic Technology Partners",
       body: [
-        "We're selective—we work with clients who value ownership and strategic flexibility.",
+        "We're selective—we work with clients who value infrastructure control and strategic autonomy.",
         "Senior team, focused delivery. No bureaucracy, just results.",
         "We become an extension of your technology strategy, not just a vendor.",
         "Long-term strategic partnerships built on trust and shared outcomes."
@@ -664,33 +663,33 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     services: {
-      title: "Our Core Capabilities",
-      subtitle: "We build digital products that actually work. No buzzwords, no endless process — just focus, speed, and care for quality.",
+      title: "Our Services",
+      subtitle: "We build custom software for your business needs.",
       items: [
         {
           title: "Web Development",
           body: [
-            "Modern websites for company profile, landing page, or marketing site. Focus on information and business branding.",
-            "From simple websites to full-stack platforms with backend, database, and complex features.",
-            "We make sure everything runs smooth, fast, and looks solid on every screen."
+            "Modern websites and web applications.",
+            "From company profile to full-stack platforms with backend and database.",
+            "Fast, responsive, and built to last."
           ],
           tagline: "→ IDR 5,000,000 – 80,000,000+"
         },
         {
           title: "Mobile App Development",
           body: [
-            "Cross-platform mobile applications designed specifically for your business workflow.",
-            "Designed to perform well, update easily, and grow with your product.",
-            "One codebase for iOS & Android — smooth everywhere."
+            "Cross-platform mobile applications for iOS and Android.",
+            "One codebase, multiple platforms. Fast, reliable, easy to maintain.",
+            "Built to scale with your business."
           ],
           tagline: "→ IDR 20,000,000 – 80,000,000"
         },
         {
           title: "System & Integration",
           body: [
-            "Complete enterprise systems with multiple modules and complex integrations.",
-            "We connect your tools, databases, and APIs so everything runs together like a single system.",
-            "Less manual work, less waiting, more automation."
+            "Complete enterprise systems with multiple modules and integrations.",
+            "We connect your tools, databases, and APIs into one seamless system.",
+            "Less manual work, more automation."
           ],
           tagline: "→ IDR 150,000,000 – 800,000,000+"
         },
@@ -698,19 +697,18 @@ export const pricingData: Record<string, PricingData> = {
           title: "Maintenance & Support",
           body: [
             "We don't disappear after launch.",
-            "Ensure your application always runs optimally with ongoing support.",
-            "From basic maintenance to enterprise support with SLA guarantee.",
-            "Think of us as your tech pit-crew."
+            "Ongoing support and maintenance to keep your system running smoothly.",
+            "From basic maintenance to enterprise support with SLA."
           ],
           tagline: "→ IDR 2,000,000 – 20,000,000/month"
         }
       ]
     },
     energy: {
-      title: "Strategic Partnership Approach",
+      title: "How We Work",
       subtitle: "Built for Long-Term Success",
       body: [
-        "We think in 5-year horizons, not project sprints. Your success is our success—we're invested in your long-term outcomes.",
+        "We measure twice, cut once. Accuracy is non-negotiable.",
         "We architect long-term digital assets, not just build features. Every system is designed for transfer, not dependency.",
         "We focus on strategic outcomes and measurable business impact, not just technical delivery."
       ]
@@ -724,12 +722,12 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     ctaSection: {
-      title: "Stop Paying Rent\nBuild a Digital Asset",
+      title: "Ready to Build Your Software?",
       subtitle: [
-        "Make a strategic investment, not a recurring expense.",
-        "Let's calculate your ROI and architect your ownership-based system."
+        "Let's talk about your project and how we can help.",
+        "Get started today."
       ],
-      button: "Schedule Strategic Consultation"
+      button: "Get Started"
     },
     packages: [
       {

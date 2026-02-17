@@ -232,7 +232,7 @@
 @layer utilities {
   /* Hero Title - Largest (72px) with Uppercase */
   .typography-hero-title {
-    @apply font-bold tracking-tighter text-foreground;
+    @apply font-bold tracking-tighter;
     font-size: clamp(3rem, 6vw, 4.5rem); /* 48px - 72px responsive */
     line-height: 1.1;
     letter-spacing: -0.02em;
@@ -240,7 +240,7 @@
 
   /* Section Title - Large (36px) */
   .typography-section-title {
-    @apply text-4xl font-bold tracking-tight text-foreground;
+    @apply text-4xl font-bold tracking-tight;
     font-size: 2.25rem; /* 36px */
     line-height: 1.2;
     letter-spacing: -0.01em;
@@ -248,7 +248,7 @@
 
   /* Card Title - Medium (24px) */
   .typography-card-title {
-    @apply text-2xl font-bold tracking-tight text-foreground;
+    @apply text-2xl font-bold tracking-tight;
     font-size: 1.5rem; /* 24px */
     line-height: 1.3;
   }

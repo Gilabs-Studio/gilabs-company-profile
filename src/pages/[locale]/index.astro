@@ -2,19 +2,13 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Hero from '../../components/sections/Hero.astro';
-import Hook from '../../components/sections/Hook.astro';
-import Architecture from '../../components/sections/Architecture.astro';
-import Problem from '../../components/sections/Problem.astro';
 import Features from '../../components/sections/Features.astro';
 import Portfolio from '../../components/sections/Portfolio.astro';
 import Showcase from '../../components/sections/Showcase.astro';
-import TrackRecord from '../../components/sections/TrackRecord.astro';
 import Process from '../../components/sections/Process.astro';
-import Trust from '../../components/sections/Trust.astro';
+import FAQ from '../../components/sections/FAQ.astro';
 import Offer from '../../components/sections/Offer.astro';
 import FinalCTA from '../../components/sections/FinalCTA.astro';
-import EnterpriseAuthority from '../../components/sections/EnterpriseAuthority.astro';
-import RiskMitigation from '../../components/sections/RiskMitigation.astro';
 import WorkResultDrawer from '../../components/ui/WorkResultDrawer';
 import Footer from '../../components/sections/Footer.astro';
 import MobileMenu from '../../components/MobileMenu.astro';
@@ -54,41 +48,25 @@ const keywords = locale === 'id'
   <WorkResultDrawer client:load lang={locale} />
   
   <main>
-    {/* 1. Hero (Positioning & Identity) */}
+    {/* 1. Hero */}
     <Hero lang={locale} />
     
-    {/* 2. The Problem (The Hidden Risks of Software Rentals) */}
-    <Problem lang={locale} />
-
-    {/* 3. Enterprise Authority (Credibility & Strategic Partnership) */}
-    <EnterpriseAuthority lang={locale} />
-
-    {/* 4. Portfolio Proof (Validation - demonstrates capability) */}
-    <Portfolio lang={locale} />
-
-    {/* 5. The Philosophy (Stop Renting. Start Building Equity.) */}
-    <Hook lang={locale} />
-
-    {/* 6. Risk Mitigation (Your Risk, Mitigated. Your Control, Guaranteed.) */}
-    <RiskMitigation lang={locale} />
-
-    {/* 7. The Architecture (Architecture Designed for Ownership) */}
-    <Architecture lang={locale} />
-
-    {/* 8. Visual Proof (Showcase screens - establishment of trust) */}
+    {/* 2. Showcase - Projects First */}
     <Showcase lang={locale} />
 
-    {/* 9. Process (Transparent workflow) */}
-    <Process lang={locale} />
+    {/* 3. Portfolio */}
+    <Portfolio lang={locale} />
 
-    {/* 10. Services (The Offer) */}
+    {/* 4. Services */}
     <Offer lang={locale} />
 
-    {/* 11. Why Choose Us (Final reinforcement) */}
-    <Features lang={locale} />
+    {/* 5. Process */}
+    <Process lang={locale} />
 
-    {/* 12. Culture & Final CTA */}
-    <Trust lang={locale} />
+    {/* 6. FAQ */}
+    <FAQ lang={locale} />
+
+    {/* 8. Trust & Final CTA */}
     <FinalCTA lang={locale} />
   </main>
   <Footer lang={locale} />
