@@ -7,39 +7,39 @@ import { ArrowRight } from 'lucide-react';
 const { lang } = Astro.props;
 const energy = pricingData[lang].energy;
 
-// Lottie icon paths for energy cards
+// Lottie icon paths for energy cards (Reused for Engineering Culture)
 const energyIcons = [
-  '/icon/artificial-intelligence.gif',
-  '/icon/disguise.gif',
-  '/icon/night.gif',
-  '/icon/happy-friends.gif',
+  '/icon/artificial-intelligence.gif', // Precision
+  '/icon/disguise.gif', // Disciplined (Focus/Serious)
+  '/icon/night.gif', // Ownership (Dedication)
+  '/icon/happy-friends.gif', // Long-term (Partnership)
 ];
 
 // Energy card data for cleaner iteration
 const energyCards = [
   { 
-    titleEn: 'Curiosity', 
-    titleId: 'Rasa Ingin Tahu',
-    descEn: 'We ask questions. We explore. We learn.',
-    descId: 'Kami bertanya. Kami menjelajah. Kami belajar.'
+    titleEn: 'Precision', 
+    titleId: 'Presisi',
+    descEn: 'We measure twice, cut once. Accuracy is non-negotiable.',
+    descId: 'Kami mengukur dua kali, memotong sekali. Akurasi adalah harga mati.'
   },
   { 
-    titleEn: 'Jokes & Fun', 
-    titleId: 'Candaan & Fun',
-    descEn: 'Laughter keeps us creative and connected.',
-    descId: 'Tertawa membuat kami kreatif dan terhubung.'
+    titleEn: 'Disciplined', 
+    titleId: 'Disiplin',
+    descEn: 'Consistent standards. Clean code. No shortcuts.',
+    descId: 'Standar konsisten. Kode bersih. Tanpa jalan pintas.'
   },
   { 
-    titleEn: 'Late Nights', 
-    titleId: 'Larut Malam',
-    descEn: 'When the best ideas come alive.',
-    descId: 'Saat ide terbaik muncul.'
+    titleEn: 'Ownership', 
+    titleId: 'Ownership',
+    descEn: 'We treat your system as if our own business depends on it.',
+    descId: 'Kami memperlakukan sistem Anda selayaknya bisnis kami sendiri bergantung padanya.'
   },
   { 
-    titleEn: 'Shared Vibes', 
-    titleId: 'Vibe Bersama',
-    descEn: 'Playlists that fuel our flow.',
-    descId: 'Playlist yang memicu alur kerja kami.'
+    titleEn: 'Long-term', 
+    titleId: 'Jangka Panjang',
+    descEn: 'Architected for the next 5 years, not just for launch day.',
+    descId: 'Diarsiteki untuk 5 tahun ke depan, bukan hanya untuk hari peluncuran.'
   },
 ];
 ---

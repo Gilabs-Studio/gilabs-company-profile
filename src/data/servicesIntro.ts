@@ -75,39 +75,44 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
   en: {
     hero: {
       eyebrow: "The Future of Business Software",
-      title: "Own Your Software. Stop Renting.",
-      subtitle: "Break free from subscription traps",
+      title: "Own Your Software. Build a Digital Asset.",
+      subtitle: "Stop paying rent on your software",
       description: [
-        "We build custom software with unlimited users and full ownership. Your business, your software, your terms.",
+        "We architect ownership-based software systems. Your business, your digital asset, your strategic advantage.",
       ],
       tagsLeft: ["Unlimited Seats", "Source Code Access", "Private Infrastructure"],
       tagsRight: ["Long-Term Asset", "No Vendor Lock-in", "Enterprise Grade"],
     },
     problem: {
-      title: "The Strategic Cost of Renting Software",
-      subtitle: "Evaluate if subscription models align with your long-term growth",
+      title: "The Hidden Risks of Software Rentals",
+      subtitle: "SaaS vendors can change terms anytime—you have no control. Platform pivots can break your workflows—you're along for the ride. Acquisitions can disrupt service—your business continuity at risk.",
       challenges: [
         {
-          title: "Recurring Overhead",
-          description: "Subscription models introduce recurring operational costs that compound over time. Ownership eliminates this long-term liability.",
+          title: "Vendor Pricing Risk",
+          description: "SaaS vendors can raise prices 40% with 30 days notice. You have no alternative—your workflows are locked in. Your success penalizes you with higher costs.",
           icon: "/icon/expensive.gif",
         },
         {
-          title: "Workflow Constraints",
-          description: "Off-the-shelf software often requires adapting your processes. Custom solutions align perfectly with your operational requirements.",
+          title: "Platform Pivot Risk",
+          description: "Vendors pivot their business model—your investment becomes legacy. Forced updates break your workflows. You're stuck adapting to their roadmap, not yours.",
           icon: "/icon/limited.gif",
         },
         {
-          title: "Data Sovereignty",
-          description: "Relying on external platforms can create dependency risks. We engineer systems where you maintain full control of your data assets.",
+          title: "Business Continuity Risk",
+          description: "Acquisitions disrupt service. Vendor shutdowns leave you stranded. Your data is hostage. Your operations depend on their survival—not yours.",
           icon: "/icon/locked.gif",
+        },
+        {
+          title: "Growth Penalty",
+          description: "Success means higher costs. Scale from 50 to 500 users? Your SaaS bill increases 10x. Ownership means unlimited growth at fixed cost.",
+          icon: "/icon/scalable.gif",
         },
       ],
     },
     solution: {
       title: "Our Solution: Built for You, Owned by You",
       subtitle: "One-time investment. Lifetime value.",
-      tagline: "Stop renting. Start owning.",
+      tagline: "Stop renting. Start building equity.",
       benefits: [
         {
           icon: "/icon/unlimited.gif",
@@ -216,47 +221,52 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
       insight: "Save $180,000 over 5 years. That's 150% ROI. And you own the software forever.",
     },
     cta: {
-      title: "Ready to Own Your Software?",
-      subtitle: "Let's calculate your exact ROI and build a roadmap for your custom solution.",
-      button: "Schedule a Consultation",
+      title: "Stop Paying Rent. Build a Digital Asset.",
+      subtitle: "Make a strategic investment, not a recurring expense. Let's calculate your ROI and architect your ownership-based system.",
+      button: "Schedule a Strategic Consultation",
     },
   },
   id: {
     hero: {
       eyebrow: "Masa Depan Software Bisnis",
-      title: "Miliki Software Anda. Berhenti Menyewa.",
-      subtitle: "Lepaskan diri dari jebakan subscription",
+      title: "Miliki Software Anda. Bangun Aset Digital.",
+      subtitle: "Berhenti membayar sewa untuk software Anda",
       description: [
-        "Kami membangun software custom dengan unlimited users dan full ownership. Bisnis Anda, software Anda, aturan Anda.",
+        "Kami merancang sistem software berbasis kepemilikan. Bisnis Anda, aset digital Anda, keunggulan strategis Anda.",
       ],
       tagsLeft: ["Unlimited Seats", "Akses Source Code", "Infrastruktur Privat"],
       tagsRight: ["Aset Jangka Panjang", "Tanpa Vendor Lock-in", "Enterprise Grade"],
     },
     problem: {
-      title: "Biaya Strategis Sewa Software",
-      subtitle: "Evaluasi apakah model subscription sejalan dengan pertumbuhan jangka panjang Anda",
+      title: "Risiko Tersembunyi Sewa Software",
+      subtitle: "Vendor SaaS dapat mengubah syarat kapan saja—Anda tidak punya kontrol. Platform pivot dapat merusak workflow Anda—Anda ikut arus. Akuisisi dapat mengganggu layanan—kontinuitas bisnis Anda berisiko.",
       challenges: [
         {
-          title: "Beban Operasional Berulang",
-          description: "Model berlangganan menciptakan biaya operasional rutin yang terakumulasi. Kepemilikan software menghilangkan liabilitas jangka panjang ini.",
+          title: "Risiko Kenaikan Harga Vendor",
+          description: "Vendor SaaS dapat menaikkan harga 40% dengan pemberitahuan 30 hari. Anda tidak punya alternatif—workflow Anda terkunci. Kesuksesan Anda menghukum Anda dengan biaya lebih tinggi.",
           icon: "/icon/expensive.gif",
         },
         {
-          title: "Keterbatasan Workflow",
-          description: "Software generik seringkali mengharuskan penyesuaian proses. Solusi custom selaras sempurna dengan kebutuhan operasional Anda.",
+          title: "Risiko Pivot Platform",
+          description: "Vendor mengubah model bisnis—investasi Anda menjadi legacy. Update paksa merusak workflow Anda. Anda terjebak menyesuaikan roadmap mereka, bukan Anda.",
           icon: "/icon/limited.gif",
         },
         {
-          title: "Kedaulatan Data",
-          description: "Bergantung pada platform eksternal membawa risiko dependensi. Kami merancang sistem di mana Anda memegang kendali penuh aset data.",
+          title: "Risiko Kontinuitas Bisnis",
+          description: "Akuisisi mengganggu layanan. Penutupan vendor meninggalkan Anda terdampar. Data Anda disandera. Operasi Anda bergantung pada kelangsungan hidup mereka—bukan Anda.",
           icon: "/icon/locked.gif",
+        },
+        {
+          title: "Penalti Pertumbuhan",
+          description: "Kesuksesan berarti biaya lebih tinggi. Skala dari 50 ke 500 user? Tagihan SaaS Anda meningkat 10x. Kepemilikan berarti pertumbuhan tak terbatas dengan biaya tetap.",
+          icon: "/icon/scalable.gif",
         },
       ],
     },
     solution: {
       title: "Solusi Kami: Dibangun untuk Anda, Dimiliki oleh Anda",
       subtitle: "Investasi sekali. Value selamanya.",
-      tagline: "Berhenti menyewa. Mulai memiliki.",
+      tagline: "Berhenti menyewa. Mulai membangun ekuitas.",
       benefits: [
         {
           icon: "/icon/unlimited.gif",
@@ -365,9 +375,9 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
       insight: "Hemat Rp 2,5M dalam 5 tahun. ROI 150%. Dan Anda memiliki software selamanya.",
     },
     cta: {
-      title: "Siap Memiliki Software Anda Sendiri?",
-      subtitle: "Mari hitung ROI exact Anda dan buat roadmap untuk solusi custom Anda.",
-      button: "Jadwalkan Konsultasi",
+      title: "Berhenti Membayar Sewa. Bangun Aset Digital.",
+      subtitle: "Buat investasi strategis, bukan biaya berulang. Mari hitung ROI Anda dan rancang sistem berbasis kepemilikan Anda.",
+      button: "Jadwalkan Konsultasi Strategis",
     },
   },
 };

@@ -20,7 +20,7 @@ const Section3React: React.FC<Section3ReactProps> = ({ lang }) => {
             {data.problem.subtitle}
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
           {data.problem.challenges.map((challenge) => (
             <div
               key={challenge.title}

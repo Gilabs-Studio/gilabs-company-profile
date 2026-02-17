@@ -29,7 +29,7 @@ const ArchitectureReact: React.FC<ArchitectureReactProps> = ({ lang }) => {
               transition={{ delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6 leading-tight"
             >
-              Ownership-Based Software Architecture
+              Architecture Designed for Ownership
             </motion.h2>
           </div>
 

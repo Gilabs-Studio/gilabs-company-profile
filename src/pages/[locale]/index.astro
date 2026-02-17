@@ -13,6 +13,8 @@ import Process from '../../components/sections/Process.astro';
 import Trust from '../../components/sections/Trust.astro';
 import Offer from '../../components/sections/Offer.astro';
 import FinalCTA from '../../components/sections/FinalCTA.astro';
+import EnterpriseAuthority from '../../components/sections/EnterpriseAuthority.astro';
+import RiskMitigation from '../../components/sections/RiskMitigation.astro';
 import WorkResultDrawer from '../../components/ui/WorkResultDrawer';
 import Footer from '../../components/sections/Footer.astro';
 import MobileMenu from '../../components/MobileMenu.astro';
@@ -54,35 +56,38 @@ const keywords = locale === 'id'
   <main>
     {/* 1. Hero (Positioning & Identity) */}
     <Hero lang={locale} />
-
-    {/* 2. Visual Proof (Showcase screens - establishment of trust) */}
-    <Showcase lang={locale} />
     
-    {/* 3. The Problem (The Hidden Cost of Renting) */}
+    {/* 2. The Problem (The Hidden Risks of Software Rentals) */}
     <Problem lang={locale} />
 
-    {/* 4. The Philosophy (Stop Renting. Start Owning.) */}
-    <Hook lang={locale} />
+    {/* 3. Enterprise Authority (Credibility & Strategic Partnership) */}
+    <EnterpriseAuthority lang={locale} />
 
-    {/* 5. The Architecture (Ownership-Based Software Architecture) */}
-    <Architecture lang={locale} />
-
-    {/* 6. Portfolio Proof (Validation - demonstrates capability) */}
+    {/* 4. Portfolio Proof (Validation - demonstrates capability) */}
     <Portfolio lang={locale} />
 
-    {/* 7. Services (The Offer) */}
-    <Offer lang={locale} />
+    {/* 5. The Philosophy (Stop Renting. Start Building Equity.) */}
+    <Hook lang={locale} />
 
-    {/* 8. Process (Transparent workflow) */}
+    {/* 6. Risk Mitigation (Your Risk, Mitigated. Your Control, Guaranteed.) */}
+    <RiskMitigation lang={locale} />
+
+    {/* 7. The Architecture (Architecture Designed for Ownership) */}
+    <Architecture lang={locale} />
+
+    {/* 8. Visual Proof (Showcase screens - establishment of trust) */}
+    <Showcase lang={locale} />
+
+    {/* 9. Process (Transparent workflow) */}
     <Process lang={locale} />
 
-    {/* 9. Track Record (Social Proof) */}
-    <TrackRecord lang={locale} />
+    {/* 10. Services (The Offer) */}
+    <Offer lang={locale} />
 
-    {/* 10. Why Choose Us (Final reinforcement) */}
+    {/* 11. Why Choose Us (Final reinforcement) */}
     <Features lang={locale} />
 
-    {/* 10. Culture & Final CTA */}
+    {/* 12. Culture & Final CTA */}
     <Trust lang={locale} />
     <FinalCTA lang={locale} />
   </main>
