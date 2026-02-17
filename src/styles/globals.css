@@ -34,8 +34,8 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-sm: calc(var(--radius) - 4px);
 
-  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-heading: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans: "Red Hat Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-heading: "Red Hat Display", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --animate-accordion-down: accordion-down 0.2s ease-out;
   --animate-accordion-up: accordion-up 0.2s ease-out;
@@ -225,5 +225,79 @@
   }
   .z-16 {
     z-index: 16;
+  }
+}
+
+/* Typography System - Semantic & Global */
+@layer utilities {
+  /* Hero Title - Largest (72px) with Uppercase */
+  .typography-hero-title {
+    @apply font-bold tracking-tighter text-foreground;
+    font-size: clamp(3rem, 6vw, 4.5rem); /* 48px - 72px responsive */
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  /* Section Title - Large (36px) */
+  .typography-section-title {
+    @apply text-4xl font-bold tracking-tight text-foreground;
+    font-size: 2.25rem; /* 36px */
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+  }
+
+  /* Card Title - Medium (24px) */
+  .typography-card-title {
+    @apply text-2xl font-bold tracking-tight text-foreground;
+    font-size: 1.5rem; /* 24px */
+    line-height: 1.3;
+  }
+
+  /* Subtitle - Medium (18px) - Smaller */
+  .typography-subtitle {
+    @apply text-muted-foreground;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.5;
+    font-weight: 300;
+  }
+
+  /* Body Text - Base (16px) */
+  .typography-body {
+    @apply text-base text-muted-foreground;
+    font-size: 1rem; /* 16px */
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Body Text Large - For emphasis (18px) */
+  .typography-body-large {
+    @apply text-lg text-muted-foreground;
+    font-size: 1.125rem; /* 18px */
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* Eyebrow - Small with serif italic (12-14px) */
+  .typography-eyebrow {
+    @apply text-xs sm:text-sm font-serif italic uppercase text-muted-foreground;
+    font-size: clamp(0.75rem, 1vw, 0.875rem); /* 12px - 14px */
+    line-height: 1.4;
+    letter-spacing: 0.05em;
+  }
+
+  /* Button Text - Medium (16-18px) */
+  .typography-button {
+    @apply text-base sm:text-lg font-bold;
+    font-size: clamp(1rem, 1.2vw, 1.125rem); /* 16px - 18px */
+    line-height: 1.4;
+    letter-spacing: 0.01em;
+  }
+
+  /* Small Text - For labels, captions (14px) */
+  .typography-small {
+    @apply text-sm text-muted-foreground;
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.5;
+    font-weight: 300;
   }
 }

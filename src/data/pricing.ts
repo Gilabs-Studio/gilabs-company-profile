@@ -192,7 +192,7 @@ export interface PricingData {
 export const pricingData: Record<string, PricingData> = {
   id: {
     hero: {
-      title: "Miliki Software Anda. Bangun Aset Digital.",
+      title: "Miliki Software Anda\nBangun Aset Digital",
       eyebrow: "Mendukung Teknologi Masa Depan",
       subtitle: "Kami merancang sistem software berbasis kepemilikan untuk enterprise yang menghargai fleksibilitas strategis. Bisnis Anda, aset digital Anda, keunggulan kompetitif Anda.",
       cta: "Bangun Aset Digital Anda",
@@ -228,7 +228,7 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     process: {
-      title: "Kami bergerak cepat. Kami tetap dalam alur.",
+      title: "Kami bergerak cepat\nKami tetap dalam alur",
       subtitle: "Cara Kami Bekerja",
       body: [
         "**Lingkup & Biaya Tetap** <br> Kami mendefinisikan semuanya di awal. Tanpa biaya tersembunyi.",
@@ -302,7 +302,7 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     ctaSection: {
-      title: "Berhenti Membayar Sewa. Bangun Aset Digital.",
+      title: "Berhenti Membayar Sewa\nBangun Aset Digital",
       subtitle: [
         "Buat investasi strategis, bukan biaya berulang.",
         "Mari hitung ROI Anda dan rancang sistem berbasis kepemilikan Anda."
@@ -619,7 +619,7 @@ export const pricingData: Record<string, PricingData> = {
   },
   en: {
     hero: {
-      title: "Own Your Software. Build a Digital Asset.",
+      title: "Own the System\nOwn the Advantage",
       eyebrow: "Powering Next-Gen Tech",
       subtitle: "We architect ownership-based software systems for enterprises that value strategic flexibility. Your business, your digital asset, your competitive advantage.",
       cta: "Build Your Digital Asset",
@@ -655,7 +655,7 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     process: {
-      title: "We move quick. We stay in flow.",
+      title: "We move quick\nWe stay in flow",
       subtitle: "How We Work",
       body: [
         "**Fixed Scope & Cost** <br> We define everything upfront. No hidden fees, no surprise billings.",
@@ -724,7 +724,7 @@ export const pricingData: Record<string, PricingData> = {
       ]
     },
     ctaSection: {
-      title: "Stop Paying Rent. Build a Digital Asset.",
+      title: "Stop Paying Rent\nBuild a Digital Asset",
       subtitle: [
         "Make a strategic investment, not a recurring expense.",
         "Let's calculate your ROI and architect your ownership-based system."

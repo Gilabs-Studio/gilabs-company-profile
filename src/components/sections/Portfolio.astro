@@ -42,13 +42,17 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
   <div class="container mx-auto px-4">
     {/* Header Section */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <p class="text-[0.65rem] sm:text-xs font-medium uppercase tracking-widest text-muted-foreground mb-3 md:mb-4">
-        {t.subtitle}
-      </p>
-      <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground leading-tight mb-6">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow">
+          {t.subtitle}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+      <h2 class="typography-section-title mb-6">
         {t.title}
       </h2>
-      <p class="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed">
+      <p class="typography-subtitle leading-relaxed">
         {t.description}
       </p>
     </div>
@@ -96,12 +100,12 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
             {/* Content */}
             <div class="p-6">
               {/* Title */}
-              <h3 class="text-xl font-bold mb-2 group-hover:text-brand transition-colors line-clamp-1">
+              <h3 class="typography-card-title mb-2 group-hover:text-brand transition-colors line-clamp-1">
                 {project?.title}
               </h3>
               
               {/* Description */}
-              <p class="text-muted-foreground text-sm mb-4 line-clamp-3 leading-relaxed">
+              <p class="typography-body mb-4 line-clamp-3 leading-relaxed">
                 {project?.description}
               </p>
               

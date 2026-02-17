@@ -13,10 +13,10 @@ const Section3React: React.FC<Section3ReactProps> = ({ lang }) => {
     <section className="py-8 sm:py-12 md:py-20 lg:py-32 relative">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground mb-4 sm:mb-6 leading-tight">
+          <h2 className="typography-section-title mb-4 sm:mb-6">
             {data.problem.title}
           </h2>
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+          <p className="typography-subtitle leading-relaxed">
             {data.problem.subtitle}
           </p>
         </div>
@@ -32,10 +32,10 @@ const Section3React: React.FC<Section3ReactProps> = ({ lang }) => {
                   className="w-16 h-16 sm:w-20 sm:h-20"
                 />
               </div>
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-3 sm:mb-4 text-foreground leading-tight">
+              <h3 className="typography-card-title mb-3 sm:mb-4">
                 {challenge.title}
               </h3>
-              <p className="text-muted-foreground text-sm sm:text-base leading-relaxed grow">
+              <p className="typography-body leading-relaxed grow">
                 {challenge.description}
               </p>
             </div>

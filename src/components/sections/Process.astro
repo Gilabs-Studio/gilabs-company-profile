@@ -16,11 +16,20 @@ function markdownToHtml(text: string): string {
     <section class="mb-16 sm:mb-20 md:mb-24 lg:mb-32">
       {/* Header with generous whitespace */}
       <div class="max-w-3xl mx-auto text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20 px-4">
-        <p class="text-[0.65rem] sm:text-xs font-medium uppercase tracking-widest text-muted-foreground mb-3 md:mb-4">
-          {process.subtitle}
-        </p>
-        <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-foreground leading-tight">
-          {process.title}
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow">
+            {process.subtitle}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+        <h2 class="typography-section-title">
+          {process.title.split('\n').map((line, i) => (
+            <>
+              {i > 0 && <br />}
+              {line}
+            </>
+          ))}
         </h2>
       </div>
 
@@ -36,7 +45,7 @@ function markdownToHtml(text: string): string {
                 </span>
               </div>
               {/* Step content - centered */}
-              <p class="text-base sm:text-lg md:text-xl text-foreground leading-relaxed px-2" set:html={markdownToHtml(step)} />
+              <p class="typography-body-large text-foreground leading-relaxed px-2" set:html={markdownToHtml(step)} />
             </div>
           ))}
         </div>

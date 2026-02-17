@@ -14,20 +14,24 @@ const ArchitectureReact: React.FC<ArchitectureReactProps> = ({ lang }) => {
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 sm:mb-20">
-            <motion.span 
+            <motion.div 
               initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-block text-brand text-sm font-medium uppercase tracking-[0.2em] mb-4"
+              className="flex items-center justify-center gap-3 sm:gap-4 mb-4"
             >
-              {data.solution.tagline}
-            </motion.span>
+              <div className="h-px w-6 sm:w-12 bg-primary/10" />
+              <span className="typography-eyebrow">
+                {data.solution.tagline}
+              </span>
+              <div className="h-px w-6 sm:w-12 bg-primary/10" />
+            </motion.div>
             <motion.h2 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-6 leading-tight"
+              className="typography-section-title mb-6"
             >
               Architecture Designed for Ownership
             </motion.h2>
@@ -48,10 +52,10 @@ const ArchitectureReact: React.FC<ArchitectureReactProps> = ({ lang }) => {
                     <img src={benefit.icon} alt={benefit.title} className="w-full h-full object-contain" />
                   </div>
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-foreground leading-tight">
+                <h3 className="typography-card-title mb-4">
                   {benefit.title}
                 </h3>
-                <p className="text-muted-foreground text-sm leading-relaxed grow mb-6">
+                <p className="typography-body leading-relaxed grow mb-6">
                   {benefit.description}
                 </p>
                 {benefit.stats && (

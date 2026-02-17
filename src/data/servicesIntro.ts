@@ -75,7 +75,7 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
   en: {
     hero: {
       eyebrow: "The Future of Business Software",
-      title: "Own Your Software. Build a Digital Asset.",
+      title: "Own the System.\nOwn the Advantage",
       subtitle: "Stop paying rent on your software",
       description: [
         "We architect ownership-based software systems. Your business, your digital asset, your strategic advantage.",
@@ -221,7 +221,7 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
       insight: "Save $180,000 over 5 years. That's 150% ROI. And you own the software forever.",
     },
     cta: {
-      title: "Stop Paying Rent. Build a Digital Asset.",
+      title: "Stop Paying Rent\nBuild a Digital Asset",
       subtitle: "Make a strategic investment, not a recurring expense. Let's calculate your ROI and architect your ownership-based system.",
       button: "Schedule a Strategic Consultation",
     },
@@ -229,7 +229,7 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
   id: {
     hero: {
       eyebrow: "Masa Depan Software Bisnis",
-      title: "Miliki Software Anda. Bangun Aset Digital.",
+      title: "Miliki Software Anda\nBangun Aset Digital",
       subtitle: "Berhenti membayar sewa untuk software Anda",
       description: [
         "Kami merancang sistem software berbasis kepemilikan. Bisnis Anda, aset digital Anda, keunggulan strategis Anda.",
@@ -375,7 +375,7 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
       insight: "Hemat Rp 2,5M dalam 5 tahun. ROI 150%. Dan Anda memiliki software selamanya.",
     },
     cta: {
-      title: "Berhenti Membayar Sewa. Bangun Aset Digital.",
+      title: "Berhenti Membayar Sewa\nBangun Aset Digital",
       subtitle: "Buat investasi strategis, bukan biaya berulang. Mari hitung ROI Anda dan rancang sistem berbasis kepemilikan Anda.",
       button: "Jadwalkan Konsultasi Strategis",
     },

@@ -241,21 +241,22 @@ export default function ScrollCardServices({
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center"
         >
-          {/* Pill badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6 rounded-full bg-brand/10 text-brand text-xs font-medium uppercase tracking-wider">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-              <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
-            </svg>
-            <span>{lang === "en" ? "Our Services" : "Layanan Kami"}</span>
+          {/* Eyebrow */}
+          <div className="flex items-center justify-center gap-3 sm:gap-4 mb-4">
+            <div className="h-px w-6 sm:w-12 bg-primary/10" />
+            <span className="typography-eyebrow">
+              {lang === "en" ? "Our Services" : "Layanan Kami"}
+            </span>
+            <div className="h-px w-6 sm:w-12 bg-primary/10" />
           </div>
 
           {/* Title */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-foreground mb-5 leading-tight">
+          <h2 className="typography-section-title mb-5">
             {title}
           </h2>
 
           {/* Subtitle */}
-          <p className="text-base md:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="typography-subtitle max-w-2xl mx-auto leading-relaxed">
             {subtitle}
           </p>
         </motion.div>

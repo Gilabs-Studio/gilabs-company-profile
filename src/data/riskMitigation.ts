@@ -16,7 +16,7 @@ export interface RiskMitigationData {
 export const riskMitigationData: Record<string, RiskMitigationData> = {
   en: {
     eyebrow: "Risk Mitigation",
-    title: "Your Risk, Mitigated. Your Control, Guaranteed.",
+    title: "Your Risk, Mitigated\nYour Control, Guaranteed",
     subtitle: "We don't just build software—we engineer systems with risk mitigation built in. Your business continuity, your data sovereignty, your strategic flexibility—all protected.",
     sections: [
       {
@@ -101,7 +101,7 @@ export const riskMitigationData: Record<string, RiskMitigationData> = {
   },
   id: {
     eyebrow: "Mitigasi Risiko",
-    title: "Risiko Anda, Dikurangi. Kontrol Anda, Dijamin.",
+    title: "Risiko Anda, Dikurangi\nKontrol Anda, Dijamin",
     subtitle: "Kami tidak hanya membangun software—kami merancang sistem dengan mitigasi risiko yang terintegrasi. Kontinuitas bisnis Anda, kedaulatan data Anda, fleksibilitas strategis Anda—semua terlindungi.",
     sections: [
       {

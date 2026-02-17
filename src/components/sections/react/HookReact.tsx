@@ -26,7 +26,7 @@ const Section2React: React.FC<Section2ReactProps> = ({ lang }) => {
             className="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12"
           >
             <div className="h-px w-6 sm:w-12 bg-primary/10" />
-            <span className="text-muted-foreground font-serif italic text-sm sm:text-base">
+            <span className="typography-eyebrow">
               {data.hero.eyebrow}
             </span>
             <div className="h-px w-6 sm:w-12 bg-primary/10" />
@@ -37,12 +37,12 @@ const Section2React: React.FC<Section2ReactProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-foreground mb-6 leading-[1.05]"
+            className="typography-hero-title mb-6"
           >
-            {data.hero.title.split('. ').map((part, i) => (
+            {data.hero.title.split('\n').map((line, i) => (
               <React.Fragment key={i}>
-                {part}{i === 0 ? '.' : ''}
-                {i === 0 && <br className="hidden sm:block" />}
+                {i > 0 && <br className="hidden sm:block" />}
+                {line}
               </React.Fragment>
             ))}
           </motion.h1>
@@ -52,7 +52,7 @@ const Section2React: React.FC<Section2ReactProps> = ({ lang }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-muted-foreground mb-6 md:mb-8 lg:mb-12 max-w-3xl mx-auto animate-slide-up space-y-1 md:space-y-2 font-light px-4"
+            className="typography-subtitle mb-6 md:mb-8 lg:mb-12 max-w-3xl mx-auto animate-slide-up space-y-1 md:space-y-2 px-4"
           >
             <p>{data.hero.subtitle},</p>
             <p>{data.hero.description[0]}</p>

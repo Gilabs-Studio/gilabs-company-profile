@@ -17,7 +17,7 @@ export interface EnterpriseAuthorityData {
 export const enterpriseAuthorityData: Record<string, EnterpriseAuthorityData> = {
   en: {
     eyebrow: "Enterprise Credibility",
-    title: "Built for Enterprise. Proven at Scale.",
+    title: "Built for Enterprise\nProven at Scale",
     subtitle: "We don't just build software—we architect long-term digital assets for organizations that value ownership and strategic flexibility.",
     credentials: [
       {
@@ -45,7 +45,7 @@ export const enterpriseAuthorityData: Record<string, EnterpriseAuthorityData> = 
       },
     ],
     positioning: {
-      title: "Boutique Expertise. Enterprise Capability. Long-Term Partnerships.",
+      title: "Boutique Expertise\nEnterprise Capability\nLong-Term Partnerships",
       points: [
         "We're selective—we work with clients who value ownership and strategic flexibility.",
         "Senior team, focused delivery. No bureaucracy, just results.",
@@ -56,7 +56,7 @@ export const enterpriseAuthorityData: Record<string, EnterpriseAuthorityData> = 
   },
   id: {
     eyebrow: "Kredibilitas Enterprise",
-    title: "Dibangun untuk Enterprise. Terbukti dalam Skala.",
+    title: "Dibangun untuk Enterprise\nTerbukti dalam Skala",
     subtitle: "Kami tidak hanya membangun software—kami merancang aset digital jangka panjang untuk organisasi yang menghargai kepemilikan dan fleksibilitas strategis.",
     credentials: [
       {
@@ -84,7 +84,7 @@ export const enterpriseAuthorityData: Record<string, EnterpriseAuthorityData> = 
       },
     ],
     positioning: {
-      title: "Keahlian Boutique. Kemampuan Enterprise. Kemitraan Jangka Panjang.",
+      title: "Keahlian Boutique\nKemampuan Enterprise\nKemitraan Jangka Panjang",
       points: [
         "Kami selektif—kami bekerja dengan klien yang menghargai kepemilikan dan fleksibilitas strategis.",
         "Tim senior, pengiriman terfokus. Tanpa birokrasi, hanya hasil.",
