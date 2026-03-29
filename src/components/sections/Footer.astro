@@ -1,54 +1,138 @@
 ---
+import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
+import { getWhatsAppLink } from '../../lib/utils';
+
 const { lang } = Astro.props;
+
+const FOOTER_LINKS = [
+  {
+    title: lang === 'en' ? "Company" : "Perusahaan",
+    links: [
+      { name: lang === 'en' ? "Home" : "Beranda", href: `/${lang}` },
+      { name: lang === 'en' ? "Services" : "Layanan", href: `/${lang}/services` },
+      { name: lang === 'en' ? "Work" : "Pekerjaan", href: `/${lang}/work-results` },
+      { name: lang === 'en' ? "Blog" : "Blog", href: `/${lang}/blog` },
+    ],
+  },
+  {
+    title: lang === 'en' ? "Services" : "Layanan",
+    links: [
+      { name: "Web Development", href: `/${lang}/services#web` },
+      { name: "ERP Systems", href: `/${lang}/services#erp` },
+      { name: "CRM Solutions", href: `/${lang}/services#crm` },
+      { name: "UI/UX Design", href: `/${lang}/services#uiux` },
+    ],
+  },
+  {
+    title: lang === 'en' ? "Support" : "Dukungan",
+    links: [
+      { name: lang === 'en' ? "FAQ" : "Tanya Jawab", href: `/${lang}#faq` },
+      { name: lang === 'en' ? "Contact" : "Kontak", href: getWhatsAppLink('footer', lang) },
+      { name: lang === 'en' ? "Privacy Policy" : "Kebijakan Privasi", href: `/${lang}/privacy` },
+      { name: lang === 'en' ? "Terms of Service" : "Ketentuan Layanan", href: `/${lang}/terms` },
+    ],
+  },
+];
+
+const largeText = "GILABS";
 ---
 
-<footer id="contact" class="py-8 sm:py-12 md:py-16 lg:py-20 border-t border-border/50 relative border-2">
-  <div class="container mx-auto px-4">
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-12 md:mb-16">
-      <div class="col-span-1 sm:col-span-2">
-        <a href={`/${lang}`} class="text-xl sm:text-2xl font-bold tracking-tighter mb-4 sm:mb-6 block">
-          GILABS<span class="text-brand">.ID</span>
-        </a>
-        <p class="text-muted-foreground max-w-sm mb-6 sm:mb-8 text-sm sm:text-base md:text-lg">
-          {lang === 'en' 
-            ? 'Building digital solutions for modern businesses. From company profiles to complex ERP systems.' 
-            : 'Membangun solusi digital untuk bisnis modern. Dari company profile hingga sistem ERP yang kompleks.'}
-        </p>
-        <div class="flex gap-4">
-          {/* Social Icons could go here */}
+<footer class="bg-white text-zinc-900 pt-16 pb-10 overflow-hidden border-t border-zinc-100">
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-4">
+      {/* Link Columns */}
+      {FOOTER_LINKS.map((group) => (
+        <div key={group.title}>
+          <h4 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-8">
+            {group.title}
+          </h4>
+          <ul class="space-y-4">
+            {group.links.map((link) => (
+              <li key={link.name}>
+                <a
+                  href={link.href}
+                  class="text-zinc-900 hover:text-brand transition-colors cursor-pointer text-base"
+                >
+                  {link.name}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      {/* Contact & Socials */}
+      <div class="space-y-12">
+        <div>
+          <h4 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-6">
+            {lang === 'en' ? "WE'D LOVE TO HELP YOU WITH EASE" : "KAMI SENANG MEMBANTU ANDA DENGAN MUDAH"}
+          </h4>
+          <a 
+            href="mailto:hello@gilabs.id" 
+            class="text-2xl md:text-3xl font-medium text-zinc-900 hover:text-brand transition-colors cursor-pointer overflow-wrap-anywhere block"
+          >
+            hello@gilabs.id
+          </a>
+        </div>
+
+        <div class="space-y-6">
+          <h4 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest">
+            {lang === 'en' ? 'Follow Us' : 'Ikuti Kami'}
+          </h4>
+          <div class="flex items-center gap-3">
+            {[
+              { icon: Facebook, label: "Facebook" },
+              { icon: Instagram, label: "Instagram" },
+              { icon: Twitter, label: "X" },
+              { icon: Youtube, label: "YouTube" },
+            ].map((item) => (
+              <button
+                key={item.label}
+                type="button"
+                class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-900 hover:bg-brand hover:text-white transition-all cursor-pointer shadow-sm"
+                aria-label={item.label}
+              >
+                <item.icon className="w-4 h-4" />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
-      
-      <div>
-        <h3 class="font-bold mb-4 sm:mb-6 text-base sm:text-lg">{lang === 'en' ? 'Services' : 'Layanan'}</h3>
-        <ul class="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground">
-          <li><a href="#" class="hover:text-brand transition-colors">Web Development</a></li>
-          <li><a href="#" class="hover:text-brand transition-colors">ERP Systems</a></li>
-          <li><a href="#" class="hover:text-brand transition-colors">CRM Solutions</a></li>
-          <li><a href="#" class="hover:text-brand transition-colors">UI/UX Design</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3 class="font-bold mb-4 sm:mb-6 text-base sm:text-lg">{lang === 'en' ? 'Contact' : 'Kontak'}</h3>
-        <ul class="space-y-3 sm:space-y-4 text-sm sm:text-base text-muted-foreground">
-          <li>
-            <a href="mailto:hello@gilabs.id" class="hover:text-brand transition-colors break-all">hello@gilabs.id</a>
-          </li>
-          <li>
-            <a href="https://wa.me/6281225974393" class="hover:text-brand transition-colors">+62 812-2597-4393</a>
-          </li>
-          <li>Semarang, Indonesia</li>
-        </ul>
-      </div>
     </div>
+  </div>
 
-    <div class="pt-6 sm:pt-8 border-t border-border/50 flex flex-col md:flex-row justify-between items-center gap-4 text-xs sm:text-sm text-muted-foreground">
-      <p>&copy; {new Date().getFullYear()} Gilabs.id. All rights reserved.</p>
-      <div class="flex flex-wrap justify-center gap-4 sm:gap-6">
-        <a href="#" class="hover:text-brand transition-colors">Privacy Policy</a>
-        <a href="#" class="hover:text-brand transition-colors">Terms of Service</a>
+  {/* Large Decorative Text - Aligned with Container */}
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12 select-none pointer-events-none mb-4 py-4">
+    <h2 
+      class="flex justify-between w-full text-[12rem] md:text-[16rem] lg:text-[20rem] font-bold text-zinc-200/80 leading-none tracking-tighter whitespace-nowrap"
+      style={{
+        maskImage: 'linear-gradient(to top, transparent 0%, black 60%)',
+        WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 60%)',
+      }}
+    >
+      {largeText.split("").map((char) => (
+        <span>{char}</span>
+      ))}
+    </h2>
+  </div>
+
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12">
+    {/* Bottom Bar */}
+    <div class="pt-8 border-t border-zinc-100 grid grid-cols-1 md:grid-cols-3 items-center gap-6 text-sm text-zinc-400">
+      <p class="text-center md:text-left">
+        &copy; {new Date().getFullYear()} Gilabs.id. All rights reserved.
+      </p>
+      <div class="flex justify-center gap-8">
+        <a href={`/${lang}/terms`} class="hover:text-zinc-900 transition-colors cursor-pointer">
+          {lang === 'en' ? 'Terms & Conditions' : 'Syarat & Ketentuan'}
+        </a>
+      </div>
+      <div class="flex justify-center md:justify-end gap-8">
+        <a href={`/${lang}/privacy`} class="hover:text-zinc-900 transition-colors cursor-pointer">
+          {lang === 'en' ? 'Privacy Policy' : 'Kebijakan Privasi'}
+        </a>
       </div>
     </div>
   </div>
 </footer>
+
