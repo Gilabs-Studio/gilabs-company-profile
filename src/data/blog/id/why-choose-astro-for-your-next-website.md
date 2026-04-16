@@ -8,6 +8,12 @@ category: "Web Development"
 tags: ["Astro","Web Development","Performance","SEO"]
 readTime: "5 menit"
 image: "/images/blog/astrospeed-landscape.png"
+takeaways:
+  - "Astro mengirim nol JavaScript secara default — menghasilkan skor Lighthouse yang konsisten mencapai 100"
+  - "Islands Architecture hanya menghidrasi komponen yang perlu, sisanya tetap sebagai HTML murni"
+  - "Astro bersifat framework-agnostic — gunakan React, Vue, Svelte, atau Web Components berdampingan"
+  - "Website yang cepat menghasilkan perhatian. Sistem bisnis terintegrasi di baliknya mengubah perhatian itu menjadi pendapatan"
+  - "Performa website hanyalah puncak funnel — pastikan backend Anda siap menangani apa yang menyusul"
 ---
 
 Ada kesenjangan yang terus tumbuh dalam pengembangan web modern antara *aplikasi* dan *website*. Tooling telah mencampuradukkan keduanya selama bertahun-tahun, mengirimkan halaman marketing bertenaga React yang mengirim megabyte JavaScript ke browser hanya untuk merender teks statis. Pengguna membayar harganya berupa waktu muat yang lambat. Bisnis membayarnya berupa bounce rate yang tinggi dan peringkat SEO yang turun.

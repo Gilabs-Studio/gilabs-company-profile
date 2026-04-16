@@ -8,6 +8,12 @@ category: "Mobile Development"
 tags: ["Flutter","Mobile Development","Cross-Platform","App Development"]
 readTime: "6 menit"
 image: "/images/blog/flutter-landscape.png"
+takeaways:
+  - "Flutter merender widget-nya sendiri secara pixel-perfect — tanpa kompromi pada performa atau fidelitas UI"
+  - "Satu codebase bisa melayani iOS dan Android dengan reuse kode 85–95%, memotong waktu dev hingga separuh"
+  - "Aplikasi mobile tanpa backend yang terhubung adalah peluang bisnis yang terlewat"
+  - "Mengintegrasikan Flutter dengan backend ERP/CRM mengubah interaksi front-end menjadi wawasan operasional langsung"
+  - "Rapid prototyping berarti Anda memvalidasi alur end-to-end dalam hitungan minggu, bukan bulan"
 ---
 
 Ada masanya ketika membangun aplikasi mobile berarti mempertahankan dua codebase yang sepenuhnya terpisah, dua tim pengembang, dan dua kali anggaran. Flutter mengubah persamaan itu secara fundamental.

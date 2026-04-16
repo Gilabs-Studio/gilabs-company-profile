@@ -8,6 +8,12 @@ category: "Web Development"
 tags: ["Astro","Web Development","Performance","SEO"]
 readTime: "5 min read"
 image: "/images/blog/astrospeed-landscape.png"
+takeaways:
+  - "Astro ships zero JavaScript by default — resulting in Lighthouse scores that consistently hit 100"
+  - "Islands Architecture hydrates only the components that need it, leaving everything else as raw HTML"
+  - "Astro is framework-agnostic — use React, Vue, Svelte, or Web Components side by side"
+  - "A fast website earns attention. The integrated business systems behind it convert that attention into revenue"
+  - "SEO and website performance are just the top of the funnel — make sure your backend is ready to handle what follows"
 ---
 
 There's a growing divide in modern web development between *applications* and *websites*. The tooling has conflated the two for years, shipping React-powered marketing pages that send megabytes of JavaScript to browsers just to render static text. Users pay the cost in load times. Businesses pay the cost in bounce rates and SEO rankings.

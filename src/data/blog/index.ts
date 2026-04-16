@@ -38,7 +38,8 @@ const extractPosts = (glob: Record<string, MarkdownModule>): BlogPost[] =>
         ...mod.frontmatter,
         Content: mod.Content || mod.default,
       } as BlogPost;
-    });
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const getMeta = (locale: string): BlogMeta => {
   const meta = metaGlob[`./${locale}/_meta.json`];

@@ -8,6 +8,12 @@ category: "SEO"
 tags: ["SEO","Digital Marketing","Web Performance","Content Strategy"]
 readTime: "7 menit"
 image: "/images/blog/seo-landscape.png"
+takeaways:
+  - "Core Web Vitals (LCP, INP, CLS) kini menjadi sinyal peringkat Google langsung — bukan opsional"
+  - "E-E-A-T: tulis dengan kedalaman dan keahlian nyata, bukan hanya kepadatan kata kunci"
+  - "Cocokkan search intent — pahami apakah pengguna ingin belajar, membandingkan, atau membeli"
+  - "SEO lokal adalah kanal dengan ROI tertinggi yang paling sering diabaikan bisnis Indonesia"
+  - "SEO membawa traffic ke pintu — sistem CRM memastikan setiap lead benar-benar ditindaklanjuti"
 ---
 
 Mesin pencari telah menjadi titik awal default untuk hampir setiap perjalanan digital. Apakah seseorang sedang mencari vendor software, kuliner lokal, atau jawaban atas pertanyaan teknis — Google adalah pemberhentian pertama. Bagi bisnis, ini berarti satu hal: peringkat yang baik bukan pilihan, itu adalah keharusan.

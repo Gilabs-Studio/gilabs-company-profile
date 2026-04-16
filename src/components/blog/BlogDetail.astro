@@ -76,25 +76,21 @@ const formatDate = (dateString: string) => {
     </div>
     
     {/* Key Takeaways - Minimalist */}
-    <div class="mt-12 pt-8 border-t border-border/30">
-      <h3 class="text-xl font-bold mb-4">
-        {lang === 'en' ? 'Key Takeaways' : 'Poin Penting'}
-      </h3>
-      <ul class="space-y-3 text-muted-foreground">
-        <li class="flex items-start gap-3">
-          <span class="text-foreground mt-1">•</span>
-          <span>{lang === 'en' ? 'Choose the right technology stack for your project needs' : 'Pilih teknologi yang tepat sesuai kebutuhan proyek Anda'}</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="text-foreground mt-1">•</span>
-          <span>{lang === 'en' ? 'Focus on performance and user experience' : 'Fokus pada performa dan pengalaman pengguna'}</span>
-        </li>
-        <li class="flex items-start gap-3">
-          <span class="text-foreground mt-1">•</span>
-          <span>{lang === 'en' ? 'Consider long-term maintenance and scalability' : 'Pertimbangkan pemeliharaan jangka panjang dan skalabilitas'}</span>
-        </li>
-      </ul>
-    </div>
+    {post.takeaways && post.takeaways.length > 0 && (
+      <div class="mt-12 pt-8 border-t border-border/30">
+        <h3 class="text-xl font-bold mb-4">
+          {lang === 'en' ? 'Key Takeaways' : 'Poin Penting'}
+        </h3>
+        <ul class="space-y-3 text-muted-foreground">
+          {post.takeaways.map((point: string) => (
+            <li class="flex items-start gap-3">
+              <span class="text-foreground mt-1">•</span>
+              <span>{point}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
   </div>
 
   {/* Tags - Minimalist */}

@@ -8,6 +8,12 @@ category: "Design"
 tags: ["UI/UX","Design","User Experience","Conversion Optimization"]
 readTime: "5 menit"
 image: "/images/blog/uiux-landscape.png"
+takeaways:
+  - "CTA yang hebat butuh kejelasan, kontras visual, dan kedekatan dengan konten yang membenarkan aksi"
+  - "Whitespace adalah keputusan desain — bukan ruang yang terbuang"
+  - "Desain mobile-first memaksa disiplin untuk menyederhanakan setiap elemen ke bentuk paling esensialnya"
+  - "A/B testing mengubah tebakan desainer menjadi data — jalankan cukup lama agar bermakna statistik"
+  - "Antarmuka yang dioptimasi untuk konversi hanya sekuat sistem backend yang menangani apa yang ditangkapnya"
 ---
 
 Desain adalah hal pertama yang diperhatikan pengguna dan hal terakhir yang mereka pikirkan ketika semuanya berjalan dengan baik. Antarmuka yang benar-benar efektif menghilang — menempatkan konten, produk, dan aksi di garis depan, sementara desain bekerja diam-diam di latar belakang.

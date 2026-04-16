@@ -8,6 +8,12 @@ category: "SEO"
 tags: ["SEO","Digital Marketing","Web Performance","Content Strategy"]
 readTime: "7 min read"
 image: "/images/blog/seo-landscape.png"
+takeaways:
+  - "Core Web Vitals (LCP, INP, CLS) are now direct Google ranking signals — not optional"
+  - "E-E-A-T: write with genuine depth and expertise, not just keyword density"
+  - "Match search intent — understand if the user wants to learn, compare, or buy"
+  - "Local SEO is consistently the highest-ROI channel that Indonesian businesses underinvest in"
+  - "SEO brings traffic to the door — a CRM system ensures every lead actually gets followed up"
 ---
 
 Search engines have become the default starting point for almost every digital journey. Whether someone is looking for a software vendor, a local restaurant, or an answer to a technical question — Google is the first stop. For businesses, this means one thing: ranking well isn't optional, it's existential.

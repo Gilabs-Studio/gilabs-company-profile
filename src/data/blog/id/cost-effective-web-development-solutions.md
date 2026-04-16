@@ -8,6 +8,12 @@ category: "Business"
 tags: ["Small Business","Web Development","Budget","Cost-Effective Solutions"]
 readTime: "6 menit"
 image: "/images/blog/budget-landscape.png"
+takeaways:
+  - "Definisikan lingkup proyek secara tegas sebelum menulis satu baris kode pun"
+  - "Website statis cepat, aman, dan sering kali biaya hosting di bawah Rp 150.000/bulan"
+  - "Bangun untuk kebutuhan hari ini dengan visi masa depan — hindari kompleksitas yang prematur"
+  - "Tools yang tidak terhubung menguras jam kerja tanpa disadari seiring berkembangnya tim"
+  - "Platform ERP + CRM + POS terintegrasi membayar investasinya lebih cepat dari tumpukan SaaS terpisah"
 ---
 
 Membangun website profesional dulu terasa seperti privilege yang hanya bisa dinikmati perusahaan besar. Butuh tim internal, infrastruktur mahal, dan anggaran yang tidak sedikit. Kenyataannya, paradigma itu sudah lama usang.

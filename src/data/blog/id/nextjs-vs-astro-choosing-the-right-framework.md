@@ -8,6 +8,12 @@ category: "Web Development"
 tags: ["Next.js","Astro","Framework Comparison","Web Development"]
 readTime: "8 menit"
 image: "/images/blog/nextastro-landscape.png"
+takeaways:
+  - "Astro mengirim hampir nol JavaScript secara default — ideal untuk situs berbasis konten yang butuh SEO kuat"
+  - "Next.js adalah fondasi yang lebih kuat untuk aplikasi dengan autentikasi, data real-time, atau API routes"
+  - "Framework terbaik selaras dengan sifat proyeknya, bukan yang sedang trending"
+  - "Pilihan framework frontend kurang penting dibandingkan integration layer yang menghubungkan semua data bisnis"
+  - "Backend CRM + ERP + POS yang terpadu mengubah frontend apa pun menjadi sistem bisnis yang lengkap"
 ---
 
 Memilih framework yang salah di awal proyek adalah salah satu kesalahan paling mahal yang bisa dilakukan tim pengembang. Keputusan itu seringkali membentuk segalanya — mulai dari arsitektur deployment, pengalaman developer, hingga seberapa mudah situs dapat diiterasi seiring waktu.
