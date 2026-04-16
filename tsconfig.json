@@ -10,6 +10,10 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react",
+    "types": [
+      "astro/client",
+      "gsap"
+    ],
     "paths": {
       "@/*": [
         "./src/*"

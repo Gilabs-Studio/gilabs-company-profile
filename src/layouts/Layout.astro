@@ -229,7 +229,7 @@ const defaultUrl = enUrl;
         
         // Try to cleanup any ScrollTrigger instances that might be stuck
         try {
-          const { ScrollTrigger } = await import('gsap/dist/ScrollTrigger');
+          const { ScrollTrigger } = await import('gsap/ScrollTrigger');
           // Kill all scroll triggers on page load to prevent conflicts
           ScrollTrigger.getAll().forEach((st) => {
             try {
