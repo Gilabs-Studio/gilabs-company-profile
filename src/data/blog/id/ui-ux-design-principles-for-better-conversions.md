@@ -78,6 +78,14 @@ Bahkan desainer paling berpengalaman pun pada akhirnya membuat tebakan terdidik 
 
 Produk yang paling baik dirancang di dunia disempurnakan secara iteratif melalui umpan balik dan pengujian pengguna yang konstan, bukan disempurnakan dalam satu design sprint.
 
+## Ketika Desain Hebat Bertemu Operasi yang Terputus
+
+Kami sudah melihatnya berkali-kali: bisnis berinvestasi pada website atau aplikasi yang dirancang indah — dan konversi memang meningkat. Tapi kemudian bottleneck-nya berpindah. Lead yang masuk tidak bisa dilacak dengan baik. Riwayat pelanggan tersebar di thread WhatsApp. Tim penjualan setiap malam merekonsiliasi data secara manual antara POS dan spreadsheet.
+
+> Antarmuka yang dioptimalkan untuk konversi hanya sekuat sistem di baliknya. Jika backend tidak bisa menyerap dan menindaklanjuti apa yang ditangkap front-end, Anda meninggalkan nilai di atas meja.
+
+Di Gilabs, desain dan rekayasa sistem berjalan beriringan. Kami membangun **platform bisnis end-to-end** — mencakup CRM, ERP, POS, dan Keuangan — dengan perhatian yang sama terhadap UX yang kami bawa ke setiap antarmuka. Dan berbeda dari vendor enterprise tradisional, kami mengantarkan **prototype yang berfungsi dengan cepat**, memberi tim Anda sesuatu yang nyata untuk direaksi sebelum investasi pengembangan penuh dikunci.
+
 ---
 
-*Ingin meningkatkan konversi melalui desain yang lebih baik? [Bicara dengan tim desain Gilabs](/contact) tentang audit UX atau redesain.*
+*Siap untuk desain yang mengkonversi — didukung sistem yang mendeliver? [Mulai percakapan dengan Gilabs](/contact) hari ini.*

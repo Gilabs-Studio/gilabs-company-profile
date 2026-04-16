@@ -63,6 +63,14 @@ Di Gilabs, Flutter bukan sekadar alat — melainkan inti dari cara kami membangu
 
 Hasilnya adalah aplikasi mobile yang tidak hanya ditoleransi pengguna — melainkan yang benar-benar mereka nikmati.
 
+## Lebih dari Sekadar Aplikasi: Menghubungkan Mobile ke Inti Bisnis
+
+Aplikasi mobile tanpa backend yang terhubung adalah peluang yang terlewat. Pain point paling umum yang kami temui setelah peluncuran bukan pada aplikasinya sendiri — melainkan pada **keterputusan** antara apa yang terjadi di front-end mobile dengan operasi back-office. Penjualan yang tercatat di aplikasi tidak tersinkron ke inventori. Data pelanggan tetap tersilo. Tim keuangan masih bekerja dari spreadsheet.
+
+> Pengalaman mobile yang hebat baru separuh dari persamaannya. Separuh lainnya adalah memiliki sistem backend yang membuat data tersebut bisa ditindaklanjuti.
+
+Di Gilabs, pengembangan Flutter tidak berjalan dalam isolasi. Ia adalah bagian dari ekosistem yang lebih luas — terhubung ke **platform all-in-one yang mencakup CRM, ERP, POS, dan Keuangan** — sehingga data yang mengalir melalui aplikasi mobile Anda langsung berguna di seluruh operasi bisnis. Dan karena kami mengutamakan **rapid prototyping**, tim Anda bisa memvalidasi alur end-to-end — mobile hingga backend — dalam beberapa minggu pertama keterlibatan.
+
 ---
 
-*Berpikir untuk membangun aplikasi mobile? [Mari diskusikan bagaimana Flutter dapat mempercepat proyek Anda](/contact).*
+*Siap membangun pengalaman mobile yang terhubung dari ujung ke ujung? [Mari petakan bersama](/contact) — kami akan menaruh prototype di tangan Anda lebih cepat dari yang Anda duga.*

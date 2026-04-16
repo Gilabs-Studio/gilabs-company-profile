@@ -75,6 +75,14 @@ Di Gilabs, kami menggunakan keduanya — secara strategis. Profil perusahaan, la
 
 Framework terbaik adalah yang selaras dengan sifat proyeknya, bukan yang sedang trending di media sosial.
 
+## Ketika Pilihan Framework Bukan Lagi Masalah Terbesar
+
+Bagi banyak bisnis yang kami tangani, tantangan yang lebih dalam bukan soal memilih antara Next.js atau Astro — melainkan menyadari bahwa mereka mengelola operasional dari berbagai tools yang tidak terhubung: CRM yang tidak bicara ke POS, dashboard keuangan yang masih di spreadsheet, dan inventori yang dicatat di sistem terpisah.
+
+> Framework menggerakkan antarmuka. Tapi ROI sesungguhnya ada di **integration layer** — di mana data Anda mengalir mulus antara penjualan, operasional, dan keuangan.
+
+Gilabs membangun **platform bisnis terintegrasi** — menggabungkan CRM, ERP, POS, dan Keuangan dalam satu sistem terpadu — menggunakan frontend framework yang tepat untuk setiap modulnya. Keunggulannya? Anda mendapatkan **prototype yang berfungsi dengan cepat**, sehingga decision-maker bisa memvalidasi sistem terhadap alur kerja nyata sebelum komitmen investasi penuh.
+
 ---
 
-*Tidak yakin framework mana yang cocok untuk proyek Anda? [Lakukan konsultasi teknis dengan kami](/contact) — kami akan membantu Anda membuat keputusan yang tepat sejak awal.*
+*Tidak yakin harus mulai dari mana? [Mari bicara soal arsitekturnya](/contact) — kami akan memandu dari keputusan framework hingga sistem yang berjalan, lebih cepat dari yang Anda kira.*

@@ -78,6 +78,14 @@ Even the most experienced designers are ultimately making educated guesses about
 
 The best-designed products in the world are iteratively refined through constant user feedback and testing, not perfected in a single design sprint.
 
+## When Great Design Meets Broken Operations
+
+We've seen it many times: a business invests in a beautifully designed website or app — and conversions do improve. But then the bottleneck shifts. The leads that come in can't be tracked properly. Customer histories are scattered across WhatsApp threads. Sales teams manually reconcile data between a POS and a spreadsheet every evening.
+
+> A conversion-optimized interface is only as powerful as the system behind it. If the backend can't absorb and act on what the front-end captures, you're leaving value on the table.
+
+At Gilabs, design and systems engineering go hand in hand. We build **end-to-end business platforms** — encompassing CRM, ERP, POS, and Finance — with the same attention to UX that we bring to every interface. And unlike traditional enterprise vendors, we deliver **a functional prototype rapidly**, giving your team something real to react to before full development investment is committed.
+
 ---
 
-*Looking to improve conversions through better design? [Talk to the Gilabs design team](/contact) about a UX audit or redesign.*
+*Ready for design that converts — backed by systems that deliver? [Start the conversation with Gilabs](/contact) today.*

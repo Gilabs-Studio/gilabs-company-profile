@@ -59,8 +59,14 @@ The most cost-effective decision isn't always the cheapest one upfront. Consider
 - **Component-based design systems** that make future updates faster and cheaper
 - **Partnering with a reliable agency** that documents their work, so you're never locked in
 
-At Gilabs, we help small businesses navigate these decisions — matching technology to budget, goals, and growth trajectory — without compromising on quality or scalability.
+## The Bigger Picture: A System That Pays for Itself
+
+For businesses that are growing beyond a simple website — into managing sales pipelines, inventory, customer data, and finances — the real pain isn't the cost of the website. It's the cost of running *disconnected tools* that don't talk to each other. Teams end up doing manual data entry between a CRM, a separate POS, and a spreadsheet for finance.
+
+> This fragmentation silently drains hours every week — and grows more expensive as the team scales.
+
+At Gilabs, we build more than websites. We develop **integrated business systems** — a unified platform covering ERP, CRM, POS, and Finance — tailored specifically to how your business operates. Our approach is built around **rapid prototyping**: you see a working system within weeks, not months, so feedback is based on real interactions rather than abstract design documents.
 
 ---
 
-*Ready to build something that works without breaking the bank? [Get in touch with our team](/contact) to explore what's possible.*
+*Ready to stop duct-taping your tools together? [Talk to the Gilabs team](/contact) — we'll show you a working prototype of your business system faster than you'd expect.*

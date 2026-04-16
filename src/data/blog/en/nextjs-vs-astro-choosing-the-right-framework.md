@@ -75,6 +75,14 @@ At Gilabs, we use both — strategically. Company profiles, landing pages, and b
 
 The best framework is the one that aligns with the nature of the project, not the one that's trending on social media.
 
+## When the Framework Decision Is the Least of Your Problems
+
+For many businesses we work with, the deeper challenge isn't choosing between Next.js and Astro — it's the realization that they're managing their operations across a patchwork of disconnected tools: a CRM that doesn't talk to their POS, a finance dashboard living in spreadsheets, and inventory tracked in a separate system.
+
+> The framework powers the interface. But the real ROI lives in the **integration layer** — where your data flows seamlessly between sales, operations, and finance.
+
+Gilabs builds **integrated business platforms** — combining CRM, ERP, POS, and Finance in one unified system — using the right frontend framework for each module. The advantage? You get **a working prototype rapidly**, so decision-makers can validate the system against real workflows before significant investment is committed.
+
 ---
 
-*Unsure which framework fits your project? [Let's have a technical consultation](/contact) — we'll help you make the right call from the start.*
+*Not sure where to start? [Let's talk architecture](/contact) — we'll guide you from framework decision to working system, faster than you'd expect.*

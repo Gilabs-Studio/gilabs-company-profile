@@ -83,6 +83,16 @@ Astro excels for:
 
 At Gilabs, the company profile you're reading right now is built on Astro — because we believe in using the right tool for the job, not the most popular one.
 
+## A Fast Website Is Just the Beginning
+
+Astro solves the performance and SEO problem elegantly. But for growing businesses, a high-performing marketing site is the top of the funnel — not the whole funnel. The challenge we see repeatedly is this: visitors arrive on a fast, well-ranked site, express interest, and then fall into an operational black hole.
+
+There's no CRM to capture that lead. No ERP to allocate resources. No integrated POS or finance visibility to understand the value of that acquisition.
+
+> The website earns attention. The business systems turn that attention into revenue.
+
+Gilabs builds both. Our clients get an Astro-powered presence that loads instantly and ranks well — connected to a **unified backend platform covering CRM, ERP, POS, and Finance** that handles everything from first contact to invoice. We're known for speed: **working prototypes delivered in weeks**, not quarters.
+
 ---
 
-*Interested in building your next website with Astro? [Let's plan it together](/contact).*
+*Want a fast website and the systems to back it up? [Let's build it together](/contact) — the prototype might surprise you.*

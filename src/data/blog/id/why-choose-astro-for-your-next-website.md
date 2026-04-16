@@ -83,6 +83,16 @@ Astro sangat baik untuk:
 
 Di Gilabs, profil perusahaan yang sedang Anda baca ini dibangun di Astro — karena kami percaya menggunakan alat yang tepat untuk pekerjaan yang tepat, bukan yang paling populer di media sosial.
 
+## Website Cepat Hanya Awal dari Perjalanan
+
+Astro memecahkan masalah performa dan SEO dengan elegan. Tapi bagi bisnis yang berkembang, situs marketing berkinerja tinggi adalah puncak funnel — bukan keseluruhan funnel. Tantangan yang kami lihat berulang kali adalah ini: pengunjung tiba di situs yang cepat dan berperingkat baik, menyatakan minat, lalu jatuh ke dalam lubang hitam operasional.
+
+Tidak ada CRM untuk menangkap lead tersebut. Tidak ada ERP untuk mengalokasikan sumber daya. Tidak ada visibilitas POS atau keuangan untuk memahami nilai akuisisi tersebut.
+
+> Website menghasilkan perhatian. Sistem bisnis mengubah perhatian itu menjadi pendapatan.
+
+Gilabs membangun keduanya. Klien kami mendapat kehadiran berbasis Astro yang memuat instan dan berperingkat baik — terhubung ke **platform backend terpadu yang mencakup CRM, ERP, POS, dan Keuangan** yang menangani segalanya dari kontak pertama hingga invoice. Kami dikenal karena kecepatan: **prototype yang berfungsi dideliverkan dalam hitungan minggu**, bukan kuartal.
+
 ---
 
-*Tertarik membangun website Anda berikutnya dengan Astro? [Mari rencanakan bersama](/contact).*
+*Ingin website cepat dan sistem yang mendukungnya? [Mari bangun bersama](/contact) — prototypenya mungkin akan mengejutkan Anda.*

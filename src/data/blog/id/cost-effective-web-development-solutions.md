@@ -63,8 +63,14 @@ Keputusan paling hemat biaya tidak selalu yang termurah di awal. Pertimbangkan:
 - **Design system berbasis komponen** yang membuat pembaruan di masa depan lebih cepat dan murah
 - **Bermitra dengan agensi yang mendokumentasikan pekerjaan mereka**, sehingga Anda tidak pernah terjebak dalam ketergantungan vendor
 
-Di Gilabs, kami membantu bisnis kecil menavigasi keputusan-keputusan ini — mencocokkan teknologi dengan anggaran, tujuan, dan trajektori pertumbuhan — tanpa mengorbankan kualitas atau skalabilitas.
+## Gambar Besarnya: Sistem yang Membayar Balik Investasinya
+
+Bagi bisnis yang sudah berkembang melampaui sekadar website — mulai mengelola pipeline penjualan, inventori, data pelanggan, dan keuangan — masalah sesungguhnya bukan lagi biaya website. Masalahnya adalah biaya menjalankan *tools yang tidak terhubung satu sama lain*. Tim harus input data manual dari CRM ke POS yang berbeda, lalu rekonsiliasi lagi ke spreadsheet keuangan.
+
+> Fragmentasi ini menguras jam kerja tanpa disadari — dan semakin mahal seiring bertambahnya tim.
+
+Gilabs membangun lebih dari sekadar website. Kami mengembangkan **sistem bisnis terintegrasi** — platform terpadu yang mencakup ERP, CRM, POS, dan Keuangan — dirancang khusus sesuai cara bisnis Anda beroperasi. Pendekatan kami berpusat pada **rapid prototyping**: Anda melihat sistem yang benar-benar berfungsi dalam hitungan minggu, bukan bulan.
 
 ---
 
-*Siap membangun sesuatu yang bekerja tanpa menguras anggaran? [Hubungi tim kami](/contact) untuk menjelajahi apa yang mungkin dilakukan.*
+*Siap berhenti mengandalkan tools yang tambal sulam? [Hubungi tim Gilabs](/contact) — kami akan tunjukkan prototype sistem bisnis Anda lebih cepat dari yang Anda bayangkan.*
