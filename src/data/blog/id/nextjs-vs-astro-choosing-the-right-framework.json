@@ -1,0 +1,16 @@
+{
+  "slug": "nextjs-vs-astro-choosing-the-right-framework",
+  "title": "Next.js vs Astro: Memilih Framework yang Tepat untuk Proyek Anda",
+  "excerpt": "Bandingkan Next.js dan Astro untuk memahami framework mana yang paling sesuai dengan kebutuhan proyek Anda, dari situs statis hingga aplikasi dinamis.",
+  "content": "Memilih antara Next.js dan Astro tergantung pada kebutuhan proyek Anda. Next.js unggul dalam membangun aplikasi dinamis full-stack dengan server-side rendering dan API routes. Astro, di sisi lain, bersinar untuk situs yang berfokus konten yang memprioritaskan kecepatan dan SEO. Memahami kekuatan masing-masing framework membantu Anda membuat keputusan yang tepat untuk proyek Anda.",
+  "author": "Tim Gilabs",
+  "date": "2025-02-05",
+  "category": "Web Development",
+  "tags": [
+    "Next.js",
+    "Astro",
+    "Framework Comparison",
+    "Web Development"
+  ],
+  "readTime": "8 menit"
+}

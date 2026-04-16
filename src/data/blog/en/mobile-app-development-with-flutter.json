@@ -1,0 +1,16 @@
+{
+  "slug": "mobile-app-development-with-flutter",
+  "title": "Mobile App Development with Flutter: One Codebase, Multiple Platforms",
+  "excerpt": "Explore how Flutter enables rapid cross-platform mobile development, allowing you to build beautiful apps for iOS and Android from a single codebase.",
+  "content": "Flutter has transformed mobile app development by enabling developers to create native-like experiences across iOS and Android with a single codebase. This approach significantly reduces development time and costs while maintaining high performance and beautiful UI. At Gilabs, we leverage Flutter's capabilities to deliver mobile applications that feel native on every platform.",
+  "author": "Gilabs Team",
+  "date": "2025-01-20",
+  "category": "Mobile Development",
+  "tags": [
+    "Flutter",
+    "Mobile Development",
+    "Cross-Platform",
+    "App Development"
+  ],
+  "readTime": "6 min read"
+}

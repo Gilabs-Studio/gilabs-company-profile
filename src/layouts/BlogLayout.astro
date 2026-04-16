@@ -12,12 +12,21 @@ const {
 } = Astro.props;
 
 const siteUrl = 'https://gilabs.id';
-const fullCanonical = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
+let canonicalUrlStr = canonical.startsWith('http') ? canonical : `${siteUrl}${canonical}`;
+// Remove trailing slash for consistency (unless it's exactly the root domain)
+if (canonicalUrlStr.endsWith('/') && canonicalUrlStr !== `${siteUrl}/`) {
+  canonicalUrlStr = canonicalUrlStr.slice(0, -1);
+}
+const fullCanonical = canonicalUrlStr;
 const robotsContent = noindex ? 'noindex, nofollow' : robots;
 
 // Generate hreflang URLs for multi-language SEO
 // Extract the path after locale prefix to build alternate URLs
-const currentPath = Astro.url.pathname;
+let currentPath = Astro.url.pathname;
+// Remove trailing slash from currentPath
+if (currentPath.endsWith('/') && currentPath !== '/') {
+  currentPath = currentPath.slice(0, -1);
+}
 const pathWithoutLocale = currentPath.replace(/^\/(en|id)/, '') || '/';
 
 // Build alternate URLs for each language
