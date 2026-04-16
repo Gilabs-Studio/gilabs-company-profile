@@ -2,13 +2,14 @@ export interface BlogPost {
   slug: string;
   title: string;
   excerpt: string;
-  content: string;
+  content?: string;
   author: string;
   date: string;
   category: string;
   tags: string[];
   image?: string;
   readTime: string;
+  Content?: any;
 }
 
 export interface BlogData {
@@ -17,18 +18,27 @@ export interface BlogData {
   posts: BlogPost[];
 }
 
-type BlogPostModule = { default: BlogPost };
+type MarkdownModule = {
+  frontmatter: Record<string, any>;
+  Content: any;
+};
+
 type BlogMeta = { title: string; subtitle: string };
 type BlogMetaModule = { default: BlogMeta };
 
-const enPostsGlob = import.meta.glob<BlogPostModule>('./en/*.json', { eager: true });
-const idPostsGlob = import.meta.glob<BlogPostModule>('./id/*.json', { eager: true });
+const enPostsGlob = import.meta.glob<MarkdownModule>('./en/*.md', { eager: true });
+const idPostsGlob = import.meta.glob<MarkdownModule>('./id/*.md', { eager: true });
 const metaGlob = import.meta.glob<BlogMetaModule>('./*/_meta.json', { eager: true });
 
-const extractPosts = (glob: Record<string, BlogPostModule>) =>
+const extractPosts = (glob: Record<string, MarkdownModule>): BlogPost[] =>
   Object.keys(glob)
-    .filter(k => !k.includes('_meta.json'))
-    .map((k) => glob[k].default);
+    .map((k) => {
+      const mod = glob[k] as any;
+      return {
+        ...mod.frontmatter,
+        Content: mod.Content || mod.default,
+      } as BlogPost;
+    });
 
 const getMeta = (locale: string): BlogMeta => {
   const meta = metaGlob[`./${locale}/_meta.json`];

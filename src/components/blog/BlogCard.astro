@@ -23,6 +23,15 @@ const formatDate = (dateString: string) => {
   class="group block pb-6 md:pb-8 border-b border-border/30 hover:border-foreground/20 transition-colors duration-300"
 >
   <div class="flex flex-col">
+    {post.image && (
+      <div class="mb-5 rounded-xl overflow-hidden border border-border/50 aspect-video">
+        <img 
+          src={post.image} 
+          alt={post.title} 
+          class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+        />
+      </div>
+    )}
     {/* Category */}
     <div class="mb-2">
       <span class="text-xs text-muted-foreground uppercase tracking-wider">
