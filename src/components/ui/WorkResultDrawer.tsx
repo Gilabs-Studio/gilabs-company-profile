@@ -9,7 +9,7 @@ import {
   DrawerTitle,
   DrawerDescription,
 } from './drawer';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
 
 interface WorkResultDrawerProps {
   lang?: string;
@@ -23,6 +23,16 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
   const [touchEnd, setTouchEnd] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [isDismissible, setIsDismissible] = useState(true);
+
+  useEffect(() => {
+    const checkDismissible = () => {
+      setIsDismissible(window.innerWidth >= 768);
+    };
+    checkDismissible();
+    window.addEventListener('resize', checkDismissible);
+    return () => window.removeEventListener('resize', checkDismissible);
+  }, []);
 
   const labels = {
     en: {
@@ -30,12 +40,14 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
       technologies: 'Technologies Used',
       features: 'Key Features',
       overview: 'Project Overview',
+      back: 'Back',
     },
     id: {
       close: 'Tutup',
       technologies: 'Teknologi yang Digunakan',
       features: 'Fitur Utama',
       overview: 'Gambaran Proyek',
+      back: 'Kembali',
     },
   };
 
@@ -65,11 +77,11 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
     globalThis.addEventListener('open-work-result-drawer', handleOpenDrawer as EventListener);
     
     // Listen for drawer close
-    const drawerElement = document.querySelector('[data-vaul-drawer]');
+    const drawerElement = document.querySelector('[data-vaul-drawer]') as HTMLElement;
     if (drawerElement) {
       const observer = new MutationObserver(() => {
-        const isOpen = drawerElement.getAttribute('data-state') === 'open';
-        if (isOpen === false) {
+        const isCurrentlyOpen = drawerElement.dataset.state === 'open';
+        if (!isCurrentlyOpen) {
           handleCloseDrawer();
         }
       });
@@ -84,18 +96,18 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
 
   // Reset image index when drawer closes and handle Lenis
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen) {
+      // Pause Lenis smooth scroll when drawer opens
+      const lenisInstance = (globalThis as any).lenis;
+      if (lenisInstance) {
+        lenisInstance.stop();
+      }
+    } else {
       setCurrentImageIndex(0);
       // Resume Lenis smooth scroll when drawer closes
       const lenisInstance = (globalThis as any).lenis;
       if (lenisInstance) {
         lenisInstance.start();
-      }
-    } else {
-      // Pause Lenis smooth scroll when drawer opens
-      const lenisInstance = (globalThis as any).lenis;
-      if (lenisInstance) {
-        lenisInstance.stop();
       }
     }
   }, [isOpen]);
@@ -121,10 +133,12 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
+    e.stopPropagation(); // Prevent the drawer from catching swipe events meant for the slider
     setTouchEnd(e.targetTouches[0].clientX);
   };
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    e.stopPropagation();
     if (!touchStart || !touchEnd) return;
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > 50;
@@ -136,6 +150,10 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
     if (isRightSwipe) {
       prevImage();
     }
+    
+    // Reset touch coordinates
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   const [imageError, setImageError] = useState(false);
@@ -146,44 +164,68 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
   };
 
   return (
-    <Drawer open={isOpen} onOpenChange={setIsOpen} direction="right">
-      <DrawerContent className="max-w-3xl h-full flex flex-col">
+    <Drawer open={isOpen} onOpenChange={setIsOpen} direction="right" dismissible={isDismissible}>
+      <DrawerContent className="max-w-3xl h-[100dvh] flex flex-col overflow-hidden">
         {project && (
-          <>
-            <DrawerHeader className="shrink-0">
-              <div className="flex items-center justify-between">
-                <div className="flex-1">
-                  <span className="inline-block px-3 py-1 text-xs font-medium bg-brand/10 text-brand rounded-full mb-2">
-                    {getTypeLabel()}
-                  </span>
-                  <DrawerTitle>{project.title}</DrawerTitle>
-                  <DrawerDescription className="mt-2">
-                    {project.description}
-                  </DrawerDescription>
-                </div>
-              </div>
-            </DrawerHeader>
+          <div 
+            ref={scrollContainerRef}
+            data-vaul-no-drag
+            className="flex-1 overflow-y-auto flex flex-col"
+            style={{
+              overscrollBehavior: 'contain',
+              WebkitOverflowScrolling: 'touch',
+            }}
+            onTouchStart={(e) => {
+              // Only stop propagation if we are touching a part that should be scrollable
+              e.stopPropagation();
+            }}
+            onTouchMove={(e) => {
+              e.stopPropagation();
+            }}
+            onWheel={(e) => {
+              e.stopPropagation();
+            }}
+          >
+              <DrawerHeader 
+                data-vaul-no-drag
+                className="shrink-0 border-b border-border/50 relative md:sticky top-0 bg-background/80 backdrop-blur-md z-20 px-6 py-4"
+              >
+                <div className="flex flex-col gap-4">
+                  <div className="flex items-center">
+                    {/* Sticky Back Button for Mobile */}
+                    <button
+                      onClick={() => setIsOpen(false)}
+                      className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-brand transition-colors cursor-pointer group"
+                    >
+                      <ArrowLeft className="w-5 h-5 transition-transform group-hover:-translate-x-1" />
+                      <span>{t.back}</span>
+                    </button>
+                  </div>
 
-            <div 
-              ref={scrollContainerRef}
-              className="flex-1 overflow-y-auto px-6 pb-6 min-h-0"
-              style={{
-                WebkitOverflowScrolling: 'touch',
-                overscrollBehavior: 'contain',
-              }}
-              onWheel={(e) => {
-                // Stop propagation to prevent Lenis from intercepting the wheel event
-                // This allows native browser scrolling to work in the drawer
-                e.stopPropagation();
-              }}
-            >
+                  <div className="flex-1 text-left">
+                    <span className="inline-block px-3 py-1 text-xs font-medium bg-brand/10 text-brand rounded-full mb-2">
+                      {getTypeLabel()}
+                    </span>
+                    <DrawerTitle className="text-xl md:text-2xl">{project.title}</DrawerTitle>
+                    <DrawerDescription className="mt-2 text-sm md:text-base">
+                      {project.description}
+                    </DrawerDescription>
+                  </div>
+                </div>
+              </DrawerHeader>
+
+              <div className="px-6 py-6 min-h-0">
               {/* Image Slider */}
               {images.length > 0 && (
                 <div className="relative mb-6">
                   <div
                     ref={sliderRef}
+                    data-vaul-no-drag
                     className="relative aspect-video rounded-xl overflow-hidden bg-secondary/20 flex items-center justify-center"
-                    onTouchStart={handleTouchStart}
+                    onTouchStart={(e) => {
+                      e.stopPropagation();
+                      handleTouchStart(e);
+                    }}
                     onTouchMove={handleTouchMove}
                     onTouchEnd={handleTouchEnd}
                   >
@@ -278,12 +320,12 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
                 <div className="mb-6">
                   <h3 className="text-lg font-bold mb-4">{t.features}</h3>
                   <div className="space-y-4">
-                    {project.features.sections.map((section, sectionIndex) => (
-                      <div key={sectionIndex} className="bg-secondary/20 rounded-xl p-5">
+                    {project.features.sections.map((section) => (
+                      <div key={section.title} className="bg-secondary/20 rounded-xl p-5">
                         <h4 className="font-semibold text-foreground mb-3">{section.title}</h4>
                         <ul className="space-y-2">
-                          {section.items.map((item, itemIndex) => (
-                            <li key={itemIndex} className="flex items-start gap-3">
+                          {section.items.map((item) => (
+                            <li key={item} className="flex items-start gap-3">
                               <span className="shrink-0 w-5 h-5 rounded-full bg-brand/10 text-brand flex items-center justify-center text-xs font-bold mt-0.5">
                                 ✓
                               </span>
@@ -311,7 +353,7 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
                 </div>
               </div>
             </div>
-          </>
+          </div>
         )}
       </DrawerContent>
     </Drawer>

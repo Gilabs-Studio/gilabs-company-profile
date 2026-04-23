@@ -82,7 +82,7 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
                   height="225"
                 />
               )}
-              <div class="absolute inset-0 bg-gradient-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div class="absolute inset-0 bg-linear-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               
               {/* Overlay Button */}
               <button
@@ -140,7 +140,45 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
     const buttons = document.querySelectorAll('.portfolio-showcase-btn[data-project]');
     
     buttons.forEach(button => {
+      // Prevent duplicate listeners
+      if (button.getAttribute('data-initialized')) return;
+      button.setAttribute('data-initialized', 'true');
+
+      let startX, startY;
+      let isDragging = false;
+      let touchStartTime = 0;
+
+      // Track touch start
+      button.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isDragging = false;
+        touchStartTime = Date.now();
+      }, { passive: true });
+
+      // Track touch movement
+      button.addEventListener('touchmove', (e) => {
+        if (!startX || !startY) return;
+        
+        const moveX = Math.abs(e.touches[0].clientX - startX);
+        const moveY = Math.abs(e.touches[0].clientY - startY);
+        
+        // If moved significantly, it's a scroll
+        if (moveX > 5 || moveY > 5) {
+          isDragging = true;
+        }
+      }, { passive: true });
+
       button.addEventListener('click', function(e) {
+        const touchDuration = Date.now() - touchStartTime;
+        
+        // If it was a drag, or a very long press (often mistaken for scroll start),
+        // or just too short to be a real tap on some devices, ignore it.
+        // But mainly check isDragging.
+        if (isDragging) {
+          return;
+        }
+
         e.preventDefault();
         e.stopPropagation();
         
@@ -149,7 +187,6 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
         
         try {
           const project = JSON.parse(projectData);
-          // Dispatch event to open work result drawer
           const event = new CustomEvent('open-work-result-drawer', { 
             detail: project,
             bubbles: true 
@@ -157,20 +194,22 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
           globalThis.dispatchEvent(event);
         } catch (error) {
           console.error('Error parsing project data:', error);
-          // Fallback to work-results page if parsing fails
           window.location.href = workResultsUrl;
         }
       });
+      
+      button.addEventListener('touchend', () => {
+        startX = null;
+        startY = null;
+      }, { passive: true });
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPortfolioShowcase);
-  } else {
-    initPortfolioShowcase();
-  }
-
-  // Also try after a delay to ensure drawer component is loaded
-  setTimeout(initPortfolioShowcase, 100);
-  setTimeout(initPortfolioShowcase, 500);
+  // Use standard load events
+  window.addEventListener('load', initPortfolioShowcase);
+  document.addEventListener('DOMContentLoaded', initPortfolioShowcase);
+  document.addEventListener('astro:page-load', initPortfolioShowcase);
+  
+  // Single fallback for dynamic content
+  setTimeout(initPortfolioShowcase, 1000);
 </script>
