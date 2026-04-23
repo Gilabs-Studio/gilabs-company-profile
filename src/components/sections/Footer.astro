@@ -102,17 +102,15 @@ const largeText = "GILABS";
   </div>
 
   {/* Large Decorative Text - Aligned with Container */}
-  <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12 select-none pointer-events-none mb-4 py-4">
+  <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12 select-none pointer-events-none mb-4 py-4 overflow-hidden">
     <h2 
-      class="flex justify-between w-full text-[12rem] md:text-[16rem] lg:text-[20rem] font-bold text-zinc-200/80 leading-none tracking-tighter whitespace-nowrap"
+      class="w-full text-[25vw] md:text-[20vw] lg:text-[20rem] font-bold text-zinc-200/80 leading-none tracking-tighter text-center whitespace-nowrap"
       style={{
         maskImage: 'linear-gradient(to top, transparent 0%, black 60%)',
         WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 60%)',
       }}
     >
-      {largeText.split("").map((char) => (
-        <span>{char}</span>
-      ))}
+      {largeText}
     </h2>
   </div>
 
