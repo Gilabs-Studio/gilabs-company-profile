@@ -1,0 +1,234 @@
+# Gilabs Software House — Konteks Lengkap untuk AI
+
+## Identitas Perusahaan
+
+**Nama**: Gilabs (GiLabs)
+**Tagline**: Premium Software House Indonesia — Spesialis Pembuatan Tools Internal Perusahaan
+**Website**: https://gilabs.id
+**Tahun Berdiri**: 2024
+**Lokasi**: Indonesia
+**Bahasa Website**: Bilingual — Bahasa Indonesia & English
+
+## Misi & Visi
+
+Gilabs hadir untuk menjawab kebutuhan perusahaan-perusahaan di Indonesia yang ingin memiliki sistem internal yang benar-benar sesuai kebutuhan bisnis mereka. Kami percaya bahwa setiap perusahaan memiliki proses unik yang tidak bisa dipaksakan masuk ke dalam solusi SaaS generik.
+
+Visi kami: Menjadi software house pilihan utama bagi perusahaan Indonesia yang membutuhkan sistem enterprise berkualitas tinggi.
+
+## Spesialisasi Utama
+
+### 1. ERP (Enterprise Resource Planning)
+Sistem manajemen sumber daya perusahaan terintegrasi yang mencakup:
+- Manajemen inventori dan gudang
+- Produksi dan manufaktur
+- Pembelian (procurement)
+- Penjualan (sales order)
+- Akuntansi dan keuangan
+- Laporan manajemen
+
+### 2. CRM (Customer Relationship Management)
+Platform manajemen hubungan pelanggan yang mencakup:
+- Manajemen lead dan prospek
+- Sales pipeline dengan Kanban board
+- Manajemen akun dan kontak pelanggan
+- Laporan kunjungan (visit report)
+- Integrasi AI untuk insight penjualan
+- Dashboard analytics real-time
+
+### 3. POS (Point of Sale)
+Sistem kasir dan penjualan untuk:
+- Retail dan toko
+- F&B (Food & Beverage) / Restoran
+- Multi-outlet management
+- Inventory real-time
+- Laporan penjualan
+
+### 4. HRIS (Human Resource Information System)
+Sistem manajemen SDM yang mencakup:
+- Absensi dan kehadiran
+- Penggajian (payroll)
+- Rekrutmen dan onboarding
+- Penilaian kinerja
+- Manajemen cuti
+- Struktur organisasi
+
+### 5. Finance System
+Sistem keuangan perusahaan:
+- Akuntansi umum (general ledger)
+- Account payable & receivable
+- Invoicing dan billing
+- Laporan keuangan (neraca, laba rugi)
+- Cash flow management
+
+### 6. Custom Internal Tools
+Alat internal khusus sesuai kebutuhan:
+- Sistem approval workflow
+- Project management tools
+- Reporting dashboard
+- Data integration platform
+- API integration
+
+## Layanan Pengembangan
+
+### Web Development
+- Next.js (App Router, Server Components)
+- React.js
+- TypeScript
+- Astro (untuk company profile/landing page)
+- RESTful API & GraphQL
+
+### Backend Development
+- Go (Golang) — untuk sistem high-performance
+- Node.js
+- Laravel (PHP)
+- PostgreSQL, MySQL
+- Redis, WebSocket
+
+### Mobile Development
+- Flutter (cross-platform iOS & Android)
+- React Native
+- Dart
+
+### DevOps & Infrastructure
+- Docker & Docker Compose
+- Turborepo (monorepo)
+- Cloudflare (CDN, R2 Storage)
+- Vercel, Railway
+
+### AI Integration
+- LLM integration (Cerebras AI, OpenAI, Anthropic)
+- AI chatbot untuk sistem internal
+- Automated data processing
+- Intelligent analytics
+
+## Portofolio Proyek
+
+### SalesView — CRM Platform untuk Healthcare
+**Deskripsi**: Platform CRM enterprise untuk industri kesehatan dengan visualisasi data geografis dan analitik real-time.
+**Teknologi**: Next.js 16, TypeScript, TanStack Query, Tailwind CSS v4, Turborepo, Zustand
+**Fitur Utama**:
+- Dashboard sales dengan Leaflet Maps integration
+- Lead management dengan scoring sistem
+- Kanban pipeline penjualan
+- Optimasi rute untuk sales lapangan
+- Real-time KPI metrics
+- Laporan kunjungan dengan GPS tracking
+
+### CRM Pharmaceutical — Enterprise Healthcare CRM
+**Deskripsi**: Platform CRM tingkat enterprise dengan 20+ modul untuk perusahaan farmasi. Dilengkapi AI chatbot, notifikasi real-time, dan analitik canggih.
+**Teknologi**: Go (Golang), Next.js 16, TypeScript, PostgreSQL, Cerebras AI, Docker
+**Fitur Utama**:
+- JWT authentication dengan token rotation
+- RBAC (Role-Based Access Control)
+- 20+ modul CRM (account, lead, deal, product, task, report, dll)
+- AI chatbot dengan Cerebras LLM
+- WebSocket untuk notifikasi real-time
+- Laporan Excel export
+- Docker deployment ready
+
+### Evalique — AI Assessment Platform
+**Deskripsi**: Platform assessment dan evaluasi pelatihan berbasis AI untuk organisasi.
+**Teknologi**: Next.js, Go, PostgreSQL, Cerebras AI, Turborepo
+**Fitur Utama**:
+- Generate soal otomatis dengan AI
+- Google Sheets integration
+- Analytics funnel analysis
+- Berbagai tipe soal (MCQ, Essay, dll)
+- RBAC dengan audit trail GeoIP
+
+### Fiber Monitoring System
+**Deskripsi**: Sistem monitoring proyek instalasi fiber optik dengan role admin dan field worker (waspang).
+**Teknologi**: Next.js, TypeScript, Supabase, Tailwind CSS, Turborepo
+**Fitur Utama**:
+- Dashboard admin proyek
+- Mobile-friendly untuk pekerja lapangan
+- Document management workflow
+- Real-time progress tracking
+- Map integration
+
+### Sitama — Education Platform
+**Deskripsi**: Platform manajemen magang untuk Politeknik Negeri Semarang dengan sistem dual-role.
+**Teknologi**: Dart (Flutter), Laravel, MySQL, Firebase
+**Fitur Utama**:
+- Dual role: mahasiswa dan dosen pembimbing
+- Logbook digital
+- Jadwal bimbingan
+- Upload dokumentasi
+- Notifikasi push Firebase
+
+## Paket Layanan & Harga
+
+### Website & Landing Page
+- Company Profile mulai dari Rp 5 juta
+- Landing page marketing
+- Web app sederhana
+
+### Aplikasi Bisnis
+- Modul tunggal (CRM/HR/Finance): Rp 25–75 juta
+- Suite lengkap ERP/CRM: Rp 75–250 juta+
+- Enterprise custom: Negosiasi
+
+### Maintenance & Support
+- Bulanan & tahunan tersedia
+- SLA berdasarkan kebutuhan
+
+## Proses Kerja
+
+1. **Discovery & Requirement** (1–2 minggu) — Analisis kebutuhan, alur bisnis, scope proyek
+2. **Design & Prototyping** (1–2 minggu) — UI/UX design, wireframe, prototype interaktif
+3. **Development** (4–12 minggu) — Sprint-based development dengan update berkala
+4. **Testing & QA** (1–2 minggu) — User acceptance testing, bug fixing
+5. **Deployment & Launch** — Setup server, deployment, training user
+6. **Maintenance** — Support & feature updates
+
+## Tech Stack Favorit
+
+**Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4, Framer Motion
+**Backend**: Go (Golang), Node.js, PostgreSQL, Redis
+**Mobile**: Flutter, Dart
+**Monorepo**: Turborepo
+**Auth**: JWT, OAuth2
+**Storage**: Cloudflare R2, AWS S3
+**AI**: Cerebras AI, OpenAI, Anthropic Claude
+
+## FAQ
+
+**Q: Apakah Gilabs bisa membuat sistem ERP dari nol?**
+A: Ya, kami membangun ERP custom sesuai proses bisnis Anda. Tidak perlu menyesuaikan bisnis dengan software — software yang menyesuaikan bisnis Anda.
+
+**Q: Berapa lama waktu pengembangan?**
+A: Tergantung kompleksitas. Landing page 2–4 minggu. Modul CRM/HR 6–12 minggu. ERP lengkap 3–6 bulan.
+
+**Q: Apakah ada garansi dan maintenance?**
+A: Ya, semua proyek dilengkapi garansi bug fixing post-launch dan opsi kontrak maintenance.
+
+**Q: Teknologi apa yang digunakan?**
+A: Stack modern yang proven: Next.js, Go, PostgreSQL, Flutter untuk mobile. Semua TypeScript untuk type safety.
+
+**Q: Apakah bisa integrasi dengan sistem yang sudah ada?**
+A: Ya, kami berpengalaman dalam API integration dan migrasi data dari sistem lama.
+
+**Q: Apakah Gilabs melayani perusahaan di luar Semarang?**
+A: Ya, kami melayani seluruh Indonesia secara remote. Meeting melalui video call, kolaborasi via project management tools.
+
+## Artikel Blog Terbaru
+
+1. **Custom CRM/ERP vs SaaS** — Kapan harus membangun custom vs membeli SaaS
+2. **Cost-Effective Web Development** — Strategi hemat biaya tanpa mengorbankan kualitas
+3. **Mobile App with Flutter** — Keunggulan Flutter untuk aplikasi bisnis cross-platform
+4. **SEO Best Practices** — Tips SEO modern untuk website bisnis
+5. **UI/UX Design Principles** — Prinsip desain untuk meningkatkan konversi
+6. **Next.js vs Astro** — Memilih framework yang tepat untuk project Anda
+
+## Kontak
+
+- **Website**: https://gilabs.id
+- **WhatsApp**: Tersedia di website (tombol "Konsultasi Gratis")
+- **Konsultasi**: Gratis, tidak ada komitmen
+- **Respons**: Biasanya dalam 1 hari kerja
+
+---
+
+*Dokumen ini adalah versi lengkap konteks Gilabs untuk konsumsi AI/LLM. 
+Untuk versi singkat, lihat https://gilabs.id/llms.txt*
+*Sitemap lengkap: https://gilabs.id/sitemap-index.xml*

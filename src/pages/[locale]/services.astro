@@ -22,11 +22,139 @@ const lang = locale as 'en' | 'id';
 const siteUrl = 'https://gilabs.id';
 const canonical = locale === 'en' ? `${siteUrl}/en/services` : `${siteUrl}/${locale}/services`;
 const pageTitle = locale === 'en'
-  ? `Our Services - Web, Mobile, UI/UX, ERP & CRM | Gilabs.id`
-  : `Layanan Kami - Web, Mobile, UI/UX, ERP & CRM | Gilabs.id`;
+  ? `Layanan Software House — ERP, CRM, POS, HRIS, Finance, Web & Mobile | Gilabs`
+  : `Layanan Software House — ERP, CRM, POS, HRIS, Finance, Web & Mobile | Gilabs`;
 const pageDescription = locale === 'id'
-  ? 'Layanan lengkap pengembangan web, aplikasi mobile, desain UI/UX, sistem integrasi, ERP, CRM, dan maintenance. Solusi digital untuk bisnis Anda.'
-  : 'Complete services for web development, mobile apps, UI/UX design, system integration, ERP, CRM, and maintenance. Digital solutions for your business.';
+  ? 'Gilabs menyediakan jasa ERP, CRM, POS, HRIS, Finance System, web development, mobile app & UI/UX design untuk perusahaan di Indonesia.'
+  : 'Gilabs provides ERP, CRM, POS, HRIS, Finance System, web development, mobile app & UI/UX design services for companies in Indonesia.';
+
+// Services ItemList Schema
+const serviceListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": locale === 'id' ? "Layanan Gilabs Software House" : "Gilabs Software House Services",
+  "description": pageDescription,
+  "url": canonical,
+  "numberOfItems": 8,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "item": {
+        "@type": "Service",
+        "name": "ERP System Development",
+        "description": locale === 'id'
+          ? "Pengembangan sistem ERP kustom untuk manufaktur, distribusi, dan retail"
+          : "Custom ERP system development for manufacturing, distribution, and retail",
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "item": {
+        "@type": "Service",
+        "name": "CRM System Development",
+        "description": locale === 'id'
+          ? "Platform CRM enterprise untuk manajemen sales pipeline, lead, dan pelanggan"
+          : "Enterprise CRM platform for sales pipeline, lead, and customer management",
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "item": {
+        "@type": "Service",
+        "name": "POS System Development",
+        "description": locale === 'id'
+          ? "Sistem kasir dan penjualan untuk retail, F&B, dan multi-outlet"
+          : "Point of Sale system for retail, F&B, and multi-outlet businesses",
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "item": {
+        "@type": "Service",
+        "name": "HRIS Development",
+        "description": locale === 'id'
+          ? "Sistem HR digital untuk absensi, payroll, rekrutmen, dan manajemen kinerja"
+          : "Digital HR system for attendance, payroll, recruitment, and performance management",
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "item": {
+        "@type": "Service",
+        "name": "Finance System Development",
+        "description": locale === 'id'
+          ? "Sistem keuangan perusahaan: akuntansi, invoicing, laporan keuangan"
+          : "Company finance systems: accounting, invoicing, financial reporting",
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "item": {
+        "@type": "Service",
+        "name": "Web Development",
+        "description": locale === 'id'
+          ? "Pengembangan website dan web application dengan Next.js, React, TypeScript"
+          : "Website and web application development with Next.js, React, TypeScript",
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "item": {
+        "@type": "Service",
+        "name": "Mobile App Development",
+        "description": locale === 'id'
+          ? "Pengembangan aplikasi mobile iOS dan Android dengan Flutter"
+          : "iOS and Android mobile app development with Flutter",
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "item": {
+        "@type": "Service",
+        "name": "AI Integration",
+        "description": locale === 'id'
+          ? "Integrasi AI/LLM ke dalam sistem bisnis untuk chatbot, analitik, dan otomasi"
+          : "AI/LLM integration into business systems for chatbots, analytics, and automation",
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    }
+  ]
+};
+
+// BreadcrumbList Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Gilabs",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": locale === 'id' ? "Layanan" : "Services",
+      "item": canonical
+    }
+  ]
+};
 ---
 
 <Layout 
@@ -35,9 +163,13 @@ const pageDescription = locale === 'id'
   description={pageDescription}
   canonical={canonical}
   keywords={locale === 'id' 
-    ? 'layanan pengembangan web, layanan aplikasi mobile, layanan desain UI/UX, layanan sistem integrasi, layanan ERP, layanan CRM, maintenance website'
-    : 'web development services, mobile app services, UI/UX design services, system integration services, ERP services, CRM services, website maintenance'}
+    ? 'layanan software house Indonesia, jasa pembuatan ERP, jasa pembuatan CRM, jasa pembuatan POS, jasa pembuatan HRIS, sistem manajemen SDM, finance system, web development Indonesia, mobile app development, UI/UX design, AI integration, custom software development, jasa pembuatan aplikasi perusahaan, sistem internal perusahaan'
+    : 'software house services Indonesia, ERP development services, CRM development services, POS system development, HRIS development, finance system development, web development services Indonesia, mobile app development services, UI/UX design, AI integration services, custom enterprise software development'}
 >
+  <!-- Service List + Breadcrumb Schemas -->
+  <script type="application/ld+json" set:html={JSON.stringify(serviceListSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+  
   <Navbar lang={lang} />
   
   <main class="min-h-screen bg-background">

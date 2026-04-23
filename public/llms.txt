@@ -1,0 +1,76 @@
+# Gilabs — Software House Indonesia
+
+> Gilabs adalah software house di Indonesia yang berspesialisasi dalam pembuatan tools internal perusahaan (enterprise). Kami membangun sistem ERP, CRM, POS, HRIS, Finance, dan aplikasi bisnis kustom untuk perusahaan di Indonesia.
+
+Gilabs (gilabs.id) adalah software agency premium berbasis di Indonesia yang fokus pada pengembangan software enterprise untuk kebutuhan internal bisnis. Berbeda dari software house biasa, Gilabs mengkhususkan diri dalam membangun sistem yang dipakai sehari-hari oleh tim operasional perusahaan — mulai dari ERP untuk manufaktur, CRM untuk tim sales, HRIS untuk HR, hingga sistem Finance dan Inventory.
+
+## Tentang Gilabs
+
+- **Nama**: Gilabs / GiLabs Software House
+- **Website**: https://gilabs.id
+- **Bahasa**: Indonesia & English
+- **Spesialisasi**: Enterprise Internal Tools — ERP, CRM, POS, HRIS, Finance System
+- **Lokasi**: Indonesia
+- **Jenis Layanan**: Custom Software Development, Software House, Software Agency
+
+## Layanan Utama
+
+- **Pembuatan Website** — Landing page, company profile, web app bisnis
+- **Pengembangan ERP** — Enterprise Resource Planning untuk manufaktur, distribusi, retail
+- **Pengembangan CRM** — Customer Relationship Management, sales pipeline, lead management
+- **Sistem POS** — Point of Sale untuk retail, F&B, dan usaha ritel
+- **Sistem HRIS** — Human Resource Information System, absensi, payroll, rekrutmen
+- **Sistem Finance** — Akuntansi, invoicing, laporan keuangan
+- **Mobile App Development** — Aplikasi iOS dan Android native/hybrid
+- **UI/UX Design** — Desain antarmuka pengguna premium
+- **AI Integration** — Integrasi AI/LLM ke dalam sistem bisnis
+
+## Proyek Nyata
+
+- **SalesView** — Platform CRM enterprise untuk industri kesehatan (Next.js, TypeScript, TanStack Query)
+- **CRM Pharmaceutical** — CRM tingkat enterprise untuk perusahaan farmasi dengan 20+ modul (Go, Next.js, PostgreSQL, Cerebras AI)
+- **Evalique** — Platform assessment pelatihan berbasis AI (Next.js, Go, PostgreSQL, Cerebras AI)
+- **Fiber Monitoring Project** — Sistem monitoring proyek instalasi fiber optik (Next.js, Supabase, Turborepo)
+- **Sitama** — Platform manajemen magang untuk institusi pendidikan (Dart, Laravel, Firebase)
+
+## Kontak & CTA
+
+- **WhatsApp**: Tersedia di website gilabs.id
+- **Konsultasi**: Gratis konsultasi awal
+- **Timeline**: Proyek biasanya 4–16 minggu tergantung kompleksitas
+
+## Halaman Website
+
+Daftar halaman lengkap tersedia di: https://gilabs.id/sitemap-index.xml
+
+- [Beranda (English)](https://gilabs.id/en): Halaman utama, hero, portofolio, layanan, proses, FAQ
+- [Beranda (Bahasa Indonesia)](https://gilabs.id/id): Versi Bahasa Indonesia dari halaman utama
+- [Layanan (English)](https://gilabs.id/en/services): Detail semua layanan pengembangan software
+- [Layanan (Indonesia)](https://gilabs.id/id/services): Detail layanan dalam Bahasa Indonesia
+- [Blog (English)](https://gilabs.id/en/blog): Artikel teknologi, tips software development, insight bisnis
+- [Blog (Indonesia)](https://gilabs.id/id/blog): Artikel dalam Bahasa Indonesia
+- [Portfolio](https://gilabs.id/en/portfolio): Showcase proyek-proyek yang telah dikerjakan
+
+## Artikel Blog Pilihan
+
+- [Custom CRM/ERP vs SaaS: Which Enterprise Solution is Right?](https://gilabs.id/en/blog/custom-crm-erp-vs-saas-enterprise-solution)
+- [Cost-Effective Web Development Solutions for Businesses](https://gilabs.id/en/blog/cost-effective-web-development-solutions)
+- [Mobile App Development with Flutter](https://gilabs.id/en/blog/mobile-app-development-with-flutter)
+- [SEO Best Practices for Modern Websites](https://gilabs.id/en/blog/seo-best-practices-for-modern-websites)
+- [UI/UX Design Principles for Better Conversions](https://gilabs.id/en/blog/ui-ux-design-principles-for-better-conversions)
+
+## Markdown Mirrors (untuk AI/LLM)
+
+Versi markdown dari halaman utama tersedia untuk pembacaan AI:
+
+- [Tentang Gilabs (Markdown)](https://gilabs.id/about.md)
+- [Layanan (Markdown)](https://gilabs.id/services.md)
+- [Portofolio (Markdown)](https://gilabs.id/portfolio.md)
+
+## Apa yang Membedakan Gilabs?
+
+1. **Fokus Enterprise Internal Tools** — Bukan sekadar website, tapi sistem yang menjalankan operasional bisnis
+2. **Full-Stack Capability** — Frontend (Next.js, React), Backend (Go, Node.js, Laravel), Mobile (Flutter, React Native)
+3. **AI-Ready** — Mengintegrasikan AI/LLM ke dalam sistem bisnis untuk efisiensi operasional
+4. **Modern Tech Stack** — Next.js 16, TypeScript, Go, PostgreSQL, Turborepo, Docker
+5. **Pengalaman Nyata** — Proyek-proyek enterprise yang sudah berjalan di production

@@ -5,12 +5,12 @@ import MobileMenu from "../components/MobileMenu.astro";
 
 const { 
 	lang = Astro.currentLocale || 'en', 
-	title = 'Gilabs.id',
-	description = 'Premium Software Agency specializing in web development, mobile apps, and digital solutions. Transform your business with cutting-edge technology.',
+	title = 'Gilabs.id — Software House Indonesia | ERP, CRM, POS, HRIS, Finance System',
+	description = 'Gilabs — software house Indonesia. Spesialis ERP, CRM, POS, HRIS, Finance System & custom software untuk tools internal perusahaan Anda.',
 	canonical = Astro.url.href,
 	robots = 'index, follow',
 	noindex = false,
-	keywords = 'web development, mobile app development, software agency, digital solutions, UI/UX design, custom software, web design, app development Indonesia, ERP system, CRM system, software development company, web application development, mobile application development, e-commerce development, enterprise software, digital transformation, software consulting, Indonesia software company'
+	keywords = 'software house Indonesia, pembuatan website, software agency Indonesia, jasa pembuatan software, ERP system Indonesia, CRM system, POS system, HRIS system, finance system, custom software development, web development Indonesia, mobile app development, aplikasi internal perusahaan, sistem enterprise, digital transformation Indonesia, software development company Indonesia, jasa pembuatan aplikasi, Next.js developer Indonesia, Golang developer Indonesia'
 } = Astro.props;
 
 const siteUrl = 'https://gilabs.id';
@@ -37,6 +37,82 @@ const idUrl = `${siteUrl}/id${pathWithoutLocale === '/' ? '' : pathWithoutLocale
 
 // x-default should point to the English version as the default
 const defaultUrl = enUrl;
+
+// Schema.org: Organization + LocalBusiness
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+  "@id": "https://gilabs.id/#organization",
+  "name": "Gilabs",
+  "alternateName": ["GiLabs", "Gilabs Software House", "Gilabs.id"],
+  "url": "https://gilabs.id",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://gilabs.id/favicon-144x144.png",
+    "width": 144,
+    "height": 144
+  },
+  "description": lang === 'id'
+    ? "Gilabs adalah software house premium di Indonesia yang spesialis dalam pembuatan tools internal perusahaan: ERP, CRM, POS, HRIS, Finance System, dan custom software enterprise."
+    : "Gilabs is a premium software house in Indonesia specializing in enterprise internal tools: ERP, CRM, POS, HRIS, Finance System, and custom software development.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Semarang",
+    "addressRegion": "Jawa Tengah",
+    "addressCountry": "ID"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "-6.9667",
+    "longitude": "110.4167"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Indonesia"
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "Sales",
+    "availableLanguage": ["Indonesian", "English"]
+  },
+  "sameAs": [
+    "https://gilabs.id"
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": lang === 'id' ? "Layanan Software House" : "Software House Services",
+    "itemListElement": [
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ERP System Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM System Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "POS System Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "HRIS System Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Finance System Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Mobile App Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Software Development" } }
+    ]
+  },
+  "knowsAbout": [
+    "Software House", "Web Development", "Mobile App Development", "ERP System",
+    "CRM System", "POS System", "HRIS", "Finance System",
+    "Custom Software Development", "Next.js", "Go (Golang)", "Flutter",
+    "TypeScript", "PostgreSQL", "Enterprise Software", "Digital Transformation"
+  ]
+};
+
+// Schema.org: WebSite with SearchAction
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://gilabs.id/#website",
+  "name": "Gilabs Software House",
+  "url": "https://gilabs.id",
+  "description": lang === 'id'
+    ? "Software house Indonesia spesialis ERP, CRM, POS, HRIS, dan custom software enterprise"
+    : "Indonesia software house specializing in ERP, CRM, POS, HRIS, and custom enterprise software",
+  "inLanguage": ["id", "en"],
+  "publisher": { "@id": "https://gilabs.id/#organization" }
+};
 ---
 <!doctype html>
 <html lang={lang} class="scroll-smooth">
@@ -90,50 +166,31 @@ const defaultUrl = enUrl;
 		
 		<!-- Additional SEO -->
 		<meta name="language" content={lang === 'id' ? 'Indonesian' : 'English'} />
-		<meta name="geo.region" content={lang === 'id' ? 'ID' : 'US'} />
+		<meta name="geo.region" content="ID-JT" />
+		<meta name="geo.placename" content="Semarang, Jawa Tengah, Indonesia" />
+		<meta name="geo.position" content="-6.9667;110.4167" />
+		<meta name="ICBM" content="-6.9667, 110.4167" />
 		
-		<!-- Structured Data (Schema.org) -->
-		<script type="application/ld+json" set:html={JSON.stringify({
-			"@context": "https://schema.org",
-			"@type": "Organization",
-			"name": "Gilabs.id",
-			"alternateName": "Gilabs Software Agency",
-			"url": "https://gilabs.id",
-			"logo": "https://gilabs.id/favicon-144x144.png",
-			"description": description,
-			"address": {
-				"@type": "PostalAddress",
-				"addressCountry": "ID"
-			},
-			"contactPoint": {
-				"@type": "ContactPoint",
-				"contactType": "Customer Service",
-				"availableLanguage": lang === 'id' ? "Indonesian" : "English"
-			},
-			"sameAs": [
-				"https://gilabs.id"
-			],
-			"areaServed": {
-				"@type": "Country",
-				"name": "Indonesia"
-			},
-			"knowsAbout": [
-				"Web Development",
-				"Mobile App Development",
-				"Software Development",
-				"Software House",
-				"UI/UX Design",
-				"Digital Solutions",
-				"ERP Systems",
-				"CRM Systems"
-			]
-		})} />
+		<!-- AI/LLM Context Files -->
+		<link rel="alternate" type="text/plain" title="LLMs.txt — AI Context" href="/llms.txt" />
+		<link rel="alternate" type="text/markdown" title="About Gilabs (Markdown)" href="/about.md" />
+		<link rel="alternate" type="text/markdown" title="Services (Markdown)" href="/services.md" />
+		<link rel="alternate" type="text/markdown" title="Portfolio (Markdown)" href="/portfolio.md" />
+		
+		<!-- Structured Data: Organization + LocalBusiness -->
+		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />
+		
+		<!-- Structured Data: WebSite -->
+		<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
 		
     <!-- Google Fonts - Optimized loading -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
+    
+    <!-- Per-page additional head tags (e.g. page-specific schemas) -->
+    <slot name="head" />
 	</head>
 	<body class="bg-background text-foreground font-sans antialiased relative selection:bg-brand selection:text-white">
     <div class="fixed inset-0 z-[-1] pointer-events-none">

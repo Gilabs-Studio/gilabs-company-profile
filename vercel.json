@@ -9,5 +9,31 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "ID"
+        }
+      ],
+      "destination": "/id",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "missing": [
+        {
+          "type": "header",
+          "key": "x-vercel-ip-country",
+          "value": "ID"
+        }
+      ],
+      "destination": "/en",
+      "permanent": false
+    }
   ]
 }

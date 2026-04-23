@@ -15,6 +15,40 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
+      filter: (page) => !page.includes('/404'),
+      serialize: (item) => {
+        // Homepage pages get highest priority
+        if (item.url.match(/\/en\/?$/) || item.url.match(/\/id\/?$/)) {
+          item.priority = 1.0;
+          item.changefreq = 'weekly';
+        }
+        // Services pages are very important for SEO
+        else if (item.url.includes('/services')) {
+          item.priority = 0.95;
+          item.changefreq = 'monthly';
+        }
+        // Blog listing pages
+        else if (item.url.match(/\/blog\/?$/)) {
+          item.priority = 0.9;
+          item.changefreq = 'weekly';
+        }
+        // Portfolio page
+        else if (item.url.includes('/portfolio')) {
+          item.priority = 0.85;
+          item.changefreq = 'monthly';
+        }
+        // Individual blog posts
+        else if (item.url.includes('/blog/')) {
+          item.priority = 0.8;
+          item.changefreq = 'monthly';
+        }
+        // Work-results page
+        else if (item.url.includes('/work-results')) {
+          item.priority = 0.8;
+          item.changefreq = 'monthly';
+        }
+        return item;
+      }
     }),
     robotsTxt({
       policy: [
@@ -22,6 +56,23 @@ export default defineConfig({
           userAgent: '*',
           allow: '/',
           disallow: ['/404', '/api/'],
+        },
+        // Explicitly allow AI crawlers full access
+        {
+          userAgent: 'GPTBot',
+          allow: '/',
+        },
+        {
+          userAgent: 'ClaudeBot',
+          allow: '/',
+        },
+        {
+          userAgent: 'Google-Extended',
+          allow: '/',
+        },
+        {
+          userAgent: 'PerplexityBot',
+          allow: '/',
         },
       ],
       sitemap: 'https://gilabs.id/sitemap-index.xml',

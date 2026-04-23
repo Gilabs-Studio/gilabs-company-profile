@@ -24,14 +24,72 @@ const { locale } = Astro.params;
 const siteUrl = 'https://gilabs.id';
 const canonical = locale === 'en' ? `${siteUrl}/en` : `${siteUrl}/${locale}`;
 const description = locale === 'id' 
-	? 'Agen Software Premium yang mengkhususkan diri dalam pengembangan web, aplikasi mobile, dan solusi digital. Transformasikan bisnis Anda dengan teknologi terkini.'
-	: 'Premium Software Agency specializing in web development, mobile apps, and digital solutions. Transform your business with cutting-edge technology.';
+	? 'Gilabs — software house Indonesia. Spesialis pembuatan ERP, CRM, POS, HRIS, Finance System & custom software untuk kebutuhan internal perusahaan Anda.'
+	: 'Gilabs — Indonesia software house. Specialists in ERP, CRM, POS, HRIS, Finance System & custom software for enterprise internal tools.';
 const title = locale === 'id'
-	? 'Gilabs.id - Agen Software Premium | Pengembangan Web & Mobile App'
-	: 'Gilabs.id - Premium Software Agency | Web & Mobile App Development';
+	? 'Gilabs — Software House Indonesia | ERP, CRM, POS, HRIS & Custom Software'
+	: 'Gilabs — Software House Indonesia | ERP, CRM, POS, HRIS & Custom Software';
 const keywords = locale === 'id'
-	? 'pengembangan web, pengembangan aplikasi mobile, agen software, solusi digital, desain UI/UX, software custom, web design, pengembangan aplikasi Indonesia, sistem ERP, sistem CRM, perusahaan pengembangan software, pengembangan aplikasi web, pengembangan aplikasi mobile, pengembangan e-commerce, software enterprise, transformasi digital, konsultasi software, perusahaan software Indonesia'
-	: 'web development, mobile app development, software agency, digital solutions, UI/UX design, custom software, web design, app development Indonesia, ERP system, CRM system, software development company, software house, web application development, mobile application development, e-commerce development, enterprise software, digital transformation, software consulting, Indonesia software company';
+	? 'software house Indonesia, pembuatan website, software agency Indonesia, jasa pembuatan software, ERP system Indonesia, CRM system, POS system, HRIS system, finance system, custom software development, web development Indonesia, mobile app development, aplikasi internal perusahaan, sistem enterprise, digital transformation Indonesia, software development company Indonesia, jasa pembuatan aplikasi, software house Semarang, software house Jawa Tengah, pembuatan sistem ERP, pembuatan sistem CRM, pengembang software Indonesia'
+	: 'software house Indonesia, website development, software agency Indonesia, ERP system development, CRM system development, POS system, HRIS system, finance system, custom software development, web development Indonesia, mobile app development, enterprise internal tools, digital transformation Indonesia, Indonesia software development company, software house Semarang, Java software house';
+
+// FAQ Schema for homepage
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Apa itu software house?" : "What is a software house?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Software house adalah perusahaan yang spesialis dalam pengembangan software kustom sesuai kebutuhan bisnis. Berbeda dengan produk SaaS, software house membangun sistem yang benar-benar disesuaikan dengan alur kerja dan proses bisnis Anda."
+          : "A software house is a company specializing in custom software development tailored to business needs. Unlike SaaS products, a software house builds systems truly adapted to your workflow and business processes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Apa saja layanan Gilabs?" : "What services does Gilabs offer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Gilabs menyediakan layanan: pembuatan ERP (Enterprise Resource Planning), CRM (Customer Relationship Management), POS (Point of Sale), HRIS (Human Resource Information System), Finance System, web development, mobile app development, UI/UX design, dan integrasi AI."
+          : "Gilabs offers: ERP development, CRM development, POS system, HRIS development, Finance System, web development, mobile app development, UI/UX design, and AI integration."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Berapa lama waktu pengembangan software?" : "How long does software development take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Tergantung kompleksitas: Landing page/website 2-4 minggu, modul CRM atau HRIS tunggal 6-12 minggu, sistem ERP lengkap 3-6 bulan. Kami bekerja secara agile dengan update berkala."
+          : "It depends on complexity: Landing pages/websites 2-4 weeks, single CRM or HRIS module 6-12 weeks, full ERP system 3-6 months. We work agile with regular updates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Apakah Gilabs melayani seluruh Indonesia?" : "Does Gilabs serve all of Indonesia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Ya, Gilabs melayani seluruh Indonesia secara remote. Meskipun tim kami berbasis di Semarang, Jawa Tengah, kami bekerja dengan klien dari berbagai kota seperti Jakarta, Surabaya, Bali, Medan, dan lainnya."
+          : "Yes, Gilabs serves all of Indonesia remotely. Although our team is based in Semarang, Central Java, we work with clients from various cities including Jakarta, Surabaya, Bali, Medan, and others."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Teknologi apa yang digunakan Gilabs?" : "What technologies does Gilabs use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Gilabs menggunakan stack modern: Next.js 16 dan React untuk frontend, Go (Golang) dan Node.js untuk backend, PostgreSQL untuk database, Flutter untuk mobile app, TypeScript, Tailwind CSS, dan integrasi AI (Cerebras, OpenAI)."
+          : "Gilabs uses a modern stack: Next.js 16 and React for frontend, Go (Golang) and Node.js for backend, PostgreSQL for database, Flutter for mobile apps, TypeScript, Tailwind CSS, and AI integration (Cerebras, OpenAI)."
+      }
+    }
+  ]
+};
 ---
 
 <Layout 
@@ -41,6 +99,9 @@ const keywords = locale === 'id'
 	canonical={canonical}
 	keywords={keywords}
 >
+  <!-- FAQ Schema for homepage -->
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
+  
   <Navbar lang={locale} />
   <MobileMenu lang={locale} />
   

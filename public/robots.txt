@@ -1,26 +1,94 @@
 # robots.txt for gilabs.id
-# Generated for SEO compliance
+# Software House Indonesia — ERP, CRM, POS, HRIS, Finance System
 
-# Allow all search engines to crawl all content
+# ============================================================
+# GENERAL CRAWLERS
+# ============================================================
 User-agent: *
 Allow: /
 
-# Explicitly allow favicon files for Google Search indexing
+# Explicitly allow key files
 Allow: /favicon.ico
 Allow: /favicon.svg
 Allow: /favicon-48x48.png
 Allow: /favicon-96x96.png
 Allow: /favicon-144x144.png
 Allow: /apple-touch-icon.png
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /about.md
+Allow: /services.md
+Allow: /portfolio.md
 
 # Disallow specific paths
 Disallow: /404
 Disallow: /api/
 
-# Sitemap location
+# ============================================================
+# AI CRAWLERS — Full access granted
+# ============================================================
+
+# OpenAI / ChatGPT
+User-agent: GPTBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# OpenAI web crawler
+User-agent: OAI-SearchBot
+Allow: /
+
+# Anthropic Claude
+User-agent: ClaudeBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# Anthropic Claude (alternative)
+User-agent: Claude-Web
+Allow: /
+
+# Google Gemini / Bard
+User-agent: Google-Extended
+Allow: /
+
+# Meta AI (Llama)
+User-agent: meta-externalagent
+Allow: /
+
+# Perplexity AI
+User-agent: PerplexityBot
+Allow: /
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+# You.com
+User-agent: YouBot
+Allow: /
+
+# Cohere
+User-agent: cohere-ai
+Allow: /
+
+# Common Crawl (used by many AI training datasets)
+User-agent: CCBot
+Allow: /
+
+# Diffbot
+User-agent: Diffbot
+Allow: /
+
+# Bytedance / Bytespider
+User-agent: Bytespider
+Allow: /
+
+# ============================================================
+# SITEMAP LOCATIONS
+# ============================================================
 Sitemap: https://gilabs.id/sitemap-index.xml
 
-# Crawl delay (optional, in seconds)
-# User-agent: *
-# Crawl-delay: 1
-
+# ============================================================
+# AI CONTEXT FILES
+# See https://gilabs.id/llms.txt for AI-readable site summary
+# See https://gilabs.id/llms-full.txt for full AI context
+# ============================================================

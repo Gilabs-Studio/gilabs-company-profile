@@ -83,9 +83,13 @@ const keywords = 'web development, mobile app development, software agency, digi
 		</div>
 
 		<script>
-			// Auto redirect after animation
+			// Auto redirect after animation with locale detection
+			// Vercel handles geo-redirect at edge for production,
+			// this is the client-side fallback (local dev + no-JS fallback)
 			setTimeout(() => {
-				window.location.href = '/en';
+				const lang = navigator.language || navigator.languages?.[0] || '';
+				const isIndonesian = lang.toLowerCase().startsWith('id');
+				window.location.href = isIndonesian ? '/id' : '/en';
 			}, 1500); // 1.5 seconds for smooth transition
 		</script>
 	</body>
