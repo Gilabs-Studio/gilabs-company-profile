@@ -10,7 +10,8 @@ const {
 	canonical = Astro.url.href,
 	robots = 'index, follow',
 	noindex = false,
-	keywords = 'software house Indonesia, pembuatan website, software agency Indonesia, jasa pembuatan software, ERP system Indonesia, CRM system, POS system, HRIS system, finance system, custom software development, web development Indonesia, mobile app development, aplikasi internal perusahaan, sistem enterprise, digital transformation Indonesia, software development company Indonesia, jasa pembuatan aplikasi, Next.js developer Indonesia, Golang developer Indonesia'
+	keywords = 'software house Indonesia, pembuatan website, software agency Indonesia, jasa pembuatan software, ERP system Indonesia, CRM system, POS system, HRIS system, finance system, custom software development, web development Indonesia, mobile app development, aplikasi internal perusahaan, sistem enterprise, digital transformation Indonesia, software development company Indonesia, jasa pembuatan aplikasi, Next.js developer Indonesia, Golang developer Indonesia',
+	ogImage = 'https://gilabs.id/og-image.png'
 } = Astro.props;
 
 const siteUrl = 'https://gilabs.id';
@@ -155,6 +156,10 @@ const websiteSchema = {
 		<meta property="og:url" content={fullCanonical} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content={title} />
 		<meta property="og:site_name" content="Gilabs.id" />
 		<meta property="og:locale" content={lang === 'id' ? 'id_ID' : 'en_US'} />
 		<meta property="og:locale:alternate" content={lang === 'id' ? 'en_US' : 'id_ID'} />
@@ -163,6 +168,8 @@ const websiteSchema = {
 		<meta name="twitter:card" content="summary_large_image" />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content={title} />
 		
 		<!-- Additional SEO -->
 		<meta name="language" content={lang === 'id' ? 'Indonesian' : 'English'} />
@@ -176,6 +183,9 @@ const websiteSchema = {
 		<link rel="alternate" type="text/markdown" title="About Gilabs (Markdown)" href="/about.md" />
 		<link rel="alternate" type="text/markdown" title="Services (Markdown)" href="/services.md" />
 		<link rel="alternate" type="text/markdown" title="Portfolio (Markdown)" href="/portfolio.md" />
+		
+		<!-- Sitemap discovery -->
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		
 		<!-- Structured Data: Organization + LocalBusiness -->
 		<script type="application/ld+json" set:html={JSON.stringify(organizationSchema)} />

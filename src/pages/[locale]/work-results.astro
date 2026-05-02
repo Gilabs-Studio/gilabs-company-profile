@@ -28,6 +28,25 @@ const pageDescription = locale === 'id'
 const keywords = locale === 'en'
 	? 'work results, completed projects, software development portfolio, corporate software solutions, professional development projects'
 	: 'hasil pekerjaan, proyek selesai, portfolio pengembangan software, solusi software korporat, proyek pengembangan profesional';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Gilabs",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": locale === 'id' ? "Hasil Pekerjaan" : "Work Results",
+      "item": canonical
+    }
+  ]
+};
 ---
 
 <Layout 
@@ -37,6 +56,7 @@ const keywords = locale === 'en'
 	canonical={canonical}
 	keywords={keywords}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
   <Navbar lang={lang} />
   
   <!-- Work Result Drawer Component -->

@@ -25,6 +25,25 @@ const pageDescription = locale === 'en'
 const keywords = locale === 'en'
 	? 'web development blog, mobile app development, software development insights, Software House, UI/UX design tips, SEO best practices, technology trends'
 	: 'blog pengembangan web, pengembangan aplikasi mobile, wawasan pengembangan software, tips desain UI/UX, praktik terbaik SEO, tren teknologi';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Gilabs",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": canonical
+    }
+  ]
+};
 ---
 
 <Layout 
@@ -34,6 +53,7 @@ const keywords = locale === 'en'
 	canonical={canonical}
 	keywords={keywords}
 >
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
   <Navbar lang={locale} />
   <main class="pt-20 bg-background">
     <BlogOverview lang={locale} />

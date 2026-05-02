@@ -21,7 +21,7 @@
         }
       ],
       "destination": "/id",
-      "permanent": false
+      "permanent": true
     },
     {
       "source": "/",
@@ -33,7 +33,7 @@
         }
       ],
       "destination": "/en",
-      "permanent": false
+      "permanent": true
     }
   ]
 }

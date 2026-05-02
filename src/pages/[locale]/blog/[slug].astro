@@ -40,9 +40,20 @@ const siteUrl = 'https://gilabs.id';
 const canonical = `${siteUrl}/${locale}/blog/${slug}`;
 const pageTitle = `${post.title} | Gilabs Software House`;
 const pageDescription = post.excerpt || 'Read our latest insights on web development, mobile apps, and technology trends from Gilabs Software House.';
-const keywords = locale === 'en'
-	? 'web development, mobile app development, software development, software house, UI/UX design, SEO, technology trends, software agency'
-	: 'pengembangan web, pengembangan aplikasi mobile, pengembangan software, software house, desain UI/UX, SEO, tren teknologi, agen software';
+
+// Use post tags as keywords, fall back to generic keywords
+const postKeywords = post.tags && post.tags.length > 0
+  ? [...post.tags, 'software house Indonesia', 'Gilabs', 'web development Indonesia'].join(', ')
+  : locale === 'en'
+    ? 'web development, mobile app development, software development, software house, UI/UX design, SEO, technology trends, software agency'
+    : 'pengembangan web, pengembangan aplikasi mobile, pengembangan software, software house, desain UI/UX, SEO, tren teknologi, agen software';
+
+// Build absolute OG image URL from post image field
+const ogImagePath = post.image || '/og-image.png';
+const ogImage = ogImagePath.startsWith('http') ? ogImagePath : `${siteUrl}${ogImagePath}`;
+
+// ISO date strings for Article schema
+const datePublished = post.date ? new Date(post.date).toISOString() : undefined;
 ---
 
 <BlogLayout 
@@ -50,7 +61,11 @@ const keywords = locale === 'en'
 	title={pageTitle}
 	description={pageDescription}
 	canonical={canonical}
-	keywords={keywords}
+	keywords={postKeywords}
+	ogImage={ogImage}
+	datePublished={datePublished}
+	articleAuthor={post.author || 'Gilabs Editorial Team'}
+	articleCategory={post.category}
 >
   <Navbar lang={locale} />
   <main class="pt-20">
