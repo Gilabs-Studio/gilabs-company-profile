@@ -3,36 +3,6 @@ import type { MiddlewareHandler } from 'astro';
 export const onRequest: MiddlewareHandler = async (context, next) => {
 	const pathname = context.url.pathname;
 
-	// ============================================================
-	// GEO-BASED LOCALE REDIRECT
-	// Only redirect from root "/" — never redirect locale pages
-	// ============================================================
-	if (pathname === '/' || pathname === '') {
-		// Detect country from hosting provider headers
-		// Vercel sets X-Vercel-IP-Country, Cloudflare sets CF-IPCountry
-		const country =
-			context.request.headers.get('X-Vercel-IP-Country') ||
-			context.request.headers.get('CF-IPCountry') ||
-			context.request.headers.get('X-Country-Code') ||
-			'';
-
-		// Also check Accept-Language as fallback
-		const acceptLanguage = context.request.headers.get('Accept-Language') || '';
-		const prefersIndonesian =
-			acceptLanguage.toLowerCase().startsWith('id') ||
-			acceptLanguage.toLowerCase().includes('id-id');
-
-		const isIndonesia = country.toUpperCase() === 'ID';
-
-		if (isIndonesia || prefersIndonesian) {
-			// Redirect Indonesian users to /id
-			return context.redirect('/id', 302);
-		} else {
-			// Default: redirect everyone else to /en
-			return context.redirect('/en', 302);
-		}
-	}
-
 	// Get the response from next middleware/handler
 	const response = await next();
 	

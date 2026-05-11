@@ -9,31 +9,5 @@
         }
       ]
     }
-  ],
-  "redirects": [
-    {
-      "source": "/",
-      "has": [
-        {
-          "type": "header",
-          "key": "x-vercel-ip-country",
-          "value": "ID"
-        }
-      ],
-      "destination": "/id",
-      "permanent": true
-    },
-    {
-      "source": "/",
-      "missing": [
-        {
-          "type": "header",
-          "key": "x-vercel-ip-country",
-          "value": "ID"
-        }
-      ],
-      "destination": "/en",
-      "permanent": true
-    }
   ]
 }
