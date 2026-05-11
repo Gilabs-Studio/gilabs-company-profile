@@ -26,6 +26,21 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
 	} else if (existingHeader !== robotsTag) {
 		newResponse.headers.set('X-Robots-Tag', robotsTag);
 	}
+
+	// Baseline security headers for browser best-practices audits.
+	newResponse.headers.set('X-Content-Type-Options', 'nosniff');
+	newResponse.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
+	newResponse.headers.set('X-Frame-Options', 'DENY');
+	newResponse.headers.set('Cross-Origin-Opener-Policy', 'same-origin');
+	newResponse.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+	newResponse.headers.set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+
+	if (!newResponse.headers.has('Content-Security-Policy')) {
+		newResponse.headers.set(
+			'Content-Security-Policy',
+			"default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; form-action 'self'"
+		);
+	}
 	
 	// Add cache headers for static assets
 	if (pathname.match(/\.(jpg|jpeg|png|gif|webp|svg|ico|woff|woff2|ttf|eot|css|js)$/i)) {
@@ -34,11 +49,6 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
 	} else if (pathname.match(/\.(html|htm)$/i)) {
 		// Cache HTML for shorter period
 		newResponse.headers.set('Cache-Control', 'public, max-age=3600, must-revalidate');
-	}
-	
-	// Enable compression
-	if (!newResponse.headers.get('Content-Encoding')) {
-		newResponse.headers.set('Accept-Encoding', 'gzip, deflate, br');
 	}
 	
 	return newResponse;

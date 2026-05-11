@@ -46,6 +46,9 @@ const formatDate = (dateString: string) => {
         <img 
           src={post.image} 
           alt={post.title} 
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
           class="w-full h-auto object-cover max-h-[500px]" 
         />
       </div>

@@ -218,49 +218,19 @@ const websiteSchema = {
 	</body>
 
 <script>
-  // Safety check to prevent scroll from getting stuck
-  // Optimized to avoid forced reflows using requestAnimationFrame
+  // Defensive reset for cases where body scroll lock gets stuck after overlays close.
   (function() {
-    let lastScrollTop = 0;
-    let scrollStuckCount = 0;
-    const MAX_STUCK_COUNT = 3;
-    let rafId: number | null = null;
-
-    function checkScrollHealth() {
-      // Use requestAnimationFrame to batch DOM reads and avoid forced reflow
-      rafId = requestAnimationFrame(() => {
-        const currentScrollTop = window.scrollY || window.pageYOffset || 0;
-        
-        // If scroll position hasn't changed but user is trying to scroll, reset overflow
-        if (currentScrollTop === lastScrollTop && document.body.style.overflow === 'hidden') {
-          scrollStuckCount++;
-          
-          if (scrollStuckCount >= MAX_STUCK_COUNT) {
-            // Force reset body styles if scroll appears stuck
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
-            scrollStuckCount = 0;
-          }
-        } else {
-          scrollStuckCount = 0;
-        }
-        
-        lastScrollTop = currentScrollTop;
-      });
+    function resetBodyScrollStyles() {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+      document.body.style.height = '';
+      document.body.style.top = '';
+      document.body.style.left = '';
     }
 
-    // Check scroll health periodically using requestAnimationFrame
-    function scheduleCheck() {
-      checkScrollHealth();
-      setTimeout(scheduleCheck, 100);
-    }
-    
-    scheduleCheck();
-
-    // Also check on visibility change (when console is opened/closed)
+    // Check on visibility change (for example when switching tabs/devtools focus).
     document.addEventListener('visibilitychange', () => {
-      // Use requestAnimationFrame to avoid forced reflow
       requestAnimationFrame(() => {
         if (!document.hidden) {
           const hasOverflowHidden = document.body.style.overflow === 'hidden';
@@ -275,9 +245,7 @@ const websiteSchema = {
           const hasBackdrop = document.querySelector('.fixed.inset-0.bg-black\\/60');
           
           if (!isMobileMenuOpen && !hasBackdrop && (hasOverflowHidden || hasPositionFixed)) {
-            document.body.style.overflow = '';
-            document.body.style.position = '';
-            document.body.style.width = '';
+            resetBodyScrollStyles();
           }
         }
       });
@@ -286,13 +254,7 @@ const websiteSchema = {
     // Ensure scroll is enabled on page load and cleanup any stuck ScrollTriggers
     window.addEventListener('load', () => {
       requestAnimationFrame(async () => {
-        // Reset body styles
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-        document.body.style.height = '';
-        document.body.style.top = '';
-        document.body.style.left = '';
+        resetBodyScrollStyles();
         
         // Try to cleanup any ScrollTrigger instances that might be stuck
         try {
@@ -315,20 +277,8 @@ const websiteSchema = {
     // Also cleanup on DOMContentLoaded for faster response
     document.addEventListener('DOMContentLoaded', () => {
       requestAnimationFrame(() => {
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-        document.body.style.height = '';
-        document.body.style.top = '';
-        document.body.style.left = '';
+        resetBodyScrollStyles();
       });
-    });
-    
-    // Cleanup on page unload
-    window.addEventListener('beforeunload', () => {
-      if (rafId !== null) {
-        cancelAnimationFrame(rafId);
-      }
     });
   })();
 </script>

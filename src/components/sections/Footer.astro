@@ -43,9 +43,9 @@ const largeText = "GILABS";
       {/* Link Columns */}
       {FOOTER_LINKS.map((group) => (
         <div>
-          <h4 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-8">
+          <h3 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-8">
             {group.title}
-          </h4>
+          </h3>
           <ul class="space-y-4">
             {group.links.map((link) => (
               <li>
@@ -64,9 +64,9 @@ const largeText = "GILABS";
       {/* Contact & Socials */}
       <div class="space-y-12">
         <div>
-          <h4 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-6">
+          <h3 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-6">
             {lang === 'en' ? "WE'D LOVE TO HELP YOU WITH EASE" : "KAMI SENANG MEMBANTU ANDA DENGAN MUDAH"}
-          </h4>
+          </h3>
           <a 
             href="mailto:hello@gilabs.id" 
             class="text-2xl md:text-3xl font-medium text-zinc-900 hover:text-brand transition-colors cursor-pointer overflow-wrap-anywhere block"
@@ -76,9 +76,9 @@ const largeText = "GILABS";
         </div>
 
         <div class="space-y-6">
-          <h4 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest">
+          <h3 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest">
             {lang === 'en' ? 'Follow Us' : 'Ikuti Kami'}
-          </h4>
+          </h3>
           <div class="flex items-center gap-3">
             {[
               { icon: Facebook, label: "Facebook" },

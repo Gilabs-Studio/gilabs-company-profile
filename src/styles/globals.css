@@ -79,7 +79,7 @@
     --secondary-foreground: 0 0% 10%;
     
     --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;  /* Medium Gray */
+    --muted-foreground: 0 0% 35%;  /* Darker gray for stronger contrast */
     
     --accent: 0 0% 96%;
     --accent-foreground: 0 0% 10%;
@@ -115,7 +115,7 @@
     --secondary-foreground: 0 0% 100%;
     
     --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
+    --muted-foreground: 0 0% 72%;
     
     --accent: 0 0% 15%;
     --accent-foreground: 0 0% 100%;
