@@ -36,8 +36,8 @@ const pathWithoutLocale = currentPath.replace(/^\/(en|id)/, '') || '/';
 const enUrl = `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
 const idUrl = `${siteUrl}/id${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
 
-// x-default should point to the English version as the default
-const defaultUrl = enUrl;
+// Keep the homepage x-default anchored to the root canonical URL.
+const defaultUrl = pathWithoutLocale === '/' ? siteUrl : enUrl;
 
 // Schema.org: Organization + LocalBusiness
 const organizationSchema = {
