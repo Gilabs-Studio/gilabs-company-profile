@@ -192,9 +192,9 @@ export interface PricingData {
 export const pricingData: Record<string, PricingData> = {
   id: {
     hero: {
-      title: "Miliki Software Anda\nBangun Aset Digital",
-      eyebrow: "Mendukung Teknologi Masa Depan",
-      subtitle: "Kami membangun software custom untuk bisnis. Project Anda, kesuksesan Anda.",
+      title: "Gilabs Membangun\nSistem Internal Kompleks",
+      eyebrow: "PT Griya Innovations Labs",
+      subtitle: "Kami membangun ERP, CRM, HRIS, finance system, workflow approval, dan dashboard operasional yang mengikuti proses bisnis perusahaan Anda.",
       cta: "Bangun Aset Digital Anda",
     },
     features: {
@@ -618,9 +618,9 @@ export const pricingData: Record<string, PricingData> = {
   },
   en: {
     hero: {
-      title: "Own the System\nOwn the Advantage",
-      eyebrow: "Powering Next-Gen Tech",
-      subtitle: "We build custom software for businesses. Your project, your success.",
+      title: "Gilabs Builds\nComplex Internal Systems",
+      eyebrow: "PT Griya Innovations Labs",
+      subtitle: "We build ERP, CRM, HRIS, finance systems, approval workflows, and operational dashboards tailored to your company's internal processes.",
       cta: "Build Your Digital Asset",
     },
     features: {

@@ -24,20 +24,30 @@ const { locale } = Astro.params;
 const siteUrl = 'https://gilabs.id';
 const canonical = locale === 'en' ? `${siteUrl}/en` : `${siteUrl}/${locale}`;
 const description = locale === 'id' 
-	? 'Gilabs — software house Indonesia. Spesialis pembuatan ERP, CRM, POS, HRIS, Finance System & custom software untuk kebutuhan internal perusahaan Anda.'
-	: 'Gilabs — Indonesia software house. Specialists in ERP, CRM, POS, HRIS, Finance System & custom software for enterprise internal tools.';
+	? 'Gilabs by PT Griya Innovations Labs adalah software house Indonesia yang fokus pada pengembangan sistem internal kompleks: ERP, CRM, POS, HRIS, finance system, dashboard operasional, workflow approval, dan custom software enterprise.'
+	: 'Gilabs by PT Griya Innovations Labs is an Indonesia software house focused on complex internal systems: ERP, CRM, POS, HRIS, finance systems, operational dashboards, workflow approvals, and custom enterprise software.';
 const title = locale === 'id'
-	? 'Gilabs — Software House Indonesia | ERP, CRM, POS, HRIS & Custom Software'
-	: 'Gilabs — Software House Indonesia | ERP, CRM, POS, HRIS & Custom Software';
+	? 'Gilabs | PT Griya Innovations Labs - Software House Sistem Internal Kompleks'
+	: 'Gilabs | PT Griya Innovations Labs - Complex Internal Systems Software House';
 const keywords = locale === 'id'
-	? 'software house Indonesia, pembuatan website, software agency Indonesia, jasa pembuatan software, ERP system Indonesia, CRM system, POS system, HRIS system, finance system, custom software development, web development Indonesia, mobile app development, aplikasi internal perusahaan, sistem enterprise, digital transformation Indonesia, software development company Indonesia, jasa pembuatan aplikasi, software house Semarang, software house Jawa Tengah, pembuatan sistem ERP, pembuatan sistem CRM, pengembang software Indonesia'
-	: 'software house Indonesia, website development, software agency Indonesia, ERP system development, CRM system development, POS system, HRIS system, finance system, custom software development, web development Indonesia, mobile app development, enterprise internal tools, digital transformation Indonesia, Indonesia software development company, software house Semarang, Java software house';
+	? 'Gilabs, PT Griya Innovations Labs, software house Indonesia, software house Semarang, jasa pengembangan sistem internal perusahaan, jasa pembuatan ERP custom Indonesia, jasa pembuatan CRM perusahaan, jasa pembuatan POS custom, jasa pembuatan HRIS Indonesia, jasa pembuatan finance system, pengembangan dashboard operasional, pengembangan workflow approval system, custom software enterprise Indonesia, vendor sistem internal kompleks'
+	: 'Gilabs, PT Griya Innovations Labs, Indonesia software house, Semarang software house, complex internal systems development, custom ERP development Indonesia, custom CRM development company, HRIS software development, finance system development, operational dashboard development, workflow approval system development, enterprise software vendor Indonesia';
 
 // FAQ Schema for homepage
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   "mainEntity": [
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Apakah Gilabs adalah PT Griya Innovations Labs?" : "Is Gilabs the same as PT Griya Innovations Labs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Ya. Gilabs adalah brand publik dari PT Griya Innovations Labs, software house Indonesia yang fokus pada pengembangan sistem internal kompleks untuk perusahaan."
+          : "Yes. Gilabs is the public brand of PT Griya Innovations Labs, an Indonesia software house focused on developing complex internal systems for companies."
+      }
+    },
     {
       "@type": "Question",
       "name": locale === 'id' ? "Apa itu software house?" : "What is a software house?",
@@ -54,8 +64,8 @@ const faqSchema = {
       "acceptedAnswer": {
         "@type": "Answer",
         "text": locale === 'id'
-          ? "Gilabs menyediakan layanan: pembuatan ERP (Enterprise Resource Planning), CRM (Customer Relationship Management), POS (Point of Sale), HRIS (Human Resource Information System), Finance System, web development, mobile app development, UI/UX design, dan integrasi AI."
-          : "Gilabs offers: ERP development, CRM development, POS system, HRIS development, Finance System, web development, mobile app development, UI/UX design, and AI integration."
+          ? "Gilabs menyediakan layanan: pembuatan ERP, CRM, POS, HRIS, finance system, dashboard operasional, workflow approval system, web development, mobile app development, UI/UX design, dan integrasi AI."
+          : "Gilabs offers: ERP development, CRM development, POS systems, HRIS, finance systems, operational dashboards, workflow approval systems, web development, mobile app development, UI/UX design, and AI integration."
       }
     },
     {

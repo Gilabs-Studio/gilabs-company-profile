@@ -5,12 +5,12 @@ import MobileMenu from "../components/MobileMenu.astro";
 
 const { 
 	lang = Astro.currentLocale || 'en', 
-	title = 'Gilabs.id — Software House Indonesia | ERP, CRM, POS, HRIS, Finance System',
-	description = 'Gilabs — software house Indonesia. Spesialis ERP, CRM, POS, HRIS, Finance System & custom software untuk tools internal perusahaan Anda.',
+	title = 'Gilabs | PT Griya Innovations Labs - Software House Indonesia untuk Sistem Internal Kompleks',
+	description = 'Gilabs by PT Griya Innovations Labs adalah software house Indonesia yang fokus pada pengembangan sistem internal kompleks: ERP, CRM, HRIS, finance, workflow, dashboard operasional, dan custom software enterprise.',
 	canonical = Astro.url.href,
 	robots = 'index, follow',
 	noindex = false,
-	keywords = 'software house Indonesia, pembuatan website, software agency Indonesia, jasa pembuatan software, ERP system Indonesia, CRM system, POS system, HRIS system, finance system, custom software development, web development Indonesia, mobile app development, aplikasi internal perusahaan, sistem enterprise, digital transformation Indonesia, software development company Indonesia, jasa pembuatan aplikasi, Next.js developer Indonesia, Golang developer Indonesia',
+	keywords = 'Gilabs, PT Griya Innovations Labs, software house Indonesia, software house Semarang, jasa pengembangan sistem internal perusahaan, jasa pembuatan ERP custom Indonesia, jasa pembuatan CRM custom Indonesia, jasa pembuatan HRIS perusahaan, jasa pembuatan finance system perusahaan, pengembangan workflow approval system, pengembangan dashboard operasional, pengembangan aplikasi internal kompleks, custom software enterprise Indonesia, software house untuk digitalisasi operasional perusahaan, vendor pengembangan sistem internal perusahaan',
 	ogImage = 'https://gilabs.id/og-image.png'
 } = Astro.props;
 
@@ -45,7 +45,14 @@ const organizationSchema = {
   "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
   "@id": "https://gilabs.id/#organization",
   "name": "Gilabs",
-  "alternateName": ["GiLabs", "Gilabs Software House", "Gilabs.id"],
+  "legalName": "PT Griya Innovations Labs",
+  "alternateName": [
+    "GiLabs",
+    "Gilabs Software House",
+    "Gilabs.id",
+    "PT Griya Innovations Labs",
+    "Griya Innovations Labs"
+  ],
   "url": "https://gilabs.id",
   "logo": {
     "@type": "ImageObject",
@@ -54,8 +61,13 @@ const organizationSchema = {
     "height": 144
   },
   "description": lang === 'id'
-    ? "Gilabs adalah software house premium di Indonesia yang spesialis dalam pembuatan tools internal perusahaan: ERP, CRM, POS, HRIS, Finance System, dan custom software enterprise."
-    : "Gilabs is a premium software house in Indonesia specializing in enterprise internal tools: ERP, CRM, POS, HRIS, Finance System, and custom software development.",
+    ? "Gilabs adalah brand dari PT Griya Innovations Labs, software house Indonesia yang spesialis dalam pengembangan sistem internal kompleks untuk perusahaan: ERP, CRM, POS, HRIS, finance system, workflow operasional, dashboard, dan custom software enterprise."
+    : "Gilabs is the brand of PT Griya Innovations Labs, an Indonesia software house specializing in complex internal systems for companies: ERP, CRM, POS, HRIS, finance systems, operational workflows, dashboards, and custom enterprise software.",
+  "email": "hello@gilabs.id",
+  "brand": {
+    "@type": "Brand",
+    "name": "Gilabs"
+  },
   "address": {
     "@type": "PostalAddress",
     "addressLocality": "Semarang",
@@ -79,6 +91,20 @@ const organizationSchema = {
   "sameAs": [
     "https://gilabs.id"
   ],
+  "keywords": [
+    "Gilabs",
+    "PT Griya Innovations Labs",
+    "software house Indonesia",
+    "software house Semarang",
+    "pengembangan sistem internal perusahaan",
+    "custom ERP development",
+    "custom CRM development",
+    "HRIS development",
+    "finance system development",
+    "workflow automation system",
+    "dashboard operasional perusahaan",
+    "custom enterprise software"
+  ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
     "name": lang === 'id' ? "Layanan Software House" : "Software House Services",
@@ -96,7 +122,9 @@ const organizationSchema = {
   "knowsAbout": [
     "Software House", "Web Development", "Mobile App Development", "ERP System",
     "CRM System", "POS System", "HRIS", "Finance System",
-    "Custom Software Development", "Next.js", "Go (Golang)", "Flutter",
+    "Custom Software Development", "Workflow Automation", "Internal Tools",
+    "Operational Dashboard", "Approval System", "Inventory System",
+    "Next.js", "Go (Golang)", "Flutter",
     "TypeScript", "PostgreSQL", "Enterprise Software", "Digital Transformation"
   ]
 };
@@ -109,10 +137,15 @@ const websiteSchema = {
   "name": "Gilabs Software House",
   "url": "https://gilabs.id",
   "description": lang === 'id'
-    ? "Software house Indonesia spesialis ERP, CRM, POS, HRIS, dan custom software enterprise"
-    : "Indonesia software house specializing in ERP, CRM, POS, HRIS, and custom enterprise software",
+    ? "Software house Indonesia milik PT Griya Innovations Labs yang spesialis dalam sistem internal kompleks untuk perusahaan"
+    : "Indonesia software house by PT Griya Innovations Labs specializing in complex internal systems for companies",
   "inLanguage": ["id", "en"],
-  "publisher": { "@id": "https://gilabs.id/#organization" }
+  "publisher": { "@id": "https://gilabs.id/#organization" },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://gilabs.id/{search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
 };
 ---
 <!doctype html>
@@ -141,7 +174,8 @@ const websiteSchema = {
 		<meta name="keywords" content={keywords} />
 		<meta name="robots" content={robotsContent} />
 		<meta name="author" content="Gilabs.id" />
-		<meta name="publisher" content="Gilabs.id" />
+		<meta name="publisher" content="PT Griya Innovations Labs" />
+		<meta name="application-name" content="Gilabs" />
 		
 		<!-- Canonical URL -->
 		<link rel="canonical" href={fullCanonical} />

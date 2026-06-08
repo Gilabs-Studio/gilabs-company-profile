@@ -1,12 +1,12 @@
-# Tentang Gilabs — Software House Indonesia
+# Tentang Gilabs — PT Griya Innovations Labs
 
 ## Siapa Gilabs?
 
-Gilabs adalah **software house premium di Indonesia** yang berspesialisasi dalam pembuatan **tools internal perusahaan (enterprise)** berkualitas tinggi. Kami membangun sistem yang berjalan di balik layar bisnis Anda — dari ERP, CRM, POS, HRIS, hingga Finance System.
+Gilabs adalah brand publik dari **PT Griya Innovations Labs**, sebuah **software house Indonesia** yang berspesialisasi dalam pengembangan **sistem internal kompleks untuk perusahaan**. Kami membangun sistem yang berjalan di balik layar bisnis Anda: **ERP, CRM, POS, HRIS, finance system, workflow approval, dashboard operasional, reporting internal, dan custom software enterprise**.
 
 ## Filosofi Kami
 
-Setiap bisnis memiliki proses yang unik. SaaS generik seringkali memaksa Anda menyesuaikan cara kerja bisnis dengan keterbatasan software. Gilabs hadir dengan pendekatan berbeda: **software yang mengikuti cara kerja bisnis Anda**, bukan sebaliknya.
+Setiap bisnis memiliki proses yang unik. SaaS generik seringkali memaksa Anda menyesuaikan cara kerja bisnis dengan keterbatasan software. Gilabs hadir dengan pendekatan berbeda: **software yang mengikuti cara kerja bisnis Anda**, bukan sebaliknya. Fokus kami adalah membantu perusahaan yang membutuhkan **pengembangan sistem internal custom** dengan alur kerja yang rumit, integrasi lintas divisi, dan kebutuhan operasional spesifik.
 
 ## Keunggulan Gilabs
 
@@ -17,6 +17,8 @@ Kami tidak membuat semua jenis software. Fokus kami adalah sistem yang digunakan
 - **POS** — Sistem kasir dan transaksi retail/F&B
 - **HRIS** — Manajemen SDM, absensi, payroll
 - **Finance** — Akuntansi, invoicing, laporan keuangan
+- **Workflow & Approval System** — Alur persetujuan internal, operasional, dan compliance
+- **Operational Dashboard** — Dashboard KPI, monitoring, dan pelaporan lintas tim
 
 ### 🚀 Modern Tech Stack
 - **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4
@@ -42,7 +44,9 @@ Tim kami terdiri dari software engineer full-stack berpengalaman yang pernah mem
 
 ## Lokasi & Layanan
 
-- **Berbasis di**: Indonesia
+- **Nama legal**: PT Griya Innovations Labs
+- **Brand**: Gilabs
+- **Berbasis di**: Semarang, Jawa Tengah, Indonesia
 - **Melayani**: Seluruh Indonesia (remote-first)
 - **Komunikasi**: Bahasa Indonesia & English
 - **Meeting**: Video call, Zoom, Google Meet

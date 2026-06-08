@@ -67,6 +67,11 @@ const largeText = "GILABS";
           <h3 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-6">
             {lang === 'en' ? "WE'D LOVE TO HELP YOU WITH EASE" : "KAMI SENANG MEMBANTU ANDA DENGAN MUDAH"}
           </h3>
+          <p class="text-sm text-zinc-500 mb-3">
+            {lang === 'en'
+              ? 'Gilabs is the public brand of PT Griya Innovations Labs.'
+              : 'Gilabs adalah brand publik dari PT Griya Innovations Labs.'}
+          </p>
           <a 
             href="mailto:hello@gilabs.id" 
             class="text-2xl md:text-3xl font-medium text-zinc-900 hover:text-brand transition-colors cursor-pointer overflow-wrap-anywhere block"
@@ -117,7 +122,7 @@ const largeText = "GILABS";
     {/* Bottom Bar */}
     <div class="pt-8 border-t border-zinc-100 grid grid-cols-1 md:grid-cols-3 items-center gap-6 text-sm text-zinc-400">
       <p class="text-center md:text-left">
-        &copy; {new Date().getFullYear()} Gilabs.id. All rights reserved.
+        &copy; {new Date().getFullYear()} PT Griya Innovations Labs (Gilabs). All rights reserved.
       </p>
       <div class="flex justify-center gap-8">
         <a href={`/${lang}/terms`} class="hover:text-zinc-900 transition-colors cursor-pointer">
@@ -132,4 +137,3 @@ const largeText = "GILABS";
     </div>
   </div>
 </footer>
-

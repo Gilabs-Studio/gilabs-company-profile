@@ -22,11 +22,11 @@ const lang = locale as 'en' | 'id';
 const siteUrl = 'https://gilabs.id';
 const canonical = locale === 'en' ? `${siteUrl}/en/services` : `${siteUrl}/${locale}/services`;
 const pageTitle = locale === 'en'
-  ? `Layanan Software House — ERP, CRM, POS, HRIS, Finance, Web & Mobile | Gilabs`
-  : `Layanan Software House — ERP, CRM, POS, HRIS, Finance, Web & Mobile | Gilabs`;
+  ? `Gilabs Services | ERP, CRM, HRIS, Finance & Internal Systems Development`
+  : `Layanan Gilabs | ERP, CRM, HRIS, Finance & Pengembangan Sistem Internal`;
 const pageDescription = locale === 'id'
-  ? 'Gilabs menyediakan jasa ERP, CRM, POS, HRIS, Finance System, web development, mobile app & UI/UX design untuk perusahaan di Indonesia.'
-  : 'Gilabs provides ERP, CRM, POS, HRIS, Finance System, web development, mobile app & UI/UX design services for companies in Indonesia.';
+  ? 'Gilabs by PT Griya Innovations Labs menyediakan jasa pengembangan ERP, CRM, POS, HRIS, finance system, dashboard operasional, workflow approval, web app, mobile app, dan custom software untuk perusahaan di Indonesia.'
+  : 'Gilabs by PT Griya Innovations Labs provides ERP, CRM, POS, HRIS, finance system, operational dashboard, workflow approval, web app, mobile app, and custom software development services for companies in Indonesia.';
 
 // Services ItemList Schema
 const serviceListSchema = {
@@ -163,8 +163,8 @@ const breadcrumbSchema = {
   description={pageDescription}
   canonical={canonical}
   keywords={locale === 'id' 
-    ? 'layanan software house Indonesia, jasa pembuatan ERP, jasa pembuatan CRM, jasa pembuatan POS, jasa pembuatan HRIS, sistem manajemen SDM, finance system, web development Indonesia, mobile app development, UI/UX design, AI integration, custom software development, jasa pembuatan aplikasi perusahaan, sistem internal perusahaan'
-    : 'software house services Indonesia, ERP development services, CRM development services, POS system development, HRIS development, finance system development, web development services Indonesia, mobile app development services, UI/UX design, AI integration services, custom enterprise software development'}
+    ? 'layanan software house Indonesia, jasa pembuatan ERP custom, jasa pembuatan CRM custom, jasa pembuatan POS perusahaan, jasa pembuatan HRIS Indonesia, jasa pembuatan finance system perusahaan, pengembangan dashboard operasional, pengembangan workflow approval system, web development Indonesia, mobile app development, AI integration, custom software development, jasa pembuatan aplikasi perusahaan, sistem internal perusahaan'
+    : 'software house services Indonesia, custom ERP development services, custom CRM development services, POS system development, HRIS development, finance system development, operational dashboard development, workflow approval system development, web development services Indonesia, mobile app development services, AI integration services, custom enterprise software development'}
 >
   <!-- Service List + Breadcrumb Schemas -->
   <script type="application/ld+json" set:html={JSON.stringify(serviceListSchema)} slot="head" />
