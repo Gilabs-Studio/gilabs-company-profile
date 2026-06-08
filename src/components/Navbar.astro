@@ -3,23 +3,24 @@ import { Menu, X } from 'lucide-react';
 import { getWhatsAppLink } from '../lib/utils';
 
 const { lang } = Astro.props;
+const pathPrefix = lang === 'id' ? '' : `/${lang}`;
 
 const links = [
-  { href: `/${lang}/services`, label: lang === 'en' ? 'Services' : 'Layanan' },
-  { href: `/${lang}/work-results`, label: lang === 'en' ? 'Our Work' : 'Hasil Pekerjaan' },
-  { href: `/${lang}/blog`, label: lang === 'en' ? 'Blog' : 'Blog' },
+  { href: `${pathPrefix}/services`, label: lang === 'en' ? 'Services' : 'Layanan' },
+  { href: `${pathPrefix}/work-results`, label: lang === 'en' ? 'Our Work' : 'Hasil Pekerjaan' },
+  { href: `${pathPrefix}/blog`, label: lang === 'en' ? 'Blog' : 'Blog' },
   { href: getWhatsAppLink('navbar', lang), label: lang === 'en' ? 'Contact' : 'Kontak', external: true },
 ];
 
 const currentPath = Astro.url.pathname;
-const switchLangPath = currentPath.includes('/en') 
-  ? currentPath.replace('/en', '/id') 
-  : currentPath.replace('/id', '/en');
+const switchLangPath = lang === 'id'
+  ? (currentPath === '/' ? '/en' : `/en${currentPath}`)
+  : currentPath.replace(/^\/en/, '') || '/';
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out" id="navbar">
   <div class="container mx-auto px-4 h-16 sm:h-20 flex items-center">
-    <a href={`/${lang}`} class="text-xl sm:text-2xl font-bold tracking-tighter relative z-50">
+    <a href={pathPrefix || '/'} class="text-xl sm:text-2xl font-bold tracking-tighter relative z-50">
       GILABS<span class="text-brand">.ID</span>
     </a>
 
