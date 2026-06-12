@@ -48,7 +48,7 @@ Daftar halaman lengkap tersedia di: https://gilabs.id/sitemap-index.xml
 - [Layanan (English)](https://gilabs.id/en/services): Detail semua layanan pengembangan software
 - [Layanan (Indonesia)](https://gilabs.id/id/services): Detail layanan dalam Bahasa Indonesia
 - [Solusi (English)](https://gilabs.id/en/solutions): Detail target industri dan solusi kustom (ERP, CRM, POS, Manufaktur, Koperasi, Distributor)
-- [Solusi (Indonesia)](https://gilabs.id/solutions): Solusi kustom industri dalam Bahasa Indonesia (ERP, CRM, POS, Pabrik, Koperasi, Distributor)
+- [Solusi (Indonesia)](https://gilabs.id/id/solutions): Solusi kustom industri dalam Bahasa Indonesia (ERP, CRM, POS, Pabrik, Koperasi, Distributor)
 - [Blog (English)](https://gilabs.id/en/blog): Artikel teknologi, tips software development, insight bisnis
 - [Blog (Indonesia)](https://gilabs.id/id/blog): Artikel dalam Bahasa Indonesia
 - [Portfolio](https://gilabs.id/en/portfolio): Showcase proyek-proyek yang telah dikerjakan

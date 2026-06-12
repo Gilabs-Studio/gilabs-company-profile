@@ -3,7 +3,7 @@ import { X } from 'lucide-react';
 import { getWhatsAppLink } from '../lib/utils';
 
 const { lang } = Astro.props;
-const pathPrefix = lang === 'id' ? '' : `/${lang}`;
+const pathPrefix = `/${lang}`;
 
 const links = [
   { href: `${pathPrefix}/services`, label: lang === 'en' ? 'Services' : 'Layanan' },
@@ -15,8 +15,8 @@ const links = [
 
 const currentPath = Astro.url.pathname;
 const switchLangPath = lang === 'id'
-  ? (currentPath === '/' ? '/en' : `/en${currentPath}`)
-  : currentPath.replace(/^\/en/, '') || '/';
+  ? (currentPath === '/' ? '/en' : currentPath.replace(/^\/id/, '/en'))
+  : (currentPath.startsWith('/en') ? currentPath.replace(/^\/en/, '/id') : `/id${currentPath}`);
 ---
 
 <!-- Mobile Menu - Rendered directly in body to avoid parent transform issues -->
