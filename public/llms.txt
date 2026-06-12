@@ -47,6 +47,8 @@ Daftar halaman lengkap tersedia di: https://gilabs.id/sitemap-index.xml
 - [Beranda (Bahasa Indonesia)](https://gilabs.id/id): Versi Bahasa Indonesia dari halaman utama
 - [Layanan (English)](https://gilabs.id/en/services): Detail semua layanan pengembangan software
 - [Layanan (Indonesia)](https://gilabs.id/id/services): Detail layanan dalam Bahasa Indonesia
+- [Solusi (English)](https://gilabs.id/en/solutions): Detail target industri dan solusi kustom (ERP, CRM, POS, Manufaktur, Koperasi, Distributor)
+- [Solusi (Indonesia)](https://gilabs.id/solutions): Solusi kustom industri dalam Bahasa Indonesia (ERP, CRM, POS, Pabrik, Koperasi, Distributor)
 - [Blog (English)](https://gilabs.id/en/blog): Artikel teknologi, tips software development, insight bisnis
 - [Blog (Indonesia)](https://gilabs.id/id/blog): Artikel dalam Bahasa Indonesia
 - [Portfolio](https://gilabs.id/en/portfolio): Showcase proyek-proyek yang telah dikerjakan
@@ -65,6 +67,7 @@ Versi markdown dari halaman utama tersedia untuk pembacaan AI:
 
 - [Tentang Gilabs (Markdown)](https://gilabs.id/about.md)
 - [Layanan (Markdown)](https://gilabs.id/services.md)
+- [Solusi (Markdown)](https://gilabs.id/solutions.md)
 - [Portofolio (Markdown)](https://gilabs.id/portfolio.md)
 
 ## Apa yang Membedakan Gilabs?

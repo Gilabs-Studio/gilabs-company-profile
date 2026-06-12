@@ -1,0 +1,319 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/Navbar.astro';
+import Footer from '../../components/sections/Footer.astro';
+import { solutionsData } from '../../data/solutionsData';
+import { ArrowRight, ChevronRight, CheckCircle2, ShieldCheck, HelpCircle } from 'lucide-react';
+import { getWhatsAppLink } from '../../lib/utils';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale as 'en' | 'id';
+const t = solutionsData[lang];
+
+const siteUrl = 'https://gilabs.id';
+const canonical = lang === 'en' ? `${siteUrl}/en/solutions` : `${siteUrl}/${lang}/solutions`;
+
+const pageTitle = lang === 'en'
+  ? `GiLabs Solutions | Custom Software, ERP, CRM & Business Digitalization`
+  : `Solusi GiLabs | Software Custom, ERP, CRM & Digitalisasi Bisnis`;
+
+const pageDescription = lang === 'id'
+  ? 'GiLabs menyediakan solusi software custom, jasa pembuatan sistem ERP custom, CRM custom terintegrasi WhatsApp, aplikasi kasir POS, dashboard monitoring KPI perusahaan, koperasi, manufaktur, dan distributor di Indonesia.'
+  : 'GiLabs provides custom software solutions, custom ERP system development, WhatsApp integrated CRM, POS applications, corporate KPI dashboards, cooperatives, manufacturing, and distribution systems in Indonesia.';
+
+// Extract all keywords across solutions to form the page keywords
+const allKeywords = t.items.flatMap(item => item.keywords).join(', ');
+
+// Structured Data: ItemList of Solutions
+const serviceListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": lang === 'id' ? "Daftar Solusi Software Custom GiLabs" : "GiLabs Custom Software Solutions List",
+  "description": pageDescription,
+  "url": canonical,
+  "numberOfItems": t.items.length,
+  "itemListElement": t.items.map((item, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "item": {
+      "@type": "Service",
+      "name": item.title,
+      "description": item.description,
+      "provider": { "@id": "https://gilabs.id/#organization" }
+    }
+  }))
+};
+
+// Structured Data: BreadcrumbList
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "GiLabs",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": lang === 'id' ? "Solusi" : "Solutions",
+      "item": canonical
+    }
+  ]
+};
+---
+
+<Layout 
+  lang={lang} 
+  title={pageTitle}
+  description={pageDescription}
+  canonical={canonical}
+  keywords={allKeywords}
+>
+  <!-- Schema Injections -->
+  <script type="application/ld+json" set:html={JSON.stringify(serviceListSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+
+  <Navbar lang={lang} />
+
+  <main class="min-h-screen bg-background pt-20">
+    <!-- Hero Banner -->
+    <section class="relative py-20 md:py-28 overflow-hidden border-b border-border/50">
+      <div class="absolute inset-0 bg-linear-to-b from-background via-background to-muted/10"></div>
+      <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px); background-size: 60px 60px;"></div>
+      
+      <div class="container mx-auto px-4 relative z-10 text-center">
+        <span class="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand border border-brand/20 bg-brand/5 rounded-full mb-6">
+          {t.eyebrow}
+        </span>
+        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6 max-w-4xl mx-auto leading-[1.15]">
+          {t.title}
+        </h1>
+        <p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          {t.subtitle}
+        </p>
+      </div>
+    </section>
+
+    <!-- Content Panel -->
+    <div class="container mx-auto px-4 py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+        <!-- Sidebar Navigation (Sticky on Desktop) -->
+        <aside class="lg:col-span-1">
+          <div class="sticky top-24 space-y-2 hidden lg:block bg-background/50 backdrop-blur-md p-6 rounded-2xl border border-border/40">
+            <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4 px-2">
+              {lang === 'id' ? 'Daftar Solusi' : 'Solutions Directory'}
+            </h3>
+            <nav class="space-y-1">
+              {t.items.map((item) => (
+                <a
+                  href={`#${item.id}`}
+                  class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-brand hover:bg-muted/30 transition-all duration-200 cursor-pointer sidebar-link group"
+                  data-target={item.id}
+                >
+                  <span class="line-clamp-1">{item.title}</span>
+                  <ChevronRight class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              ))}
+            </nav>
+          </div>
+
+          <!-- Mobile Quick Scroll Bar -->
+          <div class="lg:hidden sticky top-16 z-30 -mx-4 px-4 py-3 bg-background/80 backdrop-blur-md border-b border-border/50 overflow-x-auto scrollbar-none flex gap-2">
+            {t.items.map((item) => (
+              <a
+                href={`#${item.id}`}
+                class="flex-shrink-0 px-4 py-2 text-xs font-semibold border border-border/50 rounded-full bg-background/50 hover:bg-muted text-muted-foreground hover:text-brand transition-all cursor-pointer whitespace-nowrap mobile-scroll-link"
+              >
+                {item.title}
+              </a>
+            ))}
+          </div>
+        </aside>
+
+        <!-- Solution Sections Detail -->
+        <div class="lg:col-span-3 space-y-16">
+          {t.items.map((item) => (
+            <article
+              id={item.id}
+              class="group relative p-8 md:p-10 bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl hover:border-brand/40 transition-all duration-500 hover:shadow-xl hover:shadow-brand/5 target-section"
+            >
+              {/* Highlight bar */}
+              <div class="absolute left-0 top-0 bottom-0 w-1 bg-muted group-hover:bg-brand transition-colors rounded-l-2xl"></div>
+
+              <div class="space-y-6">
+                <!-- Header -->
+                <div class="space-y-2">
+                  <h2 class="text-2xl md:text-3xl font-bold text-foreground tracking-tight group-hover:text-brand transition-colors">
+                    {item.title}
+                  </h2>
+                  <p class="text-sm font-semibold tracking-wide text-brand/90 uppercase">
+                    {item.subtitle}
+                  </p>
+                </div>
+
+                <!-- Description -->
+                <p class="text-muted-foreground leading-relaxed text-base md:text-lg">
+                  {item.description}
+                </p>
+
+                <!-- Features Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-border/30">
+                  {item.features.map((feature) => (
+                    <div class="space-y-2">
+                      <div class="flex items-start gap-2.5">
+                        <CheckCircle2 class="w-5 h-5 text-brand flex-shrink-0 mt-0.5" />
+                        <h4 class="font-bold text-foreground text-sm tracking-tight">
+                          {feature.title}
+                        </h4>
+                      </div>
+                      <p class="text-xs text-muted-foreground/80 leading-relaxed pl-7">
+                        {feature.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+
+                <!-- Footer elements: Case study or generic trust -->
+                <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 pt-6 border-t border-border/30 mt-6">
+                  {item.caseStudy ? (
+                    <div class="flex items-center gap-3 bg-brand/5 border border-brand/10 p-3 rounded-lg flex-1">
+                      <ShieldCheck class="w-5 h-5 text-brand flex-shrink-0" />
+                      <div class="text-xs">
+                        <span class="font-bold text-foreground block">
+                          {lang === 'id' ? 'Studi Kasus Terkait:' : 'Related Case Study:'} {item.caseStudy.project}
+                        </span>
+                        <span class="text-muted-foreground/80 leading-relaxed">
+                          {item.caseStudy.description}
+                        </span>
+                      </div>
+                    </div>
+                  ) : (
+                    <div class="flex items-center gap-3 bg-muted/20 border border-border/30 p-3 rounded-lg flex-1">
+                      <HelpCircle class="w-5 h-5 text-muted-foreground flex-shrink-0" />
+                      <div class="text-xs">
+                        <span class="font-bold text-foreground block">
+                          {lang === 'id' ? 'Sistem Kustom Fleksibel' : 'Flexible Custom Systems'}
+                        </span>
+                        <span class="text-muted-foreground/80 leading-relaxed">
+                          {lang === 'id' 
+                            ? 'Disesuaikan dengan SOP Anda. Integrasi API WhatsApp, Cloud, dan On-Premise.' 
+                            : 'Built around your workflows. Integrates with WhatsApp APIs, Cloud, and On-Premise.'}
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  <a
+                    href={getWhatsAppLink(`solutions-${item.id}`, lang)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold bg-brand text-white rounded-full hover:bg-brand/90 transition-all hover:shadow-lg hover:shadow-brand/20 cursor-pointer"
+                  >
+                    {lang === 'id' ? 'Diskusikan Solusi' : 'Discuss Solution'}
+                    <ArrowRight class="w-3.5 h-3.5" />
+                  </a>
+                </div>
+
+                <!-- Hidden Keyword tags block for Search Engine crawlers -->
+                <div class="sr-only select-none pointer-events-none">
+                  <h3>Keyword Target:</h3>
+                  <ul>
+                    {item.keywords.map(kw => (
+                      <li>{kw}</li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <!-- Final Page CTA -->
+    <section class="py-16 md:py-24 border-t border-border/50 relative overflow-hidden bg-muted/10">
+      <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
+          {t.ctaTitle}
+        </h2>
+        <p class="text-base md:text-lg text-muted-foreground mb-8">
+          {t.ctaSubtitle}
+        </p>
+        <a
+          href={getWhatsAppLink('solutions-footer', lang)}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 px-8 py-3.5 text-sm font-bold bg-brand text-white rounded-full hover:bg-brand/90 transition-all hover:shadow-lg hover:shadow-brand/20 cursor-pointer"
+        >
+          {t.ctaButton}
+          <ArrowRight class="w-4 h-4" />
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <Footer lang={lang} />
+</Layout>
+
+<script>
+  function handleScrollSpy() {
+    const sections = document.querySelectorAll('.target-section');
+    const sidebarLinks = document.querySelectorAll('.sidebar-link');
+    
+    if (sections.length === 0 || sidebarLinks.length === 0) return;
+
+    let currentSectionId = '';
+
+    sections.forEach((section) => {
+      const sectionTop = (section as HTMLElement).offsetTop;
+      const sectionHeight = section.clientHeight;
+      if (window.scrollY >= sectionTop - 120) {
+        currentSectionId = section.getAttribute('id') || '';
+      }
+    });
+
+    sidebarLinks.forEach((link) => {
+      const target = link.getAttribute('data-target');
+      if (target === currentSectionId) {
+        link.classList.add('bg-brand/10', 'text-brand', 'font-semibold');
+        link.classList.remove('text-muted-foreground');
+      } else {
+        link.classList.remove('bg-brand/10', 'text-brand', 'font-semibold');
+        link.classList.add('text-muted-foreground');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', handleScrollSpy);
+  document.addEventListener('astro:page-load', () => {
+    window.addEventListener('scroll', handleScrollSpy);
+    handleScrollSpy();
+  });
+
+  // Run initial pass
+  handleScrollSpy();
+</script>
+
+<style>
+  html {
+    scroll-behavior: smooth;
+  }
+  /* Custom scrollbar hiding for clean navigation */
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
