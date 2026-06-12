@@ -27,7 +27,7 @@ export interface SolutionsContent {
 
 export const solutionsData: Record<string, SolutionsContent> = {
   id: {
-    eyebrow: "Solusi Kustom Industri",
+    eyebrow: "Solusi Kami",
     title: "Sistem Khusus untuk Kompleksitas Bisnis Anda",
     subtitle: "Kami membangun software yang mengikuti Standard Operating Procedure (SOP) perusahaan Anda, bukan sebaliknya.",
     description: "Hubungi GiLabs untuk mendigitalisasi proses bisnis secara seamless dengan tim engineering berpengalaman.",
@@ -418,7 +418,7 @@ export const solutionsData: Record<string, SolutionsContent> = {
     ]
   },
   en: {
-    eyebrow: "Industry-Specific Custom Solutions",
+    eyebrow: "Our Solutions",
     title: "Tailored Systems Built for Your Complexity",
     subtitle: "We construct software that adapts to your company's Standard Operating Procedures (SOP), not the other way around.",
     description: "Contact GiLabs to digitize your business processes seamlessly with our senior engineering team.",

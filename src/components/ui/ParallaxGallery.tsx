@@ -149,7 +149,7 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
       {/* LightRays Overlay - synced with Layout's LightRays */}
       <div className="absolute inset-0 z-15 pointer-events-none opacity-50">
         <LightRays 
-          raysColor="#FBFBFB" 
+          raysColor="#FFFFFF" 
           raysSpeed={0.5} 
           lightSpread={0.5}
           rayLength={1.5}

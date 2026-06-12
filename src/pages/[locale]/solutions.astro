@@ -85,20 +85,20 @@ const breadcrumbSchema = {
 
   <Navbar lang={lang} />
 
-  <main class="min-h-screen bg-background pt-20">
+  <main class="min-h-screen pt-20">
     <!-- Hero Banner -->
-    <section class="relative py-20 md:py-28 overflow-hidden border-b border-border/50">
-      <div class="absolute inset-0 bg-linear-to-b from-background via-background to-muted/10"></div>
+    <section class="relative py-20 md:py-28 overflow-hidden border-b border-border/30">
+      <div class="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-muted/10"></div>
       <div class="absolute inset-0 opacity-[0.02]" style="background-image: linear-gradient(to right, hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(to bottom, hsl(var(--foreground)) 1px, transparent 1px); background-size: 60px 60px;"></div>
       
       <div class="container mx-auto px-4 relative z-10 text-center">
-        <span class="inline-block px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-brand border border-brand/20 bg-brand/5 rounded-full mb-6">
+        <span class="typography-eyebrow !text-brand block mb-6">
           {t.eyebrow}
         </span>
-        <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground mb-6 max-w-4xl mx-auto leading-[1.15]">
+        <h1 class="typography-hero-title text-foreground mb-6 max-w-4xl mx-auto">
           {t.title}
         </h1>
-        <p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed">
           {t.subtitle}
         </p>
       </div>
@@ -109,30 +109,30 @@ const breadcrumbSchema = {
       <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
         <!-- Sidebar Navigation (Sticky on Desktop) -->
         <aside class="lg:col-span-1">
-          <div class="sticky top-24 space-y-2 hidden lg:block bg-background/50 backdrop-blur-md p-6 rounded-2xl border border-border/40">
-            <h3 class="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-4 px-2">
+          <div class="sticky top-24 space-y-2 hidden lg:block py-2">
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-muted-foreground/80 mb-6 px-1">
               {lang === 'id' ? 'Daftar Solusi' : 'Solutions Directory'}
             </h3>
-            <nav class="space-y-1">
+            <nav class="space-y-1.5 border-l border-border/40">
               {t.items.map((item) => (
                 <a
                   href={`#${item.id}`}
-                  class="flex items-center justify-between px-3 py-2.5 rounded-lg text-sm text-muted-foreground hover:text-brand hover:bg-muted/30 transition-all duration-200 cursor-pointer sidebar-link group"
+                  class="flex items-center justify-between pl-4 py-2.5 text-sm text-muted-foreground hover:text-brand hover:pl-5 border-l-2 border-transparent -ml-[1.5px] transition-all duration-200 cursor-pointer sidebar-link font-medium"
                   data-target={item.id}
                 >
                   <span class="line-clamp-1">{item.title}</span>
-                  <ChevronRight class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <ChevronRight class="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity text-brand" />
                 </a>
               ))}
             </nav>
           </div>
 
           <!-- Mobile Quick Scroll Bar -->
-          <div class="lg:hidden sticky top-16 z-30 -mx-4 px-4 py-3 bg-background/80 backdrop-blur-md border-b border-border/50 overflow-x-auto scrollbar-none flex gap-2">
+          <div class="lg:hidden sticky top-16 z-30 -mx-4 px-4 py-3 bg-background/90 border-b border-border/30 overflow-x-auto scrollbar-none flex gap-2">
             {t.items.map((item) => (
               <a
                 href={`#${item.id}`}
-                class="flex-shrink-0 px-4 py-2 text-xs font-semibold border border-border/50 rounded-full bg-background/50 hover:bg-muted text-muted-foreground hover:text-brand transition-all cursor-pointer whitespace-nowrap mobile-scroll-link"
+                class="flex-shrink-0 px-4 py-2 text-xs font-bold border border-border/40 rounded-full bg-background/50 hover:bg-muted text-muted-foreground hover:text-brand transition-all cursor-pointer whitespace-nowrap mobile-scroll-link"
               >
                 {item.title}
               </a>
@@ -141,24 +141,21 @@ const breadcrumbSchema = {
         </aside>
 
         <!-- Solution Sections Detail -->
-        <div class="lg:col-span-3 space-y-16">
+        <div class="lg:col-span-3 space-y-24 md:space-y-32">
           {t.items.map((item) => (
             <article
               id={item.id}
-              class="group relative p-8 md:p-10 bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl hover:border-brand/40 transition-all duration-500 hover:shadow-xl hover:shadow-brand/5 target-section"
+              class="group relative py-12 md:py-16 border-b border-border/30 last:border-b-0 target-section"
             >
-              {/* Highlight bar */}
-              <div class="absolute left-0 top-0 bottom-0 w-1 bg-muted group-hover:bg-brand transition-colors rounded-l-2xl"></div>
-
-              <div class="space-y-6">
+              <div class="space-y-8">
                 <!-- Header -->
                 <div class="space-y-2">
-                  <h2 class="text-2xl md:text-3xl font-bold text-foreground tracking-tight group-hover:text-brand transition-colors">
-                    {item.title}
-                  </h2>
-                  <p class="text-sm font-semibold tracking-wide text-brand/90 uppercase">
+                  <p class="text-xs font-extrabold tracking-wider text-brand uppercase">
                     {item.subtitle}
                   </p>
+                  <h2 class="text-3xl sm:text-4xl font-extrabold text-foreground tracking-tight group-hover:text-brand transition-colors duration-300">
+                    {item.title}
+                  </h2>
                 </div>
 
                 <!-- Description -->
@@ -167,16 +164,16 @@ const breadcrumbSchema = {
                 </p>
 
                 <!-- Features Grid -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4 border-t border-border/30">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-border/30">
                   {item.features.map((feature) => (
                     <div class="space-y-2">
-                      <div class="flex items-start gap-2.5">
-                        <CheckCircle2 class="w-5 h-5 text-brand flex-shrink-0 mt-0.5" />
-                        <h4 class="font-bold text-foreground text-sm tracking-tight">
+                      <div class="flex items-start gap-3">
+                        <CheckCircle2 class="w-5.5 h-5.5 text-brand flex-shrink-0 mt-0.5" />
+                        <h4 class="font-extrabold text-foreground text-base tracking-tight mb-1">
                           {feature.title}
                         </h4>
                       </div>
-                      <p class="text-xs text-muted-foreground/80 leading-relaxed pl-7">
+                      <p class="text-sm text-muted-foreground/90 leading-relaxed pl-8">
                         {feature.description}
                       </p>
                     </div>
@@ -184,27 +181,25 @@ const breadcrumbSchema = {
                 </div>
 
                 <!-- Footer elements: Case study or generic trust -->
-                <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 pt-6 border-t border-border/30 mt-6">
+                <div class="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-8 pt-8 border-t border-border/30 mt-8">
                   {item.caseStudy ? (
-                    <div class="flex items-center gap-3 bg-brand/5 border border-brand/10 p-3 rounded-lg flex-1">
-                      <ShieldCheck class="w-5 h-5 text-brand flex-shrink-0" />
-                      <div class="text-xs">
-                        <span class="font-bold text-foreground block">
+                    <div class="flex items-start gap-3 flex-1 text-sm border-l-2 border-brand/40 pl-4 py-1.5">
+                      <div>
+                        <span class="font-extrabold text-foreground block uppercase tracking-wider text-xs mb-1">
                           {lang === 'id' ? 'Studi Kasus Terkait:' : 'Related Case Study:'} {item.caseStudy.project}
                         </span>
-                        <span class="text-muted-foreground/80 leading-relaxed">
+                        <span class="text-muted-foreground/80 leading-relaxed text-xs">
                           {item.caseStudy.description}
                         </span>
                       </div>
                     </div>
                   ) : (
-                    <div class="flex items-center gap-3 bg-muted/20 border border-border/30 p-3 rounded-lg flex-1">
-                      <HelpCircle class="w-5 h-5 text-muted-foreground flex-shrink-0" />
-                      <div class="text-xs">
-                        <span class="font-bold text-foreground block">
+                    <div class="flex items-start gap-3 flex-1 text-sm border-l-2 border-border pl-4 py-1.5">
+                      <div>
+                        <span class="font-extrabold text-foreground block uppercase tracking-wider text-xs mb-1">
                           {lang === 'id' ? 'Sistem Kustom Fleksibel' : 'Flexible Custom Systems'}
                         </span>
-                        <span class="text-muted-foreground/80 leading-relaxed">
+                        <span class="text-muted-foreground/80 leading-relaxed text-xs">
                           {lang === 'id' 
                             ? 'Disesuaikan dengan SOP Anda. Integrasi API WhatsApp, Cloud, dan On-Premise.' 
                             : 'Built around your workflows. Integrates with WhatsApp APIs, Cloud, and On-Premise.'}
@@ -217,7 +212,7 @@ const breadcrumbSchema = {
                     href={getWhatsAppLink(`solutions-${item.id}`, lang)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="inline-flex items-center justify-center gap-2 px-5 py-2.5 text-xs font-bold bg-brand text-white rounded-full hover:bg-brand/90 transition-all hover:shadow-lg hover:shadow-brand/20 cursor-pointer"
+                    class="inline-flex items-center justify-center gap-2 px-6 py-3 text-xs font-extrabold bg-brand text-white rounded-full hover:bg-brand/90 transition-all hover:shadow-lg hover:shadow-brand/20 cursor-pointer"
                   >
                     {lang === 'id' ? 'Diskusikan Solusi' : 'Discuss Solution'}
                     <ArrowRight class="w-3.5 h-3.5" />
@@ -241,7 +236,7 @@ const breadcrumbSchema = {
     </div>
 
     <!-- Final Page CTA -->
-    <section class="py-16 md:py-24 border-t border-border/50 relative overflow-hidden bg-muted/10">
+    <section class="py-16 md:py-24 border-t border-border/30 relative overflow-hidden bg-muted/10">
       <div class="container mx-auto px-4 relative z-10 text-center max-w-3xl">
         <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground mb-4">
           {t.ctaTitle}
@@ -276,8 +271,7 @@ const breadcrumbSchema = {
 
     sections.forEach((section) => {
       const sectionTop = (section as HTMLElement).offsetTop;
-      const sectionHeight = section.clientHeight;
-      if (window.scrollY >= sectionTop - 120) {
+      if (window.scrollY >= sectionTop - 140) {
         currentSectionId = section.getAttribute('id') || '';
       }
     });
@@ -285,11 +279,11 @@ const breadcrumbSchema = {
     sidebarLinks.forEach((link) => {
       const target = link.getAttribute('data-target');
       if (target === currentSectionId) {
-        link.classList.add('bg-brand/10', 'text-brand', 'font-semibold');
-        link.classList.remove('text-muted-foreground');
+        link.classList.add('border-brand', 'text-brand', 'font-bold');
+        link.classList.remove('border-transparent', 'text-muted-foreground');
       } else {
-        link.classList.remove('bg-brand/10', 'text-brand', 'font-semibold');
-        link.classList.add('text-muted-foreground');
+        link.classList.remove('border-brand', 'text-brand', 'font-bold');
+        link.classList.add('border-transparent', 'text-muted-foreground');
       }
     });
   }
