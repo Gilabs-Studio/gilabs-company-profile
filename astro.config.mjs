@@ -111,7 +111,13 @@ export default defineConfig({
   ],
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    server: {
+      watch: {
+        usePolling: true,
+        ignored: ['**/.astro/**', '**/dist/**']
+      }
+    }
   },
 
   i18n: {
