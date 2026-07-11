@@ -5,12 +5,12 @@ import { ExternalLink } from 'lucide-react';
 const { lang } = Astro.props;
 const projects = workResultsProjects[lang] || workResultsProjects['en'];
 
-// Get the 3 featured portfolios: SalesView, Fiber Monitoring, and Evalique
+// Get the 3 featured portfolios: Adiguna Presisi Nusantara, SalesView GILABS, and GiLabs Mitra Portal
 // Titles are the same in both languages for these projects
 const featuredProjects = [
-  projects.find(p => p.title === 'SalesView'),
-  projects.find(p => p.title === 'Fiber Monitoring Project'),
-  projects.find(p => p.title === 'Evalique Assessment Platform'),
+  projects.find(p => p.title === 'Adiguna Presisi Nusantara'),
+  projects.find(p => p.title === 'SalesView GILABS'),
+  projects.find(p => p.title === 'GiLabs Mitra Portal'),
 ].filter((p): p is NonNullable<typeof p> => p !== undefined);
 
 const labels = {

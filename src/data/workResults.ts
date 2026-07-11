@@ -17,6 +17,7 @@ export interface WorkResultProject {
   description: string;
   technologies: string[];
   githubUrl: string;
+  liveUrl?: string;
   type: 'real' | 'demo';
   features: ProjectFeatures;
   image: ProjectImage[];
@@ -24,6 +25,138 @@ export interface WorkResultProject {
 
 export const workResultsProjects: Record<string, WorkResultProject[]> = {
   en: [
+    {
+      title: 'Adiguna Presisi Nusantara',
+      description: 'Precision machinery and CNC machine catalog website for PT Adiguna Presisi Nusantara. Featuring vertical machining centers, engraving & milling machines, and precision lathe catalogs with direct WhatsApp consultation and tech specs.',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+      githubUrl: '#',
+      liveUrl: 'https://adigunapresisinusantara.com/en',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'Interactive Catalog',
+            items: [
+              'Dynamic product filters for CNC machine categories',
+              'High-fidelity image showcase & detail galleries',
+              'Detailed technical specification tables for VMC, engraving, and lathe series'
+            ]
+          },
+          {
+            title: 'Quote Request Integration',
+            items: [
+              'Pre-filled WhatsApp templates mapped directly to selected product models',
+              'Integrated forms for quick technical consultancy requests'
+            ]
+          },
+          {
+            title: 'Industrial Branding & Performance',
+            items: [
+              'Dark and amber-themed design emphasizing industrial reliability',
+              'Search engine optimization (SEO) targeting precision engineering keywords',
+              'Fast page load speeds built on top of server-side components'
+            ]
+          }
+        ]
+      },
+      image: [
+        { title: 'banner', image: '/work/adiguna/banner.webp' },
+        { title: 'Homepage & Catalog', image: '/work/adiguna/homepage.webp' },
+        { title: 'Product Specifications', image: '/work/adiguna/product-detail.webp' },
+        { title: 'WhatsApp Quote Integration', image: '/work/adiguna/whatsapp-quote.webp' }
+      ]
+    },
+    {
+      title: 'GiLabs Mitra Portal',
+      description: 'A partner portal dashboard featuring a Next.js web application. It enables affiliates to submit leads, monitor client maintenance requests, track partner performance, and communicate via direct chat.',
+      technologies: ['Next.js', 'Go (Gin)', 'SQLite', 'React Query', 'Tailwind CSS'],
+      githubUrl: 'https://github.com/Gilabs-Studio/sales-mitra-portal',
+      liveUrl: 'https://portal-mitra.gilabs.id/en',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'Platform Architecture',
+            items: [
+              'Next.js 16 web dashboard built with Server Components and Tailwind CSS v4',
+              'Robust Go Gin API backend with JWT authentication and SQLite storage'
+            ]
+          },
+          {
+            title: 'Lead & Client Management',
+            items: [
+              'Lead tracking pipeline from initial submission to won deals',
+              'Client maintenance request tracking for reported issues, bugs, and updates'
+            ]
+          },
+          {
+            title: 'Partner Directory & Chat',
+            items: [
+              'Track active partners, their individual referral counts, and success rates',
+              'Real-time WhatsApp-like chat communication between partners and admins'
+            ]
+          }
+        ]
+      },
+      image: [
+        { title: 'banner', image: '/work/portal-mitra/banner.webp' },
+        { title: 'Web Dashboard', image: '/work/portal-mitra/web-dashboard.webp' },
+        { title: 'Lead Management', image: '/work/portal-mitra/lead-management.webp' },
+        { title: 'Client Maintenance', image: '/work/portal-mitra/client-maintenance.webp' },
+        { title: 'WhatsApp-like Lead Chat', image: '/work/portal-mitra/lead-chat.webp' }
+      ]
+    },
+    {
+      title: 'SalesView GILABS',
+      description: 'All-in-One Enterprise Platform (ERP, CRM, POS, HRIS, Finance) for Distributors, Retail, and F&B. Streamlining business operations from procurement, sales, multi-warehouse stock tracking, auto-journal accounting, to payroll and AI-assisted insights.',
+      technologies: ['Next.js', 'TypeScript', 'Zundstand', 'TanStack Query', 'Tailwind CSS', 'TurboRepo', 'Leaflet'],
+      githubUrl: '#',
+      liveUrl: 'https://salesview.id/en',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'ERP & Financial Automation',
+            items: [
+              'Real-time ledger posting and auto-journal accounting entry generation',
+              'Instant financial statement reporting, including Profit & Loss sheet',
+              'Banking transaction reconciliation and multi-currency budgeting'
+            ]
+          },
+          {
+            title: 'Supply Chain & Multi-Warehouse',
+            items: [
+              'Multi-location inventory tracking, stock movements, and audit log',
+              'Reorder point notifications and purchase order (PO) generation workflows',
+              'Supplier management, purchase requisitions, and vendor payment tracking'
+            ]
+          },
+          {
+            title: 'Omnichannel POS & CRM',
+            items: [
+              'Integrated checkout/POS system for retail and F&B multi-branches',
+              'Sales pipeline kanban board for field sales team activity monitoring',
+              'Leaflet Maps integration for client location and area sales mapping'
+            ]
+          },
+          {
+            title: 'AI Business Co-Pilot',
+            items: [
+              'Natural language AI assistant to check stock and sales reports',
+              'Voice or text command processing to instantly draft POs and invoices',
+              'Proactive alerts for stock shortages and payment reminders'
+            ]
+          }
+        ]
+      },
+      image: [
+        { title: 'banner', image: '/work/salesview-gilabs/banner.webp' },
+        { title: 'ERP & Finance Dashboard', image: '/work/salesview-gilabs/finance-dashboard.webp' },
+        { title: 'POS Checkout System', image: '/work/salesview-gilabs/pos-checkout.webp' },
+        { title: 'CRM Sales Pipeline (Kanban)', image: '/work/salesview-gilabs/crm-pipeline.webp' },
+        { title: 'AI Business Co-Pilot Chat', image: '/work/salesview-gilabs/ai-assistant.webp' }
+      ]
+    },
     {
       title: 'Sitama',
       description: 'Education Platform that helps simplify internship management for students and lecturers at Politeknik Negeri Semarang. Features a dual-role system with specific functionalities for both students and supervising lecturers.',
@@ -478,6 +611,138 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
     }
   ],
   id: [
+    {
+      title: 'Adiguna Presisi Nusantara',
+      description: 'Website katalog mesin CNC dan perkakas presisi untuk PT Adiguna Presisi Nusantara. Menampilkan seri vertical machining center, engraving & milling, dan bubut presisi dengan integrasi konsultasi WhatsApp dan spesifikasi teknis.',
+      technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
+      githubUrl: '#',
+      liveUrl: 'https://adigunapresisinusantara.com/id',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'Katalog Interaktif',
+            items: [
+              'Filter produk dinamis berdasarkan kategori mesin CNC',
+              'Galeri gambar produk berkualitas tinggi beserta detail zoom',
+              'Tabel spesifikasi teknis lengkap untuk seri VMC, engraving, dan bubut'
+            ]
+          },
+          {
+            title: 'Integrasi Permintaan Penawaran',
+            items: [
+              'Template pesan otomatis WhatsApp langsung terisi sesuai model produk yang diminati',
+              'Formulir terintegrasi untuk mempermudah konsultasi kebutuhan teknis bengkel'
+            ]
+          },
+          {
+            title: 'Branding Industri & Performa',
+            items: [
+              'Desain tema gelap dan amber yang menekankan keandalan teknis industri',
+              'Optimasi mesin pencari (SEO) yang ditargetkan untuk kata kunci teknik presisi',
+              'Loading halaman instan menggunakan arsitektur modern Next.js server components'
+            ]
+          }
+        ]
+      },
+      image: [
+        { title: 'banner', image: '/work/adiguna/banner.webp' },
+        { title: 'Halaman Utama & Katalog', image: '/work/adiguna/homepage.webp' },
+        { title: 'Spesifikasi Produk', image: '/work/adiguna/product-detail.webp' },
+        { title: 'Integrasi WhatsApp Quote', image: '/work/adiguna/whatsapp-quote.webp' }
+      ]
+    },
+    {
+      title: 'GiLabs Mitra Portal',
+      description: 'Portal kemitraan berbasis web Next.js untuk afiliasi GiLabs Studio. Memungkinkan mitra mengajukan lead, memantau request maintenance klien, melihat performa mitra, dan berinteraksi langsung via chat.',
+      technologies: ['Next.js', 'Go (Gin)', 'SQLite', 'React Query', 'Tailwind CSS'],
+      githubUrl: 'https://github.com/Gilabs-Studio/sales-mitra-portal',
+      liveUrl: 'https://portal-mitra.gilabs.id/id',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'Arsitektur Platform',
+            items: [
+              'Dashboard web Next.js 16 dengan React Server Components dan Tailwind CSS v4',
+              'Backend API Go Gin yang cepat dengan otentikasi JWT dan database SQLite'
+            ]
+          },
+          {
+            title: 'Manajemen Lead & Klien',
+            items: [
+              'Pelacakan pipeline lead dari pengajuan awal hingga closing proyek',
+              'Pemantauan request maintenance klien untuk penanganan bug dan pemeliharaan rutin'
+            ]
+          },
+          {
+            title: 'Direktori Performa Mitra & Chat',
+            items: [
+              'Memantau statistik keaktifan mitra sales dan jumlah referral deal yang didapat',
+              'Fitur chat interaktif seperti WhatsApp untuk komunikasi real-time antara mitra dan admin'
+            ]
+          }
+        ]
+      },
+      image: [
+        { title: 'banner', image: '/work/portal-mitra/banner.webp' },
+        { title: 'Dashboard Web', image: '/work/portal-mitra/web-dashboard.webp' },
+        { title: 'Manajemen Lead', image: '/work/portal-mitra/lead-management.webp' },
+        { title: 'Maintenance Klien', image: '/work/portal-mitra/client-maintenance.webp' },
+        { title: 'WhatsApp-like Lead Chat', image: '/work/portal-mitra/lead-chat.webp' }
+      ]
+    },
+    {
+      title: 'SalesView GILABS',
+      description: 'Platform bisnis all-in-one terintegrasi dengan ERP, POS, CRM, HRIS, dan Finance untuk Distributor, Retail, dan F&B. Menyederhanakan pembelian, penjualan, stok multi-gudang, jurnal otomatis keuangan, hingga payroll dengan asisten AI.',
+      technologies: ['Next.js', 'TypeScript', 'Zundstand', 'TanStack Query', 'Tailwind CSS', 'TurboRepo', 'Leaflet'],
+      githubUrl: '#',
+      liveUrl: 'https://salesview.id/id',
+      type: 'real',
+      features: {
+        sections: [
+          {
+            title: 'Otomasi ERP & Finansial',
+            items: [
+              'Pencatatan buku besar real-time dan otomasi pembuatan jurnal akuntansi',
+              'Laporan finansial instan, termasuk Laporan Laba Rugi real-time',
+              'Rekonsiliasi transaksi perbankan dan pengelolaan budget multi-cabang'
+            ]
+          },
+          {
+            title: 'Supply Chain & Multi-Gudang',
+            items: [
+              'Pelacakan inventori multi-lokasi, pergerakan stok, dan log audit',
+              'Notifikasi reorder point otomatis dan alur persetujuan purchase order (PO)',
+              'Manajemen supplier, pengajuan pembelian barang, dan pembayaran tagihan'
+            ]
+          },
+          {
+            title: 'POS & CRM Omnichannel',
+            items: [
+              'Sistem kasir/POS terintegrasi untuk cabang retail dan restoran F&B',
+              'Papan kanban sales pipeline untuk pemantauan tim sales lapangan',
+              'Integrasi peta Leaflet untuk pemetaan area penjualan dan lokasi klien'
+            ]
+          },
+          {
+            title: 'Asisten AI Co-Pilot',
+            items: [
+              'Asisten AI berbahasa sehari-hari untuk cek stok dan rangkuman penjualan',
+              'Pembuatan draf PO dan invoice instan via perintah teks/suara',
+              'Notifikasi proaktif untuk stok menipis dan piutang jatuh tempo'
+            ]
+          }
+        ]
+      },
+      image: [
+        { title: 'banner', image: '/work/salesview-gilabs/banner.webp' },
+        { title: 'Dashboard ERP & Keuangan', image: '/work/salesview-gilabs/finance-dashboard.webp' },
+        { title: 'Sistem Kasir/POS', image: '/work/salesview-gilabs/pos-checkout.webp' },
+        { title: 'Kanban Sales Pipeline CRM', image: '/work/salesview-gilabs/crm-pipeline.webp' },
+        { title: 'Chat Asisten AI Bisnis', image: '/work/salesview-gilabs/ai-assistant.webp' }
+      ]
+    },
     {
       title: 'Sitama',
       description: 'Platform Pendidikan yang membantu menyederhanakan manajemen magang untuk mahasiswa dan dosen di Politeknik Negeri Semarang. Menampilkan sistem dual-role dengan fungsionalitas khusus untuk mahasiswa dan dosen pembimbing.',

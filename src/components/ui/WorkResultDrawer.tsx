@@ -41,6 +41,7 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
       features: 'Key Features',
       overview: 'Project Overview',
       back: 'Back',
+      viewLive: 'View Live Project',
     },
     id: {
       close: 'Tutup',
@@ -48,6 +49,7 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
       features: 'Fitur Utama',
       overview: 'Gambaran Proyek',
       back: 'Kembali',
+      viewLive: 'Lihat Proyek Live',
     },
   };
 
@@ -352,6 +354,34 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
                   ))}
                 </div>
               </div>
+
+              {project.liveUrl && project.liveUrl !== '#' && (
+                <div className="mt-8 mb-8">
+                  <a
+                    href={project.liveUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 w-full px-8 py-4 text-base font-bold text-white bg-brand rounded-full hover:bg-brand/90 hover:shadow-lg hover:shadow-brand/20 transition-all duration-200"
+                  >
+                    {t.viewLive}
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                      <polyline points="15 3 21 3 21 9" />
+                      <line x1="10" x2="21" y1="14" y2="3" />
+                    </svg>
+                  </a>
+                </div>
+              )}
             </div>
           </div>
         )}
