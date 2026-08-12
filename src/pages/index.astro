@@ -6,16 +6,17 @@ import Features from '../components/sections/Features.astro';
 import Portfolio from '../components/sections/Portfolio.astro';
 import Showcase from '../components/sections/Showcase.astro';
 import Process from '../components/sections/Process.astro';
+import Comparison from '../components/sections/Comparison.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import Offer from '../components/sections/Offer.astro';
 import FinalCTA from '../components/sections/FinalCTA.astro';
 import WorkResultDrawer from '../components/ui/WorkResultDrawer';
 import Footer from '../components/sections/Footer.astro';
 
-const lang = 'id';
-const title = 'Gilabs | PT Griya Innovations Labs - Software House Sistem Internal Kompleks';
-const description = 'Gilabs by PT Griya Innovations Labs adalah software house Indonesia yang fokus pada pengembangan sistem internal kompleks: ERP, CRM, POS, HRIS, finance system, dashboard operasional, workflow approval, dan custom software enterprise.';
-const keywords = 'Gilabs, PT Griya Innovations Labs, software house Indonesia, software house Semarang, software house Jakarta, software development company Indonesia, jasa pengembangan sistem internal perusahaan, jasa pembuatan ERP custom Indonesia, vendor ERP custom untuk perusahaan manufaktur, jasa pembuatan CRM custom Indonesia, software CRM untuk tim sales lapangan, CRM custom terintegrasi WhatsApp, jasa pembuatan aplikasi kasir custom, software POS untuk toko bangunan, jasa pembuatan dashboard monitoring perusahaan, dashboard KPI realtime untuk manajemen, software manufaktur custom Indonesia, aplikasi koperasi simpan pinjam custom, software distributor custom, jasa pembuatan software custom, vendor pengembangan software perusahaan, software house untuk digitalisasi bisnis';
+const lang = 'en';
+const title = 'Gilabs | PT Griya Innovations Labs - Complex Internal Systems Software House';
+const description = 'Gilabs by PT Griya Innovations Labs is an Indonesia software house focused on complex internal systems: ERP, CRM, POS, HRIS, finance systems, operational dashboards, workflow approvals, and custom enterprise software.';
+const keywords = 'Gilabs, PT Griya Innovations Labs, Indonesia software house, Semarang software house, Jakarta software house, software development company Indonesia, complex internal systems development, custom ERP development Indonesia, custom CRM development company, HRIS software development, finance system development, operational dashboard development, workflow approval system development, custom POS software development, cooperative management system, custom manufacturing software, distributor software systems, business digitalization software house';
 
 const faqSchema = {
 	"@context": "https://schema.org",
@@ -23,50 +24,50 @@ const faqSchema = {
 	"mainEntity": [
 		{
 			"@type": "Question",
-			"name": "Apakah Gilabs adalah PT Griya Innovations Labs?",
+			"name": "Is Gilabs the same as PT Griya Innovations Labs?",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": "Ya. Gilabs adalah brand publik dari PT Griya Innovations Labs, software house Indonesia yang fokus pada pengembangan sistem internal kompleks untuk perusahaan."
+				"text": "Yes. Gilabs is the public brand of PT Griya Innovations Labs, an Indonesia software house focused on developing complex internal systems for companies."
 			}
 		},
 		{
 			"@type": "Question",
-			"name": "Apa itu software house?",
+			"name": "What is a software house?",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": "Software house adalah perusahaan yang spesialis dalam pengembangan software kustom sesuai kebutuhan bisnis. Berbeda dengan produk SaaS, software house membangun sistem yang benar-benar disesuaikan dengan alur kerja dan proses bisnis Anda."
+				"text": "A software house is a company specializing in custom software development tailored to business needs. Unlike SaaS products, a software house builds systems truly adapted to your workflow and business processes."
 			}
 		},
 		{
 			"@type": "Question",
-			"name": "Apa saja layanan Gilabs?",
+			"name": "What services does Gilabs offer?",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": "Gilabs menyediakan layanan: pembuatan ERP, CRM, POS, HRIS, finance system, dashboard operasional, workflow approval system, web development, mobile app development, UI/UX design, dan integrasi AI."
+				"text": "Gilabs offers: ERP development, CRM development, POS systems, HRIS, finance systems, operational dashboards, workflow approval systems, web development, mobile app development, UI/UX design, and AI integration."
 			}
 		},
 		{
 			"@type": "Question",
-			"name": "Berapa lama waktu pengembangan software?",
+			"name": "How long does software development take?",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": "Tergantung kompleksitas: landing page dan website biasanya 2-4 minggu, modul CRM atau HRIS tunggal 6-12 minggu, dan sistem ERP lengkap 3-6 bulan. Kami bekerja secara agile dengan update berkala."
+				"text": "It depends on complexity: Landing pages/websites 2-4 weeks, single CRM or HRIS module 6-12 weeks, full ERP system 3-6 months. We work agile with regular updates."
 			}
 		},
 		{
 			"@type": "Question",
-			"name": "Apakah Gilabs melayani seluruh Indonesia?",
+			"name": "Does Gilabs serve all of Indonesia?",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": "Ya, Gilabs melayani seluruh Indonesia secara remote. Meskipun tim kami berbasis di Semarang, Jawa Tengah, kami bekerja dengan klien dari berbagai kota seperti Jakarta, Surabaya, Bali, Medan, dan lainnya."
+				"text": "Yes, Gilabs serves all of Indonesia remotely. Although our team is based in Semarang, Central Java, we work with clients from various cities including Jakarta, Surabaya, Bali, Medan, and others."
 			}
 		},
 		{
 			"@type": "Question",
-			"name": "Teknologi apa yang digunakan Gilabs?",
+			"name": "What technologies does Gilabs use?",
 			"acceptedAnswer": {
 				"@type": "Answer",
-				"text": "Gilabs menggunakan stack modern: Next.js 16 dan React untuk frontend, Go (Golang) dan Node.js untuk backend, PostgreSQL untuk database, Flutter untuk mobile app, TypeScript, Tailwind CSS, dan integrasi AI."
+				"text": "Gilabs uses a modern stack: Next.js 16 and React for frontend, Go (Golang) and Node.js for backend, PostgreSQL for database, Flutter for mobile app, TypeScript, Tailwind CSS, and AI integration."
 			}
 		}
 	]
@@ -92,6 +93,7 @@ const faqSchema = {
 		<Portfolio lang={lang} />
 		<Offer lang={lang} />
 		<Process lang={lang} />
+		<Comparison lang={lang} />
 		<FAQ lang={lang} />
 		<FinalCTA lang={lang} />
 	</main>

@@ -1,0 +1,84 @@
+---
+import { comparisonData } from '../../data/comparison';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'en' } = Astro.props;
+const activeLang = lang === 'id' ? 'id' : 'en';
+const data = comparisonData[activeLang] || comparisonData.en;
+---
+
+<section class="py-20 md:py-32 bg-transparent relative overflow-hidden" id="comparison">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header - Minimalist */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-20 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow">
+          {data.eyebrow}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+      <h2 class="typography-section-title mb-4">
+        {data.title}
+      </h2>
+      <p class="typography-subtitle max-w-2xl mx-auto">
+        {data.subtitle}
+      </p>
+    </div>
+
+    {/* Comparison Table - Clean, No-BG Minimalist */}
+    <div class="w-full overflow-x-auto pb-4 scrollbar-thin">
+      <div class="min-w-[800px] w-full border-t border-b border-border/60">
+        {/* Table Header */}
+        <div class="grid grid-cols-12 border-b border-border/60 py-4 px-4 bg-transparent text-sm font-medium">
+          <div class="col-span-3 text-muted-foreground uppercase text-xs tracking-wider flex items-center">
+            {data.headers.aspect}
+          </div>
+          <div class="col-span-3 text-muted-foreground/80 font-medium flex items-center">
+            {data.headers.freelancer}
+          </div>
+          <div class="col-span-3 text-muted-foreground/80 font-medium flex items-center">
+            {data.headers.competitor}
+          </div>
+          <div class="col-span-3 text-foreground font-bold flex items-center gap-2">
+            <span>{data.headers.gilabs}</span>
+            <span class="text-[10px] font-semibold tracking-wider uppercase bg-brand/10 text-brand px-2 py-0.5 rounded-full border border-brand/20">
+              {data.badgeText}
+            </span>
+          </div>
+        </div>
+
+        {/* Table Rows */}
+        <div class="divide-y divide-border/40">
+          {data.rows.map((row) => (
+            <div class="grid grid-cols-12 py-5 px-4 items-start hover:bg-secondary/40 transition-colors duration-200 group">
+              {/* Aspect Title */}
+              <div class="col-span-3 font-semibold text-foreground text-sm pr-4 flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand/60 group-hover:bg-brand transition-colors"></span>
+                {row.aspect}
+              </div>
+
+              {/* Freelancer Column */}
+              <div class="col-span-3 text-xs sm:text-sm text-muted-foreground leading-relaxed pr-4">
+                {row.freelancer}
+              </div>
+
+              {/* Competitor Agency Column */}
+              <div class="col-span-3 text-xs sm:text-sm text-muted-foreground leading-relaxed pr-4">
+                {row.competitor}
+              </div>
+
+              {/* Gilabs Column - Highlighted text & clean contrast */}
+              <div class="col-span-3 text-xs sm:text-sm text-foreground font-medium leading-relaxed bg-brand/[0.02] p-2.5 -my-2.5 rounded border-l-2 border-brand/40">
+                {row.gilabs}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

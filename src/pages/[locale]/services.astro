@@ -8,6 +8,7 @@ import ServicesPackages from '../../components/services/ServicesPackages.astro';
 import ServicesErpCrm from '../../components/services/ServicesErpCrm.astro';
 import ServicesAiAddons from '../../components/services/ServicesAiAddons.astro';
 import ServicesCta from '../../components/services/ServicesCta.astro';
+import Comparison from '../../components/sections/Comparison.astro';
 
 export function getStaticPaths() {
   return [
@@ -178,6 +179,7 @@ const breadcrumbSchema = {
     <ServicesPackages lang={lang} />
     <ServicesErpCrm lang={lang} />
     <ServicesAiAddons lang={lang} />
+    <Comparison lang={lang} />
     <ServicesCta lang={lang} />
   </main>
   
