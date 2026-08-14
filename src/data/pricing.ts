@@ -192,7 +192,7 @@ export interface PricingData {
 export const pricingData: Record<string, PricingData> = {
   id: {
     hero: {
-      title: "Miliki Software Anda\nBangun Aset Digital",
+      title: "Miliki Sistem\nMiliki Keunggulan",
       eyebrow: "PT Griya Innovations Labs",
       subtitle: "Kami membangun ERP, CRM, HRIS, finance system, workflow approval, dan dashboard operasional yang mengikuti proses bisnis perusahaan Anda.",
       cta: "Bangun Aset Digital Anda",
