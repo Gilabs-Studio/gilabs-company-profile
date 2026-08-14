@@ -2,7 +2,7 @@
 
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
-import { memo, useEffect, useMemo, useRef, useState } from 'react';
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 
 // Responsive dimensions
 const getDimensions = (isMobile: boolean) => ({
@@ -22,6 +22,9 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   const gallery = useRef<HTMLDivElement>(null);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
   const [isMobile, setIsMobile] = useState(false);
+  
+  // Sequential loading queue state: start with top 2 images allowed to load high-res
+  const [activeLoadIndex, setActiveLoadIndex] = useState<number>(1);
 
   const { scrollYProgress } = useScroll({
     target: gallery,
@@ -43,6 +46,23 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
     [0, 1], 
     isMobile ? [1.05, 1] : [1.15, 1]
   );
+
+  // Advance queue when high-res image finishes loading
+  const handleHighResLoaded = useCallback((loadedIndex: number) => {
+    setActiveLoadIndex(prev => Math.max(prev, loadedIndex + 1));
+  }, []);
+
+  // Safety fallback: advance activeLoadIndex every 300ms so queue never blocks on slow requests
+  useEffect(() => {
+    const totalImages = images.filter(img => img && img.trim() !== '').length;
+    if (activeLoadIndex >= totalImages - 1) return;
+
+    const timer = setTimeout(() => {
+      setActiveLoadIndex(prev => prev + 1);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [activeLoadIndex, images]);
 
   useEffect(() => {
     const lenis = new Lenis();
@@ -68,17 +88,12 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
       const drawer = document.querySelector('[data-vaul-drawer][data-state="open"]');
       const target = e.target as HTMLElement;
       
-      // If drawer is open and wheel event is inside drawer, prevent Lenis from handling it
-      // but allow native browser scrolling to work
       if (drawer && (drawer.contains(target) || target.closest('[data-vaul-drawer]'))) {
         e.stopPropagation();
-        // Don't preventDefault - allow native scroll to work
       }
     };
 
-    // Listen for wheel events in capture phase to intercept before Lenis
     window.addEventListener('wheel', checkDrawerAndHandleWheel, { capture: true, passive: false });
-
     window.addEventListener('resize', resize);
     rafId = requestAnimationFrame(raf);
     resize();
@@ -88,7 +103,6 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
       window.removeEventListener('wheel', checkDrawerAndHandleWheel, { capture: true } as any);
       cancelAnimationFrame(rafId);
       lenis.destroy();
-      // Clean up global reference
       if ((globalThis as any).lenis === lenis) {
         delete (globalThis as any).lenis;
       }
@@ -101,15 +115,16 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
     [images]
   );
   
-  // Distribute images evenly across columns WITHOUT duplication
-  // Each image appears only once in the gallery
-  const columnImages = useMemo(() => {
+  // Distribute images evenly across columns WITH flatIndex tracking
+  const columnData = useMemo(() => {
     const numColumns = isMobile ? 2 : 4;
-    const columns: string[][] = Array.from({ length: numColumns }, () => []);
+    const columns: Array<Array<{ src: string; flatIndex: number }>> = Array.from(
+      { length: numColumns },
+      () => []
+    );
     
-    // Distribute images across columns (round-robin)
-    validImages.forEach((img, index) => {
-      columns[index % numColumns].push(img);
+    validImages.forEach((src, index) => {
+      columns[index % numColumns].push({ src, flatIndex: index });
     });
     
     return columns;
@@ -134,13 +149,15 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
           willChange: 'transform',
         }}
       >
-        {columnImages.map((images, colIndex) => (
+        {columnData.map((items, colIndex) => (
           <Column 
             key={colIndex}
-            images={images} 
+            items={items} 
             y={yTransforms[colIndex]} 
             dimensions={dimensions}
             columnIndex={colIndex}
+            activeLoadIndex={activeLoadIndex}
+            onLoaded={handleHighResLoaded}
           />
         ))}
       </motion.div>
@@ -180,18 +197,43 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
 };
 
 type ColumnProps = {
-  images: string[];
+  items: Array<{ src: string; flatIndex: number }>;
   y: MotionValue<number>;
   dimensions: ReturnType<typeof getDimensions>;
   columnIndex: number;
+  activeLoadIndex: number;
+  onLoaded: (index: number) => void;
 };
 
-// Image component with skeleton placeholder & smooth fade-in after load
-const BlurImage = memo(({ src, dimensions }: { 
+// Image component with instant micro-thumbnail preview & sequential high-res loading queue
+const BlurImage = memo(({ 
+  src, 
+  flatIndex,
+  shouldLoadHighRes,
+  dimensions,
+  onLoaded
+}: { 
   src: string; 
+  flatIndex: number;
+  shouldLoadHighRes: boolean;
   dimensions: ReturnType<typeof getDimensions>;
+  onLoaded: (index: number) => void;
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const thumbSrc = useMemo(() => src.replace('/image/', '/image/thumb/'), [src]);
+
+  const handleLoadSuccess = useCallback(() => {
+    setIsLoaded(true);
+    onLoaded(flatIndex);
+  }, [flatIndex, onLoaded]);
+
+  useEffect(() => {
+    // Instant check if high-res image is already cached or completed
+    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+      handleLoadSuccess();
+    }
+  }, [handleLoadSuccess]);
 
   return (
     <div 
@@ -201,21 +243,30 @@ const BlurImage = memo(({ src, dimensions }: {
         height: dimensions.imageHeight,
       }}
     >
-      {/* Animated skeleton placeholder shown first */}
-      {!isLoaded && (
-        <div className="absolute inset-0 bg-gradient-to-r from-muted/40 via-muted-foreground/10 to-muted/40 animate-pulse rounded-lg" />
-      )}
-
+      {/* 1. Ultra low-res micro WebP thumbnail (~300B) rendered INSTANTLY with blur filter */}
       <img
-        loading="lazy"
-        decoding="async"
-        src={encodeURI(src)}
+        src={encodeURI(thumbSrc)}
         alt=""
-        onLoad={() => setIsLoaded(true)}
-        className={`w-full h-full object-cover transition-all duration-700 ease-out ${
-          isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+        aria-hidden="true"
+        className={`absolute inset-0 w-full h-full object-cover filter blur-md scale-110 transition-opacity duration-500 pointer-events-none ${
+          isLoaded ? 'opacity-0' : 'opacity-100'
         }`}
       />
+
+      {/* 2. Full high-resolution image layer (only fetched when queued by shouldLoadHighRes) */}
+      {(shouldLoadHighRes || isLoaded) && (
+        <img
+          ref={imgRef}
+          loading="eager"
+          decoding="async"
+          src={encodeURI(src)}
+          alt=""
+          onLoad={handleLoadSuccess}
+          className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ease-out ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      )}
     </div>
   );
 });
@@ -225,7 +276,7 @@ BlurImage.displayName = 'BlurImage';
 // Column offsets for visual variety - creates staggered effect
 const COLUMN_OFFSETS = ['-5%', '-15%', '0%', '-8%'];
 
-const Column = memo(({ images, y, dimensions, columnIndex }: ColumnProps) => {
+const Column = memo(({ items, y, dimensions, columnIndex, activeLoadIndex, onLoaded }: ColumnProps) => {
   return (
     <motion.div
       className="relative flex flex-col"
@@ -239,11 +290,14 @@ const Column = memo(({ images, y, dimensions, columnIndex }: ColumnProps) => {
         willChange: 'transform',
       }}
     >
-      {images.map((src) => (
+      {items.map(({ src, flatIndex }) => (
         <BlurImage 
           key={src}
           src={src}
+          flatIndex={flatIndex}
+          shouldLoadHighRes={flatIndex <= activeLoadIndex}
           dimensions={dimensions}
+          onLoaded={onLoaded}
         />
       ))}
     </motion.div>
