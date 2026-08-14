@@ -234,12 +234,21 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
                     {currentImage && (
                       <>
                         {currentImage.image && !imageError ? (
-                          <img
-                            src={currentImage.image}
-                            alt={currentImage.title || project.title}
-                            className="w-full h-full object-contain transition-opacity duration-300"
-                            onError={() => setImageError(true)}
-                          />
+                          <>
+                            {/* Ultra low-res micro WebP thumbnail (~300B) rendered instantly with blur */}
+                            <img
+                              src={currentImage.image.replace(/\/([^\/]+)$/, '/thumb/$1')}
+                              alt=""
+                              aria-hidden="true"
+                              className="absolute inset-0 w-full h-full object-contain filter blur-md scale-105 pointer-events-none"
+                            />
+                            <img
+                              src={currentImage.image}
+                              alt={currentImage.title || project.title}
+                              className="relative z-10 w-full h-full object-contain transition-opacity duration-300"
+                              onError={() => setImageError(true)}
+                            />
+                          </>
                         ) : (
                           <div className="w-full h-full bg-linear-to-br from-brand/20 via-brand/10 to-secondary/20 flex items-center justify-center">
                             <div className="text-center p-8">

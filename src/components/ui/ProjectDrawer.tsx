@@ -158,12 +158,19 @@ const ProjectDrawer = ({ lang = 'en' }: ProjectDrawerProps) => {
             <div className="overflow-y-auto h-[calc(100%-88px)] p-6">
               {/* Project Image */}
               <div className="relative aspect-video rounded-xl overflow-hidden mb-8">
+                {/* Ultra low-res micro WebP thumbnail (~300B) rendered instantly with blur */}
+                <img
+                  src={project.image.replace(/\/([^\/]+)$/, '/thumb/$1')}
+                  alt=""
+                  aria-hidden="true"
+                  className="absolute inset-0 w-full h-full object-cover filter blur-md scale-105 pointer-events-none"
+                />
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="w-full h-full object-cover"
+                  className="relative z-10 w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent z-15" />
               </div>
 
               {/* Quick Info */}

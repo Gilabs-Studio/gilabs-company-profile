@@ -72,15 +72,24 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
             {/* Image Container */}
             <div class="relative aspect-video overflow-hidden bg-muted">
               {bannerImage && (
-                <img
-                  src={bannerImage.image}
-                  alt={project?.title || 'Project'}
-                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  loading="lazy"
-                  decoding="async"
-                  width="400"
-                  height="225"
-                />
+                <>
+                  {/* Ultra low-res micro WebP thumbnail (~300B) rendered instantly with blur */}
+                  <img
+                    src={bannerImage.image.replace(/\/([^\/]+)$/, '/thumb/$1')}
+                    alt=""
+                    aria-hidden="true"
+                    class="absolute inset-0 w-full h-full object-cover filter blur-md scale-110 pointer-events-none"
+                  />
+                  <img
+                    src={bannerImage.image}
+                    alt={project?.title || 'Project'}
+                    class="relative z-10 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="225"
+                  />
+                </>
               )}
               <div class="absolute inset-0 bg-linear-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               

@@ -25,6 +25,16 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   
   // Sequential loading queue state: start with top 2 images allowed to load high-res
   const [activeLoadIndex, setActiveLoadIndex] = useState<number>(1);
+  
+  // Parallax motion ready state: defer image DOM mounting until frame 1 so parallax scroll animations run instantly
+  const [isParallaxReady, setIsParallaxReady] = useState<boolean>(false);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => {
+      setIsParallaxReady(true);
+    });
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: gallery,
@@ -157,6 +167,7 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
             dimensions={dimensions}
             columnIndex={colIndex}
             activeLoadIndex={activeLoadIndex}
+            isParallaxReady={isParallaxReady}
             onLoaded={handleHighResLoaded}
           />
         ))}
@@ -202,6 +213,7 @@ type ColumnProps = {
   dimensions: ReturnType<typeof getDimensions>;
   columnIndex: number;
   activeLoadIndex: number;
+  isParallaxReady: boolean;
   onLoaded: (index: number) => void;
 };
 
@@ -210,12 +222,14 @@ const BlurImage = memo(({
   src, 
   flatIndex,
   shouldLoadHighRes,
+  isParallaxReady,
   dimensions,
   onLoaded
 }: { 
   src: string; 
   flatIndex: number;
   shouldLoadHighRes: boolean;
+  isParallaxReady: boolean;
   dimensions: ReturnType<typeof getDimensions>;
   onLoaded: (index: number) => void;
 }) => {
@@ -243,29 +257,34 @@ const BlurImage = memo(({
         height: dimensions.imageHeight,
       }}
     >
-      {/* 1. Ultra low-res micro WebP thumbnail (~300B) rendered INSTANTLY with blur filter */}
-      <img
-        src={encodeURI(thumbSrc)}
-        alt=""
-        aria-hidden="true"
-        className={`absolute inset-0 w-full h-full object-cover filter blur-md scale-110 transition-opacity duration-500 pointer-events-none ${
-          isLoaded ? 'opacity-0' : 'opacity-100'
-        }`}
-      />
+      {/* Images mount on frame 1 so parallax motion transforms run instantly on frame 0 */}
+      {isParallaxReady && (
+        <>
+          {/* 1. Ultra low-res micro WebP thumbnail (~300B) rendered INSTANTLY with blur filter */}
+          <img
+            src={encodeURI(thumbSrc)}
+            alt=""
+            aria-hidden="true"
+            className={`absolute inset-0 w-full h-full object-cover filter blur-md scale-110 transition-opacity duration-500 pointer-events-none ${
+              isLoaded ? 'opacity-0' : 'opacity-100'
+            }`}
+          />
 
-      {/* 2. Full high-resolution image layer (only fetched when queued by shouldLoadHighRes) */}
-      {(shouldLoadHighRes || isLoaded) && (
-        <img
-          ref={imgRef}
-          loading="eager"
-          decoding="async"
-          src={encodeURI(src)}
-          alt=""
-          onLoad={handleLoadSuccess}
-          className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ease-out ${
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          }`}
-        />
+          {/* 2. Full high-resolution image layer (only fetched when queued by shouldLoadHighRes) */}
+          {(shouldLoadHighRes || isLoaded) && (
+            <img
+              ref={imgRef}
+              loading="eager"
+              decoding="async"
+              src={encodeURI(src)}
+              alt=""
+              onLoad={handleLoadSuccess}
+              className={`relative z-10 w-full h-full object-cover transition-opacity duration-500 ease-out ${
+                isLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+            />
+          )}
+        </>
       )}
     </div>
   );
@@ -276,7 +295,7 @@ BlurImage.displayName = 'BlurImage';
 // Column offsets for visual variety - creates staggered effect
 const COLUMN_OFFSETS = ['-5%', '-15%', '0%', '-8%'];
 
-const Column = memo(({ items, y, dimensions, columnIndex, activeLoadIndex, onLoaded }: ColumnProps) => {
+const Column = memo(({ items, y, dimensions, columnIndex, activeLoadIndex, isParallaxReady, onLoaded }: ColumnProps) => {
   return (
     <motion.div
       className="relative flex flex-col"
@@ -296,6 +315,7 @@ const Column = memo(({ items, y, dimensions, columnIndex, activeLoadIndex, onLoa
           src={src}
           flatIndex={flatIndex}
           shouldLoadHighRes={flatIndex <= activeLoadIndex}
+          isParallaxReady={isParallaxReady}
           dimensions={dimensions}
           onLoaded={onLoaded}
         />

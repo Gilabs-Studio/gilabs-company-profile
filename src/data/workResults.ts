@@ -259,19 +259,19 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/FiberMonitoringImages/3.png'
+          image: '/work/FiberMonitoringImages/3.webp'
         },
-        { title: 'admin dashboard', image: '/work/FiberMonitoringImages/adminDashboard.png' },
-        { title: 'notification', image: '/work/FiberMonitoringImages/notification.png' },
-        { title: 'project list', image: '/work/FiberMonitoringImages/projectList.png' },
-        { title: 'map', image: '/work/FiberMonitoringImages/map.png' },
-        { title: 'add project', image: '/work/FiberMonitoringImages/addProject.png' },
-        { title: 'user management', image: '/work/FiberMonitoringImages/userManagement.png' },
-        { title: 'project detail', image: '/work/FiberMonitoringImages/projectDetail.png' },
-        { title: 'add milestone photo', image: '/work/FiberMonitoringImages/addMilestone.png' },
-        { title: 'add daily report', image: '/work/FiberMonitoringImages/addDailyReport.png' },
-        { title: 'login white', image: '/work/FiberMonitoringImages/loginWhite.png' },
-        { title: 'login black', image: '/work/FiberMonitoringImages/loginBlack.png' }
+        { title: 'admin dashboard', image: '/work/FiberMonitoringImages/adminDashboard.webp' },
+        { title: 'notification', image: '/work/FiberMonitoringImages/notification.webp' },
+        { title: 'project list', image: '/work/FiberMonitoringImages/projectList.webp' },
+        { title: 'map', image: '/work/FiberMonitoringImages/map.webp' },
+        { title: 'add project', image: '/work/FiberMonitoringImages/addProject.webp' },
+        { title: 'user management', image: '/work/FiberMonitoringImages/userManagement.webp' },
+        { title: 'project detail', image: '/work/FiberMonitoringImages/projectDetail.webp' },
+        { title: 'add milestone photo', image: '/work/FiberMonitoringImages/addMilestone.webp' },
+        { title: 'add daily report', image: '/work/FiberMonitoringImages/addDailyReport.webp' },
+        { title: 'login white', image: '/work/FiberMonitoringImages/loginWhite.webp' },
+        { title: 'login black', image: '/work/FiberMonitoringImages/loginBlack.webp' }
       ]
     },
     {
@@ -331,7 +331,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/evalique/banner.png'
+          image: '/work/evalique/banner.webp'
         },
         { title: 'Dashboard', image: '/work/evalique/Screenshot from 2026-01-27 20-08-53.webp' },
         { title: 'Assessment Builder', image: '/work/evalique/Screenshot from 2026-01-27 20-11-49.webp' },
@@ -384,7 +384,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/PortofolioMarketerImages/2.png'
+          image: '/work/PortofolioMarketerImages/2.webp'
         },
         { title: 'menu', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-12-09 Adhara Eka - Portfolio.webp' },
         { title: 'quotes', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-12-24 Adhara Eka - Portfolio.webp' },
@@ -459,7 +459,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/salesview/banner.png'
+          image: '/work/salesview/banner.webp'
         },
         { title: 'Dashboard Overview', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-39 CRM Healthcare Platform.webp' },
         { title: 'Route Optimization', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-52 CRM Healthcare Platform.webp' },
@@ -561,51 +561,51 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/CRMFarmasi/banner.png'
+          image: '/work/CRMFarmasi/banner.webp'
         },
         {
           title: 'Dashboard Light',
-          image: '/work/CRMFarmasi/dashboardLight.png'
+          image: '/work/CRMFarmasi/dashboardLight.webp'
         },
         {
           title: 'Dashboard Dark',
-          image: '/work/CRMFarmasi/dashboardDark.png'
+          image: '/work/CRMFarmasi/dashboardDark.webp'
         },
         {
           title: 'User Management',
-          image: '/work/CRMFarmasi/userManagement.jpg'
+          image: '/work/CRMFarmasi/userManagement.webp'
         },
         {
           title: 'Account & Contact Management',
-          image: '/work/CRMFarmasi/accoutn&contactManager.jpg'
+          image: '/work/CRMFarmasi/accoutn&contactManager.webp'
         },
         {
           title: 'Lead Management',
-          image: '/work/CRMFarmasi/leadManagement.jpg'
+          image: '/work/CRMFarmasi/leadManagement.webp'
         },
         {
           title: 'Sales Pipeline',
-          image: '/work/CRMFarmasi/salesPipeline.jpg'
+          image: '/work/CRMFarmasi/salesPipeline.webp'
         },
         {
           title: 'Visit Reports',
-          image: '/work/CRMFarmasi/visitReports.jpg'
+          image: '/work/CRMFarmasi/visitReports.webp'
         },
         {
           title: 'Task & Reminder Management',
-          image: '/work/CRMFarmasi/taskReminder.jpg'
+          image: '/work/CRMFarmasi/taskReminder.webp'
         },
         {
           title: 'Reports',
-          image: '/work/CRMFarmasi/reports.jpg'
+          image: '/work/CRMFarmasi/reports.webp'
         },
         {
           title: 'AI Chatbot',
-          image: '/work/CRMFarmasi/ai.jpg'
+          image: '/work/CRMFarmasi/ai.webp'
         },
         {
           title: 'AI Chatbot Insights',
-          image: '/work/CRMFarmasi/ai2.jpg'
+          image: '/work/CRMFarmasi/ai2.webp'
         }
       ]
     }
@@ -845,19 +845,19 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/FiberMonitoringImages/3.png'
+          image: '/work/FiberMonitoringImages/3.webp'
         },
-        { title: 'dashboard admin', image: '/work/FiberMonitoringImages/adminDashboard.png' },
-        { title: 'notifikasi', image: '/work/FiberMonitoringImages/notification.png' },
-        { title: 'daftar proyek', image: '/work/FiberMonitoringImages/projectList.png' },
-        { title: 'peta', image: '/work/FiberMonitoringImages/map.png' },
-        { title: 'tambah proyek', image: '/work/FiberMonitoringImages/addProject.png' },
-        { title: 'manajemen pengguna', image: '/work/FiberMonitoringImages/userManagement.png' },
-        { title: 'detail proyek', image: '/work/FiberMonitoringImages/projectDetail.png' },
-        { title: 'tambah foto milestone', image: '/work/FiberMonitoringImages/addMilestone.png' },
-        { title: 'tambah laporan harian', image: '/work/FiberMonitoringImages/addDailyReport.png' },
-        { title: 'login putih', image: '/work/FiberMonitoringImages/loginWhite.png' },
-        { title: 'login hitam', image: '/work/FiberMonitoringImages/loginBlack.png' }
+        { title: 'dashboard admin', image: '/work/FiberMonitoringImages/adminDashboard.webp' },
+        { title: 'notifikasi', image: '/work/FiberMonitoringImages/notification.webp' },
+        { title: 'daftar proyek', image: '/work/FiberMonitoringImages/projectList.webp' },
+        { title: 'peta', image: '/work/FiberMonitoringImages/map.webp' },
+        { title: 'tambah proyek', image: '/work/FiberMonitoringImages/addProject.webp' },
+        { title: 'manajemen pengguna', image: '/work/FiberMonitoringImages/userManagement.webp' },
+        { title: 'detail proyek', image: '/work/FiberMonitoringImages/projectDetail.webp' },
+        { title: 'tambah foto milestone', image: '/work/FiberMonitoringImages/addMilestone.webp' },
+        { title: 'tambah laporan harian', image: '/work/FiberMonitoringImages/addDailyReport.webp' },
+        { title: 'login putih', image: '/work/FiberMonitoringImages/loginWhite.webp' },
+        { title: 'login hitam', image: '/work/FiberMonitoringImages/loginBlack.webp' }
       ]
     },
     {
@@ -917,7 +917,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/evalique/banner.png'
+          image: '/work/evalique/banner.webp'
         },
         { title: 'Dashboard', image: '/work/evalique/Screenshot from 2026-01-27 20-08-53.webp' },
         { title: 'Assessment Builder', image: '/work/evalique/Screenshot from 2026-01-27 20-11-49.webp' },
@@ -970,7 +970,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/PortofolioMarketerImages/2.png'
+          image: '/work/PortofolioMarketerImages/2.webp'
         },
         { title: 'menu', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-12-09 Adhara Eka - Portfolio.webp' },
         { title: 'kutipan', image: '/work/PortofolioMarketerImages/Screenshot 2025-12-16 at 16-12-24 Adhara Eka - Portfolio.webp' },
@@ -1045,7 +1045,7 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/salesview/banner.png'
+          image: '/work/salesview/banner.webp'
         },
         { title: 'Ringkasan Dashboard', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-39 CRM Healthcare Platform.webp' },
         { title: 'Optimasi Rute', image: '/work/salesview/Screenshot 2026-01-30 at 12-34-52 CRM Healthcare Platform.webp' },
@@ -1147,51 +1147,51 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       image: [
         {
           title: 'banner',
-          image: '/work/CRMFarmasi/banner.png'
+          image: '/work/CRMFarmasi/banner.webp'
         },
         {
           title: 'Dashboard Terang',
-          image: '/work/CRMFarmasi/dashboardLight.png'
+          image: '/work/CRMFarmasi/dashboardLight.webp'
         },
         {
           title: 'Dashboard Gelap',
-          image: '/work/CRMFarmasi/dashboardDark.png'
+          image: '/work/CRMFarmasi/dashboardDark.webp'
         },
         {
           title: 'Manajemen Pengguna',
-          image: '/work/CRMFarmasi/userManagement.jpg'
+          image: '/work/CRMFarmasi/userManagement.webp'
         },
         {
           title: 'Manajemen Akun & Kontak',
-          image: '/work/CRMFarmasi/accoutn&contactManager.jpg'
+          image: '/work/CRMFarmasi/accoutn&contactManager.webp'
         },
         {
           title: 'Manajemen Lead',
-          image: '/work/CRMFarmasi/leadManagement.jpg'
+          image: '/work/CRMFarmasi/leadManagement.webp'
         },
         {
           title: 'Sales Pipeline',
-          image: '/work/CRMFarmasi/salesPipeline.jpg'
+          image: '/work/CRMFarmasi/salesPipeline.webp'
         },
         {
           title: 'Laporan Kunjungan',
-          image: '/work/CRMFarmasi/visitReports.jpg'
+          image: '/work/CRMFarmasi/visitReports.webp'
         },
         {
           title: 'Manajemen Tugas & Pengingat',
-          image: '/work/CRMFarmasi/taskReminder.jpg'
+          image: '/work/CRMFarmasi/taskReminder.webp'
         },
         {
           title: 'Laporan',
-          image: '/work/CRMFarmasi/reports.jpg'
+          image: '/work/CRMFarmasi/reports.webp'
         },
         {
           title: 'AI Chatbot',
-          image: '/work/CRMFarmasi/ai.jpg'
+          image: '/work/CRMFarmasi/ai.webp'
         },
         {
           title: 'Insight AI Chatbot',
-          image: '/work/CRMFarmasi/ai2.jpg'
+          image: '/work/CRMFarmasi/ai2.webp'
         }
       ]
     }
