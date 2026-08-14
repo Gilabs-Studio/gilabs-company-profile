@@ -3,7 +3,6 @@
 import { motion, MotionValue, useScroll, useTransform } from 'framer-motion';
 import Lenis from 'lenis';
 import { memo, useEffect, useMemo, useRef, useState } from 'react';
-import LightRays from './LightRays';
 
 // Responsive dimensions
 const getDimensions = (isMobile: boolean) => ({
@@ -146,18 +145,6 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
         ))}
       </motion.div>
 
-      {/* LightRays Overlay - synced with Layout's LightRays */}
-      <div className="absolute inset-0 z-15 pointer-events-none opacity-50">
-        <LightRays 
-          raysColor="#FFFFFF" 
-          raysSpeed={0.5} 
-          lightSpread={0.5}
-          rayLength={1.5}
-          raysOrigin="top-center"
-          followMouse={false}
-        />
-      </div>
-
       {/* Background gradient overlay for depth effect */}
       <div className="absolute inset-0 z-16 pointer-events-none bg-gradient-to-b from-background/30 via-transparent to-background/30" />
 
@@ -199,25 +186,35 @@ type ColumnProps = {
   columnIndex: number;
 };
 
-// Simple image component - no complex loading states, just render the image
+// Image component with skeleton placeholder & smooth fade-in after load
 const BlurImage = memo(({ src, dimensions }: { 
   src: string; 
   dimensions: ReturnType<typeof getDimensions>;
 }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   return (
     <div 
-      className="relative overflow-hidden rounded-lg shrink-0 bg-muted"
+      className="relative overflow-hidden rounded-lg shrink-0 bg-muted/60 border border-white/5 shadow-inner"
       style={{ 
         width: dimensions.columnWidth,
         height: dimensions.imageHeight,
       }}
     >
+      {/* Animated skeleton placeholder shown first */}
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-gradient-to-r from-muted/40 via-muted-foreground/10 to-muted/40 animate-pulse rounded-lg" />
+      )}
+
       <img
-        loading="eager"
+        loading="lazy"
         decoding="async"
         src={encodeURI(src)}
         alt=""
-        className="w-full h-full object-cover"
+        onLoad={() => setIsLoaded(true)}
+        className={`w-full h-full object-cover transition-all duration-700 ease-out ${
+          isLoaded ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
+        }`}
       />
     </div>
   );

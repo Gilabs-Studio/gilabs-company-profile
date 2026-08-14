@@ -85,7 +85,7 @@ const faqSchema = {
 	<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} slot="head" />
 
 	<Navbar lang={lang} />
-	<WorkResultDrawer client:load lang={lang} />
+	<WorkResultDrawer client:idle lang={lang} />
 
 	<main>
 		<Hero lang={lang} />
