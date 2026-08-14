@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import type { WorkResultProject } from '../../data/workResults';
 import {
   Drawer,
@@ -14,6 +14,48 @@ import { ChevronLeft, ChevronRight, ArrowLeft } from 'lucide-react';
 interface WorkResultDrawerProps {
   lang?: string;
 }
+
+// Drawer Image component with instant micro-thumbnail preview layer & smooth high-res cross-fade
+const DrawerImage = ({ src, alt, onError }: { src: string; alt: string; onError: () => void }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const thumbSrc = useMemo(() => src.replace(/\/([^\/]+)$/, '/thumb/$1'), [src]);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [src]);
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+      {/* 1. Ultra low-res micro WebP thumbnail (~300B) rendered INSTANTLY with blur filter */}
+      <img
+        src={encodeURI(thumbSrc)}
+        alt=""
+        aria-hidden="true"
+        className={`absolute inset-0 w-full h-full object-contain filter blur-md scale-105 transition-opacity duration-300 pointer-events-none ${
+          isLoaded ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
+
+      {/* 2. Full high-resolution image layer with smooth 300ms cross-fade */}
+      <img
+        ref={imgRef}
+        loading="eager"
+        decoding="async"
+        src={encodeURI(src)}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+        onError={onError}
+        className={`relative z-10 w-full h-full object-contain transition-opacity duration-300 ease-out ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+    </div>
+  );
+};
 
 const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -104,6 +146,16 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
       if (lenisInstance) {
         lenisInstance.stop();
       }
+      // Pre-load all project micro WebP thumbnails (~300B) for 0ms instant slider switching
+      if (project?.image) {
+        project.image.forEach((imgObj) => {
+          if (imgObj.image) {
+            const thumbUrl = imgObj.image.replace(/\/([^\/]+)$/, '/thumb/$1');
+            const img = new Image();
+            img.src = encodeURI(thumbUrl);
+          }
+        });
+      }
     } else {
       setCurrentImageIndex(0);
       // Resume Lenis smooth scroll when drawer closes
@@ -112,7 +164,7 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
         lenisInstance.start();
       }
     }
-  }, [isOpen]);
+  }, [isOpen, project]);
 
   const images = project?.image || [];
   const currentImage = images[currentImageIndex];
@@ -234,21 +286,11 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
                     {currentImage && (
                       <>
                         {currentImage.image && !imageError ? (
-                          <>
-                            {/* Ultra low-res micro WebP thumbnail (~300B) rendered instantly with blur */}
-                            <img
-                              src={currentImage.image.replace(/\/([^\/]+)$/, '/thumb/$1')}
-                              alt=""
-                              aria-hidden="true"
-                              className="absolute inset-0 w-full h-full object-contain filter blur-md scale-105 pointer-events-none"
-                            />
-                            <img
-                              src={currentImage.image}
-                              alt={currentImage.title || project.title}
-                              className="relative z-10 w-full h-full object-contain transition-opacity duration-300"
-                              onError={() => setImageError(true)}
-                            />
-                          </>
+                          <DrawerImage
+                            src={currentImage.image}
+                            alt={currentImage.title || project.title}
+                            onError={() => setImageError(true)}
+                          />
                         ) : (
                           <div className="w-full h-full bg-linear-to-br from-brand/20 via-brand/10 to-secondary/20 flex items-center justify-center">
                             <div className="text-center p-8">

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface ProjectData {
@@ -21,6 +21,47 @@ interface ProjectData {
 interface ProjectDrawerProps {
   lang?: string;
 }
+
+// Drawer Image component with instant micro-thumbnail preview layer & smooth high-res cross-fade
+const DrawerImage = ({ src, alt }: { src: string; alt: string }) => {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+  const thumbSrc = useMemo(() => src.replace(/\/([^\/]+)$/, '/thumb/$1'), [src]);
+
+  useEffect(() => {
+    setIsLoaded(false);
+    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [src]);
+
+  return (
+    <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+      {/* 1. Ultra low-res micro WebP thumbnail (~300B) rendered INSTANTLY with blur filter */}
+      <img
+        src={encodeURI(thumbSrc)}
+        alt=""
+        aria-hidden="true"
+        className={`absolute inset-0 w-full h-full object-cover filter blur-md scale-105 transition-opacity duration-300 pointer-events-none ${
+          isLoaded ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
+
+      {/* 2. Full high-resolution image layer with smooth 300ms cross-fade */}
+      <img
+        ref={imgRef}
+        loading="eager"
+        decoding="async"
+        src={encodeURI(src)}
+        alt={alt}
+        onLoad={() => setIsLoaded(true)}
+        className={`relative z-10 w-full h-full object-cover transition-opacity duration-300 ease-out ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+    </div>
+  );
+};
 
 const ProjectDrawer = ({ lang = 'en' }: ProjectDrawerProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -158,19 +199,8 @@ const ProjectDrawer = ({ lang = 'en' }: ProjectDrawerProps) => {
             <div className="overflow-y-auto h-[calc(100%-88px)] p-6">
               {/* Project Image */}
               <div className="relative aspect-video rounded-xl overflow-hidden mb-8">
-                {/* Ultra low-res micro WebP thumbnail (~300B) rendered instantly with blur */}
-                <img
-                  src={project.image.replace(/\/([^\/]+)$/, '/thumb/$1')}
-                  alt=""
-                  aria-hidden="true"
-                  className="absolute inset-0 w-full h-full object-cover filter blur-md scale-105 pointer-events-none"
-                />
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="relative z-10 w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent z-15" />
+                <DrawerImage src={project.image} alt={project.title} />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent z-15 pointer-events-none" />
               </div>
 
               {/* Quick Info */}
