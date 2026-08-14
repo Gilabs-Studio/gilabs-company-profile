@@ -294,25 +294,20 @@ const websiteSchema = {
       });
     });
 
-    // Ensure scroll is enabled on page load and cleanup any stuck ScrollTriggers
+    // Ensure scroll is enabled on page load
     window.addEventListener('load', () => {
-      requestAnimationFrame(async () => {
+      requestAnimationFrame(() => {
         resetBodyScrollStyles();
         
-        // Try to cleanup any ScrollTrigger instances that might be stuck
-        try {
-          const { ScrollTrigger } = await import('gsap/dist/ScrollTrigger');
-          // Kill all scroll triggers on page load to prevent conflicts
-          ScrollTrigger.getAll().forEach((st) => {
-            try {
-              st.kill();
-            } catch (e) {
-              // Ignore errors
-            }
-          });
-          ScrollTrigger.refresh();
-        } catch (e) {
-          // ScrollTrigger not loaded yet, that's okay
+        // Clean up any existing ScrollTrigger instances if GSAP was loaded
+        const win = window as any;
+        if (win.ScrollTrigger) {
+          try {
+            win.ScrollTrigger.getAll().forEach((st: any) => st?.kill?.());
+            win.ScrollTrigger.refresh();
+          } catch (e) {
+            // Ignore errors
+          }
         }
       });
     });

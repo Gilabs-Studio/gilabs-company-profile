@@ -63,7 +63,7 @@ const switchLangPath = lang === 'id'
   const navbar = document.getElementById('navbar');
 
   // Hide/show navbar on scroll
-  let lastScrollY = window.scrollY;
+  let lastScrollY = 0;
   let ticking = false;
 
   function updateNavbar() {
