@@ -11,7 +11,7 @@ interface FAQItemProps {
 
 const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => {
   return (
-    <div className="border border-border/50 rounded-2xl overflow-hidden bg-card/30 backdrop-blur-sm transition-all duration-300 hover:border-brand/50">
+    <div className="border border-border/50 rounded-2xl overflow-hidden bg-white shadow-sm transition-all duration-300 hover:border-brand/50 relative z-10">
       <button
         className="w-full px-6 py-5 flex items-center justify-between text-left gap-4 cursor-pointer"
         onClick={onClick}

@@ -10,7 +10,7 @@ const {
 	canonical = Astro.url.href,
 	robots = 'index, follow',
 	noindex = false,
-	showRays = false,
+	showRays = true,
 	keywords = 'Gilabs, PT Griya Innovations Labs, software house Indonesia, software house Semarang, software house Jakarta, software development company Indonesia, jasa pengembangan sistem internal perusahaan, jasa pembuatan ERP custom Indonesia, vendor ERP custom untuk perusahaan manufaktur, jasa pembuatan CRM custom Indonesia, software CRM untuk tim sales lapangan, CRM custom terintegrasi WhatsApp, jasa pembuatan aplikasi kasir custom, software POS untuk toko bangunan, jasa pembuatan dashboard monitoring perusahaan, dashboard KPI realtime untuk manajemen, software manufaktur custom Indonesia, aplikasi koperasi simpan pinjam custom, software distributor custom, jasa pembuatan software custom, vendor pengembangan software perusahaan, software house untuk digitalisasi bisnis',
 	ogImage = 'https://gilabs.id/og-image.png'
 } = Astro.props;
@@ -248,13 +248,13 @@ const websiteSchema = {
 	</head>
 	<body class="bg-background text-foreground font-sans antialiased relative selection:bg-brand selection:text-white">
     {showRays && (
-      <div class="fixed inset-0 z-[-1] pointer-events-none">
+      <div class="fixed inset-0 z-0 pointer-events-none">
         <LightRays 
           client:only="react"
-          raysColor="#FFFFF" 
+          raysColor="#FFFFFF" 
           raysSpeed={0.5} 
-          lightSpread={0.5}
-          rayLength={1.5}
+          lightSpread={0.6}
+          rayLength={1.8}
           raysOrigin="top-center"
         />
       </div>

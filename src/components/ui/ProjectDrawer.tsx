@@ -163,10 +163,10 @@ const ProjectDrawer = ({ lang = 'en' }: ProjectDrawerProps) => {
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="fixed top-0 right-0 h-full w-full max-w-2xl bg-background border-l border-border/50 shadow-2xl z-50 overflow-hidden"
+            className="fixed top-0 right-0 h-full w-full max-w-2xl bg-white border-l border-border/50 shadow-2xl z-50 overflow-hidden"
           >
             {/* Header */}
-            <div className="sticky top-0 z-10 flex items-center justify-between p-6 bg-background/80 backdrop-blur-md border-b border-border/50">
+            <div className="sticky top-0 z-10 flex items-center justify-between p-6 bg-white border-b border-border/50">
               <div>
                 <span className="inline-block px-3 py-1 text-xs font-medium bg-brand/10 text-brand rounded-full mb-2">
                   {project.category}
@@ -264,33 +264,6 @@ const ProjectDrawer = ({ lang = 'en' }: ProjectDrawerProps) => {
                   ))}
                 </div>
               </div>
-
-              {/* CTA Button */}
-              {project.link && project.link !== '#' && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center gap-2 w-full px-8 py-4 text-base font-bold text-white bg-brand rounded-full hover:bg-brand/90 hover:shadow-lg hover:shadow-brand/20 transition-all duration-200"
-                >
-                  {t.viewLive}
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" x2="21" y1="14" y2="3" />
-                  </svg>
-                </a>
-              )}
             </div>
           </motion.div>
         </>

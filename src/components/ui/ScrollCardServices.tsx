@@ -133,7 +133,7 @@ function ServiceCard({ item, index, lang }: ServiceCardProps) {
       <div
         className="
           relative overflow-hidden rounded-2xl md:rounded-3xl
-          bg-card
+          bg-white
           border border-border
           shadow-lg
         "

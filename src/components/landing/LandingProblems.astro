@@ -32,7 +32,7 @@ const eyebrow = lang === "en" ? "Challenge & Solution" : "Tantangan & Solusi";
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
       {problems.map((item, idx) => (
-        <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl md:rounded-3xl p-6 sm:p-8 hover:border-brand/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 flex flex-col space-y-4">
+        <div class="bg-white border border-border/50 rounded-2xl md:rounded-3xl p-6 sm:p-8 hover:border-brand/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 flex flex-col space-y-4 shadow-sm">
           <div class="flex items-center gap-3">
             <span class="flex items-center justify-center w-8 h-8 rounded-full bg-secondary/80 text-foreground text-xs font-mono font-bold">
               0{idx + 1}

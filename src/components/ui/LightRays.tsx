@@ -27,7 +27,7 @@ interface LightRaysProps {
   className?: string;
 }
 
-const DEFAULT_COLOR = '#ffffff';
+const DEFAULT_COLOR = '#FFFFFF';
 
 const hexToRgb = (hex: string): [number, number, number] => {
   const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -104,7 +104,7 @@ const LightRays: React.FC<LightRaysProps> = ({
   const animationIdRef = useRef<number | null>(null);
   const meshRef = useRef<Mesh | null>(null);
   const cleanupFunctionRef = useRef<(() => void) | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
@@ -212,16 +212,15 @@ float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
   float maxDistance = iResolution.x * rayLength;
   float lengthFalloff = clamp((maxDistance - distance) / maxDistance, 0.0, 1.0);
   
-  float fadeFalloff = clamp((iResolution.x * fadeDistance - distance) / (iResolution.x * fadeDistance), 0.5, 1.0);
+  float fadeFalloff = clamp((iResolution.x * fadeDistance - distance) / (iResolution.x * fadeDistance), 0.0, 1.0);
   float pulse = pulsating > 0.5 ? (0.8 + 0.2 * sin(iTime * speed * 3.0)) : 1.0;
 
-  float baseStrength = clamp(
-    (0.45 + 0.15 * sin(distortedAngle * seedA + iTime * speed)) +
-    (0.3 + 0.2 * cos(-distortedAngle * seedB + iTime * speed)),
-    0.0, 1.0
-  );
+  // Smooth harmonic wave combination for soft subtle ambient rays
+  float wave1 = 0.5 + 0.5 * sin(distortedAngle * seedA + iTime * speed);
+  float wave2 = 0.5 + 0.5 * cos(-distortedAngle * seedB + iTime * speed * 0.9);
+  float waveCombo = smoothstep(0.1, 0.9, wave1 * 0.5 + wave2 * 0.5);
 
-  return baseStrength * lengthFalloff * fadeFalloff * spreadFactor * pulse;
+  return waveCombo * lengthFalloff * fadeFalloff * spreadFactor * pulse;
 }
 
 void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -234,31 +233,26 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     finalRayDir = normalize(mix(rayDir, mouseDirection, mouseInfluence));
   }
 
-  vec4 rays1 = vec4(1.0) *
-               rayStrength(rayPos, finalRayDir, coord, 36.2214, 21.11349,
-                           1.5 * raysSpeed);
-  vec4 rays2 = vec4(1.0) *
-               rayStrength(rayPos, finalRayDir, coord, 22.3991, 18.0234,
-                           1.1 * raysSpeed);
+  float ray1 = rayStrength(rayPos, finalRayDir, coord, 36.2214, 21.11349, 1.5 * raysSpeed);
+  float ray2 = rayStrength(rayPos, finalRayDir, coord, 22.3991, 18.0234, 1.1 * raysSpeed);
 
-  fragColor = rays1 * 0.5 + rays2 * 0.4;
+  float strength = ray1 * 0.55 + ray2 * 0.45;
 
   if (noiseAmount > 0.0) {
     float n = noise(coord * 0.01 + iTime * 0.1);
-    fragColor.rgb *= (1.0 - noiseAmount + noiseAmount * n);
+    strength *= (1.0 - noiseAmount + noiseAmount * n);
   }
 
-  float brightness = 1.0 - (coord.y / iResolution.y);
-  fragColor.x *= 0.1 + brightness * 0.8;
-  fragColor.y *= 0.3 + brightness * 0.6;
-  fragColor.z *= 0.5 + brightness * 0.5;
+  float brightness = clamp(1.0 - (coord.y / iResolution.y), 0.0, 1.0);
+  float alpha = clamp(strength * (0.2 + brightness * 0.8) * 0.35, 0.0, 0.28);
 
   if (saturation != 1.0) {
-    float gray = dot(fragColor.rgb, vec3(0.299, 0.587, 0.114));
-    fragColor.rgb = mix(vec3(gray), fragColor.rgb, saturation);
+    float gray = dot(raysColor, vec3(0.299, 0.587, 0.114));
+    vec3 satColor = mix(vec3(gray), raysColor, saturation);
+    fragColor = vec4(satColor * alpha, alpha);
+  } else {
+    fragColor = vec4(raysColor * alpha, alpha);
   }
-
-  fragColor.rgb *= raysColor;
 }
 
 void main() {

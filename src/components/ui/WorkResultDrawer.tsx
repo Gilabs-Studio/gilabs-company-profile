@@ -219,12 +219,12 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
 
   return (
     <Drawer open={isOpen} onOpenChange={setIsOpen} direction="right" dismissible={isDismissible}>
-      <DrawerContent className="max-w-3xl h-[100dvh] flex flex-col overflow-hidden">
+      <DrawerContent className="max-w-3xl h-[100dvh] flex flex-col overflow-hidden bg-white">
         {project && (
           <div 
             ref={scrollContainerRef}
             data-vaul-no-drag
-            className="flex-1 overflow-y-auto flex flex-col"
+            className="flex-1 overflow-y-auto flex flex-col bg-white"
             style={{
               overscrollBehavior: 'contain',
               WebkitOverflowScrolling: 'touch',
@@ -242,7 +242,7 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
           >
               <DrawerHeader 
                 data-vaul-no-drag
-                className="shrink-0 border-b border-border/50 relative md:sticky top-0 bg-background/80 backdrop-blur-md z-20 px-6 py-4"
+                className="shrink-0 border-b border-border/50 relative md:sticky top-0 bg-white z-20 px-6 py-4"
               >
                 <div className="flex flex-col gap-4">
                   <div className="flex items-center">
@@ -405,34 +405,6 @@ const WorkResultDrawer = ({ lang = 'en' }: WorkResultDrawerProps) => {
                   ))}
                 </div>
               </div>
-
-              {project.liveUrl && project.liveUrl !== '#' && (
-                <div className="mt-8 mb-8">
-                  <a
-                    href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 w-full px-8 py-4 text-base font-bold text-white bg-brand rounded-full hover:bg-brand/90 hover:shadow-lg hover:shadow-brand/20 transition-all duration-200"
-                  >
-                    {t.viewLive}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                      <polyline points="15 3 21 3 21 9" />
-                      <line x1="10" x2="21" y1="14" y2="3" />
-                    </svg>
-                  </a>
-                </div>
-              )}
             </div>
           </div>
         )}

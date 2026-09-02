@@ -62,73 +62,73 @@
 
 @layer base {
   :root {
-    /* Bright Monochrome Palette */
-    --background: 0 0% 100%;       /* Pure White */
-    --foreground: 0 0% 10%;        /* Near Black */
+    /* Platinum #E5E4E2 & Charcoal #343434 Palette */
+    --background: 40 5.5% 89.2%;       /* Platinum #E5E4E2 */
+    --foreground: 0 0% 20.4%;          /* Charcoal #343434 */
     
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 0 0% 100%;                 /* Pure White #FFFFFF */
+    --card-foreground: 0 0% 20.4%;     /* Charcoal #343434 */
     
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 40 5.5% 89.2%;          /* Platinum #E5E4E2 */
+    --popover-foreground: 0 0% 20.4%;  /* Charcoal #343434 */
     
-    --primary: 0 0% 10%;           /* Black */
-    --primary-foreground: 0 0% 100%; /* White */
+    --primary: 0 0% 20.4%;             /* Charcoal #343434 */
+    --primary-foreground: 40 5.5% 89.2%; /* Platinum #E5E4E2 */
     
-    --secondary: 0 0% 96%;         /* Very Light Gray */
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 40 4% 84%;            /* Subtle contrast on #E5E4E2 */
+    --secondary-foreground: 0 0% 20.4%;/* Charcoal #343434 */
     
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 35%;  /* Darker gray for stronger contrast */
+    --muted: 40 4% 84%;
+    --muted-foreground: 0 0% 20.4%;    /* Charcoal #343434 */
     
-    --accent: 0 0% 96%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 40 4% 84%;
+    --accent-foreground: 0 0% 20.4%;   /* Charcoal #343434 */
     
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 40 5.5% 89.2%;
 
-    --border: 0 0% 80%;            /* Light Gray Border */
-    --input: 0 0% 90%;
-    --ring: 0 0% 10%;
+    --border: 40 4% 78%;               /* Border on #E5E4E2 */
+    --input: 40 4% 82%;
+    --ring: 0 0% 20.4%;                /* Charcoal #343434 */
     
-    --brand: 221 83% 53%;          /* Electric Blue #2563EB */
-    --brand-foreground: 0 0% 100%;
+    --brand: 221 83% 53%;              /* Electric Blue #2563EB */
+    --brand-foreground: 40 5.5% 89.2%; /* Platinum #E5E4E2 */
     
     --radius: 0.5rem;
   }
 
   .dark {
-    /* Dark mode - keeping it monochrome but inverted */
+    /* Dark mode - keeping it monochrome but inverted with platinum */
     --background: 0 0% 10%;
-    --foreground: 0 0% 100%;
+    --foreground: 40 5.5% 89.2%;
     
     --card: 0 0% 12%;
-    --card-foreground: 0 0% 100%;
+    --card-foreground: 40 5.5% 89.2%;
     
     --popover: 0 0% 12%;
-    --popover-foreground: 0 0% 100%;
+    --popover-foreground: 40 5.5% 89.2%;
     
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 10%;
+    --primary: 40 5.5% 89.2%;
+    --primary-foreground: 0 0% 20.4%;
     
     --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary-foreground: 40 5.5% 89.2%;
     
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 72%;
     
     --accent: 0 0% 15%;
-    --accent-foreground: 0 0% 100%;
+    --accent-foreground: 40 5.5% 89.2%;
     
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive-foreground: 40 5.5% 89.2%;
     
     --border: 0 0% 20%;
     --input: 0 0% 20%;
     --ring: 0 0% 83.9%;
 
     --brand: 221 83% 53%;
-    --brand-foreground: 0 0% 100%;
+    --brand-foreground: 40 5.5% 89.2%;
   }
 }
 
@@ -255,7 +255,6 @@
 
   /* Subtitle - Medium (18px) - Smaller */
   .typography-subtitle {
-    @apply text-muted-foreground;
     font-size: 1.125rem; /* 18px */
     line-height: 1.5;
     font-weight: 300;
@@ -263,7 +262,6 @@
 
   /* Body Text - Base (16px) */
   .typography-body {
-    @apply text-base text-muted-foreground;
     font-size: 1rem; /* 16px */
     line-height: 1.6;
     font-weight: 300;
@@ -271,7 +269,6 @@
 
   /* Body Text Large - For emphasis (18px) */
   .typography-body-large {
-    @apply text-lg text-muted-foreground;
     font-size: 1.125rem; /* 18px */
     line-height: 1.6;
     font-weight: 300;
@@ -279,7 +276,7 @@
 
   /* Eyebrow - Small with serif italic (12-14px) */
   .typography-eyebrow {
-    @apply text-xs sm:text-sm font-serif italic uppercase text-muted-foreground;
+    @apply text-xs sm:text-sm font-serif italic uppercase;
     font-size: clamp(0.75rem, 1vw, 0.875rem); /* 12px - 14px */
     line-height: 1.4;
     letter-spacing: 0.05em;
@@ -295,7 +292,6 @@
 
   /* Small Text - For labels, captions (14px) */
   .typography-small {
-    @apply text-sm text-muted-foreground;
     font-size: 0.875rem; /* 14px */
     line-height: 1.5;
     font-weight: 300;

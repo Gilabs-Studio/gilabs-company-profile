@@ -37,13 +37,13 @@ const FOOTER_LINKS = [
 const largeText = "GILABS";
 ---
 
-<footer class="bg-white text-zinc-900 pt-16 pb-10 overflow-hidden border-t border-zinc-100">
+<footer class="bg-background text-foreground pt-16 pb-10 overflow-hidden border-t border-border">
   <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-4">
       {/* Link Columns */}
       {FOOTER_LINKS.map((group) => (
         <div>
-          <h3 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-8">
+          <h3 class="text-foreground text-xs font-semibold uppercase tracking-widest mb-8">
             {group.title}
           </h3>
           <ul class="space-y-4">
@@ -51,7 +51,7 @@ const largeText = "GILABS";
               <li>
                 <a
                   href={link.href}
-                  class="text-zinc-900 hover:text-brand transition-colors cursor-pointer text-base"
+                  class="text-foreground hover:text-brand transition-colors cursor-pointer text-base"
                 >
                   {link.name}
                 </a>
@@ -64,24 +64,24 @@ const largeText = "GILABS";
       {/* Contact & Socials */}
       <div class="space-y-12">
         <div>
-          <h3 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest mb-6">
+          <h3 class="text-foreground text-xs font-semibold uppercase tracking-widest mb-6">
             {lang === 'en' ? "WE'D LOVE TO HELP YOU WITH EASE" : "KAMI SENANG MEMBANTU ANDA DENGAN MUDAH"}
           </h3>
-          <p class="text-sm text-zinc-500 mb-3">
+          <p class="text-sm text-foreground mb-3">
             {lang === 'en'
               ? 'Gilabs is the public brand of PT Griya Innovations Labs.'
               : 'Gilabs adalah brand publik dari PT Griya Innovations Labs.'}
           </p>
           <a 
             href="mailto:hello@gilabs.id" 
-            class="text-2xl md:text-3xl font-medium text-zinc-900 hover:text-brand transition-colors cursor-pointer overflow-wrap-anywhere block"
+            class="text-2xl md:text-3xl font-medium text-foreground hover:text-brand transition-colors cursor-pointer overflow-wrap-anywhere block"
           >
             hello@gilabs.id
           </a>
         </div>
 
         <div class="space-y-6">
-          <h3 class="text-zinc-400 text-xs font-semibold uppercase tracking-widest">
+          <h3 class="text-foreground text-xs font-semibold uppercase tracking-widest">
             {lang === 'en' ? 'Follow Us' : 'Ikuti Kami'}
           </h3>
           <div class="flex items-center gap-3">
@@ -93,7 +93,7 @@ const largeText = "GILABS";
             ].map((item) => (
               <button
                 type="button"
-                class="w-10 h-10 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-900 hover:bg-brand hover:text-white transition-all cursor-pointer shadow-sm"
+                class="w-10 h-10 rounded-full bg-secondary flex items-center justify-center text-foreground hover:bg-brand hover:text-white transition-all cursor-pointer shadow-sm"
                 aria-label={item.label}
               >
                 <item.icon className="w-4 h-4" />
@@ -108,7 +108,7 @@ const largeText = "GILABS";
   {/* Large Decorative Text - Aligned with Container */}
   <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12 select-none pointer-events-none mb-4 py-4 overflow-hidden">
     <h2 
-      class="w-full text-[25vw] md:text-[20vw] lg:text-[20rem] font-bold text-zinc-200/80 leading-none tracking-tighter text-center whitespace-nowrap"
+      class="w-full text-[25vw] md:text-[20vw] lg:text-[20rem] font-bold text-foreground/[0.08] leading-none tracking-tighter text-center whitespace-nowrap"
       style={{
         maskImage: 'linear-gradient(to top, transparent 0%, black 60%)',
         WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 60%)',
@@ -120,17 +120,17 @@ const largeText = "GILABS";
 
   <div class="relative z-10 mx-auto w-full max-w-7xl px-6 lg:px-12">
     {/* Bottom Bar */}
-    <div class="pt-8 border-t border-zinc-100 grid grid-cols-1 md:grid-cols-3 items-center gap-6 text-sm text-zinc-400">
+    <div class="pt-8 border-t border-border grid grid-cols-1 md:grid-cols-3 items-center gap-6 text-sm text-foreground">
       <p class="text-center md:text-left">
         &copy; {new Date().getFullYear()} PT Griya Innovations Labs (Gilabs). All rights reserved.
       </p>
       <div class="flex justify-center gap-8">
-        <a href={`/${lang}/terms`} class="hover:text-zinc-900 transition-colors cursor-pointer">
+        <a href={`/${lang}/terms`} class="hover:text-brand transition-colors cursor-pointer">
           {lang === 'en' ? 'Terms & Conditions' : 'Syarat & Ketentuan'}
         </a>
       </div>
       <div class="flex justify-center md:justify-end gap-8">
-        <a href={`/${lang}/privacy`} class="hover:text-zinc-900 transition-colors cursor-pointer">
+        <a href={`/${lang}/privacy`} class="hover:text-brand transition-colors cursor-pointer">
           {lang === 'en' ? 'Privacy Policy' : 'Kebijakan Privasi'}
         </a>
       </div>
