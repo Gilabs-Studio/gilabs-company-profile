@@ -1,106 +1,123 @@
 ---
-import { X } from 'lucide-react';
-import { getWhatsAppLink } from '../lib/utils';
+import { X, ChevronDown } from "lucide-react";
+import { getWhatsAppLink } from "../lib/utils";
 
 const { lang } = Astro.props;
 const pathPrefix = `/${lang}`;
 
 const links = [
-  { href: `${pathPrefix}/services`, label: lang === 'en' ? 'Services' : 'Layanan' },
-  { href: `${pathPrefix}/solutions`, label: lang === 'en' ? 'Solutions' : 'Solusi' },
-  { href: `${pathPrefix}/work-results`, label: lang === 'en' ? 'Our Work' : 'Hasil Pekerjaan' },
-  { href: `${pathPrefix}/blog`, label: lang === 'en' ? 'Blog' : 'Blog' },
-  { href: getWhatsAppLink('navbar', lang), label: lang === 'en' ? 'Contact' : 'Kontak', external: true },
+  { href: `${pathPrefix}/services`, label: lang === "en" ? "Services" : "Layanan", isDropdown: true },
+  { href: `${pathPrefix}/solutions`, label: lang === "en" ? "Solutions" : "Solusi" },
+  { href: `${pathPrefix}/work-results`, label: lang === "en" ? "Our Work" : "Hasil Pekerjaan" },
+  { href: `${pathPrefix}/blog`, label: lang === "en" ? "Blog" : "Blog" },
+  { href: getWhatsAppLink("navbar", lang), label: lang === "en" ? "Contact" : "Kontak", external: true },
+];
+
+const serviceSublinks = [
+  { href: `${pathPrefix}/services/jasa-pembuatan-website`, label: lang === "en" ? "Website Development" : "Jasa Pembuatan Website" },
+  { href: `${pathPrefix}/services/jasa-web-company-profile`, label: lang === "en" ? "Company Profile" : "Web Company Profile" },
+  { href: `${pathPrefix}/services/software-house-indonesia`, label: lang === "en" ? "Software House" : "Software House Indonesia" },
+  { href: `${pathPrefix}/services/jasa-pembuatan-custom-software`, label: lang === "en" ? "Custom Software" : "Custom Software & Web App" },
+  { href: `${pathPrefix}/services/jasa-pembuatan-aplikasi-mobile`, label: lang === "en" ? "Mobile Apps" : "Aplikasi Mobile (iOS/Android)" },
+  { href: `${pathPrefix}/services/jasa-pembuatan-erp-crm`, label: lang === "en" ? "ERP & CRM" : "Sistem ERP & CRM Custom" },
 ];
 
 const currentPath = Astro.url.pathname;
-const switchLangPath = lang === 'id'
-  ? (currentPath === '/' ? '/en' : currentPath.replace(/^\/id/, '/en'))
-  : (currentPath.startsWith('/en') ? currentPath.replace(/^\/en/, '/id') : `/id${currentPath}`);
+const switchLangPath = lang === "id"
+  ? (currentPath === "/" ? "/en" : currentPath.replace(/^\/id/, "/en"))
+  : (currentPath.startsWith("/en") ? currentPath.replace(/^\/en/, "/id") : `/id${currentPath}`);
 ---
 
-<!-- Mobile Menu - Rendered directly in body to avoid parent transform issues -->
-<div id="mobile-menu" class="fixed inset-0 bg-background/95 backdrop-blur-xl z-[9999] flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+<div id="mobile-menu" class="fixed inset-0 bg-background/98 backdrop-blur-xl z-[9999] flex flex-col items-center justify-between opacity-0 pointer-events-none transition-opacity duration-300 p-6 sm:p-8 overflow-y-auto">
   <!-- Close Button - Top Right -->
-  <button 
-    id="mobile-menu-close" 
-    class="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 text-foreground/60 hover:text-foreground transition-colors duration-200 group pointer-events-auto z-[10000]"
-    aria-label="Close Menu"
-  >
-    <X className="w-5 h-5 sm:w-6 sm:h-6 stroke-[1.5] group-hover:stroke-[2] transition-all duration-200" />
-  </button>
+  <div class="w-full flex items-center justify-between pb-4 border-b border-border/40">
+    <span class="text-xl font-bold tracking-tighter">
+      GILABS<span class="text-brand">.ID</span>
+    </span>
+    <button 
+      id="mobile-menu-close" 
+      class="p-2 text-foreground/60 hover:text-foreground transition-colors duration-200 cursor-pointer"
+      aria-label="Close Menu"
+    >
+      <X className="w-6 h-6 stroke-[1.5]" />
+    </button>
+  </div>
   
-  <div class="flex flex-col items-center gap-8 text-center">
-    {links.map(link => (
-      <a 
-        href={link.href} 
-        class="text-2xl font-bold text-foreground hover:text-brand transition-colors mobile-link"
-        {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      >
-        {link.label}
-      </a>
-    ))}
-    <div class="flex flex-col items-center gap-6 mt-8">
-      <a href={switchLangPath} class="text-sm font-medium border border-border px-4 py-2 rounded-full hover:bg-secondary transition-colors uppercase">
-        {lang === 'en' ? 'Switch to ID' : 'Ganti ke EN'}
-      </a>
-      <a href={getWhatsAppLink('navbar', lang)} target="_blank" rel="noopener noreferrer" class="text-lg font-bold bg-brand text-white px-8 py-3 rounded-full hover:bg-brand/90 transition-all shadow-lg shadow-brand/20">
-        {lang === 'en' ? 'Get Started' : 'Mulai Sekarang'}
-      </a>
-    </div>
+  <div class="flex flex-col items-center gap-5 text-center my-auto py-6 w-full max-w-sm">
+    {links.map(link => {
+      if (link.isDropdown) {
+        return (
+          <div class="w-full space-y-2">
+            <a 
+              href={link.href} 
+              class="text-xl font-bold text-foreground hover:text-brand transition-colors mobile-link block py-1"
+            >
+              {link.label}
+            </a>
+            <div class="grid grid-cols-2 gap-1.5 py-1 px-3 bg-secondary/30 rounded-xl border border-border/40">
+              {serviceSublinks.map(sub => (
+                <a 
+                  href={sub.href}
+                  class="text-xs font-medium text-muted-foreground hover:text-brand py-1.5 text-center mobile-link"
+                >
+                  {sub.label}
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      return (
+        <a 
+          href={link.href} 
+          class="text-xl font-bold text-foreground hover:text-brand transition-colors mobile-link"
+          {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+        >
+          {link.label}
+        </a>
+      );
+    })}
+  </div>
+
+  <div class="w-full flex flex-col items-center gap-4 pt-4 border-t border-border/40">
+    <a href={switchLangPath} class="text-xs font-medium border border-border px-4 py-2 rounded-full hover:bg-secondary transition-colors uppercase">
+      {lang === "en" ? "Switch to ID" : "Ganti ke EN"}
+    </a>
+    <a href={getWhatsAppLink("navbar", lang)} target="_blank" rel="noopener noreferrer" class="w-full text-center text-sm font-bold bg-brand text-white px-8 py-3.5 rounded-full hover:bg-brand/90 transition-all shadow-lg shadow-brand/20">
+      {lang === "en" ? "Get Started" : "Mulai Sekarang"}
+    </a>
   </div>
 </div>
 
 <script>
-  // Mobile menu toggle functionality
-  // This script connects the toggle button in Navbar with the menu in body
-  const menuToggle = document.getElementById('menu-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  const iconMenu = document.getElementById('icon-menu');
-  const iconClose = document.getElementById('icon-close');
-  const mobileLinks = document.querySelectorAll('.mobile-link');
+  const menuToggle = document.getElementById("menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const iconMenu = document.getElementById("icon-menu");
+  const iconClose = document.getElementById("icon-close");
+  const mobileLinks = document.querySelectorAll(".mobile-link");
+  const closeButton = document.getElementById("mobile-menu-close");
 
   function toggleMenu() {
     if (!mobileMenu || !iconMenu || !iconClose) return;
-    
-    const isClosed = mobileMenu.classList.contains('opacity-0');
+    const isClosed = mobileMenu.classList.contains("opacity-0");
     
     if (isClosed) {
-      mobileMenu.classList.remove('opacity-0', 'pointer-events-none');
-      if (iconMenu) iconMenu.classList.add('hidden');
-      if (iconClose) iconClose.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-      // Prevent scroll on body
-      document.body.style.position = 'fixed';
-      document.body.style.width = '100%';
+      mobileMenu.classList.remove("opacity-0", "pointer-events-none");
+      if (iconMenu) iconMenu.classList.add("hidden");
+      if (iconClose) iconClose.classList.remove("hidden");
+      document.body.style.overflow = "hidden";
     } else {
-      mobileMenu.classList.add('opacity-0', 'pointer-events-none');
-      if (iconMenu) iconMenu.classList.remove('hidden');
-      if (iconClose) iconClose.classList.add('hidden');
-      // Reset body styles
-      document.body.style.overflow = '';
-      document.body.style.position = '';
-      document.body.style.width = '';
+      mobileMenu.classList.add("opacity-0", "pointer-events-none");
+      if (iconMenu) iconMenu.classList.remove("hidden");
+      if (iconClose) iconClose.classList.add("hidden");
+      document.body.style.overflow = "";
     }
   }
 
-  // Close button handler
-  const closeButton = document.getElementById('mobile-menu-close');
-  
-  // Wait for DOM to be ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      menuToggle?.addEventListener('click', toggleMenu);
-      closeButton?.addEventListener('click', toggleMenu);
-      mobileLinks.forEach(link => {
-        link.addEventListener('click', toggleMenu);
-      });
-    });
-  } else {
-    menuToggle?.addEventListener('click', toggleMenu);
-    closeButton?.addEventListener('click', toggleMenu);
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', toggleMenu);
-    });
-  }
+  menuToggle?.addEventListener("click", toggleMenu);
+  closeButton?.addEventListener("click", toggleMenu);
+  mobileLinks.forEach(link => {
+    link.addEventListener("click", toggleMenu);
+  });
 </script>

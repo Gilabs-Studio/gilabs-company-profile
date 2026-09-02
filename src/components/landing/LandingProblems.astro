@@ -1,0 +1,52 @@
+---
+import type { ServiceProblem } from "../../data/services/types";
+
+interface Props {
+  lang?: "en" | "id";
+  title: string;
+  subtitle: string;
+  problems: ServiceProblem[];
+}
+
+const { lang = "id", title, subtitle, problems } = Astro.props;
+const eyebrow = lang === "en" ? "Challenge & Solution" : "Tantangan & Solusi";
+---
+
+<section class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow">
+          {eyebrow}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+      <h2 class="typography-section-title mb-6">
+        {title}
+      </h2>
+      <p class="typography-subtitle leading-relaxed">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      {problems.map((item, idx) => (
+        <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl md:rounded-3xl p-6 sm:p-8 hover:border-brand/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 flex flex-col space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-secondary/80 text-foreground text-xs font-mono font-bold">
+              0{idx + 1}
+            </span>
+            <h3 class="typography-card-title text-foreground">
+              {item.pain}
+            </h3>
+          </div>
+          <div class="pl-4 sm:pl-6 text-sm sm:text-base text-muted-foreground font-light leading-relaxed border-l-2 border-brand/50">
+            <strong class="text-foreground font-medium">Solusi Gilabs: </strong>
+            {item.solution}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

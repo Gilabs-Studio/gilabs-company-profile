@@ -31,7 +31,19 @@ export default defineConfig({
         else if (item.url.includes('/services')) {
           item.priority = 0.95;
           // @ts-ignore
-          item.changefreq = 'monthly';
+          item.changefreq = 'weekly';
+        }
+        // Pricing & Cost guide pages
+        else if (item.url.includes('/biaya')) {
+          item.priority = 0.95;
+          // @ts-ignore
+          item.changefreq = 'weekly';
+        }
+        // Local SEO city landing pages
+        else if (item.url.includes('/lokasi')) {
+          item.priority = 0.95;
+          // @ts-ignore
+          item.changefreq = 'weekly';
         }
         // Solutions pages are highly strategic for long-tail SEO queries
         else if (item.url.includes('/solutions')) {

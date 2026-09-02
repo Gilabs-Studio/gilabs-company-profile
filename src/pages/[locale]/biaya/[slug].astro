@@ -1,0 +1,299 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Navbar from "../../../components/Navbar.astro";
+import Footer from "../../../components/sections/Footer.astro";
+import LandingHero from "../../../components/landing/LandingHero.astro";
+import LandingFAQ from "../../../components/landing/LandingFAQ.astro";
+import LandingCTA from "../../../components/landing/LandingCTA.astro";
+import { ArrowRight, Check } from "lucide-react";
+import { pricingSlugs, getPricingData } from "../../../data/pricing/index";
+import { getWhatsAppLink } from "../../../lib/utils";
+
+export function getStaticPaths() {
+  const locales = ["en", "id"] as const;
+  const paths = [];
+
+  for (const locale of locales) {
+    for (const slug of pricingSlugs) {
+      paths.push({
+        params: { locale, slug },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { locale, slug } = Astro.params;
+const lang = locale as "en" | "id";
+const guide = getPricingData(slug, lang);
+
+if (!guide) {
+  return Astro.redirect("/404");
+}
+
+const siteUrl = "https://gilabs.id";
+const canonical = `${siteUrl}/${lang}/biaya/${slug}`;
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Gilabs",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": lang === "id" ? "Panduan Biaya" : "Pricing Guide",
+      "item": canonical
+    }
+  ]
+};
+---
+
+<Layout
+  lang={lang}
+  title={guide.metaTitle}
+  description={guide.metaDescription}
+  canonical={canonical}
+  keywords={guide.keywords.join(", ")}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+
+  <Navbar lang={lang} />
+
+  <main class="min-h-screen bg-background">
+    <LandingHero
+      lang={lang}
+      eyebrow={guide.eyebrow}
+      title={guide.title}
+      subtitle={guide.subtitle}
+      illustration={guide.heroIllustration}
+      primaryCtaText={lang === "en" ? "Calculate My Project" : "Hitung Estimasi Biaya"}
+      secondaryCtaText={lang === "en" ? "View Tiers" : "Lihat Estimasi"}
+      secondaryCtaHref="#tiers"
+    />
+
+    {/* Factors Section */}
+    <section class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+          <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+            <span class="typography-eyebrow">
+              {lang === "en" ? "Pricing Factors" : "Faktor Penentu Harga"}
+            </span>
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          </div>
+          <h2 class="typography-section-title mb-6">
+            {guide.factorsTitle}
+          </h2>
+          <p class="typography-subtitle leading-relaxed">
+            {guide.factorsSubtitle}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {guide.factors.map((f, i) => (
+            <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl md:rounded-3xl p-6 sm:p-8 hover:border-brand/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 space-y-3">
+              <div class="flex items-center gap-3">
+                <span class="w-8 h-8 rounded-full bg-secondary/80 text-foreground text-xs font-mono font-bold flex items-center justify-center">
+                  0{i + 1}
+                </span>
+                <h3 class="typography-card-title text-foreground">
+                  {f.title}
+                </h3>
+              </div>
+              <p class="typography-body pl-11 leading-relaxed">
+                {f.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Tiers Section */}
+    <section id="tiers" class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+          <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+            <span class="typography-eyebrow">
+              {lang === "en" ? "Cost Estimates" : "Estimasi Investasi"}
+            </span>
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          </div>
+          <h2 class="typography-section-title mb-6">
+            {guide.tiersTitle}
+          </h2>
+          <p class="typography-subtitle leading-relaxed">
+            {guide.tiersSubtitle}
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
+          {guide.tiers.map((tier, idx) => {
+            const isHighlighted = idx === 1;
+
+            if (isHighlighted) {
+              return (
+                <div class="relative bg-foreground text-background rounded-3xl p-8 md:p-10 flex flex-col justify-between transition-all shadow-2xl shadow-brand/20 overflow-hidden">
+                  <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+                    <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-brand/40 rounded-full blur-3xl"></div>
+                    <div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-brand/40 rounded-full blur-3xl"></div>
+                  </div>
+
+                  <div class="relative z-10 space-y-5">
+                    <span class="text-[11px] font-bold uppercase tracking-wider bg-brand text-white px-3 py-1 rounded-full inline-block">
+                      {lang === "en" ? "Most Popular" : "Pilihan Terbanyak"}
+                    </span>
+                    <h3 class="typography-card-title text-background">
+                      {tier.title}
+                    </h3>
+                    <div class="py-3 border-y border-background/20">
+                      <div class="text-2xl sm:text-3xl font-bold text-background">
+                        {tier.priceRange}
+                      </div>
+                      <div class="text-xs text-background/70 mt-1">
+                        ⏱ {tier.timeframe}
+                      </div>
+                    </div>
+                    <p class="text-xs text-background/80 leading-relaxed font-light">
+                      <strong class="text-background font-medium">Cocok untuk: </strong>{tier.idealFor}
+                    </p>
+                    <div class="pt-2 space-y-2 text-sm text-background/90 font-light">
+                      {tier.included.map((item) => (
+                        <div class="flex items-start gap-2">
+                          <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="pt-8 relative z-10">
+                    <a
+                      href={getWhatsAppLink(`pricing-${tier.title}`, lang)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 text-sm font-semibold rounded-full bg-background text-foreground hover:scale-105 transition-all shadow-lg active:scale-95 cursor-pointer"
+                    >
+                      <span>{lang === "en" ? "Request Quote" : "Minta Penawaran"}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </a>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-brand/50 hover:shadow-xl hover:-translate-y-1 space-y-6">
+                <div class="space-y-4">
+                  <h3 class="typography-card-title text-foreground">
+                    {tier.title}
+                  </h3>
+                  <div class="py-3 border-y border-border/40">
+                    <div class="text-2xl sm:text-3xl font-bold text-foreground">
+                      {tier.priceRange}
+                    </div>
+                    <div class="text-xs text-muted-foreground mt-1">
+                      ⏱ {tier.timeframe}
+                    </div>
+                  </div>
+                  <p class="text-xs text-muted-foreground font-light leading-relaxed">
+                    <strong class="text-foreground font-medium">Cocok untuk: </strong>{tier.idealFor}
+                  </p>
+                  <div class="pt-2 space-y-2 text-sm text-muted-foreground font-light">
+                    {tier.included.map((item) => (
+                      <div class="flex items-start gap-2">
+                        <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div class="pt-6">
+                  <a
+                    href={getWhatsAppLink(`pricing-${tier.title}`, lang)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-full inline-flex items-center justify-center gap-2 py-3 px-6 text-sm font-semibold rounded-full bg-brand text-white hover:bg-brand/90 transition-all shadow-md shadow-brand/20 cursor-pointer"
+                  >
+                    <span>{lang === "en" ? "Request Quote" : "Minta Penawaran"}</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </a>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+    {/* Comparison Table */}
+    <section class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+          <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+            <span class="typography-eyebrow">
+              {lang === "en" ? "Standard Comparison" : "Perbandingan Kualitas"}
+            </span>
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          </div>
+          <h2 class="typography-section-title mb-6">
+            {guide.comparisonTitle}
+          </h2>
+          <p class="typography-subtitle leading-relaxed">
+            {guide.comparisonSubtitle}
+          </p>
+        </div>
+
+        <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl md:rounded-3xl overflow-hidden shadow-xl">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm">
+              <thead class="border-b border-border/50 py-4 px-6 bg-muted/30 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                <tr>
+                  <th class="p-4 sm:p-5">Fitur & Parameter</th>
+                  <th class="p-4 sm:p-5 text-muted-foreground">Template Murahan / Vendor Lain</th>
+                  <th class="p-4 sm:p-5 text-brand bg-brand/[0.04]">Custom Engineering Gilabs</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border/30 font-light">
+                {guide.comparisonTable.map((row) => (
+                  <tr class="hover:bg-secondary/40 transition-colors">
+                    <td class="p-4 sm:p-5 font-semibold text-foreground text-sm">{row.feature}</td>
+                    <td class="p-4 sm:p-5 text-muted-foreground text-xs sm:text-sm">{row.template}</td>
+                    <td class="p-4 sm:p-5 font-medium text-foreground bg-brand/[0.04] text-xs sm:text-sm">{row.customGilabs}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <LandingFAQ
+      lang={lang}
+      title={guide.faqTitle}
+      faqs={guide.faqs}
+    />
+
+    <LandingCTA
+      lang={lang}
+      title={guide.ctaTitle}
+      subtitle={guide.ctaSubtitle}
+      buttonText={guide.ctaButton}
+    />
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

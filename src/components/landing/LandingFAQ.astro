@@ -1,0 +1,67 @@
+---
+import type { ServiceFAQ } from "../../data/services/types";
+
+interface Props {
+  lang?: "en" | "id";
+  title: string;
+  subtitle?: string;
+  faqs: ServiceFAQ[];
+}
+
+const { lang = "id", title, subtitle, faqs } = Astro.props;
+const eyebrow = lang === "en" ? "Common Questions" : "Tanya Jawab Seputar Layanan";
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<!-- Inject FAQ Schema for Rich Google SERP snippets -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<section class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow">
+          {eyebrow}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+      <h2 class="typography-section-title mb-6">
+        {title}
+      </h2>
+      {subtitle && (
+        <p class="typography-subtitle leading-relaxed">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class="space-y-4">
+      {faqs.map((item) => (
+        <details class="group bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl md:rounded-3xl p-6 open:border-brand/50 transition-all duration-200 cursor-pointer">
+          <summary class="flex items-center justify-between font-semibold text-foreground text-base sm:text-lg list-none select-none">
+            <span class="typography-card-title text-foreground">{item.question}</span>
+            <span class="ml-4 flex-shrink-0 text-muted-foreground group-open:rotate-180 transition-transform duration-200">
+              ▼
+            </span>
+          </summary>
+          <div class="pt-4 typography-body leading-relaxed border-t border-border/30 mt-4">
+            {item.answer}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

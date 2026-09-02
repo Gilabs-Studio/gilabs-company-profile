@@ -1,0 +1,218 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Navbar from "../../../components/Navbar.astro";
+import Footer from "../../../components/sections/Footer.astro";
+import LandingHero from "../../../components/landing/LandingHero.astro";
+import LandingFAQ from "../../../components/landing/LandingFAQ.astro";
+import LandingCTA from "../../../components/landing/LandingCTA.astro";
+import { MapPin, ShieldCheck, ArrowRight } from "lucide-react";
+import { citySlugs, getCityData } from "../../../data/lokasi/index";
+import { getWhatsAppLink } from "../../../lib/utils";
+
+export function getStaticPaths() {
+  const locales = ["en", "id"] as const;
+  const paths = [];
+
+  for (const locale of locales) {
+    for (const slug of citySlugs) {
+      paths.push({
+        params: { locale, slug },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { locale, slug } = Astro.params;
+const lang = locale as "en" | "id";
+const city = getCityData(slug, lang);
+
+if (!city) {
+  return Astro.redirect("/404");
+}
+
+const siteUrl = "https://gilabs.id";
+const canonical = `${siteUrl}/${lang}/lokasi/${slug}`;
+
+// LocalBusiness Schema JSON-LD
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": `Gilabs (PT Griya Innovations Labs) - ${city.cityName}`,
+  "description": city.metaDescription,
+  "url": canonical,
+  "telephone": "+6285183042294",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": city.cityName,
+    "addressRegion": city.addressInfo.region,
+    "addressCountry": "ID"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "-6.966667",
+    "longitude": "110.416667"
+  },
+  "priceRange": "$$"
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Gilabs",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": lang === "id" ? "Lokasi" : "Locations",
+      "item": canonical
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": city.cityName,
+      "item": canonical
+    }
+  ]
+};
+---
+
+<Layout
+  lang={lang}
+  title={city.metaTitle}
+  description={city.metaDescription}
+  canonical={canonical}
+  keywords={city.keywords.join(", ")}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+
+  <Navbar lang={lang} />
+
+  <main class="min-h-screen bg-background">
+    <LandingHero
+      lang={lang}
+      eyebrow={city.eyebrow}
+      title={city.title}
+      subtitle={city.subtitle}
+      illustration={city.heroIllustration}
+      primaryCtaText={lang === "en" ? `Consult ${city.cityName} Team` : `Konsultasi Tim ${city.cityName}`}
+      secondaryCtaText={lang === "en" ? "View Services" : "Layanan Kami"}
+      secondaryCtaHref="#services"
+    />
+
+    {/* Local Overview - Dark Container Combination */}
+    <section class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+      <div class="container mx-auto px-4 max-w-5xl">
+        <div class="bg-foreground text-background rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 relative overflow-hidden shadow-2xl shadow-brand/20 space-y-6">
+          <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+            <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-brand/30 rounded-full blur-3xl"></div>
+          </div>
+
+          <div class="relative z-10 space-y-4">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand text-white text-xs font-mono font-bold">
+              <MapPin className="w-3.5 h-3.5" />
+              <span>{city.addressInfo.region}</span>
+            </div>
+            <h2 class="typography-hero-title text-background">
+              {city.localOverviewTitle}
+            </h2>
+            <p class="typography-subtitle text-background/80 leading-relaxed font-light">
+              {city.localOverviewText}
+            </p>
+            <div class="pt-4 text-xs sm:text-sm text-background/70 font-light border-t border-background/20">
+              📍 {city.addressInfo.description}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {/* Local Services */}
+    <section id="services" class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+          <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+            <span class="typography-eyebrow">
+              {lang === "en" ? "Local Expertise" : "Keahlian Spesifik Area"}
+            </span>
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          </div>
+          <h2 class="typography-section-title mb-6">
+            {lang === "en" ? `Popular Services in ${city.cityName}` : `Layanan Unggulan di ${city.cityName}`}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {city.localServices.map((svc) => (
+            <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl md:rounded-3xl p-6 sm:p-8 hover:border-brand/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 space-y-3">
+              <h3 class="typography-card-title text-foreground">
+                {svc.title}
+              </h3>
+              <p class="typography-body leading-relaxed">
+                {svc.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* Local Advantages */}
+    <section class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+      <div class="container mx-auto px-4 max-w-6xl">
+        <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+          <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+            <span class="typography-eyebrow">
+              {lang === "en" ? "Strategic Advantages" : "Keunggulan Gilabs"}
+            </span>
+            <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          </div>
+          <h2 class="typography-section-title mb-6">
+            {city.localAdvantagesTitle}
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          {city.localAdvantages.map((adv) => (
+            <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-2xl md:rounded-3xl p-6 sm:p-8 hover:border-brand/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 space-y-3">
+              <div class="w-10 h-10 rounded-full bg-brand/10 text-brand flex items-center justify-center">
+                <ShieldCheck className="w-5 h-5" />
+              </div>
+              <h3 class="typography-card-title text-foreground">
+                {adv.title}
+              </h3>
+              <p class="typography-body leading-relaxed">
+                {adv.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <LandingFAQ
+      lang={lang}
+      title={city.faqTitle}
+      faqs={city.faqs}
+    />
+
+    <LandingCTA
+      lang={lang}
+      title={city.ctaTitle}
+      subtitle={city.ctaSubtitle}
+      buttonText={city.ctaButton}
+    />
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

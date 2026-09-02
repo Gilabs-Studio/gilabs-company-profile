@@ -1,0 +1,162 @@
+---
+import Layout from "../../../layouts/Layout.astro";
+import Navbar from "../../../components/Navbar.astro";
+import Footer from "../../../components/sections/Footer.astro";
+import LandingHero from "../../../components/landing/LandingHero.astro";
+import LandingProblems from "../../../components/landing/LandingProblems.astro";
+import LandingFeatures from "../../../components/landing/LandingFeatures.astro";
+import LandingPackages from "../../../components/landing/LandingPackages.astro";
+import LandingTechStack from "../../../components/landing/LandingTechStack.astro";
+import LandingFAQ from "../../../components/landing/LandingFAQ.astro";
+import LandingCTA from "../../../components/landing/LandingCTA.astro";
+import { serviceSlugs, getServiceData } from "../../../data/services/index";
+
+export function getStaticPaths() {
+  const locales = ["en", "id"] as const;
+  const paths = [];
+
+  for (const locale of locales) {
+    for (const slug of serviceSlugs) {
+      paths.push({
+        params: { locale, slug },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { locale, slug } = Astro.params;
+const lang = locale as "en" | "id";
+const service = getServiceData(slug, lang);
+
+if (!service) {
+  return Astro.redirect("/404");
+}
+
+const siteUrl = "https://gilabs.id";
+const canonical = `${siteUrl}/${lang}/services/${slug}`;
+
+// Service Schema JSON-LD
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": service.title,
+  "serviceType": service.eyebrow,
+  "description": service.metaDescription,
+  "url": canonical,
+  "provider": {
+    "@type": "Organization",
+    "@id": "https://gilabs.id/#organization",
+    "name": "Gilabs (PT Griya Innovations Labs)",
+    "url": "https://gilabs.id"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Indonesia"
+  },
+  "offers": service.packages.map(pkg => ({
+    "@type": "Offer",
+    "name": pkg.name,
+    "price": pkg.price.replace(/[^0-9]/g, "") || "0",
+    "priceCurrency": lang === "id" ? "IDR" : "USD",
+    "description": pkg.description
+  }))
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Gilabs",
+      "item": siteUrl
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": lang === "id" ? "Layanan" : "Services",
+      "item": `${siteUrl}/${lang}/services`
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": service.eyebrow,
+      "item": canonical
+    }
+  ]
+};
+---
+
+<Layout
+  lang={lang}
+  title={service.metaTitle}
+  description={service.metaDescription}
+  canonical={canonical}
+  keywords={service.keywords.join(", ")}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+
+  <Navbar lang={lang} />
+
+  <main class="min-h-screen bg-background">
+    <LandingHero
+      lang={lang}
+      eyebrow={service.eyebrow}
+      title={service.title}
+      subtitle={service.subtitle}
+      illustration={service.heroIllustration}
+      primaryCtaText={service.primaryCtaText}
+      secondaryCtaText={service.secondaryCtaText}
+      secondaryCtaHref={`/${lang}/work-results`}
+    />
+
+    <LandingProblems
+      lang={lang}
+      title={service.problemsTitle}
+      subtitle={service.problemsSubtitle}
+      problems={service.problems}
+    />
+
+    <LandingFeatures
+      lang={lang}
+      title={service.featuresTitle}
+      subtitle={service.featuresSubtitle}
+      features={service.features}
+    />
+
+    <LandingPackages
+      lang={lang}
+      title={service.packagesTitle}
+      subtitle={service.packagesSubtitle}
+      packages={service.packages}
+    />
+
+    <LandingTechStack
+      lang={lang}
+      title={service.techStackTitle}
+      subtitle={service.techStackSubtitle}
+      techStack={service.techStack}
+    />
+
+    <LandingFAQ
+      lang={lang}
+      title={service.faqTitle}
+      subtitle={service.faqSubtitle}
+      faqs={service.faqs}
+    />
+
+    <LandingCTA
+      lang={lang}
+      title={service.ctaTitle}
+      subtitle={service.ctaSubtitle}
+      buttonText={service.ctaButton}
+    />
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

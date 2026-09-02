@@ -1,0 +1,144 @@
+---
+import { Check, ArrowRight } from "lucide-react";
+import type { ServicePackage } from "../../data/services/types";
+import { getWhatsAppLink } from "../../lib/utils";
+
+interface Props {
+  lang: "en" | "id";
+  title: string;
+  subtitle: string;
+  packages: ServicePackage[];
+}
+
+const { lang, title, subtitle, packages } = Astro.props;
+const eyebrow = lang === "en" ? "Investment & Packages" : "Investasi & Paket Layanan";
+---
+
+<section class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow">
+          {eyebrow}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+      <h2 class="typography-section-title mb-6">
+        {title}
+      </h2>
+      <p class="typography-subtitle leading-relaxed">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class={"grid grid-cols-1 " + (packages.length === 2 ? "md:grid-cols-2 max-w-4xl mx-auto" : "md:grid-cols-3") + " gap-8 items-stretch"}>
+      {packages.map((pkg) => {
+        const isDark = pkg.isPopular;
+
+        if (isDark) {
+          return (
+            <div class="relative bg-foreground text-background rounded-3xl p-8 md:p-10 flex flex-col justify-between transition-all shadow-2xl shadow-brand/20 overflow-hidden">
+              <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+                <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-brand/40 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-brand/40 rounded-full blur-3xl"></div>
+              </div>
+
+              <div class="relative z-10 space-y-6">
+                <div class="flex items-center justify-between">
+                  <span class="text-[11px] font-bold uppercase tracking-wider bg-brand text-white px-3 py-1 rounded-full">
+                    {lang === "en" ? "Recommended" : "Pilihan Utama"}
+                  </span>
+                </div>
+
+                <div>
+                  <h3 class="typography-card-title text-background mb-2">
+                    {pkg.name}
+                  </h3>
+                  <p class="text-sm text-background/80 font-light leading-relaxed">
+                    {pkg.description}
+                  </p>
+                </div>
+
+                <div class="py-4 border-y border-background/20">
+                  <div class="text-2xl sm:text-3xl md:text-4xl font-bold text-background tracking-tight">
+                    {pkg.price}
+                  </div>
+                  {pkg.period && (
+                    <span class="text-xs text-background/70">{pkg.period}</span>
+                  )}
+                </div>
+
+                <ul class="space-y-3 text-sm text-background/90 font-light">
+                  {pkg.features.map((feat) => (
+                    <li class="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                      <span class="leading-snug">{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="pt-8 relative z-10">
+                <a
+                  href={getWhatsAppLink("pkg-" + pkg.name, lang)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 text-sm font-semibold rounded-full transition-all bg-background text-foreground hover:scale-105 shadow-lg active:scale-95 cursor-pointer"
+                >
+                  <span>{lang === "en" ? "Choose Plan" : "Pilih Paket Ini"}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <div class="bg-background/40 backdrop-blur-sm border border-border/50 rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-brand/50 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1">
+            <div class="space-y-6">
+              <div>
+                <h3 class="typography-card-title text-foreground mb-2">
+                  {pkg.name}
+                </h3>
+                <p class="text-sm text-muted-foreground font-light leading-relaxed">
+                  {pkg.description}
+                </p>
+              </div>
+
+              <div class="py-4 border-y border-border/40">
+                <div class="text-2xl sm:text-3xl font-bold text-foreground tracking-tight">
+                  {pkg.price}
+                </div>
+                {pkg.period && (
+                  <span class="text-xs text-muted-foreground">{pkg.period}</span>
+                )}
+              </div>
+
+              <ul class="space-y-3 text-sm text-muted-foreground font-light">
+                {pkg.features.map((feat) => (
+                  <li class="flex items-start gap-2.5">
+                    <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                    <span class="leading-snug">{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-8">
+              <a
+                href={getWhatsAppLink("pkg-" + pkg.name, lang)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-2 py-3 px-6 text-sm font-semibold rounded-full transition-all bg-brand text-white hover:bg-brand/90 shadow-md shadow-brand/20 cursor-pointer"
+              >
+                <span>{lang === "en" ? "Choose Plan" : "Pilih Paket"}</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

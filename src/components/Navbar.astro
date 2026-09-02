@@ -1,54 +1,127 @@
 ---
-import { Menu, X } from 'lucide-react';
-import { getWhatsAppLink } from '../lib/utils';
+import { Menu, X, ChevronDown } from "lucide-react";
+import { getWhatsAppLink } from "../lib/utils";
 
-const { lang } = Astro.props;
+const { lang = "id" } = Astro.props;
 const pathPrefix = `/${lang}`;
 
 const links = [
-  { href: `${pathPrefix}/services`, label: lang === 'en' ? 'Services' : 'Layanan' },
-  { href: `${pathPrefix}/solutions`, label: lang === 'en' ? 'Solutions' : 'Solusi' },
-  { href: `${pathPrefix}/work-results`, label: lang === 'en' ? 'Our Work' : 'Hasil Pekerjaan' },
-  { href: `${pathPrefix}/blog`, label: lang === 'en' ? 'Blog' : 'Blog' },
-  { href: getWhatsAppLink('navbar', lang), label: lang === 'en' ? 'Contact' : 'Kontak', external: true },
+  { href: `${pathPrefix}/services`, label: lang === "en" ? "Services" : "Layanan", isDropdown: true },
+  { href: `${pathPrefix}/solutions`, label: lang === "en" ? "Solutions" : "Solusi" },
+  { href: `${pathPrefix}/work-results`, label: lang === "en" ? "Our Work" : "Hasil Pekerjaan" },
+  { href: `${pathPrefix}/blog`, label: lang === "en" ? "Blog" : "Blog" },
+  { href: getWhatsAppLink("navbar", lang), label: lang === "en" ? "Contact" : "Kontak", external: true },
+];
+
+const serviceLinks = [
+  {
+    category: lang === "en" ? "Website & UMKM" : "Jasa Website & UMKM",
+    items: [
+      { href: `${pathPrefix}/services/jasa-pembuatan-website`, label: lang === "en" ? "Website Development" : "Jasa Pembuatan Website" },
+      { href: `${pathPrefix}/services/jasa-web-company-profile`, label: lang === "en" ? "Company Profile Website" : "Web Company Profile" },
+      { href: `${pathPrefix}/services/jasa-pembuatan-landing-page`, label: lang === "en" ? "High-Converting Landing Page" : "Jasa Landing Page" },
+      { href: `${pathPrefix}/services/jasa-toko-online-ecommerce`, label: lang === "en" ? "E-Commerce Online Store" : "Toko Online E-Commerce" },
+    ]
+  },
+  {
+    category: lang === "en" ? "Software House & B2B" : "Software House & Sistem B2B",
+    items: [
+      { href: `${pathPrefix}/services/software-house-indonesia`, label: lang === "en" ? "Software House Indonesia" : "Software House Indonesia" },
+      { href: `${pathPrefix}/services/jasa-pembuatan-custom-software`, label: lang === "en" ? "Custom Software & Web App" : "Custom Software & Web App" },
+      { href: `${pathPrefix}/services/jasa-pembuatan-aplikasi-mobile`, label: lang === "en" ? "Mobile App (iOS & Android)" : "Aplikasi Mobile Android & iOS" },
+      { href: `${pathPrefix}/services/jasa-pembuatan-erp-crm`, label: lang === "en" ? "Custom ERP & CRM System" : "Sistem ERP & CRM Custom" },
+      { href: `${pathPrefix}/services/jasa-pembuatan-aplikasi-kasir-pos`, label: lang === "en" ? "Custom POS / Cashier App" : "Aplikasi Kasir / POS Custom" },
+    ]
+  }
 ];
 
 const currentPath = Astro.url.pathname;
-const switchLangPath = lang === 'id'
-  ? (currentPath === '/' ? '/en' : currentPath.replace(/^\/id/, '/en'))
-  : (currentPath.startsWith('/en') ? currentPath.replace(/^\/en/, '/id') : `/id${currentPath}`);
+const switchLangPath = lang === "id"
+  ? (currentPath === "/" ? "/en" : currentPath.replace(/^\/id/, "/en"))
+  : (currentPath.startsWith("/en") ? currentPath.replace(/^\/en/, "/id") : `/id${currentPath}`);
 ---
 
 <nav class="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out" id="navbar">
   <div class="container mx-auto px-4 h-16 sm:h-20 flex items-center">
-    <a href={pathPrefix} class="text-xl sm:text-2xl font-bold tracking-tighter relative z-50">
+    <a href={pathPrefix} class="text-xl sm:text-2xl font-bold tracking-tighter relative z-50 cursor-pointer">
       GILABS<span class="text-brand">.ID</span>
     </a>
 
     {/* Desktop Menu */}
     <div class="hidden md:flex items-center gap-6 ml-auto mr-4">
-      {links.map(link => (
-        <a 
-          href={link.href} 
-          class="text-sm font-medium text-muted-foreground hover:text-brand transition-colors"
-          {...(link.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-        >
-          {link.label}
-        </a>
-      ))}
+      {links.map(link => {
+        if (link.isDropdown) {
+          return (
+            <div class="relative group py-2">
+              <a 
+                href={link.href} 
+                class="text-sm font-medium text-muted-foreground hover:text-brand transition-colors cursor-pointer flex items-center gap-1"
+              >
+                {link.label}
+                <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 opacity-70" />
+              </a>
+
+              {/* Hover Dropdown Menu */}
+              <div class="absolute top-full left-1/2 -translate-x-1/2 w-[540px] pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50">
+                <div class="bg-background/98 backdrop-blur-xl border border-border/60 rounded-2xl p-5 shadow-xl shadow-black/5">
+                  <div class="grid grid-cols-2 gap-6">
+                    {serviceLinks.map((cat) => (
+                      <div class="space-y-2">
+                        <div class="text-[11px] font-bold uppercase tracking-wider text-muted-foreground/70 pb-1 border-b border-border/40">
+                          {cat.category}
+                        </div>
+                        <ul class="space-y-1">
+                          {cat.items.map((item) => (
+                            <li>
+                              <a
+                                href={item.href}
+                                class="block py-1.5 px-2 rounded-lg text-xs font-medium text-foreground hover:text-brand hover:bg-secondary/60 transition-colors"
+                              >
+                                {item.label}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                  <div class="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs">
+                    <a
+                      href={`${pathPrefix}/services`}
+                      class="font-semibold text-brand hover:underline inline-flex items-center gap-1"
+                    >
+                      {lang === "en" ? "View All Services" : "Lihat Semua Layanan"} →
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <a 
+            href={link.href} 
+            class="text-sm font-medium text-muted-foreground hover:text-brand transition-colors cursor-pointer"
+            {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+          >
+            {link.label}
+          </a>
+        );
+      })}
     </div>
 
     <div class="hidden md:flex items-center gap-4">
-      <a href={switchLangPath} class="text-xs font-medium border border-border px-3 py-1.5 rounded-full hover:bg-secondary transition-colors uppercase">
-        {lang === 'en' ? 'ID' : 'EN'}
+      <a href={switchLangPath} class="text-xs font-medium border border-border px-3 py-1.5 rounded-full hover:bg-secondary transition-colors uppercase cursor-pointer">
+        {lang === "en" ? "ID" : "EN"}
       </a>
-      <a href={getWhatsAppLink('navbar', lang)} target="_blank" rel="noopener noreferrer" class="text-sm font-bold bg-brand text-white px-5 py-2.5 rounded-full hover:bg-brand/90 transition-all hover:shadow-lg hover:shadow-brand/20">
-        {lang === 'en' ? 'Get Started' : 'Mulai Sekarang'}
+      <a href={getWhatsAppLink("navbar", lang)} target="_blank" rel="noopener noreferrer" class="text-sm font-bold bg-brand text-white px-5 py-2.5 rounded-full hover:bg-brand/90 transition-all hover:shadow-lg hover:shadow-brand/20 cursor-pointer">
+        {lang === "en" ? "Get Started" : "Mulai Sekarang"}
       </a>
     </div>
 
     {/* Mobile Toggle */}
-    <button id="menu-toggle" class="md:hidden ml-auto relative z-50 p-2 text-foreground" aria-label="Toggle Menu">
+    <button id="menu-toggle" class="md:hidden ml-auto relative z-50 p-2 text-foreground cursor-pointer" aria-label="Toggle Menu">
       <span id="icon-menu" class="block">
         <Menu className="w-6 h-6" />
       </span>
@@ -60,9 +133,8 @@ const switchLangPath = lang === 'id'
 </nav>
 
 <script>
-  const navbar = document.getElementById('navbar');
+  const navbar = document.getElementById("navbar");
 
-  // Hide/show navbar on scroll
   let lastScrollY = 0;
   let ticking = false;
 
@@ -71,28 +143,24 @@ const switchLangPath = lang === 'id'
     
     const currentScrollY = window.scrollY;
     
-    // Always show navbar at the top
     if (currentScrollY <= 0) {
-      navbar.style.transform = 'translateY(0)';
+      navbar.style.transform = "translateY(0)";
       lastScrollY = currentScrollY;
       ticking = false;
       return;
     }
     
-    // Hide on scroll down, show on scroll up
     if (currentScrollY > lastScrollY && currentScrollY > 50) {
-      // Scrolling down - hide navbar
-      navbar.style.transform = 'translateY(-100%)';
+      navbar.style.transform = "translateY(-100%)";
     } else {
-      // Scrolling up - show navbar
-      navbar.style.transform = 'translateY(0)';
+      navbar.style.transform = "translateY(0)";
     }
     
     lastScrollY = currentScrollY;
     ticking = false;
   }
 
-  window.addEventListener('scroll', () => {
+  window.addEventListener("scroll", () => {
     if (!ticking) {
       window.requestAnimationFrame(updateNavbar);
       ticking = true;
