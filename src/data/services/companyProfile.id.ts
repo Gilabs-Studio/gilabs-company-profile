@@ -3,12 +3,12 @@ import type { ServicePageData } from "./types";
 export const companyProfileId: ServicePageData = {
   slug: "jasa-web-company-profile",
   category: "website",
-  eyebrow: "Website Company Profile Korporasi & B2B",
-  title: "Jasa Website Company Profile Elegan untuk Memenangkan Tender & Kepercayaan Klien B2B",
-  subtitle: "Tingkatkan kredibilitas korporat Anda dengan website profil perusahaan yang berwibawa, cepat, aman, dan siap memenuhi standar verifikasi tender proyek.",
-  heroIllustration: "/illustrations/company-profile-sketch.png",
-  metaTitle: "Jasa Website Company Profile Perusahaan Profesional | Gilabs",
-  metaDescription: "Jasa pembuatan website company profile perusahaan kontraktor, manufaktur, konstruksi, dan ekspor impor. Desain mewah, ramah tender, dan terpercaya.",
+  eyebrow: "Jasa Web Company Profile",
+  title: "Company Profile yang Terlihat Seperti Perusahaan Besar",
+  subtitle: "Kesan pertama itu di website. Kami pastikan yang pertama kali dilihat calon partner atau investor kamu adalah versi terbaik dari bisnismu.",
+  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.jpg",
+  metaTitle: "Jasa Website Company Profile Perusahaan Profesional & Elegan | Gilabs",
+  metaDescription: "Kesan pertama itu di website. Kami pastikan calon partner atau investor melihat versi terbaik dari bisnismu. Berwibawa, responsif, dan siap tender.",
   keywords: [
     "jasa web company profile",
     "jasa pembuatan website company profile perusahaan",
@@ -20,100 +20,101 @@ export const companyProfileId: ServicePageData = {
     "jasa redesign website company profile",
     "vendor website profil perusahaan"
   ],
-  primaryCtaText: "Konsultasi Company Profile",
-  secondaryCtaText: "Lihat Contoh Web",
-  problemsTitle: "Tantangan Utama Website Profil Perusahaan Lama Anda",
-  problemsSubtitle: "Website yang usang menurunkan kepercayaan calon investor, mitra bisnis, dan panitia tender.",
+  primaryCtaText: "Konsultasi Gratis",
+  secondaryCtaText: "Lihat Contoh Company Profile",
+  problemsTitle: "Company Profile Lama Sering Begini",
+  problemsSubtitle: "Tiga hal ini yang paling sering bikin calon partner dan panitia tender ragu duluan sebelum mengenal bisnismu.",
   problems: [
     {
-      pain: "Tampilan Kurang Berwibawa",
-      solution: "Kami mendesain arsitektur visual elegan yang mencerminkan skala dan profesionalisme korporat Anda."
+      pain: "01. Terlihat Kuno",
+      solution: "Desain 5 tahun lalu, calon partner ragu duluan."
     },
     {
-      pain: "Dokumen & Portofolio Berantakan",
-      solution: "Struktur etalase proyek interaktif lengkap dengan galeri dokumentasi, spesifikasi, dan sertifikasi ISO."
+      pain: "02. Informasi Berantakan",
+      solution: "Visi misi, layanan, kontak, semua nggak jelas urutannya."
     },
     {
-      pain: "Sering Terkendala Akses Global",
-      solution: "Didukung Cloudflare global edge caching sehingga dapat diakses cepat dari mitra luar negeri."
-    },
-    {
-      pain: "Kesulitan Update Legalitas & Berita",
-      solution: "Panel CMS terkelola untuk unggah siaran pers, laporan tahunan (annual report), dan pembaharuan izin usaha."
+      pain: "03. Nggak Meyakinkan",
+      solution: "Nggak ada bukti kredibilitas, cuma teks tanpa substansi."
     }
   ],
-  featuresTitle: "Keunggulan Website Company Profile Gilabs",
-  featuresSubtitle: "Dirancang khusus untuk kebutuhan korporasi, kontraktor, dan perusahaan industri.",
+  featuresTitle: "Semua yang Dibutuhkan Company Profile Modern",
+  featuresSubtitle: "Komponen esensial yang dirancang khusus untuk memenuhi ekspektasi partner B2B dan panitia evaluasi proyek.",
   features: [
     {
-      title: "Halaman Portofolio Proyek Interaktif",
-      description: "Tampilkan rekam jejak proyek unggulan dengan filter kategori industri, tahun, dan klien yang meyakinkan."
+      title: "Profil Perusahaan & Sejarah",
+      description: "Ceritakan perjalanan bisnismu dengan visual yang berbobot."
     },
     {
-      title: "Bagian Legalitas & Sertifikasi Resmi",
-      description: "Area khusus untuk menampilkan NIB, ISO, sertifikat keahlian, dan penghargaan perusahaan."
+      title: "Visi, Misi & Nilai Perusahaan",
+      description: "Tampilkan arah dan prinsip bisnis secara elegan."
     },
     {
-      title: "Dukungan Multi-Bahasa (ID & EN)",
-      description: "Peralihan bahasa instan yang siap mendukung ekspansi pasar ekspor-impor internasional."
+      title: "Struktur Organisasi / Tim Inti",
+      description: "Tunjukkan orang-orang di balik perusahaan untuk bangun kepercayaan."
     },
     {
-      title: "Unduh Dokumen Profil / Brosur (PDF)",
-      description: "Fitur download company profile PDF terintegrasi dengan formulir lead capture calon rekanan bisnis."
+      title: "Portofolio Proyek / Klien",
+      description: "Etalase hasil kerja nyata yang bisa diverifikasi."
     },
     {
-      title: "Keamanan Data & Anti-Deface",
-      description: "Arsitektur headless statis yang kebal terhadap malware CMS dan serangan defacement."
+      title: "Galeri & Sertifikasi",
+      description: "Dokumentasi legalitas, sertifikat ISO, dan pencapaian resmi."
     },
     {
-      title: "Email Korporat Profesional",
-      description: "Konfigurasi email resmi domain perusahaan (nama@perusahaan.com) dengan proteksi anti-spam."
+      title: "Halaman Karir (Opsional)",
+      description: "Buka lowongan dan rekrut talenta terbaik langsung dari web."
+    },
+    {
+      title: "Kontak & Lokasi Cabang",
+      description: "Integrasi Google Maps dan form kontak yang langsung masuk ke email/WA tim."
+    },
+    {
+      title: "Integrasi Media Sosial",
+      description: "Tautkan semua akun resmi perusahaan di satu tempat."
     }
   ],
-  packagesTitle: "Pilihan Paket Company Profile",
-  packagesSubtitle: "Investasi terukur untuk membangun aset reputasi digital perusahaan Anda.",
+  packagesTitle: "Investasi untuk Citra Perusahaan Kamu",
+  packagesSubtitle: "Pilihan paket fleksibel sesuai tahap dan skala operasional perusahaan Anda.",
   packages: [
     {
-      name: "Standard Corporate",
-      price: "Rp 5.500.000",
-      description: "Untuk perusahaan berkembang, konsultan, atau agensi profesional.",
+      name: "BASIC",
+      price: "Rp 5.000.000",
+      description: "Cocok untuk PT baru berdiri atau CV yang butuh hadir secara resmi",
       features: [
-        "Hingga 6 Halaman Profil Lengkap",
-        "Galeri Portofolio & Klien",
-        "Form Kontak & Integrasi WhatsApp",
-        "Free Domain (.com/.id) & Hosting 1 Thn",
-        "CMS Berita / Blog Perusahaan",
-        "Waktu Pengerjaan 7-10 Hari"
+        "Company profile 3-5 halaman",
+        "Desain corporate clean & responsive",
+        "Halaman kontak & lokasi",
+        "Domain (.com / .id) + hosting 1 tahun",
+        "Revisi 2x"
       ]
     },
     {
-      name: "Enterprise & Tender Ready",
-      price: "Rp 9.500.000",
+      name: "STANDARD",
+      price: "Rp 15.000.000",
       isPopular: true,
-      description: "Sempurna untuk kontraktor, manufaktur, dan vendor tender proyek besar.",
+      description: "Untuk perusahaan berkembang yang aktif cari klien & partner",
       features: [
-        "Hingga 12 Halaman Terstruktur",
-        "Multi-Bahasa (Indonesia & Inggris)",
-        "Download Center Dokumen Legalitas & PDF",
-        "Filter Portofolio Proyek Interaktif",
-        "On-Page SEO Dominasi Brand",
-        "Email Korporat Setup (5 Akun)",
-        "Garansi Bebas Bug 6 Bulan",
-        "Waktu Pengerjaan 10-14 Hari"
+        "Company profile hingga 10 halaman",
+        "CMS untuk update berita & proyek mandiri",
+        "Section portofolio / rekam jejak proyek",
+        "Download brosur / company profile PDF",
+        "Basic SEO untuk nama perusahaan",
+        "Domain + hosting 1 tahun",
+        "Revisi 4x"
       ]
     },
     {
-      name: "Custom Holding & Multi-Unit",
-      price: "Rp 18.000.000+",
-      description: "Untuk grup perusahaan atau holding dengan multi-anak usaha dan integrasi portal.",
+      name: "CUSTOM",
+      price: "Hubungi Kami",
+      description: "Untuk holding company, grup perusahaan, atau kebutuhan integrasi khusus",
       features: [
-        "Struktur Multi-Site / Multi-Division",
-        "Portal Investor Relations & Karir",
-        "Desain UI/UX Eksklusif Berstandar Global",
-        "Keamanan Sertifikasi Enterprise",
-        "Full Code Ownership & Technical Handover",
-        "Dedicated Account Manager & SLA",
-        "Waktu Pengerjaan 3-5 Minggu"
+        "Struktur multi-anak perusahaan / cabang",
+        "Halaman karir dengan sistem lamar kerja",
+        "Fitur multi-bahasa (ID / EN)",
+        "Integrasi sistem internal / HR",
+        "Dedicated project manager",
+        "Garansi dan maintenance berkala"
       ]
     }
   ],
@@ -121,26 +122,30 @@ export const companyProfileId: ServicePageData = {
   techStackSubtitle: "Teknologi modern yang menjamin uptime 99.9% dan keamanan data korporasi.",
   techStack: [
     { name: "Next.js / Astro", category: "Engine", description: "Performa render instan tanpa jeda." },
-    { name: "Cloudflare Pro", category: "Security", description: "Firewall mitigasi ancaman siber dan CDN global." },
+    { name: "Cloudflare Edge", category: "Security", description: "Firewall mitigasi ancaman siber dan CDN global." },
     { name: "Tailwind CSS", category: "Design", description: "Konsistensi visual branding perusahaan." }
   ],
-  faqTitle: "FAQ Jasa Website Company Profile",
-  faqSubtitle: "Hal yang sering ditanyakan perwakilan perusahaan sebelum memulai proyek.",
+  faqTitle: "Pertanyaan Seputar Jasa Web Company Profile",
+  faqSubtitle: "Hal yang sering ditanyakan perwakilan perusahaan sebelum memulai proyek bersama kami.",
   faqs: [
     {
-      question: "Apakah website ini cocok untuk kelengkapan administrasi tender proyek?",
-      answer: "Sangat cocok. Kami menyusun struktur halaman legalitas, profil direksi, sertifikasi ISO, dan studi kasus proyek yang memenuhi standar verifikasi tender B2B dan B2G."
+      question: "Berapa lama pengerjaan company profile?",
+      answer: "Paket Basic sekitar 1-2 minggu. Paket Standard 2-4 minggu. Custom disesuaikan dengan lingkup proyek."
     },
     {
-      question: "Apakah konten dan materi profil dibantu penyusunannya?",
-      answer: "Ya, tim copywriter kami dapat membantu merapikan struktur narasi profil perusahaan dan visi-misi Anda agar terdengar profesional."
+      question: "Apakah bisa dibuat multi-bahasa (bilingual)?",
+      answer: "Bisa. Tersedia di paket Custom atau bisa ditambahkan sebagai add-on di paket Standard."
     },
     {
-      question: "Apakah website bisa bilingual (Bahasa Indonesia & Bahasa Inggris)?",
-      answer: "Bisa. Kami menyediakan dukungan multi-bahasa lengkap dengan sistem routing lokalisasi ramah SEO."
+      question: "Materi dan kontennya dari kami atau dibantu buat?",
+      answer: "Materi dasar dari kamu, tapi tim kami bantu rapikan susunan dan tulisannya agar terdengar profesional."
+    },
+    {
+      question: "Kalau nanti mau tambah halaman karir atau update proyek sendiri gimana?",
+      answer: "Di paket Standard dan Custom, kamu dapat CMS yang mudah dipakai. Kami juga berikan panduan video cara pakainya."
     }
   ],
-  ctaTitle: "Tingkatkan Kredibilitas Bisnis Anda Sekarang",
-  ctaSubtitle: "Konsultasikan pembuatan website company profile perusahaan Anda dengan tim Gilabs.",
-  ctaButton: "Konsultasi via WhatsApp"
+  ctaTitle: "Saatnya Perusahaan Kamu Terlihat Sekelas yang Sebenarnya",
+  ctaSubtitle: "Konsultasikan kebutuhan company profile kamu sekarang. Kami bantu tentukan konsep dan paket yang paling pas untuk skala bisnismu.",
+  ctaButton: "Konsultasi Gratis Sekarang"
 };

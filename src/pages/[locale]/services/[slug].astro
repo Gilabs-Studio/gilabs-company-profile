@@ -10,6 +10,7 @@ import LandingTechStack from "../../../components/landing/LandingTechStack.astro
 import LandingFAQ from "../../../components/landing/LandingFAQ.astro";
 import LandingCTA from "../../../components/landing/LandingCTA.astro";
 import WebDevPage from "../../../components/services/web-dev/WebDevPage.astro";
+import CompanyProfilePage from "../../../components/services/company-profile/CompanyProfilePage.astro";
 import { serviceSlugs, getServiceData } from "../../../data/services/index";
 
 export function getStaticPaths() {
@@ -107,6 +108,8 @@ const breadcrumbSchema = {
   <main class="min-h-screen relative z-10">
     {slug === "jasa-pembuatan-website" ? (
       <WebDevPage lang={lang} service={service} />
+    ) : slug === "jasa-web-company-profile" ? (
+      <CompanyProfilePage lang={lang} service={service} />
     ) : (
       <>
         <LandingHero

@@ -1,0 +1,55 @@
+---
+import CompanyProfileHero from "./CompanyProfileHero.astro";
+import CompanyProfileSocialProof from "./CompanyProfileSocialProof.astro";
+import CompanyProfileProblems from "./CompanyProfileProblems.astro";
+import CompanyProfileSolutions from "./CompanyProfileSolutions.astro";
+import CompanyProfileFeatures from "./CompanyProfileFeatures.astro";
+import CompanyProfilePortfolio from "./CompanyProfilePortfolio.astro";
+import CompanyProfilePricing from "./CompanyProfilePricing.astro";
+import CompanyProfileFAQ from "./CompanyProfileFAQ.astro";
+import CompanyProfileCTA from "./CompanyProfileCTA.astro";
+import type { ServicePageData } from "../../../data/services/types";
+
+interface Props {
+  lang: "en" | "id";
+  service: ServicePageData;
+}
+
+const { lang, service } = Astro.props;
+---
+
+<div class="company-profile-service-page">
+  {/* 1. HERO SECTION */}
+  <CompanyProfileHero
+    lang={lang}
+    eyebrow={service.eyebrow}
+    title={service.title}
+    subtitle={service.subtitle}
+    primaryCtaText={service.primaryCtaText}
+    secondaryCtaText={service.secondaryCtaText}
+  />
+
+  {/* 2. SOCIAL PROOF BAR */}
+  <CompanyProfileSocialProof lang={lang} />
+
+  {/* 3. MASALAH YANG SERING DITEMUI */}
+  <CompanyProfileProblems lang={lang} />
+
+  {/* 4. SOLUSI / VALUE PROPOSITION */}
+  <CompanyProfileSolutions lang={lang} />
+
+  {/* 5. FITUR UTAMA */}
+  <CompanyProfileFeatures lang={lang} />
+
+  {/* 6. PORTOFOLIO / STUDI KASUS */}
+  <CompanyProfilePortfolio lang={lang} />
+
+  {/* 7. PRICING */}
+  <CompanyProfilePricing lang={lang} />
+
+  {/* 8. FAQ */}
+  <CompanyProfileFAQ lang={lang} />
+
+  {/* 9. FINAL CTA */}
+  <CompanyProfileCTA lang={lang} />
+</div>

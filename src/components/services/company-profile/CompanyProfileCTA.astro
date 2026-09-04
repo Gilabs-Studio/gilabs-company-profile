@@ -1,0 +1,76 @@
+---
+import { WhatsAppIcon } from "../../react/WhatsAppIcon";
+import { MessageSquare } from "lucide-react";
+import { getWhatsAppLink } from "../../../lib/utils";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const title = lang === "en"
+  ? "It's Time Your Company Looks as Prestigious as It Truly Is"
+  : "Saatnya Perusahaan Kamu Terlihat Sekelas yang Sebenarnya";
+
+const subtitle = lang === "en"
+  ? "Discuss your company profile requirements today. We will help determine the best concept and package suited for your business scale."
+  : "Konsultasikan kebutuhan company profile kamu sekarang. Kami bantu tentukan konsep dan paket yang paling pas untuk skala bisnismu.";
+
+const primaryBtn = lang === "en"
+  ? "Free Consultation Now"
+  : "Konsultasi Gratis Sekarang";
+
+const secondaryBtn = lang === "en"
+  ? "Chat on WhatsApp First"
+  : "Tanya-tanya Dulu via WA";
+---
+
+<section class="py-12 sm:py-16 md:py-24 lg:py-32 relative">
+  <div class="container mx-auto px-4">
+    <div class="bg-foreground text-background rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 lg:p-28 text-center relative overflow-hidden shadow-2xl shadow-brand/20">
+      {/* Background decoration matching landing page */}
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+        <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-brand/30 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-brand/30 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative z-10 px-2 sm:px-4 max-w-4xl mx-auto">
+        {/* Headline */}
+        <h2 class="typography-hero-title text-background mb-6 sm:mb-8 md:mb-10 max-w-4xl mx-auto">
+          {title}
+        </h2>
+
+        {/* Subtitle */}
+        <div class="space-y-2 sm:space-y-3 text-background/90 mb-8 sm:mb-10 md:mb-14 max-w-3xl mx-auto">
+          <p class="text-base sm:text-lg md:text-xl font-light text-background/90 leading-relaxed">
+            {subtitle}
+          </p>
+        </div>
+
+        {/* Action Buttons */}
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a
+            href={getWhatsAppLink("final-cta-company-profile", lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 py-3.5 sm:py-4 bg-background text-foreground typography-button rounded-full hover:bg-white transition-colors whitespace-nowrap cursor-pointer shadow-lg"
+          >
+            <span>{primaryBtn}</span>
+            <WhatsAppIcon client:load className="w-5 h-5 sm:w-6 sm:h-6" />
+          </a>
+
+          <a
+            href={getWhatsAppLink("inquiry-company-profile", lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 bg-transparent hover:bg-white/10 text-background border border-background/30 typography-button rounded-full transition-colors whitespace-nowrap cursor-pointer"
+          >
+            <span>{secondaryBtn}</span>
+            <MessageSquare className="w-4 h-4" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

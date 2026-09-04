@@ -1,0 +1,80 @@
+---
+import { FAQList } from "../../react/FAQList";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const faqs = [
+  {
+    question: lang === "en" ? "How long does it take to complete a company profile website?" : "Berapa lama pengerjaan company profile?",
+    answer: lang === "en"
+      ? "The Basic plan takes approximately 1-2 weeks. Standard plan takes 2-4 weeks. Custom projects depend on defined project scope."
+      : "Paket Basic sekitar 1-2 minggu. Paket Standard 2-4 minggu. Custom disesuaikan dengan lingkup proyek."
+  },
+  {
+    question: lang === "en" ? "Can it be bilingual (multi-language)?" : "Apakah bisa dibuat multi-bahasa (bilingual)?",
+    answer: lang === "en"
+      ? "Yes. Multi-language support is included in the Custom package and available as an add-on for the Standard package."
+      : "Bisa. Tersedia di paket Custom atau bisa ditambahkan sebagai add-on di paket Standard."
+  },
+  {
+    question: lang === "en" ? "Do we need to prepare content or will you assist us?" : "Materi dan kontennya dari kami atau dibantu buat?",
+    answer: lang === "en"
+      ? "You provide basic background materials, and our team helps structure and write professional narrative copy."
+      : "Materi dasar dari kamu, tapi tim kami bantu rapikan susunan dan tulisannya agar terdengar profesional."
+  },
+  {
+    question: lang === "en" ? "How do we add career openings or update projects later?" : "Kalau nanti mau tambah halaman karir atau update proyek sendiri gimana?",
+    answer: lang === "en"
+      ? "In the Standard and Custom packages, you get an intuitive CMS and easy-to-follow video training so your team can manage updates independently."
+      : "Di paket Standard dan Custom, kamu dapat CMS yang mudah dipakai. Kami juga berikan panduan video cara pakainya."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<!-- Inject FAQ Schema for Rich Google Search Snippets -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<section class="py-16 md:py-24 relative z-10" id="faq">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Corporate FAQs" : "Pertanyaan Umum"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Company Profile Web FAQs" : "Pertanyaan Seputar Jasa Web Company Profile"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Common questions asked by corporate leaders and decision-makers before commissioning a project."
+          : "Hal yang sering ditanyakan perwakilan perusahaan sebelum memulai proyek bersama kami."}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <FAQList client:visible items={faqs} itemClassName="border border-border/50 rounded-2xl overflow-hidden bg-white shadow-sm transition-colors duration-200 hover:border-brand/50 relative z-10" />
+    </div>
+  </div>
+</section>

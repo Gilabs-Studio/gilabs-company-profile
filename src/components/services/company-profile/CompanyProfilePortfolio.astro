@@ -1,0 +1,136 @@
+---
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const projects = [
+  {
+    title: "PT Adiguna Karya Prima",
+    industry: lang === "en" ? "Construction & Engineering" : "Konstruksi & Engineering",
+    result: lang === "en"
+      ? "Passed SOE tender verification; inbound partner inquiries up 60%"
+      : "Lolos verifikasi tender BUMN, leads masuk dari luar kota naik 60%",
+    image: "/images/services/company-profile/portfolio-adiguna-corpprofile.jpg",
+    alt: "Website Company Profile PT Adiguna Karya Prima - Gilabs",
+    tags: ["Next.js", "Tender-Ready", "Project Vault", "ISO Showcase"]
+  },
+  {
+    title: "Domus Living",
+    industry: lang === "en" ? "Architecture & Interior Studio" : "Arsitektur & Interior Studio",
+    result: lang === "en"
+      ? "High-end residential client closing rate increased significantly"
+      : "Closing klien residensial kelas atas meningkat sejak web baru live",
+    image: "/images/services/company-profile/portfolio-domus-corpprofile.jpg",
+    alt: "Website Company Profile Domus Living - Gilabs",
+    tags: ["Minimalist UI", "High-Res Gallery", "Fast Edge CDN"]
+  },
+  {
+    title: "PT Nexora Global Energi",
+    industry: lang === "en" ? "Renewable Energy" : "Energi Terbarukan",
+    result: lang === "en"
+      ? "Bilingual portal actively utilized for international investor pitching"
+      : "Website bilingual (ID/EN) dipakai untuk pitching investor luar negeri",
+    image: "/images/services/company-profile/portfolio-nexora-corpprofile.jpg",
+    alt: "Website Company Profile PT Nexora Global Energi - Gilabs",
+    tags: ["Enterprise Cloud", "Investor Relations", "Multi-Language"]
+  }
+];
+
+const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results`;
+---
+
+<section id="portofolio" class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Proven Track Record" : "Studi Kasus Nyata"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Company Profiles We've Engineered" : "Company Profile yang Sudah Kami Bangun"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Real evidence of how authoritative company profile websites helped our clients win tenders and secure high-value partnerships."
+          : "Bukti nyata bagaimana website yang berwibawa membantu klien memenangkan tender dan menjalin kerja sama strategis."}
+      </p>
+    </div>
+
+    {/* Portfolio Grid - Landing Page Consistent Cards */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 md:mb-16">
+      {projects.map((project) => (
+        <article class="bg-white border border-border/50 rounded-2xl sm:rounded-3xl overflow-hidden hover:border-brand/50 transition-colors shadow-md shadow-black/5 flex flex-col justify-between group">
+          {/* Mockup Desktop Image Container */}
+          <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
+            <img
+              src={project.image}
+              alt={project.alt}
+              class="w-full h-full object-cover select-none"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="500"
+            />
+
+            {/* Industry Badge */}
+            <div class="absolute top-3 left-3 z-10">
+              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
+                {project.industry}
+              </span>
+            </div>
+          </div>
+
+          {/* Card Info */}
+          <div class="p-6 sm:p-7 flex flex-col grow justify-between">
+            <div>
+              {/* Title */}
+              <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+                {project.title}
+              </h3>
+
+              {/* Measurable Result Highlight */}
+              <div class="inline-flex items-center px-3.5 py-1.5 rounded-xl border border-brand/20 bg-brand/5 text-brand font-medium text-xs mb-4">
+                <span>{project.result}</span>
+              </div>
+            </div>
+
+            {/* Tech Tags */}
+            <div class="pt-4 border-t border-border/40 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex flex-wrap gap-1.5">
+                {project.tags.map((tag) => (
+                  <span class="px-2 py-0.5 text-[11px] font-mono font-medium bg-secondary/60 text-foreground/70 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={portfolioUrl}
+                class="text-xs font-semibold text-brand hover:underline cursor-pointer"
+              >
+                {lang === "en" ? "Details →" : "Detail →"}
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {/* Bottom CTA button */}
+    <div class="text-center">
+      <a
+        href={portfolioUrl}
+        class="inline-flex items-center justify-center px-8 py-3.5 sm:py-4 typography-button text-foreground bg-white hover:bg-secondary/40 border border-border/80 rounded-full transition-colors cursor-pointer shadow-sm"
+      >
+        <span>{lang === "en" ? "View All Portfolio Projects" : "Lihat Semua Portofolio"}</span>
+      </a>
+    </div>
+  </div>
+</section>

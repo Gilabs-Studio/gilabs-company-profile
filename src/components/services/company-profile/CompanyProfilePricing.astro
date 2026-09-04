@@ -11,40 +11,51 @@ const { lang = "id" } = Astro.props;
 const packages = [
   {
     name: "BASIC",
-    price: lang === "en" ? "From IDR 5,000,000" : "Mulai Rp 5.000.000",
-    description: lang === "en" ? "Perfect for SMEs starting their online presence" : "Cocok untuk UMKM yang baru mulai online",
+    price: lang === "en" ? "$350" : "Rp 5.000.000",
+    description: lang === "en"
+      ? "Ideal for newly founded PT/CV requiring an official digital presence"
+      : "Cocok untuk PT baru berdiri atau CV yang butuh hadir secara resmi",
     isPopular: false,
     features: [
-      lang === "en" ? "Simple landing page or company profile" : "Landing page atau company profile sederhana",
-      lang === "en" ? "100% responsive mobile & desktop design" : "Desain responsive",
-      lang === "en" ? "1-Year free custom domain & high-speed hosting" : "Domain & hosting 1 tahun",
+      lang === "en" ? "Company profile 3-5 pages" : "Company profile 3-5 halaman",
+      lang === "en" ? "Corporate clean & responsive design" : "Desain corporate clean & responsive",
+      lang === "en" ? "Contact page & office location map" : "Halaman kontak & lokasi",
+      lang === "en" ? "1-Year Domain (.com / .id) + Cloud Hosting" : "Domain (.com / .id) + hosting 1 tahun",
       lang === "en" ? "2x revision rounds" : "Revisi 2x"
     ]
   },
   {
     name: "STANDARD",
-    price: lang === "en" ? "From IDR 15,000,000" : "Mulai Rp 15.000.000",
-    description: lang === "en" ? "For growing businesses needing a complete web presence" : "Untuk bisnis yang butuh kehadiran lebih lengkap",
+    price: lang === "en" ? "$950" : "Rp 15.000.000",
+    description: lang === "en"
+      ? "For established businesses actively pursuing enterprise clients & partners"
+      : "Untuk perusahaan berkembang yang aktif cari klien & partner",
     isPopular: true,
     badge: "Popular",
     features: [
-      lang === "en" ? "Multi-page website (5-10 pages)" : "Website multi halaman (5-10 halaman)",
-      lang === "en" ? "Fundamental on-page SEO & meta tags" : "SEO on-page dasar",
-      lang === "en" ? "CMS integration: manage text & content easily" : "Integrasi CMS, konten bisa kamu ubah sendiri",
-      lang === "en" ? "4x revision rounds" : "Revisi 4x",
-      lang === "en" ? "Lead capture & WhatsApp integration" : "Integrasi tombol WhatsApp & formulir kontak"
+      lang === "en" ? "Company profile up to 10 pages" : "Company profile hingga 10 halaman",
+      lang === "en" ? "CMS for self-managed news & project updates" : "CMS untuk update berita & proyek mandiri",
+      lang === "en" ? "Filterable project portfolio showcase" : "Section portofolio / rekam jejak proyek",
+      lang === "en" ? "Downloadable company brochure / PDF profile" : "Download brosur / company profile PDF",
+      lang === "en" ? "Basic brand search SEO setup" : "Basic SEO untuk nama perusahaan",
+      lang === "en" ? "1-Year Domain + Cloud Hosting" : "Domain + hosting 1 tahun",
+      lang === "en" ? "4x revision rounds" : "Revisi 4x"
     ]
   },
   {
     name: "CUSTOM",
     price: lang === "en" ? "Contact Us" : "Hubungi Kami",
-    description: lang === "en" ? "For specific, highly tailored, and complex web architecture" : "Untuk kebutuhan spesifik dan kompleks",
+    description: lang === "en"
+      ? "For holding companies, multi-subsidiary groups, or custom enterprise workflows"
+      : "Untuk holding company, grup perusahaan, atau kebutuhan integrasi khusus",
     isPopular: false,
     features: [
-      lang === "en" ? "Custom features tailored to business logic" : "Fitur sesuai kebutuhan bisnis",
-      lang === "en" ? "Third-party systems & API integration" : "Integrasi sistem pihak ketiga",
-      lang === "en" ? "Long-term scalability & cloud infra" : "Skalabilitas jangka panjang",
-      lang === "en" ? "Dedicated tech consultant & SLA" : "Konsultasi dedicated"
+      lang === "en" ? "Multi-subsidiary / branch architecture" : "Struktur multi-anak perusahaan / cabang",
+      lang === "en" ? "Career portal with job application system" : "Halaman karir dengan sistem lamar kerja",
+      lang === "en" ? "Multi-language support (ID / EN)" : "Fitur multi-bahasa (ID / EN)",
+      lang === "en" ? "Internal HR / CRM systems integration" : "Integrasi sistem internal / HR",
+      lang === "en" ? "Dedicated project manager" : "Dedicated project manager",
+      lang === "en" ? "Regular maintenance & security warranty" : "Garansi dan maintenance berkala"
     ]
   }
 ];
@@ -63,13 +74,13 @@ const packages = [
       </div>
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Clear Investment, No Hidden Fees" : "Investasi yang Jelas, Tanpa Biaya Tersembunyi"}
+        {lang === "en" ? "An Investment in Your Enterprise Reputation" : "Investasi untuk Citra Perusahaan Kamu"}
       </h2>
 
       <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
         {lang === "en"
-          ? "Transparent packages tailored to your current stage of business growth, with full source code ownership."
-          : "Paket transparan yang dirancang sesuai tahap pertumbuhan bisnis Anda, dengan 100% kepemilikan source code."}
+          ? "Tailored investment plans structured for your corporate maturity and operational scale."
+          : "Pilihan paket fleksibel sesuai tahap dan skala operasional perusahaan Anda."}
       </p>
     </div>
 

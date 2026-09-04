@@ -3,12 +3,12 @@ import type { ServicePageData } from "./types";
 export const companyProfileEn: ServicePageData = {
   slug: "jasa-web-company-profile",
   category: "website",
-  eyebrow: "Corporate & B2B Company Profile Website",
-  title: "Authoritative Corporate Websites Built to Win Tenders & Client Trust",
-  subtitle: "Elevate your enterprise reputation with high-performance corporate profile websites designed to meet global vendor standards and project bidding requirements.",
-  heroIllustration: "/illustrations/company-profile-sketch.png",
-  metaTitle: "Corporate Company Profile Website Development Indonesia | Gilabs",
-  metaDescription: "Professional company profile web development for contractors, manufacturing, logistics, and B2B enterprises. Tender-ready, high security, and bilingual.",
+  eyebrow: "Company Profile Website",
+  title: "Company Profiles Built to Look Like an Enterprise",
+  subtitle: "First impressions happen on your website. We make sure the first thing prospective partners or investors see is the absolute best version of your business.",
+  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.jpg",
+  metaTitle: "Enterprise Company Profile Web Development | Gilabs",
+  metaDescription: "First impressions happen on your website. We ensure your prospective partners and investors see the most authoritative version of your business. Fast, secure, tender-ready.",
   keywords: [
     "corporate company profile website",
     "b2b company profile development",
@@ -17,100 +17,101 @@ export const companyProfileEn: ServicePageData = {
     "tender bidding corporate website",
     "enterprise company profile web agency"
   ],
-  primaryCtaText: "Discuss Corporate Profile",
-  secondaryCtaText: "View Case Studies",
-  problemsTitle: "Why Outdated Company Profiles Hurt Business Deals",
-  problemsSubtitle: "A slow or outdated web presence undermines buyer confidence during high-stakes evaluations.",
+  primaryCtaText: "Free Consultation",
+  secondaryCtaText: "View Examples",
+  problemsTitle: "Older Company Profiles Often Look Like This",
+  problemsSubtitle: "These 3 bottlenecks are why prospective partners and tender committees hesitate before contacting your business.",
   problems: [
     {
-      pain: "Lack of Visual Authority",
-      solution: "We build bespoke enterprise layouts reflecting the actual scale and prestige of your business."
+      pain: "01. Outdated Look",
+      solution: "Designs from 5 years ago make potential partners hesitate before reaching out."
     },
     {
-      pain: "Cluttered Project Track Records",
-      solution: "Structured interactive showcases detailing project scope, certifications, and verified outcomes."
+      pain: "02. Cluttered Information",
+      solution: "Vision, mission, services, and contacts have no clear hierarchy or structure."
     },
     {
-      pain: "Slow International Access",
-      solution: "Integrated Cloudflare global edge caching ensuring fast loading for international partners."
-    },
-    {
-      pain: "Hard to Update News & Reports",
-      solution: "Clean CMS interface for publishing corporate press releases, PDF reports, and compliance certificates."
+      pain: "03. Unconvincing",
+      solution: "No credibility proof, just dry walls of text without substance."
     }
   ],
-  featuresTitle: "Enterprise-Grade Features",
-  featuresSubtitle: "Engineered specifically for corporate vendors, contractors, and industrial groups.",
+  featuresTitle: "Everything a Modern Company Profile Needs",
+  featuresSubtitle: "Essential components engineered to exceed expectations of B2B partners and tender evaluation boards.",
   features: [
     {
-      title: "Interactive Project Showcase",
-      description: "Filter case studies by industry sector, year, and client specifications effortlessly."
+      title: "Company Profile & History",
+      description: "Tell your company's journey with dignified visual storytelling."
     },
     {
-      title: "Legal & Certification Vault",
-      description: "Dedicated sections for displaying ISO certificates, trade licenses, and industry accolades."
+      title: "Vision, Mission & Values",
+      description: "Display your guiding principles and strategic vision with elegance."
     },
     {
-      title: "Bilingual (EN / ID) Architecture",
-      description: "Seamless localized routing to support export-import markets and foreign joint ventures."
+      title: "Organization Structure / Core Team",
+      description: "Showcase the leaders behind the business to build trust."
     },
     {
-      title: "Corporate PDF Download Hub",
-      description: "Allow prospective clients to download brochures with integrated lead generation triggers."
+      title: "Project & Client Portfolio",
+      description: "A verifiable digital showcase of proven past track records."
     },
     {
-      title: "Anti-Defacement Architecture",
-      description: "Headless static generation completely impervious to traditional CMS malware vulnerabilities."
+      title: "Gallery & Certifications",
+      description: "Display official legalities, ISO certifications, and enterprise achievements."
     },
     {
-      title: "Domain Email Setup",
-      description: "Professional enterprise mail accounts configured with SPF/DKIM authentication."
+      title: "Career Portal (Optional)",
+      description: "Post openings and attract top talent directly from your company domain."
+    },
+    {
+      title: "Contact & Branch Locations",
+      description: "Interactive maps and inquiries routed straight to team email or WhatsApp."
+    },
+    {
+      title: "Social Media Integration",
+      description: "Centralize all your official social media channels in one unified place."
     }
   ],
-  packagesTitle: "Corporate Profile Solutions",
-  packagesSubtitle: "Structured packages engineered for long-term digital asset value.",
+  packagesTitle: "An Investment in Your Enterprise Reputation",
+  packagesSubtitle: "Tailored investment plans structured for your corporate maturity and operational scale.",
   packages: [
     {
-      name: "Standard Corporate",
-      price: "$450",
-      description: "Tailored for growing consulting agencies and professional services firms.",
+      name: "BASIC",
+      price: "$350",
+      description: "Ideal for newly founded PT/CV requiring an official digital presence",
       features: [
-        "Up to 6 Structured Corporate Pages",
-        "Portfolio Showcase & Client Logos",
-        "Contact Inquiries & WhatsApp Sync",
-        "Free 1-Year Domain & Cloud Hosting",
-        "News & Article Publishing Panel",
-        "7-10 Business Days Delivery"
+        "3-5 pages company profile",
+        "Corporate clean & responsive design",
+        "Contact page & office location map",
+        "1-Year Domain (.com/.id) & Cloud Hosting",
+        "2x Revision rounds"
       ]
     },
     {
-      name: "Enterprise & Tender Ready",
-      price: "$750",
+      name: "STANDARD",
+      price: "$950",
       isPopular: true,
-      description: "For contractors, manufacturers, and large commercial vendors bidding for tenders.",
+      description: "For established businesses actively pursuing enterprise clients & partners",
       features: [
-        "Up to 12 Custom Content Pages",
-        "Bilingual Setup (English & Indonesian)",
-        "PDF Download Center & Legal Vault",
-        "Filterable Project Database",
-        "Brand Domination SEO Setup",
-        "5 Corporate Email Accounts",
-        "6-Month Bug-Free Warranty",
-        "10-14 Business Days Delivery"
+        "Up to 10 pages company profile",
+        "CMS for self-managed news & project updates",
+        "Filterable project portfolio showcase",
+        "Downloadable company brochure / PDF profile",
+        "Basic brand search SEO setup",
+        "1-Year Domain & Cloud Hosting",
+        "4x Revision rounds"
       ]
     },
     {
-      name: "Custom Holding & Multi-Division",
-      price: "$1,450+",
-      description: "For corporate groups with multiple subsidiaries and international operations.",
+      name: "CUSTOM",
+      price: "Contact Us",
+      description: "For holding companies, multi-subsidiary groups, or custom enterprise workflows",
       features: [
-        "Multi-Site / Multi-Subsidiary Structure",
-        "Investor Relations & Careers Hub",
-        "Bespoke High-End UI/UX",
-        "Enterprise Security Audits",
-        "Full Git Repository Handover",
-        "Dedicated Account SLA",
-        "3-5 Weeks Delivery"
+        "Multi-subsidiary / branch architecture",
+        "Career portal with job application system",
+        "Multi-language support (ID / EN)",
+        "Internal HR / CRM integrations",
+        "Dedicated project manager",
+        "Regular maintenance & security warranty"
       ]
     }
   ],
@@ -122,18 +123,26 @@ export const companyProfileEn: ServicePageData = {
     { name: "Tailwind CSS", category: "Design System", description: "Strict design consistency across corporate touchpoints." }
   ],
   faqTitle: "Company Profile Web FAQs",
-  faqSubtitle: "Common questions asked by corporate representatives.",
+  faqSubtitle: "Common questions asked by corporate leaders before commissioning a project.",
   faqs: [
     {
-      question: "Is this website suitable for government or private tender bidding?",
-      answer: "Yes. We structure all certification vaults, legal documentation, executive leadership profiles, and case histories to comply with corporate procurement criteria."
+      question: "How long does it take to complete a company profile website?",
+      answer: "The Basic plan takes approximately 1-2 weeks. Standard plan takes 2-4 weeks. Custom projects depend on defined project scope."
     },
     {
-      question: "Can you assist with writing corporate copy and structuring content?",
-      answer: "Yes, our team can help organize and refine your company narrative, mission statement, and service breakdowns for maximum impact."
+      question: "Can it be bilingual (multi-language)?",
+      answer: "Yes. Multi-language support is included in the Custom package and available as an add-on for the Standard package."
+    },
+    {
+      question: "Do we need to prepare content or will you assist us?",
+      answer: "You provide basic background materials, and our team helps structure and write professional narrative copy."
+    },
+    {
+      question: "How do we add career openings or update projects later?",
+      answer: "In the Standard and Custom packages, you get an intuitive CMS and easy-to-follow video training so your team can manage updates independently."
     }
   ],
-  ctaTitle: "Elevate Your Corporate Standing Online",
-  ctaSubtitle: "Talk to our senior solution architects about your company profile requirements today.",
-  ctaButton: "Contact via WhatsApp"
+  ctaTitle: "It's Time Your Company Looks as Prestigious as It Truly Is",
+  ctaSubtitle: "Discuss your company profile requirements today. We will help determine the best concept and package suited for your business scale.",
+  ctaButton: "Free Consultation Now"
 };
