@@ -1,0 +1,96 @@
+---
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const steps = [
+  {
+    step: "01",
+    title: lang === "en" ? "Requirements Analysis" : "Analisis Kebutuhan",
+    description: lang === "en"
+      ? "We study your real-world workflows, the core problems to solve, and the specific user roles."
+      : "Kami pelajari alur kerja, masalah yang mau diselesaikan, dan siapa yang bakal pakai sistemnya.",
+    stage: lang === "en" ? "Phase 1" : "Tahap 1"
+  },
+  {
+    step: "02",
+    title: lang === "en" ? "System & Architecture Design" : "Perancangan Sistem",
+    description: lang === "en"
+      ? "Create interactive wireframes and database architecture so every flow is crystal clear before coding."
+      : "Bikin wireframe dan arsitektur database biar alurnya jelas sebelum mulai coding.",
+    stage: lang === "en" ? "Phase 2" : "Tahap 2"
+  },
+  {
+    step: "03",
+    title: lang === "en" ? "Iterative Sprint Development" : "Development Bertahap",
+    description: lang === "en"
+      ? "We build module by module with periodic live demos, showing measurable sprint progress."
+      : "Kami bangun per modul dengan demo berkala, kamu bisa lihat progress nyata tiap sprint.",
+    stage: lang === "en" ? "Phase 3" : "Tahap 3"
+  },
+  {
+    step: "04",
+    title: lang === "en" ? "UAT & Deployment" : "UAT & Deployment",
+    description: lang === "en"
+      ? "Comprehensive testing with your team, hands-on user training, and seamless production rollout."
+      : "Testing bareng tim kamu, training penggunaan, baru deploy ke production.",
+    stage: lang === "en" ? "Phase 4" : "Tahap 4"
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative overflow-hidden">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Development Process" : "Cara Kerja / Proses"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "From Discussion to a Running System" : "Dari Diskusi Sampai Sistem Jalan"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "A transparent, milestone-driven development process ensuring your custom system delivers on its promise."
+          : "Alur pengembangan bertahap dan transparan demi memastikan sistem custom Anda beroperasi mulus sesuai target bisnis."}
+      </p>
+    </div>
+
+    {/* 4 Steps Grid */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+      {steps.map((item) => (
+        <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-7 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+          <div>
+            {/* Step Number in Brand Blue */}
+            <div class="mb-5 flex items-center justify-between">
+              <span class="text-3xl sm:text-4xl font-mono font-bold text-brand">
+                {item.step}
+              </span>
+              <span class="text-xs font-mono text-muted-foreground/60 uppercase">
+                {item.stage}
+              </span>
+            </div>
+
+            {/* Title */}
+            <h3 class="text-base sm:text-lg font-bold text-foreground mb-3 group-hover:text-brand transition-colors leading-snug">
+              {item.title}
+            </h3>
+
+            {/* Description */}
+            <p class="text-xs sm:text-sm text-muted-foreground font-light leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

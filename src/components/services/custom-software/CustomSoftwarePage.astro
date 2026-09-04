@@ -1,0 +1,59 @@
+---
+import CustomSoftwareHero from "./CustomSoftwareHero.astro";
+import CustomSoftwareSocialProof from "./CustomSoftwareSocialProof.astro";
+import CustomSoftwareProblems from "./CustomSoftwareProblems.astro";
+import CustomSoftwareSolutions from "./CustomSoftwareSolutions.astro";
+import CustomSoftwareTypes from "./CustomSoftwareTypes.astro";
+import CustomSoftwareProcess from "./CustomSoftwareProcess.astro";
+import CustomSoftwarePortfolio from "./CustomSoftwarePortfolio.astro";
+import CustomSoftwarePricing from "./CustomSoftwarePricing.astro";
+import CustomSoftwareFAQ from "./CustomSoftwareFAQ.astro";
+import CustomSoftwareCTA from "./CustomSoftwareCTA.astro";
+import type { ServicePageData } from "../../../data/services/types";
+
+interface Props {
+  lang: "en" | "id";
+  service: ServicePageData;
+}
+
+const { lang, service } = Astro.props;
+---
+
+<div class="custom-software-service-page">
+  {/* 1. HERO SECTION */}
+  <CustomSoftwareHero
+    lang={lang}
+    eyebrow={service.eyebrow}
+    title={service.title}
+    subtitle={service.subtitle}
+    primaryCtaText={service.primaryCtaText}
+    secondaryCtaText={service.secondaryCtaText}
+  />
+
+  {/* 2. SOCIAL PROOF BAR */}
+  <CustomSoftwareSocialProof lang={lang} />
+
+  {/* 3. MASALAH YANG SERING DITEMUI */}
+  <CustomSoftwareProblems lang={lang} />
+
+  {/* 4. SOLUSI / VALUE PROPOSITION (3 PILAR) */}
+  <CustomSoftwareSolutions lang={lang} />
+
+  {/* 5. JENIS SISTEM YANG BISA DIBANGUN (6 ITEMS) */}
+  <CustomSoftwareTypes lang={lang} />
+
+  {/* 6. PROSES KERJA (4 LANGKAH) */}
+  <CustomSoftwareProcess lang={lang} />
+
+  {/* 7. PORTOFOLIO / STUDI KASUS */}
+  <CustomSoftwarePortfolio lang={lang} />
+
+  {/* 8. PRICING / PAKET */}
+  <CustomSoftwarePricing lang={lang} />
+
+  {/* 9. FAQ */}
+  <CustomSoftwareFAQ lang={lang} />
+
+  {/* 10. FINAL CTA */}
+  <CustomSoftwareCTA lang={lang} />
+</div>

@@ -1,0 +1,122 @@
+---
+import { Check } from "lucide-react";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const pillars = [
+  {
+    number: "01",
+    title: lang === "en" ? "Pillar 1 - Tailored to Your Process" : "Pilar 1 - Sesuai Proses, Bukan Sebaliknya",
+    subtitle: lang === "en"
+      ? "We dissect and map your exact workflow before writing a single line of code."
+      : "Kami bedah alur kerja kamu dulu sebelum nulis satu baris kode pun.",
+    image: "/images/services/custom-software/solution-tailored-process.png",
+    alt: lang === "en" ? "Systems Tailored to Your Real Workflow" : "Sistem yang Dirancang Sesuai Alur Kerja Nyata",
+    points: [
+      lang === "en" ? "Zero forced compromises to match rigid template software" : "Bebas kompromi alur, sistem 100% mengikuti SOP perusahaan",
+      lang === "en" ? "Custom data fields, permissions, and validation rules" : "Formulir, validasi, dan hak akses bertingkat sesuai hierarki tim",
+      lang === "en" ? "Intuitive interfaces designed for fast employee onboarding" : "Antarmuka mudah dipahami tim lapangan tanpa training berbelit"
+    ]
+  },
+  {
+    number: "02",
+    title: lang === "en" ? "Pillar 2 - Built to Scale" : "Pilar 2 - Bisa Berkembang",
+    subtitle: lang === "en"
+      ? "Engineered modularly: launch with core features first, and expand seamlessly as business accelerates."
+      : "Dibangun modular, bisa mulai dari fitur inti dulu dan ditambah seiring bisnis jalan.",
+    image: "/images/services/custom-software/solution-scalable-growth.png",
+    alt: lang === "en" ? "Modular & Scalable Custom Software Architecture" : "Arsitektur Software Modular dan Skalabel",
+    points: [
+      lang === "en" ? "Start with an MVP to validate quickly without huge upfront risk" : "Mulai dari MVP untuk efisiensi investasi awal yang terukur",
+      lang === "en" ? "Add branches, warehouses, and user seats without slowdowns" : "Tambah cabang, gudang, dan pengguna tanpa penurunan performa",
+      lang === "en" ? "Microservice-ready architecture that evolves with company milestones" : "Struktur kode rapi siap diekspansi kapan pun bisnis berkembang"
+    ]
+  },
+  {
+    number: "03",
+    title: lang === "en" ? "Pillar 3 - Fully Integrated" : "Pilar 3 - Terintegrasi Penuh",
+    subtitle: lang === "en"
+      ? "Connect seamlessly to existing tools: WhatsApp, payment rails, accounting software, and hardware."
+      : "Bisa dihubungkan ke sistem yang udah kamu pakai: WhatsApp, payment gateway, akuntansi, dll.",
+    image: "/images/services/custom-software/solution-fully-integrated.png",
+    alt: lang === "en" ? "Fully Integrated Ecosystem & API Connections" : "Ekosistem Terintegrasi Penuh dengan API",
+    points: [
+      lang === "en" ? "Automated WhatsApp & email notifications for critical approvals" : "Notifikasi otomatis ke WhatsApp & email untuk persetujuan kilat",
+      lang === "en" ? "Direct sync with accounting ledgers, POS terminals, and banks" : "Sinkronisasi langsung ke sistem akuntansi, kasir POS, & bank",
+      lang === "en" ? "Secure RESTful and GraphQL APIs for third-party ecosystems" : "Koneksi API aman ke layanan logistik dan partner bisnis Anda"
+    ]
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Why Build Custom" : "Solusi & Value Proposition"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Why Build Custom with Gilabs?" : "Kenapa Bangun Custom Bareng Gilabs?"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "We engineer digital assets tailored exclusively to your operational dna-yielding higher efficiency, full ownership, and long-term agility."
+          : "Kami membangun sistem yang benar-benar mengikuti alur operasional Anda, memberikan efisiensi tinggi, kepemilikan penuh, dan fleksibilitas jangka panjang."}
+      </p>
+    </div>
+
+    {/* 3 Pillars Grid */}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+      {pillars.map((pillar) => (
+        <article class="bg-white border border-border/50 rounded-2xl overflow-hidden hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+          {/* Top Image Banner (Minimalist, zero floating badges) */}
+          <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
+            <img
+              src={pillar.image}
+              alt={pillar.alt}
+              class="w-full h-full object-cover select-none"
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="400"
+            />
+          </div>
+
+          {/* Content Details */}
+          <div class="p-6 sm:p-7 flex flex-col grow justify-between">
+            <div>
+              <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+                {pillar.title}
+              </h3>
+
+              <p class="typography-body text-muted-foreground leading-relaxed mb-6 font-light">
+                {pillar.subtitle}
+              </p>
+            </div>
+
+            {/* Checkpoints */}
+            <ul class="space-y-3 pt-4 border-t border-border/40">
+              {pillar.points.map((point) => (
+                <li class="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/80">
+                  <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                  <span class="leading-snug">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

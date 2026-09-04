@@ -3,113 +3,139 @@ import type { ServicePageData } from "./types";
 export const customSoftwareId: ServicePageData = {
   slug: "jasa-pembuatan-custom-software",
   category: "software",
-  eyebrow: "Jasa Pembuatan Custom Software & Web App",
-  title: "Software Kustom yang Mengikuti SOP Perusahaan Anda, Bukan Sebaliknya",
-  subtitle: "Tinggalkan software kaku yang memaksa Anda mengubah cara kerja. Kami membangun sistem informasi kustom, portal web, dan aplikasi alur kerja yang 100% presisi sesuai SOP bisnis Anda.",
-  heroIllustration: "/illustrations/custom-software-sketch.png",
-  metaTitle: "Jasa Pembuatan Custom Software & Sistem Informasi Web | Gilabs",
-  metaDescription: "Jasa pembuatan custom software, sistem informasi manajemen, web app, dan portal operasional perusahaan. Terintegrasi, fleksibel, dan full source code.",
+  eyebrow: "Custom Software & Web App",
+  title: "Sistem yang Dibangun Mengikuti Cara Kerja Kamu, Bukan Sebaliknya",
+  subtitle: "Kalau proses bisnis kamu udah terlalu unik buat software siap pakai, saatnya bangun yang benar-benar pas.",
+  heroIllustration: "/images/services/custom-software/hero-custom-software.png",
+  metaTitle: "Jasa Pembuatan Custom Software & Web App Indonesia | Gilabs",
+  metaDescription: "Jasa pembuatan custom software dan web app Indonesia. Sistem operasional, ERP/CRM, workflow approval, dan portal client sesuai cara kerja bisnis Anda.",
   keywords: [
     "jasa pembuatan custom software",
-    "jasa pembuatan sistem informasi",
     "jasa pembuatan web app",
-    "jasa software operasional perusahaan",
-    "software house murah terpercaya",
-    "jasa bikin software kantor",
-    "pengembangan aplikasi web kustom"
+    "custom software development indonesia",
+    "jasa software operasional",
+    "aplikasi web custom",
+    "sistem workflow approval",
+    "portal client custom",
+    "dashboard analitik bisnis"
   ],
-  primaryCtaText: "Konsultasi Kustom Software",
+  primaryCtaText: "Diskusikan Kebutuhan Kamu",
   secondaryCtaText: "Lihat Contoh Sistem",
-  problemsTitle: "Tantangan Menggunakan Software Pabrikan / Siap Pakai",
-  problemsSubtitle: "Software generik seringkali terlalu rumit dengan fitur tak terpakai atau kurang sesuai alur bisnis nyata.",
+  problemsTitle: "Kapan Waktunya Butuh Sistem Custom?",
+  problemsSubtitle: "Tiga tanda nyata ketika solusi off-the-shelf dan spreadsheet mulai membatasi pertumbuhan bisnis Anda.",
   problems: [
     {
-      pain: "Biaya Lisensi Bulanan Terus Membengkak",
-      solution: "Custom software Gilabs dibeli putus tanpa biaya langganan per-user setiap bulan."
+      pain: "Excel Udah Nggak Cukup",
+      solution: "Data tersebar di banyak file, sulit dipantau, rawan human error."
     },
     {
-      pain: "Fitur Kaku & Tidak Cocok dengan SOP",
-      solution: "Setiap modul, alur persetujuan (approval), dan rumus perhitungan dirancang persis seperti alur kerja tim Anda."
+      pain: "Software Umum Terlalu Kaku",
+      solution: "Fitur yang ada nggak sesuai alur kerja, bayar mahal tapi banyak yang nggak kepakai."
     },
     {
-      pain: "Data Tersebar di Banyak Spreadsheet",
-      solution: "Konsolidasi seluruh database operasional ke dalam satu sistem terpusat yang aman dan real-time."
+      pain: "Butuh Integrasi Antar Sistem",
+      solution: "Punya beberapa aplikasi tapi nggak nyambung satu sama lain, kerjaan jadi dobel."
     }
   ],
-  featuresTitle: "Kelebihan Custom Software Gilabs",
-  featuresSubtitle: "Sistem dibangun untuk mempermudah pekerjaan sehari-hari dan mempercepat pengambilan keputusan.",
+  featuresTitle: "Apa yang Bisa Kami Buatkan?",
+  featuresSubtitle: "Solusi sistem custom yang dirancang presisi untuk menyelesaikan masalah operasional harian Anda.",
   features: [
     {
-      title: "Alur Workflow Approval Bertingkat",
-      description: "Otomasi pengajuan izin, approval pembelian, dan dokumen digital menggantikan tanda tangan manual di kertas."
+      title: "HRIS, Inventory & Asset Management",
+      description: "Kelola karyawan, stok barang, atau aset perusahaan dalam satu dashboard."
     },
     {
-      title: "Role-Based Access Control (RBAC)",
-      description: "Pembagian hak akses aman untuk staf, supervisor, manajer, hingga direksi sesuai wewenangnya."
+      title: "Marketplace & Platform Multi-vendor",
+      description: "Platform jual-beli dengan sistem komisi, split payment, dan multi-toko."
     },
     {
-      title: "Integrasi API Pihak Ketiga & WhatsApp",
-      description: "Koneksi mulus dengan sistem akuntansi, payment gateway, WhatsApp Business API, dan hardware IoT."
+      title: "Dashboard Analitik & Reporting",
+      description: "Tarik data dari berbagai sumber, visualisasikan performa bisnis secara real-time."
     },
     {
-      title: "Dashboard Analitik & Ekspor Laporan",
-      description: "Pantau metrik KPI utama dan cetak laporan format PDF / Excel hanya dalam satu kali klik."
+      title: "Sistem Approval & Workflow",
+      description: "Pengajuan izin, reimburse, atau purchase order dengan alur approval bertingkat."
+    },
+    {
+      title: "Portal Client & Member Area",
+      description: "Area khusus untuk pelanggan atau member mengakses layanan dan tracking progress."
+    },
+    {
+      title: "Integrasi API & Otomasi Pihak Ketiga",
+      description: "Hubungkan software lama ke sistem baru, payment gateway, atau layanan logistik."
     }
   ],
-  packagesTitle: "Skema Pengembangan Custom Software",
-  packagesSubtitle: "Tahapan terukur mulai dari prototyping hingga implementasi menyeluruh.",
+  packagesTitle: "Investasi Sesuai Skala Kebutuhan",
+  packagesSubtitle: "Estimasi biaya transparan tanpa biaya lisensi per-user bulanan. Source code 100% milik Anda.",
   packages: [
     {
-      name: "Sistem Informasi Operasional",
-      price: "Mulai Rp 15.000.000",
-      description: "Cocok untuk digitalisasi 1-2 departemen spesifik (misal: logistik, purchasing, atau HR internal).",
+      name: "BASIC",
+      price: "Mulai Rp 5.000.000",
+      isPopular: false,
+      description: "Cocok untuk: MVP, sistem internal sederhana, automasi satu alur kerja spesifik.",
       features: [
-        "Analisis SOP & Rancangan Database",
-        "Hingga 5-8 Modul Operasional",
-        "Role Admin & Multi-User Access",
-        "Ekspor Data Excel & Cetak PDF",
-        "Cloud Hosting Setup & Keamanan",
-        "Garansi Bebas Bug 3 Bulan",
-        "Waktu Pengerjaan 3-5 Minggu"
+        "1 Modul/Alur Utama",
+        "Web-based Responsive",
+        "Database Setup",
+        "Basic Auth & Role",
+        "Garansi Bug Fixes 1 Bulan"
       ]
     },
     {
-      name: "Enterprise Custom Web App",
-      price: "Mulai Rp 35.000.000",
+      name: "STANDARD",
+      price: "Mulai Rp 15.000.000",
       isPopular: true,
-      description: "Sistem komprehensif yang mengintegrasikan seluruh divisi dan cabang perusahaan.",
+      description: "Cocok untuk: Sistem operasional bisnis, CRM/ERP custom skala UKM.",
       features: [
-        "Modul Terintegrasi Lintas Divisi",
-        "Multi-Branch & Multi-Warehouse Sync",
-        "Integrasi WhatsApp API & Notifikasi",
-        "Dashboard KPI Real-Time Executive",
-        "Audit Log Aktivitas Pengguna",
-        "Full Source Code Transfer & Manual Book",
-        "Garansi & Pendampingan 6 Bulan",
-        "Waktu Pengerjaan 6-10 Minggu"
+        "Multi-modul & Multi-role User",
+        "Web App + Responsive Dashboard",
+        "Integrasi API & Notifikasi (WA/Email)",
+        "Export/Import Data & Reporting",
+        "Garansi & Support 3 Bulan"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Hubungi Kami",
+      isPopular: false,
+      description: "Cocok untuk: Platform skala besar, arsitektur kompleks, kebutuhan high traffic.",
+      features: [
+        "Arsitektur Microservices / Scalable",
+        "Multi-platform (Web + Mobile App)",
+        "Integrasi Sistem Legacy & Third-party",
+        "Security Hardening & Audit Log",
+        "Dedicated Support & SLA"
       ]
     }
   ],
-  techStackTitle: "Teknologi Web App Tangguh",
-  techStackSubtitle: "Dirancang untuk reliabilitas tinggi dan penanganan volume data besar.",
+  techStackTitle: "Teknologi Modern & Skalabel",
+  techStackSubtitle: "Dibangun dengan arsitektur modern untuk kecepatan, keandalan, dan kemudahan skalabilitas.",
   techStack: [
-    { name: "Next.js / React", category: "Frontend", description: "UI interaktif dan responsif di browser." },
-    { name: "Node.js / Golang", category: "Backend", description: "API efisien dan pemrosesan data kilat." },
-    { name: "PostgreSQL", category: "Database", description: "Keamanan data relasional tanpa risiko korup." }
+    { name: "Next.js / React / Astro", category: "Frontend Web", description: "Antarmuka responsif dan performa render instan." },
+    { name: "Node.js / Golang", category: "Backend Logic", description: "API tangguh dan throughput tinggi." },
+    { name: "PostgreSQL & Redis", category: "Data Tier", description: "Database relasional ACID dan caching super cepat." }
   ],
-  faqTitle: "FAQ Custom Software",
-  faqSubtitle: "Pertanyaan seputar pembuatan software kustom.",
+  faqTitle: "Pertanyaan yang Sering Ditanyakan",
+  faqSubtitle: "Hal penting seputar proses pembuatan custom software di Gilabs.",
   faqs: [
     {
-      question: "Apakah sistem ini bisa diakses dari HP?",
-      answer: "Bisa. Seluruh antarmuka web app kami dibangun dengan desain responsif mobile yang nyaman diakses melalui browser smartphone maupun tablet."
+      question: "Kalau di tengah jalan ada fitur yang mau diubah atau ditambah, gimana?",
+      answer: "Kami pakai pendekatan fleksibel. Fitur baru akan diestimasi scope dan biayanya secara transparan tanpa mengganggu timeline milestone yang sedang berjalan."
     },
     {
-      question: "Bagaimana jika ada penambahan fitur di masa depan?",
-      answer: "Karena arsitektur kami modular dan full source code diserahkan ke Anda, penambahan fitur dapat dilakukan dengan mudah baik oleh tim Gilabs maupun oleh developer internal Anda."
+      question: "Apakah sistemnya bisa diintegrasikan dengan software yang udah kami pakai?",
+      answer: "Bisa, selama software tersebut punya API atau database yang bisa diakses. Kami sering integrasikan ke WhatsApp, payment gateway, software akuntansi, dan sistem POS."
+    },
+    {
+      question: "Source code-nya jadi milik siapa setelah project selesai?",
+      answer: "100% milik kamu. Setelah pelunasan, seluruh source code, database schema, dan aset diserahkan sepenuhnya tanpa biaya lisensi berkelanjutan."
+    },
+    {
+      question: "Apakah ada maintenance setelah sistemnya live?",
+      answer: "Ada masa garansi bug fixes setelah deployment. Kami juga menyediakan opsi retainer bulanan kalau kamu butuh tim teknis untuk standby, update berkala, atau penambahan fitur berkelanjutan."
     }
   ],
-  ctaTitle: "Otomasi Alur Kerja Perusahaan Anda Sekarang",
-  ctaSubtitle: "Ceritakan proses bisnis Anda dan mari kita wujudkan sistem digital yang efisien.",
-  ctaButton: "Diskusikan Kebutuhan Software"
+  ctaTitle: "Punya Proses Bisnis yang Belum Ada Sistemnya?",
+  ctaSubtitle: "Ceritakan alur kerja kamu, kami bantu petakan solusinya. Konsultasi awal gratis, tanpa jargon teknis yang membingungkan.",
+  ctaButton: "Mulai Diskusi Gratis"
 };

@@ -3,107 +3,137 @@ import type { ServicePageData } from "./types";
 export const customSoftwareEn: ServicePageData = {
   slug: "jasa-pembuatan-custom-software",
   category: "software",
-  eyebrow: "Custom Software & Web App Development",
-  title: "Custom Software Built Around Your SOPs, Not the Other Way Around",
-  subtitle: "Ditch rigid off-the-shelf software packages. We build custom management information systems, web portals, and workflow engines that match 100% of your operational workflows.",
-  heroIllustration: "/illustrations/custom-software-sketch.png",
-  metaTitle: "Custom Software & Web Application Development | Gilabs",
-  metaDescription: "Custom software engineering services in Indonesia. Bespoke internal operational tools, web applications, and workflow automation with full code ownership.",
+  eyebrow: "Custom Software & Web App",
+  title: "Systems Built Around How You Work, Not the Other Way Around",
+  subtitle: "When off-the-shelf software is too rigid for your unique business processes, it is time to build one that fits perfectly.",
+  heroIllustration: "/images/services/custom-software/hero-custom-software.png",
+  metaTitle: "Custom Software & Web App Development Services | Gilabs",
+  metaDescription: "Custom software and web application development. Tailored operational systems, ERP/CRM, approval workflows, and client portals built for your business.",
   keywords: [
-    "custom software development company",
-    "bespoke web application development",
-    "management information system development",
-    "corporate operational tools development",
-    "custom enterprise software agency"
+    "custom software development",
+    "bespoke web app development",
+    "custom business software",
+    "workflow automation software",
+    "client portal development",
+    "business intelligence dashboard"
   ],
-  primaryCtaText: "Discuss Custom Software",
-  secondaryCtaText: "View Solutions",
-  problemsTitle: "Why Commercial Off-The-Shelf Software Fails",
-  problemsSubtitle: "Generic SaaS tools force you to alter your hard-earned operational processes.",
+  primaryCtaText: "Discuss Your Needs",
+  secondaryCtaText: "View Case Studies",
+  problemsTitle: "When Is It Time for a Custom System?",
+  problemsSubtitle: "Three clear indicators that generic software and spreadsheets are holding your business back.",
   problems: [
     {
-      pain: "Recurring Seat-Based Licensing Fees",
-      solution: "Gilabs custom software is built as your perpetual digital asset with zero monthly per-user fees."
+      pain: "Excel Is No Longer Enough",
+      solution: "Data scattered across files, difficult to monitor, and prone to costly human errors."
     },
     {
-      pain: "Inflexible Approval Workflows",
-      solution: "Every approval tier, validation rule, and calculation formula is crafted precisely to your business rules."
+      pain: "Generic Software Is Too Rigid",
+      solution: "Features do not match your workflow; you pay high fees for tools your team never touches."
     },
     {
-      pain: "Disconnected Data Silos",
-      solution: "Unify spreadsheets, inventory logs, and accounting entries into one secure centralized ledger."
+      pain: "Need Seamless System Integration",
+      solution: "Disjointed apps operating in silos, causing duplicate data entry and manual overhead."
     }
   ],
-  featuresTitle: "Core Enterprise Capabilities",
-  featuresSubtitle: "Engineered to eliminate manual bottlenecks and accelerate executive decisions.",
+  featuresTitle: "What Can We Build for You?",
+  featuresSubtitle: "Tailored software solutions engineered to resolve operational bottlenecks and drive efficiency.",
   features: [
     {
-      title: "Multi-Tier Approval Workflows",
-      description: "Digital signatures, requisition routing, and automatic notifications replacing paper trails."
+      title: "HRIS, Inventory & Asset Management",
+      description: "Manage employees, inventory stock, and company assets from a unified real-time dashboard."
     },
     {
-      title: "Role-Based Access Control (RBAC)",
-      description: "Granular permission settings tailored for staff, managers, auditors, and executive boards."
+      title: "Marketplace & Multi-Vendor Platforms",
+      description: "Commerce platforms equipped with commission logic, split payments, and multi-store management."
     },
     {
-      title: "Third-Party API & Hardware Sync",
-      description: "Seamless integration with WhatsApp APIs, accounting software, barcode scanners, and payment rails."
+      title: "Analytics & Reporting Dashboards",
+      description: "Consolidate multiple data sources and visualize core business KPIs in real-time."
     },
     {
-      title: "Live KPI Dashboards & Reporting",
-      description: "Interactive operational graphs with one-click export to PDF and structured Excel spreadsheets."
+      title: "Approval & Workflow Systems",
+      description: "Leave requests, reimbursements, or purchase orders with multi-level approval hierarchies."
+    },
+    {
+      title: "Client Portals & Member Areas",
+      description: "Dedicated portals for clients or members to access services and track progress securely."
+    },
+    {
+      title: "API Integration & Automation",
+      description: "Connect legacy databases with modern apps, payment gateways, or third-party logistics."
     }
   ],
-  packagesTitle: "Custom Development Tiers",
-  packagesSubtitle: "Structured engineering roadmaps from functional prototypes to full enterprise deployment.",
+  packagesTitle: "Investment Scaled to Your Needs",
+  packagesSubtitle: "Transparent development pricing with zero recurring per-user licensing fees. 100% full source code ownership.",
   packages: [
     {
-      name: "Departmental System",
-      price: "From $1,000",
-      description: "Ideal for digitizing 1-2 core departments (e.g. purchasing, asset tracking, or HR).",
+      name: "BASIC",
+      price: "From $350",
+      isPopular: false,
+      description: "Best for: MVPs, simple internal tools, or automating a single workflow.",
       features: [
-        "SOP Mapping & Database Design",
-        "Up to 5-8 Operational Modules",
-        "Role-Based User Permissions",
-        "Excel & PDF Data Export",
-        "Cloud Server Deployment",
-        "3-Month Bug Warranty",
-        "3-5 Weeks Delivery"
+        "1 Core Module / Workflow",
+        "Web-Based Responsive Design",
+        "Database Architecture Setup",
+        "Basic Auth & Role Access",
+        "1-Month Bug Warranty"
       ]
     },
     {
-      name: "Full Enterprise Web App",
-      price: "From $2,400",
+      name: "STANDARD",
+      price: "From $950",
       isPopular: true,
-      description: "Comprehensive multi-branch operations platform unifying your entire organization.",
+      description: "Best for: Business operations systems, bespoke SMB CRM/ERP platforms.",
       features: [
-        "End-to-End Cross-Division Integration",
-        "Multi-Branch & Multi-Warehouse Sync",
-        "WhatsApp & Email Automation",
-        "Executive Real-Time Dashboard",
-        "Audit Logging & Security Hardening",
-        "Full Git Handover & Documentation",
-        "6-Month SLA Support",
-        "6-10 Weeks Delivery"
+        "Multi-Module & Multi-Role Users",
+        "Web App + Responsive Dashboard",
+        "API & Notifications (WA/Email)",
+        "Data Export/Import & Reporting",
+        "3-Month Warranty & Support"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Contact Us",
+      isPopular: false,
+      description: "Best for: Large-scale enterprise platforms, complex architectures, high-load requirements.",
+      features: [
+        "Microservices / Scalable Architecture",
+        "Multi-Platform (Web + Mobile App)",
+        "Legacy & Third-Party System Sync",
+        "Security Hardening & Audit Logs",
+        "Dedicated Support & SLA"
       ]
     }
   ],
-  techStackTitle: "Modern Web App Architecture",
-  techStackSubtitle: "Engineered for high data concurrency and zero data corruption.",
+  techStackTitle: "Modern & Scalable Tech Stack",
+  techStackSubtitle: "Engineered with modern architecture for speed, resilience, and effortless maintainability.",
   techStack: [
-    { name: "Next.js / React", category: "Frontend", description: "Fast, responsive web interfaces." },
-    { name: "Node.js / Golang", category: "Backend", description: "Resilient business logic execution." },
-    { name: "PostgreSQL", category: "Database", description: "Strict relational data integrity." }
+    { name: "Next.js / React / Astro", category: "Frontend Web", description: "Interactive user interfaces and instant render performance." },
+    { name: "Node.js / Golang", category: "Backend Logic", description: "High-throughput APIs and reliable business logic execution." },
+    { name: "PostgreSQL & Redis", category: "Data Tier", description: "ACID-compliant relational database and ultra-fast caching." }
   ],
-  faqTitle: "Custom Software FAQs",
-  faqSubtitle: "Common questions regarding custom software development.",
+  faqTitle: "Frequently Asked Questions",
+  faqSubtitle: "Key questions about custom software development with Gilabs.",
   faqs: [
     {
-      question: "Can this web app be accessed on mobile devices?",
-      answer: "Yes, our web applications are fully responsive and optimized for seamless access via mobile phone and tablet browsers."
+      question: "What if we want to add or change features during development?",
+      answer: "We use an agile, flexible approach. New features are scoped and priced transparently without disrupting ongoing sprint deliverables."
+    },
+    {
+      question: "Can the system integrate with software we currently use?",
+      answer: "Yes, as long as your existing software provides an API or accessible database. We regularly integrate WhatsApp, payment gateways, accounting systems, and POS."
+    },
+    {
+      question: "Who owns the source code once the project is finished?",
+      answer: "100% yours. Upon project completion, all source code, database schemas, and assets are fully transferred to you with zero recurring licensing fees."
+    },
+    {
+      question: "Is maintenance provided after system launch?",
+      answer: "All projects include a post-deployment bug warranty. We also offer monthly retainer packages for dedicated technical standby, updates, and continuous feature expansion."
     }
   ],
-  ctaTitle: "Ready to Automate Your Business Operations?",
-  ctaSubtitle: "Schedule a technical consultation to map out your digital transformation blueprint.",
-  ctaButton: "Get in Touch via WhatsApp"
+  ctaTitle: "Have a Business Process Ready for Automation?",
+  ctaSubtitle: "Walk us through your workflow and we will help map the right solution. Free initial consultation, zero confusing jargon.",
+  ctaButton: "Start Free Discussion"
 };

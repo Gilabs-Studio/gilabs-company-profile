@@ -1,0 +1,88 @@
+---
+import { FAQList } from "../../react/FAQList";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const faqs = [
+  {
+    question: lang === "en"
+      ? "What if we need to change or add features during development?"
+      : "Kalau di tengah jalan ada fitur yang mau diubah atau ditambah, gimana?",
+    answer: lang === "en"
+      ? "We use a flexible Change Request process. Any new feature is scoped and estimated transparently without disrupting active sprint milestones or core project deadlines."
+      : "Kami pakai pendekatan fleksibel. Fitur baru akan diestimasi scope dan biayanya secara transparan tanpa mengganggu timeline milestone yang sedang berjalan."
+  },
+  {
+    question: lang === "en"
+      ? "Can the custom system integrate with software we currently use?"
+      : "Apakah sistemnya bisa diintegrasikan dengan software yang udah kami pakai?",
+    answer: lang === "en"
+      ? "Yes, as long as the software provides an API or accessible database. We regularly integrate WhatsApp, payment gateways, accounting platforms, and POS systems."
+      : "Bisa, selama software tersebut punya API atau database yang bisa diakses. Kami sering integrasikan ke WhatsApp, payment gateway, software akuntansi, dan sistem POS."
+  },
+  {
+    question: lang === "en"
+      ? "Who owns the source code once the project is finished?"
+      : "Source code-nya jadi milik siapa setelah project selesai?",
+    answer: lang === "en"
+      ? "100% yours. After full project settlement, all source code, database schemas, and assets are handed over completely with zero recurring licensing fees."
+      : "100% milik kamu. Setelah pelunasan, seluruh source code, database schema, dan aset diserahkan sepenuhnya tanpa biaya lisensi berkelanjutan."
+  },
+  {
+    question: lang === "en"
+      ? "Is maintenance support provided after the system is live?"
+      : "Apakah ada maintenance setelah sistemnya live?",
+    answer: lang === "en"
+      ? "All projects include a post-deployment bug warranty. We also offer monthly retainer options if you need a technical team on standby, regular updates, or continuous feature expansion."
+      : "Ada masa garansi bug fixes setelah deployment. Kami juga menyediakan opsi retainer bulanan kalau kamu butuh tim teknis untuk standby, update berkala, atau penambahan fitur berkelanjutan."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<!-- Inject FAQ Schema for Rich Google Search Snippets -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<section class="py-16 md:py-24 relative z-10" id="faq">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Common Inquiries" : "FAQ"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Frequently Asked Questions" : "Pertanyaan yang Sering Ditanyakan"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Important answers regarding feature flexibility, existing software integration, source code ownership, and warranties."
+          : "Hal penting seputar fleksibilitas fitur, integrasi software yang sudah ada, kepemilikan source code, dan garansi pasca-deployment."}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <FAQList client:visible items={faqs} itemClassName="border border-border/50 rounded-2xl overflow-hidden bg-white shadow-sm transition-colors duration-200 hover:border-brand/50 relative z-10" />
+    </div>
+  </div>
+</section>
