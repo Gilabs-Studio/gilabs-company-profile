@@ -1,0 +1,138 @@
+---
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const projects = [
+  {
+    title: "PT Adiguna Presisi Nusantara",
+    industry: lang === "en" ? "Industrial CNC Machinery" : "Manufaktur & Mesin CNC",
+    result: lang === "en" ? "3x increase in qualified leads in 2 months" : "Naik 3x lipat leads dalam 2 bulan",
+    image: "/images/services/web-dev/portfolio-adiguna.jpg",
+    alt: "Website PT Adiguna Presisi Nusantara - Gilabs Web Development",
+    tags: ["Next.js", "Industrial SEO", "WhatsApp Quote", "Catalog"]
+  },
+  {
+    title: "Evalique Skin & Beauty",
+    industry: lang === "en" ? "Luxury Beauty E-Commerce" : "E-Commerce Skincare & Kosmetik",
+    result: lang === "en" ? "180% sales conversion jump in 30 days" : "Konversi penjualan naik 180% dalam 30 hari",
+    image: "/images/services/web-dev/portfolio-evalique.jpg",
+    alt: "Website Evalique Skin & Beauty - Gilabs Web Development",
+    tags: ["Next.js", "Payment Gateway", "High Speed", "Luxury UI"]
+  },
+  {
+    title: "SalesView GILABS",
+    industry: lang === "en" ? "B2B CRM & Enterprise Sales" : "B2B CRM & Enterprise Platform",
+    result: lang === "en" ? "Deal closure time accelerated by 45%" : "Waktu closing deal 45% lebih cepat",
+    image: "/images/services/web-dev/portfolio-salesview.jpg",
+    alt: "Website SalesView GILABS - Gilabs Web Development",
+    tags: ["React 19", "Golang API", "Sales Analytics", "Real-time"]
+  },
+  {
+    title: "TopGun Barber & Grooming",
+    industry: lang === "en" ? "Lifestyle & Booking Services" : "Lifestyle & Booking Services",
+    result: lang === "en" ? "Online reservations surged 240% with zero queueing" : "Booking online naik 240% tanpa antrean manual",
+    image: "/images/services/web-dev/portfolio-topgun.jpg",
+    alt: "Website TopGun Barber & Grooming - Gilabs Web Development",
+    tags: ["Astro", "Appointment Engine", "Mobile-First", "WhatsApp"]
+  }
+];
+
+const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results`;
+---
+
+<section id="portofolio" class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Proven Track Record" : "Portofolio Unggulan"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Not Just Promises, Here is the Proof" : "Bukan Cuma Janji, Ini Buktinya"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Real websites built for real businesses that deliver measurable commercial impact and revenue growth."
+          : "Website nyata yang kami bangun untuk bisnis nyata dengan hasil pertumbuhan yang terukur."}
+      </p>
+    </div>
+
+    {/* Portfolio Grid - Landing Page Consistent Cards (bg-white, border-border/50, shadow-md shadow-black/5) */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 mb-12 md:mb-16">
+      {projects.map((project) => (
+        <article class="bg-white border border-border/50 rounded-2xl sm:rounded-3xl overflow-hidden hover:border-brand/50 transition-colors shadow-md shadow-black/5 flex flex-col justify-between group">
+          {/* Large Mockup Image Container */}
+          <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
+            <img
+              src={project.image}
+              alt={project.alt}
+              class="w-full h-full object-cover select-none"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="500"
+            />
+
+            {/* Industry Badge */}
+            <div class="absolute top-3 left-3 z-10">
+              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
+                {project.industry}
+              </span>
+            </div>
+          </div>
+
+          {/* Card Info */}
+          <div class="p-6 sm:p-8 flex flex-col grow justify-between">
+            <div>
+              {/* Title */}
+              <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+                {project.title}
+              </h3>
+
+              {/* Measurable Result Highlight */}
+              <div class="inline-flex items-center px-3.5 py-1.5 rounded-xl border border-brand/20 bg-brand/5 text-brand font-medium text-xs sm:text-sm mb-4">
+                <span>{project.result}</span>
+              </div>
+            </div>
+
+            {/* Tech Tags */}
+            <div class="pt-4 border-t border-border/40 flex flex-wrap items-center justify-between gap-2">
+              <div class="flex flex-wrap gap-1.5">
+                {project.tags.map((tag) => (
+                  <span class="px-2 py-0.5 text-[11px] font-mono font-medium bg-secondary/60 text-foreground/70 rounded">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <a
+                href={portfolioUrl}
+                class="text-xs font-semibold text-brand hover:underline cursor-pointer"
+              >
+                {lang === "en" ? "Details →" : "Detail →"}
+              </a>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {/* Bottom CTA button */}
+    <div class="text-center">
+      <a
+        href={portfolioUrl}
+        class="inline-flex items-center justify-center px-8 py-3.5 sm:py-4 typography-button text-foreground bg-white hover:bg-secondary/40 border border-border/80 rounded-full transition-colors cursor-pointer shadow-sm"
+      >
+        <span>{lang === "en" ? "View All Portfolio Projects" : "Lihat Semua Portofolio"}</span>
+      </a>
+    </div>
+  </div>
+</section>

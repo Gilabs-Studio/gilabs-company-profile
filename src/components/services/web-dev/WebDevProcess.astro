@@ -1,0 +1,98 @@
+---
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const steps = [
+  {
+    step: "01",
+    title: lang === "en" ? "Consultation" : "Konsultasi",
+    description: lang === "en"
+      ? "We dive deep into your business model, target audience, and primary website objectives."
+      : "Kita ngobrol soal bisnis kamu, target audiens, dan tujuan website.",
+    tag: lang === "en" ? "Stage 1" : "Tahap 1"
+  },
+  {
+    step: "02",
+    title: lang === "en" ? "Design" : "Desain",
+    description: lang === "en"
+      ? "Our design team crafts bespoke UI/UX mockups. You review and revise until it feels 100% right."
+      : "Tim bikin mockup, kamu revisi sampai pas.",
+    tag: lang === "en" ? "Stage 2" : "Tahap 2"
+  },
+  {
+    step: "03",
+    title: lang === "en" ? "Development" : "Development",
+    description: lang === "en"
+      ? "We engineer the codebase with sub-second speeds. You can monitor progress in real-time."
+      : "Kami bangun, kamu bisa pantau progressnya real-time.",
+    tag: lang === "en" ? "Stage 3" : "Tahap 3"
+  },
+  {
+    step: "04",
+    title: lang === "en" ? "Launch" : "Launch",
+    description: lang === "en"
+      ? "Your website goes live on the world wide web, fully configured and ready to acquire customers."
+      : "Website online, kamu tinggal terima jadi dan siap dipakai.",
+    tag: lang === "en" ? "Stage 4" : "Tahap 4"
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative overflow-hidden">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Work Methodology" : "Proses Kerja"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Four Clear Steps to Your Live Website" : "Empat Tahap, Website Kamu Siap Tayang"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "A straightforward, transparent engineering roadmap with zero guesswork or confusing jargon."
+          : "Alur kerja terstruktur dan transparan, tanpa tebak-tebakan teknis yang membingungkan."}
+      </p>
+    </div>
+
+    {/* 4 Steps Grid - Landing Page Consistent Cards (bg-white, border-border/50, shadow-sm) */}
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+      {steps.map((item) => (
+        <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-7 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+          <div>
+            {/* Step Number in Brand Blue */}
+            <div class="mb-5">
+              <span class="text-2xl sm:text-3xl font-mono font-bold text-brand">
+                {item.step}
+              </span>
+            </div>
+
+            {/* Title */}
+            <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+              {item.title}
+            </h3>
+
+            {/* Description */}
+            <p class="typography-body text-muted-foreground font-light leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+
+          {/* Bottom Tag */}
+          <div class="pt-6 mt-6 border-t border-border/40 text-xs text-muted-foreground font-mono">
+            <span>{item.tag}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

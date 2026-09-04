@@ -1,0 +1,88 @@
+---
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const problems = [
+  {
+    number: "01",
+    title: lang === "en" ? "Slow Load Speed" : "Lambat",
+    description: lang === "en"
+      ? "Loading takes more than 3 seconds; visitors abandon your site and head straight to competitors."
+      : "Loading lebih dari 3 detik, orang udah keburu pindah ke kompetitor.",
+    metric: lang === "en" ? "53% users leave sites taking >3s" : "53% pengunjung kabur jika loading > 3 detik"
+  },
+  {
+    number: "02",
+    title: lang === "en" ? "Not Responsive" : "Nggak Responsive",
+    description: lang === "en"
+      ? "Breaks on mobile devices, even though over 80% of your potential customers visit via smartphones."
+      : "Buka di HP malah berantakan, padahal 80% pengunjung lewat mobile.",
+    metric: lang === "en" ? "80%+ visitor traffic is mobile-first" : "80% lebih pengunjung datang dari HP"
+  },
+  {
+    number: "03",
+    title: lang === "en" ? "Zero Conversions" : "Nggak Ada yang Convert",
+    description: lang === "en"
+      ? "High visitors but zero paying customers; something is fundamentally broken in the user journey."
+      : "Ramai pengunjung tapi nol yang jadi pelanggan, ada yang salah di alurnya.",
+    metric: lang === "en" ? "High traffic with zero paying leads" : "Ramai pengunjung tapi nol yang jadi pelanggan"
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Common Roadblocks" : "Masalah yang Sering Ditemui"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "How Does Your Current Website Feel?" : "Website Kamu Sekarang Kayak Gimana?"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "These 3 bottlenecks are the primary reason prospective clients leave before ever getting to know your business."
+          : "Tiga hal ini yang paling sering bikin calon klien kabur duluan sebelum sempat kenal bisnismu."}
+      </p>
+    </div>
+
+    {/* 3 Columns Grid - Landing Page Consistent Cards (bg-white, border-border/50, shadow-sm) */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+      {problems.map((problem) => (
+        <div class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="mb-5">
+              <span class="text-3xl sm:text-4xl font-mono font-bold text-brand">
+                {problem.number}
+              </span>
+            </div>
+
+            <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+              {problem.title}
+            </h3>
+
+            <p class="typography-body text-muted-foreground leading-relaxed mb-6 font-light">
+              {problem.description}
+            </p>
+          </div>
+
+          {/* Bottom metric callout with Brand Blue dot */}
+          <div class="pt-4 border-t border-border/40 flex items-center gap-2 text-xs font-medium text-foreground/70">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>
+            <span>{problem.metric}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

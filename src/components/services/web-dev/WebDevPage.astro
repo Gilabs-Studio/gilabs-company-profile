@@ -1,0 +1,55 @@
+---
+import WebDevHero from "./WebDevHero.astro";
+import WebDevSocialProof from "./WebDevSocialProof.astro";
+import WebDevProblems from "./WebDevProblems.astro";
+import WebDevSolutions from "./WebDevSolutions.astro";
+import WebDevProcess from "./WebDevProcess.astro";
+import WebDevPortfolio from "./WebDevPortfolio.astro";
+import WebDevPricing from "./WebDevPricing.astro";
+import WebDevFAQ from "./WebDevFAQ.astro";
+import WebDevCTA from "./WebDevCTA.astro";
+import type { ServicePageData } from "../../../data/services/types";
+
+interface Props {
+  lang: "en" | "id";
+  service: ServicePageData;
+}
+
+const { lang, service } = Astro.props;
+---
+
+<div class="web-dev-service-page">
+  {/* 1. HERO SECTION */}
+  <WebDevHero
+    lang={lang}
+    eyebrow={service.eyebrow}
+    title={service.title}
+    subtitle={service.subtitle}
+    primaryCtaText={service.primaryCtaText}
+    secondaryCtaText={service.secondaryCtaText}
+  />
+
+  {/* 2. SOCIAL PROOF BAR */}
+  <WebDevSocialProof lang={lang} />
+
+  {/* 3. MASALAH YANG SERING DITEMUI */}
+  <WebDevProblems lang={lang} />
+
+  {/* 4. SOLUSI / VALUE PROPOSITION */}
+  <WebDevSolutions lang={lang} />
+
+  {/* 5. PROSES KERJA */}
+  <WebDevProcess lang={lang} />
+
+  {/* 6. PORTOFOLIO */}
+  <WebDevPortfolio lang={lang} />
+
+  {/* 7. PRICING */}
+  <WebDevPricing lang={lang} />
+
+  {/* 8. FAQ */}
+  <WebDevFAQ lang={lang} />
+
+  {/* 9. FINAL CTA */}
+  <WebDevCTA lang={lang} />
+</div>

@@ -9,6 +9,7 @@ import LandingPackages from "../../../components/landing/LandingPackages.astro";
 import LandingTechStack from "../../../components/landing/LandingTechStack.astro";
 import LandingFAQ from "../../../components/landing/LandingFAQ.astro";
 import LandingCTA from "../../../components/landing/LandingCTA.astro";
+import WebDevPage from "../../../components/services/web-dev/WebDevPage.astro";
 import { serviceSlugs, getServiceData } from "../../../data/services/index";
 
 export function getStaticPaths() {
@@ -103,59 +104,65 @@ const breadcrumbSchema = {
 
   <Navbar lang={lang} />
 
-  <main class="min-h-screen bg-background">
-    <LandingHero
-      lang={lang}
-      eyebrow={service.eyebrow}
-      title={service.title}
-      subtitle={service.subtitle}
-      illustration={service.heroIllustration}
-      primaryCtaText={service.primaryCtaText}
-      secondaryCtaText={service.secondaryCtaText}
-      secondaryCtaHref={`/${lang}/work-results`}
-    />
+  <main class="min-h-screen relative z-10">
+    {slug === "jasa-pembuatan-website" ? (
+      <WebDevPage lang={lang} service={service} />
+    ) : (
+      <>
+        <LandingHero
+          lang={lang}
+          eyebrow={service.eyebrow}
+          title={service.title}
+          subtitle={service.subtitle}
+          illustration={service.heroIllustration}
+          primaryCtaText={service.primaryCtaText}
+          secondaryCtaText={service.secondaryCtaText}
+          secondaryCtaHref={`/${lang}/work-results`}
+        />
 
-    <LandingProblems
-      lang={lang}
-      title={service.problemsTitle}
-      subtitle={service.problemsSubtitle}
-      problems={service.problems}
-    />
+        <LandingProblems
+          lang={lang}
+          title={service.problemsTitle}
+          subtitle={service.problemsSubtitle}
+          problems={service.problems}
+        />
 
-    <LandingFeatures
-      lang={lang}
-      title={service.featuresTitle}
-      subtitle={service.featuresSubtitle}
-      features={service.features}
-    />
+        <LandingFeatures
+          lang={lang}
+          title={service.featuresTitle}
+          subtitle={service.featuresSubtitle}
+          features={service.features}
+        />
 
-    <LandingPackages
-      lang={lang}
-      title={service.packagesTitle}
-      subtitle={service.packagesSubtitle}
-      packages={service.packages}
-    />
+        <LandingPackages
+          lang={lang}
+          title={service.packagesTitle}
+          subtitle={service.packagesSubtitle}
+          packages={service.packages}
+        />
 
-    <LandingTechStack
-      lang={lang}
-      title={service.techStackTitle}
-      subtitle={service.techStackSubtitle}
-      techStack={service.techStack}
-    />
+        <LandingTechStack
+          lang={lang}
+          title={service.techStackTitle}
+          subtitle={service.techStackSubtitle}
+          techStack={service.techStack}
+        />
 
-    <LandingFAQ
-      lang={lang}
-      title={service.faqTitle}
-      subtitle={service.faqSubtitle}
-      faqs={service.faqs}
-    />
+        <LandingFAQ
+          lang={lang}
+          title={service.faqTitle}
+          subtitle={service.faqSubtitle}
+          faqs={service.faqs}
+        />
 
-    <LandingCTA
-      lang={lang}
-      title={service.ctaTitle}
-      subtitle={service.ctaSubtitle}
-      buttonText={service.ctaButton}
-    />
+        <LandingCTA
+          lang={lang}
+          title={service.ctaTitle}
+          subtitle={service.ctaSubtitle}
+          buttonText={service.ctaButton}
+        />
+      </>
+    )}
   </main>
 
   <Footer lang={lang} />
