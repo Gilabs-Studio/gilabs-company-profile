@@ -1,0 +1,80 @@
+---
+import { FAQList } from "../../react/FAQList";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const faqs = [
+  {
+    question: lang === "en" ? "Which payment gateways are supported?" : "Payment gateway apa saja yang didukung?",
+    answer: lang === "en"
+      ? "Midtrans, Xendit, and can be customized to your requirements (QRIS, BCA/Mandiri/BRI Virtual Accounts, GoPay, ShopeePay, Credit Cards)."
+      : "Midtrans, Xendit, dan bisa disesuaikan kebutuhan (QRIS, Virtual Account BCA/Mandiri/BRI, GoPay, OVO, ShopeePay, dan Kartu Kredit)."
+  },
+  {
+    question: lang === "en" ? "Can shipping rates be calculated automatically?" : "Apakah bisa integrasi ongkir otomatis?",
+    answer: lang === "en"
+      ? "Yes, available from the Standard package upwards with real-time multi-courier shipping rate calculations (JNE, J&T, SiCepat, etc.)."
+      : "Bisa, tersedia dari paket Standard ke atas lengkap dengan hitung ongkir otomatis terhubung kurir seperti JNE, J&T, SiCepat, dll."
+  },
+  {
+    question: lang === "en" ? "What if my store has thousands of product items?" : "Bagaimana kalau produk saya ribuan item?",
+    answer: lang === "en"
+      ? "Supported seamlessly. We provide bulk CSV/Excel import tools and multi-tiered category navigation structures."
+      : "Bisa, kami siapkan sistem import massal lewat Excel/CSV dan navigasi kategori bertingkat yang rapi."
+  },
+  {
+    question: lang === "en" ? "Are there any hidden recurring monthly fees?" : "Apakah ada biaya bulanan tambahan?",
+    answer: lang === "en"
+      ? "There are standard annual hosting and domain fees after the first year. We take 0% commission on your sales transactions."
+      : "Ada biaya hosting tahunan setelah tahun pertama, transparan sejak awal tanpa potongan komisi sepeser pun dari Gilabs."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<!-- Inject FAQ Schema for Rich Google Search Snippets -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<section class="py-16 md:py-24 relative z-10" id="faq">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Common Questions" : "Pertanyaan Umum"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        FAQ
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Frequently asked questions regarding payment gateways, shipping integrations, and store maintenance."
+          : "Hal yang sering ditanyakan seputar integrasi payment gateway, sistem ongkir, dan kelola produk toko online."}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <FAQList client:visible items={faqs} itemClassName="border border-border/50 rounded-2xl overflow-hidden bg-white shadow-sm transition-colors duration-200 hover:border-brand/50 relative z-10" />
+    </div>
+  </div>
+</section>

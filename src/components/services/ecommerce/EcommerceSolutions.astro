@@ -1,0 +1,137 @@
+---
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const pillars = [
+  {
+    number: "01",
+    title: lang === "en" ? "Pillar 1 — Full Brand Ownership" : "Pilar 1 — Branding Penuh",
+    subtitle: lang === "en"
+      ? "Your own custom domain, bespoke styling matching your identity, zero generic cookie-cutter templates."
+      : "Domain sendiri, desain sesuai identitas brand, bukan template generik.",
+    image: "/images/services/ecommerce/solution-branding.jpg",
+    alt: "Desain Toko Online Eksklusif Sesuai Identitas Brand",
+    badge: lang === "en" ? "Brand Equity" : "Identitas Eksklusif",
+    points: [
+      lang === "en" ? "Custom domain with zero competitor ads appearing beside your products" : "Domain resmi tanpa iklan produk kompetitor di halaman Anda",
+      lang === "en" ? "Premium visual layout reflecting the true luxury and tier of your brand" : "Tampilan toko berkelas mencerminkan kualitas produk",
+      lang === "en" ? "Own 100% of customer data, emails, and phone numbers for remarketing" : "Kuasai 100% database pelanggan untuk repeat order berkala"
+    ]
+  },
+  {
+    number: "02",
+    title: lang === "en" ? "Pillar 2 — Integrated Payment Gateways" : "Pilar 2 — Payment Gateway Terintegrasi",
+    subtitle: lang === "en"
+      ? "Bank transfer, QRIS, e-wallets, credit cards verified automatically straight into your account."
+      : "Transfer bank, e-wallet, kartu kredit, semua otomatis masuk sistem.",
+    image: "/images/services/ecommerce/solution-payment.jpg",
+    alt: "Payment Gateway Terintegrasi Otomatis",
+    badge: lang === "en" ? "Auto Verification" : "Verifikasi Otomatis",
+    points: [
+      lang === "en" ? "QRIS, BCA/Mandiri/BRI Virtual Accounts, GoPay, OVO, and ShopeePay" : "Mendukung QRIS, Virtual Account, GoPay, OVO, & Kartu Kredit",
+      lang === "en" ? "Zero manual receipt checking; orders update instantly upon customer payment" : "Bebas cek struk transfer manual, status order otomatis terupdate",
+      lang === "en" ? "Instant WhatsApp and email invoice notifications sent to both buyer and store" : "Notifikasi invoice otomatis terkirim ke WhatsApp pembeli & admin"
+    ]
+  },
+  {
+    number: "03",
+    title: lang === "en" ? "Pillar 3 — Effortless Product Management" : "Pilar 3 — Kelola Produk Mudah",
+    subtitle: lang === "en"
+      ? "Update inventory, prices, and promo discount codes without needing to wait on developers."
+      : "Update stok, harga, dan promo tanpa perlu tunggu developer.",
+    image: "/images/services/ecommerce/solution-inventory.jpg",
+    alt: "Dashboard Kelola Produk dan Stok Toko Online",
+    badge: lang === "en" ? "Admin Control" : "Kelola Mandiri",
+    points: [
+      lang === "en" ? "Intuitive dashboard for SKU variants (sizes, colors, bundles, weights)" : "Kelola varian ukuran, warna, berat, dan promo flash sale",
+      lang === "en" ? "Real-time automated multi-courier shipping rate calculations (JNE, J&T, SiCepat)" : "Integrasi cek ongkir otomatis multi-ekspedisi hingga kecamatan",
+      lang === "en" ? "Exportable sales reports and revenue tracking to streamline accounting" : "Laporan penjualan harian & bulanan rapi siap diekspor"
+    ]
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "E-Commerce Advantage" : "Solusi & Value Proposition"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Your Own Store, Your Own Rules" : "Toko Sendiri, Aturan Sendiri"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Build an independent direct-to-consumer digital channel where you keep 100% of the margins and build customer loyalty."
+          : "Bukan sekadar website toko. Kami bangun sistem penjualan otomatis yang membebaskan Anda dari ketergantungan marketplace pihak ketiga."}
+      </p>
+    </div>
+
+    {/* 3 Pillars Grid - Landing Page Consistent Cards */}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+      {pillars.map((pillar) => (
+        <article class="bg-white border border-border/50 rounded-2xl overflow-hidden hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+          {/* Top Image Banner */}
+          <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
+            <img
+              src={pillar.image}
+              alt={pillar.alt}
+              class="w-full h-full object-cover select-none"
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="400"
+            />
+
+            {/* Clean Badge overlay on image */}
+            <div class="absolute top-3 left-3 z-10">
+              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
+                {pillar.badge}
+              </span>
+            </div>
+
+            {/* Number overlay */}
+            <div class="absolute bottom-3 right-4 z-10 text-xl font-mono font-bold text-white drop-shadow">
+              {pillar.number}
+            </div>
+          </div>
+
+          {/* Content Details */}
+          <div class="p-6 sm:p-7 flex flex-col grow justify-between">
+            <div>
+              <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+                {pillar.title}
+              </h3>
+
+              <p class="typography-body text-muted-foreground leading-relaxed font-light mb-6">
+                {pillar.subtitle}
+              </p>
+            </div>
+
+            {/* Bullet Highlights */}
+            <div class="pt-4 border-t border-border/40">
+              <ul class="space-y-2.5 text-xs sm:text-sm text-foreground/80 font-light">
+                {pillar.points.map((pt) => (
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0 mt-1.5"></span>
+                    <span class="leading-snug">{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

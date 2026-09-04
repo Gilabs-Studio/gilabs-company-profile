@@ -3,94 +3,122 @@ import type { ServicePageData } from "./types";
 export const ecommerceEn: ServicePageData = {
   slug: "jasa-toko-online-ecommerce",
   category: "website",
-  eyebrow: "E-Commerce & Online Store Development",
-  title: "Modern Online Stores with Automated Payments & Seamless Inventory",
-  subtitle: "Build your direct-to-consumer (D2C) channel without high marketplace commission fees. Features automated payment gateways, shipping calculators, and mobile checkout.",
-  heroIllustration: "/illustrations/ecommerce-sketch.png",
-  metaTitle: "Custom E-Commerce & Online Store Development Agency | Gilabs",
-  metaDescription: "Custom e-commerce development services. Automated payment gateways, multi-carrier shipping integrations, real-time inventory tracking, and zero commission fees.",
+  eyebrow: "E-Commerce & Online Store",
+  title: "Online Stores Ready to Sell 24/7 Without Supervision",
+  subtitle: "From product catalogs to automated payment gateways, we build everything so you can focus strictly on inventory and fulfillment.",
+  heroIllustration: "/images/services/ecommerce/hero-ecommerce.jpg",
+  metaTitle: "Professional Online Store & E-Commerce Web Development | Gilabs",
+  metaDescription: "Independent e-commerce web stores ready to sell 24/7. Automated payment gateways (Midtrans/Xendit), real-time courier shipping, easy stock control, and 0% marketplace fees.",
   keywords: [
-    "ecommerce development company",
+    "ecommerce development agency",
     "custom online store development",
     "d2c ecommerce agency",
     "payment gateway integration ecommerce",
     "scalable ecommerce website"
   ],
-  primaryCtaText: "Discuss E-Commerce",
-  secondaryCtaText: "Explore Features",
-  problemsTitle: "Why Marketplace Lock-in Hurts Margins",
-  problemsSubtitle: "Rising marketplace fees reduce margins while keeping customer databases hidden.",
+  primaryCtaText: "Free Consultation",
+  secondaryCtaText: "View Created Stores",
+  problemsTitle: "Selling on Marketplaces Alone Is No Longer Enough",
+  problemsSubtitle: "These 3 fundamental bottlenecks continually erode profit margins and lock you out of owning your customer base.",
   problems: [
     {
-      pain: "High Marketplace Commissions",
-      solution: "Own a dedicated web store with 0% platform commission deductions on every sale."
+      pain: "01. Marketplace Dependency",
+      solution: "Algorithms shift, advertising prices soar, and you lack total control over your storefront."
     },
     {
-      pain: "Zero Customer Data Ownership",
-      solution: "Capture direct customer emails and purchase histories to build repeatable CRM marketing."
+      pain: "02. Eroded Profit Margins",
+      solution: "Heavy admin charges, forced shipping rules, and marketplace cuts eat into your net income."
+    },
+    {
+      pain: "03. Zero Customer Data",
+      solution: "Impossible to launch repeat remarketing funnels because buyer lists remain in the platform's hands."
     }
   ],
-  featuresTitle: "Full-Featured E-Commerce Capabilities",
-  featuresSubtitle: "Everything needed for smooth store operations in one dashboard.",
+  featuresTitle: "Your Own Store, Your Own Rules",
+  featuresSubtitle: "Three core operational pillars to build an independent, highly profitable direct sales channel.",
   features: [
     {
-      title: "Automated Payment Gateways",
-      description: "Supports Credit Cards, QRIS, Virtual Accounts, and Digital Wallets with instant verification."
+      title: "Full Brand Ownership",
+      description: "Custom domain, bespoke styling matching your identity, zero generic cookie-cutter templates."
     },
     {
-      title: "Real-time Shipping Calculations",
-      description: "Direct API connection with major postal and logistics couriers."
+      title: "Integrated Payment Gateways",
+      description: "Bank transfers, QRIS, e-wallets, credit cards verified automatically into your business ledger."
     },
     {
-      title: "Inventory & Stock Control",
-      description: "Manage size/color variants, promotional discount vouchers, and live inventory thresholds."
+      title: "Effortless Product Management",
+      description: "Update stock levels, retail pricing, and promotional discount codes without waiting on developers."
     }
   ],
-  packagesTitle: "E-Commerce Investment Packages",
-  packagesSubtitle: "Affordable solutions to scale your independent store.",
+  packagesTitle: "Start Selling Online with the Right Architecture",
+  packagesSubtitle: "Transparent investment packages structured around your catalog size and operational transaction volume.",
   packages: [
     {
-      name: "Catalog WhatsApp Store",
-      price: "$290",
-      description: "For boutiques wanting a clean catalog with direct chat order closures.",
+      name: "BASIC",
+      price: "From $350",
+      description: "For small businesses starting their direct online sales channel",
       features: [
-        "Up to 50 Curated Product Listings",
-        "Direct WhatsApp Cart Checkout",
-        "Fast Filter & Search Experience",
+        "Product catalog up to 50 items",
+        "Checkout with manual transfer & WhatsApp trigger",
+        "Responsive mobile-first design",
         "1-Year Domain & Cloud Hosting",
-        "5-7 Business Days Delivery"
+        "2x Revision rounds"
       ]
     },
     {
-      name: "Full Automated E-Commerce",
-      price: "$580",
+      name: "STANDARD",
+      price: "From $950",
       isPopular: true,
-      description: "End-to-end e-commerce engine with automated payments and shipping.",
+      description: "For high-growth stores requiring automated volume workflows",
       features: [
-        "Unlimited Products & Categories",
-        "Payment Gateway Integration (Stripe / Local)",
-        "Automated Multi-Courier Shipping",
-        "Coupon Codes & Order Analytics",
-        "1-Year Support & Staff Training",
-        "10-14 Business Days Delivery"
+        "Unlimited products and hierarchical categories",
+        "Automated payment gateway (QRIS, VA, E-Wallets)",
+        "Real-time multi-courier shipping integration",
+        "Sales analytics, order tracking & invoice dashboard",
+        "1-Year Domain & Cloud Hosting",
+        "4x Revision rounds"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Contact Us",
+      description: "For multi-warehouse logistics or enterprise ERP sync",
+      features: [
+        "ERP / warehouse inventory synchronization",
+        "Multi-warehouse & regional fulfillment",
+        "Bespoke business logic & pricing rules",
+        "Dedicated project consultant & SLA"
       ]
     }
   ],
-  techStackTitle: "Robust Architecture",
-  techStackSubtitle: "Capable of handling flash sale traffic surges effortlessly.",
+  techStackTitle: "Battle-Tested E-Commerce Stack",
+  techStackSubtitle: "Engineered with resilient static pipelines capable of handling massive flash sale traffic spikes.",
   techStack: [
-    { name: "Next.js", category: "Engine", description: "Ultra-fast product page caching." },
-    { name: "PostgreSQL", category: "Database", description: "High integrity order ledger." }
+    { name: "Next.js / Astro", category: "Engine", description: "Sub-second product catalog rendering and fast checkout." },
+    { name: "Payment Gateway API", category: "Billing", description: "Certified payment integration with bank-grade security." },
+    { name: "Cloudflare Edge CDN", category: "Infra", description: "Global edge delivery and 99.9% commercial uptime." }
   ],
-  faqTitle: "E-Commerce FAQs",
-  faqSubtitle: "Questions on custom e-commerce stores.",
+  faqTitle: "Online Store FAQs",
+  faqSubtitle: "Common questions regarding custom online store development and operations.",
   faqs: [
     {
-      question: "Do you take any percentage of my sales?",
-      answer: "No. Gilabs takes 0% commission. You only pay standard gateway provider fees."
+      question: "Which payment gateways are supported?",
+      answer: "Midtrans, Xendit, Stripe, and can be customized to support QRIS, Virtual Accounts, E-Wallets, and Credit Cards."
+    },
+    {
+      question: "Can shipping rates be calculated automatically?",
+      answer: "Yes, available on the Standard plan upwards with real-time API integrations connecting to all major logistics couriers."
+    },
+    {
+      question: "What if my inventory spans thousands of SKU items?",
+      answer: "Supported effortlessly. We supply bulk CSV/Excel import tools and structured multi-tier filtering hierarchies."
+    },
+    {
+      question: "Are there any recurring monthly commissions?",
+      answer: "Gilabs takes 0% commission on your sales. Standard yearly hosting and domain renewal apply after year one."
     }
   ],
-  ctaTitle: "Launch Your Direct E-Commerce Channel",
-  ctaSubtitle: "Talk to our e-commerce developers for a free architecture review.",
-  ctaButton: "Chat on WhatsApp"
+  ctaTitle: "Your Business Deserves Its Own Storefront",
+  ctaSubtitle: "Break free from total dependency on third-party marketplaces today.",
+  ctaButton: "Start Free Consultation"
 };

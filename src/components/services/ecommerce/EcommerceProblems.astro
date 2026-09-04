@@ -1,0 +1,88 @@
+---
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const problems = [
+  {
+    number: "01",
+    title: lang === "en" ? "Marketplace Dependency" : "Bergantung Marketplace",
+    description: lang === "en"
+      ? "Algorithms shift, advertising costs spike, and you lack total control over your customers and visibility."
+      : "Algoritma berubah, biaya iklan naik, kamu nggak punya kendali penuh.",
+    metric: lang === "en" ? "Algorithms change overnight without your consent" : "Algoritma platform berubah sewaktu-waktu"
+  },
+  {
+    number: "02",
+    title: lang === "en" ? "Eroded Profit Margins" : "Margin Tergerus",
+    description: lang === "en"
+      ? "Platform commissions, seller admin fees, and forced logistics cuts eat away at your hard-earned profit."
+      : "Biaya admin, ongkir, dan komisi platform makan untung kamu.",
+    metric: lang === "en" ? "8% - 15% lost to platform commission deductions" : "Potongan admin & komisi capai 8% - 15% per transaksi"
+  },
+  {
+    number: "03",
+    title: lang === "en" ? "Zero Customer Data" : "Nggak Punya Data Pelanggan",
+    description: lang === "en"
+      ? "Remarketing is nearly impossible because customer contact lists remain locked in third-party hands."
+      : "Sulit bikin campaign ulang karena data pembeli ada di tangan platform lain.",
+    metric: lang === "en" ? "Unable to run direct WhatsApp or email retargeting" : "Mustahil retargeting database pembeli secara mandiri"
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Marketplace Bottlenecks" : "Masalah yang Sering Ditemui"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Selling on Marketplaces Alone Is No Longer Enough" : "Jualan di Marketplace Aja Nggak Cukup"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Relying purely on third-party marketplace platforms leaves your business vulnerable to margin erosion and zero customer ownership."
+          : "Tiga masalah mendasar ini yang sering mengikis margin keuntungan dan membatasi kendali pertumbuhan bisnis Anda."}
+      </p>
+    </div>
+
+    {/* 3 Columns Grid - Landing Page Consistent Cards */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+      {problems.map((problem) => (
+        <div class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="mb-5">
+              <span class="text-3xl sm:text-4xl font-mono font-bold text-brand">
+                {problem.number}
+              </span>
+            </div>
+
+            <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+              {problem.title}
+            </h3>
+
+            <p class="typography-body text-muted-foreground leading-relaxed mb-6 font-light">
+              {problem.description}
+            </p>
+          </div>
+
+          {/* Bottom metric callout with Brand Blue dot */}
+          <div class="pt-4 border-t border-border/40 flex items-center gap-2 text-xs font-medium text-foreground/70">
+            <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>
+            <span>{problem.metric}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

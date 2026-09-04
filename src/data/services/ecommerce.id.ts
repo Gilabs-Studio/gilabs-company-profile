@@ -3,105 +3,123 @@ import type { ServicePageData } from "./types";
 export const ecommerceId: ServicePageData = {
   slug: "jasa-toko-online-ecommerce",
   category: "website",
-  eyebrow: "Jasa Pembuatan Toko Online & E-Commerce",
-  title: "Toko Online Modern dengan Pembayaran Otomatis & Manajemen Stok Terpadu",
-  subtitle: "Bangun saluran penjualan mandiri tanpa potongan fee marketplace yang tinggi. Dilengkapi payment gateway otomatis, cek ongkir instan, dan integrasi WhatsApp.",
-  heroIllustration: "/illustrations/ecommerce-sketch.png",
-  metaTitle: "Jasa Pembuatan Toko Online & Web E-Commerce Profesional | Gilabs",
-  metaDescription: "Jasa pembuatan toko online kustom, web e-commerce UMKM dan brand. Integrasi payment gateway Midtrans/Xendit, cek ongkir otomatis, dan kelola stok mudah.",
+  eyebrow: "Jasa Toko Online E-Commerce",
+  title: "Toko Online yang Siap Jualan 24 Jam Tanpa Kamu Jaga",
+  subtitle: "Dari katalog produk sampai pembayaran otomatis, semua kami siapkan biar kamu fokus urus stok dan kirim pesanan.",
+  heroIllustration: "/images/services/ecommerce/hero-ecommerce.jpg",
+  metaTitle: "Jasa Pembuatan Toko Online E-Commerce Profesional | Gilabs",
+  metaDescription: "Toko online mandiri yang siap jualan 24 jam. Payment gateway Midtrans/Xendit otomatis, cek ongkir real-time, kelola stok mudah, dan 0% potongan marketplace.",
   keywords: [
     "jasa pembuatan toko online",
     "jasa web ecommerce",
-    "jasa buat web olshop",
-    "jasa website toko online murah",
-    "jasa bikin ecommerce profesional",
-    "jasa web katalog produk"
+    "jasa bikin website olshop",
+    "jasa toko online midtrans",
+    "jasa web toko online murah",
+    "toko online profesional indonesia"
   ],
-  primaryCtaText: "Konsultasi Toko Online",
-  secondaryCtaText: "Lihat Fitur E-Commerce",
-  problemsTitle: "Masalah Jualan di Marketplace & Platform Jadul",
-  problemsSubtitle: "Ketergantungan marketplace memotong profit margin dan membuat Anda kehilangan database pelanggan.",
+  primaryCtaText: "Konsultasi Gratis",
+  secondaryCtaText: "Lihat Toko yang Sudah Dibuat",
+  problemsTitle: "Jualan di Marketplace Aja Nggak Cukup",
+  problemsSubtitle: "Tiga masalah mendasar ini yang sering mengikis margin keuntungan dan membatasi kendali bisnis Anda.",
   problems: [
     {
-      pain: "Fee Marketplace Makin Tinggi (8-12%)",
-      solution: "Miliki toko online mandiri dengan 0% biaya potongan komisi per transaksi."
+      pain: "01. Bergantung Marketplace",
+      solution: "Algoritma berubah, biaya iklan naik, kamu nggak punya kendali penuh."
     },
     {
-      pain: "Tidak Memiliki Database Pelanggan",
-      solution: "Semua data email, nomor WhatsApp, dan histori order tersimpan rapi sebagai aset bisnis Anda."
+      pain: "02. Margin Tergerus",
+      solution: "Biaya admin, ongkir, dan komisi platform makan untung kamu."
     },
     {
-      pain: "Konfirmasi Transfer Manual yang Melelahkan",
-      solution: "Integrasi payment gateway (QRIS, Virtual Account, E-Wallet) dengan verifikasi pembayaran otomatis."
+      pain: "03. Nggak Punya Data Pelanggan",
+      solution: "Sulit bikin campaign ulang karena data pembeli ada di tangan platform lain."
     }
   ],
-  featuresTitle: "Fitur Lengkap E-Commerce Gilabs",
-  featuresSubtitle: "Semua kebutuhan operasional toko online dalam satu dashboard mudah.",
+  featuresTitle: "Toko Sendiri, Aturan Sendiri",
+  featuresSubtitle: "Tiga fondasi utama untuk membangun saluran penjualan mandiri yang menguntungkan.",
   features: [
     {
-      title: "Integrasi Payment Gateway Otomatis",
-      description: "Mendukung pembayaran QRIS, BCA/Mandiri/BRI Virtual Account, GoPay, OVO, dan ShopeePay."
+      title: "Branding Penuh",
+      description: "Domain sendiri, desain sesuai identitas brand, bukan template generik."
     },
     {
-      title: "Hitung Ongkir Otomatis Multi-Ekspedisi",
-      description: "Terhubung dengan kurir JNE, J&T, SiCepat, Anteraja, dan Pos Indonesia hingga tingkat kecamatan."
+      title: "Payment Gateway Terintegrasi",
+      description: "Transfer bank, e-wallet, kartu kredit, semua otomatis masuk sistem."
     },
     {
-      title: "Checkout Cepat via WhatsApp",
-      description: "Pilihan pemesanan langsung ke chat WhatsApp bagi konsumen Indonesia yang suka bertanya sebelum beli."
-    },
-    {
-      title: "Manajemen Produk & Stok Real-Time",
-      description: "Kelola varian warna, ukuran, diskon promo, dan kupon voucher dengan panel kontrol yang simpel."
+      title: "Kelola Produk Mudah",
+      description: "Update stok, harga, dan promo tanpa perlu tunggu developer."
     }
   ],
-  packagesTitle: "Paket Pembuatan Toko Online",
-  packagesSubtitle: "Investasi terjangkau untuk memulai ekosistem e-commerce mandiri.",
+  packagesTitle: "Mulai Jualan Online dengan Sistem yang Tepat",
+  packagesSubtitle: "Pilihan investasi transparan yang dirancang sesuai volume dan skala transaksi toko Anda.",
   packages: [
     {
-      name: "Toko Online Katalog WhatsApp",
-      price: "Rp 3.800.000",
-      description: "Cocok untuk UMKM dan brand yang ingin etalase rapi dengan order via WhatsApp.",
+      name: "BASIC",
+      price: "Mulai Rp 5.000.000",
+      description: "Untuk UMKM yang baru mulai jualan online",
       features: [
-        "Katalog Produk Hingga 50 Item",
-        "Form Pemesanan Terintegrasi WhatsApp",
-        "Kategori Produk & Pencarian Cepat",
-        "Desain Mobile Friendly",
-        "Free Hosting & Domain 1 Tahun",
-        "Pengerjaan 5-7 Hari Kerja"
+        "Katalog produk hingga 50 item",
+        "Checkout dengan transfer manual & WhatsApp",
+        "Desain mobile-first responsive",
+        "Domain & hosting 1 tahun",
+        "Revisi 2x"
       ]
     },
     {
-      name: "E-Commerce Auto Payment",
-      price: "Rp 7.500.000",
+      name: "STANDARD",
+      price: "Mulai Rp 15.000.000",
       isPopular: true,
-      description: "Sistem e-commerce lengkap dengan payment gateway & cek ongkir otomatis.",
+      description: "Untuk toko dengan volume transaksi lebih tinggi",
       features: [
-        "Produk & Kategori Tanpa Batas",
-        "Integrasi Midtrans / Xendit (QRIS & VA)",
-        "Kalkulasi Ongkir Otomatis (RajaOngkir API)",
-        "Manajemen Diskon & Kupon Promo",
-        "Notifikasi Order via Email & WA",
-        "Garansi & Training Penggunaan",
-        "Pengerjaan 10-14 Hari Kerja"
+        "Produk & kategori unlimited",
+        "Payment gateway otomatis (QRIS, VA, E-Wallet)",
+        "Integrasi cek ongkir real-time multi-kurir",
+        "Dashboard laporan penjualan & invoice",
+        "Domain & hosting 1 tahun",
+        "Revisi 4x"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Hubungi Kami",
+      description: "Untuk kebutuhan multi gudang atau multi cabang",
+      features: [
+        "Integrasi ERP / sistem inventory",
+        "Multi-warehouse & multi-cabang",
+        "Fitur sesuai model bisnis spesifik",
+        "Dedicated project consultant & SLA"
       ]
     }
   ],
-  techStackTitle: "Teknologi E-Commerce Handal",
-  techStackSubtitle: "Menangani lonjakan ribuan transaksi flash sale tanpa crash.",
+  techStackTitle: "Infrastruktur E-Commerce Tangguh",
+  techStackSubtitle: "Dibangun dengan framework modern untuk menangani ribuan transaksi flash sale tanpa henti.",
   techStack: [
-    { name: "Next.js E-Commerce", category: "Engine", description: "Kecepatan checkout secepat kilat." },
-    { name: "PostgreSQL", category: "Database", description: "Pencatatan transaksi dan stok yang aman & akurat." }
+    { name: "Next.js / Astro", category: "Engine", description: "Performa rendering secepat kilat untuk halaman katalog." },
+    { name: "Payment Gateway API", category: "Billing", description: "Integrasi resmi Midtrans & Xendit dengan enkripsi bank-grade." },
+    { name: "Cloudflare Edge CDN", category: "Infra", description: "Keamanan transaksi dan uptime 99.9% di seluruh Indonesia." }
   ],
-  faqTitle: "FAQ Toko Online",
-  faqSubtitle: "Pertanyaan seputar toko online kustom.",
+  faqTitle: "Pertanyaan Seputar Toko Online",
+  faqSubtitle: "Hal yang sering ditanyakan seputar pembuatan dan operasional toko online mandiri.",
   faqs: [
     {
-      question: "Apakah ada biaya komisi penjualan?",
-      answer: "Tidak ada potongan dari Gilabs sama sekali. Anda hanya membayar biaya flat fee gateway resmi (seperti QRIS 0.7%)."
+      question: "Payment gateway apa saja yang didukung?",
+      answer: "Midtrans, Xendit, dan bisa disesuaikan kebutuhan (QRIS, Virtual Account BCA/Mandiri/BRI, GoPay, OVO, ShopeePay, dan Kartu Kredit)."
+    },
+    {
+      question: "Apakah bisa integrasi ongkir otomatis?",
+      answer: "Bisa, tersedia dari paket Standard ke atas dengan kalkulasi ongkir real-time terhubung kurir seperti JNE, J&T, SiCepat, dll."
+    },
+    {
+      question: "Bagaimana kalau produk saya ribuan item?",
+      answer: "Bisa, kami siapkan sistem import massal lewat Excel/CSV dan navigasi kategori bertingkat yang rapi."
+    },
+    {
+      question: "Apakah ada biaya bulanan tambahan?",
+      answer: "Ada biaya hosting tahunan setelah tahun pertama, transparan sejak awal tanpa komisi potongan penjualan dari Gilabs."
     }
   ],
-  ctaTitle: "Mulai Bangun Toko Online Anda Hari Ini",
-  ctaSubtitle: "Tingkatkan profit bisnis dengan platform e-commerce milik Anda sendiri.",
-  ctaButton: "Hubungi Kami via WhatsApp"
+  ctaTitle: "Bisnis Kamu Layak Punya Toko Sendiri",
+  ctaSubtitle: "Nggak perlu lagi bergantung penuh sama marketplace orang lain.",
+  ctaButton: "Mulai Konsultasi Gratis"
 };
