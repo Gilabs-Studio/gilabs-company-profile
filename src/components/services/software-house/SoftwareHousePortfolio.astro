@@ -1,0 +1,138 @@
+---
+import { ArrowRight, TrendingUp } from "lucide-react";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const projects = [
+  {
+    title: lang === "en" ? "Distribution & Logistics Management System" : "Sistem Manajemen Distribusi",
+    industry: lang === "en" ? "Logistics & Supply Chain" : "Logistik & Supply Chain",
+    metric: lang === "en" ? "Order input processed 3x faster" : "Proses input order 3x lebih cepat",
+    description: lang === "en"
+      ? "Automated fleet routing and multi-warehouse dispatching that cut order processing times from hours to minutes."
+      : "Sistem pelacakan armada terintegrasi dan multi-warehouse dispatching otomatis yang memangkas waktu proses order tim operasional.",
+    image: "/images/services/software-house/portfolio-logistics.webp",
+    alt: "Sistem Manajemen Distribusi & Logistik - Gilabs Software House",
+    tags: ["Fleet Dispatch", "Warehouse Sync", "Real-time Telemetry"]
+  },
+  {
+    title: lang === "en" ? "Custom CRM & Sales Pipeline" : "Custom CRM & Pipeline Penjualan",
+    industry: lang === "en" ? "Property & Real Estate" : "Properti & Real Estate",
+    metric: lang === "en" ? "Lead tracking conversion increased by 40%" : "Tracking lead meningkat 40%",
+    description: lang === "en"
+      ? "Automated lead distribution, WhatsApp notification workflows, and clear deal stage forecasting for sales agents."
+      : "Otomasi follow-up prospek, alokasi sales agent secara transparan, dan visualisasi closing pipeline yang meningkatkan konversi lead.",
+    image: "/images/services/software-house/portfolio-crm.webp",
+    alt: "Custom CRM & Pipeline Penjualan - Gilabs Software House",
+    tags: ["Lead Scoring", "WhatsApp API", "Deal Forecasting"]
+  },
+  {
+    title: lang === "en" ? "B2B Customer Portal & Automated Billing" : "Portal Pelanggan B2B",
+    industry: lang === "en" ? "Manufacturing" : "Manufaktur",
+    metric: lang === "en" ? "Reduced operational complaints by 60%" : "Mengurangi komplain operasional hingga 60%",
+    description: lang === "en"
+      ? "Self-service order replenishment, instant Purchase Order tracking, and automated ledger billing for national distributors."
+      : "Self-service ordering untuk distributor, pelacakan Purchase Order real-time, dan sinkronisasi invoice instan tanpa birokrasi manual.",
+    image: "/images/services/software-house/portfolio-b2b-portal.webp",
+    alt: "Portal Pelanggan B2B Manufaktur - Gilabs Software House",
+    tags: ["Self-Service PO", "Invoice Engine", "Role Management"]
+  }
+];
+
+const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results`;
+---
+
+<section id="studi-kasus" class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Case Studies" : "Portofolio / Studi Kasus"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Systems Powering Diverse Industries" : "Sistem yang Sudah Berjalan di Berbagai Industri"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Real-world systems engineered to eliminate operational friction and accelerate business performance."
+          : "Studi kasus nyata bagaimana custom software mengoptimalkan efisiensi operasional dan mengurangi beban kerja manual."}
+      </p>
+    </div>
+
+    {/* Portfolio Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 md:mb-16">
+      {projects.map((project) => (
+        <article class="bg-white border border-border/50 rounded-2xl sm:rounded-3xl overflow-hidden hover:border-brand/50 transition-colors shadow-md shadow-black/5 flex flex-col justify-between group">
+          {/* Screenshot Container */}
+          <div class="relative aspect-[16/10] overflow-hidden bg-slate-900 border-b border-border/40">
+            <img
+              src={project.image}
+              alt={project.alt}
+              class="w-full h-full object-cover select-none"
+              loading="lazy"
+              decoding="async"
+              width="800"
+              height="500"
+            />
+
+            {/* Industry Badge */}
+            <div class="absolute top-3 left-3 z-10">
+              <span class="text-xs font-semibold px-3 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
+                {project.industry}
+              </span>
+            </div>
+          </div>
+
+          {/* Info */}
+          <div class="p-6 sm:p-7 flex flex-col grow justify-between">
+            <div>
+              <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+                {project.title}
+              </h3>
+
+              {/* Metric Callout */}
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border border-brand/20 bg-brand/5 text-brand font-semibold text-xs mb-4">
+                <TrendingUp className="w-3.5 h-3.5" />
+                <span>{project.metric}</span>
+              </div>
+
+              <p class="typography-body text-muted-foreground font-light leading-relaxed mb-6">
+                {project.description}
+              </p>
+            </div>
+
+            {/* Tags */}
+            <div class="pt-4 border-t border-border/40 flex flex-wrap gap-2">
+              {project.tags.map((tag) => (
+                <span class="text-[11px] font-mono px-2.5 py-0.5 rounded-md bg-secondary/70 text-foreground/80">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    {/* Bottom Link to Work Results */}
+    <div class="text-center">
+      <a
+        href={portfolioUrl}
+        class="inline-flex items-center gap-2 typography-body font-medium text-foreground hover:text-brand transition-colors cursor-pointer group"
+      >
+        <span>{lang === "en" ? "Explore all case studies & client systems" : "Lihat semua studi kasus sistem & aplikasi"}</span>
+        <ArrowRight className="w-4 h-4 text-brand" />
+      </a>
+    </div>
+  </div>
+</section>

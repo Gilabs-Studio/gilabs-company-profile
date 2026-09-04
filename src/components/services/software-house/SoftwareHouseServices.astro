@@ -1,0 +1,171 @@
+---
+import {
+  Laptop,
+  Smartphone,
+  Database,
+  Workflow,
+  ShieldCheck,
+  ArrowUpRight
+} from "lucide-react";
+import { getWhatsAppLink } from "../../../lib/utils";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const services = [
+  {
+    number: "01",
+    title: lang === "en" ? "Custom Web Application" : "Custom Web Application",
+    subtitle: lang === "en" ? "Internal Systems, Client Portals, SaaS" : "Sistem Internal, Portal Klien, Platform SaaS",
+    description: lang === "en"
+      ? "High-performance web applications tailored to your specific business data model, customer portals, and scalable multi-tenant SaaS platforms."
+      : "Sistem internal, portal klien, dan platform SaaS yang dirancang spesifik untuk kebutuhan bisnismu tanpa kompromi.",
+    Icon: Laptop,
+    href: `/${lang}/services/jasa-pembuatan-website`
+  },
+  {
+    number: "02",
+    title: lang === "en" ? "Mobile Apps (iOS & Android)" : "Mobile Apps (iOS & Android)",
+    subtitle: lang === "en" ? "Field Ops & Customer Mobile Apps" : "Aplikasi Operasional Lapangan & Customer App",
+    description: lang === "en"
+      ? "Cross-platform mobile applications engineered for field staff operations, GPS dispatch tracking, and consumer engagement with offline-first capabilities."
+      : "Aplikasi operasional lapangan, customer app, dan manajemen armada bergerak yang sinkron real-time ke sistem pusat.",
+    Icon: Smartphone,
+    href: getWhatsAppLink("service-mobile", lang)
+  },
+  {
+    number: "03",
+    title: lang === "en" ? "Lean ERP & Custom CRM" : "ERP & CRM Sederhana",
+    subtitle: lang === "en" ? "Fits Your Exact Flow, Zero Bloat" : "Sesuai Alur Bisnismu, Tanpa Fitur Mubazir",
+    description: lang === "en"
+      ? "Centralized operational tracking from pipeline sales to warehouse inventory and automatic financial ledgering—without complex unused features."
+      : "Sesuai alur bisnismu, tanpa fitur mubazir yang bikin bingung tim operasional. Mudah dipelajari dan langsung pakai.",
+    Icon: Database,
+    href: getWhatsAppLink("service-erp", lang)
+  },
+  {
+    number: "04",
+    title: lang === "en" ? "System & API Integration" : "Integrasi Sistem & API",
+    subtitle: lang === "en" ? "Connect Legacy Tools to Modern Stacks" : "Hubungkan Software Lama ke Sistem Baru",
+    description: lang === "en"
+      ? "Seamless bridging between legacy on-premise software, payment gateways, messaging bots, and modern cloud microservices."
+      : "Hubungkan software lama ke sistem baru, payment gateway, WhatsApp blast, atau layanan pihak ketiga secara aman dan stabil.",
+    Icon: Workflow,
+    href: getWhatsAppLink("service-api", lang)
+  },
+  {
+    number: "05",
+    title: lang === "en" ? "Maintenance & Code Audit" : "Maintenance & Code Audit",
+    subtitle: lang === "en" ? "Rescue & Scale Stalled Projects" : "Lanjutkan atau Perbaiki Project yang Mangkrak",
+    description: lang === "en"
+      ? "Deep architectural health reviews, bug refactoring, security hardening, and database query optimizations for mission-critical software."
+      : "Lanjutkan atau perbaiki project yang mangkrak dengan standar kode bersih, penutupan celah keamanan, dan refactoring terarah.",
+    Icon: ShieldCheck,
+    href: getWhatsAppLink("service-audit", lang)
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Engineering Capabilities" : "Layanan Kami"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "What Can We Build for You?" : "Apa yang Bisa Kami Bangun untuk Kamu?"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "From daily operational tools to resilient enterprise backends, we turn complex business challenges into reliable digital assets."
+          : "Dari ide hingga sistem yang jalan tiap hari, kami kembangkan perangkat lunak yang presisi menyelesaikan bottleneck bisnis Anda."}
+      </p>
+    </div>
+
+    {/* Responsive Services Grid: 3 columns on top row, 2 columns on bottom row */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+      {services.slice(0, 3).map((item) => (
+        <a
+          href={item.href}
+          class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group cursor-pointer"
+        >
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-12 h-12 rounded-xl bg-brand/10 text-brand flex items-center justify-center">
+                <item.Icon className="w-6 h-6" />
+              </div>
+              <span class="font-mono text-xs font-bold text-muted-foreground/60 group-hover:text-brand transition-colors">
+                {item.number}
+              </span>
+            </div>
+
+            <h3 class="typography-card-title text-foreground mb-1 group-hover:text-brand transition-colors">
+              {item.title}
+            </h3>
+
+            <p class="text-xs font-medium text-brand/80 mb-3 tracking-wide">
+              {item.subtitle}
+            </p>
+
+            <p class="typography-body text-muted-foreground leading-relaxed font-light">
+              {item.description}
+            </p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-border/40 flex items-center justify-between text-xs font-medium text-brand">
+            <span>{lang === "en" ? "Explore Service" : "Konsultasikan"}</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </div>
+        </a>
+      ))}
+    </div>
+
+    {/* Bottom 2 Services in 2-column layout */}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mt-6 sm:mt-8 items-stretch max-w-4xl mx-auto">
+      {services.slice(3, 5).map((item) => (
+        <a
+          href={item.href}
+          class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group cursor-pointer"
+        >
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <div class="w-12 h-12 rounded-xl bg-brand/10 text-brand flex items-center justify-center">
+                <item.Icon className="w-6 h-6" />
+              </div>
+              <span class="font-mono text-xs font-bold text-muted-foreground/60 group-hover:text-brand transition-colors">
+                {item.number}
+              </span>
+            </div>
+
+            <h3 class="typography-card-title text-foreground mb-1 group-hover:text-brand transition-colors">
+              {item.title}
+            </h3>
+
+            <p class="text-xs font-medium text-brand/80 mb-3 tracking-wide">
+              {item.subtitle}
+            </p>
+
+            <p class="typography-body text-muted-foreground leading-relaxed font-light">
+              {item.description}
+            </p>
+          </div>
+
+          <div class="pt-6 mt-6 border-t border-border/40 flex items-center justify-between text-xs font-medium text-brand">
+            <span>{lang === "en" ? "Explore Service" : "Konsultasikan"}</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

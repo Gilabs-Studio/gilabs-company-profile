@@ -3,122 +3,136 @@ import type { ServicePageData } from "./types";
 export const softwareHouseId: ServicePageData = {
   slug: "software-house-indonesia",
   category: "software",
-  eyebrow: "Software House Indonesia Terpercaya",
-  title: "Partner Engineering Software Enterprise dengan 100% Kepemilikan Source Code",
-  subtitle: "Gilabs (PT Griya Innovations Labs) adalah software house Indonesia yang berfokus pada pengembangan sistem internal kompleks, web app skala besar, dan otomasi operasional bisnis tanpa sistem lisensi terkunci.",
-  heroIllustration: "/illustrations/software-house-sketch.png",
-  metaTitle: "Software House Indonesia Terpercaya & Profesional | Gilabs",
-  metaDescription: "Software house Indonesia terpercaya untuk custom software, sistem informasi internal, web app, dan aplikasi mobile enterprise. Bergaransi dengan full code transfer.",
+  eyebrow: "Software House Indonesia",
+  title: "Partner Teknologi untuk Bisnis yang Serius Bertumbuh",
+  subtitle: "Dari ide sampai sistem yang jalan tiap hari, kami bangun software yang benar-benar dipakai tim kamu, bukan cuma demo yang bagus di presentasi.",
+  heroIllustration: "/images/services/software-house/hero-dashboard-dark.jpg",
+  metaTitle: "Software House Indonesia Terpercaya | Gilabs Engineering Partner",
+  metaDescription: "Software house Indonesia terpercaya untuk custom software, sistem internal, web app, dan mobile app. 100% kepemilikan source code tanpa biaya lisensi per user.",
   keywords: [
     "software house indonesia",
+    "jasa pembuatan custom software",
+    "software development agency",
     "software house jakarta",
     "software house semarang",
-    "software house surabaya",
-    "software development company indonesia",
     "vendor software terpercaya",
-    "jasa pengembangan software enterprise",
-    "software house murah berkualitas",
-    "software agency indonesia"
+    "custom erp crm indonesia",
+    "web application developer"
   ],
-  primaryCtaText: "Konsultasi Teknis Gratis",
-  secondaryCtaText: "Lihat Arsitektur Sistem",
-  problemsTitle: "Mengapa Banyak Perusahaan Kecewa dengan Vendor Software?",
-  problemsSubtitle: "Proyek molor, kode berantakan tanpa dokumentasi, dan keterikatan lisensi tahunan yang mahal sering menjadi mimpi buruk.",
+  primaryCtaText: "Diskusikan Kebutuhan Kamu",
+  secondaryCtaText: "Lihat Studi Kasus",
+  problemsTitle: "Software Off-the-Shelf Nggak Selalu Cocok",
+  problemsSubtitle: "Tiga batasan utama software siap pakai yang sering menghambat ekspansi bisnis kamu.",
   problems: [
     {
-      pain: "Vendor Menahan Source Code",
-      solution: "Gilabs memberikan 100% full source code ownership dan dokumentasi teknis lengkap di akhir proyek."
+      pain: "Proses Bisnis Unik",
+      solution: "Software siap pakai dipaksa ikut alur mereka, bukan alur kamu."
     },
     {
-      pain: "Proyek Sering Molor Berbulan-bulan",
-      solution: "Kami menerapkan metodologi Agile Sprint 2 mingguan dengan demo progres transparan secara berkala."
+      pain: "Biaya Lisensi Menumpuk",
+      solution: "Bayar per user tiap bulan, makin besar tim makin mahal tanpa batas."
     },
     {
-      pain: "Biaya Membengkak di Tengah Jalan",
-      solution: "Scope of Work (SOW) terdefinisi jelas sejak awal dengan skema kontrak transparan dan fixed deliverables."
-    },
-    {
-      pain: "Sistem Sulit Dikembangkan Tim Sendiri",
-      solution: "Arsitektur kode bersih (Clean Architecture) berstandar industri yang mudah dimaintain oleh in-house developer Anda."
+      pain: "Data Nggak Sepenuhnya Milik Kamu",
+      solution: "Terikat vendor, sulit migrasi, serta risiko keamanan data bisnis."
     }
   ],
-  featuresTitle: "Karakteristik Layanan Engineering Gilabs",
-  featuresSubtitle: "Standar arsitektur software berkelas untuk mendukung keandalan operasional perusahaan Anda.",
+  featuresTitle: "Apa yang Bisa Kami Bangun untuk Kamu?",
+  featuresSubtitle: "Solusi engineering menyeluruh yang disesuaikan dengan alur operasional bisnis Anda.",
   features: [
     {
-      title: "Senior Fullstack Engineering Team",
-      description: "Dikerjakan oleh software engineer senior berpengalaman dalam membangun sistem berkinerja tinggi."
+      title: "Custom Web Application",
+      description: "Sistem internal, portal klien, dan platform SaaS yang dirancang spesifik untuk kebutuhan bisnismu."
     },
     {
-      title: "Arsitektur Modular & Scalable",
-      description: "Didesain dengan mikro-arsitektur modular sehingga sistem dapat tumbuh seiring ekspansi bisnis Anda."
+      title: "Mobile Apps (iOS & Android)",
+      description: "Aplikasi operasional lapangan, customer app, dan manajemen tim mobile responsif."
     },
     {
-      title: "Full Source Code & Repository Transfer",
-      description: "Hak cipta dan akses penuh ke Git repository diserahkan tanpa biaya lisensi per-user tahunan."
+      title: "ERP & CRM Sederhana",
+      description: "Sesuai alur bisnismu, tanpa fitur mubazir yang bikin bingung tim operasional."
     },
     {
-      title: "Garansi Pasca-Deploy & Dedicated SLA",
-      description: "Jaminan perbaikan bug gratis hingga 6 bulan pasca-peluncuran dan dukungan teknis responsif."
+      title: "Integrasi Sistem & API",
+      description: "Hubungkan software lama ke sistem baru, payment gateway, atau layanan pihak ketiga tanpa batas."
+    },
+    {
+      title: "Maintenance & Code Audit",
+      description: "Lanjutkan atau perbaiki project yang mangkrak dengan standar kode bersih dan refactoring terarah."
     }
   ],
-  packagesTitle: "Model Kerja Sama Software House",
-  packagesSubtitle: "Fleksibilitas model kontrak yang dapat disesuaikan dengan skala dan timeline proyek Anda.",
+  packagesTitle: "Investasi Sesuai Skala Kebutuhan",
+  packagesSubtitle: "Estimasi biaya transparan tanpa biaya lisensi per-user bulanan. Source code 100% milik Anda.",
   packages: [
     {
-      name: "Fixed Scope Project",
-      price: "Berdasarkan SOW",
-      isPopular: true,
-      description: "Ideal untuk proyek dengan kebutuhan, timeline, dan fitur yang sudah terdefinisi jelas.",
+      name: "BASIC",
+      price: "Mulai Rp 5.000.000",
+      isPopular: false,
+      description: "Cocok untuk: MVP, sistem internal sederhana, automasi satu alur kerja spesifik",
       features: [
-        "Analisis Kebutuhan & Dokumen FSD",
-        "Desain UI/UX Prototype Interaktif",
-        "Pengembangan End-to-End (Frontend & Backend)",
-        "Quality Assurance (QA) & Security Testing",
-        "Deployment ke Cloud Server Klien",
-        "Full Source Code & Database Migration",
-        "Garansi Bebas Bug 3-6 Bulan"
+        "1 Modul/Alur Utama",
+        "Web-based Responsive",
+        "Database Setup",
+        "Basic Authentication & Role",
+        "Garansi Bug Fixes 1 Bulan"
       ]
     },
     {
-      name: "Dedicated Squad / Team Extension",
-      price: "Monthly Retainer",
-      description: "Untuk perusahaan yang membutuhkan tim developer tambahan untuk akselerasi roadmap produk.",
+      name: "STANDARD",
+      price: "Mulai Rp 15.000.000",
+      isPopular: true,
+      description: "Cocok untuk: Sistem operasional bisnis, CRM/ERP custom skala UKM",
       features: [
-        "Fullstack Developer / Tech Lead Dedicated",
-        "Integrasi Langsung ke Alur Kerja Tim Anda",
-        "Daily Standup & Bi-weekly Sprint Review",
-        "Fleksibilitas Penyesuaian Prioritas Fitur",
-        "Code Review & Continuous Integration (CI/CD)",
-        "Minimum Kontrak 3 Bulan"
+        "Multi-modul & Multi-role User",
+        "Web App + Responsive Dashboard",
+        "Integrasi API & Notifikasi (WA/Email)",
+        "Export/Import Data & Reporting",
+        "Garansi & Support 3 Bulan"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Hubungi Kami",
+      isPopular: false,
+      description: "Cocok untuk: Platform skala besar, arsitektur kompleks, kebutuhan high traffic",
+      features: [
+        "Arsitektur Microservices / Scalable",
+        "Multi-platform (Web + Mobile App)",
+        "Integrasi Sistem Legacy & Third-party",
+        "Security Hardening & Audit Log",
+        "Dedicated Support & SLA"
       ]
     }
   ],
-  techStackTitle: "Tech Stack Modern & Teruji",
-  techStackSubtitle: "Teknologi enterprise berstandar global untuk kecepatan, keamanan, dan skalabilitas.",
+  techStackTitle: "Tech Stack Modern & Skalabel",
+  techStackSubtitle: "Dibangun dengan teknologi berstandar industri demi performa, stabilitas, dan kemudahan perawatan.",
   techStack: [
-    { name: "Golang (Go) & Node.js", category: "Backend Engine", description: "Performa konkurensi tinggi dan throughput cepat." },
+    { name: "Golang & Node.js", category: "Backend Engine", description: "Performa konkurensi tinggi dan throughput cepat." },
     { name: "React, Next.js, Astro", category: "Frontend Web", description: "Antarmuka responsif dan performa render instan." },
     { name: "Flutter & React Native", category: "Mobile Apps", description: "Aplikasi cross-platform iOS & Android dengan satu basis kode." },
     { name: "PostgreSQL & Redis", category: "Data Tier", description: "Penyimpanan data relasional berintegritas tinggi dan caching kilat." }
   ],
-  faqTitle: "FAQ Kerja Sama Software House",
+  faqTitle: "FAQ Pengembangan Software",
   faqSubtitle: "Hal penting seputar proses kemitraan pengembangan software di Gilabs.",
   faqs: [
     {
-      question: "Apakah PT Griya Innovations Labs berbadan hukum resmi?",
-      answer: "Ya, kami berbadan hukum resmi PT Griya Innovations Labs dengan legalitas lengkap, siap bekerja sama dengan instansi swasta maupun BUMN."
+      question: "Berapa lama estimasi pengerjaan sebuah project software?",
+      answer: "Tergantung kompleksitas. Project sederhana (MVP) biasanya 3-6 minggu. Sistem yang lebih kompleks seperti ERP/CRM custom butuh 2-4 bulan. Kami selalu tentukan timeline yang realistis di awal sebelum mulai."
     },
     {
-      question: "Bagaimana proses NDA (Non-Disclosure Agreement) untuk kerahasiaan data?",
-      answer: "Kami menandatangani NDA resmi sebelum diskusi teknis mendalam untuk menjamin kerahasiaan seluruh ide, data, dan proses bisnis Anda."
+      question: "Apakah source code jadi milik kami setelah project selesai?",
+      answer: "Ya, 100%. Source code sepenuhnya menjadi aset milik perusahaan kamu setelah pelunasan, lengkap dengan dokumentasi dan akses repository."
     },
     {
-      question: "Apakah sistem dapat di-deploy di on-premise server milik kantor kami?",
-      answer: "Tentu. Kami dapat menginstalasi dan mengonfigurasi sistem di cloud server (AWS, GCP, Alibaba, VPS) maupun di server lokal (on-premise) kantor Anda."
+      question: "Bagaimana kalau di tengah jalan ada fitur tambahan yang ingin dibuat?",
+      answer: "Kami menggunakan pendekatan fleksibel (Change Request). Fitur baru akan diestimasi scope dan biayanya secara transparan tanpa mengganggu timeline milestone yang sedang berjalan."
+    },
+    {
+      question: "Apakah ada dukungan teknis setelah software resmi digunakan?",
+      answer: "Setiap project dilengkapi masa garansi bug fixes (1-3 bulan tergantung paket). Setelahnya, kami menyediakan paket retainer bulanan untuk maintenance, server monitoring, dan penambahan fitur berkelanjutan."
     }
   ],
-  ctaTitle: "Mulai Kemitraan Pengembangan Software Anda",
-  ctaSubtitle: "Jadwalkan sesi konsultasi gratis bersama Software Architect kami untuk merancang solusi terbaik.",
-  ctaButton: "Hubungi Kami via WhatsApp"
+  ctaTitle: "Ceritakan Masalah Bisnis Kamu, Kami Bantu Cari Solusinya",
+  ctaSubtitle: "Konsultasi awal gratis. Tanpa komitmen, tanpa jargon teknis yang membingungkan.",
+  ctaButton: "Jadwalkan Diskusi Gratis"
 };

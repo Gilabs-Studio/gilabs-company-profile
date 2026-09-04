@@ -1,0 +1,111 @@
+---
+import { Check } from "lucide-react";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const pillars = [
+  {
+    number: "01",
+    badge: lang === "en" ? "Analysis First" : "Analisis Mendalam",
+    title: lang === "en" ? "Business Process First, Code Second" : "Paham Proses Bisnis Dulu, Koding Kemudian",
+    description: lang === "en"
+      ? "We don't jump straight into the code editor. We map out your workflows, identify real bottlenecks, and engineer the most effective solution."
+      : "Kami nggak langsung buka code editor. Kami pelajari dulu bagaimana bisnismu berjalan, di mana bottleneck-nya, baru rancang solusinya.",
+    points: [
+      lang === "en" ? "Detailed mapping of operational workflows and human-error risks" : "Pemetaan detail alur operasional nyata dan titik rawan human error",
+      lang === "en" ? "Eliminating redundant steps before writing a single line of code" : "Menghilangkan birokrasi berulang sebelum mulai menulis baris kode",
+      lang === "en" ? "UI/UX designed for rapid staff adoption with zero steep learning curves" : "UI/UX intuitif agar tim lapangan langsung mahir tanpa training berbulan-bulan"
+    ]
+  },
+  {
+    number: "02",
+    badge: lang === "en" ? "Scalable Codebase" : "Standar Enterprise",
+    title: lang === "en" ? "Clean, Scalable Code (Future-Proof)" : "Kode yang Bisa Dikembangkan (Scalable)",
+    description: lang === "en"
+      ? "Written to strict industry standards, cleanly documented, and ready for your in-house team to take over anytime without headaches."
+      : "Ditulis dengan standar industri, terdokumentasi rapi, dan siap diteruskan tim internal kamu kapan saja tanpa pusing.",
+    points: [
+      lang === "en" ? "Clean Architecture with clear separation of concerns" : "Penerapan Clean Architecture & modular micro-patterns",
+      lang === "en" ? "Comprehensive API documentation and database schemas" : "Dokumentasi API lengkap (Swagger/Postman) dan skema database terstruktur",
+      lang === "en" ? "100% full intellectual property & Git repository transfer" : "100% penyerahan repository Git tanpa biaya lisensi tersembunyi"
+    ]
+  },
+  {
+    number: "03",
+    badge: lang === "en" ? "Agile & Direct" : "Transparansi Penuh",
+    title: lang === "en" ? "Complete Transparency Throughout" : "Transparan Sepanjang Proses",
+    description: lang === "en"
+      ? "Weekly sprint updates, live staging demos, and direct access to project management boards. No surprises at the finish line."
+      : "Progress update mingguan, demo berkala, dan akses langsung ke project management tools. Nggak ada kejutan di akhir.",
+    points: [
+      lang === "en" ? "2-week sprints with testable feature demos" : "Sprint 2 mingguan dengan demo fitur nyata yang dapat langsung diuji",
+      lang === "en" ? "Direct real-time board access via Jira / Trello" : "Akses transparan ke papan manajemen proyek & changelog fitur",
+      lang === "en" ? "Committed fixed Scope of Work with clear deliverables" : "Scope of Work pasti dan fixed deliverables tanpa biaya tak terduga"
+    ]
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Why Gilabs" : "Kenapa Pilih Kami"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Beyond Just Coding, We Understand Business" : "Bukan Sekadar Koding, Kami Paham Bisnis"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "We bridge the gap between business objectives and engineering excellence, delivering software that drives real operational impact."
+          : "Software yang baik adalah software yang benar-benar memecahkan masalah operasional dan memberi dampak nyata pada pertumbuhan bisnis Anda."}
+      </p>
+    </div>
+
+    {/* 3 Pillars Cards Grid */}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+      {pillars.map((pillar) => (
+        <div class="bg-white border border-border/50 rounded-2xl p-8 sm:p-9 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+          <div>
+            <div class="flex items-center justify-between mb-6">
+              <span class="text-3xl sm:text-4xl font-mono font-bold text-brand">
+                {pillar.number}
+              </span>
+              <span class="text-xs font-semibold px-3 py-1 rounded-full bg-brand/10 text-brand uppercase tracking-wider">
+                {pillar.badge}
+              </span>
+            </div>
+
+            <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+              {pillar.title}
+            </h3>
+
+            <p class="typography-body text-muted-foreground leading-relaxed mb-6 font-light">
+              {pillar.description}
+            </p>
+
+            <ul class="space-y-3 pt-4 border-t border-border/40 text-xs sm:text-sm text-foreground/80 font-light">
+              {pillar.points.map((pt) => (
+                <li class="flex items-start gap-2.5">
+                  <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                  <span class="leading-snug">{pt}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

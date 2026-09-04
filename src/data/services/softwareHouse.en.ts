@@ -3,12 +3,12 @@ import type { ServicePageData } from "./types";
 export const softwareHouseEn: ServicePageData = {
   slug: "software-house-indonesia",
   category: "software",
-  eyebrow: "Trusted Software House Indonesia",
-  title: "Enterprise Engineering Partner with 100% Source Code Ownership",
-  subtitle: "Gilabs (PT Griya Innovations Labs) is a dedicated Indonesian software development company building complex internal systems, large-scale web applications, and automated operations with zero vendor lock-in.",
-  heroIllustration: "/illustrations/software-house-sketch.png",
-  metaTitle: "Top Software House Indonesia & Custom Engineering | Gilabs",
-  metaDescription: "Trusted Indonesia software house for custom software, internal enterprise tools, web applications, and mobile apps. Full repository handover and dedicated warranty.",
+  eyebrow: "Software House Indonesia",
+  title: "Technology Partner for Businesses Serious About Growth",
+  subtitle: "From concept to daily production, we engineer software that your team actually uses—not just shiny demo slides.",
+  heroIllustration: "/images/services/software-house/hero-dashboard-dark.jpg",
+  metaTitle: "Top Software House Indonesia | Gilabs Engineering Partner",
+  metaDescription: "Trusted Indonesia software house for custom software, internal enterprise tools, web applications, and mobile apps. 100% source code ownership with zero per-user license fees.",
   keywords: [
     "software house indonesia",
     "software development company indonesia",
@@ -16,97 +16,120 @@ export const softwareHouseEn: ServicePageData = {
     "enterprise software development indonesia",
     "trusted software vendor jakarta semarang"
   ],
-  primaryCtaText: "Free Technical Review",
-  secondaryCtaText: "View Architecture",
-  problemsTitle: "Why Companies Struggle with Traditional Vendors",
-  problemsSubtitle: "Missed deadlines, undocumented legacy code, and costly recurring licenses often hinder transformation.",
+  primaryCtaText: "Discuss Your Needs",
+  secondaryCtaText: "View Case Studies",
+  problemsTitle: "Off-the-Shelf Software Doesn't Always Fit",
+  problemsSubtitle: "Three critical limitations of generic off-the-shelf software that hinder business expansion.",
   problems: [
     {
-      pain: "Vendor Code Withholding",
-      solution: "Gilabs grants 100% source code ownership and comprehensive technical documentation upon sign-off."
+      pain: "Rigid Unique Processes",
+      solution: "Generic off-the-shelf software forces you to adapt to their workflow, not yours."
     },
     {
-      pain: "Unpredictable Timelines",
-      solution: "We work in strict 2-week Agile sprints with regular live demos of working features."
+      pain: "Escalating User License Fees",
+      solution: "Paying per user monthly compounds uncontrollably as your organization scales."
     },
     {
-      pain: "Hidden Cost Creep",
-      solution: "Crystal-clear Scope of Work (SOW) with fixed milestones and transparent deliverables."
+      pain: "Data Isn't Fully Yours",
+      solution: "Severe vendor lock-in, migration hurdles, and commercial security vulnerabilities."
     }
   ],
-  featuresTitle: "Our Engineering Differentiators",
-  featuresSubtitle: "Robust architectural foundations built to scale your business operations.",
+  featuresTitle: "What Can We Build for You?",
+  featuresSubtitle: "End-to-end engineering solutions aligned precisely with your organizational workflows.",
   features: [
     {
-      title: "Senior Engineering Staff",
-      description: "Direct collaboration with senior system architects and fullstack engineers."
+      title: "Custom Web Application",
+      description: "Internal operations systems, client portals, and multi-tenant SaaS platforms tailored to your business."
     },
     {
-      title: "Modular Clean Architecture",
-      description: "Engineered with modular patterns allowing effortless future extension by your own team."
+      title: "Mobile Apps (iOS & Android)",
+      description: "Field team operational apps, consumer mobile products, and seamless real-time syncing."
     },
     {
-      title: "Complete Code & IP Handover",
-      description: "You retain full intellectual property, repository access, and zero recurring user licenses."
+      title: "Lean ERP & CRM",
+      description: "Built strictly around your business logic, eliminating bloated unused features that confuse staff."
     },
     {
-      title: "Dedicated Post-Launch SLA",
-      description: "Comprehensive warranty covering bug fixes and technical monitoring up to 6 months."
+      title: "System & API Integration",
+      description: "Bridge legacy software with modern microservices, payment gateways, and third-party APIs."
+    },
+    {
+      title: "Maintenance & Code Audit",
+      description: "Rescue or refactor stagnant projects with clean architectural patterns and structured code reviews."
     }
   ],
-  packagesTitle: "Engagement Models",
-  packagesSubtitle: "Flexible contracts designed around your timeline and team requirements.",
+  packagesTitle: "Investment Scaled to Your Needs",
+  packagesSubtitle: "Transparent development pricing with zero recurring per-user fees. 100% full source code ownership.",
   packages: [
     {
-      name: "Fixed Scope Project",
-      price: "Based on SOW",
-      isPopular: true,
-      description: "For projects with well-defined requirements, specifications, and deadlines.",
+      name: "BASIC",
+      price: "From $350",
+      isPopular: false,
+      description: "Best for: MVP, simple internal systems, automating one specific operational workflow",
       features: [
-        "Requirement Engineering & Functional Specs",
-        "Interactive UI/UX Prototypes",
-        "End-to-End Fullstack Engineering",
-        "Quality Assurance & Security Audits",
-        "Cloud or On-Premise Deployment",
-        "Full Git Handover & Data Migration",
-        "3-6 Month Bug-Free Warranty"
+        "1 Core Module / Primary Workflow",
+        "Responsive Web Architecture",
+        "Relational Database Setup",
+        "Basic Authentication & RBAC",
+        "1-Month Bug Fix Warranty"
       ]
     },
     {
-      name: "Dedicated Engineering Squad",
-      price: "Monthly Retainer",
-      description: "Extend your engineering capacity with dedicated fullstack developers and tech leads.",
+      name: "STANDARD",
+      price: "From $950",
+      isPopular: true,
+      description: "Best for: Operational business systems, custom SME-scale CRM / ERP",
       features: [
-        "Dedicated Fullstack Engineers",
-        "Embedded Direct Team Collaboration",
-        "Bi-weekly Sprints & Daily Standups",
-        "Flexible Roadmap Priorities",
-        "CI/CD Pipeline Setup",
-        "3-Month Minimum Commitment"
+        "Multi-module & Multi-role User Management",
+        "Web App + Responsive Analytics Dashboard",
+        "API Integration & Notifications (WA/Email)",
+        "Data Export/Import & PDF Reporting",
+        "3-Month Warranty & Dedicated Support"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Contact Us",
+      isPopular: false,
+      description: "Best for: Enterprise platforms, complex microservices, high-traffic infrastructure",
+      features: [
+        "Scalable Microservices Architecture",
+        "Multi-platform (Web + Mobile Apps)",
+        "Legacy Systems & Third-party Integrations",
+        "Security Hardening & Full Audit Logs",
+        "Dedicated Engineering Support & SLA"
       ]
     }
   ],
-  techStackTitle: "Tested Enterprise Tech Stack",
-  techStackSubtitle: "Global standards for speed, security, and maintainability.",
+  techStackTitle: "Modern & Scalable Tech Stack",
+  techStackSubtitle: "Built on battle-tested industry standards for performance, security, and low maintenance overhead.",
   techStack: [
-    { name: "Golang & Node.js", category: "Backend Engine", description: "High-concurrency microservices and APIs." },
-    { name: "React, Next.js, Astro", category: "Frontend Tier", description: "Instant responsive UI and fast execution." },
-    { name: "Flutter & React Native", category: "Mobile Apps", description: "Native-performing iOS and Android applications." },
-    { name: "PostgreSQL & Redis", category: "Database", description: "ACID-compliant storage and sub-millisecond caching." }
+    { name: "Golang & Node.js", category: "Backend Engine", description: "High-throughput concurrency and resilient APIs." },
+    { name: "React, Next.js, Astro", category: "Frontend Web", description: "Lightning-fast rendering and responsive interfaces." },
+    { name: "Flutter & React Native", category: "Mobile Apps", description: "Native-performing iOS and Android applications from a single codebase." },
+    { name: "PostgreSQL & Redis", category: "Data Tier", description: "ACID-compliant relational database and ultra-fast caching." }
   ],
-  faqTitle: "Software House FAQs",
-  faqSubtitle: "Important details regarding our engagement process.",
+  faqTitle: "Software Development FAQs",
+  faqSubtitle: "Key answers regarding our software engineering engagement process.",
   faqs: [
     {
-      question: "Is PT Griya Innovations Labs an officially registered legal entity?",
-      answer: "Yes, we are an officially incorporated Indonesian company (PT) with full tax and legal credentials, ready for corporate procurement."
+      question: "How long does a typical software project take?",
+      answer: "It depends on complexity. Lean MVP projects typically take 3-6 weeks. Comprehensive custom ERP or CRM systems take 2-4 months. We always agree on a realistic, committed timeline upfront."
     },
     {
-      question: "Do you sign Non-Disclosure Agreements (NDAs)?",
-      answer: "Yes, we execute formal mutual NDAs before any deep technical discussions to protect your proprietary data and business logic."
+      question: "Will our company own 100% of the source code?",
+      answer: "Yes, absolutely. You retain complete intellectual property and repository ownership upon project completion, including full documentation and setup manuals."
+    },
+    {
+      question: "How do you handle scope changes or additional feature requests midway?",
+      answer: "We employ an agile Change Request process. Any new requirement is scoped, estimated, and priced transparently without disrupting active milestone deadlines."
+    },
+    {
+      question: "What technical support is provided after launch?",
+      answer: "Every project includes a dedicated bug-fix warranty (1-3 months depending on plan). Thereafter, we offer flexible monthly retainer plans for continuous maintenance, monitoring, and feature iteration."
     }
   ],
-  ctaTitle: "Ready to Build Your Custom Software Asset?",
-  ctaSubtitle: "Connect with our Solutions Architect for an obligation-free consultation.",
-  ctaButton: "Schedule Call on WhatsApp"
+  ctaTitle: "Tell Us Your Business Challenge, We'll Architect the Solution",
+  ctaSubtitle: "Free initial technical consultation. No lock-in, zero confusing tech jargon.",
+  ctaButton: "Schedule Free Consultation"
 };

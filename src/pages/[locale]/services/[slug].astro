@@ -13,6 +13,7 @@ import WebDevPage from "../../../components/services/web-dev/WebDevPage.astro";
 import CompanyProfilePage from "../../../components/services/company-profile/CompanyProfilePage.astro";
 import LandingPageService from "../../../components/services/landing-page/LandingPageService.astro";
 import EcommercePage from "../../../components/services/ecommerce/EcommercePage.astro";
+import SoftwareHousePage from "../../../components/services/software-house/SoftwareHousePage.astro";
 import { serviceSlugs, getServiceData } from "../../../data/services/index";
 
 export function getStaticPaths() {
@@ -116,6 +117,8 @@ const breadcrumbSchema = {
       <LandingPageService lang={lang} service={service} />
     ) : slug === "jasa-toko-online-ecommerce" ? (
       <EcommercePage lang={lang} service={service} />
+    ) : slug === "software-house-indonesia" ? (
+      <SoftwareHousePage lang={lang} service={service} />
     ) : (
       <>
         <LandingHero
