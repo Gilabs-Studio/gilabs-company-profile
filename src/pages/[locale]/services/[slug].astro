@@ -14,6 +14,7 @@ import CompanyProfilePage from "../../../components/services/company-profile/Com
 import LandingPageService from "../../../components/services/landing-page/LandingPageService.astro";
 import EcommercePage from "../../../components/services/ecommerce/EcommercePage.astro";
 import SoftwareHousePage from "../../../components/services/software-house/SoftwareHousePage.astro";
+import WorkResultDrawer from "../../../components/ui/WorkResultDrawer";
 import { serviceSlugs, getServiceData } from "../../../data/services/index";
 
 export function getStaticPaths() {
@@ -176,6 +177,8 @@ const breadcrumbSchema = {
       </>
     )}
   </main>
+
+  <WorkResultDrawer client:idle lang={lang} />
 
   <Footer lang={lang} />
 </Layout>

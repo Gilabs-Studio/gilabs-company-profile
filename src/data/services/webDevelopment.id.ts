@@ -40,7 +40,7 @@ export const webDevelopmentId: ServicePageData = {
   featuresSubtitle: "Setiap section kami rancang buat jawab satu pertanyaan di kepala pengunjung: kenapa saya harus percaya sama bisnis ini?",
   features: [
     {
-      title: "Desain yang Menjual",
+      title: "Desain yang Meyakinkan",
       description: "Tampilan bersih, fokus ke satu tujuan, nggak bikin bingung pengunjung."
     },
     {

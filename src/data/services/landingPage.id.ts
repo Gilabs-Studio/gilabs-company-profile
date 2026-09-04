@@ -43,12 +43,12 @@ export const landingPageId: ServicePageData = {
       description: "Nggak ada distraksi, semua elemen mengarah ke satu CTA."
     },
     {
-      title: "Copywriting yang Menjual",
-      description: "Kami bantu susun narasi yang bikin pengunjung ambil keputusan lebih cepat."
+      title: "Copywriting Terarah",
+      description: "Kami bantu susun narasi terarah yang bikin calon pembeli paham nilai produk tanpa bertele-tele."
     },
     {
-      title: "Load Cepat, Mobile-First",
-      description: "Optimal buat traffic dari Facebook Ads, Google Ads, atau Instagram."
+      title: "Load Instan",
+      description: "Optimal buat traffic berbayar dari Meta Ads, Google Ads, atau TikTok tanpa jeda loading."
     }
   ],
   packagesTitle: "Harga Landing Page, Bukan Harga Website",
@@ -107,7 +107,7 @@ export const landingPageId: ServicePageData = {
     },
     {
       question: "Apakah termasuk copywriting?",
-      answer: "Termasuk, mulai dari paket Basic tim kami bantu susun struktur teks penawaran yang menjual."
+      answer: "Termasuk, mulai dari paket Basic tim kami bantu susun struktur penawaran dan pesan yang terarah."
     },
     {
       question: "Bisa integrasi dengan WhatsApp atau CRM?",

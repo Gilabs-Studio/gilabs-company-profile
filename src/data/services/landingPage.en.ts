@@ -42,12 +42,12 @@ export const landingPageEn: ServicePageData = {
       description: "Zero friction or distractions, every design component funnels to a single CTA."
     },
     {
-      title: "High-Converting Copy",
-      description: "Persuasive narrative architecture guiding visitors to make fast decisions."
+      title: "Targeted Messaging",
+      description: "Clear narrative architecture guiding visitors to understand product value immediately."
     },
     {
-      title: "Fast Loading, Mobile-First",
-      description: "Engineered to excel on traffic from Meta, Google, or TikTok Ads."
+      title: "Instant Load",
+      description: "Engineered to eliminate bounce rates on paid traffic from Meta, Google, or TikTok Ads."
     }
   ],
   packagesTitle: "Landing Page Pricing, Not Website Pricing",
