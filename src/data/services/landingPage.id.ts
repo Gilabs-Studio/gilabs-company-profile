@@ -3,112 +3,122 @@ import type { ServicePageData } from "./types";
 export const landingPageId: ServicePageData = {
   slug: "jasa-pembuatan-landing-page",
   category: "website",
-  eyebrow: "Jasa Pembuatan Landing Page Iklan & Promosi",
-  title: "Landing Page Berkecepatan Tinggi yang Dirancang Khusus untuk Memaksimalkan Penjualan",
-  subtitle: "Tingkatkan efektivitas iklan Google Ads, TikTok Ads, dan Meta Ads Anda dengan landing page yang memuat dalam sekejap dan dirancang dengan psikologi konversi tinggi.",
-  heroIllustration: "/illustrations/landing-page-sketch.png",
-  metaTitle: "Jasa Pembuatan Landing Page Iklan & Konversi Tinggi | Gilabs",
-  metaDescription: "Jasa pembuatan landing page cepat, elegan, dan siap iklan. Optimasi Google Ads & Meta Ads, copywriting persuasif, integrasi tombol WhatsApp.",
+  eyebrow: "Jasa Pembuatan Landing Page",
+  title: "Landing Page yang Dirancang Buat Satu Hal: Konversi",
+  subtitle: "Iklan mahal, traffic ada, tapi konversi rendah? Masalahnya sering ada di landing page, bukan di budget iklan kamu.",
+  heroIllustration: "/images/services/landing-page/hero-landing-page.jpg",
+  metaTitle: "Jasa Pembuatan Landing Page Konversi Tinggi & Cepat | Gilabs",
+  metaDescription: "Landing page yang dirancang khusus untuk konversi iklan Google Ads, Meta Ads, dan TikTok Ads. Loading sub-detik, copywriting teruji, dan integrasi WhatsApp.",
   keywords: [
     "jasa pembuatan landing page",
-    "jasa bikin landing page iklan",
-    "jasa landing page murah profesional",
-    "jasa landing page konversi tinggi",
+    "jasa bikin landing page",
+    "landing page konversi tinggi",
+    "jasa landing page iklan facebook",
     "jasa landing page google ads",
     "landing page cepat responsive"
   ],
-  primaryCtaText: "Buat Landing Page",
-  secondaryCtaText: "Lihat Contoh Desain",
-  problemsTitle: "Mengapa Landing Page Biasa Sering Boncos Saat Pasang Iklan?",
-  problemsSubtitle: "Setiap detik keterlambatan loading membuang 50%+ calon pembeli yang sudah Anda bayar iklannya.",
+  primaryCtaText: "Konsultasi Gratis",
+  secondaryCtaText: "Lihat Contoh Landing Page",
+  problemsTitle: "Kenapa Iklan Kamu Nggak Convert?",
+  problemsSubtitle: "Tiga masalah mendasar ini yang sering membakar budget iklan tanpa menghasilkan penjualan nyata.",
   problems: [
     {
-      pain: "Loading Iklan Lambat (> 3 Detik)",
-      solution: "Arsitektur static rendering dengan aset super ringan membuat halaman terbuka instan saat iklan diklik."
+      pain: "01. Terlalu Banyak Pilihan",
+      solution: "Ada banyak menu dan link, pengunjung malah bingung mau ke mana."
     },
     {
-      pain: "Copywriting Kurang Menjual",
-      solution: "Struktur penawaran berbasis formula AIDA (Attention, Interest, Desire, Action) untuk memicu pembelian."
+      pain: "02. Loading Lambat",
+      solution: "Traffic dari iklan itu mahal, tiap detik loading itu uang yang terbuang."
     },
     {
-      pain: "Tombol CTA Tidak Jelas",
-      solution: "Penempatan tombol Call-to-Action mengambang (sticky WhatsApp) yang mudah dijangkau jari jempol di ponsel."
-    },
-    {
-      pain: "Pixel Tracking Sering Meleset",
-      solution: "Integrasi Meta Pixel, Google Tag Manager, dan TikTok Events API yang terpasang akurat untuk retargeting."
+      pain: "03. Nggak Ada Urgensi",
+      solution: "Nggak ada alasan buat action sekarang, akhirnya pengunjung mikir dulu, dan pergi."
     }
   ],
-  featuresTitle: "Formula Landing Page Gilabs",
-  featuresSubtitle: "Kombinasi antara teknologi ultra-cepat dan psikologi penjualan modern.",
+  featuresTitle: "Satu Halaman, Satu Tujuan, Satu Aksi",
+  featuresSubtitle: "Setiap elemen kami rancang tanpa distraksi untuk mengubah klik menjadi pembeli.",
   features: [
     {
-      title: "Kecepatan Render Sub-Detik",
-      description: "Skor PageSpeed 95+ menjamin biaya per klik (CPC) iklan Anda lebih murah dan relevansi iklan tinggi."
+      title: "Fokus Konversi",
+      description: "Nggak ada distraksi, semua elemen mengarah ke satu CTA."
     },
     {
-      title: "Mobile-First Conversion Layout",
-      description: "90% traffic iklan berasal dari smartphone; tata letak kami dioptimalkan secara khusus untuk pengalaman ponsel."
+      title: "Copywriting yang Menjual",
+      description: "Kami bantu susun narasi yang bikin pengunjung ambil keputusan lebih cepat."
     },
     {
-      title: "Pelacakan Konversi & Tracking Akurat",
-      description: "Pemasangan event Lead, Purchase, dan AddToCart langsung tersambung ke dasbor analytics iklan Anda."
-    },
-    {
-      title: "Sticky WhatsApp Call to Action",
-      description: "Tombol WhatsApp melayang dengan teks pembuka otomatis yang memudahkan tim sales Anda membalas prospek."
+      title: "Load Cepat, Mobile-First",
+      description: "Optimal buat traffic dari Facebook Ads, Google Ads, atau Instagram."
     }
   ],
-  packagesTitle: "Pilihan Paket Landing Page",
-  packagesSubtitle: "Pengerjaan kilat agar kampanye iklan Anda bisa segera berjalan.",
+  packagesTitle: "Harga Landing Page, Bukan Harga Website",
+  packagesSubtitle: "Pilihan investasi transparan yang dirancang spesifik untuk kebutuhan kampanye Anda.",
   packages: [
     {
-      name: "Single Product LP",
-      price: "Rp 1.800.000",
-      description: "Untuk jualan 1 produk fisik/digital atau lead magnet.",
+      name: "BASIC",
+      price: "Mulai Rp 5.000.000",
+      description: "Untuk campaign sederhana dan cepat launching",
       features: [
-        "1 Halaman Long-Form Lengkap",
-        "Copywriting Penjualan Terarah",
-        "Load Speed < 1 Detik",
-        "Integrasi Tombol WhatsApp",
-        "Free Hosting 1 Tahun",
-        "Selesai dalam 2-3 Hari Kerja"
+        "1 landing page single scroll",
+        "Copywriting dasar",
+        "Responsive & optimasi loading",
+        "Domain & hosting 1 tahun",
+        "Revisi 2x"
       ]
     },
     {
-      name: "Performance Ads LP",
-      price: "Rp 3.200.000",
+      name: "STANDARD",
+      price: "Mulai Rp 15.000.000",
       isPopular: true,
-      description: "Untuk advertiser yang membutuhkan A/B test & pelacakan pixel komprehensif.",
+      description: "Untuk campaign dengan kebutuhan lebih detail",
       features: [
-        "Desain Kustom Interaktif",
-        "Setup Meta Pixel & Google Analytics 4",
-        "Sticky CTA & Dynamic WhatsApp Generator",
-        "Opt-in Lead Form + Email Autoresponder",
-        "Free Domain & Cloud Hosting 1 Tahun",
-        "Selesai dalam 3-5 Hari Kerja"
+        "Landing page + A/B testing 2 variasi",
+        "Copywriting lengkap dengan riset",
+        "Integrasi form ke WhatsApp/CRM",
+        "Setup tracking pixel ads",
+        "Revisi 4x"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Hubungi Kami",
+      description: "Untuk campaign skala besar atau multi produk",
+      features: [
+        "Multiple landing page",
+        "Integrasi tracking pixel & analytics lanjutan",
+        "Strategi funnel bersama tim kami",
+        "Dedicated project consultant"
       ]
     }
   ],
   techStackTitle: "Teknologi Khusus Kecepatan Tinggi",
-  techStackSubtitle: "Dibangun dengan framework web paling ringan di dunia.",
+  techStackSubtitle: "Dibangun dengan framework web paling ringan di dunia untuk skor Google PageSpeed 95+.",
   techStack: [
-    { name: "Astro Web Engine", category: "Framework", description: "Zero-JS secara default untuk kecepatan instan." },
-    { name: "Tailwind CSS v4", category: "Styling", description: "Ukuran file CSS di bawah 15KB." }
+    { name: "Astro Web Engine", category: "Engine", description: "Zero-JS baseline untuk kecepatan loading instan." },
+    { name: "Tailwind CSS", category: "Design System", description: "Micro-sized stylesheets di bawah 15KB." },
+    { name: "Cloudflare Edge CDN", category: "Infra", description: "Distribusi konten global dengan caching super cepat." }
   ],
-  faqTitle: "FAQ Jasa Landing Page",
-  faqSubtitle: "Hal yang sering ditanyakan seputar landing page iklan.",
+  faqTitle: "Pertanyaan Seputar Jasa Landing Page",
+  faqSubtitle: "Hal yang sering ditanyakan seputar pengerjaan landing page iklan.",
   faqs: [
     {
-      question: "Berapa lama waktu pengerjaan landing page?",
-      answer: "Rata-rata 2 hingga 4 hari kerja setelah materi dan brief produk kami terima."
+      question: "Berapa lama pengerjaan landing page?",
+      answer: "Umumnya 3-7 hari kerja tergantung kelengkapan materi dan brief produk kamu."
     },
     {
-      question: "Apakah sudah termasuk pembuatan copywriting?",
-      answer: "Ya, tim kami akan membantu menyusun susunan headline, benefit, bukti sosial, dan CTA yang persuasif."
+      question: "Apakah termasuk copywriting?",
+      answer: "Termasuk, mulai dari paket Basic tim kami bantu susun struktur teks penawaran yang menjual."
+    },
+    {
+      question: "Bisa integrasi dengan WhatsApp atau CRM?",
+      answer: "Bisa, tersedia dari paket Standard ke atas lengkap dengan form lead capture."
+    },
+    {
+      question: "Apakah bisa dipakai untuk iklan Facebook/Google?",
+      answer: "Bisa, kami optimasi loading speed sesuai standar Core Web Vitals dan kebijakan ads platform."
     }
   ],
-  ctaTitle: "Mulai Kampanye Iklan Anda dengan Landing Page Juara",
-  ctaSubtitle: "Tingkatkan ROI iklan Anda dengan landing page super cepat dari Gilabs.",
-  ctaButton: "Pesan Landing Page via WhatsApp"
+  ctaTitle: "Jangan Biarkan Budget Iklan Kamu Terbuang Sia-Sia",
+  ctaSubtitle: "Landing page yang tepat bisa gandakan hasil dari budget yang sama.",
+  ctaButton: "Mulai Konsultasi Gratis"
 };

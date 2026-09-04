@@ -1,0 +1,137 @@
+---
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const pillars = [
+  {
+    number: "01",
+    title: lang === "en" ? "Pillar 1 — Conversion-Centric" : "Pilar 1 — Fokus Konversi",
+    subtitle: lang === "en"
+      ? "Zero distractions. Every headline, image, and section funnels visitors to one singular action."
+      : "Nggak ada distraksi, semua elemen mengarah ke satu CTA.",
+    image: "/images/services/landing-page/solution-focus.jpg",
+    alt: "Wireframe Landing Page Berfokus Konversi",
+    badge: lang === "en" ? "High Intent" : "Fokus 1 Aksi",
+    points: [
+      lang === "en" ? "Eliminates leaky navigation links that siphon visitors away" : "Menghilangkan menu bocor yang mendistraksi calon pembeli",
+      lang === "en" ? "Strategic CTA buttons positioned throughout the scroll journey" : "Penempatan tombol beli & WA di titik kritis keputusan",
+      lang === "en" ? "Visual hierarchy tailored to rapid scanning behavior" : "Hierarki visual yang mudah dipindai dalam 5 detik pertama"
+    ]
+  },
+  {
+    number: "02",
+    title: lang === "en" ? "Pillar 2 — High-Converting Copy" : "Pilar 2 — Copywriting yang Menjual",
+    subtitle: lang === "en"
+      ? "We help structure persuasive narrative hooks that guide visitors to make purchasing decisions faster."
+      : "Kami bantu susun narasi yang bikin pengunjung ambil keputusan lebih cepat.",
+    image: "/images/services/landing-page/solution-copywriting.jpg",
+    alt: "Struktur Copywriting Penjualan Terarah",
+    badge: lang === "en" ? "Persuasive AIDA" : "Copywriting Teruji",
+    points: [
+      lang === "en" ? "AIDA framework transforming curiosity into decisive action" : "Formula AIDA merangkai masalah menjadi solusi tak tertolak",
+      lang === "en" ? "Clear bulleted benefits instead of dry feature lists" : "Fokus pada keuntungan konkret bagi pembeli, bukan istilah teknis",
+      lang === "en" ? "Built-in urgency triggers and credibility testimonials" : "Pemicu urgensi & bukti sosial yang menghapus keraguan"
+    ]
+  },
+  {
+    number: "03",
+    title: lang === "en" ? "Pillar 3 — Fast Loading, Mobile-First" : "Pilar 3 — Load Cepat, Mobile-First",
+    subtitle: lang === "en"
+      ? "Optimized for traffic from Meta Ads, Google Ads, and TikTok with sub-second opening speeds."
+      : "Optimal buat traffic dari Facebook Ads, Google Ads, atau Instagram.",
+    image: "/images/services/landing-page/solution-speed.jpg",
+    alt: "Google PageSpeed Skor 100",
+    badge: lang === "en" ? "PageSpeed 95+" : "Kecepatan Sub-Detik",
+    points: [
+      lang === "en" ? "Instant edge rendering lowers bounce rates and boosts Quality Score" : "Loading instan menurunkan bounce rate dan biaya CPC iklan",
+      lang === "en" ? "Thumb-friendly layout for effortless smartphone interaction" : "Desain jempol-friendly yang nyaman diakses lewat ponsel",
+      lang === "en" ? "Lightweight code baseline under 15KB with zero bloated scripts" : "Kode ultra-ringan tanpa plugin berat yang membebani kuota"
+    ]
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Conversion Philosophy" : "Solusi & Value Proposition"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "One Page, One Purpose, One Action" : "Satu Halaman, Satu Tujuan, Satu Aksi"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Every single section is engineered to turn paid traffic into tangible customer revenue with zero friction."
+          : "Bukan sekadar halaman online biasa. Setiap elemen kami tata agar pengunjung langsung mantap membeli atau mendaftar."}
+      </p>
+    </div>
+
+    {/* 3 Pillars Grid - Landing Page Consistent Cards */}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+      {pillars.map((pillar) => (
+        <article class="bg-white border border-border/50 rounded-2xl overflow-hidden hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+          {/* Top Image Banner */}
+          <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
+            <img
+              src={pillar.image}
+              alt={pillar.alt}
+              class="w-full h-full object-cover select-none"
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="400"
+            />
+
+            {/* Clean Badge overlay on image */}
+            <div class="absolute top-3 left-3 z-10">
+              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
+                {pillar.badge}
+              </span>
+            </div>
+
+            {/* Number overlay */}
+            <div class="absolute bottom-3 right-4 z-10 text-xl font-mono font-bold text-white drop-shadow">
+              {pillar.number}
+            </div>
+          </div>
+
+          {/* Content Details */}
+          <div class="p-6 sm:p-7 flex flex-col grow justify-between">
+            <div>
+              <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+                {pillar.title}
+              </h3>
+
+              <p class="typography-body text-muted-foreground leading-relaxed font-light mb-6">
+                {pillar.subtitle}
+              </p>
+            </div>
+
+            {/* Bullet Highlights */}
+            <div class="pt-4 border-t border-border/40">
+              <ul class="space-y-2.5 text-xs sm:text-sm text-foreground/80 font-light">
+                {pillar.points.map((pt) => (
+                  <li class="flex items-start gap-2">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0 mt-1.5"></span>
+                    <span class="leading-snug">{pt}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

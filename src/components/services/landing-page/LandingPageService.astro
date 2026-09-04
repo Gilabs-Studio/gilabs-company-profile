@@ -1,0 +1,55 @@
+---
+import LandingPageHero from "./LandingPageHero.astro";
+import LandingPageSocialProof from "./LandingPageSocialProof.astro";
+import LandingPageProblems from "./LandingPageProblems.astro";
+import LandingPageSolutions from "./LandingPageSolutions.astro";
+import LandingPageAudience from "./LandingPageAudience.astro";
+import LandingPagePortfolio from "./LandingPagePortfolio.astro";
+import LandingPagePricing from "./LandingPagePricing.astro";
+import LandingPageFAQ from "./LandingPageFAQ.astro";
+import LandingPageCTA from "./LandingPageCTA.astro";
+import type { ServicePageData } from "../../../data/services/types";
+
+interface Props {
+  lang: "en" | "id";
+  service: ServicePageData;
+}
+
+const { lang, service } = Astro.props;
+---
+
+<div class="landing-page-service-page">
+  {/* 1. HERO SECTION */}
+  <LandingPageHero
+    lang={lang}
+    eyebrow={service.eyebrow}
+    title={service.title}
+    subtitle={service.subtitle}
+    primaryCtaText={service.primaryCtaText}
+    secondaryCtaText={service.secondaryCtaText}
+  />
+
+  {/* 2. SOCIAL PROOF BAR */}
+  <LandingPageSocialProof lang={lang} />
+
+  {/* 3. MASALAH YANG SERING DITEMUI */}
+  <LandingPageProblems lang={lang} />
+
+  {/* 4. SOLUSI / VALUE PROPOSITION */}
+  <LandingPageSolutions lang={lang} />
+
+  {/* 5. COCOK UNTUK */}
+  <LandingPageAudience lang={lang} />
+
+  {/* 6. PORTOFOLIO */}
+  <LandingPagePortfolio lang={lang} />
+
+  {/* 7. PRICING */}
+  <LandingPagePricing lang={lang} />
+
+  {/* 8. FAQ */}
+  <LandingPageFAQ lang={lang} />
+
+  {/* 9. FINAL CTA */}
+  <LandingPageCTA lang={lang} />
+</div>

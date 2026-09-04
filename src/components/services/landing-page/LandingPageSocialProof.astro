@@ -1,0 +1,39 @@
+---
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const clients = [
+  { name: "EVALIQUE BEAUTY", subtitle: "Product Campaign", font: "font-serif tracking-widest font-semibold" },
+  { name: "TOPGUN BOOKING", subtitle: "Event & Services", font: "font-mono tracking-widest font-bold" },
+  { name: "SAVLO VENTURES", subtitle: "Pre-Launch Tech", font: "font-sans font-extrabold tracking-tight" },
+  { name: "NEXORA SUMMIT", subtitle: "Webinar & Event", font: "font-sans font-black tracking-widest" },
+  { name: "ADIGUNA INDUSTRIAL", subtitle: "B2B Lead Gen", font: "font-mono font-bold tracking-wider" },
+  { name: "DOMUS INTERIOR", subtitle: "Product Launch", font: "font-serif italic font-medium tracking-wide" }
+];
+---
+
+<section class="py-10 sm:py-14 relative overflow-hidden">
+  <div class="container mx-auto px-4 text-center max-w-6xl">
+    <p class="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider mb-6 sm:mb-8">
+      {lang === "en"
+        ? "Our landing pages are battle-tested for product campaigns, events, and new business launches"
+        : "Landing page kami sudah dipakai untuk campaign produk, event, dan launching bisnis baru"}
+    </p>
+
+    <div class="flex flex-wrap items-center justify-center gap-8 sm:gap-12 md:gap-16">
+      {clients.map((client) => (
+        <div class="group flex flex-col items-center cursor-pointer">
+          <span class={`text-base sm:text-lg md:text-xl text-foreground/40 group-hover:text-brand transition-colors select-none ${client.font}`}>
+            {client.name}
+          </span>
+          <span class="text-[10px] text-muted-foreground/60 tracking-wider uppercase mt-0.5 opacity-0 group-hover:opacity-100 transition-opacity">
+            {client.subtitle}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

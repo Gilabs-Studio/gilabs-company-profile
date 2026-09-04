@@ -3,12 +3,12 @@ import type { ServicePageData } from "./types";
 export const landingPageEn: ServicePageData = {
   slug: "jasa-pembuatan-landing-page",
   category: "website",
-  eyebrow: "High-Converting Landing Page Services",
-  title: "Ultra-Fast Landing Pages Built to Maximize Ad ROI & Conversions",
-  subtitle: "Supercharge your Google Ads, Meta Ads, and TikTok campaigns with lightning-fast landing pages engineered with behavioral conversion psychology.",
-  heroIllustration: "/illustrations/landing-page-sketch.png",
-  metaTitle: "High Converting Landing Page Development Agency | Gilabs",
-  metaDescription: "High-speed landing page development services for paid ads and marketing campaigns. Sub-second load times, persuasive copy, and accurate pixel tracking.",
+  eyebrow: "Landing Page Development",
+  title: "Landing Pages Designed for One Purpose: Conversion",
+  subtitle: "Expensive ads, steady traffic, but low conversion? The bottleneck is often your landing page, not your ad budget.",
+  heroIllustration: "/images/services/landing-page/hero-landing-page.jpg",
+  metaTitle: "High-Converting Landing Page Development Agency | Gilabs",
+  metaDescription: "Landing pages engineered specifically for Google Ads, Meta Ads, and TikTok Ads. Sub-second loading speed, persuasive copywriting, and direct WhatsApp integration.",
   keywords: [
     "landing page development agency",
     "high conversion landing page",
@@ -16,86 +16,108 @@ export const landingPageEn: ServicePageData = {
     "fast landing page design",
     "google ads landing page agency"
   ],
-  primaryCtaText: "Build Landing Page",
-  secondaryCtaText: "See Live Demos",
-  problemsTitle: "Why Do Generic Landing Pages Waste Ad Budget?",
-  problemsSubtitle: "Every second of load delay drops your conversion rate by over 50%.",
+  primaryCtaText: "Free Consultation",
+  secondaryCtaText: "View Landing Page Demos",
+  problemsTitle: "Why Aren't Your Ads Converting?",
+  problemsSubtitle: "These 3 fundamental bottlenecks frequently burn through ad budgets without yielding genuine commercial sales.",
   problems: [
     {
-      pain: "Slow Page Load Times",
-      solution: "Static edge rendering ensures pages open instantaneously upon click."
+      pain: "01. Too Many Choices",
+      solution: "Cluttered menus and scattered links confuse visitors on where to go."
     },
     {
-      pain: "Weak Value Proposition",
-      solution: "Persuasive AIDA storytelling converting curiosity into immediate purchases."
+      pain: "02. Slow Load Speed",
+      solution: "Ad traffic is expensive; every second of lag is wasted ad spend."
     },
     {
-      pain: "Missing Conversion Tracking",
-      solution: "Precision event tracking across Meta Pixel, GA4, and TikTok Events API."
+      pain: "03. No Sense of Urgency",
+      solution: "No compelling reason to act now; visitors overthink and leave forever."
     }
   ],
-  featuresTitle: "Our Conversion Framework",
-  featuresSubtitle: "Where sub-second engineering meets behavioral marketing science.",
+  featuresTitle: "One Page, One Purpose, One Action",
+  featuresSubtitle: "Every single element is structured without distraction to turn ad clicks into paying buyers.",
   features: [
     {
-      title: "Sub-Second Page Render",
-      description: "95+ PageSpeed scores lowering your ad cost per click (CPC) and boosting Quality Score."
+      title: "Conversion-Centric",
+      description: "Zero friction or distractions, every design component funnels to a single CTA."
     },
     {
-      title: "Mobile-First Layout",
-      description: "Flawlessly formatted for thumbs on smartphone screens where 90% of ad traffic lives."
+      title: "High-Converting Copy",
+      description: "Persuasive narrative architecture guiding visitors to make fast decisions."
     },
     {
-      title: "Sticky Action Triggers",
-      description: "Floating WhatsApp CTA with automated pre-filled greetings for fast lead capture."
+      title: "Fast Loading, Mobile-First",
+      description: "Engineered to excel on traffic from Meta, Google, or TikTok Ads."
     }
   ],
-  packagesTitle: "Landing Page Packages",
-  packagesSubtitle: "Rapid delivery so your ad campaigns launch without delay.",
+  packagesTitle: "Landing Page Pricing, Not Website Pricing",
+  packagesSubtitle: "Transparent investment packages structured specifically for your campaign requirements.",
   packages: [
     {
-      name: "Single Product LP",
-      price: "$140",
-      description: "Ideal for single physical/digital product offerings and lead generation.",
+      name: "BASIC",
+      price: "From $350",
+      description: "For simple campaigns needing a fast, lean launch",
       features: [
-        "1 Long-form Conversion Page",
-        "Targeted Sales Copywriting",
-        "Sub-second Load Times",
-        "WhatsApp Direct Integration",
-        "Free 1-Year Hosting",
-        "2-3 Business Days Delivery"
+        "1 single scroll conversion landing page",
+        "Essential sales copywriting",
+        "Responsive & load speed optimization",
+        "1-Year Domain & Cloud Hosting",
+        "2x Revision rounds"
       ]
     },
     {
-      name: "Performance Ads LP",
-      price: "$250",
+      name: "STANDARD",
+      price: "From $950",
       isPopular: true,
-      description: "For digital advertisers needing complete tracking analytics and high agility.",
+      description: "For campaigns requiring deep behavioral research",
       features: [
-        "Custom Interactive UI",
-        "Meta Pixel & GA4 Setup",
-        "Sticky WhatsApp & Lead Form",
-        "A/B Split Test Ready",
-        "Free 1-Year Domain & Hosting",
-        "3-5 Business Days Delivery"
+        "Landing page + 2 A/B testing variants",
+        "Comprehensive researched copywriting",
+        "Form integration to WhatsApp / CRM",
+        "Ad pixel & event tracking setup",
+        "4x Revision rounds"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Contact Us",
+      description: "For large scale or multi-product campaigns",
+      features: [
+        "Multiple landing page system",
+        "Advanced pixel tracking & deep analytics",
+        "Full funnel strategy session with our team",
+        "Dedicated project consultant"
       ]
     }
   ],
-  techStackTitle: "High-Performance Stack",
-  techStackSubtitle: "Zero bloat, pure speed.",
+  techStackTitle: "Ultra-Fast Engineering Stack",
+  techStackSubtitle: "Engineered with modern static architectures for 95+ Google PageSpeed scores.",
   techStack: [
-    { name: "Astro Web Engine", category: "Framework", description: "Zero-JS baseline for instant load speeds." },
-    { name: "Tailwind CSS", category: "Styling", description: "Micro-sized stylesheets under 15KB." }
+    { name: "Astro Web Engine", category: "Engine", description: "Zero-JS baseline for instant load speeds." },
+    { name: "Tailwind CSS", category: "Design System", description: "Micro-sized stylesheets under 15KB." },
+    { name: "Cloudflare Edge CDN", category: "Infra", description: "Global edge caching ensuring instant first render." }
   ],
   faqTitle: "Landing Page FAQs",
   faqSubtitle: "Common questions regarding campaign page turnarounds.",
   faqs: [
     {
-      question: "How fast can you deliver a landing page?",
-      answer: "Standard turnaround is 2 to 4 business days once we receive your product brief."
+      question: "How long does landing page development take?",
+      answer: "Typically 3 to 7 business days depending on material readiness and your product brief."
+    },
+    {
+      question: "Is professional copywriting included?",
+      answer: "Yes, starting from the Basic package our team helps structure persuasive sales copy."
+    },
+    {
+      question: "Can it integrate with WhatsApp or our CRM?",
+      answer: "Yes, available from the Standard package upwards, complete with lead capture forms."
+    },
+    {
+      question: "Is it optimized for Facebook and Google Ads?",
+      answer: "Yes, we optimize load speed to strictly comply with Core Web Vitals and ad platform quality standards."
     }
   ],
-  ctaTitle: "Ready to Boost Your Ad Conversion Rates?",
-  ctaSubtitle: "Consult with our landing page specialists for free on WhatsApp.",
-  ctaButton: "Get Started on WhatsApp"
+  ctaTitle: "Don't Let Your Ad Budget Go to Waste",
+  ctaSubtitle: "The right landing page can multiply results from the exact same ad spend.",
+  ctaButton: "Start Free Consultation"
 };
