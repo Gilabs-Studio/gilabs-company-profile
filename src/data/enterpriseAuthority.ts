@@ -18,7 +18,7 @@ export const enterpriseAuthorityData: Record<string, EnterpriseAuthorityData> = 
   en: {
     eyebrow: "Enterprise Credibility",
     title: "Built for Enterprise\nProven at Scale",
-    subtitle: "We don't just build software—we architect infrastructure that transfers. Organizations choose us for infrastructure control, not vendor dependency.",
+    subtitle: "We don't just build software-we architect infrastructure that transfers. Organizations choose us for infrastructure control, not vendor dependency.",
     credentials: [
       {
         icon: "/icon/enterprise-development.gif",
@@ -41,13 +41,13 @@ export const enterpriseAuthorityData: Record<string, EnterpriseAuthorityData> = 
       {
         icon: "/icon/discuss.gif",
         title: "Strategic Partnership Focus",
-        description: "We think in 5-year horizons, not project sprints. Your success is our success—we're invested in your long-term outcomes.",
+        description: "We think in 5-year horizons, not project sprints. Your success is our success-we're invested in your long-term outcomes.",
       },
     ],
     positioning: {
       title: "Boutique Expertise\nEnterprise Capability\nLong-Term Partnerships",
       points: [
-        "We're selective—we work with clients who value infrastructure control and strategic autonomy.",
+        "We're selective-we work with clients who value infrastructure control and strategic autonomy.",
         "Senior team, focused delivery. No bureaucracy, just results.",
         "We become an extension of your technology strategy, not just a vendor.",
         "Long-term strategic partnerships built on trust and shared outcomes.",
@@ -57,7 +57,7 @@ export const enterpriseAuthorityData: Record<string, EnterpriseAuthorityData> = 
   id: {
     eyebrow: "Kredibilitas Enterprise",
     title: "Dibangun untuk Enterprise\nTerbukti dalam Skala",
-    subtitle: "Kami tidak hanya membangun software—kami merancang infrastruktur yang transfer. Organisasi memilih kami untuk kontrol infrastruktur, bukan dependensi vendor.",
+    subtitle: "Kami tidak hanya membangun software-kami merancang infrastruktur yang transfer. Organisasi memilih kami untuk kontrol infrastruktur, bukan dependensi vendor.",
     credentials: [
       {
         icon: "/icon/enterprise-development.gif",
@@ -80,13 +80,13 @@ export const enterpriseAuthorityData: Record<string, EnterpriseAuthorityData> = 
       {
         icon: "/icon/discuss.gif",
         title: "Fokus Kemitraan Strategis",
-        description: "Kami berpikir dalam horizon 5 tahun, bukan sprint proyek. Kesuksesan Anda adalah kesuksesan kami—kami berinvestasi dalam hasil jangka panjang Anda.",
+        description: "Kami berpikir dalam horizon 5 tahun, bukan sprint proyek. Kesuksesan Anda adalah kesuksesan kami-kami berinvestasi dalam hasil jangka panjang Anda.",
       },
     ],
     positioning: {
       title: "Keahlian Boutique\nKemampuan Enterprise\nKemitraan Jangka Panjang",
       points: [
-        "Kami selektif—kami bekerja dengan klien yang menghargai kontrol infrastruktur dan otonomi strategis.",
+        "Kami selektif-kami bekerja dengan klien yang menghargai kontrol infrastruktur dan otonomi strategis.",
         "Tim senior, pengiriman terfokus. Tanpa birokrasi, hanya hasil.",
         "Kami menjadi perpanjangan strategi teknologi Anda, bukan hanya vendor.",
         "Kemitraan strategis jangka panjang dibangun atas kepercayaan dan hasil bersama.",

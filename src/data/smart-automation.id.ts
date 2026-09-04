@@ -14,7 +14,7 @@ export const smartAutomationID: SmartAutomationContent = {
   eyebrow: "Lapisan Kecerdasan",
   
   // Subtitle/narrative
-  narrative: "Kami membantu tim menghilangkan tugas berulang dengan mengotomatisasi persetujuan, pelaporan, dan sinkronisasi data antar sistem. Dari routing lead dan invoicing hingga pemeriksaan compliance dan notifikasi — otomatisasi kami menyesuaikan dengan cara kerja tim Anda, bukan sebaliknya.",
+  narrative: "Kami membantu tim menghilangkan tugas berulang dengan mengotomatisasi persetujuan, pelaporan, dan sinkronisasi data antar sistem. Dari routing lead dan invoicing hingga pemeriksaan compliance dan notifikasi - otomatisasi kami menyesuaikan dengan cara kerja tim Anda, bukan sebaliknya.",
   
   // Impact stats with numbers
   impacts: [

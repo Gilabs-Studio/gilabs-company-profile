@@ -6,7 +6,7 @@ export const landingPageId: ServicePageData = {
   eyebrow: "Jasa Pembuatan Landing Page",
   title: "Landing Page yang Dirancang Buat Satu Hal: Konversi",
   subtitle: "Iklan mahal, traffic ada, tapi konversi rendah? Masalahnya sering ada di landing page, bukan di budget iklan kamu.",
-  heroIllustration: "/images/services/landing-page/hero-landing-page.jpg",
+  heroIllustration: "/images/services/landing-page/hero-landing-page.png",
   metaTitle: "Jasa Pembuatan Landing Page Konversi Tinggi & Cepat | Gilabs",
   metaDescription: "Landing page yang dirancang khusus untuk konversi iklan Google Ads, Meta Ads, dan TikTok Ads. Loading sub-detik, copywriting teruji, dan integrasi WhatsApp.",
   keywords: [

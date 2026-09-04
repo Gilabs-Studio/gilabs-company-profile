@@ -201,7 +201,7 @@ export const pricingData: Record<string, PricingData> = {
       items: [
         {
           title: "Strategic-Driven Development.",
-          description: "Kami tidak hanya membuat fitur — kami membangun solusi yang relevan dengan tujuan bisnis Anda."
+          description: "Kami tidak hanya membuat fitur - kami membangun solusi yang relevan dengan tujuan bisnis Anda."
         },
         {
           title: "Enterprise-Ready Architecture.",
@@ -212,7 +212,7 @@ export const pricingData: Record<string, PricingData> = {
           description: "Progress jelas, laporan rutin, dan keputusan cepat di setiap tahap pengembangan."
         },
         {
-          title: "No Overpromise — Just Results.",
+          title: "No Overpromise - Just Results.",
           description: "Kami bekerja berdasarkan scope dan timeline realistis untuk menghindari revisi berulang."
         }
       ]
@@ -221,7 +221,7 @@ export const pricingData: Record<string, PricingData> = {
       title: "Keahlian Boutique. Kemampuan Enterprise. Kemitraan Jangka Panjang.",
       subtitle: "Mitra Teknologi Strategis",
       body: [
-        "Kami selektif—kami bekerja dengan klien yang menghargai kontrol infrastruktur dan otonomi strategis.",
+        "Kami selektif-kami bekerja dengan klien yang menghargai kontrol infrastruktur dan otonomi strategis.",
         "Tim senior, pengiriman terfokus. Tanpa birokrasi, hanya hasil.",
         "Kami menjadi perpanjangan strategi teknologi Anda, bukan hanya vendor.",
         "Kemitraan strategis jangka panjang dibangun atas kepercayaan dan hasil bersama."
@@ -469,7 +469,7 @@ export const pricingData: Record<string, PricingData> = {
       tabLabel: "Otomatisasi Cerdas",
       headline: "Bagaimana jika operasional Anda berjalan tanpa follow-up manual?",
       eyebrow: "Lapisan Kecerdasan",
-      narrative: "Kami membantu tim menghilangkan tugas berulang dengan mengotomatisasi persetujuan, pelaporan, dan sinkronisasi data antar sistem. Dari routing lead dan invoicing hingga pemeriksaan compliance dan notifikasi — otomatisasi kami menyesuaikan dengan cara kerja tim Anda, bukan sebaliknya.",
+      narrative: "Kami membantu tim menghilangkan tugas berulang dengan mengotomatisasi persetujuan, pelaporan, dan sinkronisasi data antar sistem. Dari routing lead dan invoicing hingga pemeriksaan compliance dan notifikasi - otomatisasi kami menyesuaikan dengan cara kerja tim Anda, bukan sebaliknya.",
       impacts: [
         { stat: "60%", label: "Pengurangan operasi manual", description: "Otomatisasi tugas berulang dan bebaskan tim Anda" },
         { stat: "Nol", label: "Kesalahan manusia dalam workflow", description: "Minimalisir kesalahan dalam proses persetujuan & pelaporan" },
@@ -489,7 +489,7 @@ export const pricingData: Record<string, PricingData> = {
     customSoftware: {
       title: "Custom Software Development",
       subtitle: "Solusi Software yang Dibuat Khusus untuk Bisnis Anda",
-      description: "Kami membangun software custom yang disesuaikan dengan kebutuhan unik bisnis Anda. Dari aplikasi web hingga mobile, dari sistem manajemen hingga integrasi kompleks — semua dibuat khusus untuk Anda.",
+      description: "Kami membangun software custom yang disesuaikan dengan kebutuhan unik bisnis Anda. Dari aplikasi web hingga mobile, dari sistem manajemen hingga integrasi kompleks - semua dibuat khusus untuk Anda.",
       packages: [
         {
           name: "Custom Software Development",
@@ -627,7 +627,7 @@ export const pricingData: Record<string, PricingData> = {
       items: [
         {
           title: "Strategic-Driven Development.",
-          description: "We don't just build features — we build solutions that align with your business goals."
+          description: "We don't just build features - we build solutions that align with your business goals."
         },
         {
           title: "Enterprise-Ready Architecture.",
@@ -638,7 +638,7 @@ export const pricingData: Record<string, PricingData> = {
           description: "Clear progress, regular reports, and quick decisions at every development stage."
         },
         {
-          title: "No Overpromise — Just Results.",
+          title: "No Overpromise - Just Results.",
           description: "We work based on realistic scope and timeline to avoid repeated revisions."
         }
       ]
@@ -647,7 +647,7 @@ export const pricingData: Record<string, PricingData> = {
       title: "Boutique Expertise. Enterprise Capability. Long-Term Partnerships.",
       subtitle: "Strategic Technology Partners",
       body: [
-        "We're selective—we work with clients who value infrastructure control and strategic autonomy.",
+        "We're selective-we work with clients who value infrastructure control and strategic autonomy.",
         "Senior team, focused delivery. No bureaucracy, just results.",
         "We become an extension of your technology strategy, not just a vendor.",
         "Long-term strategic partnerships built on trust and shared outcomes."
@@ -890,7 +890,7 @@ export const pricingData: Record<string, PricingData> = {
       tabLabel: "Smart Automation",
       headline: "What if your operations run without manual follow-ups?",
       eyebrow: "Intelligence Layer",
-      narrative: "We help teams eliminate repetitive tasks by automating approvals, reporting, and data synchronization across systems. From lead routing and invoicing to compliance checks and notifications — our automation adapts to how your team works, not the other way around.",
+      narrative: "We help teams eliminate repetitive tasks by automating approvals, reporting, and data synchronization across systems. From lead routing and invoicing to compliance checks and notifications - our automation adapts to how your team works, not the other way around.",
       impacts: [
         { stat: "60%", label: "Reduction in manual operations", description: "Automate repetitive tasks and free up your team" },
         { stat: "Zero", label: "Human errors in workflows", description: "Minimize mistakes in approval & reporting processes" },
@@ -910,7 +910,7 @@ export const pricingData: Record<string, PricingData> = {
     customSoftware: {
       title: "Custom Software Development",
       subtitle: "Tailored Software Solutions Built for Your Business",
-      description: "We build custom software tailored to your unique business needs. From web to mobile applications, from management systems to complex integrations — all built specifically for you.",
+      description: "We build custom software tailored to your unique business needs. From web to mobile applications, from management systems to complex integrations - all built specifically for you.",
       packages: [
         {
           name: "Custom Software Development",

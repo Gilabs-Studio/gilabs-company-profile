@@ -12,7 +12,7 @@ const projects = [
     result: lang === "en"
       ? "Online transactions surged 2x in the first 3 months"
       : "Transaksi online naik 2x dalam 3 bulan pertama",
-    image: "/images/services/ecommerce/portfolio-evalique-ecom.jpg",
+    image: "/images/services/ecommerce/portfolio-evalique-ecom.png",
     alt: "Website Toko Online Evalique Skin & Beauty - Gilabs",
     tags: ["Midtrans QRIS", "Cek Ongkir Otomatis", "Flash Sale Ready"]
   },
@@ -22,7 +22,7 @@ const projects = [
     result: lang === "en"
       ? "90% of orders processed automatically via QRIS & Virtual Account"
       : "90% pesanan terverifikasi otomatis via QRIS & VA",
-    image: "/images/services/ecommerce/portfolio-topgun-ecom.jpg",
+    image: "/images/services/ecommerce/portfolio-topgun-ecom.png",
     alt: "Website Toko Online TopGun - Gilabs",
     tags: ["Mobile Checkout", "Automated Invoices", "Multi-Varian SKU"]
   },
@@ -32,13 +32,13 @@ const projects = [
     result: lang === "en"
       ? "100% automated instant delivery upon payment confirmation"
       : "Penjualan digital otomatis tanpa proses manual",
-    image: "/images/services/ecommerce/portfolio-savlo-ecom.jpg",
+    image: "/images/services/ecommerce/portfolio-savlo-ecom.png",
     alt: "Website E-Commerce Savlo Digital - Gilabs",
     tags: ["Instant Download", "Customer Database", "Zero Commission"]
   }
 ];
 
-const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results`;
+const portfolioUrl = lang === "en" ? "/en/portfolio" : `/${lang}/portfolio`;
 ---
 
 <section id="portofolio" class="py-16 md:py-24 relative">
@@ -79,13 +79,6 @@ const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results
               width="800"
               height="500"
             />
-
-            {/* Category Badge */}
-            <div class="absolute top-3 left-3 z-10">
-              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
-                {project.category}
-              </span>
-            </div>
           </div>
 
           {/* Card Info */}

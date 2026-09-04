@@ -12,7 +12,7 @@ export const smartAutomationEN = {
   eyebrow: "Intelligence Layer",
   
   // Subtitle/narrative
-  narrative: "We help teams eliminate repetitive tasks by automating approvals, reporting, and data synchronization across systems. From lead routing and invoicing to compliance checks and notifications — our automation adapts to how your team works, not the other way around.",
+  narrative: "We help teams eliminate repetitive tasks by automating approvals, reporting, and data synchronization across systems. From lead routing and invoicing to compliance checks and notifications - our automation adapts to how your team works, not the other way around.",
   
   // Impact stats with numbers
   impacts: [

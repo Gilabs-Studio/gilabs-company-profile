@@ -6,7 +6,7 @@ export const softwareHouseId: ServicePageData = {
   eyebrow: "Software House Indonesia",
   title: "Partner Teknologi untuk Bisnis yang Serius Bertumbuh",
   subtitle: "Dari ide sampai sistem yang jalan tiap hari, kami bangun software yang benar-benar dipakai tim kamu, bukan cuma demo yang bagus di presentasi.",
-  heroIllustration: "/images/services/software-house/hero-dashboard-dark.jpg",
+  heroIllustration: "/images/services/software-house/hero-dashboard-dark.png",
   metaTitle: "Software House Indonesia Terpercaya | Gilabs Engineering Partner",
   metaDescription: "Software house Indonesia terpercaya untuk custom software, sistem internal, web app, dan mobile app. 100% kepemilikan source code tanpa biaya lisensi per user.",
   keywords: [

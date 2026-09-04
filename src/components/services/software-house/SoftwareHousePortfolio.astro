@@ -15,7 +15,7 @@ const projects = [
     description: lang === "en"
       ? "Automated fleet routing and multi-warehouse dispatching that cut order processing times from hours to minutes."
       : "Sistem pelacakan armada terintegrasi dan multi-warehouse dispatching otomatis yang memangkas waktu proses order tim operasional.",
-    image: "/images/services/software-house/portfolio-logistics.webp",
+    image: "/images/services/software-house/portfolio-logistics.png",
     alt: "Sistem Manajemen Distribusi & Logistik - Gilabs Software House",
     tags: ["Fleet Dispatch", "Warehouse Sync", "Real-time Telemetry"]
   },
@@ -26,7 +26,7 @@ const projects = [
     description: lang === "en"
       ? "Automated lead distribution, WhatsApp notification workflows, and clear deal stage forecasting for sales agents."
       : "Otomasi follow-up prospek, alokasi sales agent secara transparan, dan visualisasi closing pipeline yang meningkatkan konversi lead.",
-    image: "/images/services/software-house/portfolio-crm.webp",
+    image: "/images/services/software-house/portfolio-crm.png",
     alt: "Custom CRM & Pipeline Penjualan - Gilabs Software House",
     tags: ["Lead Scoring", "WhatsApp API", "Deal Forecasting"]
   },
@@ -37,13 +37,13 @@ const projects = [
     description: lang === "en"
       ? "Self-service order replenishment, instant Purchase Order tracking, and automated ledger billing for national distributors."
       : "Self-service ordering untuk distributor, pelacakan Purchase Order real-time, dan sinkronisasi invoice instan tanpa birokrasi manual.",
-    image: "/images/services/software-house/portfolio-b2b-portal.webp",
+    image: "/images/services/software-house/portfolio-b2b-portal.png",
     alt: "Portal Pelanggan B2B Manufaktur - Gilabs Software House",
     tags: ["Self-Service PO", "Invoice Engine", "Role Management"]
   }
 ];
 
-const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results`;
+const portfolioUrl = lang === "en" ? "/en/portfolio" : `/${lang}/portfolio`;
 ---
 
 <section id="studi-kasus" class="py-16 md:py-24 relative">
@@ -84,13 +84,6 @@ const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results
               width="800"
               height="500"
             />
-
-            {/* Industry Badge */}
-            <div class="absolute top-3 left-3 z-10">
-              <span class="text-xs font-semibold px-3 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
-                {project.industry}
-              </span>
-            </div>
           </div>
 
           {/* Info */}

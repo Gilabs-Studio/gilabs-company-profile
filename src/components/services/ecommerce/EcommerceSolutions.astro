@@ -8,11 +8,11 @@ const { lang = "id" } = Astro.props;
 const pillars = [
   {
     number: "01",
-    title: lang === "en" ? "Pillar 1 — Full Brand Ownership" : "Pilar 1 — Branding Penuh",
+    title: lang === "en" ? "Pillar 1 - Full Brand Ownership" : "Pilar 1 - Branding Penuh",
     subtitle: lang === "en"
       ? "Your own custom domain, bespoke styling matching your identity, zero generic cookie-cutter templates."
       : "Domain sendiri, desain sesuai identitas brand, bukan template generik.",
-    image: "/images/services/ecommerce/solution-branding.jpg",
+    image: "/images/services/ecommerce/solution-branding.png",
     alt: "Desain Toko Online Eksklusif Sesuai Identitas Brand",
     badge: lang === "en" ? "Brand Equity" : "Identitas Eksklusif",
     points: [
@@ -23,11 +23,11 @@ const pillars = [
   },
   {
     number: "02",
-    title: lang === "en" ? "Pillar 2 — Integrated Payment Gateways" : "Pilar 2 — Payment Gateway Terintegrasi",
+    title: lang === "en" ? "Pillar 2 - Integrated Payment Gateways" : "Pilar 2 - Payment Gateway Terintegrasi",
     subtitle: lang === "en"
       ? "Bank transfer, QRIS, e-wallets, credit cards verified automatically straight into your account."
       : "Transfer bank, e-wallet, kartu kredit, semua otomatis masuk sistem.",
-    image: "/images/services/ecommerce/solution-payment.jpg",
+    image: "/images/services/ecommerce/solution-payment.png",
     alt: "Payment Gateway Terintegrasi Otomatis",
     badge: lang === "en" ? "Auto Verification" : "Verifikasi Otomatis",
     points: [
@@ -38,11 +38,11 @@ const pillars = [
   },
   {
     number: "03",
-    title: lang === "en" ? "Pillar 3 — Effortless Product Management" : "Pilar 3 — Kelola Produk Mudah",
+    title: lang === "en" ? "Pillar 3 - Effortless Product Management" : "Pilar 3 - Kelola Produk Mudah",
     subtitle: lang === "en"
       ? "Update inventory, prices, and promo discount codes without needing to wait on developers."
       : "Update stok, harga, dan promo tanpa perlu tunggu developer.",
-    image: "/images/services/ecommerce/solution-inventory.jpg",
+    image: "/images/services/ecommerce/solution-inventory.png",
     alt: "Dashboard Kelola Produk dan Stok Toko Online",
     badge: lang === "en" ? "Admin Control" : "Kelola Mandiri",
     points: [
@@ -92,18 +92,6 @@ const pillars = [
               width="640"
               height="400"
             />
-
-            {/* Clean Badge overlay on image */}
-            <div class="absolute top-3 left-3 z-10">
-              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
-                {pillar.badge}
-              </span>
-            </div>
-
-            {/* Number overlay */}
-            <div class="absolute bottom-3 right-4 z-10 text-xl font-mono font-bold text-white drop-shadow">
-              {pillar.number}
-            </div>
           </div>
 
           {/* Content Details */}

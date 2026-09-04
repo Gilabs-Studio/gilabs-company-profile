@@ -17,7 +17,7 @@ export const riskMitigationData: Record<string, RiskMitigationData> = {
   en: {
     eyebrow: "Risk Mitigation",
     title: "Your Risk, Mitigated\nYour Control, Guaranteed",
-    subtitle: "We don't just build software—we engineer systems with risk mitigation built in. Your business continuity, your data sovereignty, your strategic flexibility—all protected.",
+    subtitle: "We don't just build software-we engineer systems with risk mitigation built in. Your business continuity, your data sovereignty, your strategic flexibility-all protected.",
     sections: [
       {
         title: "Vendor Risk Mitigation",
@@ -26,7 +26,7 @@ export const riskMitigationData: Record<string, RiskMitigationData> = {
           {
             icon: "/icon/award.gif",
             title: "No Vendor Lock-in",
-            description: "Your source code is yours from day one. Full documentation means you can take over anytime—no dependency on us.",
+            description: "Your source code is yours from day one. Full documentation means you can take over anytime-no dependency on us.",
           },
           {
             icon: "/icon/locked.gif",
@@ -36,7 +36,7 @@ export const riskMitigationData: Record<string, RiskMitigationData> = {
           {
             icon: "/icon/custom.gif",
             title: "Full Documentation",
-            description: "We document everything—architecture, deployment, maintenance. Knowledge transfer is built into our process.",
+            description: "We document everything-architecture, deployment, maintenance. Knowledge transfer is built into our process.",
           },
           {
             icon: "/icon/unlimited.gif",
@@ -57,7 +57,7 @@ export const riskMitigationData: Record<string, RiskMitigationData> = {
           {
             icon: "/icon/artificial-intelligence.gif",
             title: "Open Standards",
-            description: "We use open standards and modern frameworks. Integration risk is minimized—you're not locked into proprietary systems.",
+            description: "We use open standards and modern frameworks. Integration risk is minimized-you're not locked into proprietary systems.",
           },
           {
             icon: "/icon/enterprise-development.gif",
@@ -102,7 +102,7 @@ export const riskMitigationData: Record<string, RiskMitigationData> = {
   id: {
     eyebrow: "Mitigasi Risiko",
     title: "Risiko Anda, Dikurangi\nKontrol Anda, Dijamin",
-    subtitle: "Kami tidak hanya membangun software—kami merancang sistem dengan mitigasi risiko yang terintegrasi. Kontinuitas bisnis Anda, kedaulatan data Anda, fleksibilitas strategis Anda—semua terlindungi.",
+    subtitle: "Kami tidak hanya membangun software-kami merancang sistem dengan mitigasi risiko yang terintegrasi. Kontinuitas bisnis Anda, kedaulatan data Anda, fleksibilitas strategis Anda-semua terlindungi.",
     sections: [
       {
         title: "Mitigasi Risiko Vendor",
@@ -111,7 +111,7 @@ export const riskMitigationData: Record<string, RiskMitigationData> = {
           {
             icon: "/icon/award.gif",
             title: "Tanpa Vendor Lock-in",
-            description: "Source code Anda adalah milik Anda sejak hari pertama. Dokumentasi lengkap berarti Anda dapat mengambil alih kapan saja—tanpa dependensi pada kami.",
+            description: "Source code Anda adalah milik Anda sejak hari pertama. Dokumentasi lengkap berarti Anda dapat mengambil alih kapan saja-tanpa dependensi pada kami.",
           },
           {
             icon: "/icon/locked.gif",
@@ -121,7 +121,7 @@ export const riskMitigationData: Record<string, RiskMitigationData> = {
           {
             icon: "/icon/custom.gif",
             title: "Dokumentasi Lengkap",
-            description: "Kami mendokumentasikan segalanya—arsitektur, deployment, maintenance. Transfer pengetahuan terintegrasi dalam proses kami.",
+            description: "Kami mendokumentasikan segalanya-arsitektur, deployment, maintenance. Transfer pengetahuan terintegrasi dalam proses kami.",
           },
           {
             icon: "/icon/unlimited.gif",
@@ -142,7 +142,7 @@ export const riskMitigationData: Record<string, RiskMitigationData> = {
           {
             icon: "/icon/artificial-intelligence.gif",
             title: "Standar Terbuka",
-            description: "Kami menggunakan standar terbuka dan framework modern. Risiko integrasi diminimalkan—Anda tidak terkunci dalam sistem proprietary.",
+            description: "Kami menggunakan standar terbuka dan framework modern. Risiko integrasi diminimalkan-Anda tidak terkunci dalam sistem proprietary.",
           },
           {
             icon: "/icon/enterprise-development.gif",

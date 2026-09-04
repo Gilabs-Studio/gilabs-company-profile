@@ -6,7 +6,7 @@ export const landingPageEn: ServicePageData = {
   eyebrow: "Landing Page Development",
   title: "Landing Pages Designed for One Purpose: Conversion",
   subtitle: "Expensive ads, steady traffic, but low conversion? The bottleneck is often your landing page, not your ad budget.",
-  heroIllustration: "/images/services/landing-page/hero-landing-page.jpg",
+  heroIllustration: "/images/services/landing-page/hero-landing-page.png",
   metaTitle: "High-Converting Landing Page Development Agency | Gilabs",
   metaDescription: "Landing pages engineered specifically for Google Ads, Meta Ads, and TikTok Ads. Sub-second loading speed, persuasive copywriting, and direct WhatsApp integration.",
   keywords: [

@@ -85,21 +85,21 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
     },
     problem: {
       title: "The Hidden Risks of Software Rentals",
-      subtitle: "SaaS vendors can change terms anytime—you have no control. Platform pivots can break your workflows—you're along for the ride. Acquisitions can disrupt service—your business continuity at risk.",
+      subtitle: "SaaS vendors can change terms anytime-you have no control. Platform pivots can break your workflows-you're along for the ride. Acquisitions can disrupt service-your business continuity at risk.",
       challenges: [
         {
           title: "Vendor Pricing Risk",
-          description: "SaaS vendors can raise prices 40% with 30 days notice. You have no alternative—your workflows are locked in. Your success penalizes you with higher costs.",
+          description: "SaaS vendors can raise prices 40% with 30 days notice. You have no alternative-your workflows are locked in. Your success penalizes you with higher costs.",
           icon: "/icon/expensive.gif",
         },
         {
           title: "Platform Pivot Risk",
-          description: "Vendors pivot their business model—your investment becomes legacy. Forced updates break your workflows. You're stuck adapting to their roadmap, not yours.",
+          description: "Vendors pivot their business model-your investment becomes legacy. Forced updates break your workflows. You're stuck adapting to their roadmap, not yours.",
           icon: "/icon/limited.gif",
         },
         {
           title: "Business Continuity Risk",
-          description: "Acquisitions disrupt service. Vendor shutdowns leave you stranded. Your data is hostage. Your operations depend on their survival—not yours.",
+          description: "Acquisitions disrupt service. Vendor shutdowns leave you stranded. Your data is hostage. Your operations depend on their survival-not yours.",
           icon: "/icon/locked.gif",
         },
         {
@@ -239,21 +239,21 @@ export const servicesIntroData: Record<string, ServicesIntroData> = {
     },
     problem: {
       title: "Risiko Tersembunyi Sewa Software",
-      subtitle: "Vendor SaaS dapat mengubah syarat kapan saja—Anda tidak punya kontrol. Platform pivot dapat merusak workflow Anda—Anda ikut arus. Akuisisi dapat mengganggu layanan—kontinuitas bisnis Anda berisiko.",
+      subtitle: "Vendor SaaS dapat mengubah syarat kapan saja-Anda tidak punya kontrol. Platform pivot dapat merusak workflow Anda-Anda ikut arus. Akuisisi dapat mengganggu layanan-kontinuitas bisnis Anda berisiko.",
       challenges: [
         {
           title: "Risiko Kenaikan Harga Vendor",
-          description: "Vendor SaaS dapat menaikkan harga 40% dengan pemberitahuan 30 hari. Anda tidak punya alternatif—workflow Anda terkunci. Kesuksesan Anda menghukum Anda dengan biaya lebih tinggi.",
+          description: "Vendor SaaS dapat menaikkan harga 40% dengan pemberitahuan 30 hari. Anda tidak punya alternatif-workflow Anda terkunci. Kesuksesan Anda menghukum Anda dengan biaya lebih tinggi.",
           icon: "/icon/expensive.gif",
         },
         {
           title: "Risiko Pivot Platform",
-          description: "Vendor mengubah model bisnis—investasi Anda menjadi legacy. Update paksa merusak workflow Anda. Anda terjebak menyesuaikan roadmap mereka, bukan Anda.",
+          description: "Vendor mengubah model bisnis-investasi Anda menjadi legacy. Update paksa merusak workflow Anda. Anda terjebak menyesuaikan roadmap mereka, bukan Anda.",
           icon: "/icon/limited.gif",
         },
         {
           title: "Risiko Kontinuitas Bisnis",
-          description: "Akuisisi mengganggu layanan. Penutupan vendor meninggalkan Anda terdampar. Data Anda disandera. Operasi Anda bergantung pada kelangsungan hidup mereka—bukan Anda.",
+          description: "Akuisisi mengganggu layanan. Penutupan vendor meninggalkan Anda terdampar. Data Anda disandera. Operasi Anda bergantung pada kelangsungan hidup mereka-bukan Anda.",
           icon: "/icon/locked.gif",
         },
         {

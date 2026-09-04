@@ -6,7 +6,7 @@ export const companyProfileEn: ServicePageData = {
   eyebrow: "Company Profile Website",
   title: "Company Profiles Built to Look Like an Enterprise",
   subtitle: "First impressions happen on your website. We make sure the first thing prospective partners or investors see is the absolute best version of your business.",
-  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.jpg",
+  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.png",
   metaTitle: "Enterprise Company Profile Web Development | Gilabs",
   metaDescription: "First impressions happen on your website. We ensure your prospective partners and investors see the most authoritative version of your business. Fast, secure, tender-ready.",
   keywords: [

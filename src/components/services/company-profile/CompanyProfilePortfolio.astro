@@ -12,7 +12,7 @@ const projects = [
     result: lang === "en"
       ? "Passed SOE tender verification; inbound partner inquiries up 60%"
       : "Lolos verifikasi tender BUMN, leads masuk dari luar kota naik 60%",
-    image: "/images/services/company-profile/portfolio-adiguna-corpprofile.jpg",
+    image: "/images/services/company-profile/portfolio-adiguna-corpprofile.png",
     alt: "Website Company Profile PT Adiguna Karya Prima - Gilabs",
     tags: ["Next.js", "Tender-Ready", "Project Vault", "ISO Showcase"]
   },
@@ -22,7 +22,7 @@ const projects = [
     result: lang === "en"
       ? "High-end residential client closing rate increased significantly"
       : "Closing klien residensial kelas atas meningkat sejak web baru live",
-    image: "/images/services/company-profile/portfolio-domus-corpprofile.jpg",
+    image: "/images/services/company-profile/portfolio-domus-corpprofile.png",
     alt: "Website Company Profile Domus Living - Gilabs",
     tags: ["Minimalist UI", "High-Res Gallery", "Fast Edge CDN"]
   },
@@ -32,13 +32,13 @@ const projects = [
     result: lang === "en"
       ? "Bilingual portal actively utilized for international investor pitching"
       : "Website bilingual (ID/EN) dipakai untuk pitching investor luar negeri",
-    image: "/images/services/company-profile/portfolio-nexora-corpprofile.jpg",
+    image: "/images/services/company-profile/portfolio-nexora-corpprofile.png",
     alt: "Website Company Profile PT Nexora Global Energi - Gilabs",
     tags: ["Enterprise Cloud", "Investor Relations", "Multi-Language"]
   }
 ];
 
-const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results`;
+const portfolioUrl = lang === "en" ? "/en/portfolio" : `/${lang}/portfolio`;
 ---
 
 <section id="portofolio" class="py-16 md:py-24 relative">
@@ -79,13 +79,6 @@ const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results
               width="800"
               height="500"
             />
-
-            {/* Industry Badge */}
-            <div class="absolute top-3 left-3 z-10">
-              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
-                {project.industry}
-              </span>
-            </div>
           </div>
 
           {/* Card Info */}

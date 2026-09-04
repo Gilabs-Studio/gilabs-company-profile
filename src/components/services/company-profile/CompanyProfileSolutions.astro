@@ -8,9 +8,9 @@ const { lang = "id" } = Astro.props;
 const pillars = [
   {
     number: "01",
-    title: lang === "en" ? "Pillar 1 — Professional Image" : "Pilar 1 — Citra Profesional",
+    title: lang === "en" ? "Pillar 1 - Professional Image" : "Pilar 1 - Citra Profesional",
     subtitle: lang === "en" ? "Design that reflects the scale and standards of your industry." : "Desain yang mencerminkan skala dan standar industri kamu.",
-    image: "/images/services/company-profile/solution-prestige.jpg",
+    image: "/images/services/company-profile/solution-prestige.png",
     alt: "Desain Company Profile Profesional Skala Enterprise",
     badge: lang === "en" ? "Enterprise Authority" : "Standar Korporat",
     points: [
@@ -21,9 +21,9 @@ const pillars = [
   },
   {
     number: "02",
-    title: lang === "en" ? "Pillar 2 — Clear Information Architecture" : "Pilar 2 — Struktur Informasi Jelas",
-    subtitle: lang === "en" ? "From who you are and what you do to how to get in touch—everything is effortless to find." : "Dari siapa kamu, apa yang kamu kerjakan, sampai cara hubungi—semua mudah ditemukan.",
-    image: "/images/services/web-dev/solution-design.jpg",
+    title: lang === "en" ? "Pillar 2 - Clear Information Architecture" : "Pilar 2 - Struktur Informasi Jelas",
+    subtitle: lang === "en" ? "From who you are and what you do to how to get in touch-everything is effortless to find." : "Dari siapa kamu, apa yang kamu kerjakan, sampai cara hubungi-semua mudah ditemukan.",
+    image: "/images/services/company-profile/solution-architecture.png",
     alt: "Struktur Informasi Company Profile Rapi dan Terarah",
     badge: lang === "en" ? "Information Flow" : "Arsitektur Informasi",
     points: [
@@ -34,9 +34,9 @@ const pillars = [
   },
   {
     number: "03",
-    title: lang === "en" ? "Pillar 3 — Easy to Update" : "Pilar 3 — Mudah Diperbarui",
+    title: lang === "en" ? "Pillar 3 - Easy to Update" : "Pilar 3 - Mudah Diperbarui",
     subtitle: lang === "en" ? "A clean CMS that your team can easily manage without relying on developers." : "CMS yang gampang dipakai sendiri tanpa harus bergantung ke developer terus.",
-    image: "/images/services/web-dev/portfolio-salesview.jpg",
+    image: "/images/services/company-profile/solution-cms.png",
     alt: "CMS Dashboard Kelola Konten Mandiri",
     badge: lang === "en" ? "Self-Serve CMS" : "CMS Mandiri",
     points: [
@@ -86,18 +86,6 @@ const pillars = [
               width="640"
               height="400"
             />
-
-            {/* Clean Badge overlay on image */}
-            <div class="absolute top-3 left-3 z-10">
-              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
-                {pillar.badge}
-              </span>
-            </div>
-
-            {/* Number overlay */}
-            <div class="absolute bottom-3 right-4 z-10 text-xl font-mono font-bold text-white drop-shadow">
-              {pillar.number}
-            </div>
           </div>
 
           {/* Content Details */}

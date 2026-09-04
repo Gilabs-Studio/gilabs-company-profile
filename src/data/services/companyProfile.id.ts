@@ -6,7 +6,7 @@ export const companyProfileId: ServicePageData = {
   eyebrow: "Jasa Web Company Profile",
   title: "Company Profile yang Terlihat Seperti Perusahaan Besar",
   subtitle: "Kesan pertama itu di website. Kami pastikan yang pertama kali dilihat calon partner atau investor kamu adalah versi terbaik dari bisnismu.",
-  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.jpg",
+  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.png",
   metaTitle: "Jasa Website Company Profile Perusahaan Profesional & Elegan | Gilabs",
   metaDescription: "Kesan pertama itu di website. Kami pastikan calon partner atau investor melihat versi terbaik dari bisnismu. Berwibawa, responsif, dan siap tender.",
   keywords: [

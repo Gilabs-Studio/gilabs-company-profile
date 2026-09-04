@@ -6,7 +6,7 @@ export const ecommerceEn: ServicePageData = {
   eyebrow: "E-Commerce & Online Store",
   title: "Online Stores Ready to Sell 24/7 Without Supervision",
   subtitle: "From product catalogs to automated payment gateways, we build everything so you can focus strictly on inventory and fulfillment.",
-  heroIllustration: "/images/services/ecommerce/hero-ecommerce.jpg",
+  heroIllustration: "/images/services/ecommerce/hero-ecommerce.png",
   metaTitle: "Professional Online Store & E-Commerce Web Development | Gilabs",
   metaDescription: "Independent e-commerce web stores ready to sell 24/7. Automated payment gateways (Midtrans/Xendit), real-time courier shipping, easy stock control, and 0% marketplace fees.",
   keywords: [

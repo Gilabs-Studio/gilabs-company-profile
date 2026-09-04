@@ -8,11 +8,11 @@ const { lang = "id" } = Astro.props;
 const pillars = [
   {
     number: "01",
-    title: lang === "en" ? "Pillar 1 — Conversion-Centric" : "Pilar 1 — Fokus Konversi",
+    title: lang === "en" ? "Pillar 1 - Conversion-Centric" : "Pilar 1 - Fokus Konversi",
     subtitle: lang === "en"
       ? "Zero distractions. Every headline, image, and section funnels visitors to one singular action."
       : "Nggak ada distraksi, semua elemen mengarah ke satu CTA.",
-    image: "/images/services/landing-page/solution-focus.jpg",
+    image: "/images/services/landing-page/solution-focus.png",
     alt: "Wireframe Landing Page Berfokus Konversi",
     badge: lang === "en" ? "High Intent" : "Fokus 1 Aksi",
     points: [
@@ -23,11 +23,11 @@ const pillars = [
   },
   {
     number: "02",
-    title: lang === "en" ? "Pillar 2 — High-Converting Copy" : "Pilar 2 — Copywriting yang Menjual",
+    title: lang === "en" ? "Pillar 2 - High-Converting Copy" : "Pilar 2 - Copywriting yang Menjual",
     subtitle: lang === "en"
       ? "We help structure persuasive narrative hooks that guide visitors to make purchasing decisions faster."
       : "Kami bantu susun narasi yang bikin pengunjung ambil keputusan lebih cepat.",
-    image: "/images/services/landing-page/solution-copywriting.jpg",
+    image: "/images/services/landing-page/solution-copywriting.png",
     alt: "Struktur Copywriting Penjualan Terarah",
     badge: lang === "en" ? "Persuasive AIDA" : "Copywriting Teruji",
     points: [
@@ -38,11 +38,11 @@ const pillars = [
   },
   {
     number: "03",
-    title: lang === "en" ? "Pillar 3 — Fast Loading, Mobile-First" : "Pilar 3 — Load Cepat, Mobile-First",
+    title: lang === "en" ? "Pillar 3 - Fast Loading, Mobile-First" : "Pilar 3 - Load Cepat, Mobile-First",
     subtitle: lang === "en"
       ? "Optimized for traffic from Meta Ads, Google Ads, and TikTok with sub-second opening speeds."
       : "Optimal buat traffic dari Facebook Ads, Google Ads, atau Instagram.",
-    image: "/images/services/landing-page/solution-speed.jpg",
+    image: "/images/services/landing-page/solution-speed.png",
     alt: "Google PageSpeed Skor 100",
     badge: lang === "en" ? "PageSpeed 95+" : "Kecepatan Sub-Detik",
     points: [
@@ -92,18 +92,6 @@ const pillars = [
               width="640"
               height="400"
             />
-
-            {/* Clean Badge overlay on image */}
-            <div class="absolute top-3 left-3 z-10">
-              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
-                {pillar.badge}
-              </span>
-            </div>
-
-            {/* Number overlay */}
-            <div class="absolute bottom-3 right-4 z-10 text-xl font-mono font-bold text-white drop-shadow">
-              {pillar.number}
-            </div>
           </div>
 
           {/* Content Details */}

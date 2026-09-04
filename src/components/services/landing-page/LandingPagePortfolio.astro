@@ -10,7 +10,7 @@ const projects = [
     title: "Evalique Skin & Beauty",
     campaign: lang === "en" ? "Paid Ads Campaign & Direct Product Sales" : "Campaign Iklan Berbayar & Flash Sale Produk",
     result: lang === "en" ? "Conversion rate surged from 1.2% to 4.8%" : "Conversion rate naik dari 1.2% ke 4.8%",
-    image: "/images/services/landing-page/portfolio-evalique-lp.jpg",
+    image: "/images/services/landing-page/portfolio-evalique-lp.png",
     alt: "Landing Page Evalique Beauty - Gilabs",
     tags: ["Direct WA Order", "Meta Ads Ready", "PageSpeed 98"]
   },
@@ -18,7 +18,7 @@ const projects = [
     title: "TopGun Barber & Grooming",
     campaign: lang === "en" ? "Event Promotion & Appointment Bookings" : "Promosi Event & Reservasi Layanan Online",
     result: lang === "en" ? "Online reservations surged 240% with zero friction" : "Booking online melonjak 240% tanpa antrean manual",
-    image: "/images/services/landing-page/portfolio-topgun-lp.jpg",
+    image: "/images/services/landing-page/portfolio-topgun-lp.png",
     alt: "Landing Page TopGun Barber - Gilabs",
     tags: ["Instant Booking", "Google Ads Traffic", "Mobile-First"]
   },
@@ -26,13 +26,13 @@ const projects = [
     title: "SalesView Platform",
     campaign: lang === "en" ? "B2B Pre-Launch & Lead Generation" : "Pre-Launch B2B & Lead Generation Prospek",
     result: lang === "en" ? "Lead qualification rate increased 3.5x in 30 days" : "Lead qualification rate meningkat 3.5x dalam 30 hari",
-    image: "/images/services/landing-page/portfolio-salesview-lp.jpg",
+    image: "/images/services/landing-page/portfolio-salesview-lp.png",
     alt: "Landing Page SalesView - Gilabs",
     tags: ["Lead Magnet", "CRM Sync", "Conversion Analytics"]
   }
 ];
 
-const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results`;
+const portfolioUrl = lang === "en" ? "/en/portfolio" : `/${lang}/portfolio`;
 ---
 
 <section id="portofolio" class="py-16 md:py-24 relative">
@@ -73,13 +73,6 @@ const portfolioUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results
               width="800"
               height="500"
             />
-
-            {/* Campaign Type Badge */}
-            <div class="absolute top-3 left-3 z-10">
-              <span class="text-xs font-semibold px-2.5 py-1 bg-white/95 backdrop-blur-md text-foreground rounded-full border border-border/40 shadow-xs">
-                {project.campaign}
-              </span>
-            </div>
           </div>
 
           {/* Card Info */}

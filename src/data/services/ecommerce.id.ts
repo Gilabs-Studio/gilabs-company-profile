@@ -6,7 +6,7 @@ export const ecommerceId: ServicePageData = {
   eyebrow: "Jasa Toko Online E-Commerce",
   title: "Toko Online yang Siap Jualan 24 Jam Tanpa Kamu Jaga",
   subtitle: "Dari katalog produk sampai pembayaran otomatis, semua kami siapkan biar kamu fokus urus stok dan kirim pesanan.",
-  heroIllustration: "/images/services/ecommerce/hero-ecommerce.jpg",
+  heroIllustration: "/images/services/ecommerce/hero-ecommerce.png",
   metaTitle: "Jasa Pembuatan Toko Online E-Commerce Profesional | Gilabs",
   metaDescription: "Toko online mandiri yang siap jualan 24 jam. Payment gateway Midtrans/Xendit otomatis, cek ongkir real-time, kelola stok mudah, dan 0% potongan marketplace.",
   keywords: [
