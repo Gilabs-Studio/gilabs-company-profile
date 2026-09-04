@@ -23,6 +23,8 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
   const [isMobile, setIsMobile] = useState(false);
   
+  const lenisRef = useRef<Lenis | null>(null);
+  
   // Sequential loading queue state: start with top 2 images allowed to load high-res
   const [activeLoadIndex, setActiveLoadIndex] = useState<number>(1);
   
@@ -60,6 +62,7 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   // Advance queue when high-res image finishes loading
   const handleHighResLoaded = useCallback((loadedIndex: number) => {
     setActiveLoadIndex(prev => Math.max(prev, loadedIndex + 1));
+    lenisRef.current?.resize();
   }, []);
 
   // Safety fallback: advance activeLoadIndex every 300ms so queue never blocks on slow requests
@@ -75,7 +78,10 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   }, [activeLoadIndex, images]);
 
   useEffect(() => {
-    const lenis = new Lenis();
+    const lenis = new Lenis({
+      autoResize: true,
+    });
+    lenisRef.current = lenis;
     let rafId: number;
 
     // Expose Lenis instance to window for drawer to access
@@ -91,6 +97,7 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
       const height = window.innerHeight;
       setDimension({ width, height });
       setIsMobile(width < 768); // Mobile breakpoint at 768px
+      lenis.resize();
     };
 
     // Check if drawer is open and prevent Lenis from handling wheel events
@@ -105,14 +112,41 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
 
     window.addEventListener('wheel', checkDrawerAndHandleWheel, { capture: true, passive: false });
     window.addEventListener('resize', resize);
+    window.addEventListener('load', resize);
+
+    // Recalculate when web fonts finish loading
+    if ('fonts' in document) {
+      document.fonts.ready.then(() => {
+        lenis.resize();
+      });
+    }
+
+    // Direct ResizeObserver on body so any dynamic content/hydration updates lenis limit
+    let resizeObserver: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== 'undefined') {
+      resizeObserver = new ResizeObserver(() => {
+        lenis.resize();
+      });
+      resizeObserver.observe(document.body);
+    }
+
+    // Backup timers for delayed hydration (e.g. client:visible / client:idle components)
+    const timer1 = setTimeout(() => lenis.resize(), 500);
+    const timer2 = setTimeout(() => lenis.resize(), 1500);
+
     rafId = requestAnimationFrame(raf);
     resize();
 
     return () => {
+      clearTimeout(timer1);
+      clearTimeout(timer2);
+      resizeObserver?.disconnect();
+      window.removeEventListener('load', resize);
       window.removeEventListener('resize', resize);
       window.removeEventListener('wheel', checkDrawerAndHandleWheel, { capture: true } as any);
       cancelAnimationFrame(rafId);
       lenis.destroy();
+      lenisRef.current = null;
       if ((globalThis as any).lenis === lenis) {
         delete (globalThis as any).lenis;
       }

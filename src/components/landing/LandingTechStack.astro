@@ -12,7 +12,7 @@ const { lang = "id", title, subtitle, techStack } = Astro.props;
 const eyebrow = lang === "en" ? "Production-Grade Tech" : "Teknologi Modern";
 ---
 
-<section class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+<section class="py-20 md:py-28 bg-background border-b border-border/50 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
       <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
@@ -22,17 +22,17 @@ const eyebrow = lang === "en" ? "Production-Grade Tech" : "Teknologi Modern";
         </span>
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
       </div>
-      <h2 class="typography-section-title mb-6">
+      <h2 class="typography-section-title mb-4">
         {title}
       </h2>
-      <p class="typography-subtitle leading-relaxed">
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed">
         {subtitle}
       </p>
     </div>
 
     <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
       {techStack.map((tech) => (
-        <div class="bg-white border border-border/50 rounded-2xl md:rounded-3xl p-6 text-center space-y-2 hover:border-brand/50 transition-all duration-300 hover:shadow-lg hover:-translate-y-1 shadow-sm">
+        <div class="bg-white border border-border/50 rounded-2xl p-6 text-center space-y-2 hover:border-brand/50 transition-all duration-300 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 shadow-sm">
           <span class="text-[11px] font-mono uppercase text-brand tracking-wider font-semibold block">
             {tech.category}
           </span>

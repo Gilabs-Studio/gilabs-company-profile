@@ -14,7 +14,7 @@ const { lang, title, subtitle, packages } = Astro.props;
 const eyebrow = lang === "en" ? "Investment & Packages" : "Investasi & Paket Layanan";
 ---
 
-<section class="py-24 md:py-32 bg-background border-b border-border/50 relative">
+<section class="py-20 md:py-28 bg-background border-b border-border/50 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
       <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
@@ -24,10 +24,10 @@ const eyebrow = lang === "en" ? "Investment & Packages" : "Investasi & Paket Lay
         </span>
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
       </div>
-      <h2 class="typography-section-title mb-6">
+      <h2 class="typography-section-title mb-4">
         {title}
       </h2>
-      <p class="typography-subtitle leading-relaxed">
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed">
         {subtitle}
       </p>
     </div>
@@ -38,7 +38,7 @@ const eyebrow = lang === "en" ? "Investment & Packages" : "Investasi & Paket Lay
 
         if (isDark) {
           return (
-            <div class="relative bg-foreground text-background rounded-3xl p-8 md:p-10 flex flex-col justify-between transition-all shadow-2xl shadow-brand/20 overflow-hidden">
+            <div class="relative bg-foreground text-background rounded-2xl p-8 md:p-10 flex flex-col justify-between transition-all duration-300 shadow-2xl shadow-brand/20 overflow-hidden">
               <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
                 <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-brand/40 rounded-full blur-3xl"></div>
                 <div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-brand/40 rounded-full blur-3xl"></div>
@@ -84,7 +84,7 @@ const eyebrow = lang === "en" ? "Investment & Packages" : "Investasi & Paket Lay
                   href={getWhatsAppLink("pkg-" + pkg.name, lang)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 text-sm font-semibold rounded-full transition-all bg-background text-foreground hover:scale-105 shadow-lg active:scale-95 cursor-pointer"
+                  class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 text-sm font-semibold rounded-full transition-all duration-200 bg-background text-foreground hover:scale-105 shadow-lg active:scale-95 cursor-pointer"
                 >
                   <span>{lang === "en" ? "Choose Plan" : "Pilih Paket Ini"}</span>
                   <ArrowRight className="w-4 h-4" />
@@ -95,7 +95,7 @@ const eyebrow = lang === "en" ? "Investment & Packages" : "Investasi & Paket Lay
         }
 
         return (
-          <div class="bg-white border border-border/50 rounded-3xl p-8 flex flex-col justify-between transition-all hover:border-brand/50 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 shadow-sm">
+          <div class="bg-white border border-border/50 rounded-2xl p-8 flex flex-col justify-between transition-all duration-300 hover:border-brand/50 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 shadow-sm">
             <div class="space-y-6">
               <div>
                 <h3 class="typography-card-title text-foreground mb-2">
@@ -130,7 +130,7 @@ const eyebrow = lang === "en" ? "Investment & Packages" : "Investasi & Paket Lay
                 href={getWhatsAppLink("pkg-" + pkg.name, lang)}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="w-full inline-flex items-center justify-center gap-2 py-3 px-6 text-sm font-semibold rounded-full transition-all bg-brand text-white hover:bg-brand/90 shadow-md shadow-brand/20 cursor-pointer"
+                class="w-full inline-flex items-center justify-center gap-2 py-3 px-6 text-sm font-semibold rounded-full transition-all duration-200 bg-brand text-white hover:bg-brand/90 hover:scale-105 shadow-md shadow-brand/20 active:scale-95 cursor-pointer"
               >
                 <span>{lang === "en" ? "Choose Plan" : "Pilih Paket"}</span>
                 <ArrowRight className="w-4 h-4" />
