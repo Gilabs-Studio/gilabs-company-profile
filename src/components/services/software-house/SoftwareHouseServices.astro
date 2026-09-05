@@ -8,6 +8,7 @@ import {
   ArrowUpRight
 } from "lucide-react";
 import { getWhatsAppLink } from "../../../lib/utils";
+import { serviceSlugPairMap } from "../../../data/services/index";
 
 interface Props {
   lang?: "en" | "id";
@@ -24,7 +25,7 @@ const services = [
       ? "High-performance web applications tailored to your specific business data model, customer portals, and scalable multi-tenant SaaS platforms."
       : "Sistem internal, portal klien, dan platform SaaS yang dirancang spesifik untuk kebutuhan bisnismu tanpa kompromi.",
     Icon: Laptop,
-    href: `/${lang}/services/jasa-pembuatan-custom-software`
+    href: `/${lang}/services/${serviceSlugPairMap["custom-software"][lang]}`
   },
   {
     number: "02",
@@ -34,7 +35,7 @@ const services = [
       ? "Cross-platform mobile applications engineered for field staff operations, GPS dispatch tracking, and consumer engagement with offline-first capabilities."
       : "Aplikasi operasional lapangan, customer app, dan manajemen armada bergerak yang sinkron real-time ke sistem pusat.",
     Icon: Smartphone,
-    href: `/${lang}/services/jasa-pembuatan-aplikasi-mobile`
+    href: `/${lang}/services/${serviceSlugPairMap["mobile-apps"][lang]}`
   },
   {
     number: "03",
@@ -44,7 +45,7 @@ const services = [
       ? "Centralized operational tracking from pipeline sales to warehouse inventory and automatic financial ledgering-without complex unused features."
       : "Sesuai alur bisnismu, tanpa fitur mubazir yang bikin bingung tim operasional. Mudah dipelajari dan langsung pakai.",
     Icon: Database,
-    href: `/${lang}/services/jasa-pembuatan-erp-crm`
+    href: `/${lang}/services/${serviceSlugPairMap["erp-crm"][lang]}`
   },
   {
     number: "04",
@@ -54,7 +55,7 @@ const services = [
       ? "Seamless bridging between legacy on-premise software, payment gateways, messaging bots, and modern cloud microservices."
       : "Hubungkan software lama ke sistem baru, payment gateway, WhatsApp blast, atau layanan pihak ketiga secara aman dan stabil.",
     Icon: Workflow,
-    href: `/${lang}/services/jasa-pembuatan-custom-software`
+    href: `/${lang}/services/${serviceSlugPairMap["custom-software"][lang]}`
   },
   {
     number: "05",

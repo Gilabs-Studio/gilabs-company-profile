@@ -1,7 +1,7 @@
 import type { ServicePageData } from "./types";
 
 export const erpCrmEn: ServicePageData = {
-  slug: "jasa-pembuatan-erp-crm",
+  slug: "custom-erp-crm-development",
   category: "enterprise",
   eyebrow: "Custom ERP & CRM System",
   title: "One Unified System for Operations, Sales, and Customer Data",

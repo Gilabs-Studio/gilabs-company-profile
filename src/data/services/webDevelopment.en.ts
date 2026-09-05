@@ -1,7 +1,7 @@
 import type { ServicePageData } from "./types";
 
 export const webDevelopmentEn: ServicePageData = {
-  slug: "jasa-pembuatan-website",
+  slug: "web-development-services",
   category: "website",
   eyebrow: "Web Development",
   title: "Fast, Modern & Conversion-Ready Websites",

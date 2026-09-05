@@ -20,45 +20,112 @@ import type { ServicePageData } from "./types";
 
 export * from "./types";
 
-const servicesMapId: Record<string, ServicePageData> = {
-  "jasa-pembuatan-website": webDevelopmentId,
-  "jasa-web-company-profile": companyProfileId,
-  "jasa-pembuatan-landing-page": landingPageId,
-  "jasa-toko-online-ecommerce": ecommerceId,
-  "software-house-indonesia": softwareHouseId,
-  "jasa-pembuatan-custom-software": customSoftwareId,
-  "jasa-pembuatan-aplikasi-mobile": mobileAppsId,
-  "jasa-pembuatan-erp-crm": erpCrmId,
-  "jasa-pembuatan-aplikasi-kasir-pos": posSystemId,
+export type ServiceKey =
+  | "web-development"
+  | "company-profile"
+  | "landing-page"
+  | "ecommerce"
+  | "software-house"
+  | "custom-software"
+  | "mobile-apps"
+  | "erp-crm"
+  | "pos-system";
+
+export const serviceSlugPairMap: Record<ServiceKey, { id: string; en: string }> = {
+  "web-development": {
+    id: webDevelopmentId.slug,
+    en: webDevelopmentEn.slug,
+  },
+  "company-profile": {
+    id: companyProfileId.slug,
+    en: companyProfileEn.slug,
+  },
+  "landing-page": {
+    id: landingPageId.slug,
+    en: landingPageEn.slug,
+  },
+  "ecommerce": {
+    id: ecommerceId.slug,
+    en: ecommerceEn.slug,
+  },
+  "software-house": {
+    id: softwareHouseId.slug,
+    en: softwareHouseEn.slug,
+  },
+  "custom-software": {
+    id: customSoftwareId.slug,
+    en: customSoftwareEn.slug,
+  },
+  "mobile-apps": {
+    id: mobileAppsId.slug,
+    en: mobileAppsEn.slug,
+  },
+  "erp-crm": {
+    id: erpCrmId.slug,
+    en: erpCrmEn.slug,
+  },
+  "pos-system": {
+    id: posSystemId.slug,
+    en: posSystemEn.slug,
+  },
 };
 
-const servicesMapEn: Record<string, ServicePageData> = {
-  "jasa-pembuatan-website": webDevelopmentEn,
-  "jasa-web-company-profile": companyProfileEn,
-  "jasa-pembuatan-landing-page": landingPageEn,
-  "jasa-toko-online-ecommerce": ecommerceEn,
-  "software-house-indonesia": softwareHouseEn,
-  "jasa-pembuatan-custom-software": customSoftwareEn,
-  "jasa-pembuatan-aplikasi-mobile": mobileAppsEn,
-  "jasa-pembuatan-erp-crm": erpCrmEn,
-  "jasa-pembuatan-aplikasi-kasir-pos": posSystemEn,
+export const servicesMapId: Record<string, ServicePageData> = {
+  [webDevelopmentId.slug]: webDevelopmentId,
+  [companyProfileId.slug]: companyProfileId,
+  [landingPageId.slug]: landingPageId,
+  [ecommerceId.slug]: ecommerceId,
+  [softwareHouseId.slug]: softwareHouseId,
+  [customSoftwareId.slug]: customSoftwareId,
+  [mobileAppsId.slug]: mobileAppsId,
+  [erpCrmId.slug]: erpCrmId,
+  [posSystemId.slug]: posSystemId,
 };
 
-export const serviceSlugs = [
-  "jasa-pembuatan-website",
-  "jasa-web-company-profile",
-  "jasa-pembuatan-landing-page",
-  "jasa-toko-online-ecommerce",
-  "software-house-indonesia",
-  "jasa-pembuatan-custom-software",
-  "jasa-pembuatan-aplikasi-mobile",
-  "jasa-pembuatan-erp-crm",
-  "jasa-pembuatan-aplikasi-kasir-pos",
-];
+export const servicesMapEn: Record<string, ServicePageData> = {
+  [webDevelopmentEn.slug]: webDevelopmentEn,
+  [companyProfileEn.slug]: companyProfileEn,
+  [landingPageEn.slug]: landingPageEn,
+  [ecommerceEn.slug]: ecommerceEn,
+  [softwareHouseEn.slug]: softwareHouseEn,
+  [customSoftwareEn.slug]: customSoftwareEn,
+  [mobileAppsEn.slug]: mobileAppsEn,
+  [erpCrmEn.slug]: erpCrmEn,
+  [posSystemEn.slug]: posSystemEn,
+};
+
+// Legacy array for backward compatibility
+export const serviceSlugs = Object.keys(servicesMapId);
+export const serviceSlugsId = Object.keys(servicesMapId);
+export const serviceSlugsEn = Object.keys(servicesMapEn);
+
+export function getServiceKey(slug: string): ServiceKey | null {
+  for (const [key, pair] of Object.entries(serviceSlugPairMap)) {
+    if (pair.id === slug || pair.en === slug) {
+      return key as ServiceKey;
+    }
+  }
+  return null;
+}
+
+export function getAlternateServiceSlug(slug: string, targetLang: "en" | "id"): string | null {
+  for (const pair of Object.values(serviceSlugPairMap)) {
+    if (pair.id === slug || pair.en === slug) {
+      return targetLang === "en" ? pair.en : pair.id;
+    }
+  }
+  return null;
+}
 
 export function getServiceData(slug: string, lang: "en" | "id"): ServicePageData | null {
   const map = lang === "en" ? servicesMapEn : servicesMapId;
-  return map[slug] || null;
+  if (map[slug]) return map[slug];
+
+  // Cross-lookup fallback: if requested with alternate slug
+  const altSlug = getAlternateServiceSlug(slug, lang);
+  if (altSlug && map[altSlug]) return map[altSlug];
+
+  return null;
 }
 
 export function getAllServices(lang: "en" | "id"): ServicePageData[] {

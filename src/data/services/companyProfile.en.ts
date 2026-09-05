@@ -1,7 +1,7 @@
 import type { ServicePageData } from "./types";
 
 export const companyProfileEn: ServicePageData = {
-  slug: "jasa-web-company-profile",
+  slug: "company-profile-website",
   category: "website",
   eyebrow: "Company Profile Website",
   title: "Company Profiles Built to Look Like an Enterprise",

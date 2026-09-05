@@ -1,7 +1,7 @@
 import type { ServicePageData } from "./types";
 
 export const ecommerceEn: ServicePageData = {
-  slug: "jasa-toko-online-ecommerce",
+  slug: "ecommerce-store-development",
   category: "website",
   eyebrow: "E-Commerce & Online Store",
   title: "Online Stores Ready to Sell 24/7 Without Supervision",

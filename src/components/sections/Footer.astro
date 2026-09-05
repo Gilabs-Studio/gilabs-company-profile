@@ -1,6 +1,7 @@
 ---
 import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { getWhatsAppLink } from '../../lib/utils';
+import { serviceSlugPairMap } from "../../data/services/index";
 
 const { lang } = Astro.props;
 
@@ -17,10 +18,11 @@ const FOOTER_LINKS = [
   {
     title: lang === 'en' ? "Services" : "Layanan",
     links: [
-      { name: lang === 'en' ? "Website Development" : "Jasa Pembuatan Website", href: `/${lang}/services/jasa-pembuatan-website` },
-      { name: lang === 'en' ? "Software House" : "Software House Indonesia", href: `/${lang}/services/software-house-indonesia` },
-      { name: lang === 'en' ? "Custom Software" : "Custom Software & Web App", href: `/${lang}/services/jasa-pembuatan-custom-software` },
-      { name: lang === 'en' ? "ERP & CRM Systems" : "Sistem ERP & CRM Custom", href: `/${lang}/services/jasa-pembuatan-erp-crm` },
+      { name: lang === 'en' ? "Website Development" : "Jasa Pembuatan Website", href: `/${lang}/services/${serviceSlugPairMap["web-development"][lang]}` },
+      { name: lang === 'en' ? "Software House" : "Software House Indonesia", href: `/${lang}/services/${serviceSlugPairMap["software-house"][lang]}` },
+      { name: lang === 'en' ? "Custom Software" : "Custom Software & Web App", href: `/${lang}/services/${serviceSlugPairMap["custom-software"][lang]}` },
+      { name: lang === 'en' ? "ERP & CRM Systems" : "Sistem ERP & CRM Custom", href: `/${lang}/services/${serviceSlugPairMap["erp-crm"][lang]}` },
+      { name: lang === 'en' ? "Custom POS System" : "Aplikasi Kasir / POS Custom", href: `/${lang}/services/${serviceSlugPairMap["pos-system"][lang]}` },
     ],
   },
   {

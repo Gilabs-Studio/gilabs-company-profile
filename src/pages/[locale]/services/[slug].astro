@@ -19,18 +19,41 @@ import MobileAppsPage from "../../../components/services/mobile-apps/MobileAppsP
 import ErpCrmPage from "../../../components/services/erp-crm/ErpCrmPage.astro";
 import PosSystemPage from "../../../components/services/pos-system/PosSystemPage.astro";
 import WorkResultDrawer from "../../../components/ui/WorkResultDrawer";
-import { serviceSlugs, getServiceData } from "../../../data/services/index";
+import {
+  serviceSlugsId,
+  serviceSlugsEn,
+  getServiceData,
+  getServiceKey,
+  getAlternateServiceSlug,
+} from "../../../data/services/index";
 
 export function getStaticPaths() {
-  const locales = ["en", "id"] as const;
   const paths = [];
 
-  for (const locale of locales) {
-    for (const slug of serviceSlugs) {
-      paths.push({
-        params: { locale, slug },
-      });
-    }
+  // Indonesian localized paths
+  for (const slug of serviceSlugsId) {
+    paths.push({
+      params: { locale: "id", slug },
+    });
+  }
+
+  // English localized paths
+  for (const slug of serviceSlugsEn) {
+    paths.push({
+      params: { locale: "en", slug },
+    });
+  }
+
+  // Cross paths for 301 redirects (if user visits alternate language slug)
+  for (const slug of serviceSlugsEn) {
+    paths.push({
+      params: { locale: "id", slug },
+    });
+  }
+  for (const slug of serviceSlugsId) {
+    paths.push({
+      params: { locale: "en", slug },
+    });
   }
 
   return paths;
@@ -38,14 +61,33 @@ export function getStaticPaths() {
 
 const { locale, slug } = Astro.params;
 const lang = locale as "en" | "id";
+
+// Auto 301 redirect if user accesses cross-language slug
+const targetSlug = lang === "en"
+  ? (serviceSlugsEn.includes(slug) ? slug : getAlternateServiceSlug(slug, "en"))
+  : (serviceSlugsId.includes(slug) ? slug : getAlternateServiceSlug(slug, "id"));
+
+if (targetSlug && slug !== targetSlug) {
+  return Astro.redirect(`/${lang}/services/${targetSlug}`, 301);
+}
+
 const service = getServiceData(slug, lang);
 
 if (!service) {
   return Astro.redirect("/404");
 }
 
+const serviceKey = getServiceKey(slug);
+const idSlug = getAlternateServiceSlug(slug, "id") || slug;
+const enSlug = getAlternateServiceSlug(slug, "en") || slug;
+
 const siteUrl = "https://gilabs.id";
 const canonical = `${siteUrl}/${lang}/services/${slug}`;
+const alternateUrls = {
+  id: `${siteUrl}/id/services/${idSlug}`,
+  en: `${siteUrl}/en/services/${enSlug}`,
+  "x-default": `${siteUrl}/en/services/${enSlug}`,
+};
 
 // Service Schema JSON-LD
 const serviceSchema = {
@@ -107,6 +149,7 @@ const breadcrumbSchema = {
   description={service.metaDescription}
   canonical={canonical}
   keywords={service.keywords.join(", ")}
+  alternateUrls={alternateUrls}
 >
   <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} slot="head" />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
@@ -114,23 +157,23 @@ const breadcrumbSchema = {
   <Navbar lang={lang} />
 
   <main class="min-h-screen relative z-10">
-    {slug === "jasa-pembuatan-website" ? (
+    {serviceKey === "web-development" ? (
       <WebDevPage lang={lang} service={service} />
-    ) : slug === "jasa-web-company-profile" ? (
+    ) : serviceKey === "company-profile" ? (
       <CompanyProfilePage lang={lang} service={service} />
-    ) : slug === "jasa-pembuatan-landing-page" ? (
+    ) : serviceKey === "landing-page" ? (
       <LandingPageService lang={lang} service={service} />
-    ) : slug === "jasa-toko-online-ecommerce" ? (
+    ) : serviceKey === "ecommerce" ? (
       <EcommercePage lang={lang} service={service} />
-    ) : slug === "software-house-indonesia" ? (
+    ) : serviceKey === "software-house" ? (
       <SoftwareHousePage lang={lang} service={service} />
-    ) : slug === "jasa-pembuatan-custom-software" ? (
+    ) : serviceKey === "custom-software" ? (
       <CustomSoftwarePage lang={lang} service={service} />
-    ) : slug === "jasa-pembuatan-aplikasi-mobile" ? (
+    ) : serviceKey === "mobile-apps" ? (
       <MobileAppsPage lang={lang} service={service} />
-    ) : slug === "jasa-pembuatan-erp-crm" ? (
+    ) : serviceKey === "erp-crm" ? (
       <ErpCrmPage lang={lang} service={service} />
-    ) : slug === "jasa-pembuatan-aplikasi-kasir-pos" ? (
+    ) : serviceKey === "pos-system" ? (
       <PosSystemPage lang={lang} service={service} />
     ) : (
       <>

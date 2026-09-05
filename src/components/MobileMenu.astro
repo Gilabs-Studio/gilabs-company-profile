@@ -2,6 +2,8 @@
 import { X, ChevronDown } from "lucide-react";
 import { getWhatsAppLink } from "../lib/utils";
 
+import { serviceSlugPairMap, getAlternateServiceSlug } from "../data/services/index";
+
 const { lang } = Astro.props;
 const pathPrefix = `/${lang}`;
 
@@ -14,18 +16,29 @@ const links = [
 ];
 
 const serviceSublinks = [
-  { href: `${pathPrefix}/services/jasa-pembuatan-website`, label: lang === "en" ? "Website Development" : "Jasa Pembuatan Website" },
-  { href: `${pathPrefix}/services/jasa-web-company-profile`, label: lang === "en" ? "Company Profile" : "Web Company Profile" },
-  { href: `${pathPrefix}/services/software-house-indonesia`, label: lang === "en" ? "Software House" : "Software House Indonesia" },
-  { href: `${pathPrefix}/services/jasa-pembuatan-custom-software`, label: lang === "en" ? "Custom Software" : "Custom Software & Web App" },
-  { href: `${pathPrefix}/services/jasa-pembuatan-aplikasi-mobile`, label: lang === "en" ? "Mobile Apps" : "Aplikasi Mobile (iOS/Android)" },
-  { href: `${pathPrefix}/services/jasa-pembuatan-erp-crm`, label: lang === "en" ? "ERP & CRM" : "Sistem ERP & CRM Custom" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["web-development"][lang]}`, label: lang === "en" ? "Website Development" : "Jasa Pembuatan Website" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["company-profile"][lang]}`, label: lang === "en" ? "Company Profile" : "Web Company Profile" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["software-house"][lang]}`, label: lang === "en" ? "Software House" : "Software House Indonesia" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["custom-software"][lang]}`, label: lang === "en" ? "Custom Software" : "Custom Software & Web App" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["mobile-apps"][lang]}`, label: lang === "en" ? "Mobile Apps" : "Aplikasi Mobile (iOS/Android)" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["erp-crm"][lang]}`, label: lang === "en" ? "ERP & CRM" : "Sistem ERP & CRM Custom" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["pos-system"][lang]}`, label: lang === "en" ? "POS / Cashier" : "Aplikasi Kasir / POS" },
 ];
 
 const currentPath = Astro.url.pathname;
-const switchLangPath = lang === "id"
-  ? (currentPath === "/" ? "/en" : currentPath.replace(/^\/id/, "/en"))
-  : (currentPath.startsWith("/en") ? currentPath.replace(/^\/en/, "/id") : `/id${currentPath}`);
+let switchLangPath: string;
+
+const serviceMatch = currentPath.match(/^\/(en|id)\/services\/([^\/]+)\/?$/);
+if (serviceMatch) {
+  const currentSlug = serviceMatch[2];
+  const targetLang = lang === "id" ? "en" : "id";
+  const altSlug = getAlternateServiceSlug(currentSlug, targetLang);
+  switchLangPath = altSlug ? `/${targetLang}/services/${altSlug}` : `/${targetLang}/services`;
+} else {
+  switchLangPath = lang === "id"
+    ? (currentPath === "/" ? "/en" : currentPath.replace(/^\/id/, "/en"))
+    : (currentPath.startsWith("/en") ? currentPath.replace(/^\/en/, "/id") : `/id${currentPath}`);
+}
 ---
 
 <div id="mobile-menu" class="fixed inset-0 bg-background/98 backdrop-blur-xl z-[9999] flex flex-col items-center justify-between opacity-0 pointer-events-none transition-opacity duration-300 p-6 sm:p-8 overflow-y-auto">

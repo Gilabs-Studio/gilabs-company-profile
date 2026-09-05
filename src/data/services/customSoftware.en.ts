@@ -1,7 +1,7 @@
 import type { ServicePageData } from "./types";
 
 export const customSoftwareEn: ServicePageData = {
-  slug: "jasa-pembuatan-custom-software",
+  slug: "custom-software-development",
   category: "software",
   eyebrow: "Custom Software & Web App",
   title: "Systems Built Around How You Work, Not the Other Way Around",

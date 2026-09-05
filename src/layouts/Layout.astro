@@ -12,7 +12,8 @@ const {
 	noindex = false,
 	showRays = true,
 	keywords = 'Gilabs, PT Griya Innovations Labs, software house Indonesia, software house Semarang, software house Jakarta, software development company Indonesia, jasa pengembangan sistem internal perusahaan, jasa pembuatan ERP custom Indonesia, vendor ERP custom untuk perusahaan manufaktur, jasa pembuatan CRM custom Indonesia, software CRM untuk tim sales lapangan, CRM custom terintegrasi WhatsApp, jasa pembuatan aplikasi kasir custom, software POS untuk toko bangunan, jasa pembuatan dashboard monitoring perusahaan, dashboard KPI realtime untuk manajemen, software manufaktur custom Indonesia, aplikasi koperasi simpan pinjam custom, software distributor custom, jasa pembuatan software custom, vendor pengembangan software perusahaan, software house untuk digitalisasi bisnis',
-	ogImage = 'https://gilabs.id/og-image.png'
+	ogImage = 'https://gilabs.id/og-image.png',
+	alternateUrls
 } = Astro.props;
 
 const siteUrl = 'https://gilabs.id';
@@ -34,11 +35,11 @@ if (currentPath.endsWith('/') && currentPath !== '/') {
 const pathWithoutLocale = currentPath.replace(/^\/(en|id)/, '') || '/';
 
 // Build alternate URLs for each language
-const enUrl = `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
-const idUrl = `${siteUrl}/id${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
+const enUrl = alternateUrls?.en ?? `${siteUrl}/en${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
+const idUrl = alternateUrls?.id ?? `${siteUrl}/id${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
 
 // Keep the homepage x-default anchored to the root canonical URL.
-const defaultUrl = pathWithoutLocale === '/' ? siteUrl : enUrl;
+const defaultUrl = alternateUrls?.['x-default'] ?? (pathWithoutLocale === '/' ? siteUrl : enUrl);
 
 // Schema.org: Organization + LocalBusiness
 const organizationSchema = {

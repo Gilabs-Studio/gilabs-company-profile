@@ -1,7 +1,7 @@
 import type { ServicePageData } from "./types";
 
 export const softwareHouseEn: ServicePageData = {
-  slug: "software-house-indonesia",
+  slug: "software-development-company",
   category: "software",
   eyebrow: "Software House Indonesia",
   title: "Technology Partner for Businesses Serious About Growth",

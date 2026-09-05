@@ -1,7 +1,7 @@
 import type { ServicePageData } from "./types";
 
 export const mobileAppsEn: ServicePageData = {
-  slug: "jasa-pembuatan-aplikasi-mobile",
+  slug: "mobile-app-development",
   category: "software",
   eyebrow: "Android & iOS Mobile Apps",
   title: "Mobile Apps People Keep Using, Not Just Download and Delete",

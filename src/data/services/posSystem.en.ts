@@ -1,7 +1,7 @@
 import type { ServicePageData } from "./types";
 
 export const posSystemEn: ServicePageData = {
-  slug: "jasa-pembuatan-aplikasi-kasir-pos",
+  slug: "custom-pos-system-development",
   category: "software",
   eyebrow: "Custom POS & Cashier System",
   title: "A POS System That Never Makes Customer Queues Longer",
