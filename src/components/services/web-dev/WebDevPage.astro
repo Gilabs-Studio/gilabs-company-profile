@@ -19,33 +19,26 @@ const { lang, service } = Astro.props;
 
 <div class="web-dev-service-page">
   {/* 1. HERO SECTION */}
-  <WebDevHero
-    lang={lang}
-    eyebrow={service.eyebrow}
-    title={service.title}
-    subtitle={service.subtitle}
-    primaryCtaText={service.primaryCtaText}
-    secondaryCtaText={service.secondaryCtaText}
-  />
+  <WebDevHero lang={lang} service={service} />
 
   {/* 2. MASALAH YANG SERING DITEMUI */}
-  <WebDevProblems lang={lang} />
+  <WebDevProblems lang={lang} service={service} />
 
-  {/* 4. SOLUSI / VALUE PROPOSITION */}
-  <WebDevSolutions lang={lang} />
+  {/* 3. SOLUSI / VALUE PROPOSITION */}
+  <WebDevSolutions lang={lang} service={service} />
 
-  {/* 5. PROSES KERJA */}
-  <WebDevProcess lang={lang} />
+  {/* 4. PROSES KERJA */}
+  <WebDevProcess lang={lang} service={service} />
 
-  {/* 6. PORTOFOLIO */}
-  <WebDevPortfolio lang={lang} />
+  {/* 5. PORTOFOLIO */}
+  <WebDevPortfolio lang={lang} service={service} />
 
-  {/* 7. PRICING */}
-  <WebDevPricing lang={lang} />
+  {/* 6. PRICING */}
+  <WebDevPricing lang={lang} service={service} />
 
-  {/* 8. FAQ */}
-  <WebDevFAQ lang={lang} />
+  {/* 7. FAQ */}
+  <WebDevFAQ lang={lang} service={service} />
 
-  {/* 9. FINAL CTA */}
-  <WebDevCTA lang={lang} />
+  {/* 8. FINAL CTA */}
+  <WebDevCTA lang={lang} service={service} />
 </div>

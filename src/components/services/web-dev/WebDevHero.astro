@@ -3,29 +3,22 @@ import { ArrowRight } from "lucide-react";
 import { getWhatsAppLink } from "../../../lib/utils";
 import HeroParallaxImage from "../HeroParallaxImage.astro";
 
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang: "en" | "id";
-  eyebrow?: string;
-  title: string;
-  subtitle: string;
-  primaryCtaText?: string;
-  secondaryCtaText?: string;
+  service: ServicePageData;
 }
 
-const {
-  lang = "id",
-  eyebrow = lang === "en" ? "Website Development Service" : "Jasa Pembuatan Website",
-  title = lang === "en"
-    ? "Websites That Make People Trust Your Business"
-    : "Website yang Bikin Orang Percaya Sama Bisnis Kamu",
-  subtitle = lang === "en"
-    ? "Not just another template website. We build digital assets that are genuinely used, visited, and trusted by prospective clients."
-    : "Bukan sekadar website jadi. Kami bangun yang benar-benar dipakai, dilihat, dan dipercaya calon pelanggan.",
-  primaryCtaText = lang === "en" ? "Free Consultation Now" : "Konsultasi Gratis Sekarang",
-  secondaryCtaText = lang === "en" ? "View Our Portfolio" : "Lihat Portofolio Kami",
-} = Astro.props;
+const { lang, service } = Astro.props;
 
-const heroImageUrl = "/images/services/web-dev/hero-mockup.jpg";
+const eyebrow = service.eyebrow;
+const title = service.title;
+const subtitle = service.subtitle;
+const primaryCtaText = service.primaryCtaText;
+const secondaryCtaText = service.secondaryCtaText;
+const heroImageUrl = service.heroIllustration;
+const heroImageAlt = service.heroImageAlt || title;
 ---
 
 <section class="relative pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden">
@@ -72,7 +65,7 @@ const heroImageUrl = "/images/services/web-dev/hero-mockup.jpg";
     {/* Full-width Hero Image Showcase */}
     <HeroParallaxImage
       src={heroImageUrl}
-      alt="Mockup Website di Laptop dan Mobile - Gilabs Web Development"
+      alt={heroImageAlt}
     />
   </div>
 </section>

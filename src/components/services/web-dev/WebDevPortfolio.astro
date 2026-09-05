@@ -1,41 +1,33 @@
 ---
 import { workResultsProjects } from "../../../data/workResults";
 import { ExternalLink } from "lucide-react";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { lang = "id", service } = Astro.props;
 const allProjects = workResultsProjects[lang] || workResultsProjects["en"];
 
-const featuredTitles = ["Adiguna Presisi Nusantara", "SalesView GILABS", "GiLabs Mitra Portal"];
+const featuredTitles = ["Adiguna Presisi Nusantara", "SalesView GILABS", "Website Digital Marketer"];
 const featuredProjects = featuredTitles
   .map((title) => allProjects.find((p) => p.title === title))
   .filter((p): p is NonNullable<typeof p> => p !== undefined);
 
-const labels = {
-  en: {
-    subtitle: "Proven Track Record",
-    title: "Not Just Promises, Here is the Proof",
-    description: "Real websites built for real businesses that deliver measurable commercial impact and revenue growth.",
-    viewMore: "View All Portfolio Projects",
-    viewProject: "View Project",
-    technologies: "Technologies",
-    moreTech: "more",
-  },
-  id: {
-    subtitle: "Portofolio Unggulan",
-    title: "Bukan Cuma Janji, Ini Buktinya",
-    description: "Website nyata yang kami bangun untuk bisnis nyata dengan hasil pertumbuhan yang terukur.",
-    viewMore: "Lihat Semua Portofolio",
-    viewProject: "Lihat Proyek",
-    technologies: "Teknologi",
-    moreTech: "lainnya",
-  },
+const t = {
+  subtitle: service.portfolioEyebrow || (lang === "en" ? "Proven Track Record" : "Portofolio Unggulan"),
+  title: service.portfolioTitle || (lang === "en" ? "Not Just Promises, Here is the Proof" : "Bukan Cuma Janji, Ini Buktinya"),
+  description: service.portfolioDescription || (lang === "en"
+    ? "Real websites built for real businesses that deliver measurable commercial impact and revenue growth."
+    : "Website nyata yang kami bangun untuk bisnis nyata dengan hasil pertumbuhan yang terukur."),
+  viewMore: service.portfolioViewMore || (lang === "en" ? "View All Portfolio Projects" : "Lihat Semua Portofolio"),
+  viewProject: service.portfolioViewProject || (lang === "en" ? "View Project" : "Lihat Proyek"),
+  technologies: service.portfolioTechnologies || (lang === "en" ? "Technologies" : "Teknologi"),
+  moreTech: service.portfolioMoreTech || (lang === "en" ? "more" : "lainnya"),
 };
 
-const t = labels[lang as keyof typeof labels] || labels.en;
 const portfolioUrl = lang === "en" ? "/en/portfolio" : `/${lang}/portfolio`;
 const workResultsUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-results`;
 ---
@@ -81,6 +73,8 @@ const workResultsUrl = lang === "en" ? "/en/work-results" : `/${lang}/work-resul
                     src={bannerImage.image.replace(/\/([^\/]+)$/, "/thumb/$1")}
                     alt=""
                     aria-hidden="true"
+                    loading="eager"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover filter blur-md scale-110 pointer-events-none"
                   />
                   <img

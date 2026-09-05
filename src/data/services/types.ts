@@ -10,11 +10,17 @@ export interface ServicePackage {
 export interface ServiceFeature {
   title: string;
   description: string;
+  number?: string;
+  image?: string;
+  alt?: string;
+  badge?: string;
+  points?: string[];
 }
 
 export interface ServiceProblem {
   pain: string;
   solution: string;
+  metric?: string;
 }
 
 export interface ServiceFAQ {
@@ -28,6 +34,12 @@ export interface TechStackItem {
   description: string;
 }
 
+export interface ProcessStep {
+  step: string;
+  title: string;
+  description: string;
+}
+
 export interface ServicePageData {
   slug: string;
   category: "website" | "software" | "enterprise";
@@ -35,23 +47,41 @@ export interface ServicePageData {
   title: string;
   subtitle: string;
   heroIllustration: string;
+  heroImageAlt?: string;
   metaTitle: string;
   metaDescription: string;
   keywords: string[];
   primaryCtaText: string;
   secondaryCtaText: string;
+  problemsEyebrow?: string;
   problemsTitle: string;
   problemsSubtitle: string;
   problems: ServiceProblem[];
+  featuresEyebrow?: string;
   featuresTitle: string;
   featuresSubtitle: string;
   features: ServiceFeature[];
+  processEyebrow?: string;
+  processTitle?: string;
+  processSubtitle?: string;
+  processSteps?: ProcessStep[];
+  portfolioEyebrow?: string;
+  portfolioTitle?: string;
+  portfolioDescription?: string;
+  portfolioViewMore?: string;
+  portfolioViewProject?: string;
+  portfolioTechnologies?: string;
+  portfolioMoreTech?: string;
+  pricingEyebrow?: string;
+  pricingSelectPlanText?: string;
+  pricingPopularBadgeText?: string;
   packagesTitle: string;
   packagesSubtitle: string;
   packages: ServicePackage[];
   techStackTitle: string;
   techStackSubtitle: string;
   techStack: TechStackItem[];
+  faqEyebrow?: string;
   faqTitle: string;
   faqSubtitle: string;
   faqs: ServiceFAQ[];

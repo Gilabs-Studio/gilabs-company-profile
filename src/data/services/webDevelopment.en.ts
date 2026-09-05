@@ -4,9 +4,10 @@ export const webDevelopmentEn: ServicePageData = {
   slug: "web-development-services",
   category: "website",
   eyebrow: "Web Development",
-  title: "Fast, Modern & Conversion-Ready Websites",
-  subtitle: "Custom websites built with sub-second speeds, built-in SEO architecture, and bespoke designs to elevate your brand authority and conversions.",
-  heroIllustration: "/illustrations/web-dev-sketch.png",
+  title: "Websites Engineered to Build Trust & Drive Real Growth",
+  subtitle: "Elevate your business authority with sub-second website performance, bespoke design, and conversion flows engineered to turn visitors into paying clients.",
+  heroIllustration: "/images/services/web-dev/hero-mockup.jpg",
+  heroImageAlt: "Website Mockup on Laptop and Mobile - Gilabs Web Development",
   metaTitle: "Professional Web Development Services | Gilabs",
   metaDescription: "Professional web development: corporate websites, landing pages, and custom portals. Sub-second performance, responsive, SEO-ready, and full code ownership.",
   keywords: [
@@ -20,54 +21,105 @@ export const webDevelopmentEn: ServicePageData = {
   ],
   primaryCtaText: "Free Consultation",
   secondaryCtaText: "View Portfolio",
-  problemsTitle: "Common Website Challenges",
-  problemsSubtitle: "Slow and generic template websites waste budget without delivering qualified leads.",
+  problemsEyebrow: "Common Roadblocks",
+  problemsTitle: "Is Your Current Website Costing You Clients?",
+  problemsSubtitle: "Three critical bottlenecks that drive potential customers to your competitors before they ever discover your value.",
   problems: [
     {
-      pain: "Slow Page Speed",
-      solution: "Modern Astro & Next.js architecture achieving < 1s load times and perfect Core Web Vitals scores."
+      pain: "01. Slow Load Speed",
+      solution: "Loading takes more than 3 seconds; visitors abandon your site and head straight to competitors.",
+      metric: "53% of users leave sites taking >3s"
     },
     {
-      pain: "Generic Template Look",
-      solution: "Bespoke design crafted from scratch to reflect your distinctive brand positioning."
+      pain: "02. Broken on Mobile",
+      solution: "Distorted layouts on mobile devices alienate over 80% of your potential customer base.",
+      metric: "80%+ visitor traffic is mobile-first"
     },
     {
-      pain: "Poor Google Visibility",
-      solution: "Semantic HTML structures, JSON-LD schema markup, and on-page SEO integrated from day one."
-    },
-    {
-      pain: "Content Update Hassles",
-      solution: "Intuitive CMS dashboard allowing your team to update content effortlessly without code."
+      pain: "03. Traffic Without Conversions",
+      solution: "Visitors arrive but never reach out or purchase because the user journey lacks clear direction.",
+      metric: "High bounce rate with zero paying leads"
     }
   ],
-  featuresTitle: "Our Engineering Standards",
-  featuresSubtitle: "Engineered for lightning performance, enterprise-grade security, and seamless lead conversion.",
+  featuresEyebrow: "Our Core Philosophy",
+  featuresTitle: "Engineered for Real Business Impact & Growth",
+  featuresSubtitle: "Every single section is engineered to answer one critical question in your visitor's mind: why should I choose and trust this business?",
   features: [
     {
-      title: "Custom & Responsive Layouts",
-      description: "Pixel-perfect rendering across smartphones, tablets, and high-resolution desktop screens."
+      number: "01",
+      title: "Authority-Building Visual Design",
+      description: "Bespoke, distraction-free layouts that instantly establish market credibility and guide visitors toward action.",
+      image: "/images/services/web-dev/solution-design.jpg",
+      alt: "High-Converting Wireframe and Website Design",
+      badge: "Conversion-Centric",
+      points: [
+        "Hierarchical visual flow guiding visitors to CTA",
+        "Frictionless form & WhatsApp quick triggers",
+        "Brand consistency tailored to your market"
+      ]
     },
     {
-      title: "On-Page SEO & Schema Markup",
-      description: "Structured metadata and clean semantic tags engineered for optimal search engine indexing."
+      number: "02",
+      title: "Sub-Second Speed That Retains Every Lead",
+      description: "Sub-2-second load times keep prospects actively engaged, maximizing ad spend and user retention.",
+      image: "/images/services/web-dev/solution-speed.png",
+      alt: "Google PageSpeed 100 Score Scorecard",
+      badge: "Core Web Vitals Pass",
+      points: [
+        "Sub-second initial paint with edge caching",
+        "Zero bloated plugins or heavy script lags",
+        "Optimized WebP/AVIF imagery pipeline"
+      ]
     },
     {
-      title: "Sub-Second Speed & SSL Security",
-      description: "Global Cloudflare CDN distribution paired with automated SSL certificates and form protection."
-    },
-    {
-      title: "100% Source Code Ownership",
-      description: "Full repository ownership and complete source code transfer with zero vendor lock-in fees."
-    },
-    {
-      title: "Direct WhatsApp Conversion",
-      description: "Smart WhatsApp triggers with automated pre-filled messages to convert visitors into active leads."
-    },
-    {
-      title: "Post-Launch Warranty & Support",
-      description: "Dedicated maintenance support ensuring your web application operates smoothly 24/7."
+      number: "03",
+      title: "Search Engine Visibility from Day One",
+      description: "Semantic HTML, structured data, and performance best practices engineered for rapid Google ranking.",
+      image: "/images/services/web-dev/solution-seo.jpg",
+      alt: "Google Search Ranking SERP Preview",
+      badge: "Structured Data & SERP",
+      points: [
+        "Schema.org JSON-LD rich snippets integration",
+        "Automated XML sitemap & Open Graph tags",
+        "Clean URL slugs and semantic heading tags"
+      ]
     }
   ],
+  processEyebrow: "Work Methodology",
+  processTitle: "Four Clear Steps to Your Live Website",
+  processSubtitle: "A straightforward, transparent engineering roadmap with zero guesswork or confusing jargon.",
+  processSteps: [
+    {
+      step: "01",
+      title: "Consultation",
+      description: "We dive deep into your business model, customer persona, and primary website objectives."
+    },
+    {
+      step: "02",
+      title: "Design",
+      description: "Our team crafts bespoke UI/UX mockups reflecting your brand identity, refined until you are completely confident."
+    },
+    {
+      step: "03",
+      title: "Development",
+      description: "We build your website with sub-second performance standards and transparent, real-time progress tracking."
+    },
+    {
+      step: "04",
+      title: "Launch",
+      description: "Your website goes live on the web—lightning fast, secure, and ready to convert visitors into clients."
+    }
+  ],
+  portfolioEyebrow: "Proven Track Record",
+  portfolioTitle: "Not Just Promises, Here is the Proof",
+  portfolioDescription: "Real websites built for real businesses that deliver measurable commercial impact and revenue growth.",
+  portfolioViewMore: "View All Portfolio Projects",
+  portfolioViewProject: "View Project",
+  portfolioTechnologies: "Technologies",
+  portfolioMoreTech: "more",
+  pricingEyebrow: "Transparent Pricing",
+  pricingSelectPlanText: "Select This Plan",
+  pricingPopularBadgeText: "Popular",
   packagesTitle: "Web Development Packages",
   packagesSubtitle: "Transparent and predictable investments tailored to your business growth stage.",
   packages: [
@@ -123,6 +175,7 @@ export const webDevelopmentEn: ServicePageData = {
     { name: "TypeScript", category: "Type Safety", description: "Clean, type-safe codebase engineered for long-term reliability." },
     { name: "Cloudflare CDN", category: "Infrastructure", description: "Global edge distribution with advanced DDoS protection." }
   ],
+  faqEyebrow: "Questions Answered",
   faqTitle: "Frequently Asked Questions",
   faqSubtitle: "Essential information regarding our web development process and deliverables.",
   faqs: [
@@ -147,7 +200,7 @@ export const webDevelopmentEn: ServicePageData = {
       answer: "Yes, we transfer 100% repository rights and source code upon completion with zero recurring platform locking fees."
     }
   ],
-  ctaTitle: "Ready to Launch Your High-Performance Website?",
-  ctaSubtitle: "Schedule a free technical consultation with our engineering team today.",
-  ctaButton: "Consult via WhatsApp"
+  ctaTitle: "Your Website Could Be Live Next Week",
+  ctaSubtitle: "Get a free 30-minute strategic consultation with zero commitment. Let's discuss your project goals today.",
+  ctaButton: "Get Free Consultation"
 };

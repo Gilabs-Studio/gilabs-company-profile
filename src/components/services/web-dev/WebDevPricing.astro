@@ -2,52 +2,24 @@
 import { Check, ArrowRight } from "lucide-react";
 import { getWhatsAppLink } from "../../../lib/utils";
 
+import type { ServicePageData, ServicePackage } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
+  packages?: ServicePackage[];
+  title?: string;
+  subtitle?: string;
 }
 
-const { lang = "id" } = Astro.props;
+const { lang = "id", service, packages, title, subtitle } = Astro.props;
 
-const packages = [
-  {
-    name: "BASIC",
-    price: lang === "en" ? "From IDR 5,000,000" : "Mulai Rp 5.000.000",
-    description: lang === "en" ? "Perfect for SMEs starting their online presence" : "Cocok untuk UMKM yang baru mulai online",
-    isPopular: false,
-    features: [
-      lang === "en" ? "Simple landing page or company profile" : "Landing page atau company profile sederhana",
-      lang === "en" ? "100% responsive mobile & desktop design" : "Desain responsive",
-      lang === "en" ? "1-Year free custom domain & high-speed hosting" : "Domain & hosting 1 tahun",
-      lang === "en" ? "2x revision rounds" : "Revisi 2x"
-    ]
-  },
-  {
-    name: "STANDARD",
-    price: lang === "en" ? "From IDR 15,000,000" : "Mulai Rp 15.000.000",
-    description: lang === "en" ? "For growing businesses needing a complete web presence" : "Untuk bisnis yang butuh kehadiran lebih lengkap",
-    isPopular: true,
-    badge: "Popular",
-    features: [
-      lang === "en" ? "Multi-page website (5-10 pages)" : "Website multi halaman (5-10 halaman)",
-      lang === "en" ? "Fundamental on-page SEO & meta tags" : "SEO on-page dasar",
-      lang === "en" ? "CMS integration: manage text & content easily" : "Integrasi CMS, konten bisa kamu ubah sendiri",
-      lang === "en" ? "4x revision rounds" : "Revisi 4x",
-      lang === "en" ? "Lead capture & WhatsApp integration" : "Integrasi tombol WhatsApp & formulir kontak"
-    ]
-  },
-  {
-    name: "CUSTOM",
-    price: lang === "en" ? "Contact Us" : "Hubungi Kami",
-    description: lang === "en" ? "For specific, highly tailored, and complex web architecture" : "Untuk kebutuhan spesifik dan kompleks",
-    isPopular: false,
-    features: [
-      lang === "en" ? "Custom features tailored to business logic" : "Fitur sesuai kebutuhan bisnis",
-      lang === "en" ? "Third-party systems & API integration" : "Integrasi sistem pihak ketiga",
-      lang === "en" ? "Long-term scalability & cloud infra" : "Skalabilitas jangka panjang",
-      lang === "en" ? "Dedicated tech consultant & SLA" : "Konsultasi dedicated"
-    ]
-  }
-];
+const displayPackages = packages || service.packages || [];
+const sectionEyebrow = service.pricingEyebrow || (lang === "en" ? "Transparent Pricing" : "Investasi Transparan");
+const sectionTitle = title || service.packagesTitle;
+const sectionSubtitle = subtitle || service.packagesSubtitle;
+const selectPlanText = service.pricingSelectPlanText || (lang === "en" ? "Select This Plan" : "Pilih Paket Ini");
+const popularBadgeText = service.pricingPopularBadgeText || (lang === "en" ? "Popular" : "Terpopuler");
 ---
 
 <section class="py-16 md:py-24 relative">
@@ -57,32 +29,30 @@ const packages = [
       <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
         <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Transparent Pricing" : "Investasi Transparan"}
+          {sectionEyebrow}
         </span>
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
       </div>
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Clear Investment, No Hidden Fees" : "Investasi yang Jelas, Tanpa Biaya Tersembunyi"}
+        {sectionTitle}
       </h2>
 
       <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Transparent packages tailored to your current stage of business growth, with full source code ownership."
-          : "Paket transparan yang dirancang sesuai tahap pertumbuhan bisnis Anda, dengan 100% kepemilikan source code."}
+        {sectionSubtitle}
       </p>
     </div>
 
     {/* 3 Pricing Cards Grid */}
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-      {packages.map((pkg) => {
+      {displayPackages.map((pkg) => {
         if (pkg.isPopular) {
           return (
             <div class="relative bg-foreground text-background rounded-2xl sm:rounded-3xl p-8 sm:p-10 flex flex-col justify-between border-2 border-brand shadow-xl transition-colors">
               {/* Centered Top Border Badge */}
               <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
                 <span class="text-xs font-bold uppercase tracking-wider bg-brand text-white px-3.5 py-1 rounded-full shadow-md whitespace-nowrap">
-                  {pkg.badge}
+                  {("badge" in pkg && pkg.badge) || popularBadgeText}
                 </span>
               </div>
 
@@ -119,7 +89,7 @@ const packages = [
                   rel="noopener noreferrer"
                   class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 typography-button rounded-full bg-brand text-white hover:bg-brand/90 transition-colors cursor-pointer shadow-md shadow-brand/20"
                 >
-                  <span>{lang === "en" ? "Select This Plan" : "Pilih Paket Ini"}</span>
+                  <span>{selectPlanText}</span>
                   <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
@@ -162,7 +132,7 @@ const packages = [
                 rel="noopener noreferrer"
                 class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 typography-button rounded-full bg-secondary/50 hover:bg-secondary border border-border/80 text-foreground transition-colors cursor-pointer"
               >
-                <span>{lang === "en" ? "Select This Plan" : "Pilih Paket Ini"}</span>
+                <span>{selectPlanText}</span>
                 <ArrowRight className="w-4 h-4" />
               </a>
             </div>

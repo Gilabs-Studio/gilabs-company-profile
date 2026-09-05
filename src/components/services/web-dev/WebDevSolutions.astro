@@ -1,57 +1,19 @@
 ---
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
+  title?: string;
+  subtitle?: string;
 }
 
-const { lang = "id" } = Astro.props;
+const { lang = "id", service, title, subtitle } = Astro.props;
 
-const pillars = [
-  {
-    number: "01",
-    title: lang === "en" ? "High-Trust Design" : "Desain yang Meyakinkan",
-    description: lang === "en"
-      ? "Clean, intentional aesthetics focused on a singular conversion goal without clutter or confusing user friction."
-      : "Tampilan bersih, fokus ke satu tujuan, nggak bikin bingung pengunjung.",
-    image: "/images/services/web-dev/solution-design.jpg",
-    alt: "Wireframe dan Desain Website Berkonversi Tinggi",
-    badge: lang === "en" ? "Conversion-Centric" : "Fokus Konversi",
-    points: [
-      lang === "en" ? "Hierarchical visual flow guiding visitors to CTA" : "Hierarki visual jelas mengarahkan pengunjung ke aksi beli",
-      lang === "en" ? "Frictionless form & WhatsApp quick triggers" : "Tombol kontak & form tanpa hambatan",
-      lang === "en" ? "Brand consistency tailored to your market" : "Karakter visual eksklusif sesuai persona brand Anda"
-    ]
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Speed as a Top Priority" : "Kecepatan Jadi Prioritas",
-    description: lang === "en"
-      ? "Sub-2-second load times, tested and proven on Google PageSpeed Insights for peak Core Web Vitals performance."
-      : "Loading di bawah 2 detik, teruji di Google PageSpeed.",
-    image: "/images/services/web-dev/solution-speed.png",
-    alt: "Google PageSpeed 100 Score Scorecard",
-    badge: lang === "en" ? "Core Web Vitals Pass" : "Google PageSpeed 100",
-    points: [
-      lang === "en" ? "Sub-second initial paint with edge caching" : "Loading sub-detik dengan edge CDN & asset optimization",
-      lang === "en" ? "Zero bloated plugins or heavy script lags" : "Bebas plugin lambat seperti CMS lawas",
-      lang === "en" ? "Optimized WebP/AVIF imagery pipeline" : "Kompresi gambar cerdas tanpa pecah"
-    ]
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "SEO-Ready From Day One" : "SEO-Ready dari Awal",
-    description: lang === "en"
-      ? "Semantically clean structure ready for Google indexing and search ranking from the very first hour online."
-      : "Struktur sudah rapi buat mesin pencari sejak hari pertama online.",
-    image: "/images/services/web-dev/solution-seo.jpg",
-    alt: "Google Search Ranking SERP Preview",
-    badge: lang === "en" ? "Structured Data & SERP" : "Optimasi Mesin Pencari",
-    points: [
-      lang === "en" ? "Schema.org JSON-LD rich snippets integration" : "Integrasi Schema.org JSON-LD otomatis",
-      lang === "en" ? "Automated XML sitemap & Open Graph tags" : "Sitemap otomatis & preview media sosial rapi",
-      lang === "en" ? "Clean URL slugs and semantic heading tags" : "Struktur heading semantik ramah Google bot"
-    ]
-  }
-];
+const sectionEyebrow = service.featuresEyebrow || (lang === "en" ? "Our Core Philosophy" : "Solusi & Value Proposition");
+const sectionTitle = title || service.featuresTitle;
+const sectionSubtitle = subtitle || service.featuresSubtitle;
+const pillars = service.features || [];
 ---
 
 <section class="py-16 md:py-24 relative">
@@ -61,19 +23,17 @@ const pillars = [
       <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
         <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Our Core Philosophy" : "Solusi & Value Proposition"}
+          {sectionEyebrow}
         </span>
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
       </div>
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "We Build for Business Impact, Not Just Aesthetics" : "Kami Bangun dari Sisi Bisnis, Bukan Cuma Desain"}
+        {sectionTitle}
       </h2>
 
       <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Every single section is engineered to answer one critical question in your visitor's mind: why should I trust this business?"
-          : "Setiap section kami rancang buat jawab satu pertanyaan di kepala pengunjung: kenapa saya harus percaya sama bisnis ini?"}
+        {sectionSubtitle}
       </p>
     </div>
 
@@ -82,17 +42,19 @@ const pillars = [
       {pillars.map((pillar) => (
         <article class="bg-white border border-border/50 rounded-2xl overflow-hidden hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           {/* Top Image Banner */}
-          <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
-            <img
-              src={pillar.image}
-              alt={pillar.alt}
-              class="w-full h-full object-cover select-none"
-              loading="lazy"
-              decoding="async"
-              width="640"
-              height="400"
-            />
-          </div>
+          {pillar.image && (
+            <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
+              <img
+                src={pillar.image}
+                alt={pillar.alt || pillar.title}
+                class="w-full h-full object-cover select-none"
+                loading="lazy"
+                decoding="async"
+                width="640"
+                height="400"
+              />
+            </div>
+          )}
 
           {/* Content Details */}
           <div class="p-6 sm:p-7 flex flex-col grow justify-between">
@@ -107,16 +69,18 @@ const pillars = [
             </div>
 
             {/* Bullet Highlights */}
-            <div class="pt-4 border-t border-border/40">
-              <ul class="space-y-2.5 text-xs sm:text-sm text-foreground/80 font-light">
-                {pillar.points.map((pt) => (
-                  <li class="flex items-start gap-2">
-                    <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0 mt-1.5"></span>
-                    <span class="leading-snug">{pt}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {pillar.points && pillar.points.length > 0 && (
+              <div class="pt-4 border-t border-border/40">
+                <ul class="space-y-2.5 text-xs sm:text-sm text-foreground/80 font-light">
+                  {pillar.points.map((pt) => (
+                    <li class="flex items-start gap-2">
+                      <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0 mt-1.5"></span>
+                      <span class="leading-snug">{pt}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </div>
         </article>
       ))}

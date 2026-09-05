@@ -1,44 +1,19 @@
 ---
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { lang = "id", service } = Astro.props;
 
-const steps = [
-  {
-    step: "01",
-    title: lang === "en" ? "Consultation" : "Konsultasi",
-    description: lang === "en"
-      ? "We dive deep into your business model, target audience, and primary website objectives."
-      : "Kita ngobrol soal bisnis kamu, target audiens, dan tujuan website.",
-    tag: lang === "en" ? "Stage 1" : "Tahap 1"
-  },
-  {
-    step: "02",
-    title: lang === "en" ? "Design" : "Desain",
-    description: lang === "en"
-      ? "Our design team crafts bespoke UI/UX mockups. You review and revise until it feels 100% right."
-      : "Tim bikin mockup, kamu revisi sampai pas.",
-    tag: lang === "en" ? "Stage 2" : "Tahap 2"
-  },
-  {
-    step: "03",
-    title: lang === "en" ? "Development" : "Development",
-    description: lang === "en"
-      ? "We engineer the codebase with sub-second speeds. You can monitor progress in real-time."
-      : "Kami bangun, kamu bisa pantau progressnya real-time.",
-    tag: lang === "en" ? "Stage 3" : "Tahap 3"
-  },
-  {
-    step: "04",
-    title: lang === "en" ? "Launch" : "Launch",
-    description: lang === "en"
-      ? "Your website goes live on the world wide web, fully configured and ready to acquire customers."
-      : "Website online, kamu tinggal terima jadi dan siap dipakai.",
-    tag: lang === "en" ? "Stage 4" : "Tahap 4"
-  }
-];
+const sectionEyebrow = service.processEyebrow || (lang === "en" ? "Work Methodology" : "Proses Kerja");
+const sectionTitle = service.processTitle || (lang === "en" ? "Four Clear Steps to Your Live Website" : "Empat Tahap, Website Kamu Siap Tayang");
+const sectionSubtitle = service.processSubtitle || (lang === "en"
+  ? "A straightforward, transparent engineering roadmap with zero guesswork or confusing jargon."
+  : "Alur kerja terstruktur dan transparan, tanpa tebak-tebakan teknis yang membingungkan.");
+const steps = service.processSteps || [];
 ---
 
 <section class="py-16 md:py-24 relative overflow-hidden">
@@ -48,19 +23,17 @@ const steps = [
       <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
         <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Work Methodology" : "Proses Kerja"}
+          {sectionEyebrow}
         </span>
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
       </div>
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Four Clear Steps to Your Live Website" : "Empat Tahap, Website Kamu Siap Tayang"}
+        {sectionTitle}
       </h2>
 
       <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "A straightforward, transparent engineering roadmap with zero guesswork or confusing jargon."
-          : "Alur kerja terstruktur dan transparan, tanpa tebak-tebakan teknis yang membingungkan."}
+        {sectionSubtitle}
       </p>
     </div>
 
@@ -85,11 +58,6 @@ const steps = [
             <p class="typography-body text-muted-foreground font-light leading-relaxed">
               {item.description}
             </p>
-          </div>
-
-          {/* Bottom Tag */}
-          <div class="pt-6 mt-6 border-t border-border/40 text-xs text-muted-foreground font-mono">
-            <span>{item.tag}</span>
           </div>
         </div>
       ))}

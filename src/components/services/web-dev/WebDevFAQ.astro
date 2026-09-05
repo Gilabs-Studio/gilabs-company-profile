@@ -1,43 +1,26 @@
 ---
 import { FAQList } from "../../react/FAQList";
+import type { ServicePageData, ServiceFAQ } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
+  faqs?: ServiceFAQ[];
+  title?: string;
+  subtitle?: string;
 }
 
-const { lang = "id" } = Astro.props;
+const { lang = "id", service, faqs, title, subtitle } = Astro.props;
 
-const faqs = [
-  {
-    question: lang === "en" ? "How long does the website development process take?" : "Berapa lama proses pengerjaan?",
-    answer: lang === "en"
-      ? "On average 2 to 4 weeks depending on the complexity of your requirements and features."
-      : "Rata-rata 2-4 minggu tergantung kompleksitas."
-  },
-  {
-    question: lang === "en" ? "Can I request a custom design tailored to my brand?" : "Apakah bisa request desain sendiri?",
-    answer: lang === "en"
-      ? "Yes, you can share reference sites, brand guidelines, and ideas, and our design team will tailor everything accordingly."
-      : "Bisa, kamu kirim referensi dan kami sesuaikan."
-  },
-  {
-    question: lang === "en" ? "Is there a warranty after the website launches?" : "Setelah jadi, apakah ada garansi?",
-    answer: lang === "en"
-      ? "Yes, we provide a 30-day bug-fixing and technical support warranty after your website goes live."
-      : "Ada garansi bug fixing 30 hari setelah website live."
-  },
-  {
-    question: lang === "en" ? "Is web hosting and custom domain included in the price?" : "Apakah harga sudah termasuk hosting?",
-    answer: lang === "en"
-      ? "Yes, both the Basic and Standard packages already include a custom domain and high-speed hosting for the first year."
-      : "Paket Basic dan Standard sudah termasuk domain dan hosting tahun pertama."
-  }
-];
+const displayFaqs = faqs || service.faqs || [];
+const sectionEyebrow = service.faqEyebrow || (lang === "en" ? "Questions Answered" : "Pertanyaan Umum");
+const sectionTitle = title || service.faqTitle;
+const sectionSubtitle = subtitle || service.faqSubtitle;
 
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
-  "mainEntity": faqs.map(item => ({
+  "mainEntity": displayFaqs.map(item => ({
     "@type": "Question",
     "name": item.question,
     "acceptedAnswer": {
@@ -57,24 +40,22 @@ const faqSchema = {
       <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
         <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Questions Answered" : "Pertanyaan Umum"}
+          {sectionEyebrow}
         </span>
         <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
       </div>
 
       <h2 class="typography-section-title mb-4">
-        FAQ
+        {sectionTitle}
       </h2>
 
       <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Everything you need to know about our web development process, deliverables, and guarantees."
-          : "Semua hal penting seputar proses, garansi, dan teknologi pembuatan website di Gilabs."}
+        {sectionSubtitle}
       </p>
     </div>
 
     <div class="space-y-4">
-      <FAQList client:visible items={faqs} itemClassName="border border-border/50 rounded-2xl overflow-hidden bg-white shadow-sm transition-colors duration-200 hover:border-brand/50 relative z-10" />
+      <FAQList client:visible items={displayFaqs} itemClassName="border border-border/50 rounded-2xl overflow-hidden bg-white shadow-sm transition-colors duration-200 hover:border-brand/50 relative z-10" />
     </div>
   </div>
 </section>
