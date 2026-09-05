@@ -3,98 +3,145 @@ import type { ServicePageData } from "./types";
 export const posSystemEn: ServicePageData = {
   slug: "jasa-pembuatan-aplikasi-kasir-pos",
   category: "software",
-  eyebrow: "Custom Point of Sale (POS) & Cashier Software",
-  title: "Smart Cashier Systems Connected Directly to Warehouses & Outlets",
-  subtitle: "Custom web and Android Point of Sale (POS) applications for modern retail, building material depots, furniture stores, and multi-branch wholesalers with zero per-transaction fee limits.",
-  heroIllustration: "/illustrations/pos-system-sketch.png",
-  metaTitle: "Custom Multi-Branch POS & Cashier Software | Gilabs",
-  metaDescription: "Custom POS cashier software development for retail, hardware stores, and wholesale distribution. Real-time multi-branch inventory and owner dashboards.",
+  eyebrow: "Custom POS & Cashier System",
+  title: "A POS System That Never Makes Customer Queues Longer",
+  subtitle: "Lightning-fast checkouts, automated stock deductions, and live sales telemetry. Built to match your specific retail or restaurant flow, not a generic rigid template.",
+  heroIllustration: "/images/services/pos-system/hero-pos-system.png",
+  metaTitle: "Custom POS & Cashier Software Development | Gilabs",
+  metaDescription: "Custom Point of Sale (POS) software for retail, cafes, restaurants, and multi-outlet stores. Rapid checkout, automatic inventory sync, offline mode, and real-time reports.",
   keywords: [
     "custom pos software development",
-    "multi-branch cashier system",
-    "retail point of sale software",
-    "hardware store pos software",
-    "offline capable pos web app"
+    "retail point of sale system",
+    "restaurant pos application",
+    "offline point of sale software",
+    "multi branch pos system",
+    "bespoke pos software indonesia"
   ],
-  primaryCtaText: "Discuss Custom POS",
-  secondaryCtaText: "Explore Features",
-  problemsTitle: "Why Subscription POS Systems Limit Growth",
-  problemsSubtitle: "Per-outlet monthly subscription fees mount rapidly while failing to handle unit conversions.",
+  primaryCtaText: "Discuss Your Needs",
+  secondaryCtaText: "View Built Systems",
+  problemsTitle: "Manual Cashier Operations Are Prone to Costly Bottlenecks",
+  problemsSubtitle: "Three operational headaches caused by manual pen-and-paper notes or rigid off-the-shelf POS software.",
   problems: [
     {
-      pain: "Expensive Monthly Per-Outlet Fees",
-      solution: "Gilabs custom POS is built as a perpetual asset with zero recurring monthly subscription fees."
+      pain: "Unnoticed Stock Discrepancies",
+      solution: "Manual tracking errors go completely unnoticed until stressful monthly physical stock audits."
     },
     {
-      pain: "Inability to Handle Dynamic Units",
-      solution: "Full support for tiered units (boxes, bundles, meters, single pieces) and tier-based wholesale pricing."
+      pain: "Congested Checkout Queues",
+      solution: "Sluggish transaction processes cause frustrating customer lines during peak rush hours."
+    },
+    {
+      pain: "Delayed Sales Reporting",
+      solution: "Business owners only see daily revenue long after store closing and tedious manual bookkeeping."
     }
   ],
-  featuresTitle: "Core POS Capabilities",
-  featuresSubtitle: "Built for rapid checkout speeds and transparent executive oversight.",
+  featuresTitle: "Core Features in Our POS Systems",
+  featuresSubtitle: "Engineered to empower cashiers with effortless speed while providing owners with full operational oversight.",
   features: [
     {
-      title: "Multi-Outlet & Multi-Warehouse Sync",
-      description: "Monitor real-time sales volumes and inventory movements across dozens of locations from a single view."
+      title: "Multi-Method Payment Checkout",
+      description: "Support cash, dynamic/static QRIS, bank transfers, e-wallets, and debit cards in a single fluid screen."
     },
     {
-      title: "Comprehensive Payment Support",
-      description: "Accept cash, dynamic QRIS, debit/credit cards, and credit terms for trusted accounts."
+      title: "Automated Inventory Deduction",
+      description: "Every single completed transaction instantly deducts finished goods or raw ingredients with zero double-entry."
     },
     {
-      title: "Thermal Printer & Scanner Integration",
-      description: "Plug-and-play compatibility with Bluetooth/USB thermal receipt printers, cash drawers, and barcode readers."
+      title: "Split Bill & Flexible Discounts",
+      description: "Seamless bill splitting per table/group, percentage promotions, promotional coupons, and custom discounts."
+    },
+    {
+      title: "Thermal & Digital Receipts",
+      description: "Instant connection to thermal receipt printers, with digital receipt delivery directly via WhatsApp or email."
+    },
+    {
+      title: "Daily Sales & Profit Reports",
+      description: "Automated daily summaries covering total revenue, gross margins, top-selling items, and payment method breakdowns."
+    },
+    {
+      title: "Multi-Cashier & Multi-Branch",
+      description: "Manage multiple cashier shifts and oversee sales across all branch locations from a centralized dashboard."
+    },
+    {
+      title: "Printer & Barcode Scanner Integration",
+      description: "Full hardware support for USB/Bluetooth thermal printers, 1D/2D barcode scanners, and automatic cash drawers."
+    },
+    {
+      title: "Offline Resilient Mode",
+      description: "Cashiers process transactions smoothly even when internet drops, syncing automatically upon reconnection."
     }
   ],
-  packagesTitle: "POS Development Packages",
-  packagesSubtitle: "Robust cashier solutions tailored to your operational retail model.",
+  packagesTitle: "Scale with Your Store or Restaurant Size",
+  packagesSubtitle: "Transparent software investment with zero recurring per-outlet subscription fees. 100% full source code ownership.",
   packages: [
     {
-      name: "Specialized Retail POS",
-      price: "From $800",
-      description: "Ideal for hardware stores, boutiques, furniture retail, and specialty shops.",
+      name: "BASIC",
+      price: "From $350",
+      isPopular: false,
+      description: "For small businesses with a single checkout station",
       features: [
-        "Web / Android Cashier App",
-        "Multi-Unit Conversion & Wholesale Tiers",
-        "Inventory Movement Tracking",
-        "Thermal Receipt Printing",
-        "Daily Profit Analytics",
-        "3-Month Bug Warranty",
-        "3-4 Weeks Delivery"
+        "Core Transaction & Inventory Tracking",
+        "1 Cashier Device (Web / Android)",
+        "Daily Sales Reports",
+        "Menu & Product Database Setup",
+        "1-Month Bug Fix Warranty"
       ]
     },
     {
-      name: "Enterprise Multi-Branch POS",
-      price: "From $1,900",
+      name: "STANDARD",
+      price: "From $950",
       isPopular: true,
-      description: "Centralized cashier network for retail chains and wholesale distribution depots.",
+      description: "For expanding stores needing complete hardware integration",
       features: [
-        "Multi-Branch Central Server Sync",
-        "Credit Terms & Customer Credit Limits",
-        "Supervisor Override Authorization",
-        "Accounting Ledger Sync",
-        "Mobile Smartphone Owner App",
-        "Full Git Handover & Training",
-        "6-Month SLA Support",
-        "6-8 Weeks Delivery"
+        "Multi-Cashier Shifts per Branch",
+        "Thermal Printer & Barcode Scanner Sync",
+        "Comprehensive Reports & Excel/PDF Export",
+        "Offline Mode with Auto Cloud Sync",
+        "3-Month Warranty & Dedicated Support"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Contact Us",
+      isPopular: false,
+      description: "For multi-outlet retail chains & restaurant franchises",
+      features: [
+        "Consolidated Multi-Branch Real-Time Network",
+        "ERP & Financial Accounting Integration",
+        "Bespoke Business Logic (Kitchen Display System, Table Management, etc.)",
+        "Supervisor Permissions & Security Hardening",
+        "Dedicated Support & Maintenance SLA"
       ]
     }
   ],
-  techStackTitle: "Reliable POS Stack",
-  techStackSubtitle: "Sub-second transaction processing even with thousands of SKUs.",
+  techStackTitle: "Fast & Resilient Cashier Stack",
+  techStackSubtitle: "Combining instant UI responsiveness with ACID-compliant central synchronization.",
   techStack: [
-    { name: "React PWA", category: "Cashier Client", description: "Installable on PCs/tablets with offline capability." },
-    { name: "PostgreSQL", category: "Database", description: "Guaranteed transactional integrity." }
+    { name: "React & PWA Offline", category: "POS Terminal", description: "Installable on Android tablets or PC terminals with offline data caching." },
+    { name: "PostgreSQL & SQLite", category: "Data Tier", description: "Strict transaction integrity ensuring zero lost receipts or duplicate orders." },
+    { name: "Node.js / Golang", category: "Sync Engine", description: "Instant synchronization between outlets, central warehouses, and owner dashboards." }
   ],
-  faqTitle: "POS Software FAQs",
-  faqSubtitle: "Common questions regarding custom cashier systems.",
+  faqTitle: "Frequently Asked Questions",
+  faqSubtitle: "Key inquiries regarding bespoke POS system engineering with Gilabs.",
   faqs: [
     {
-      question: "Will this work with our existing hardware?",
-      answer: "Yes, our POS applications interface with standard USB and Bluetooth thermal printers, 1D/2D barcode scanners, and cash drawers."
+      question: "Can this system run on regular tablets?",
+      answer: "Yes, fully compatible with regular Android tablets, iPads, and dedicated all-in-one desktop POS terminals."
+    },
+    {
+      question: "What happens if the internet cuts out during peak hours?",
+      answer: "Our offline mode allows transactions to proceed uninterrupted, automatically synchronizing all records to the cloud when internet returns."
+    },
+    {
+      question: "Can we monitor multiple branch outlets simultaneously?",
+      answer: "Yes, available starting from our Custom tier with an executive multi-outlet dashboard accessible directly from your smartphone."
+    },
+    {
+      question: "Is receipt printer integration included?",
+      answer: "Included starting from our Standard tier, supporting USB, Bluetooth, and network LAN/Wi-Fi thermal printers."
     }
   ],
-  ctaTitle: "Accelerate Your Retail & Cashier Operations",
-  ctaSubtitle: "Talk to our POS specialists on WhatsApp for a tailored demo.",
-  ctaButton: "Get Started on WhatsApp"
+  ctaTitle: "Tidy Cashiers, Stress-Free Reporting",
+  ctaSubtitle: "Walk us through your transaction flow and we will build a tailored system to maximize efficiency. Free consultation, zero commitment.",
+  ctaButton: "Start Free Discussion"
 };

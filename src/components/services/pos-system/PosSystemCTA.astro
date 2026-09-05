@@ -1,0 +1,61 @@
+---
+import { WhatsAppIcon } from "../../react/WhatsAppIcon";
+import { getWhatsAppLink } from "../../../lib/utils";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const title = lang === "en"
+  ? "Tidy Cashiers, Stress-Free Reporting"
+  : "Kasir yang Rapi, Laporan yang Nggak Bikin Pusing";
+
+const subtitle = lang === "en"
+  ? "Walk us through your transaction flow and we will build a tailored system to maximize efficiency. Free consultation, zero commitment."
+  : "Ceritakan alur transaksi bisnis kamu, kami bantu sistemkan biar lebih efisien. Konsultasi awal gratis, tanpa komitmen.";
+
+const buttonText = lang === "en"
+  ? "Start Free Discussion"
+  : "Mulai Diskusi Gratis";
+---
+
+<section class="py-12 sm:py-16 md:py-24 lg:py-32 relative">
+  <div class="container mx-auto px-4">
+    <div class="bg-foreground text-background rounded-2xl sm:rounded-3xl p-8 sm:p-12 md:p-16 lg:p-28 text-center relative overflow-hidden shadow-2xl shadow-brand/20">
+      {/* Background decoration */}
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden opacity-20 pointer-events-none">
+        <div class="absolute -top-1/2 -left-1/2 w-full h-full bg-brand/30 rounded-full blur-3xl"></div>
+        <div class="absolute -bottom-1/2 -right-1/2 w-full h-full bg-brand/30 rounded-full blur-3xl"></div>
+      </div>
+
+      <div class="relative z-10 px-2 sm:px-4 max-w-4xl mx-auto">
+        {/* Headline */}
+        <h2 class="typography-hero-title text-background mb-6 sm:mb-8 md:mb-10 max-w-4xl mx-auto">
+          {title}
+        </h2>
+
+        {/* Subtitle */}
+        <div class="space-y-2 sm:space-y-3 text-background/90 mb-8 sm:mb-10 md:mb-14 max-w-3xl mx-auto">
+          <p class="text-base sm:text-lg md:text-xl font-light text-background/90 leading-relaxed">
+            {subtitle}
+          </p>
+        </div>
+
+        {/* WhatsApp Button */}
+        <div>
+          <a
+            href={getWhatsAppLink("final-cta-pos-system", lang)}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 py-3.5 sm:py-4 bg-background text-foreground typography-button rounded-full hover:bg-white transition-colors whitespace-nowrap cursor-pointer shadow-lg"
+          >
+            <span>{buttonText}</span>
+            <WhatsAppIcon client:load className="w-5 h-5 sm:w-6 sm:h-6" />
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
