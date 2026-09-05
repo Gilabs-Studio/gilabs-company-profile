@@ -1,6 +1,5 @@
 ---
 import MobileAppsHero from "./MobileAppsHero.astro";
-import MobileAppsSocialProof from "./MobileAppsSocialProof.astro";
 import MobileAppsProblems from "./MobileAppsProblems.astro";
 import MobileAppsSolutions from "./MobileAppsSolutions.astro";
 import MobileAppsTypes from "./MobileAppsTypes.astro";
@@ -30,10 +29,7 @@ const { lang, service } = Astro.props;
     secondaryCtaText={service.secondaryCtaText}
   />
 
-  {/* 2. SOCIAL PROOF BAR */}
-  <MobileAppsSocialProof lang={lang} />
-
-  {/* 3. MASALAH YANG SERING DITEMUI */}
+  {/* 2. MASALAH YANG SERING DITEMUI */}
   <MobileAppsProblems lang={lang} />
 
   {/* 4. SOLUSI / VALUE PROPOSITION (3 PILAR) */}

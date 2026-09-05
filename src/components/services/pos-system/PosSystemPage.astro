@@ -1,6 +1,5 @@
 ---
 import PosSystemHero from "./PosSystemHero.astro";
-import PosSystemSocialProof from "./PosSystemSocialProof.astro";
 import PosSystemProblems from "./PosSystemProblems.astro";
 import PosSystemSolutions from "./PosSystemSolutions.astro";
 import PosSystemFeatures from "./PosSystemFeatures.astro";
@@ -29,10 +28,7 @@ const { lang, service } = Astro.props;
     secondaryCtaText={service.secondaryCtaText}
   />
 
-  {/* 2. SOCIAL PROOF BAR */}
-  <PosSystemSocialProof lang={lang} />
-
-  {/* 3. MASALAH YANG SERING DITEMUI */}
+  {/* 2. MASALAH YANG SERING DITEMUI */}
   <PosSystemProblems lang={lang} />
 
   {/* 4. SOLUSI / VALUE PROPOSITION (3 PILAR) */}

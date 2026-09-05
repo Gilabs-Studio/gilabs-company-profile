@@ -1,6 +1,7 @@
 ---
 import { ArrowRight } from "lucide-react";
 import { getWhatsAppLink } from "../../../lib/utils";
+import HeroParallaxImage from "../HeroParallaxImage.astro";
 
 interface Props {
   lang: "en" | "id";
@@ -69,27 +70,9 @@ const heroImageUrl = "/images/services/landing-page/hero-landing-page.png";
     </div>
 
     {/* Single Scroll Laptop Mockup Showcase */}
-    <div class="relative mx-auto max-w-5xl">
-      <div class="relative overflow-hidden rounded-2xl sm:rounded-3xl border border-border/50 bg-white shadow-xl shadow-black/5">
-        <img
-          src={heroImageUrl}
-          alt="Mockup Landing Page Single Scroll di Laptop - Gilabs"
-          class="w-full h-auto object-cover select-none"
-          loading="eager"
-          fetchpriority="high"
-          width="1920"
-          height="1080"
-          decoding="async"
-        />
-      </div>
-
-      {/* Floating Trust Badge */}
-      <div class="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md border border-border/80 rounded-full px-5 py-2.5 hidden sm:flex items-center gap-3 z-20 shadow-lg shadow-black/5">
-        <span class="w-2 h-2 rounded-full bg-brand"></span>
-        <span class="text-xs sm:text-sm font-medium text-foreground">
-          {lang === "en" ? "Sub-second load speed • Single-scroll focus • Meta & Google Ads ready" : "Loading di bawah 1 detik • Fokus 1 aksi konversi • Siap Meta & Google Ads"}
-        </span>
-      </div>
-    </div>
+    <HeroParallaxImage
+      src={heroImageUrl}
+      alt="Mockup Landing Page Single Scroll di Laptop - Gilabs"
+    />
   </div>
 </section>

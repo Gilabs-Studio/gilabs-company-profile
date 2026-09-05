@@ -1,6 +1,5 @@
 ---
 import ErpCrmHero from "./ErpCrmHero.astro";
-import ErpCrmSocialProof from "./ErpCrmSocialProof.astro";
 import ErpCrmProblems from "./ErpCrmProblems.astro";
 import ErpCrmSolutions from "./ErpCrmSolutions.astro";
 import ErpCrmModules from "./ErpCrmModules.astro";
@@ -29,10 +28,7 @@ const { lang, service } = Astro.props;
     secondaryCtaText={service.secondaryCtaText}
   />
 
-  {/* 2. SOCIAL PROOF BAR */}
-  <ErpCrmSocialProof lang={lang} />
-
-  {/* 3. MASALAH YANG SERING DITEMUI */}
+  {/* 2. MASALAH YANG SERING DITEMUI */}
   <ErpCrmProblems lang={lang} />
 
   {/* 4. SOLUSI / VALUE PROPOSITION (3 PILAR) */}

@@ -1,6 +1,5 @@
 ---
 import SoftwareHouseHero from "./SoftwareHouseHero.astro";
-import SoftwareHouseSocialProof from "./SoftwareHouseSocialProof.astro";
 import SoftwareHouseProblems from "./SoftwareHouseProblems.astro";
 import SoftwareHouseServices from "./SoftwareHouseServices.astro";
 import SoftwareHouseWhyUs from "./SoftwareHouseWhyUs.astro";
@@ -30,10 +29,7 @@ const { lang, service } = Astro.props;
     secondaryCtaText={service.secondaryCtaText}
   />
 
-  {/* 2. SOCIAL PROOF BAR */}
-  <SoftwareHouseSocialProof lang={lang} />
-
-  {/* 3. MASALAH YANG SERING DITEMUI */}
+  {/* 2. MASALAH YANG SERING DITEMUI */}
   <SoftwareHouseProblems lang={lang} />
 
   {/* 4. LAYANAN KAMI */}

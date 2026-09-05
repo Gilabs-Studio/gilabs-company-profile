@@ -1,0 +1,90 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  className?: string;
+}
+
+const { src, alt, className = "" } = Astro.props;
+---
+
+<div class={`relative mx-auto max-w-5xl ${className}`}>
+  <div class="service-hero-parallax-wrapper relative overflow-hidden rounded-2xl sm:rounded-3xl border border-border/60 bg-card shadow-xl shadow-black/5">
+    <img
+      src={src}
+      alt={alt}
+      class="service-hero-parallax-img w-full h-auto object-cover select-none will-change-transform origin-center"
+      loading="eager"
+      fetchpriority="high"
+      width="1920"
+      height="1080"
+      decoding="async"
+    />
+  </div>
+</div>
+
+<script>
+  function setupHeroParallax() {
+    const wrappers = document.querySelectorAll<HTMLElement>('.service-hero-parallax-wrapper');
+    if (!wrappers.length) return;
+
+    wrappers.forEach((wrapper) => {
+      const img = wrapper.querySelector<HTMLImageElement>('.service-hero-parallax-img');
+      if (!img) return;
+
+      let isInitialized = false;
+      let ticking = false;
+
+      const update = () => {
+        ticking = false;
+        const rect = wrapper.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+
+        // Skip calculations if completely outside viewport
+        if (rect.bottom < 0 || rect.top > vh) return;
+
+        const wrapperCenter = rect.top + rect.height / 2;
+        const viewportCenter = vh / 2;
+        const distFromCenter = viewportCenter - wrapperCenter;
+
+        // Subtle parallax lagging factor (image moves slightly slower than page scroll)
+        const factor = 0.12;
+        const maxTranslate = rect.height * 0.06;
+        const translateY = Math.max(-maxTranslate, Math.min(maxTranslate, distFromCenter * factor));
+
+        if (!isInitialized) {
+          // Instant positioning on initial frame without animation jump
+          img.style.transition = 'none';
+          img.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(1.14)`;
+          requestAnimationFrame(() => {
+            // Enable smooth inertia / lagging transition after initial placement
+            img.style.transition = 'transform 0.18s cubic-bezier(0.16, 1, 0.3, 1)';
+            isInitialized = true;
+          });
+        } else {
+          img.style.transform = `translate3d(0, ${translateY.toFixed(2)}px, 0) scale(1.14)`;
+        }
+      };
+
+      const onScroll = () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      window.addEventListener('pageshow', update);
+
+      // Trigger initial positioning
+      update();
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupHeroParallax);
+  } else {
+    setupHeroParallax();
+  }
+</script>

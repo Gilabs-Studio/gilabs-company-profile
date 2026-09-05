@@ -1,6 +1,5 @@
 ---
 import LandingPageHero from "./LandingPageHero.astro";
-import LandingPageSocialProof from "./LandingPageSocialProof.astro";
 import LandingPageProblems from "./LandingPageProblems.astro";
 import LandingPageSolutions from "./LandingPageSolutions.astro";
 import LandingPageAudience from "./LandingPageAudience.astro";
@@ -29,10 +28,7 @@ const { lang, service } = Astro.props;
     secondaryCtaText={service.secondaryCtaText}
   />
 
-  {/* 2. SOCIAL PROOF BAR */}
-  <LandingPageSocialProof lang={lang} />
-
-  {/* 3. MASALAH YANG SERING DITEMUI */}
+  {/* 2. MASALAH YANG SERING DITEMUI */}
   <LandingPageProblems lang={lang} />
 
   {/* 4. SOLUSI / VALUE PROPOSITION */}

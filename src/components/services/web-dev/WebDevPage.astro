@@ -1,6 +1,5 @@
 ---
 import WebDevHero from "./WebDevHero.astro";
-import WebDevSocialProof from "./WebDevSocialProof.astro";
 import WebDevProblems from "./WebDevProblems.astro";
 import WebDevSolutions from "./WebDevSolutions.astro";
 import WebDevProcess from "./WebDevProcess.astro";
@@ -29,10 +28,7 @@ const { lang, service } = Astro.props;
     secondaryCtaText={service.secondaryCtaText}
   />
 
-  {/* 2. SOCIAL PROOF BAR */}
-  <WebDevSocialProof lang={lang} />
-
-  {/* 3. MASALAH YANG SERING DITEMUI */}
+  {/* 2. MASALAH YANG SERING DITEMUI */}
   <WebDevProblems lang={lang} />
 
   {/* 4. SOLUSI / VALUE PROPOSITION */}
