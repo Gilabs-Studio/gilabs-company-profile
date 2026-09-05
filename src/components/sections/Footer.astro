@@ -3,7 +3,12 @@ import { Facebook, Instagram, Twitter, Youtube } from "lucide-react";
 import { getWhatsAppLink } from '../../lib/utils';
 import { serviceSlugPairMap } from "../../data/services/index";
 
-const { lang } = Astro.props;
+interface Props {
+  lang?: string;
+}
+
+const { lang: rawLang = "id" } = Astro.props;
+const lang: "id" | "en" = rawLang === "en" ? "en" : "id";
 
 const FOOTER_LINKS = [
   {

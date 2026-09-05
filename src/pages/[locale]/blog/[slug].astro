@@ -29,6 +29,8 @@ if (!locale || !slug) {
   return Astro.redirect('/en/blog');
 }
 
+const lang: 'id' | 'en' = locale === 'id' ? 'id' : 'en';
+
 const blog = blogData[locale] || blogData['en'];
 const post = blog?.posts?.find(p => p.slug === slug);
 
@@ -57,7 +59,7 @@ const datePublished = post.date ? new Date(post.date).toISOString() : undefined;
 ---
 
 <BlogLayout 
-	lang={locale} 
+	lang={lang} 
 	title={pageTitle}
 	description={pageDescription}
 	canonical={canonical}
@@ -67,10 +69,10 @@ const datePublished = post.date ? new Date(post.date).toISOString() : undefined;
 	articleAuthor={post.author || 'Gilabs Editorial Team'}
 	articleCategory={post.category}
 >
-  <Navbar lang={locale} />
+  <Navbar lang={lang} />
   <main class="pt-20">
-    <BlogDetail post={post} lang={locale || 'en'} />
+    <BlogDetail post={post} lang={lang} />
   </main>
-  <Footer lang={locale} />
+  <Footer lang={lang} />
 </BlogLayout>
 

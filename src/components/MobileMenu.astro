@@ -1,10 +1,15 @@
 ---
-import { X, ChevronDown } from "lucide-react";
+import { X } from "lucide-react";
 import { getWhatsAppLink } from "../lib/utils";
 
 import { serviceSlugPairMap, getAlternateServiceSlug } from "../data/services/index";
 
-const { lang } = Astro.props;
+interface Props {
+  lang?: string;
+}
+
+const { lang: rawLang = "id" } = Astro.props;
+const lang: "id" | "en" = rawLang === "en" ? "en" : "id";
 const pathPrefix = `/${lang}`;
 
 const links = [
@@ -41,7 +46,7 @@ if (serviceMatch) {
 }
 ---
 
-<div id="mobile-menu" class="fixed inset-0 bg-background/98 backdrop-blur-xl z-[9999] flex flex-col items-center justify-between opacity-0 pointer-events-none transition-opacity duration-300 p-6 sm:p-8 overflow-y-auto">
+<div id="mobile-menu" class="fixed inset-0 bg-background/98 backdrop-blur-xl z-9999 flex flex-col items-center justify-between opacity-0 pointer-events-none transition-opacity duration-300 p-6 sm:p-8 overflow-y-auto">
   <!-- Close Button - Top Right -->
   <div class="w-full flex items-center justify-between pb-4 border-b border-border/40">
     <span class="text-xl font-bold tracking-tighter">

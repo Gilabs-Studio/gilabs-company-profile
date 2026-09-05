@@ -31,8 +31,8 @@ const data = riskMitigationData[lang];
 
     {/* Risk Mitigation Sections */}
     <div class="space-y-16 md:space-y-24">
-      {data.sections.map((section, sectionIndex) => (
-        <div key={sectionIndex} class="max-w-6xl mx-auto">
+      {data.sections.map((section) => (
+        <div class="max-w-6xl mx-auto">
           <div class="text-center mb-8 md:mb-12">
             <h3 class="typography-section-title mb-4">
               {section.title}
