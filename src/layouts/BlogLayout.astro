@@ -1,5 +1,6 @@
 ---
 import "../styles/globals.css";
+import WhatsAppFAB from "../components/WhatsAppFAB.astro";
 
 const {
 lang = Astro.currentLocale || 'id',
@@ -197,6 +198,7 @@ const breadcrumbSchema = {
 <div class="absolute inset-0 bg-linear-to-b from-background via-background/98 to-background"></div>
 </div>
 <slot />
+<WhatsAppFAB lang={lang} />
 </body>
 </html>
 

@@ -49,6 +49,10 @@ export function getWhatsAppLink(
       en: "Hello! I'm interested in your services. Can we discuss how you can help with my project?",
       id: "Halo! Saya tertarik dengan layanan Anda. Bisakah kita diskusikan bagaimana Anda dapat membantu dengan proyek saya?",
     },
+    fab: {
+      en: "Hello! I would like to consult with Gilabs about software development.",
+      id: "Halo! Saya ingin konsultasi dengan Gilabs mengenai pembuatan software.",
+    },
   };
 
   let message =

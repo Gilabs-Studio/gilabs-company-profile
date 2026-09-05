@@ -2,6 +2,7 @@
 import "../styles/globals.css";
 import LightRays from "../components/ui/LightRays";
 import MobileMenu from "../components/MobileMenu.astro";
+import WhatsAppFAB from "../components/WhatsAppFAB.astro";
 
 const { 
 	lang = Astro.currentLocale || 'id', 
@@ -262,6 +263,7 @@ const websiteSchema = {
     )}
 		<slot />
 		<MobileMenu lang={lang} />
+		<WhatsAppFAB lang={lang} />
 	</body>
 
 <script>
