@@ -1,0 +1,88 @@
+---
+import { FAQList } from "../../react/FAQList";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const faqs = [
+  {
+    question: lang === "en"
+      ? "Can you build for Android and iOS simultaneously?"
+      : "Apakah bisa bangun untuk Android dan iOS sekaligus?",
+    answer: lang === "en"
+      ? "Yes, available starting from our Standard tier using a cross-platform Flutter approach, giving you two high-performance apps with optimal budget and timeline efficiency."
+      : "Bisa, tersedia dari paket Standard menggunakan pendekatan cross-platform dengan Flutter sehingga Anda mendapatkan 2 aplikasi sekaligus dengan efisiensi biaya dan waktu pengerjaan."
+  },
+  {
+    question: lang === "en"
+      ? "How long does it take to publish to the App Store?"
+      : "Berapa lama proses publish ke App Store?",
+    answer: lang === "en"
+      ? "Typically 1-2 weeks for Apple App Store review and 3-5 business days for Google Play Store. We assist through the entire submission process until your app is live."
+      : "Biasanya 1-2 minggu untuk proses review dari Apple App Store dan 3-5 hari kerja untuk Google Play Store. Kami dampingi seluruh prosesnya hingga aplikasi resmi tayang."
+  },
+  {
+    question: lang === "en"
+      ? "Is UI/UX design included in the package?"
+      : "Apakah termasuk desain UI/UX?",
+    answer: lang === "en"
+      ? "Yes, included across all tiers with varying depth, from clean wireframing to full interactive high-fidelity clickable prototypes."
+      : "Termasuk di semua paket, dengan tingkat kedalaman berbeda mulai dari wireframing hingga interactive high-fidelity prototype yang siap diuji."
+  },
+  {
+    question: lang === "en"
+      ? "What about maintenance after the app is live?"
+      : "Bagaimana dengan maintenance setelah live?",
+    answer: lang === "en"
+      ? "All projects include a post-deployment bug warranty. We also offer monthly maintenance retainers for new OS compatibility updates, server monitoring, and continuous feature iterations."
+      : "Tersedia masa garansi bug fixes setelah live. Kami juga menyediakan opsi retainer bulanan untuk update kompatibilitas OS baru, monitoring server, dan perbaikan bug berkelanjutan."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(item => ({
+    "@type": "Question",
+    "name": item.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": item.answer
+    }
+  }))
+};
+---
+
+<!-- Inject FAQ Schema for Rich Google Search Snippets -->
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+<section class="py-16 md:py-24 relative z-10" id="faq">
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Common Inquiries" : "FAQ"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Frequently Asked Questions" : "Pertanyaan yang Sering Ditanyakan"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Important answers regarding dual-platform development, store publishing, UI/UX design, and post-launch support."
+          : "Hal penting seputar pembuatan aplikasi Android & iOS, proses publish ke store, desain UI/UX, dan garansi pasca-peluncuran."}
+      </p>
+    </div>
+
+    <div class="space-y-4">
+      <FAQList client:visible items={faqs} itemClassName="border border-border/50 rounded-2xl overflow-hidden bg-white shadow-sm transition-colors duration-200 hover:border-brand/50 relative z-10" />
+    </div>
+  </div>
+</section>

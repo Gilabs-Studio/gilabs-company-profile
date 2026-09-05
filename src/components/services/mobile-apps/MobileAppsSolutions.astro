@@ -1,0 +1,122 @@
+---
+import { Check } from "lucide-react";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const pillars = [
+  {
+    number: "01",
+    title: lang === "en" ? "Pillar 1 - UX as Top Priority" : "Pilar 1 - UX Sebagai Prioritas Utama",
+    subtitle: lang === "en"
+      ? "User flows designed as simply as possible from day one, ensuring zero friction."
+      : "Alur penggunaan dirancang sesederhana mungkin sejak awal.",
+    image: "/images/services/mobile-apps/solution-ux-priority.png",
+    alt: lang === "en" ? "Intuitive and Seamless Mobile UX Design" : "Desain UX Aplikasi Mobile Intuitif dan Nyaman",
+    points: [
+      lang === "en" ? "Frictionless onboarding that guides users directly to core value" : "Alur onboarding ringkas yang langsung membawa user ke fungsi utama",
+      lang === "en" ? "Thumb-friendly navigation optimized for single-handed use" : "Navigasi ramah satu tangan yang nyaman di berbagai ukuran layar",
+      lang === "en" ? "Clean visual hierarchy with responsive haptic & motion feedback" : "Hirarki visual jelas dilengkapi animasi mikro dan responsif"
+    ]
+  },
+  {
+    number: "02",
+    title: lang === "en" ? "Pillar 2 - Native & Cross-Platform" : "Pilar 2 - Native & Cross-platform",
+    subtitle: lang === "en"
+      ? "Choose what fits your goals: optimal 60fps performance on both Android and iOS."
+      : "Pilih sesuai kebutuhan, performa optimal di Android maupun iOS.",
+    image: "/images/services/mobile-apps/solution-native-crossplatform.png",
+    alt: lang === "en" ? "Cross-Platform Harmony with Flutter & Native" : "Efisiensi Cross-Platform dengan Flutter & Native",
+    points: [
+      lang === "en" ? "Single codebase with Flutter for up to 50% budget & time savings" : "Satu basis kode dengan Flutter hemat biaya & waktu hingga 50%",
+      lang === "en" ? "Hardware access: GPS geofencing, camera scanner, and biometric ID" : "Akses modul perangkat: GPS akurat, kamera scanner, & Fingerprint / Face ID",
+      lang === "en" ? "Guaranteed compliance with Apple and Google Store guidelines" : "Kepatuhan penuh pada regulasi ketat Apple App Store & Google Play"
+    ]
+  },
+  {
+    number: "03",
+    title: lang === "en" ? "Pillar 3 - Ready to Scale" : "Pilar 3 - Siap untuk Scale",
+    subtitle: lang === "en"
+      ? "Backend architecture engineered from the start to accommodate rapid user growth."
+      : "Arsitektur backend disiapkan menampung pertumbuhan user.",
+    image: "/images/services/mobile-apps/solution-scale-growth.png",
+    alt: lang === "en" ? "Scalable Cloud Architecture for Mobile Apps" : "Arsitektur Cloud Skalabel untuk Aplikasi Mobile",
+    points: [
+      lang === "en" ? "Real-time sync with offline caching for erratic network environments" : "Sinkronisasi offline-first tetap jalan meski koneksi internet terputus",
+      lang === "en" ? "High-concurrency cloud API backend (Node.js / Golang / Supabase)" : "Backend tangguh berkecepatan tinggi sanggup melayani jutaan transaksi",
+      lang === "en" ? "Integrated push notification pipelines via Firebase Cloud Messaging" : "Integrasi push notification otomatis untuk re-engagement pengguna"
+    ]
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Built for Retention" : "Solusi & Value Proposition"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Built for Long-Term Everyday Use" : "Dibangun untuk Dipakai Jangka Panjang"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "We combine ergonomic design with resilient engineering so your mobile application earns a permanent place on your users' home screens."
+          : "Kami memadukan desain ergonomis dengan rekayasa performa tinggi agar aplikasi Anda menjadi bagian dari kebiasaan harian pengguna."}
+      </p>
+    </div>
+
+    {/* 3 Pillars Grid */}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+      {pillars.map((pillar) => (
+        <article class="bg-white border border-border/50 rounded-2xl overflow-hidden hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+          {/* Top Image Banner (Minimalist, zero floating badges) */}
+          <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
+            <img
+              src={pillar.image}
+              alt={pillar.alt}
+              class="w-full h-full object-cover select-none"
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="400"
+            />
+          </div>
+
+          {/* Content Details */}
+          <div class="p-6 sm:p-7 flex flex-col grow justify-between">
+            <div>
+              <h3 class="typography-card-title text-foreground mb-3 group-hover:text-brand transition-colors">
+                {pillar.title}
+              </h3>
+
+              <p class="typography-body text-muted-foreground leading-relaxed mb-6 font-light">
+                {pillar.subtitle}
+              </p>
+            </div>
+
+            {/* Checkpoints */}
+            <ul class="space-y-3 pt-4 border-t border-border/40">
+              {pillar.points.map((point) => (
+                <li class="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/80">
+                  <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                  <span class="leading-snug">{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

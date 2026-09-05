@@ -1,0 +1,185 @@
+---
+import { Check, ArrowRight } from "lucide-react";
+import { getWhatsAppLink } from "../../../lib/utils";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+
+const packages = [
+  {
+    name: "BASIC",
+    price: lang === "en" ? "From $350" : "Mulai Rp 5.000.000",
+    isPopular: false,
+    description: lang === "en"
+      ? "For applications with simple core feature sets"
+      : "Untuk aplikasi dengan fitur inti sederhana",
+    features: [
+      lang === "en" ? "1 Platform (Android or iOS)" : "1 platform (Android atau iOS)",
+      lang === "en" ? "Maximum 5 Primary Screens" : "Maksimal 5 halaman utama",
+      lang === "en" ? "Essential UI & Responsive Layout" : "Desain UI dasar",
+      lang === "en" ? "Basic Local Storage Setup" : "Setup penyimpanan lokal dasar",
+      lang === "en" ? "1-Month Bug Fix Warranty" : "Garansi bug fixes 1 bulan"
+    ],
+    ctaText: lang === "en" ? "Select Basic Plan" : "Pilih Paket Basic"
+  },
+  {
+    name: "STANDARD",
+    price: lang === "en" ? "From $950" : "Mulai Rp 15.000.000",
+    isPopular: true,
+    badge: "Popular",
+    description: lang === "en"
+      ? "For applications with complete functional requirements"
+      : "Untuk aplikasi dengan fitur lebih lengkap",
+    features: [
+      lang === "en" ? "Android & iOS Simultaneously" : "Android & iOS sekaligus",
+      lang === "en" ? "Backend & API Integration" : "Integrasi backend & API",
+      lang === "en" ? "Push Notifications Support" : "Push notification",
+      lang === "en" ? "Store Submission Guidance" : "Bantuan submit ke App Store & Play Store",
+      lang === "en" ? "3-Month Warranty & Support" : "Garansi & support 3 bulan"
+    ],
+    ctaText: lang === "en" ? "Select Standard Plan" : "Pilih Paket Standard"
+  },
+  {
+    name: "CUSTOM",
+    price: lang === "en" ? "Contact Us" : "Hubungi Kami",
+    isPopular: false,
+    description: lang === "en"
+      ? "For large-scale applications with complex architectures"
+      : "Untuk aplikasi skala besar dengan fitur kompleks",
+    features: [
+      lang === "en" ? "Real-time features (chat, live tracking, etc)" : "Fitur real-time (chat, tracking, dsb)",
+      lang === "en" ? "Payment gateway integration" : "Integrasi payment gateway",
+      lang === "en" ? "High scalability for massive user bases" : "Skalabilitas tinggi untuk banyak pengguna",
+      lang === "en" ? "Biometric login & security hardening" : "Login biometrik & security hardening",
+      lang === "en" ? "Dedicated support & maintenance SLA" : "Dedicated support & SLA maintenance"
+    ],
+    ctaText: lang === "en" ? "Discuss Custom Scope" : "Konsultasi Custom"
+  }
+];
+---
+
+<section class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {lang === "en" ? "Transparent Pricing" : "Pricing / Paket"}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {lang === "en" ? "Investment Scaled to App Complexity" : "Investasi Sesuai Kompleksitas Aplikasi"}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {lang === "en"
+          ? "Transparent mobile development investment with zero recurring per-user licensing fees. 100% full source code ownership."
+          : "Estimasi biaya pembuatan aplikasi mobile transparan tanpa biaya lisensi per user. Source code 100% menjadi aset milik perusahaan Anda."}
+      </p>
+    </div>
+
+    {/* 3 Pricing Cards Grid */}
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
+      {packages.map((pkg) => {
+        if (pkg.isPopular) {
+          return (
+            <div class="relative bg-foreground text-background rounded-2xl sm:rounded-3xl p-8 sm:p-10 flex flex-col justify-between border-2 border-brand shadow-xl transition-colors">
+              {/* Centered Top Border Badge */}
+              <div class="absolute -top-3.5 left-1/2 -translate-x-1/2">
+                <span class="text-xs font-bold uppercase tracking-wider bg-brand text-white px-3.5 py-1 rounded-full shadow-md whitespace-nowrap">
+                  {pkg.badge}
+                </span>
+              </div>
+
+              <div class="space-y-6">
+                <div>
+                  <h3 class="typography-card-title text-background mb-2">
+                    {pkg.name}
+                  </h3>
+                  <p class="text-sm text-background/80 font-light leading-relaxed min-h-[40px]">
+                    {pkg.description}
+                  </p>
+                </div>
+
+                <div class="py-5 border-y border-background/20">
+                  <div class="text-3xl sm:text-4xl font-bold text-background tracking-tight">
+                    {pkg.price}
+                  </div>
+                </div>
+
+                <ul class="space-y-3.5 text-sm text-background/90 font-light">
+                  {pkg.features.map((feat) => (
+                    <li class="flex items-start gap-3">
+                      <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                      <span class="leading-snug">{feat}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div class="pt-8">
+                <a
+                  href={getWhatsAppLink("pricing-mobile-apps", lang, pkg.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 typography-button rounded-full bg-brand text-white hover:bg-brand/90 transition-colors cursor-pointer shadow-md shadow-brand/20"
+                >
+                  <span>{pkg.ctaText}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </div>
+            </div>
+          );
+        }
+
+        return (
+          <div class="bg-white border border-border/50 rounded-2xl sm:rounded-3xl p-8 sm:p-10 flex flex-col justify-between hover:border-brand/50 transition-colors shadow-sm">
+            <div class="space-y-6">
+              <div>
+                <h3 class="typography-card-title text-foreground mb-2">
+                  {pkg.name}
+                </h3>
+                <p class="text-sm text-muted-foreground font-light leading-relaxed min-h-[40px]">
+                  {pkg.description}
+                </p>
+              </div>
+
+              <div class="py-5 border-y border-border/40">
+                <div class="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
+                  {pkg.price}
+                </div>
+              </div>
+
+              <ul class="space-y-3.5 text-sm text-muted-foreground font-light">
+                {pkg.features.map((feat) => (
+                  <li class="flex items-start gap-3">
+                    <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                    <span class="leading-snug text-foreground/85">{feat}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div class="pt-8">
+              <a
+                href={getWhatsAppLink("pricing-mobile-apps", lang, pkg.name)}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 typography-button rounded-full bg-secondary/50 hover:bg-secondary border border-border/80 text-foreground transition-colors cursor-pointer"
+              >
+                <span>{pkg.ctaText}</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

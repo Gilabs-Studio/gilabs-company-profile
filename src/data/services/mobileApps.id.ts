@@ -3,112 +3,138 @@ import type { ServicePageData } from "./types";
 export const mobileAppsId: ServicePageData = {
   slug: "jasa-pembuatan-aplikasi-mobile",
   category: "software",
-  eyebrow: "Jasa Pembuatan Aplikasi Android & iOS",
-  title: "Aplikasi Mobile Modern yang Cepat, Ringan, dan Siap Bersaing di Play Store & App Store",
-  subtitle: "Kami merancang dan mengembangkan aplikasi mobile berkualitas tinggi dengan Flutter dan React Native untuk kebutuhan customer-facing maupun aplikasi operasional tim lapangan Anda.",
-  heroIllustration: "/illustrations/mobile-app-sketch.png",
+  eyebrow: "Aplikasi Mobile Android & iOS",
+  title: "Aplikasi Mobile yang Dipakai, Bukan Cuma Di-download Lalu Dihapus",
+  subtitle: "Kami bangun aplikasi Android dan iOS dengan pengalaman pengguna yang bikin orang betah, bukan sekadar fitur lengkap tapi ribet dipakai.",
+  heroIllustration: "/images/services/mobile-apps/hero-mobile-apps.png",
   metaTitle: "Jasa Pembuatan Aplikasi Mobile Android & iOS | Gilabs",
-  metaDescription: "Jasa pembuatan aplikasi Android & iOS profesional dengan Flutter. Aplikasi mobile untuk bisnis, sales lapangan, e-commerce, dan sistem operasional.",
+  metaDescription: "Jasa pembuatan aplikasi Android & iOS profesional. Desain UX intuitif, performa cepat 60fps native & cross-platform, dan siap scale.",
   keywords: [
-    "jasa pembuatan aplikasi",
-    "jasa pembuatan aplikasi android ios",
+    "jasa pembuatan aplikasi mobile",
+    "jasa pembuatan aplikasi android",
+    "jasa pembuatan aplikasi ios",
+    "developer aplikasi flutter",
     "jasa bikin aplikasi mobile",
-    "developer aplikasi android",
-    "jasa pembuatan aplikasi flutter",
-    "biaya buat aplikasi mobile",
-    "jasa develop aplikasi startup"
+    "biaya pembuatan aplikasi mobile",
+    "jasa publish play store app store"
   ],
-  primaryCtaText: "Konsultasi Aplikasi Mobile",
-  secondaryCtaText: "Lihat Fitur Mobile",
-  problemsTitle: "Tantangan Utama Pengembangan Aplikasi Mobile",
-  problemsSubtitle: "Aplikasi yang sering crash, boros baterai, atau lambat akan langsung di-uninstall pengguna.",
+  primaryCtaText: "Diskusikan Kebutuhan Kamu",
+  secondaryCtaText: "Lihat Aplikasi yang Sudah Dibuat",
+  problemsTitle: "Kenapa Banyak Aplikasi Gagal di Tangan User?",
+  problemsSubtitle: "Tiga kendala utama yang menyebabkan aplikasi ditinggalkan pengguna sesaat setelah diinstal.",
   problems: [
     {
-      pain: "Biaya Dobel untuk iOS dan Android",
-      solution: "Kami memanfaatkan teknologi Flutter sehingga Anda mendapatkan 2 aplikasi (Android & iOS) dengan 1 basis kode hemat biaya."
+      pain: "UX Membingungkan",
+      solution: "User install, coba sebentar, lalu uninstall karena ribet dipakai."
     },
     {
-      pain: "Aplikasi Lambat & Boros Memori",
-      solution: "Optimasi arsitektur native dengan kompilasi binary efisien dan konsumsi memori minimal."
+      pain: "Performa Lambat",
+      solution: "Aplikasi lag, sering force close, rating jatuh di store."
     },
     {
-      pain: "Proses Upload App Store Sering Ditolak",
-      solution: "Kami mendampingi proses submission dan review hingga aplikasi resmi terbit di Google Play Store & Apple App Store."
+      pain: "Nggak Ada Rencana Maintenance",
+      solution: "Update OS baru, aplikasi malah error karena nggak pernah dipelihara."
     }
   ],
-  featuresTitle: "Kemampuan Aplikasi Mobile Gilabs",
-  featuresSubtitle: "Fitur mutakhir untuk menunjang kepuasan pengguna dan produktivitas tim.",
+  featuresTitle: "Beberapa Kategori yang Sering Kami Kerjakan",
+  featuresSubtitle: "Solusi aplikasi mobile yang kami kembangkan untuk berbagai kebutuhan bisnis dan operasional.",
   features: [
     {
-      title: "Dukungan Offline Mode & Sinkronisasi",
-      description: "Data tetap dapat diinput saat jaringan internet mati dan otomatis tersinkron saat online kembali."
+      title: "Aplikasi E-Commerce & Marketplace",
+      description: "Katalog produk interaktif, keranjang belanja, checkout kilat, dan payment gateway otomatis."
     },
     {
-      title: "Push Notification Terarah",
-      description: "Kirim pemberitahuan promo, update status transaksi, atau reminder langsung ke layar smartphone pengguna."
+      title: "Aplikasi On-Demand Service",
+      description: "Pemesanan layanan instan, pelacakan rute GPS real-time, dan estimasi tarif otomatis."
     },
     {
-      title: "GPS Geofencing & Pelacakan Lokasi",
-      description: "Fitur presensi lokasi akurat dan pelacakan rute untuk tim sales / logistik lapangan."
+      title: "Aplikasi Internal Perusahaan",
+      description: "Presensi berbasis geofencing, approval operasional, inspeksi lapangan, dan tracking tim sales."
     },
     {
-      title: "Integrasi Kamera, QR Barcode & Biometrik",
-      description: "Login dengan Fingerprint / Face ID serta pemindaian barcode instan untuk input data cepat."
+      title: "Aplikasi Booking & Reservasi",
+      description: "Pemesanan tiket, reservasi jadwal, manajemen kuota real-time, dan pengingat notifikasi otomatis."
+    },
+    {
+      title: "Aplikasi Komunitas / Sosial",
+      description: "Feed aktivitas, forum diskusi, profil member, direct chat, dan grup komunitas eksklusif."
+    },
+    {
+      title: "Aplikasi dengan Fitur IoT",
+      description: "Koneksi hardware via Bluetooth / Wi-Fi, monitoring sensor real-time, dan kontrol perangkat jarak jauh."
     }
   ],
-  packagesTitle: "Pilihan Paket Pembuatan Aplikasi Mobile",
-  packagesSubtitle: "Investasi pengembangan aplikasi mobile terstruktur dari MVP hingga Enterprise.",
+  packagesTitle: "Investasi Sesuai Kompleksitas Aplikasi",
+  packagesSubtitle: "Estimasi biaya pengembangan aplikasi mobile transparan. Source code 100% milik Anda.",
   packages: [
     {
-      name: "MVP / Aplikasi Operasional",
-      price: "Mulai Rp 20.000.000",
-      description: "Cocok untuk aplikasi tim internal (sales tracking, absensi, inspeksi lapangan).",
+      name: "BASIC",
+      price: "Mulai Rp 5.000.000",
+      isPopular: false,
+      description: "Untuk aplikasi dengan fitur inti sederhana",
       features: [
-        "Aplikasi Android & iOS (Flutter)",
-        "Backend REST API & Database",
-        "Fitur GPS & Kamera Scanner",
-        "Push Notification Firebase",
-        "Panel Admin Web untuk Monitoring",
-        "Garansi Bebas Bug 3 Bulan",
-        "Waktu Pengerjaan 4-6 Minggu"
+        "1 Platform (Android atau iOS)",
+        "Maksimal 5 Halaman Utama",
+        "Desain UI Dasar & Responsif",
+        "Setup Local / Cloud Storage",
+        "Garansi Bug Fixes 1 Bulan"
       ]
     },
     {
-      name: "Consumer App & E-Commerce",
-      price: "Mulai Rp 45.000.000",
+      name: "STANDARD",
+      price: "Mulai Rp 15.000.000",
       isPopular: true,
-      description: "Untuk aplikasi publik customer dengan payment gateway, chat, dan membership.",
+      description: "Untuk aplikasi dengan fitur lebih lengkap",
       features: [
-        "Desain UI/UX Eksklusif & Animasi Halus",
-        "Payment Gateway (QRIS, VA, E-Wallet)",
-        "Akun Pengguna, OTP SMS/WA Login",
-        "Bantuan Publish ke Google Play & App Store",
-        "Dashboard Analitik Pengguna Aktif",
-        "Full Source Code & Dokumentasi API",
-        "Garansi & SLA 6 Bulan",
-        "Waktu Pengerjaan 8-12 Minggu"
+        "Android & iOS Sekaligus (Cross-Platform)",
+        "Integrasi Backend & API",
+        "Push Notification Terarah",
+        "Bantuan Submission ke Store",
+        "Garansi & Support 3 Bulan"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Hubungi Kami",
+      isPopular: false,
+      description: "Untuk aplikasi skala besar dengan fitur kompleks",
+      features: [
+        "Fitur Real-Time (Chat, Tracking GPS, dsb)",
+        "Integrasi Payment Gateway & Multi-Vendor",
+        "Skalabilitas Tinggi untuk Jutaan Pengguna",
+        "Security Hardening & Biometric Login",
+        "Dedicated Support & Maintenance SLA"
       ]
     }
   ],
-  techStackTitle: "Teknologi Mobile Terdepan",
-  techStackSubtitle: "Kombinasi performa native 60fps dengan fleksibilitas cross-platform.",
+  techStackTitle: "Teknologi Mobile Berperforma Tinggi",
+  techStackSubtitle: "Kombinasi performa native dengan efisiensi cross-platform modern.",
   techStack: [
-    { name: "Flutter (Dart)", category: "Mobile Framework", description: "Performa visual 60fps yang konsisten di iOS & Android." },
-    { name: "Firebase & Supabase", category: "Mobile Backend", description: "Push notification real-time dan autentikasi aman." }
+    { name: "Flutter (Dart)", category: "Cross-Platform", description: "Performa visual 60fps yang konsisten di iOS & Android dengan satu codebase." },
+    { name: "Kotlin & Swift", category: "Native Interop", description: "Akses modul perangkat keras dan performa native optimal." },
+    { name: "Firebase & Supabase", category: "Mobile Backend", description: "Push notifications real-time, autentikasi aman, dan sinkronisasi data instan." }
   ],
-  faqTitle: "FAQ Aplikasi Mobile",
-  faqSubtitle: "Hal yang sering ditanyakan seputar pembuatan aplikasi mobile.",
+  faqTitle: "Pertanyaan yang Sering Ditanyakan",
+  faqSubtitle: "Hal penting seputar proses pengembangan aplikasi Android & iOS di Gilabs.",
   faqs: [
     {
-      question: "Apakah aplikasi bisa dirilis ke Play Store dan App Store?",
-      answer: "Ya, tim kami mengurus seluruh berkas sertifikasi, konfigurasi privasi, dan proses submission ke Google Play Store dan Apple App Store."
+      question: "Apakah bisa bangun untuk Android dan iOS sekaligus?",
+      answer: "Bisa, tersedia dari paket Standard menggunakan pendekatan cross-platform dengan Flutter sehingga Anda mendapatkan 2 aplikasi dengan efisiensi biaya optimal."
     },
     {
-      question: "Apakah aplikasi bisa diintegrasikan dengan database website yang sudah ada?",
-      answer: "Sangat bisa. Kami dapat menghubungkan aplikasi mobile dengan database web Anda melalui REST API yang aman."
+      question: "Berapa lama proses publish ke App Store?",
+      answer: "Biasanya 1-2 minggu untuk proses review dari Apple App Store dan 3-5 hari kerja untuk Google Play Store. Kami dampingi seluruh prosesnya hingga live."
+    },
+    {
+      question: "Apakah termasuk desain UI/UX?",
+      answer: "Termasuk di semua paket, dengan tingkat kedalaman berbeda mulai dari wireframing hingga interactive high-fidelity prototype."
+    },
+    {
+      question: "Bagaimana dengan maintenance setelah live?",
+      answer: "Tersedia paket maintenance bulanan untuk update kompatibilitas OS baru, monitoring server, dan perbaikan bug berkelanjutan."
     }
   ],
-  ctaTitle: "Wujudkan Ide Aplikasi Mobile Anda Bersama Gilabs",
-  ctaSubtitle: "Konsultasikan konsep aplikasi Anda dengan Mobile Engineer kami sekarang.",
-  ctaButton: "Hubungi Kami via WhatsApp"
+  ctaTitle: "Ide Aplikasi Kamu Siap Diwujudkan",
+  ctaSubtitle: "Dari konsep di kepala sampai live di App Store dan Play Store. Konsultasi awal gratis, tanpa komitmen.",
+  ctaButton: "Mulai Diskusi Gratis"
 };

@@ -1,0 +1,59 @@
+---
+import MobileAppsHero from "./MobileAppsHero.astro";
+import MobileAppsSocialProof from "./MobileAppsSocialProof.astro";
+import MobileAppsProblems from "./MobileAppsProblems.astro";
+import MobileAppsSolutions from "./MobileAppsSolutions.astro";
+import MobileAppsTypes from "./MobileAppsTypes.astro";
+import MobileAppsProcess from "./MobileAppsProcess.astro";
+import MobileAppsPortfolio from "./MobileAppsPortfolio.astro";
+import MobileAppsPricing from "./MobileAppsPricing.astro";
+import MobileAppsFAQ from "./MobileAppsFAQ.astro";
+import MobileAppsCTA from "./MobileAppsCTA.astro";
+import type { ServicePageData } from "../../../data/services/types";
+
+interface Props {
+  lang: "en" | "id";
+  service: ServicePageData;
+}
+
+const { lang, service } = Astro.props;
+---
+
+<div class="mobile-apps-service-page">
+  {/* 1. HERO SECTION */}
+  <MobileAppsHero
+    lang={lang}
+    eyebrow={service.eyebrow}
+    title={service.title}
+    subtitle={service.subtitle}
+    primaryCtaText={service.primaryCtaText}
+    secondaryCtaText={service.secondaryCtaText}
+  />
+
+  {/* 2. SOCIAL PROOF BAR */}
+  <MobileAppsSocialProof lang={lang} />
+
+  {/* 3. MASALAH YANG SERING DITEMUI */}
+  <MobileAppsProblems lang={lang} />
+
+  {/* 4. SOLUSI / VALUE PROPOSITION (3 PILAR) */}
+  <MobileAppsSolutions lang={lang} />
+
+  {/* 5. BEBERAPA KATEGORI APLIKASI (6 ITEMS) */}
+  <MobileAppsTypes lang={lang} />
+
+  {/* 6. PROSES KERJA (4 LANGKAH) */}
+  <MobileAppsProcess lang={lang} />
+
+  {/* 7. PORTOFOLIO / STUDI KASUS */}
+  <MobileAppsPortfolio lang={lang} />
+
+  {/* 8. PRICING / PAKET */}
+  <MobileAppsPricing lang={lang} />
+
+  {/* 9. FAQ */}
+  <MobileAppsFAQ lang={lang} />
+
+  {/* 10. FINAL CTA */}
+  <MobileAppsCTA lang={lang} />
+</div>

@@ -3,98 +3,137 @@ import type { ServicePageData } from "./types";
 export const mobileAppsEn: ServicePageData = {
   slug: "jasa-pembuatan-aplikasi-mobile",
   category: "software",
-  eyebrow: "Android & iOS Mobile App Development",
-  title: "Modern Mobile Applications Engineered with High Performance",
-  subtitle: "We build intuitive, fluid, and scalable iOS and Android mobile applications using Flutter and React Native for customer experiences and enterprise field operations.",
-  heroIllustration: "/illustrations/mobile-app-sketch.png",
-  metaTitle: "Mobile App Development Services Indonesia | Gilabs",
-  metaDescription: "Custom iOS and Android mobile app development using Flutter. Enterprise field sales apps, mobile commerce, and customer loyalty solutions with full source code.",
+  eyebrow: "Android & iOS Mobile Apps",
+  title: "Mobile Apps People Keep Using, Not Just Download and Delete",
+  subtitle: "We build Android and iOS apps crafted around intuitive user experiences, not just bloated feature lists that confuse users.",
+  heroIllustration: "/images/services/mobile-apps/hero-mobile-apps.png",
+  metaTitle: "Android & iOS Mobile App Development Services | Gilabs",
+  metaDescription: "Professional mobile app development for Android & iOS. High-performance cross-platform Flutter engineering, intuitive UX, and scalable architecture.",
   keywords: [
-    "mobile app development indonesia",
-    "flutter app development agency",
-    "ios android mobile development",
-    "enterprise mobile application development",
-    "custom mobile app development company"
+    "mobile app development services",
+    "android ios app development",
+    "flutter app developers",
+    "custom mobile application",
+    "app store publishing services",
+    "enterprise mobile apps"
   ],
-  primaryCtaText: "Discuss Mobile App",
-  secondaryCtaText: "Explore Features",
-  problemsTitle: "Common Pitfalls in Mobile Development",
-  problemsSubtitle: "Slow, crashing, or battery-draining apps get uninstalled immediately.",
+  primaryCtaText: "Discuss Your App Idea",
+  secondaryCtaText: "View Published Apps",
+  problemsTitle: "Why Do Many Mobile Apps Fail in Users' Hands?",
+  problemsSubtitle: "Three primary reasons users abandon apps shortly after installation.",
   problems: [
     {
-      pain: "Double Budget for iOS & Android",
-      solution: "We build with Flutter cross-platform architecture, cutting cost and development time by half while maintaining native 60fps performance."
+      pain: "Confusing UX",
+      solution: "Users install, struggle with navigation, and uninstall within minutes."
     },
     {
-      pain: "App Store Rejections",
-      solution: "We handle compliance, store guidelines, and the complete submission process for Google Play and Apple App Store."
+      pain: "Sluggish Performance",
+      solution: "Laggy interactions, frequent force closes, and tanking app store ratings."
+    },
+    {
+      pain: "Zero Maintenance Strategy",
+      solution: "New OS updates break functionality because the codebase is never maintained."
     }
   ],
-  featuresTitle: "Core Mobile App Features",
-  featuresSubtitle: "Engineered for high engagement and field reliability.",
+  featuresTitle: "App Categories We Regularly Build",
+  featuresSubtitle: "Engineered mobile solutions tailored to diverse operational and customer engagement models.",
   features: [
     {
-      title: "Offline-First Data Sync",
-      description: "Allows offline field data logging that auto-syncs securely when connectivity is restored."
+      title: "E-Commerce & Marketplace Apps",
+      description: "Interactive catalogs, smart carts, instant checkout, and automated payment gateways."
     },
     {
-      title: "Real-time Push Notifications",
-      description: "Deliver immediate order updates, task dispatches, and marketing campaigns to user lock screens."
+      title: "On-Demand Service Apps",
+      description: "Real-time service booking, live GPS route tracking, and instant automated pricing."
     },
     {
-      title: "GPS Geofencing & Biometrics",
-      description: "Accurate field check-ins, route tracking, and secure biometric authentication (Face ID / Touch ID)."
+      title: "Internal Enterprise Apps",
+      description: "Geofenced attendance, operational approvals, field inspections, and sales dispatch."
+    },
+    {
+      title: "Booking & Reservation Apps",
+      description: "Ticket purchasing, schedule booking, real-time quota sync, and automated reminders."
+    },
+    {
+      title: "Community & Social Apps",
+      description: "Activity feeds, discussion threads, member profiles, direct messaging, and private groups."
+    },
+    {
+      title: "IoT Connected Apps",
+      description: "Hardware pairing via Bluetooth/Wi-Fi, live telemetry monitoring, and remote device control."
     }
   ],
-  packagesTitle: "Mobile Development Investment",
-  packagesSubtitle: "Structured milestones from minimal viable products to complex enterprise apps.",
+  packagesTitle: "Investment Scaled to App Complexity",
+  packagesSubtitle: "Transparent mobile engineering pricing with full source code ownership.",
   packages: [
     {
-      name: "Operational Field App",
-      price: "From $1,400",
-      description: "For internal field operations (sales tracking, inspections, driver logistics).",
+      name: "BASIC",
+      price: "From $350",
+      isPopular: false,
+      description: "For apps with simple core feature sets",
       features: [
-        "Flutter iOS & Android Codebase",
-        "REST API & Database Backend",
-        "GPS Geofencing & Camera Barcode",
-        "Firebase Realtime Notifications",
-        "Web Admin Monitoring Panel",
-        "3-Month Bug Warranty",
-        "4-6 Weeks Delivery"
+        "1 Platform (Android or iOS)",
+        "Up to 5 Primary Screens",
+        "Essential Responsive UI Design",
+        "Local & Cloud Storage Setup",
+        "1-Month Bug Fix Warranty"
       ]
     },
     {
-      name: "Consumer & E-Commerce App",
-      price: "From $3,000",
+      name: "STANDARD",
+      price: "From $950",
       isPopular: true,
-      description: "For public customer apps with payments, user loyalty, and messaging.",
+      description: "For apps with complete functional requirements",
       features: [
-        "Custom UI/UX & Micro-Animations",
-        "Payment Gateway & Digital Wallets",
-        "Social / OTP Authentication",
-        "Play Store & App Store Publishing",
-        "Real-Time Analytics Dashboard",
-        "Full Git Handover & API Docs",
-        "6-Month SLA Support",
-        "8-12 Weeks Delivery"
+        "Android & iOS Simultaneously (Cross-Platform)",
+        "Backend API & Database Integration",
+        "Targeted Push Notifications",
+        "App Store & Play Store Publishing Assistance",
+        "3-Month Warranty & Technical Support"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Contact Us",
+      isPopular: false,
+      description: "For large-scale apps with complex architecture",
+      features: [
+        "Real-Time Engines (Chat, Live GPS Tracking)",
+        "Payment Gateway & Multi-Vendor Logic",
+        "High Concurrency Infrastructure for Millions of Users",
+        "Security Hardening & Biometric Auth",
+        "Dedicated Support & Maintenance SLA"
       ]
     }
   ],
-  techStackTitle: "Mobile Stack",
-  techStackSubtitle: "Ensuring 60fps smoothness and rapid cross-platform updates.",
+  techStackTitle: "High-Performance Mobile Tech Stack",
+  techStackSubtitle: "Combining native visual fidelity with modern cross-platform efficiency.",
   techStack: [
-    { name: "Flutter (Dart)", category: "Mobile Framework", description: "Bespoke compilation to native ARM machine code." },
-    { name: "Firebase & Supabase", category: "Cloud Backend", description: "Scalable realtime backend and notification services." }
+    { name: "Flutter (Dart)", category: "Cross-Platform", description: "Consistent 60fps rendering across iOS & Android from a unified codebase." },
+    { name: "Kotlin & Swift", category: "Native Interop", description: "Direct hardware interop and optimized platform performance." },
+    { name: "Firebase & Supabase", category: "Mobile Backend", description: "Real-time push notifications, secure authentication, and cloud storage." }
   ],
-  faqTitle: "Mobile App FAQs",
-  faqSubtitle: "Frequently asked questions regarding mobile app development.",
+  faqTitle: "Frequently Asked Questions",
+  faqSubtitle: "Key questions regarding Android & iOS mobile app development with Gilabs.",
   faqs: [
     {
-      question: "Do you assist with publishing on Google Play and Apple App Store?",
-      answer: "Yes, we handle all store certificates, privacy policy compliance, and the app review process until approval."
+      question: "Can you build for Android and iOS simultaneously?",
+      answer: "Yes, available starting from our Standard tier using a cross-platform Flutter approach, giving you two high-performance apps with optimal budget efficiency."
+    },
+    {
+      question: "How long does it take to publish to the App Store?",
+      answer: "Typically 1-2 weeks for Apple App Store review and 3-5 business days for Google Play Store. We handle and assist through the entire submission process."
+    },
+    {
+      question: "Is UI/UX design included in the package?",
+      answer: "Yes, included across all tiers with varying depth, from clean wireframing to high-fidelity clickable interactive prototypes."
+    },
+    {
+      question: "What about maintenance after launch?",
+      answer: "We offer monthly maintenance retainers covering new OS updates, server monitoring, security patching, and ongoing feature iterations."
     }
   ],
-  ctaTitle: "Ready to Build Your Mobile App?",
-  ctaSubtitle: "Talk to our Mobile Architects on WhatsApp for a free scoping session.",
-  ctaButton: "Contact on WhatsApp"
+  ctaTitle: "Ready to Bring Your App Idea to Life?",
+  ctaSubtitle: "From initial concept to live release on the App Store and Google Play Store. Free consultation, zero commitment.",
+  ctaButton: "Start Free Discussion"
 };
