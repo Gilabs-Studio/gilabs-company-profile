@@ -16,6 +16,7 @@ import EcommercePage from "../../../components/services/ecommerce/EcommercePage.
 import SoftwareHousePage from "../../../components/services/software-house/SoftwareHousePage.astro";
 import CustomSoftwarePage from "../../../components/services/custom-software/CustomSoftwarePage.astro";
 import MobileAppsPage from "../../../components/services/mobile-apps/MobileAppsPage.astro";
+import ErpCrmPage from "../../../components/services/erp-crm/ErpCrmPage.astro";
 import WorkResultDrawer from "../../../components/ui/WorkResultDrawer";
 import { serviceSlugs, getServiceData } from "../../../data/services/index";
 
@@ -126,6 +127,8 @@ const breadcrumbSchema = {
       <CustomSoftwarePage lang={lang} service={service} />
     ) : slug === "jasa-pembuatan-aplikasi-mobile" ? (
       <MobileAppsPage lang={lang} service={service} />
+    ) : slug === "jasa-pembuatan-erp-crm" ? (
+      <ErpCrmPage lang={lang} service={service} />
     ) : (
       <>
         <LandingHero

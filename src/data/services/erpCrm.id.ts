@@ -3,108 +3,121 @@ import type { ServicePageData } from "./types";
 export const erpCrmId: ServicePageData = {
   slug: "jasa-pembuatan-erp-crm",
   category: "enterprise",
-  eyebrow: "Sistem ERP & CRM Kustom Indonesia",
-  title: "Sistem ERP & CRM Kustom yang Menghubungkan Operasional, Gudang, dan Penjualan",
-  subtitle: "Otomasi rantai pasok manufaktur, manajemen stok gudang multi-cabang, dan pipeline sales lapangan dalam satu platform terpadu yang dirancang khusus mengikuti proses bisnis Anda.",
-  heroIllustration: "/illustrations/erp-crm-sketch.png",
+  eyebrow: "Sistem ERP & CRM Custom",
+  title: "Satu Sistem untuk Operasional, Penjualan, dan Data Pelanggan Kamu",
+  subtitle: "Berhenti kerja pakai belasan spreadsheet yang nggak saling nyambung. Kami bangun ERP dan CRM yang benar-benar sesuai proses bisnis kamu.",
+  heroIllustration: "/images/services/erp-crm/hero-erp-crm.png",
   metaTitle: "Jasa Pembuatan Sistem ERP & CRM Custom Indonesia | Gilabs",
-  metaDescription: "Jasa pembuatan ERP custom manufaktur, distributor, dan CRM sales lapangan terintegrasi WhatsApp. Bebas biaya lisensi tahunan, full source code milik Anda.",
+  metaDescription: "Jasa pembuatan sistem ERP dan CRM custom Indonesia. Integrasi operasional, stok gudang, penjualan, dan data pelanggan dalam satu sistem terpadu.",
   keywords: [
-    "jasa pembuatan ERP custom",
-    "jasa pembuatan CRM custom",
-    "vendor ERP indonesia",
-    "software ERP manufaktur custom",
-    "CRM sales lapangan whatsapp",
-    "software ERP distributor",
-    "sistem ERP multi cabang",
-    "custom CRM indonesia"
+    "jasa pembuatan erp custom",
+    "jasa pembuatan crm custom",
+    "software erp indonesia",
+    "sistem crm sales lapangan",
+    "software inventory dan purchasing",
+    "custom erp crm indonesia"
   ],
-  primaryCtaText: "Konsultasi ERP / CRM",
-  secondaryCtaText: "Lihat Modul Sistem",
-  problemsTitle: "Kendala ERP Pabrikan / Off-the-shelf di Perusahaan Indonesia",
-  problemsSubtitle: "Banyak implementasi ERP gagal karena sistem terlalu kaku dan biaya lisensi per user yang sangat mahal.",
+  primaryCtaText: "Diskusikan Kebutuhan Kamu",
+  secondaryCtaText: "Lihat Sistem yang Sudah Dibuat",
+  problemsTitle: "Tanda-tanda Bisnis Kamu Butuh ERP/CRM",
+  problemsSubtitle: "Tiga kendala operasional yang menandakan bisnis Anda sudah melampaui batas kemampuan spreadsheet manual.",
   problems: [
     {
-      pain: "Biaya Lisensi Tahunan Mencapai Ratusan Juta",
-      solution: "ERP Custom Gilabs dimiliki 100% tanpa biaya perpanjangan lisensi per-user selamanya."
+      pain: "Data Tersebar di Mana-mana",
+      solution: "Stok di Excel, penjualan di WhatsApp, laporan keuangan terpisah lagi."
     },
     {
-      pain: "Karyawan Enggan Pakai Karena Terlalu Rumit",
-      solution: "Antarmuka (UI/UX) kami desain simpel, bersih, dan intuitif sehingga staf gudang dan admin mudah beradaptasi."
+      pain: "Follow-up Pelanggan Sering Kelewat",
+      solution: "Nggak ada sistem yang ingatkan siapa harus dihubungi dan kapan."
     },
     {
-      pain: "Tidak Nyambung dengan WhatsApp & SOP Lokal",
-      solution: "Integrasi langsung dengan WhatsApp Business API untuk notifikasi approval PO dan reminder tagihan piutang."
+      pain: "Laporan Butuh Waktu Berhari-hari",
+      solution: "Owner atau manajemen harus tunggu lama cuma buat lihat angka penjualan bulan ini."
     }
   ],
-  featuresTitle: "Modul Unggulan ERP & CRM Gilabs",
-  featuresSubtitle: "Dapat dikustomisasi penuh sesuai departemen dan alur kerja perusahaan Anda.",
+  featuresTitle: "Bagaimana Kami Menyusun Menu ERP & CRM Kamu",
+  featuresSubtitle: "Supaya nggak membingungkan tim yang pakai, kami pisahkan sistem jadi dua sisi besar: operasional (ERP) dan hubungan pelanggan (CRM).",
   features: [
     {
-      title: "Modul Purchasing & Inventory Gudang",
-      description: "Otomasi Purchase Request (PR), Purchase Order (PO), pencatatan batch number, mutasi antar cabang, dan kartu stok real-time."
+      title: "Sisi ERP: Operasional & Sumber Daya",
+      description: "Inventory stok real-time, purchasing PO, keuangan & akuntansi otomatis, HR & payroll, produksi BOM, dan multi-cabang."
     },
     {
-      title: "Modul Produksi & Bill of Materials (BOM)",
-      description: "Perhitungan HPP akurat, pelacakan proses kerja mesin pabrik (Work Order), dan efisiensi bahan baku."
-    },
-    {
-      title: "CRM Monitoring Sales Lapangan",
-      description: "Check-in kunjungan klien berbasis GPS, manajemen pipeline prospek B2B, dan riwayat follow-up terpusat."
-    },
-    {
-      title: "Finance & Laporan Laba Rugi Otomatis",
-      description: "Pencatatan faktur piutang (AR), utang dagang (AP), rekonsiliasi kas bank, serta neraca keuangan instan."
+      title: "Sisi CRM: Penjualan & Pelanggan",
+      description: "Sales pipeline dari leads ke closing, riwayat kontak, jadwal follow-up otomatis, quotation/invoice, dan performa tim sales."
     }
   ],
-  packagesTitle: "Skema Implementasi ERP & CRM",
-  packagesSubtitle: "Pendekatan bertahap (phased rollout) untuk memastikan adopsi sistem berjalan mulus tanpa mengganggu operasional.",
+  packagesTitle: "Sesuaikan dengan Skala Operasional Kamu",
+  packagesSubtitle: "Investasi transparan tanpa biaya lisensi per user. Source code 100% menjadi aset milik perusahaan Anda.",
   packages: [
     {
-      name: "CRM Sales & Pipeline System",
-      price: "Mulai Rp 25.000.000",
-      description: "Fokus pada akselerasi penjualan B2B, tracking sales lapangan, dan follow-up prospek.",
+      name: "BASIC",
+      price: "Mulai Rp 5.000.000",
+      isPopular: false,
+      description: "Untuk bisnis kecil yang baru mulai butuh sistem terpusat",
       features: [
-        "Manajemen Lead & Deal Pipeline",
-        "Tracking GPS & Check-In Sales Lapangan",
-        "Integrasi WhatsApp Chat History",
-        "Pencatatan Penawaran & Surat Jalan",
-        "Dashboard Omzet & Target Sales",
-        "Pengerjaan 4-6 Minggu"
+        "1-2 Modul Inti (misal: Inventory atau CRM Sales)",
+        "Single User Role",
+        "Laporan Dasar & Ekspor Data",
+        "Database Setup & Cloud Hosting",
+        "Garansi Bug Fixes 1 Bulan"
       ]
     },
     {
-      name: "Custom ERP Core (Manufaktur / Distribusi)",
-      price: "Mulai Rp 60.000.000",
+      name: "STANDARD",
+      price: "Mulai Rp 15.000.000",
       isPopular: true,
-      description: "Sistem terpadu menyeluruh untuk inventaris, purchasing, produksi, dan finance.",
+      description: "Untuk bisnis dengan beberapa divisi yang perlu terintegrasi",
       features: [
-        "Modul Inventory & Multi-Gudang",
-        "Modul Purchasing & Alur Approval PO",
-        "Modul Produksi / BOM / Work Order",
-        "Invoicing, Faktur Pajak & Akuntansi",
-        "Role Permissions & Audit Trail Lengkap",
-        "Full Source Code & Training Karyawan",
-        "Garansi & SLA Dedicated 6-12 Bulan",
-        "Pengerjaan 8-16 Minggu"
+        "3-5 Modul Terhubung Antar Divisi",
+        "Multi User & Role Permission",
+        "Dashboard Laporan Real-Time",
+        "Notifikasi Otomatis (WhatsApp/Email)",
+        "Garansi & Support 3 Bulan"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Hubungi Kami",
+      isPopular: false,
+      description: "Untuk enterprise dengan kebutuhan kompleks",
+      features: [
+        "Modul Lengkap ERP + CRM Terintegrasi Penuh",
+        "Multi Cabang & Multi Gudang Real-Time",
+        "Integrasi Sistem Pihak Ketiga (Akuntansi, POS, dsb)",
+        "Audit Log Aktivitas & Security Hardening",
+        "Dedicated Support & Maintenance SLA"
       ]
     }
   ],
   techStackTitle: "Arsitektur Enterprise Resilien",
-  techStackSubtitle: "Keamanan transaksi level perbankan dengan audit log tidak dapat dimanipulasi.",
+  techStackSubtitle: "Dibangun dengan fondasi teknologi standar industri untuk konkurensi tinggi dan integritas data mutlak.",
   techStack: [
-    { name: "PostgreSQL ACID", category: "Database", description: "Integritas relasional tinggi untuk data finansial." },
-    { name: "Golang Microservices", category: "Backend", description: "Pemrosesan ribuan transaksi per detik tanpa lag." }
+    { name: "PostgreSQL ACID", category: "Data Tier", description: "Database relasional berintegritas tinggi tanpa risiko inkonsistensi saldo." },
+    { name: "Golang & Node.js", category: "Backend Engine", description: "Throughput tinggi sanggup melayani ribuan transaksi harian serentak." },
+    { name: "Next.js & React", category: "Frontend Web", description: "Antarmuka dashboard cepat, interaktif, dan mudah digunakan tim operasional." }
   ],
-  faqTitle: "FAQ Sistem ERP & CRM",
-  faqSubtitle: "Hal yang sering ditanyakan seputar implementasi ERP custom.",
+  faqTitle: "Pertanyaan yang Sering Ditanyakan",
+  faqSubtitle: "Hal penting seputar implementasi ERP dan CRM custom di Gilabs.",
   faqs: [
     {
-      question: "Apakah bisa migrasi data historis dari Excel atau sistem lama?",
-      answer: "Bisa. Tim kami menyediakan layanan pembersihan dan migrasi data pelanggan, stok awal, dan saldo piutang ke sistem baru."
+      question: "Apakah ERP dan CRM harus dibangun sekaligus?",
+      answer: "Tidak harus, bisa mulai dari salah satu modul dulu lalu dikembangkan bertahap."
+    },
+    {
+      question: "Bagaimana kalau tim kami belum terbiasa pakai sistem digital?",
+      answer: "Kami sediakan training dan dokumentasi penggunaan saat sistem live."
+    },
+    {
+      question: "Apakah data kami aman?",
+      answer: "Ya, termasuk backup berkala dan pengaturan akses berdasarkan role."
+    },
+    {
+      question: "Bisa integrasi dengan software akuntansi yang sudah kami pakai?",
+      answer: "Bisa, selama tersedia API atau akses data yang memungkinkan."
     }
   ],
-  ctaTitle: "Modernisasi Operasional Perusahaan Anda",
-  ctaSubtitle: "Konsultasikan alur kerja dan rancangan ERP kustom Anda bersama Technical Lead Gilabs.",
-  ctaButton: "Jadwalkan Diskusi via WhatsApp"
+  ctaTitle: "Berhenti Kejar Data yang Tersebar di Banyak Tempat",
+  ctaSubtitle: "Mulai dari satu modul, kami bantu rancang sistem yang tumbuh bareng bisnis kamu. Konsultasi awal gratis, tanpa komitmen.",
+  ctaButton: "Mulai Diskusi Gratis"
 };

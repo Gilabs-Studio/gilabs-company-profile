@@ -3,100 +3,121 @@ import type { ServicePageData } from "./types";
 export const erpCrmEn: ServicePageData = {
   slug: "jasa-pembuatan-erp-crm",
   category: "enterprise",
-  eyebrow: "Custom ERP & CRM Software Indonesia",
-  title: "Custom ERP & CRM Systems Unifying Operations, Warehouses, and Sales",
-  subtitle: "Automate manufacturing supply chains, multi-warehouse stock management, and field sales pipelines in one unified platform tailored 100% to your operational SOPs.",
-  heroIllustration: "/illustrations/erp-crm-sketch.png",
-  metaTitle: "Custom ERP & CRM Software Development Indonesia | Gilabs",
-  metaDescription: "Custom ERP and CRM development services in Indonesia. Zero recurring license fees, manufacturing and distribution modules, and WhatsApp API integration.",
+  eyebrow: "Custom ERP & CRM System",
+  title: "One Unified System for Operations, Sales, and Customer Data",
+  subtitle: "Stop running your business across dozens of disconnected spreadsheets. We build bespoke ERP and CRM platforms tailored exactly to your real operational workflows.",
+  heroIllustration: "/images/services/erp-crm/hero-erp-crm.png",
+  metaTitle: "Custom ERP & CRM System Development | Gilabs",
+  metaDescription: "Custom ERP and CRM development services. Seamlessly unify multi-warehouse inventory, purchasing, financial ledgering, sales pipelines, and customer tracking.",
   keywords: [
-    "custom erp development indonesia",
-    "custom crm software development",
-    "manufacturing erp vendor indonesia",
-    "distribution supply chain software",
-    "whatsapp integrated crm system"
+    "custom erp development",
+    "custom crm development",
+    "enterprise operations software",
+    "b2b sales pipeline software",
+    "multi warehouse inventory system",
+    "bespoke erp crm indonesia"
   ],
-  primaryCtaText: "Discuss ERP / CRM",
-  secondaryCtaText: "Explore System Modules",
-  problemsTitle: "Why Traditional ERP Packages Fail",
-  problemsSubtitle: "Bloated off-the-shelf systems cost hundreds of thousands of dollars while failing to fit local workflows.",
+  primaryCtaText: "Discuss Your Needs",
+  secondaryCtaText: "View Built Systems",
+  problemsTitle: "Signs Your Business Has Outgrown Spreadsheets",
+  problemsSubtitle: "Three operational bottlenecks showing your company needs a centralized ERP and CRM platform.",
   problems: [
     {
-      pain: "Expensive Annual Per-User Licenses",
-      solution: "Gilabs builds custom ERP platforms as a perpetual corporate asset with 0 monthly per-seat licensing fees."
+      pain: "Data Scattered Everywhere",
+      solution: "Inventory in Excel, sales discussions on WhatsApp, and financial ledgers completely disconnected."
     },
     {
-      pain: "Complicated Interfaces Staff Avoid",
-      solution: "We build intuitive, clean web interfaces enabling warehouse workers and accountants to adapt quickly."
+      pain: "Customer Follow-ups Frequently Missed",
+      solution: "No automated reminder system tracking who needs to be contacted, when, and with what urgency."
+    },
+    {
+      pain: "Reporting Takes Days to Reconcile",
+      solution: "Business owners and directors wait days just to get clear figures on monthly revenue and margins."
     }
   ],
-  featuresTitle: "Core ERP & CRM Modules",
-  featuresSubtitle: "Fully customizable across your departments and logistics workflows.",
+  featuresTitle: "How We Architect Your ERP & CRM Navigation",
+  featuresSubtitle: "To keep daily usage intuitive for every team member, we separate the system into two major pillars: Operations (ERP) and Customer Relationships (CRM).",
   features: [
     {
-      title: "Inventory & Purchasing Engine",
-      description: "Purchase Requisitions, automated PO workflows, batch tracking, and real-time multi-depot stock registers."
+      title: "ERP Core: Operations & Resources",
+      description: "Real-time inventory balances, PO purchasing, automated journals and P&L, HR & payroll, BOM manufacturing, and multi-depot sync."
     },
     {
-      title: "Production & Bill of Materials (BOM)",
-      description: "Precise COGS calculation, shop floor work order tracking, and raw material waste minimization."
-    },
-    {
-      title: "Field Sales & B2B CRM",
-      description: "GPS-enabled customer visit logs, quotation generators, and WhatsApp conversation history."
-    },
-    {
-      title: "Automated Financial Statements",
-      description: "Accounts Receivable, Accounts Payable, automated ledger entries, and instant balance sheets."
+      title: "CRM Core: Sales & Customers",
+      description: "Visual sales pipeline from lead to closing, contact history, automated follow-up schedules, quotations/invoices, and team metrics."
     }
   ],
-  packagesTitle: "Implementation Roadmap",
-  packagesSubtitle: "Phased rollout models ensuring zero operational disruptions.",
+  packagesTitle: "Investment Scaled to Operational Scale",
+  packagesSubtitle: "Transparent development investment with zero recurring per-user licensing fees. 100% full source code ownership.",
   packages: [
     {
-      name: "CRM Sales & Pipeline",
-      price: "From $1,700",
-      description: "For B2B companies accelerating revenue, sales agent visits, and follow-ups.",
+      name: "BASIC",
+      price: "From $350",
+      isPopular: false,
+      description: "For small businesses taking their first step toward centralized digital operations",
       features: [
-        "Lead & Deal Pipeline Management",
-        "GPS Sales Check-ins & Routes",
-        "WhatsApp API Integration",
-        "Quotations & Dispatch Tracking",
-        "4-6 Weeks Delivery"
+        "1-2 Core Modules (e.g. Inventory or Sales CRM)",
+        "Single User Role",
+        "Essential Reports & Data Export",
+        "Database Architecture & Cloud Setup",
+        "1-Month Bug Fix Warranty"
       ]
     },
     {
-      name: "Full Enterprise ERP Core",
-      price: "From $4,000",
+      name: "STANDARD",
+      price: "From $950",
       isPopular: true,
-      description: "Comprehensive platform for manufacturing, distribution, and multi-depot inventory.",
+      description: "For businesses with multiple divisions requiring seamless cross-departmental sync",
       features: [
-        "Inventory & Multi-Warehouse Sync",
-        "Purchasing & Approval Workflows",
-        "Production & Bill of Materials (BOM)",
-        "Invoicing & Financial Accounting",
-        "Full Audit Logs & Role Permissions",
-        "Full Source Code & Staff Training",
-        "6-12 Month SLA Support",
-        "8-16 Weeks Delivery"
+        "3-5 Interconnected Cross-Department Modules",
+        "Multi-User & Role Permissions",
+        "Real-Time Executive Reporting Dashboard",
+        "Automated Notifications (WhatsApp/Email)",
+        "3-Month Warranty & Dedicated Support"
+      ]
+    },
+    {
+      name: "CUSTOM",
+      price: "Contact Us",
+      isPopular: false,
+      description: "For large enterprise platforms with complex operational requirements",
+      features: [
+        "Full ERP + CRM Suite with End-to-End Automation",
+        "Multi-Branch & Multi-Warehouse Live Sync",
+        "Third-Party Integrations (Accounting, POS, etc.)",
+        "Audit Logging & Security Hardening",
+        "Dedicated Support & Enterprise SLA"
       ]
     }
   ],
-  techStackTitle: "Enterprise Engineering Foundation",
-  techStackSubtitle: "Bank-grade data integrity and immutable audit logs.",
+  techStackTitle: "Resilient Enterprise Architecture",
+  techStackSubtitle: "Engineered with industry-standard technologies for high concurrency and strict data integrity.",
   techStack: [
-    { name: "PostgreSQL ACID", category: "Database", description: "Guaranteed transactional consistency." },
-    { name: "Golang Microservices", category: "Backend", description: "Ultra-fast execution across millions of records." }
+    { name: "PostgreSQL ACID", category: "Data Tier", description: "High-integrity relational database with zero risk of balance inconsistency." },
+    { name: "Golang & Node.js", category: "Backend Engine", description: "High-throughput APIs capable of handling thousands of concurrent ledger transactions." },
+    { name: "Next.js & React", category: "Frontend Web", description: "Fast, interactive dashboard interface designed for operational ease of use." }
   ],
-  faqTitle: "ERP & CRM FAQs",
-  faqSubtitle: "Common questions on custom ERP implementations.",
+  faqTitle: "Frequently Asked Questions",
+  faqSubtitle: "Key inquiries regarding bespoke ERP and CRM development with Gilabs.",
   faqs: [
     {
-      question: "Can we migrate data from legacy spreadsheets or older systems?",
-      answer: "Yes, our team provides data cleansing, schema mapping, and automated migration services for your opening balances and master data."
+      question: "Do ERP and CRM have to be built at the same time?",
+      answer: "No, you can start with a single core module first (e.g. Inventory or CRM Pipeline) and expand incrementally as your team adapts."
+    },
+    {
+      question: "What if our operational team is not used to digital systems?",
+      answer: "We provide comprehensive on-site or remote training and clear step-by-step user documentation when the system goes live."
+    },
+    {
+      question: "How secure is our company operational data?",
+      answer: "Highly secure, featuring automated regular database backups, SSL encryption, and strict role-based access control (RBAC)."
+    },
+    {
+      question: "Can this integrate with accounting software we currently use?",
+      answer: "Yes, as long as your existing software provides an accessible API or data export/import mechanism."
     }
   ],
-  ctaTitle: "Transform Your Enterprise Operations",
-  ctaSubtitle: "Schedule an architecture scoping call with our senior tech leads.",
-  ctaButton: "Talk to Us on WhatsApp"
+  ctaTitle: "Stop Chasing Fragmented Data Across Disjointed Files",
+  ctaSubtitle: "Start from a single module and let us build a system that scales alongside your business. Free initial consultation, zero commitment.",
+  ctaButton: "Start Free Discussion"
 };

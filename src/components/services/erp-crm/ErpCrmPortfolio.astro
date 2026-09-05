@@ -1,0 +1,222 @@
+---
+import { workResultsProjects } from "../../../data/workResults";
+import { ExternalLink, ArrowRight } from "lucide-react";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+const allProjects = workResultsProjects[lang] || workResultsProjects["en"];
+
+const featuredTitles = ["SalesView GILABS", "CRM Pharmaceutical", "Fiber Monitoring Project"];
+const featuredProjects = featuredTitles
+  .map((title) => allProjects.find((p) => p.title === title))
+  .filter((p): p is NonNullable<typeof p> => p !== undefined);
+
+const labels = {
+  en: {
+    subtitle: "Enterprise Case Studies",
+    title: "ERP & CRM Systems Operating Live in Production",
+    description: "Production-grade operational and sales platforms engineered to eliminate manual bottlenecks, streamline multi-depot inventory, and accelerate executive insights.",
+    viewMore: "View Complete Case Studies",
+    viewProject: "View System",
+    technologies: "Technologies",
+    moreTech: "more",
+  },
+  id: {
+    subtitle: "Studi Kasus Enterprise",
+    title: "Sistem ERP & CRM yang Sudah Berjalan di Lapangan",
+    description: "Sistem operasional dan penjualan nyata yang digunakan setiap hari, menyatukan data gudang, sales pipeline, dan laporan keuangan tanpa jeda rekonsiliasi.",
+    viewMore: "Lihat Studi Kasus Lengkap",
+    viewProject: "Lihat Sistem",
+    technologies: "Teknologi",
+    moreTech: "lainnya",
+  },
+};
+
+const t = labels[lang as keyof typeof labels] || labels.en;
+const workResultsUrl = `/${lang}/work-results`;
+---
+
+<section id="portofolio" class="py-16 md:py-24 relative">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow text-foreground/80">
+          {t.subtitle}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+
+      <h2 class="typography-section-title mb-4">
+        {t.title}
+      </h2>
+
+      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+        {t.description}
+      </p>
+    </div>
+
+    {/* Portfolio Grid - Minimalist, zero floating badges on images */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+      {featuredProjects.map((project) => {
+        const bannerImage = project?.image.find((img) => img.title.toLowerCase() === "banner") || project?.image[0];
+        const techCount = project?.technologies.length || 0;
+        const displayTechs = project?.technologies.slice(0, 4) || [];
+
+        return (
+          <article 
+            class="group relative bg-white border border-border/50 rounded-2xl overflow-hidden hover:border-brand/50 transition-all duration-500 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-1 shadow-md shadow-black/5 flex flex-col justify-between"
+            data-project={project?.title}
+          >
+            {/* Image Container */}
+            <div class="relative aspect-video overflow-hidden bg-muted">
+              {bannerImage && (
+                <>
+                  <img
+                    src={bannerImage.image.replace(/\/([^\/]+)$/, "/thumb/$1")}
+                    alt=""
+                    aria-hidden="true"
+                    class="absolute inset-0 w-full h-full object-cover filter blur-md scale-110 pointer-events-none"
+                  />
+                  <img
+                    src={bannerImage.image}
+                    alt={project?.title || "Project"}
+                    class="relative z-10 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                    width="400"
+                    height="225"
+                  />
+                </>
+              )}
+              <div class="absolute inset-0 bg-linear-to-t from-background/90 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+
+              {/* Overlay Button */}
+              <button
+                type="button"
+                class="portfolio-showcase-btn absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 cursor-pointer z-10"
+                data-project={JSON.stringify(project)}
+              >
+                <span class="inline-flex items-center gap-2 px-6 py-3 bg-brand text-white rounded-full font-medium text-sm shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  {t.viewProject}
+                  <ExternalLink className="w-4 h-4" />
+                </span>
+              </button>
+            </div>
+
+            {/* Content */}
+            <div class="p-6 flex flex-col grow justify-between">
+              <div>
+                {/* Title */}
+                <h3 class="typography-card-title mb-2 group-hover:text-brand transition-colors line-clamp-1">
+                  {project?.title}
+                </h3>
+
+                {/* Description */}
+                <p class="typography-body mb-4 line-clamp-3 leading-relaxed text-muted-foreground text-sm">
+                  {project?.description}
+                </p>
+              </div>
+
+              {/* Technologies */}
+              <div>
+                <p class="text-xs font-medium text-muted-foreground mb-2 uppercase tracking-wide">
+                  {t.technologies}
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {displayTechs.map((tech) => (
+                    <span class="px-2 py-1 text-xs font-medium bg-secondary/50 text-muted-foreground rounded">
+                      {tech}
+                    </span>
+                  ))}
+                  {techCount > 4 && (
+                    <span class="px-2 py-1 text-xs font-medium bg-secondary/50 text-muted-foreground rounded">
+                      +{techCount - 4} {t.moreTech}
+                    </span>
+                  )}
+                </div>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    {/* Bottom CTA button */}
+    <div class="text-center">
+      <a
+        href={workResultsUrl}
+        class="inline-flex items-center justify-center gap-2 px-8 py-3.5 sm:py-4 typography-button text-foreground bg-white hover:bg-secondary/40 border border-border/80 rounded-full transition-colors cursor-pointer shadow-sm"
+      >
+        <span>{t.viewMore}</span>
+        <ArrowRight className="w-4 h-4 text-brand" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ workResultsUrl }}>
+  function initPortfolioShowcase() {
+    const buttons = document.querySelectorAll(".portfolio-showcase-btn[data-project]");
+
+    buttons.forEach((button) => {
+      if (button.getAttribute("data-initialized")) return;
+      button.setAttribute("data-initialized", "true");
+
+      let startX, startY;
+      let isDragging = false;
+      let touchStartTime = 0;
+
+      button.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
+        isDragging = false;
+        touchStartTime = Date.now();
+      }, { passive: true });
+
+      button.addEventListener("touchmove", (e) => {
+        if (!startX || !startY) return;
+        const moveX = Math.abs(e.touches[0].clientX - startX);
+        const moveY = Math.abs(e.touches[0].clientY - startY);
+        if (moveX > 5 || moveY > 5) {
+          isDragging = true;
+        }
+      }, { passive: true });
+
+      button.addEventListener("click", function (e) {
+        if (isDragging) return;
+        e.preventDefault();
+        e.stopPropagation();
+
+        const projectData = this.getAttribute("data-project");
+        if (!projectData) return;
+
+        try {
+          const project = JSON.parse(projectData);
+          const event = new CustomEvent("open-work-result-drawer", {
+            detail: project,
+            bubbles: true,
+          });
+          globalThis.dispatchEvent(event);
+        } catch (error) {
+          console.error("Error parsing project data:", error);
+          window.location.href = workResultsUrl;
+        }
+      });
+
+      button.addEventListener("touchend", () => {
+        startX = null;
+        startY = null;
+      }, { passive: true });
+    });
+  }
+
+  window.addEventListener("load", initPortfolioShowcase);
+  document.addEventListener("DOMContentLoaded", initPortfolioShowcase);
+  document.addEventListener("astro:page-load", initPortfolioShowcase);
+  setTimeout(initPortfolioShowcase, 1000);
+</script>

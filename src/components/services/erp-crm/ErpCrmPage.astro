@@ -1,0 +1,55 @@
+---
+import ErpCrmHero from "./ErpCrmHero.astro";
+import ErpCrmSocialProof from "./ErpCrmSocialProof.astro";
+import ErpCrmProblems from "./ErpCrmProblems.astro";
+import ErpCrmSolutions from "./ErpCrmSolutions.astro";
+import ErpCrmModules from "./ErpCrmModules.astro";
+import ErpCrmPortfolio from "./ErpCrmPortfolio.astro";
+import ErpCrmPricing from "./ErpCrmPricing.astro";
+import ErpCrmFAQ from "./ErpCrmFAQ.astro";
+import ErpCrmCTA from "./ErpCrmCTA.astro";
+import type { ServicePageData } from "../../../data/services/types";
+
+interface Props {
+  lang: "en" | "id";
+  service: ServicePageData;
+}
+
+const { lang, service } = Astro.props;
+---
+
+<div class="erp-crm-service-page">
+  {/* 1. HERO SECTION */}
+  <ErpCrmHero
+    lang={lang}
+    eyebrow={service.eyebrow}
+    title={service.title}
+    subtitle={service.subtitle}
+    primaryCtaText={service.primaryCtaText}
+    secondaryCtaText={service.secondaryCtaText}
+  />
+
+  {/* 2. SOCIAL PROOF BAR */}
+  <ErpCrmSocialProof lang={lang} />
+
+  {/* 3. MASALAH YANG SERING DITEMUI */}
+  <ErpCrmProblems lang={lang} />
+
+  {/* 4. SOLUSI / VALUE PROPOSITION (3 PILAR) */}
+  <ErpCrmSolutions lang={lang} />
+
+  {/* 5. STRUKTUR MODUL SISTEM (SISI ERP & CRM) */}
+  <ErpCrmModules lang={lang} />
+
+  {/* 6. PORTOFOLIO / STUDI KASUS */}
+  <ErpCrmPortfolio lang={lang} />
+
+  {/* 7. PRICING / PAKET */}
+  <ErpCrmPricing lang={lang} />
+
+  {/* 8. FAQ */}
+  <ErpCrmFAQ lang={lang} />
+
+  {/* 9. FINAL CTA */}
+  <ErpCrmCTA lang={lang} />
+</div>
