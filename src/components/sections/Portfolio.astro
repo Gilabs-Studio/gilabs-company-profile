@@ -78,6 +78,8 @@ const workResultsUrl = lang === 'en' ? '/en/work-results' : `/${lang}/work-resul
                     src={bannerImage.image.replace(/\/([^\/]+)$/, '/thumb/$1')}
                     alt=""
                     aria-hidden="true"
+                    loading="eager"
+                    decoding="async"
                     class="absolute inset-0 w-full h-full object-cover filter blur-md scale-110 pointer-events-none"
                   />
                   <img

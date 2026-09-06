@@ -4,9 +4,10 @@ export const landingPageEn: ServicePageData = {
   slug: "landing-page-development",
   category: "website",
   eyebrow: "Landing Page Development",
-  title: "Landing Pages Designed for One Purpose: Conversion",
+  title: "Landing Pages Built for Conversion",
   subtitle: "Expensive ads, steady traffic, but low conversion? The bottleneck is often your landing page, not your ad budget.",
   heroIllustration: "/images/services/landing-page/hero-landing-page.png",
+  heroImageAlt: "Single Scroll Landing Page Mockup on Laptop - Gilabs",
   metaTitle: "High-Converting Landing Page Development Agency | Gilabs",
   metaDescription: "Landing pages engineered specifically for Google Ads, Meta Ads, and TikTok Ads. Sub-second loading speed, persuasive copywriting, and direct WhatsApp integration.",
   keywords: [
@@ -17,21 +18,69 @@ export const landingPageEn: ServicePageData = {
     "google ads landing page agency"
   ],
   primaryCtaText: "Free Consultation",
-  secondaryCtaText: "View Landing Page Demos",
+  secondaryCtaText: "Explore Solutions",
+  problemsEyebrow: "Common Bottlenecks",
   problemsTitle: "Why Aren't Your Ads Converting?",
-  problemsSubtitle: "These 3 fundamental bottlenecks frequently burn through ad budgets without yielding genuine commercial sales.",
+  problemsSubtitle: "These 3 fundamental bottlenecks frequently drain ad budgets before generating sales.",
   problems: [
     {
       pain: "01. Too Many Choices",
-      solution: "Cluttered menus and scattered links confuse visitors on where to go."
+      solution: "Cluttered menus and scattered links confuse visitors on where to go, diluting their buying intent.",
+      metric: "68% of visitors bounce when facing scattered links"
     },
     {
       pain: "02. Slow Load Speed",
-      solution: "Ad traffic is expensive; every second of lag is wasted ad spend."
+      solution: "Ad traffic is expensive; every single second of loading delay is money thrown straight out the window.",
+      metric: "1s delay reduces ad conversion rates by up to 20%"
     },
     {
       pain: "03. No Sense of Urgency",
-      solution: "No compelling reason to act now; visitors overthink and leave forever."
+      solution: "Without urgency or a clear reason to act right now, visitors overthink, procrastinate, and never return.",
+      metric: "84% never return to an offer without scarcity or clear CTA"
+    }
+  ],
+  solutionsEyebrow: "Conversion Philosophy",
+  solutionsTitle: "One Page, One Purpose, One Action",
+  solutionsSubtitle: "Every single section is engineered to turn paid traffic into tangible customer revenue with zero friction.",
+  solutions: [
+    {
+      number: "01",
+      title: "Conversion-Centric",
+      subtitle: "Zero distractions. Every headline, image, and section funnels visitors to one singular action.",
+      image: "/images/services/landing-page/solution-focus.png",
+      alt: "Wireframe Conversion Focused Landing Page",
+      badge: "High Intent",
+      points: [
+        "Eliminates leaky navigation links that siphon visitors away",
+        "Strategic CTA buttons positioned throughout the scroll journey",
+        "Visual hierarchy tailored to rapid scanning behavior"
+      ]
+    },
+    {
+      number: "02",
+      title: "Targeted Messaging",
+      subtitle: "We help structure clear narrative hooks that guide visitors to make purchasing decisions faster.",
+      image: "/images/services/landing-page/solution-copywriting.png",
+      alt: "Targeted Sales Copywriting Structure",
+      badge: "Clear Value",
+      points: [
+        "AIDA framework transforming curiosity into decisive action",
+        "Clear bulleted benefits instead of dry feature lists",
+        "Built-in urgency triggers and credibility testimonials"
+      ]
+    },
+    {
+      number: "03",
+      title: "Instant Load",
+      subtitle: "Optimized for traffic from Meta Ads, Google Ads, and TikTok with sub-second opening speeds.",
+      image: "/images/services/landing-page/solution-speed.png",
+      alt: "Google PageSpeed Score 100",
+      badge: "Sub-Second Speed",
+      points: [
+        "Instant edge rendering lowers bounce rates and boosts Quality Score",
+        "Thumb-friendly layout for effortless smartphone interaction",
+        "Lightweight code baseline under 15KB with zero bloated scripts"
+      ]
     }
   ],
   featuresTitle: "One Page, One Purpose, One Action",
@@ -50,44 +99,39 @@ export const landingPageEn: ServicePageData = {
       description: "Engineered to eliminate bounce rates on paid traffic from Meta, Google, or TikTok Ads."
     }
   ],
-  packagesTitle: "Landing Page Pricing, Not Website Pricing",
-  packagesSubtitle: "Transparent investment packages structured specifically for your campaign requirements.",
-  packages: [
+  audienceEyebrow: "Target Audience",
+  audienceTitle: "Built for High-Intent Campaigns",
+  audienceSubtitle: "Specifically engineered for campaigns that require decisive action without distracting visitors.",
+  audiences: [
     {
-      name: "BASIC",
-      price: "From $350",
-      description: "For simple campaigns needing a fast, lean launch",
-      features: [
-        "1 single scroll conversion landing page",
-        "Essential sales copywriting",
-        "Responsive & load speed optimization",
-        "1-Year Domain & Cloud Hosting",
-        "2x Revision rounds"
-      ]
+      title: "Selling Physical or Digital Products",
+      description: "Direct-to-consumer sales pages with clear pricing, guarantees, and instant checkout or WhatsApp order triggers.",
+      icon: "ShoppingBag"
     },
     {
-      name: "STANDARD",
-      price: "From $950",
-      isPopular: true,
-      description: "For campaigns requiring deep behavioral research",
-      features: [
-        "Landing page + 2 A/B testing variants",
-        "Comprehensive researched copywriting",
-        "Form integration to WhatsApp / CRM",
-        "Ad pixel & event tracking setup",
-        "4x Revision rounds"
-      ]
+      title: "Event or Webinar Promotions",
+      description: "Drive high-volume ticket bookings and attendance registrations with scheduled speaker lineups and countdown timers.",
+      icon: "CalendarCheck"
     },
     {
-      name: "CUSTOM",
-      price: "Contact Us",
-      description: "For large scale or multi-product campaigns",
-      features: [
-        "Multiple landing page system",
-        "Advanced pixel tracking & deep analytics",
-        "Full funnel strategy session with our team",
-        "Dedicated project consultant"
-      ]
+      title: "New Product Pre-Launch",
+      description: "Build massive anticipation, validate market demand, and collect early-bird waitlists before public launch.",
+      icon: "Rocket"
+    },
+    {
+      title: "Paid Ad Campaigns",
+      description: "Maximize return on ad spend across Meta Ads, Google Ads, and TikTok with high-relevance conversion funnels.",
+      icon: "Target"
+    },
+    {
+      title: "High-Intent Lead Generation",
+      description: "Capture verified business inquiries, phone numbers, and consultation requests routed straight to your sales team.",
+      icon: "UserPlus"
+    },
+    {
+      title: "Program or Course Enrollment",
+      description: "Structure syllabus outlines, instructor credentials, and student outcome proof to drive course signups.",
+      icon: "GraduationCap"
     }
   ],
   techStackTitle: "Ultra-Fast Engineering Stack",
@@ -97,6 +141,7 @@ export const landingPageEn: ServicePageData = {
     { name: "Tailwind CSS", category: "Design System", description: "Micro-sized stylesheets under 15KB." },
     { name: "Cloudflare Edge CDN", category: "Infra", description: "Global edge caching ensuring instant first render." }
   ],
+  faqEyebrow: "Common Questions",
   faqTitle: "Landing Page FAQs",
   faqSubtitle: "Common questions regarding campaign page turnarounds.",
   faqs: [
@@ -106,18 +151,18 @@ export const landingPageEn: ServicePageData = {
     },
     {
       question: "Is professional copywriting included?",
-      answer: "Yes, starting from the Basic package our team helps structure persuasive sales copy."
+      answer: "Yes, our team helps structure persuasive sales copy and messaging."
     },
     {
       question: "Can it integrate with WhatsApp or our CRM?",
-      answer: "Yes, available from the Standard package upwards, complete with lead capture forms."
+      answer: "Yes, available complete with lead capture forms and WhatsApp integration."
     },
     {
       question: "Is it optimized for Facebook and Google Ads?",
       answer: "Yes, we optimize load speed to strictly comply with Core Web Vitals and ad platform quality standards."
     }
   ],
-  ctaTitle: "Don't Let Your Ad Budget Go to Waste",
+  ctaTitle: "Stop Wasting Your Ad Budget",
   ctaSubtitle: "The right landing page can multiply results from the exact same ad spend.",
   ctaButton: "Start Free Consultation"
 };

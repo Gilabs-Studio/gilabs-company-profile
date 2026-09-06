@@ -1,64 +1,61 @@
 ---
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const problems = [
-  {
-    number: "01",
-    title: lang === "en" ? "Too Many Choices" : "Terlalu Banyak Pilihan",
-    description: lang === "en"
-      ? "Cluttered menus and scattered links confuse visitors on where to go, diluting their buying intent."
-      : "Ada banyak menu dan link, pengunjung malah bingung mau ke mana.",
-    metric: lang === "en" ? "68% of visitors bounce when facing scattered links" : "68% pengunjung keluar saat disajikan terlalu banyak opsi"
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Slow Load Speed" : "Loading Lambat",
-    description: lang === "en"
-      ? "Ad traffic is expensive; every single second of loading delay is money thrown straight out the window."
-      : "Traffic dari iklan itu mahal, tiap detik loading itu uang yang terbuang.",
-    metric: lang === "en" ? "1s delay reduces ad conversion rates by up to 20%" : "Tiap 1 detik delay memangkas konversi hingga 20%"
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "No Sense of Urgency" : "Nggak Ada Urgensi",
-    description: lang === "en"
-      ? "Without a compelling reason to act right now, visitors overthink, procrastinate, and never return."
-      : "Nggak ada alasan buat action sekarang, akhirnya pengunjung mikir dulu, dan pergi.",
-    metric: lang === "en" ? "84% never return to an offer without scarcity or clear CTA" : "84% pengunjung tak pernah kembali tanpa tawaran terarah"
-  }
-];
+const {
+  problemsEyebrow,
+  problemsTitle,
+  problemsSubtitle,
+  problems = [],
+} = service;
+
+const displayProblems = problems.map((problem, idx) => {
+  const match = problem.pain.match(/^(\d+)\.\s*(.*)/);
+  const number = match ? match[1] : String(idx + 1).padStart(2, "0");
+  const itemTitle = match ? match[2] : problem.pain;
+  return {
+    number,
+    title: itemTitle,
+    description: problem.solution,
+    metric: problem.metric
+  };
+});
 ---
 
 <section class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Ad Performance Blockers" : "Masalah yang Sering Ditemui"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {problemsEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {problemsEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Why Aren't Your Ads Converting?" : "Kenapa Iklan Kamu Nggak Convert?"}
+        {problemsTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Traffic is already arriving, but these 3 critical mistakes silently drain your ad budget before generating sales."
-          : "Traffic sudah datang, tapi tiga hal ini yang paling sering membakar budget iklan tanpa menghasilkan transaksi."}
-      </p>
+      {problemsSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {problemsSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 3 Columns Grid - Landing Page Consistent Cards */}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-      {problems.map((problem) => (
+      {displayProblems.map((problem) => (
         <div class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           <div>
             <div class="mb-5">

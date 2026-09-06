@@ -1,38 +1,20 @@
 ---
 import { FAQList } from "../../react/FAQList";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const faqs = [
-  {
-    question: lang === "en" ? "How long does landing page development take?" : "Berapa lama pengerjaan landing page?",
-    answer: lang === "en"
-      ? "Typically 3 to 7 business days depending on material readiness and your product brief."
-      : "Umumnya 3-7 hari kerja tergantung kelengkapan materi dan brief produk kamu."
-  },
-  {
-    question: lang === "en" ? "Is professional copywriting included?" : "Apakah termasuk copywriting?",
-    answer: lang === "en"
-      ? "Yes, starting from the Basic package our team helps structure clear, high-intent narrative messaging."
-      : "Termasuk, mulai dari paket Basic tim kami bantu susun struktur penawaran dan pesan yang terarah."
-  },
-  {
-    question: lang === "en" ? "Can it integrate with WhatsApp or our CRM?" : "Bisa integrasi dengan WhatsApp atau CRM?",
-    answer: lang === "en"
-      ? "Yes, available from the Standard package upwards, complete with lead capture forms."
-      : "Bisa, tersedia dari paket Standard ke atas lengkap dengan form lead capture."
-  },
-  {
-    question: lang === "en" ? "Is it optimized for Facebook and Google Ads?" : "Apakah bisa dipakai untuk iklan Facebook/Google?",
-    answer: lang === "en"
-      ? "Yes, we optimize load speed to strictly comply with Core Web Vitals and ad platform quality standards."
-      : "Bisa, kami optimasi loading speed sesuai standar Core Web Vitals dan kebijakan ads platform."
-  }
-];
+const {
+  faqEyebrow,
+  faqTitle,
+  faqSubtitle,
+  faqs = [],
+} = service;
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -54,23 +36,25 @@ const faqSchema = {
 <section class="py-16 md:py-24 relative z-10" id="faq">
   <div class="container mx-auto px-4 max-w-4xl">
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Common Questions" : "Pertanyaan Umum"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {faqEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {faqEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        FAQ
+        {faqTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Frequently asked questions about our conversion landing page development and delivery."
-          : "Hal yang sering ditanyakan seputar proses pengerjaan, copywriting, dan integrasi iklan landing page."}
-      </p>
+      {faqSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {faqSubtitle}
+        </p>
+      )}
     </div>
 
     <div class="space-y-4">

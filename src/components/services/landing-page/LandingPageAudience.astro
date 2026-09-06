@@ -1,106 +1,92 @@
 ---
-import { ShoppingBag, CalendarCheck, Rocket, Target, UserPlus, GraduationCap } from "lucide-react";
+import {
+  ShoppingBag,
+  CalendarCheck,
+  Rocket,
+  Target,
+  UserPlus,
+  GraduationCap,
+  Sparkles,
+} from "lucide-react";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const audiences = [
-  {
-    title: lang === "en" ? "Selling Physical or Digital Products" : "Jualan Produk Digital atau Fisik",
-    description: lang === "en"
-      ? "Direct-to-consumer sales pages with clear pricing, guarantees, and instant checkout or WhatsApp order triggers."
-      : "Halaman checkout langsung dengan etalase benefit, ulasan pembeli, dan alur pemesanan tanpa hambatan.",
-    Icon: ShoppingBag
-  },
-  {
-    title: lang === "en" ? "Event or Webinar Promotions" : "Promosi Event atau Webinar",
-    description: lang === "en"
-      ? "Drive high-volume ticket bookings and attendance registrations with scheduled speaker lineups and countdown timers."
-      : "Maksimalkan kuota peserta dengan jadwal acara terstruktur, profil pembicara, dan form pendaftaran kilat.",
-    Icon: CalendarCheck
-  },
-  {
-    title: lang === "en" ? "New Product Pre-Launch" : "Pre-Launch Produk Baru",
-    description: lang === "en"
-      ? "Build massive anticipation, validate market demand, and collect early-bird waitlists before public launch."
-      : "Kumpulkan waiting list calon pembeli loyal dan validasi minat pasar sebelum produk resmi dirilis.",
-    Icon: Rocket
-  },
-  {
-    title: lang === "en" ? "Paid Ad Campaigns" : "Campaign Iklan Berbayar",
-    description: lang === "en"
-      ? "Maximize return on ad spend across Meta Ads, Google Ads, and TikTok with high-relevance conversion funnels."
-      : "Kompensasikan mahalnya biaya traffic iklan Meta, Google, dan TikTok dengan halaman yang berkonversi tinggi.",
-    Icon: Target
-  },
-  {
-    title: lang === "en" ? "High-Intent Lead Generation" : "Lead Generation (Kumpulkan Kontak)",
-    description: lang === "en"
-      ? "Capture verified business inquiries, phone numbers, and consultation requests routed straight to your sales team."
-      : "Kumpulkan kontak prospek tertarget (nama, email, WA) yang siap di-follow up langsung oleh tim sales.",
-    Icon: UserPlus
-  },
-  {
-    title: lang === "en" ? "Program or Course Enrollment" : "Pendaftaran Program atau Kelas",
-    description: lang === "en"
-      ? "Structure syllabus outlines, instructor credentials, and student outcome proof to drive course signups."
-      : "Susun kurikulum, portofolio mentor, dan testimoni alumni untuk mendorong pendaftaran kelas berbayar.",
-    Icon: GraduationCap
-  }
-];
+const {
+  audienceEyebrow,
+  audienceTitle,
+  audienceSubtitle,
+  audiences = [],
+} = service;
+
+const iconMap: Record<string, any> = {
+  ShoppingBag,
+  CalendarCheck,
+  Rocket,
+  Target,
+  UserPlus,
+  GraduationCap,
+};
 ---
 
 <section class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Target Audience" : "Cocok Untuk"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {audienceEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {audienceEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "This Landing Page Is Built For You If..." : "Landing Page Ini Cocok Buat Kamu Kalau..."}
+        {audienceTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Specifically engineered for campaigns that require decisive action without distracting visitors."
-          : "Dirancang khusus untuk berbagai kebutuhan kampanye yang menuntut aksi nyata dari pengunjung."}
-      </p>
+      {audienceSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {audienceSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 6 Grid Cards */}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-      {audiences.map((item, index) => (
-        <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-7 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
-          <div>
-            {/* Top row: Icon and Index */}
-            <div class="flex items-center justify-between mb-4">
-              <div class="w-10 h-10 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
-                <item.Icon className="w-5 h-5" />
+      {audiences.map((item, index) => {
+        const IconComponent = (item.icon && iconMap[item.icon]) || Sparkles;
+        return (
+          <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-7 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+            <div>
+              {/* Top row: Icon and Index */}
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-10 h-10 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center text-brand">
+                  <IconComponent className="w-5 h-5" />
+                </div>
+                <span class="font-mono text-xs font-semibold text-muted-foreground/60 tracking-wider">
+                  0{index + 1}
+                </span>
               </div>
-              <span class="font-mono text-xs font-semibold text-muted-foreground/60 tracking-wider">
-                0{index + 1}
-              </span>
+
+              <h3 class="text-base sm:text-lg font-semibold text-foreground mb-2 group-hover:text-brand transition-colors">
+                {item.title}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed font-light">
+                {item.description}
+              </p>
             </div>
-
-            <h3 class="text-base sm:text-lg font-semibold text-foreground mb-2 group-hover:text-brand transition-colors">
-              {item.title}
-            </h3>
-
-            <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed font-light">
-              {item.description}
-            </p>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>

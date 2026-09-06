@@ -107,7 +107,7 @@ const serviceSchema = {
     "@type": "Country",
     "name": "Indonesia"
   },
-  "offers": service.packages.map(pkg => ({
+  "offers": (service.packages || []).map(pkg => ({
     "@type": "Offer",
     "name": pkg.name,
     "price": pkg.price.replace(/[^0-9]/g, "") || "0",
