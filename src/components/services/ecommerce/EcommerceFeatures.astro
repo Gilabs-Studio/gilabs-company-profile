@@ -7,129 +7,88 @@ import {
   Boxes,
   BarChart3,
   Tag,
-  LayoutDashboard
+  LayoutDashboard,
 } from "lucide-react";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const features = [
-  {
-    number: "01",
-    title: lang === "en" ? "Product Catalog & Categories" : "Katalog Produk & Kategori",
-    description: lang === "en"
-      ? "Structured product showcase with multi-level filtering, search, and variant selectors (size, color, bundle)."
-      : "Etalase produk rapi dengan filter kategori, fitur pencarian cepat, dan pilihan varian (warna, ukuran).",
-    Icon: ShoppingBag
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Cart & Automated Checkout" : "Keranjang & Checkout Otomatis",
-    description: lang === "en"
-      ? "Frictionless shopping bag and multi-step or single-page checkout optimized for mobile shoppers."
-      : "Alur belanja instan tanpa ribet, dioptimalkan khusus untuk kenyamanan checkout dari smartphone.",
-    Icon: ShoppingCart
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "Payment Gateway (Midtrans/Xendit)" : "Payment Gateway (Midtrans/Xendit)",
-    description: lang === "en"
-      ? "Direct integration for QRIS, Virtual Accounts (BCA, Mandiri, BRI, BNI), E-Wallets, and Credit Cards."
-      : "Mendukung pembayaran otomatis QRIS, Virtual Account bank besar, GoPay, ShopeePay, dan Kartu Kredit.",
-    Icon: CreditCard
-  },
-  {
-    number: "04",
-    title: lang === "en" ? "Real-time Shipping Calculations" : "Integrasi Ongkir Real-time",
-    description: lang === "en"
-      ? "Live shipping rate calculations down to the district level connecting to JNE, J&T, SiCepat, and more."
-      : "Tarif ongkos kirim terhitung otomatis hingga tingkat kecamatan terhubung kurir JNE, J&T, SiCepat, dll.",
-    Icon: Truck
-  },
-  {
-    number: "05",
-    title: lang === "en" ? "Live Inventory Management" : "Manajemen Stok",
-    description: lang === "en"
-      ? "Automated stock subtraction upon payment verification, low inventory alerts, and SKU tracking."
-      : "Stok produk berkurang otomatis saat pembayaran terverifikasi, lengkap dengan notifikasi stok menipis.",
-    Icon: Boxes
-  },
-  {
-    number: "06",
-    title: lang === "en" ? "Sales & Revenue Analytics" : "Laporan Penjualan",
-    description: lang === "en"
-      ? "Comprehensive dashboards displaying daily turnover, best-selling SKUs, and exportable financial reports."
-      : "Grafik omzet harian & bulanan, produk terlaris, serta rekap transaksi yang siap diunduh ke Excel.",
-    Icon: BarChart3
-  },
-  {
-    number: "07",
-    title: lang === "en" ? "Discounts & Promo Vouchers" : "Diskon & Voucher",
-    description: lang === "en"
-      ? "Create limited-time discount codes, percentage coupons, free shipping triggers, and minimum spend rules."
-      : "Buat kupon potongan harga, promo gratis ongkir, dan diskon bertingkat untuk mendorong nilai belanja.",
-    Icon: Tag
-  },
-  {
-    number: "08",
-    title: lang === "en" ? "Intuitive Admin Dashboard" : "Dashboard Admin",
-    description: lang === "en"
-      ? "Clean management console allowing your operational team to update products, print labels, and track shipments."
-      : "Panel kontrol simpel untuk kelola pesanan masuk, cetak label resi, dan update status pengiriman.",
-    Icon: LayoutDashboard
-  }
+const {
+  featuresEyebrow,
+  featuresTitle,
+  featuresSubtitle,
+  features = [],
+} = service;
+
+const icons = [
+  ShoppingBag,
+  ShoppingCart,
+  CreditCard,
+  Truck,
+  Boxes,
+  BarChart3,
+  Tag,
+  LayoutDashboard,
 ];
 ---
 
-<section class="py-16 md:py-24 relative">
+<section id="fitur" class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Core Modules" : "Fitur Utama"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {featuresEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {featuresEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Everything You Get in Our Online Store" : "Yang Kamu Dapat di Toko Online Kami"}
+        {featuresTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Complete end-to-end commercial capabilities engineered to run your direct sales channel with minimal supervision."
-          : "Fitur esensial terpadu yang siap menjalankan operasional penjualan toko online Anda secara otomatis 24 jam nonstop."}
-      </p>
+      {featuresSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {featuresSubtitle}
+        </p>
+      )}
     </div>
 
-    {/* 8 Features Grid */}
+    {/* Features Grid */}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-      {features.map((feature) => (
-        <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-7 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
-          <div>
-            {/* Top row: Number and Icon */}
-            <div class="flex items-center justify-between mb-4">
-              <span class="font-mono text-xs font-semibold text-brand tracking-wider bg-brand/5 px-2.5 py-1 rounded-md border border-brand/10">
-                {feature.number}
-              </span>
-              <feature.Icon className="w-5 h-5 text-brand" />
+      {features.map((feature, idx) => {
+        const IconComponent = icons[idx % icons.length];
+        const number = feature.number || String(idx + 1).padStart(2, "0");
+        return (
+          <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-7 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
+            <div>
+              {/* Top row: Number and Icon */}
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-mono text-xs font-semibold text-brand tracking-wider bg-brand/5 px-2.5 py-1 rounded-md border border-brand/10">
+                  {number}
+                </span>
+                <IconComponent className="w-5 h-5 text-brand" />
+              </div>
+
+              <h3 class="text-base sm:text-lg font-semibold text-foreground mb-2 group-hover:text-brand transition-colors">
+                {feature.title}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed font-light">
+                {feature.description}
+              </p>
             </div>
-
-            <h3 class="text-base sm:text-lg font-semibold text-foreground mb-2 group-hover:text-brand transition-colors">
-              {feature.title}
-            </h3>
-
-            <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed font-light">
-              {feature.description}
-            </p>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>

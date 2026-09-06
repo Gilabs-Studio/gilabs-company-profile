@@ -3,8 +3,6 @@ import EcommerceHero from "./EcommerceHero.astro";
 import EcommerceProblems from "./EcommerceProblems.astro";
 import EcommerceSolutions from "./EcommerceSolutions.astro";
 import EcommerceFeatures from "./EcommerceFeatures.astro";
-import EcommercePortfolio from "./EcommercePortfolio.astro";
-import EcommercePricing from "./EcommercePricing.astro";
 import EcommerceFAQ from "./EcommerceFAQ.astro";
 import EcommerceCTA from "./EcommerceCTA.astro";
 import type { ServicePageData } from "../../../data/services/types";
@@ -19,33 +17,20 @@ const { lang, service } = Astro.props;
 
 <div class="ecommerce-service-page">
   {/* 1. HERO SECTION */}
-  <EcommerceHero
-    lang={lang}
-    eyebrow={service.eyebrow}
-    title={service.title}
-    subtitle={service.subtitle}
-    primaryCtaText={service.primaryCtaText}
-    secondaryCtaText={service.secondaryCtaText}
-  />
+  <EcommerceHero lang={lang} service={service} />
 
   {/* 2. MASALAH YANG SERING DITEMUI */}
-  <EcommerceProblems lang={lang} />
+  <EcommerceProblems lang={lang} service={service} />
 
-  {/* 4. SOLUSI / VALUE PROPOSITION */}
-  <EcommerceSolutions lang={lang} />
+  {/* 3. SOLUSI / VALUE PROPOSITION */}
+  <EcommerceSolutions lang={lang} service={service} />
 
-  {/* 5. FITUR UTAMA */}
-  <EcommerceFeatures lang={lang} />
+  {/* 4. FITUR UTAMA */}
+  <EcommerceFeatures lang={lang} service={service} />
 
-  {/* 6. PORTOFOLIO */}
-  <EcommercePortfolio lang={lang} />
+  {/* 5. FAQ */}
+  <EcommerceFAQ lang={lang} service={service} />
 
-  {/* 7. PRICING */}
-  <EcommercePricing lang={lang} />
-
-  {/* 8. FAQ */}
-  <EcommerceFAQ lang={lang} />
-
-  {/* 9. FINAL CTA */}
-  <EcommerceCTA lang={lang} />
+  {/* 6. FINAL CTA */}
+  <EcommerceCTA lang={lang} service={service} />
 </div>
