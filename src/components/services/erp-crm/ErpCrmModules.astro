@@ -15,220 +15,172 @@ import {
   ArrowLeftRight
 } from "lucide-react";
 
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const erpModules = [
-  {
-    title: lang === "en" ? "Inventory & Warehouse" : "Inventory & Gudang",
-    description: lang === "en"
-      ? "Real-time stock tracking, multi-depot stock mutations, and automated minimum stock reorder alerts."
-      : "Stok real-time, mutasi barang antar gudang, dan notifikasi otomatis minimum stok.",
-    Icon: Boxes
-  },
-  {
-    title: lang === "en" ? "Purchasing & Procurement" : "Purchasing",
-    description: lang === "en"
-      ? "Direct Purchase Orders (PO) to vendors and complete procurement lifecycle tracking."
-      : "Penerbitan PO ke supplier, approval pengadaan bertingkat, dan tracking status barang masuk.",
-    Icon: ShoppingCart
-  },
-  {
-    title: lang === "en" ? "Finance & Accounting" : "Keuangan & Akuntansi",
-    description: lang === "en"
-      ? "Automated double-entry journals, real-time profit & loss statements, and cash flow balance sheets."
-      : "Jurnal otomatis tiap transaksi, laporan laba rugi real-time, dan neraca arus kas terpadu.",
-    Icon: Landmark
-  },
-  {
-    title: lang === "en" ? "HR & Payroll" : "HR & Payroll",
-    description: lang === "en"
-      ? "Employee master data, daily biometric/mobile attendance records, and automated payroll calculations."
-      : "Data karyawan terpusat, absensi digital, dan perhitungan penggajian otomatis.",
-    Icon: Users
-  },
-  {
-    title: lang === "en" ? "Production Management" : "Produksi (Manufaktur)",
-    description: lang === "en"
-      ? "Bill of Materials (BOM), production floor scheduling, work order logs, and raw material efficiency tracking."
-      : "Bill of Material (BOM), jadwal lini produksi, work order mesin, dan efisiensi bahan baku.",
-    Icon: Factory
-  },
-  {
-    title: lang === "en" ? "Multi-Branch / Warehouse Sync" : "Multi Cabang / Gudang",
-    description: lang === "en"
-      ? "Consolidated multi-depot visibility, inter-branch transfers, and decentralized role access."
-      : "Konsolidasi data antar lokasi cabang secara real-time tanpa delay sinkronisasi.",
-    Icon: Network
-  }
-];
+const {
+  featuresEyebrow,
+  featuresTitle,
+  featuresSubtitle,
+  erpCrmModules,
+} = service;
 
-const crmModules = [
-  {
-    title: lang === "en" ? "Sales Pipeline" : "Sales Pipeline",
-    description: lang === "en"
-      ? "Visual Kanban stages from inbound leads, qualification, proposal, to deal closing."
-      : "Tahapan prospek interaktif dari leads, kualifikasi, penawaran, hingga deal closing.",
-    Icon: TrendingUp
-  },
-  {
-    title: lang === "en" ? "Customer Contact Management" : "Manajemen Kontak Pelanggan",
-    description: lang === "en"
-      ? "Comprehensive interaction history, signed contracts, uploaded files, and customer profiling."
-      : "Riwayat komunikasi, arsip dokumen, kontrak kerja sama, dan profil pelanggan terpusat.",
-    Icon: UserCheck
-  },
-  {
-    title: lang === "en" ? "Follow-up & Reminders" : "Follow-up & Reminder",
-    description: lang === "en"
-      ? "Automated calendar schedules and WhatsApp reminders ensuring zero high-value leads are forgotten."
-      : "Jadwal otomatis via WhatsApp dan notifikasi agar tidak ada prospek potensial yang terlewat.",
-    Icon: BellRing
-  },
-  {
-    title: lang === "en" ? "Quotations & Invoicing" : "Quotation & Invoice",
-    description: lang === "en"
-      ? "Generate professional branded quotes and official invoices directly from deal records in seconds."
-      : "Pembuatan surat penawaran harga dan tagihan resmi langsung dari sistem dalam hitungan detik.",
-    Icon: FileText
-  },
-  {
-    title: lang === "en" ? "Sales Performance Analytics" : "Laporan Sales Performance",
-    description: lang === "en"
-      ? "Sales target versus actual achievement charts by individual agent, division, or region."
-      : "Grafik target vs realisasi omzet per staf sales, divisi penjualan, maupun wilayah kerja.",
-    Icon: BarChart3
-  },
-  {
-    title: lang === "en" ? "WhatsApp & Email Integration" : "Integrasi WhatsApp & Email",
-    description: lang === "en"
-      ? "All client communications and chat logs logged automatically into customer profiles."
-      : "Komunikasi tercatat otomatis ke profil klien tanpa perlu copy-paste manual dari smartphone.",
-    Icon: MessageSquare
-  }
-];
+const iconMap: Record<string, any> = {
+  Boxes,
+  ShoppingCart,
+  Landmark,
+  Users,
+  Factory,
+  Network,
+  TrendingUp,
+  UserCheck,
+  BellRing,
+  FileText,
+  BarChart3,
+  MessageSquare,
+};
+
+const erpGroup = erpCrmModules?.erpGroup;
+const crmGroup = erpCrmModules?.crmGroup;
+const bridgeTitle = erpCrmModules?.bridgeTitle;
+const bridgeDescription = erpCrmModules?.bridgeDescription;
 ---
 
-<section class="py-16 md:py-24 relative">
+<section id="modul" class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "System Architecture" : "Struktur Modul Sistem"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {featuresEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {featuresEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "How We Architect Your ERP & CRM Navigation" : "Bagaimana Kami Menyusun Menu ERP & CRM Kamu"}
+        {featuresTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "To keep daily operations straightforward for your staff, we separate the system into two unified pillars: Operational Resources (ERP) and Customer Relationships (CRM)."
-          : "Supaya nggak membingungkan tim yang pakai, kami pisahkan sistem jadi dua sisi besar: operasional (ERP) dan hubungan pelanggan (CRM), baru diturunkan ke modul spesifik."}
-      </p>
+      {featuresSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {featuresSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 2 Big Columns Grid: ERP Side & CRM Side */}
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 mb-10 items-stretch">
-      {/* Column 1: Sisi ERP */}
-      <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between pb-6 mb-6 border-b border-border/40">
-            <div>
-              <span class="text-xs font-mono font-bold text-brand uppercase tracking-wider">
-                {lang === "en" ? "Column 1 - Operations" : "Kolom 1 - Operasional"}
-              </span>
-              <h3 class="text-xl sm:text-2xl font-bold text-foreground mt-1">
-                {lang === "en" ? "ERP Core (Operations & Resources)" : "Sisi ERP (Operasional & Sumber Daya)"}
-              </h3>
+    {erpGroup && crmGroup && (
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 mb-10 items-stretch">
+        {/* Column 1: Sisi ERP */}
+        <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-6 mb-6 border-b border-border/40">
+              <div>
+                <span class="text-xs font-mono font-bold text-brand uppercase tracking-wider">
+                  {erpGroup.badge}
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold text-foreground mt-1">
+                  {erpGroup.title}
+                </h3>
+              </div>
+              <div class="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0">
+                <Boxes className="w-5 h-5" />
+              </div>
             </div>
-            <div class="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0">
-              <Boxes className="w-5 h-5" />
+
+            <div class="space-y-5">
+              {erpGroup.modules.map((mod) => {
+                const IconComponent = (mod.icon && iconMap[mod.icon]) || Boxes;
+                return (
+                  <div class="flex items-start gap-3.5 p-3 rounded-xl hover:bg-secondary/30 transition-colors">
+                    <div class="w-9 h-9 rounded-lg bg-secondary/50 text-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <IconComponent className="w-4 h-4 text-brand" />
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-foreground leading-snug">
+                        {mod.title}
+                      </h4>
+                      <p class="text-xs text-muted-foreground font-light leading-relaxed mt-1">
+                        {mod.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
+        </div>
 
-          <div class="space-y-5">
-            {erpModules.map((mod) => (
-              <div class="flex items-start gap-3.5 p-3 rounded-xl hover:bg-secondary/30 transition-colors">
-                <div class="w-9 h-9 rounded-lg bg-secondary/50 text-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <mod.Icon className="w-4 h-4 text-brand" />
-                </div>
-                <div>
-                  <h4 class="text-sm font-bold text-foreground leading-snug">
-                    {mod.title}
-                  </h4>
-                  <p class="text-xs text-muted-foreground font-light leading-relaxed mt-1">
-                    {mod.description}
-                  </p>
-                </div>
+        {/* Column 2: Sisi CRM */}
+        <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between pb-6 mb-6 border-b border-border/40">
+              <div>
+                <span class="text-xs font-mono font-bold text-brand uppercase tracking-wider">
+                  {crmGroup.badge}
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold text-foreground mt-1">
+                  {crmGroup.title}
+                </h3>
               </div>
-            ))}
+              <div class="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0">
+                <TrendingUp className="w-5 h-5" />
+              </div>
+            </div>
+
+            <div class="space-y-5">
+              {crmGroup.modules.map((mod) => {
+                const IconComponent = (mod.icon && iconMap[mod.icon]) || TrendingUp;
+                return (
+                  <div class="flex items-start gap-3.5 p-3 rounded-xl hover:bg-secondary/30 transition-colors">
+                    <div class="w-9 h-9 rounded-lg bg-secondary/50 text-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
+                      <IconComponent className="w-4 h-4 text-brand" />
+                    </div>
+                    <div>
+                      <h4 class="text-sm font-bold text-foreground leading-snug">
+                        {mod.title}
+                      </h4>
+                      <p class="text-xs text-muted-foreground font-light leading-relaxed mt-1">
+                        {mod.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Column 2: Sisi CRM */}
-      <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-8 shadow-sm flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between pb-6 mb-6 border-b border-border/40">
-            <div>
-              <span class="text-xs font-mono font-bold text-brand uppercase tracking-wider">
-                {lang === "en" ? "Column 2 - Sales & Revenue" : "Kolom 2 - Penjualan"}
-              </span>
-              <h3 class="text-xl sm:text-2xl font-bold text-foreground mt-1">
-                {lang === "en" ? "CRM Core (Sales & Customers)" : "Sisi CRM (Penjualan & Pelanggan)"}
-              </h3>
-            </div>
-            <div class="w-10 h-10 rounded-xl bg-brand/10 text-brand flex items-center justify-center flex-shrink-0">
-              <TrendingUp className="w-5 h-5" />
-            </div>
-          </div>
-
-          <div class="space-y-5">
-            {crmModules.map((mod) => (
-              <div class="flex items-start gap-3.5 p-3 rounded-xl hover:bg-secondary/30 transition-colors">
-                <div class="w-9 h-9 rounded-lg bg-secondary/50 text-foreground flex items-center justify-center flex-shrink-0 mt-0.5">
-                  <mod.Icon className="w-4 h-4 text-brand" />
-                </div>
-                <div>
-                  <h4 class="text-sm font-bold text-foreground leading-snug">
-                    {mod.title}
-                  </h4>
-                  <p class="text-xs text-muted-foreground font-light leading-relaxed mt-1">
-                    {mod.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </div>
+    )}
 
     {/* Interconnected Bridge Callout */}
-    <div class="bg-[#0f172a] text-white border border-white/10 rounded-2xl p-6 sm:p-8 shadow-lg relative overflow-hidden">
-      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 relative z-10">
-        <div class="w-12 h-12 rounded-xl bg-brand text-white flex items-center justify-center flex-shrink-0 shadow-md">
-          <ArrowLeftRight className="w-6 h-6 animate-pulse" />
-        </div>
-        <div>
-          <h4 class="text-base font-bold text-white mb-1">
-            {lang === "en" ? "Seamless Inter-System Connectivity" : "Koneksi Otomatis Tanpa Input Dobel"}
-          </h4>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-            {lang === "en"
-              ? "Both sides are deeply connected: when sales marks a deal as 'Closed Won' in the CRM, data instantly reflects in Inventory allocation and generates draft Invoices in the ERP-eliminating duplicate human data entry."
-              : "Kedua sisi ini saling terhubung otomatis: misal saat sales closing deal di CRM, data seketika masuk ke modul Inventory untuk alokasi stok dan ke modul Keuangan di sisi ERP tanpa perlu input ulang manual."}
-          </p>
+    {bridgeTitle && (
+      <div class="bg-[#0f172a] text-white border border-white/10 rounded-2xl p-6 sm:p-8 shadow-lg relative overflow-hidden">
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 relative z-10">
+          <div class="w-12 h-12 rounded-xl bg-brand text-white flex items-center justify-center flex-shrink-0 shadow-md">
+            <ArrowLeftRight className="w-6 h-6 animate-pulse" />
+          </div>
+          <div>
+            <h4 class="text-base font-bold text-white mb-1">
+              {bridgeTitle}
+            </h4>
+            {bridgeDescription && (
+              <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+                {bridgeDescription}
+              </p>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    )}
   </div>
 </section>

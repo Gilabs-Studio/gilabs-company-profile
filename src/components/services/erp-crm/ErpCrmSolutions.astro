@@ -1,97 +1,67 @@
 ---
 import { Check } from "lucide-react";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const pillars = [
-  {
-    number: "01",
-    title: lang === "en" ? "Pillar 1 - Integrated Across Divisions" : "Pilar 1 - Terintegrasi Antar Divisi",
-    subtitle: lang === "en"
-      ? "Sales, warehouse, and finance all read from and update the exact same single source of truth."
-      : "Sales, gudang, keuangan, semua baca dari satu sumber data yang sama.",
-    image: "/images/services/erp-crm/solution-integrated-divisions.png",
-    alt: lang === "en" ? "Unified Data Across All Corporate Divisions" : "Integrasi Data Menyeluruh Antar Divisi",
-    points: [
-      lang === "en" ? "When sales closes an order, inventory reserves automatically in real-time" : "Saat sales closing order, stok gudang otomatis terpotong secara real-time",
-      lang === "en" ? "Finance generates invoices without waiting for manual operational logs" : "Divisi keuangan langsung menerbitkan invoice tanpa perlu input ulang",
-      lang === "en" ? "Eliminates duplicate data entry and inter-department miscommunications" : "Mencegah kesalahan rekap antar tim dan data ganda yang merugikan"
-    ]
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Pillar 2 - Custom to Your Workflow" : "Pilar 2 - Custom Sesuai Alur Kerja",
-    subtitle: lang === "en"
-      ? "Not a rigid generic template; every module is built around your specific business rules."
-      : "Bukan template generik, modul dibangun mengikuti proses bisnis kamu.",
-    image: "/images/services/erp-crm/solution-bespoke-workflow.png",
-    alt: lang === "en" ? "Bespoke System Workflow Tailored to Your SOPs" : "Modul Sistem Disesuaikan Presisi dengan SOP",
-    points: [
-      lang === "en" ? "Approval hierarchies mapped to your actual company delegation of authority" : "Alur approval berjenjang mengikuti struktur wewenang nyata di kantor Anda",
-      lang === "en" ? "Custom calculation formulas, pricing tiers, and commission rules" : "Rumus kalkulasi HPP, margin diskon, dan komisi sales sesuai aturan bisnis",
-      lang === "en" ? "Zero unused bloated menus that overwhelm warehouse staff or accountants" : "Tanpa fitur mubazir yang membingungkan staf operasional di lapangan"
-    ]
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "Pillar 3 - Real-Time Reporting" : "Pilar 3 - Laporan Real-time",
-    subtitle: lang === "en"
-      ? "Management monitors critical metrics anytime without waiting for manual end-of-month recaps."
-      : "Manajemen bisa pantau angka penting kapan saja tanpa nunggu rekap manual.",
-    image: "/images/services/erp-crm/solution-realtime-reports.png",
-    alt: lang === "en" ? "Live Telemetry and Real-Time Financial Reports" : "Dashboard Laporan Keuangan dan Penjualan Real-time",
-    points: [
-      lang === "en" ? "Instant visibility on daily revenue, gross margins, and outstanding receivables" : "Pantau omzet harian, laba kotor, dan saldo piutang hanya dalam satu layar",
-      lang === "en" ? "Automated profit-and-loss and cash flow statements updated on every transaction" : "Laporan laba rugi dan arus kas otomatis terupdate setiap ada transaksi masuk",
-      lang === "en" ? "One-click export to structured Excel and formatted PDF executive decks" : "Ekspor laporan ke format Excel dan PDF siap presentasi dalam satu kali klik"
-    ]
-  }
-];
+const {
+  solutionsEyebrow,
+  solutionsTitle,
+  solutionsSubtitle,
+  solutions = [],
+} = service;
 ---
 
-<section class="py-16 md:py-24 relative">
+<section id="solusi" class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Core Value Proposition" : "Solusi & Value Proposition"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {solutionsEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {solutionsEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
-      <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "One System, All Teams Working from the Same Data" : "Satu Sistem, Semua Tim Kerja dari Data yang Sama"}
-      </h2>
+      {solutionsTitle && (
+        <h2 class="typography-section-title mb-4">
+          {solutionsTitle}
+        </h2>
+      )}
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "We engineer digital operating systems that eliminate data silos, bringing total transparency and velocity to your growing enterprise."
-          : "Kami membangun sistem operasi bisnis yang menghubungkan seluruh departemen, menghadirkan transparansi penuh dan kecepatan eksekusi bisnis Anda."}
-      </p>
+      {solutionsSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {solutionsSubtitle}
+        </p>
+      )}
     </div>
 
-    {/* 3 Pillars Grid */}
+    {/* Solutions Grid */}
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-      {pillars.map((pillar) => (
+      {solutions.map((pillar) => (
         <article class="bg-white border border-border/50 rounded-2xl overflow-hidden hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
-          {/* Top Image Banner (Minimalist, zero floating badges) */}
-          <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
-            <img
-              src={pillar.image}
-              alt={pillar.alt}
-              class="w-full h-full object-cover select-none"
-              loading="lazy"
-              decoding="async"
-              width="640"
-              height="400"
-            />
-          </div>
+          {/* Top Image Banner */}
+          {pillar.image && (
+            <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
+              <img
+                src={pillar.image}
+                alt={pillar.alt || pillar.title}
+                class="w-full h-full object-cover select-none"
+                loading="lazy"
+                decoding="async"
+                width="640"
+                height="400"
+              />
+            </div>
+          )}
 
           {/* Content Details */}
           <div class="p-6 sm:p-7 flex flex-col grow justify-between">
@@ -100,20 +70,24 @@ const pillars = [
                 {pillar.title}
               </h3>
 
-              <p class="typography-body text-muted-foreground leading-relaxed mb-6 font-light">
-                {pillar.subtitle}
-              </p>
+              {pillar.subtitle && (
+                <p class="typography-body text-muted-foreground leading-relaxed mb-6 font-light">
+                  {pillar.subtitle}
+                </p>
+              )}
             </div>
 
             {/* Checkpoints */}
-            <ul class="space-y-3 pt-4 border-t border-border/40">
-              {pillar.points.map((point) => (
-                <li class="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/80">
-                  <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
-                  <span class="leading-snug">{point}</span>
-                </li>
-              ))}
-            </ul>
+            {pillar.points && pillar.points.length > 0 && (
+              <ul class="space-y-3 pt-4 border-t border-border/40">
+                {pillar.points.map((point) => (
+                  <li class="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/80">
+                    <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                    <span class="leading-snug">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </article>
       ))}

@@ -1,64 +1,61 @@
 ---
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const problems = [
-  {
-    number: "01",
-    title: lang === "en" ? "Data Scattered Everywhere" : "Data Tersebar di Mana-mana",
-    description: lang === "en"
-      ? "Stock records in Excel, sales discussions on WhatsApp, and accounting reports trapped in separate files."
-      : "Stok di Excel, penjualan di WhatsApp, laporan keuangan terpisah lagi.",
-    metric: lang === "en" ? "Data silos & painful manual reconciliations" : "Data terisolasi & proses rekonsiliasi manual yang melelahkan"
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Customer Follow-ups Frequently Missed" : "Follow-up Pelanggan Sering Kelewat",
-    description: lang === "en"
-      ? "No centralized system reminding sales reps who to contact, when to call, and what quotation was promised."
-      : "Nggak ada sistem yang ingatkan siapa harus dihubungi dan kapan.",
-    metric: lang === "en" ? "Lost revenue opportunities from cold leads" : "Peluang omzet terbuang karena prospek terlupakan"
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "Reports Take Days to Compile" : "Laporan Butuh Waktu Berhari-hari",
-    description: lang === "en"
-      ? "Owners or executive directors have to wait days just to see basic monthly revenue and profit margins."
-      : "Owner atau manajemen harus tunggu lama cuma buat lihat angka penjualan bulan ini.",
-    metric: lang === "en" ? "Blind decision-making without live telemetry" : "Keputusan bisnis lambat akibat laporan tidak real-time"
-  }
-];
+const {
+  problemsEyebrow,
+  problemsTitle,
+  problemsSubtitle,
+  problems = [],
+} = service;
+
+const displayProblems = problems.map((problem, idx) => {
+  const match = problem.pain.match(/^(\d+)\.\s*(.*)/);
+  const number = match ? match[1] : String(idx + 1).padStart(2, "0");
+  const itemTitle = match ? match[2] : problem.pain;
+  return {
+    number,
+    title: itemTitle,
+    description: problem.solution,
+    metric: problem.metric
+  };
+});
 ---
 
-<section class="py-16 md:py-24 relative">
+<section id="masalah" class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Operational Warning Signs" : "Masalah yang Sering Ditemui"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {problemsEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {problemsEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Signs Your Business Needs an ERP / CRM" : "Tanda-tanda Bisnis Kamu Butuh ERP/CRM"}
+        {problemsTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Three telltale signs that manual spreadsheets and disconnected communication tools are limiting your company's scale."
-          : "Tiga kendala operasional yang menandakan bisnis Anda sudah melampaui batas kemampuan spreadsheet manual."}
-      </p>
+      {problemsSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {problemsSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 3 Columns Grid */}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-      {problems.map((problem) => (
+      {displayProblems.map((problem) => (
         <div class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           <div>
             <div class="mb-5">

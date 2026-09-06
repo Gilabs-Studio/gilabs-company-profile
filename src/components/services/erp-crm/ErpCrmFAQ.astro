@@ -1,46 +1,20 @@
 ---
 import { FAQList } from "../../react/FAQList";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const faqs = [
-  {
-    question: lang === "en"
-      ? "Do ERP and CRM have to be built at the same time?"
-      : "Apakah ERP dan CRM harus dibangun sekaligus?",
-    answer: lang === "en"
-      ? "No, you do not have to build both at once. You can start from a single core module (e.g., Inventory or Sales CRM) and scale gradually as your team adapts."
-      : "Tidak harus, bisa mulai dari salah satu modul dulu (misal: Inventory atau CRM Sales) lalu dikembangkan bertahap seiring adaptasi tim."
-  },
-  {
-    question: lang === "en"
-      ? "What if our team is not yet accustomed to using digital systems?"
-      : "Bagaimana kalau tim kami belum terbiasa pakai sistem digital?",
-    answer: lang === "en"
-      ? "We provide hands-on training sessions and complete step-by-step documentation when the system goes live, ensuring smooth daily onboarding for warehouse staff and admins."
-      : "Kami sediakan sesi pelatihan langsung dan dokumentasi panduan penggunaan saat sistem live, sehingga staf gudang maupun admin dapat beradaptasi dengan mudah."
-  },
-  {
-    question: lang === "en"
-      ? "How secure is our company operational data?"
-      : "Apakah data kami aman?",
-    answer: lang === "en"
-      ? "Yes, highly secure. It includes automated periodic cloud backups, encrypted connections, and granular Role-Based Access Control (RBAC) so users only see authorized data."
-      : "Ya, sangat aman. Termasuk sistem backup berkala otomatis, enkripsi data, dan pengaturan hak akses bertingkat (role-based) sehingga tiap staf hanya melihat data sesuai wewenangnya."
-  },
-  {
-    question: lang === "en"
-      ? "Can this integrate with accounting software we already use?"
-      : "Bisa integrasi dengan software akuntansi yang sudah kami pakai?",
-    answer: lang === "en"
-      ? "Yes, as long as your existing software provides an accessible API or data export/import capabilities (such as Accurate, Zahir, SAP, or custom databases)."
-      : "Bisa, selama software tersebut menyediakan API atau akses data yang memungkinkan (seperti Accurate, Zahir, SAP, atau database custom)."
-  }
-];
+const {
+  faqEyebrow = "FAQ",
+  faqTitle,
+  faqSubtitle,
+  faqs = [],
+} = service;
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -62,23 +36,25 @@ const faqSchema = {
 <section class="py-16 md:py-24 relative z-10" id="faq">
   <div class="container mx-auto px-4 max-w-4xl">
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Common Inquiries" : "FAQ"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {faqEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {faqEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Frequently Asked Questions" : "Pertanyaan yang Sering Ditanyakan"}
+        {faqTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Essential answers regarding phased rollout, team training, data security, and existing software integrations."
-          : "Hal penting seputar implementasi bertahap, pelatihan tim, keamanan data perusahaan, dan integrasi sistem akuntansi."}
-      </p>
+      {faqSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {faqSubtitle}
+        </p>
+      )}
     </div>
 
     <div class="space-y-4">
