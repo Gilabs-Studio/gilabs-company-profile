@@ -4,11 +4,12 @@ export const companyProfileId: ServicePageData = {
   slug: "jasa-web-company-profile",
   category: "website",
   eyebrow: "Jasa Web Company Profile",
-  title: "Company Profile yang Terlihat Seperti Perusahaan Besar",
-  subtitle: "Kesan pertama itu di website. Kami pastikan yang pertama kali dilihat calon partner atau investor kamu adalah versi terbaik dari bisnismu.",
+  title: "Company Profile Profesional",
+  subtitle: "Bangun reputasi digital bisnis Anda dengan website profil perusahaan yang kredibel, elegan, dan informatif.",
   heroIllustration: "/images/services/company-profile/hero-corporate-mockup.png",
-  metaTitle: "Jasa Website Company Profile Perusahaan Profesional & Elegan | Gilabs",
-  metaDescription: "Kesan pertama itu di website. Kami pastikan calon partner atau investor melihat versi terbaik dari bisnismu. Berwibawa, responsif, dan siap tender.",
+  heroImageAlt: "Mockup Website Company Profile di Desktop - Gilabs Studio",
+  metaTitle: "Jasa Website Company Profile Perusahaan Profesional | Gilabs",
+  metaDescription: "Bangun kesan pertama yang solid bagi calon klien, mitra bisnis, dan investor dengan website company profile yang kredibel, elegan, responsif, dan siap tender.",
   keywords: [
     "jasa web company profile",
     "jasa pembuatan website company profile perusahaan",
@@ -21,60 +22,112 @@ export const companyProfileId: ServicePageData = {
     "vendor website profil perusahaan"
   ],
   primaryCtaText: "Konsultasi Gratis",
-  secondaryCtaText: "Lihat Contoh Company Profile",
-  problemsTitle: "Company Profile Lama Sering Begini",
-  problemsSubtitle: "Tiga hal ini yang paling sering bikin calon partner dan panitia tender ragu duluan sebelum mengenal bisnismu.",
+  secondaryCtaText: "Pelajari Layanan",
+  problemsEyebrow: "Masalah yang Sering Ditemui",
+  problemsTitle: "Kendala pada Company Profile Lama",
+  problemsSubtitle: "Tiga hal ini yang paling sering membuat calon mitra dan panitia tender ragu terhadap kredibilitas bisnis Anda.",
   problems: [
     {
-      pain: "01. Terlihat Kuno",
-      solution: "Desain 5 tahun lalu, calon partner ragu duluan."
+      pain: "01. Desain Kuno",
+      solution: "Tampilan website yang tertinggal zaman membuat calon klien ragu terhadap standar kerja profesional perusahaan Anda.",
+      metric: "75% mitra menilai kredibilitas dari tampilan visual"
     },
     {
       pain: "02. Informasi Berantakan",
-      solution: "Visi misi, layanan, kontak, semua nggak jelas urutannya."
+      solution: "Profil bisnis, portofolio, dan dokumen legalitas tersaji acak tanpa struktur informasi yang terarah.",
+      metric: "Panitia tender kesulitan menemukan legalitas & dokumen"
     },
     {
-      pain: "03. Nggak Meyakinkan",
-      solution: "Nggak ada bukti kredibilitas, cuma teks tanpa substansi."
+      pain: "03. Bukti Kerja Kurang Jelas",
+      solution: "Tanpa etalase proyek nyata dan data yang terverifikasi, calon mitra sulit menaruh kepercayaan penuh.",
+      metric: "Minimnya pembuktian proyek nyata dan data terverifikasi"
     }
   ],
-  featuresTitle: "Semua yang Dibutuhkan Company Profile Modern",
-  featuresSubtitle: "Komponen esensial yang dirancang khusus untuk memenuhi ekspektasi partner B2B dan panitia evaluasi proyek.",
+  solutionsEyebrow: "Solusi & Nilai Tambah",
+  solutionsTitle: "Dirancang untuk Membangun Kepercayaan",
+  solutionsSubtitle: "Setiap elemen kami rancang untuk meyakinkan calon mitra dan panitia tender bahwa perusahaan Anda adalah pilihan yang tepat.",
+  solutions: [
+    {
+      number: "01",
+      title: "Citra Profesional",
+      subtitle: "Desain yang mencerminkan standar dan kredibilitas industri Anda.",
+      image: "/images/services/company-profile/solution-prestige.png",
+      alt: "Desain Company Profile Profesional",
+      badge: "Standar Korporat",
+      points: [
+        "Bahasa visual yang selaras dengan sektor industri Anda",
+        "Tipografi dan tata letak berstandar profesional",
+        "Tampilan responsif di seluruh perangkat (desktop, tablet, mobile)"
+      ]
+    },
+    {
+      number: "02",
+      title: "Struktur Informasi Jelas",
+      subtitle: "Profil bisnis, layanan, portofolio, hingga kontak tersusun rapi dan mudah ditemukan.",
+      image: "/images/services/company-profile/solution-architecture.png",
+      alt: "Struktur Informasi Company Profile",
+      badge: "Arsitektur Informasi",
+      points: [
+        "Alur narasi yang terstruktur dan mudah dipahami",
+        "Akses cepat ke legalitas, sertifikasi, dan profil tim",
+        "Navigasi intuitif untuk memudahkan evaluasi mitra bisnis & tender"
+      ]
+    },
+    {
+      number: "03",
+      title: "Mudah Diperbarui",
+      subtitle: "Sistem pengelolaan konten (CMS) yang mudah digunakan mandiri tanpa kendala teknis.",
+      image: "/images/services/company-profile/solution-cms.png",
+      alt: "CMS Dashboard Kelola Konten Mandiri",
+      badge: "CMS Mandiri",
+      points: [
+        "Dashboard praktis untuk update berita, proyek baru, dan siaran pers",
+        "Kemudahan mengunggah dokumen legalitas dan laporan berkala",
+        "Kepemilikan penuh tanpa biaya lisensi bulanan yang tersembunyi"
+      ]
+    }
+  ],
+  featuresEyebrow: "Fitur Utama",
+  featuresTitle: "Fitur Lengkap Company Profile",
+  featuresSubtitle: "Komponen penting yang dirancang khusus untuk memenuhi ekspektasi mitra B2B dan standar evaluasi tender.",
   features: [
     {
       title: "Profil Perusahaan & Sejarah",
-      description: "Ceritakan perjalanan bisnismu dengan visual yang berbobot."
+      description: "Ceritakan latar belakang dan perjalanan bisnis secara berbobot.",
+      image: "/images/services/company-profile/feature-01.png"
     },
     {
       title: "Visi, Misi & Nilai Perusahaan",
-      description: "Tampilkan arah dan prinsip bisnis secara elegan."
+      description: "Tampilkan arah dan prinsip bisnis secara jelas dan profesional.",
+      image: "/images/services/company-profile/feature-02.png"
     },
     {
       title: "Struktur Organisasi / Tim Inti",
-      description: "Tunjukkan orang-orang di balik perusahaan untuk bangun kepercayaan."
+      description: "Tampilkan tim di balik perusahaan untuk memperkuat rasa percaya.",
+      image: "/images/services/company-profile/feature-03.png"
     },
     {
-      title: "Portofolio Proyek / Klien",
-      description: "Etalase hasil kerja nyata yang bisa diverifikasi."
-    },
-    {
-      title: "Galeri & Sertifikasi",
-      description: "Dokumentasi legalitas, sertifikat ISO, dan pencapaian resmi."
+      title: "Portofolio Proyek & Klien",
+      description: "Etalase hasil kerja nyata yang dapat diverifikasi oleh calon klien.",
+      image: "/images/services/company-profile/feature-04.png"
     },
     {
       title: "Halaman Karir (Opsional)",
-      description: "Buka lowongan dan rekrut talenta terbaik langsung dari web."
+      description: "Publikasi lowongan kerja dan rekrut talenta langsung melalui website.",
+      image: "/images/services/company-profile/feature-06.png"
     },
     {
       title: "Kontak & Lokasi Cabang",
-      description: "Integrasi Google Maps dan form kontak yang langsung masuk ke email/WA tim."
+      description: "Integrasi peta Google Maps dan formulir kontak yang terhubung langsung ke email/WhatsApp tim.",
+      image: "/images/services/company-profile/feature-07.png"
     },
     {
       title: "Integrasi Media Sosial",
-      description: "Tautkan semua akun resmi perusahaan di satu tempat."
+      description: "Tautkan seluruh akun media sosial resmi perusahaan dalam satu tempat.",
+      image: "/images/services/company-profile/feature-08.png"
     }
   ],
-  packagesTitle: "Investasi untuk Citra Perusahaan Kamu",
+  packagesTitle: "Pilihan Paket Company Profile",
   packagesSubtitle: "Pilihan paket fleksibel sesuai tahap dan skala operasional perusahaan Anda.",
   packages: [
     {
@@ -93,7 +146,8 @@ export const companyProfileId: ServicePageData = {
       name: "STANDARD",
       price: "Rp 15.000.000",
       isPopular: true,
-      description: "Untuk perusahaan berkembang yang aktif cari klien & partner",
+      badge: "Paling Populer",
+      description: "Untuk perusahaan berkembang yang aktif mencari klien & mitra",
       features: [
         "Company profile hingga 10 halaman",
         "CMS untuk update berita & proyek mandiri",
@@ -119,33 +173,35 @@ export const companyProfileId: ServicePageData = {
     }
   ],
   techStackTitle: "Infrastruktur Teknologi Terpercaya",
-  techStackSubtitle: "Teknologi modern yang menjamin uptime 99.9% dan keamanan data korporasi.",
+  techStackSubtitle: "Teknologi modern yang menjamin performa tinggi, uptime optimal, dan keamanan data korporasi.",
   techStack: [
     { name: "Next.js / Astro", category: "Engine", description: "Performa render instan tanpa jeda." },
     { name: "Cloudflare Edge", category: "Security", description: "Firewall mitigasi ancaman siber dan CDN global." },
     { name: "Tailwind CSS", category: "Design", description: "Konsistensi visual branding perusahaan." }
   ],
-  faqTitle: "Pertanyaan Seputar Jasa Web Company Profile",
-  faqSubtitle: "Hal yang sering ditanyakan perwakilan perusahaan sebelum memulai proyek bersama kami.",
+  faqEyebrow: "Pertanyaan Umum",
+  faqTitle: "FAQ",
+  faqSubtitle: "Hal yang sering ditanyakan sebelum memulai proyek pembuatan website company profile bersama kami.",
   faqs: [
     {
       question: "Berapa lama pengerjaan company profile?",
-      answer: "Paket Basic sekitar 1-2 minggu. Paket Standard 2-4 minggu. Custom disesuaikan dengan lingkup proyek."
+      answer: "Paket Basic sekitar 1-2 minggu. Paket Standard 2-4 minggu. Paket Custom disesuaikan dengan ruang lingkup proyek."
     },
     {
       question: "Apakah bisa dibuat multi-bahasa (bilingual)?",
-      answer: "Bisa. Tersedia di paket Custom atau bisa ditambahkan sebagai add-on di paket Standard."
+      answer: "Bisa. Tersedia di paket Custom atau dapat ditambahkan sebagai add-on pada paket Standard."
     },
     {
       question: "Materi dan kontennya dari kami atau dibantu buat?",
-      answer: "Materi dasar dari kamu, tapi tim kami bantu rapikan susunan dan tulisannya agar terdengar profesional."
+      answer: "Materi dasar dari Anda, dan tim kami membantu menyusun struktur narasi serta merapikan tulisan agar terdengar profesional."
     },
     {
-      question: "Kalau nanti mau tambah halaman karir atau update proyek sendiri gimana?",
-      answer: "Di paket Standard dan Custom, kamu dapat CMS yang mudah dipakai. Kami juga berikan panduan video cara pakainya."
+      question: "Kalau nanti mau tambah halaman karir atau update proyek sendiri bagaimana?",
+      answer: "Pada paket Standard dan Custom, Anda mendapatkan CMS yang mudah digunakan serta panduan video penggunaannya."
     }
   ],
-  ctaTitle: "Saatnya Perusahaan Kamu Terlihat Sekelas yang Sebenarnya",
-  ctaSubtitle: "Konsultasikan kebutuhan company profile kamu sekarang. Kami bantu tentukan konsep dan paket yang paling pas untuk skala bisnismu.",
-  ctaButton: "Konsultasi Gratis Sekarang"
+  ctaTitle: "Siap Membangun Website Company Profile Anda?",
+  ctaSubtitle: "Konsultasikan kebutuhan website company profile Anda sekarang. Tim kami siap membantu menentukan konsep dan paket yang paling sesuai.",
+  ctaButton: "Konsultasi Gratis Sekarang",
+  ctaSecondaryButton: "Tanya via WhatsApp"
 };

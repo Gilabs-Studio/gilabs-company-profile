@@ -4,11 +4,12 @@ export const companyProfileEn: ServicePageData = {
   slug: "company-profile-website",
   category: "website",
   eyebrow: "Company Profile Website",
-  title: "Company Profiles Built to Look Like an Enterprise",
-  subtitle: "First impressions happen on your website. We make sure the first thing prospective partners or investors see is the absolute best version of your business.",
+  title: "Professional Company Profile",
+  subtitle: "Establish a strong first impression for prospective clients, partners, and investors with a credible, elegant, and informative corporate website.",
   heroIllustration: "/images/services/company-profile/hero-corporate-mockup.png",
-  metaTitle: "Enterprise Company Profile Web Development | Gilabs",
-  metaDescription: "First impressions happen on your website. We ensure your prospective partners and investors see the most authoritative version of your business. Fast, secure, tender-ready.",
+  heroImageAlt: "Corporate Company Profile Website Mockup on Desktop - Gilabs Studio",
+  metaTitle: "Professional Corporate Company Profile Web Development | Gilabs",
+  metaDescription: "Establish a strong first impression with an authoritative, elegant, and tender-ready corporate website. Fast, responsive, and secure.",
   keywords: [
     "corporate company profile website",
     "b2b company profile development",
@@ -18,66 +19,118 @@ export const companyProfileEn: ServicePageData = {
     "enterprise company profile web agency"
   ],
   primaryCtaText: "Free Consultation",
-  secondaryCtaText: "View Examples",
-  problemsTitle: "Older Company Profiles Often Look Like This",
-  problemsSubtitle: "These 3 bottlenecks are why prospective partners and tender committees hesitate before contacting your business.",
+  secondaryCtaText: "Explore Solutions",
+  problemsEyebrow: "Common Roadblocks",
+  problemsTitle: "Common Corporate Website Bottlenecks",
+  problemsSubtitle: "Three key obstacles that often cause prospective partners and tender committees to hesitate before reaching out.",
   problems: [
     {
-      pain: "01. Outdated Look",
-      solution: "Designs from 5 years ago make potential partners hesitate before reaching out."
+      pain: "01. Outdated Design",
+      solution: "Outdated visual styling makes prospective clients question your company's modern standards and capabilities.",
+      metric: "75% of partners evaluate credibility based on visual design"
     },
     {
-      pain: "02. Cluttered Information",
-      solution: "Vision, mission, services, and contacts have no clear hierarchy or structure."
+      pain: "02. Disorganized Structure",
+      solution: "Company background, portfolio, and legal credentials are scattered without an intuitive hierarchy.",
+      metric: "Procurement teams struggle to locate compliance documents"
     },
     {
-      pain: "03. Unconvincing",
-      solution: "No credibility proof, just dry walls of text without substance."
+      pain: "03. Lack of Verifiable Proof",
+      solution: "Without real project showcases and verified credentials, building mutual trust becomes difficult.",
+      metric: "Lack of verifiable track records reduces client confidence"
     }
   ],
-  featuresTitle: "Everything a Modern Company Profile Needs",
+  solutionsEyebrow: "Value Proposition",
+  solutionsTitle: "Engineered to Establish Lasting Trust",
+  solutionsSubtitle: "Every section is strategically designed to demonstrate credibility and capability to prospective partners and tender evaluators.",
+  solutions: [
+    {
+      number: "01",
+      title: "Professional Image",
+      subtitle: "Design tailored to reflect the standards and credibility of your industry.",
+      image: "/images/services/company-profile/solution-prestige.png",
+      alt: "Professional Corporate Website Design",
+      badge: "Corporate Standard",
+      points: [
+        "Visual identity aligned with your specific industry tier",
+        "Typography and layout following international corporate conventions",
+        "Fully responsive across all desktop, tablet, and mobile devices"
+      ]
+    },
+    {
+      number: "02",
+      title: "Clear Information Architecture",
+      subtitle: "Company overview, services, portfolio, and contact info structured for effortless discovery.",
+      image: "/images/services/company-profile/solution-architecture.png",
+      alt: "Clear Information Architecture",
+      badge: "Information Architecture",
+      points: [
+        "Structured narrative flow that builds confidence step by step",
+        "Fast access to company legalities, certifications, and leadership",
+        "Intuitive navigation optimized for procurement and tender evaluators"
+      ]
+    },
+    {
+      number: "03",
+      title: "Easy to Update",
+      subtitle: "An intuitive content management system (CMS) that your team can maintain independently.",
+      image: "/images/services/company-profile/solution-cms.png",
+      alt: "Self-Serve CMS Dashboard",
+      badge: "Self-Serve CMS",
+      points: [
+        "Straightforward dashboard to post news, case studies, and press releases",
+        "Effortless uploads for legal documents, certifications, and annual reports",
+        "Full source ownership with zero recurring third-party CMS lock-in fees"
+      ]
+    }
+  ],
+  featuresEyebrow: "Core Modules",
+  featuresTitle: "Core Company Profile Features",
   featuresSubtitle: "Essential components engineered to exceed expectations of B2B partners and tender evaluation boards.",
   features: [
     {
       title: "Company Profile & History",
-      description: "Tell your company's journey with dignified visual storytelling."
+      description: "Present your company's journey and capabilities with dignified visual storytelling.",
+      image: "/images/services/company-profile/feature-01.png"
     },
     {
       title: "Vision, Mission & Values",
-      description: "Display your guiding principles and strategic vision with elegance."
+      description: "Display guiding principles and strategic vision clearly and professionally.",
+      image: "/images/services/company-profile/feature-02.png"
     },
     {
       title: "Organization Structure / Core Team",
-      description: "Showcase the leaders behind the business to build trust."
+      description: "Showcase the leadership and key talent behind the enterprise to build trust.",
+      image: "/images/services/company-profile/feature-03.png"
     },
     {
       title: "Project & Client Portfolio",
-      description: "A verifiable digital showcase of proven past track records."
-    },
-    {
-      title: "Gallery & Certifications",
-      description: "Display official legalities, ISO certifications, and enterprise achievements."
+      description: "A verifiable digital showcase of past results and trusted client engagements.",
+      image: "/images/services/company-profile/feature-04.png"
     },
     {
       title: "Career Portal (Optional)",
-      description: "Post openings and attract top talent directly from your company domain."
+      description: "Publish vacancies and attract top industry talent directly on your domain.",
+      image: "/images/services/company-profile/feature-06.png"
     },
     {
       title: "Contact & Branch Locations",
-      description: "Interactive maps and inquiries routed straight to team email or WhatsApp."
+      description: "Interactive maps and direct inquiries routed straight to team email or WhatsApp.",
+      image: "/images/services/company-profile/feature-07.png"
     },
     {
       title: "Social Media Integration",
-      description: "Centralize all your official social media channels in one unified place."
+      description: "Centralize all official social channels in one unified, accessible place.",
+      image: "/images/services/company-profile/feature-08.png"
     }
   ],
-  packagesTitle: "An Investment in Your Enterprise Reputation",
-  packagesSubtitle: "Tailored investment plans structured for your corporate maturity and operational scale.",
+  packagesTitle: "Company Profile Investment Packages",
+  packagesSubtitle: "Flexible packages tailored to your company's operational stage and requirements.",
   packages: [
     {
       name: "BASIC",
       price: "$350",
-      description: "Ideal for newly founded PT/CV requiring an official digital presence",
+      description: "Ideal for newly founded companies requiring an official digital presence",
       features: [
         "3-5 pages company profile",
         "Corporate clean & responsive design",
@@ -90,6 +143,7 @@ export const companyProfileEn: ServicePageData = {
       name: "STANDARD",
       price: "$950",
       isPopular: true,
+      badge: "Most Popular",
       description: "For established businesses actively pursuing enterprise clients & partners",
       features: [
         "Up to 10 pages company profile",
@@ -116,14 +170,15 @@ export const companyProfileEn: ServicePageData = {
     }
   ],
   techStackTitle: "Enterprise Engineering Foundation",
-  techStackSubtitle: "Ensuring 99.9% uptime and bulletproof security for corporate clients.",
+  techStackSubtitle: "Modern architecture ensuring high performance, 99.9% uptime, and enterprise data security.",
   techStack: [
-    { name: "Next.js / Astro", category: "Engine", description: "Zero layout shift and instant edge loading." },
+    { name: "Next.js / Astro", category: "Engine", description: "Instant edge loading and zero layout shifts." },
     { name: "Cloudflare Edge", category: "Security", description: "Global CDN network and DDoS firewall." },
-    { name: "Tailwind CSS", category: "Design System", description: "Strict design consistency across corporate touchpoints." }
+    { name: "Tailwind CSS", category: "Design System", description: "Consistent visual branding across corporate touchpoints." }
   ],
-  faqTitle: "Company Profile Web FAQs",
-  faqSubtitle: "Common questions asked by corporate leaders before commissioning a project.",
+  faqEyebrow: "FAQ",
+  faqTitle: "Frequently asked questions about company profile website development",
+  faqSubtitle: "Common questions asked prior to commissioning a company profile website project.",
   faqs: [
     {
       question: "How long does it take to complete a company profile website?",
@@ -139,10 +194,11 @@ export const companyProfileEn: ServicePageData = {
     },
     {
       question: "How do we add career openings or update projects later?",
-      answer: "In the Standard and Custom packages, you get an intuitive CMS and easy-to-follow video training so your team can manage updates independently."
+      answer: "In the Standard and Custom packages, you receive an intuitive CMS along with video walkthroughs for independent management."
     }
   ],
-  ctaTitle: "It's Time Your Company Looks as Prestigious as It Truly Is",
-  ctaSubtitle: "Discuss your company profile requirements today. We will help determine the best concept and package suited for your business scale.",
-  ctaButton: "Free Consultation Now"
+  ctaTitle: "Ready to Build Your Company Profile Website?",
+  ctaSubtitle: "Discuss your corporate website requirements with our team today. We'll help you determine the most effective concept and package for your business.",
+  ctaButton: "Free Consultation Now",
+  ctaSecondaryButton: "Chat on WhatsApp"
 };

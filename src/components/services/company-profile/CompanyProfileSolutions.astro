@@ -1,79 +1,49 @@
 ---
+import type { ServicePageData, ServiceSolution } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const pillars = [
-  {
-    number: "01",
-    title: lang === "en" ? "Pillar 1 - Professional Image" : "Pilar 1 - Citra Profesional",
-    subtitle: lang === "en" ? "Design that reflects the scale and standards of your industry." : "Desain yang mencerminkan skala dan standar industri kamu.",
-    image: "/images/services/company-profile/solution-prestige.png",
-    alt: "Desain Company Profile Profesional Skala Enterprise",
-    badge: lang === "en" ? "Enterprise Authority" : "Standar Korporat",
-    points: [
-      lang === "en" ? "Visual language tailored to your specific industry tier" : "Bahasa visual eksklusif sesuai sektor industri Anda",
-      lang === "en" ? "Executive typography and international layout conventions" : "Tipografi dan tata letak berstandar internasional",
-      lang === "en" ? "Flawless rendering on board-level iPads and laptops" : "Tampilan responsif sempurna di laptop klien maupun HP direksi"
-    ]
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Pillar 2 - Clear Information Architecture" : "Pilar 2 - Struktur Informasi Jelas",
-    subtitle: lang === "en" ? "From who you are and what you do to how to get in touch-everything is effortless to find." : "Dari siapa kamu, apa yang kamu kerjakan, sampai cara hubungi-semua mudah ditemukan.",
-    image: "/images/services/company-profile/solution-architecture.png",
-    alt: "Struktur Informasi Company Profile Rapi dan Terarah",
-    badge: lang === "en" ? "Information Flow" : "Arsitektur Informasi",
-    points: [
-      lang === "en" ? "Sequential narrative flow that builds trust step-by-step" : "Alur membaca narasi yang runtut dan meyakinkan",
-      lang === "en" ? "Direct access to ISO certifications, legalities, and leadership" : "Akses cepat ke halaman legalitas, sertifikasi, & tim",
-      lang === "en" ? "Intuitive navigation designed for procurement & tender evaluators" : "Navigasi intuitif untuk panitia tender dan partner bisnis"
-    ]
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "Pillar 3 - Easy to Update" : "Pilar 3 - Mudah Diperbarui",
-    subtitle: lang === "en" ? "A clean CMS that your team can easily manage without relying on developers." : "CMS yang gampang dipakai sendiri tanpa harus bergantung ke developer terus.",
-    image: "/images/services/company-profile/solution-cms.png",
-    alt: "CMS Dashboard Kelola Konten Mandiri",
-    badge: lang === "en" ? "Self-Serve CMS" : "CMS Mandiri",
-    points: [
-      lang === "en" ? "Effortless dashboard to publish news, project releases & press" : "Panel kelola berita, proyek baru, & siaran pers mandiri",
-      lang === "en" ? "Seamlessly upload annual reports, PDFs, and legal updates" : "Unggah dokumen legalitas & laporan berkala dengan mudah",
-      lang === "en" ? "Zero lock-in or recurring maintenance licensing fees" : "Bebas biaya langganan bulanan pihak ketiga yang membengkak"
-    ]
-  }
-];
+const {
+  solutionsEyebrow,
+  solutionsTitle,
+  solutionsSubtitle,
+  solutions = [],
+} = service;
 ---
 
-<section class="py-16 md:py-24 relative">
+<section id="solusi" class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Value Proposition" : "Solusi & Value Proposition"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {solutionsEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {solutionsEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Designed to Build Lasting Trust" : "Dirancang untuk Membangun Kepercayaan"}
+        {solutionsTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Not just so you have a live website. Every element is structured to convince potential partners that you're the right business to work with."
-          : "Bukan cuma biar kelihatan ada website-nya. Setiap elemen kami tata agar calon partner yakin kamu bisnis yang tepat."}
-      </p>
+      {solutionsSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {solutionsSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 3 Pillars Grid - Landing Page Consistent Cards (bg-white, border-border/50, shadow-sm) */}
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-      {pillars.map((pillar) => (
+      {solutions.map((pillar) => (
         <article class="bg-white border border-border/50 rounded-2xl overflow-hidden hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           {/* Top Image Banner */}
           <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
