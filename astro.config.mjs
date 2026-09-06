@@ -126,8 +126,15 @@ export default defineConfig({
     plugins: [tailwindcss()],
     server: {
       watch: {
-        usePolling: true,
-        ignored: ['**/.astro/**', '**/dist/**']
+        usePolling: false,
+        ignored: [
+          '**/.git/**',
+          '**/node_modules/**',
+          '**/.astro/**',
+          '**/dist/**',
+          '**/public/images/**',
+          '**/.gemini/**'
+        ]
       }
     }
   },

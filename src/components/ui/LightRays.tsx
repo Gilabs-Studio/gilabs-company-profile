@@ -104,7 +104,7 @@ const LightRays: React.FC<LightRaysProps> = ({
   const animationIdRef = useRef<number | null>(null);
   const meshRef = useRef<Mesh | null>(null);
   const cleanupFunctionRef = useRef<(() => void) | null>(null);
-  const [isVisible, setIsVisible] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
 
   useEffect(() => {
@@ -115,7 +115,7 @@ const LightRays: React.FC<LightRaysProps> = ({
         const entry = entries[0];
         setIsVisible(entry.isIntersecting);
       },
-      { threshold: 0.1 }
+      { threshold: 0.05 }
     );
 
     observerRef.current.observe(containerRef.current);
@@ -139,7 +139,7 @@ const LightRays: React.FC<LightRaysProps> = ({
     const initializeWebGL = async () => {
       if (!containerRef.current) return;
 
-      // Defer WebGL setup to next animation frame so main thread completes initial FCP layout render first
+      // Defer WebGL setup to next animation frame so main thread completes initial layout & paint first
       await new Promise<void>(resolve => {
         if (typeof requestAnimationFrame !== 'undefined') {
           requestAnimationFrame(() => resolve());
@@ -150,15 +150,25 @@ const LightRays: React.FC<LightRaysProps> = ({
 
       if (!containerRef.current) return;
 
+      // Adaptive DPR: Capping DPR to 1.0 on desktop and 0.75 on mobile saves 50-75% GPU fill-rate
+      // with zero visual degradation for diffused ambient rays
+      const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+      const initialDpr = isMobile ? 0.75 : Math.min(window.devicePixelRatio || 1, 1.0);
+
       const renderer = new Renderer({
-        dpr: Math.min(window.devicePixelRatio, 1.5),
-        alpha: true
+        dpr: initialDpr,
+        alpha: true,
+        premultipliedAlpha: false
       });
       rendererRef.current = renderer;
 
       const gl = renderer.gl;
       gl.canvas.style.width = '100%';
       gl.canvas.style.height = '100%';
+      gl.canvas.style.display = 'block';
+      gl.canvas.style.pointerEvents = 'none';
+      gl.canvas.style.transform = 'translateZ(0)';
+      gl.canvas.style.willChange = 'transform';
 
       while (containerRef.current.firstChild) {
         containerRef.current.removeChild(containerRef.current.firstChild);
@@ -201,14 +211,16 @@ float noise(vec2 st) {
 float rayStrength(vec2 raySource, vec2 rayRefDirection, vec2 coord,
                   float seedA, float seedB, float speed) {
   vec2 sourceToCoord = coord - raySource;
-  vec2 dirNorm = normalize(sourceToCoord);
+  float distance = length(sourceToCoord);
+  vec2 dirNorm = distance > 0.0001 ? (sourceToCoord / distance) : vec2(0.0, 1.0);
   float cosAngle = dot(dirNorm, rayRefDirection);
 
-  float distortedAngle = cosAngle + distortion * sin(iTime * 2.0 + length(sourceToCoord) * 0.01) * 0.2;
+  float distortedAngle = distortion > 0.0
+    ? cosAngle + distortion * sin(iTime * 2.0 + distance * 0.01) * 0.2
+    : cosAngle;
   
   float spreadFactor = pow(max(distortedAngle, 0.0), 1.0 / max(lightSpread, 0.001));
 
-  float distance = length(sourceToCoord);
   float maxDistance = iResolution.x * rayLength;
   float lengthFalloff = clamp((maxDistance - distance) / maxDistance, 0.0, 1.0);
   
@@ -294,7 +306,8 @@ void main() {
       const updatePlacement = () => {
         if (!containerRef.current || !renderer) return;
 
-        renderer.dpr = Math.min(window.devicePixelRatio, 1.5);
+        const isMobileScreen = typeof window !== 'undefined' && window.innerWidth < 768;
+        renderer.dpr = isMobileScreen ? 0.75 : Math.min(window.devicePixelRatio || 1, 1.0);
 
         const { clientWidth: wCSS, clientHeight: hCSS } = containerRef.current;
         renderer.setSize(wCSS, hCSS);
@@ -310,10 +323,27 @@ void main() {
         uniforms.rayDir.value = dir;
       };
 
+      let lastFrameTime = 0;
+      const targetFrameInterval = 1000 / 60; // Max 60 FPS cap (saves GPU on 120Hz/144Hz monitors)
+
       const loop = (t: number) => {
         if (!rendererRef.current || !uniformsRef.current || !meshRef.current) {
           return;
         }
+
+        animationIdRef.current = requestAnimationFrame(loop);
+
+        // Pause WebGL calculations when browser tab is hidden/minimized
+        if (document.hidden) {
+          return;
+        }
+
+        // Throttle rendering to max 60fps
+        const delta = t - lastFrameTime;
+        if (delta < targetFrameInterval - 1) {
+          return;
+        }
+        lastFrameTime = t - (delta % targetFrameInterval);
 
         uniforms.iTime.value = t * 0.001;
 
@@ -328,14 +358,33 @@ void main() {
 
         try {
           renderer.render({ scene: mesh });
-          animationIdRef.current = requestAnimationFrame(loop);
         } catch (error) {
           console.warn('WebGL rendering error:', error);
-          return;
         }
       };
 
-      window.addEventListener('resize', updatePlacement);
+      let resizeTimeout: ReturnType<typeof setTimeout> | null = null;
+      const debouncedResize = () => {
+        if (resizeTimeout) clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updatePlacement, 100);
+      };
+
+      const handleVisibilityChange = () => {
+        if (document.hidden) {
+          if (animationIdRef.current) {
+            cancelAnimationFrame(animationIdRef.current);
+            animationIdRef.current = null;
+          }
+        } else {
+          if (!animationIdRef.current && rendererRef.current) {
+            lastFrameTime = performance.now();
+            animationIdRef.current = requestAnimationFrame(loop);
+          }
+        }
+      };
+
+      window.addEventListener('resize', debouncedResize, { passive: true });
+      document.addEventListener('visibilitychange', handleVisibilityChange);
       updatePlacement();
       animationIdRef.current = requestAnimationFrame(loop);
 
@@ -345,7 +394,13 @@ void main() {
           animationIdRef.current = null;
         }
 
-        window.removeEventListener('resize', updatePlacement);
+        if (resizeTimeout) {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = null;
+        }
+
+        window.removeEventListener('resize', debouncedResize);
+        document.removeEventListener('visibilitychange', handleVisibilityChange);
 
         if (renderer) {
           try {
@@ -439,7 +494,7 @@ void main() {
     };
 
     if (followMouse) {
-      window.addEventListener('mousemove', handleMouseMove);
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
       return () => window.removeEventListener('mousemove', handleMouseMove);
     }
   }, [followMouse]);
@@ -448,6 +503,7 @@ void main() {
     <div
       ref={containerRef}
       className={`w-full h-full pointer-events-none z-[3] overflow-hidden relative ${className}`.trim()}
+      style={{ contain: 'strict' }}
     />
   );
 };
