@@ -16,7 +16,6 @@ const links = [
   { href: `${pathPrefix}/solutions`, label: lang === "en" ? "Solutions" : "Solusi" },
   { href: `${pathPrefix}/work-results`, label: lang === "en" ? "Our Work" : "Hasil Pekerjaan" },
   { href: `${pathPrefix}/blog`, label: lang === "en" ? "Blog" : "Blog" },
-  { href: getWhatsAppLink("navbar", lang), label: lang === "en" ? "Contact" : "Kontak", external: true },
 ];
 
 const serviceLinks = [
@@ -57,21 +56,36 @@ if (serviceMatch) {
 }
 ---
 
-<nav class="fixed top-0 left-0 right-0 z-50 transition-transform duration-300 ease-in-out" id="navbar">
-  <div class="container mx-auto px-4 h-16 sm:h-20 flex items-center">
-    <a href={pathPrefix} class="text-xl sm:text-2xl font-bold tracking-tighter relative z-50 cursor-pointer">
-      GILABS<span class="text-brand">.ID</span>
-    </a>
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-in-out" id="navbar">
+  <!-- Progressive blur background layer -->
+  <div 
+    id="navbar-bg" 
+    class="absolute inset-0 -z-10 pointer-events-none transition-opacity duration-300 opacity-0"
+    aria-hidden="true"
+  >
+    <!-- Base frosted glass background -->
+    <div class="absolute inset-0 bg-background/80 backdrop-blur-md border-b border-border/40 shadow-xs shadow-black/5"></div>
+    <!-- Progressive blur feather (smooth gradient mask at bottom edge) -->
+    <div class="absolute top-full left-0 right-0 h-5 bg-gradient-to-b from-background/40 to-transparent backdrop-blur-xs [mask-image:linear-gradient(to_bottom,black_0%,transparent_100%)] pointer-events-none"></div>
+  </div>
 
-    {/* Desktop Menu */}
-    <div class="hidden md:flex items-center gap-6 ml-auto mr-4">
+  <div class="container mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between relative">
+    <!-- Brand Logo (Left) -->
+    <div class="flex items-center flex-1 justify-start">
+      <a href={pathPrefix} class="text-xl sm:text-2xl font-bold tracking-tighter relative z-50 cursor-pointer hover:opacity-90 transition-opacity">
+        GILABS<span class="text-brand">.ID</span>
+      </a>
+    </div>
+
+    <!-- Desktop Menu (Center) -->
+    <div class="hidden md:flex items-center justify-center gap-1 lg:gap-2">
       {links.map(link => {
         if (link.isDropdown) {
           return (
             <div class="relative group py-2">
               <a 
                 href={link.href} 
-                class="text-sm font-medium text-muted-foreground hover:text-brand transition-colors cursor-pointer flex items-center gap-1"
+                class="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/60 px-3.5 py-2 rounded-lg transition-all duration-200 cursor-pointer flex items-center gap-1"
               >
                 {link.label}
                 <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 opacity-70" />
@@ -79,7 +93,7 @@ if (serviceMatch) {
 
               {/* Hover Dropdown Menu */}
               <div class="absolute top-full left-1/2 -translate-x-1/2 w-[540px] pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50">
-                <div class="bg-background/98 backdrop-blur-xl border border-border/60 rounded-2xl p-5 shadow-xl shadow-black/5">
+                <div class="bg-background/98 backdrop-blur-xl border border-border/60 rounded-xl p-5 shadow-xl shadow-black/5">
                   <div class="grid grid-cols-2 gap-6">
                     {serviceLinks.map((cat) => (
                       <div class="space-y-2">
@@ -91,7 +105,7 @@ if (serviceMatch) {
                             <li>
                               <a
                                 href={item.href}
-                                class="block py-1.5 px-2 rounded-lg text-xs font-medium text-foreground hover:text-brand hover:bg-secondary/60 transition-colors"
+                                class="block py-1.5 px-2 rounded-lg text-xs font-medium text-foreground hover:text-brand hover:bg-secondary/60 transition-colors cursor-pointer"
                               >
                                 {item.label}
                               </a>
@@ -104,7 +118,7 @@ if (serviceMatch) {
                   <div class="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs">
                     <a
                       href={`${pathPrefix}/services`}
-                      class="font-semibold text-brand hover:underline inline-flex items-center gap-1"
+                      class="font-semibold text-brand hover:underline inline-flex items-center gap-1 cursor-pointer"
                     >
                       {lang === "en" ? "View All Services" : "Lihat Semua Layanan"} →
                     </a>
@@ -118,8 +132,7 @@ if (serviceMatch) {
         return (
           <a 
             href={link.href} 
-            class="text-sm font-medium text-muted-foreground hover:text-brand transition-colors cursor-pointer"
-            {...(link.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            class="text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-secondary/60 px-3.5 py-2 rounded-lg transition-all duration-200 cursor-pointer"
           >
             {link.label}
           </a>
@@ -127,12 +140,22 @@ if (serviceMatch) {
       })}
     </div>
 
-    <div class="hidden md:flex items-center gap-4">
-      <a href={switchLangPath} class="text-xs font-medium border border-border px-3 py-1.5 rounded-full hover:bg-secondary transition-colors uppercase cursor-pointer">
+    <!-- Actions: Language & CTA (Right) -->
+    <div class="hidden md:flex items-center justify-end flex-1 gap-3">
+      <a 
+        href={switchLangPath} 
+        class="text-xs font-medium border border-border/80 px-2.5 py-1.5 rounded-lg hover:bg-secondary/70 hover:border-border transition-colors uppercase cursor-pointer text-muted-foreground hover:text-foreground"
+        aria-label="Switch Language"
+      >
         {lang === "en" ? "ID" : "EN"}
       </a>
-      <a href={getWhatsAppLink("navbar", lang)} target="_blank" rel="noopener noreferrer" class="text-sm font-bold bg-brand text-white px-5 py-2.5 rounded-full hover:bg-brand/90 transition-all hover:shadow-lg hover:shadow-brand/20 cursor-pointer">
-        {lang === "en" ? "Get Started" : "Mulai Sekarang"}
+      <a 
+        href={getWhatsAppLink("navbar", lang)} 
+        target="_blank" 
+        rel="noopener noreferrer" 
+        class="text-xs sm:text-sm font-semibold bg-brand text-white px-4 py-2 sm:px-5 sm:py-2.5 rounded-lg hover:bg-brand/90 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 hover:shadow-lg hover:shadow-brand/25 cursor-pointer inline-flex items-center"
+      >
+        {lang === "en" ? "Contact Us" : "Hubungi Kami"}
       </a>
     </div>
 
@@ -150,8 +173,9 @@ if (serviceMatch) {
 
 <script>
   const navbar = document.getElementById("navbar");
+  const navbarBg = document.getElementById("navbar-bg");
 
-  let lastScrollY = 0;
+  let lastScrollY = window.scrollY;
   let ticking = false;
 
   function updateNavbar() {
@@ -159,27 +183,42 @@ if (serviceMatch) {
     
     const currentScrollY = window.scrollY;
     
-    if (currentScrollY <= 0) {
+    // Top of page: completely transparent, no blur background
+    if (currentScrollY <= 20) {
       navbar.style.transform = "translateY(0)";
+      if (navbarBg) {
+        navbarBg.classList.add("opacity-0");
+        navbarBg.classList.remove("opacity-100");
+      }
       lastScrollY = currentScrollY;
       ticking = false;
       return;
     }
     
-    if (currentScrollY > lastScrollY && currentScrollY > 50) {
+    // Scrolled into page:
+    // When scrolling down past 80px, hide navbar
+    if (currentScrollY > lastScrollY && currentScrollY > 80) {
       navbar.style.transform = "translateY(-100%)";
     } else {
+      // When scrolling up or stationary, show navbar with progressive blur background
       navbar.style.transform = "translateY(0)";
+      if (navbarBg) {
+        navbarBg.classList.remove("opacity-0");
+        navbarBg.classList.add("opacity-100");
+      }
     }
     
     lastScrollY = currentScrollY;
     ticking = false;
   }
 
+  // Initialize on page load
+  updateNavbar();
+
   window.addEventListener("scroll", () => {
     if (!ticking) {
       window.requestAnimationFrame(updateNavbar);
       ticking = true;
     }
-  });
+  }, { passive: true });
 </script>
