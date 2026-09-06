@@ -1,97 +1,65 @@
 ---
 import { Check } from "lucide-react";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const pillars = [
-  {
-    number: "01",
-    title: lang === "en" ? "Pillar 1 - Fast Checkouts" : "Pilar 1 - Transaksi Cepat",
-    subtitle: lang === "en"
-      ? "Intuitive interface so even newly hired cashiers can start immediately without lengthy training."
-      : "Interface simpel, kasir baru pun bisa langsung pakai tanpa training lama.",
-    image: "/images/services/pos-system/solution-fast-transactions.png",
-    alt: lang === "en" ? "Fast Checkout POS Terminal Experience" : "Antarmuka Kasir POS Cepat dan Intuitif",
-    points: [
-      lang === "en" ? "Minimalist cashier UI optimized for rapid touch and high-speed keystrokes" : "Desain UI kasir responsif dan minim klik untuk checkout kilat",
-      lang === "en" ? "Instant menu & product search via barcode scan or visual quick categories" : "Pencarian menu dan produk instan via barcode scanner atau kategori visual",
-      lang === "en" ? "One-click split bill, percentage promotions, and dynamic QRIS display" : "Fitur split bill meja, diskon persentase, dan QRIS dinamis dalam satu klik"
-    ]
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Pillar 2 - Automatic Inventory Sync" : "Pilar 2 - Stok Update Otomatis",
-    subtitle: lang === "en"
-      ? "Every completed transaction instantly deducts stock, eliminating manual double entry."
-      : "Setiap transaksi langsung mengurangi stok, nggak perlu input dobel.",
-    image: "/images/services/pos-system/solution-auto-inventory.png",
-    alt: lang === "en" ? "Automated POS Stock Deduction Engine" : "Sistem Pengurangan Stok Otomatis Kasir",
-    points: [
-      lang === "en" ? "Finished retail goods and kitchen raw materials deducted automatically" : "Stok barang jadi dan bahan baku resto otomatis terpotong saat transaksi",
-      lang === "en" ? "Automated threshold alerts when product quantities reach minimum safety stock" : "Notifikasi otomatis saat stok barang menipis di bawah batas aman",
-      lang === "en" ? "Prevents overselling and eliminates discrepancies during periodic stock audits" : "Mencegah overselling dan memangkas waktu rekonsiliasi stok opname berkala"
-    ]
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "Pillar 3 - Real-Time Reporting" : "Pilar 3 - Laporan Real-time",
-    subtitle: lang === "en"
-      ? "Business owners monitor revenue anytime, from anywhere, directly on their mobile phone."
-      : "Owner bisa pantau omzet dari mana saja, kapan saja, langsung dari HP.",
-    image: "/images/services/pos-system/solution-realtime-insights.png",
-    alt: lang === "en" ? "Real-time Mobile Sales Analytics" : "Dashboard Laporan Penjualan Real-time",
-    points: [
-      lang === "en" ? "Live daily revenue telemetry, gross profit margins, and peak shopping hours" : "Pantau grafik omzet harian, laba kotor, dan jam sibuk toko secara real-time",
-      lang === "en" ? "Transparent cashier shift recaps to eliminate end-of-day drawer shortages" : "Rekap shift kasir transparan untuk cegah selisih uang di laci kasir",
-      lang === "en" ? "Instant export to structured Excel spreadsheets and formatted audit PDFs" : "Ekspor laporan penjualan ke format Excel dan PDF siap audit dalam satu klik"
-    ]
-  }
-];
+const {
+  solutionsEyebrow,
+  solutionsTitle,
+  solutionsSubtitle,
+  solutions = [],
+} = service;
 ---
 
-<section class="py-16 md:py-24 relative">
+<section id="solusi" class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Core Value Proposition" : "Solusi & Value Proposition"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {solutionsEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {solutionsEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Three Pillars That Make Your Cashiers Drastically More Efficient" : "Tiga Hal yang Bikin Kasir Kamu Bekerja Lebih Efektif"}
+        {solutionsTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "We engineer rapid cashier interfaces and real-time backend synchronization directly to your store inventory."
-          : "Kami merancang antarmuka kasir yang gesit dan sistem backend yang sinkron otomatis ke inventori toko Anda."}
-      </p>
+      {solutionsSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {solutionsSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 3 Pillars Grid */}
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
-      {pillars.map((pillar) => (
+      {solutions.map((pillar) => (
         <article class="bg-white border border-border/50 rounded-2xl overflow-hidden hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
-          {/* Top Image Banner (Minimalist, zero floating badges) */}
-          <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
-            <img
-              src={pillar.image}
-              alt={pillar.alt}
-              class="w-full h-full object-cover select-none"
-              loading="lazy"
-              decoding="async"
-              width="640"
-              height="400"
-            />
-          </div>
+          {/* Top Image Banner */}
+          {pillar.image && (
+            <div class="relative aspect-[16/10] overflow-hidden bg-muted/20 border-b border-border/40">
+              <img
+                src={pillar.image}
+                alt={pillar.alt || pillar.title}
+                class="w-full h-full object-cover select-none"
+                loading="lazy"
+                decoding="async"
+                width="640"
+                height="400"
+              />
+            </div>
+          )}
 
           {/* Content Details */}
           <div class="p-6 sm:p-7 flex flex-col grow justify-between">
@@ -100,23 +68,28 @@ const pillars = [
                 {pillar.title}
               </h3>
 
-              <p class="typography-body text-muted-foreground leading-relaxed mb-6 font-light">
-                {pillar.subtitle}
-              </p>
+              {pillar.subtitle && (
+                <p class="typography-body text-muted-foreground leading-relaxed mb-6 font-light">
+                  {pillar.subtitle}
+                </p>
+              )}
             </div>
 
             {/* Checkpoints */}
-            <ul class="space-y-3 pt-4 border-t border-border/40">
-              {pillar.points.map((point) => (
-                <li class="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/80">
-                  <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
-                  <span class="leading-snug">{point}</span>
-                </li>
-              ))}
-            </ul>
+            {pillar.points && pillar.points.length > 0 && (
+              <ul class="space-y-3 pt-4 border-t border-border/40">
+                {pillar.points.map((point) => (
+                  <li class="flex items-start gap-2.5 text-xs sm:text-sm text-foreground/80">
+                    <Check className="w-4 h-4 text-brand flex-shrink-0 mt-0.5" />
+                    <span class="leading-snug">{point}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
         </article>
       ))}
     </div>
   </div>
 </section>
+

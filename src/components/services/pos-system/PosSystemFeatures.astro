@@ -9,115 +9,82 @@ import {
   QrCode,
   WifiOff
 } from "lucide-react";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const features = [
-  {
-    title: lang === "en" ? "Multi-Method Payment Checkout" : "Transaksi Multi Metode Pembayaran",
-    description: lang === "en"
-      ? "Support cash, dynamic or static QRIS, bank transfers, e-wallets, and debit/credit cards in a single fluid screen."
-      : "Mendukung pembayaran tunai, QRIS dinamis/statis, transfer bank, e-wallet, dan kartu debit dalam satu layar.",
-    Icon: CreditCard
-  },
-  {
-    title: lang === "en" ? "Automated Inventory Deduction" : "Manajemen Stok Otomatis",
-    description: lang === "en"
-      ? "Every single completed transaction instantly deducts finished goods or raw ingredients with zero double-entry."
-      : "Setiap transaksi otomatis memotong stok barang jadi maupun bahan baku tanpa perlu rekap ulang.",
-    Icon: Boxes
-  },
-  {
-    title: lang === "en" ? "Split Bill & Flexible Discounts" : "Split Bill & Diskon Fleksibel",
-    description: lang === "en"
-      ? "Seamless bill splitting per table or group, percentage promotions, promotional coupons, and custom discounts."
-      : "Fitur pemisahan tagihan fleksibel per meja serta promo persentase, voucher, atau nominal kustom.",
-    Icon: Percent
-  },
-  {
-    title: lang === "en" ? "Thermal & Digital Receipts" : "Cetak Struk & Struk Digital",
-    description: lang === "en"
-      ? "Instant connection to thermal receipt printers, with digital receipt delivery directly via WhatsApp or email."
-      : "Koneksi printer thermal instan dan opsi pengiriman struk digital via WhatsApp atau email ke pelanggan.",
-    Icon: Printer
-  },
-  {
-    title: lang === "en" ? "Daily Sales & Profit Reports" : "Laporan Penjualan Harian",
-    description: lang === "en"
-      ? "Automated daily summaries covering total revenue, gross margins, top-selling items, and payment method breakdowns."
-      : "Pantau rekap omzet, laba kotor, metode pembayaran terpopuler, dan produk terlaris secara otomatis.",
-    Icon: BarChart3
-  },
-  {
-    title: lang === "en" ? "Multi-Cashier & Role Access" : "Multi Kasir & Hak Akses",
-    description: lang === "en"
-      ? "Manage multiple cashier shifts and oversee sales across all branch locations from a centralized dashboard."
-      : "Kelola banyak shift kasir dengan hak akses wewenang berbeda (kasir, supervisor, owner) secara terpusat.",
-    Icon: Users
-  },
-  {
-    title: lang === "en" ? "Printer & Barcode Scanner Integration" : "Integrasi Printer & Barcode Scanner",
-    description: lang === "en"
-      ? "Full hardware support for USB/Bluetooth thermal printers, 1D/2D barcode scanners, and automatic cash drawers."
-      : "Kompatibel dengan printer thermal USB/Bluetooth, barcode scanner 1D/2D, dan cash drawer otomatis.",
-    Icon: QrCode
-  },
-  {
-    title: lang === "en" ? "Offline Resilient Mode" : "Mode Offline",
-    description: lang === "en"
-      ? "Cashiers process transactions smoothly even when internet drops, syncing automatically upon reconnection."
-      : "Kasir tetap dapat memproses transaksi saat koneksi internet terputus dan otomatis tersinkron saat online kembali.",
-    Icon: WifiOff
-  }
+const {
+  featuresEyebrow,
+  featuresTitle,
+  featuresSubtitle,
+  features = [],
+} = service;
+
+const icons = [
+  CreditCard,
+  Boxes,
+  Percent,
+  Printer,
+  BarChart3,
+  Users,
+  QrCode,
+  WifiOff
 ];
 ---
 
-<section class="py-16 md:py-24 relative bg-muted/20">
+<section id="fitur" class="py-16 md:py-24 relative bg-muted/20">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "System Capabilities" : "Fitur Utama"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {featuresEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {featuresEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Core Features in Our POS Systems" : "Yang Ada di Sistem Kasir Kami"}
+        {featuresTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Engineered to empower cashiers with effortless speed while providing owners with full operational oversight."
-          : "Fitur lengkap yang dirancang khusus untuk mempermudah kasir dan memberikan kendali penuh pada pemilik bisnis."}
-      </p>
+      {featuresSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {featuresSubtitle}
+        </p>
+      )}
     </div>
 
-    {/* 8 Features Grid (2x4 or 4x2 responsive) */}
+    {/* Features Grid */}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-      {features.map((feature) => (
-        <div class="bg-white border border-border/50 rounded-2xl p-6 hover:border-brand/50 transition-all duration-300 shadow-sm flex flex-col justify-between group hover:-translate-y-1">
-          <div>
-            <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center mb-5 group-hover:bg-brand group-hover:text-white transition-colors text-brand">
-              <feature.Icon className="w-6 h-6" />
+      {features.map((feature, idx) => {
+        const Icon = icons[idx % icons.length];
+        return (
+          <div class="bg-white border border-border/50 rounded-2xl p-6 hover:border-brand/50 transition-all duration-300 shadow-sm flex flex-col justify-between group hover:-translate-y-1">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center mb-5 group-hover:bg-brand group-hover:text-white transition-colors text-brand">
+                <Icon className="w-6 h-6" />
+              </div>
+
+              <h3 class="typography-card-title text-foreground mb-2 group-hover:text-brand transition-colors text-base">
+                {feature.title}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed font-light">
+                {feature.description}
+              </p>
             </div>
-
-            <h3 class="typography-card-title text-foreground mb-2 group-hover:text-brand transition-colors text-base">
-              {feature.title}
-            </h3>
-
-            <p class="text-xs sm:text-sm text-muted-foreground leading-relaxed font-light">
-              {feature.description}
-            </p>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   </div>
 </section>
+

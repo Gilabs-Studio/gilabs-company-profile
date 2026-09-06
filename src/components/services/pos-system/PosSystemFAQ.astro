@@ -1,46 +1,20 @@
 ---
 import { FAQList } from "../../react/FAQList";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const faqs = [
-  {
-    question: lang === "en"
-      ? "Can this system run on regular tablets?"
-      : "Bisa dipakai di tablet biasa?",
-    answer: lang === "en"
-      ? "Yes, fully compatible with regular Android tablets, iPads, as well as dedicated all-in-one cashier POS hardware."
-      : "Bisa, kompatibel dengan tablet Android, iPad, maupun perangkat POS khusus kasir."
-  },
-  {
-    question: lang === "en"
-      ? "What happens if the internet cuts out during peak hours?"
-      : "Gimana kalau internet mati pas lagi ramai?",
-    answer: lang === "en"
-      ? "The system continues running in offline mode. Transactions proceed smoothly and data automatically syncs once the connection is restored."
-      : "Sistem tetap jalan offline, transaksi tetap diproses lancar dan data otomatis sync saat internet nyambung lagi."
-  },
-  {
-    question: lang === "en"
-      ? "Can we monitor multiple branch outlets simultaneously?"
-      : "Bisa pantau beberapa cabang sekaligus?",
-    answer: lang === "en"
-      ? "Yes, available in the Custom package. You get an executive owner dashboard to monitor revenue and stock across all branches directly from your smartphone."
-      : "Bisa di paket Custom, ada dashboard owner untuk pantau semua cabang langsung dari HP kapan saja."
-  },
-  {
-    question: lang === "en"
-      ? "Is the receipt printer included?"
-      : "Termasuk printer kasirnya?",
-    answer: lang === "en"
-      ? "We provide the software and assist integration with your existing thermal printers (USB/Bluetooth/LAN) or recommend matching hardware bundles."
-      : "Kami sediakan software dan bantu integrasinya ke printer yang kamu punya atau rekomendasikan perangkat keras yang cocok."
-  }
-];
+const {
+  faqEyebrow,
+  faqTitle,
+  faqSubtitle,
+  faqs = [],
+} = service;
 
 const faqSchema = {
   "@context": "https://schema.org",
@@ -62,23 +36,25 @@ const faqSchema = {
 <section class="py-16 md:py-24 relative z-10" id="faq">
   <div class="container mx-auto px-4 max-w-4xl">
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Common Inquiries" : "FAQ"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {faqEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {faqEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Frequently Asked Questions" : "Pertanyaan yang Sering Ditanyakan"}
+        {faqTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Key insights into tablet compatibility, offline transactions, multi-branch oversight, and printer peripherals."
-          : "Hal penting seputar kompatibilitas tablet, mode transaksi offline, pantauan multi cabang, dan perangkat printer struk."}
-      </p>
+      {faqSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {faqSubtitle}
+        </p>
+      )}
     </div>
 
     <div class="space-y-4">
@@ -86,3 +62,4 @@ const faqSchema = {
     </div>
   </div>
 </section>
+

@@ -3,8 +3,6 @@ import PosSystemHero from "./PosSystemHero.astro";
 import PosSystemProblems from "./PosSystemProblems.astro";
 import PosSystemSolutions from "./PosSystemSolutions.astro";
 import PosSystemFeatures from "./PosSystemFeatures.astro";
-import PosSystemPortfolio from "./PosSystemPortfolio.astro";
-import PosSystemPricing from "./PosSystemPricing.astro";
 import PosSystemFAQ from "./PosSystemFAQ.astro";
 import PosSystemCTA from "./PosSystemCTA.astro";
 import type { ServicePageData } from "../../../data/services/types";
@@ -19,33 +17,21 @@ const { lang, service } = Astro.props;
 
 <div class="pos-system-service-page">
   {/* 1. HERO SECTION */}
-  <PosSystemHero
-    lang={lang}
-    eyebrow={service.eyebrow}
-    title={service.title}
-    subtitle={service.subtitle}
-    primaryCtaText={service.primaryCtaText}
-    secondaryCtaText={service.secondaryCtaText}
-  />
+  <PosSystemHero lang={lang} service={service} />
 
   {/* 2. MASALAH YANG SERING DITEMUI */}
-  <PosSystemProblems lang={lang} />
+  <PosSystemProblems lang={lang} service={service} />
 
-  {/* 4. SOLUSI / VALUE PROPOSITION (3 PILAR) */}
-  <PosSystemSolutions lang={lang} />
+  {/* 3. SOLUSI / VALUE PROPOSITION */}
+  <PosSystemSolutions lang={lang} service={service} />
 
-  {/* 5. FITUR-FITUR UTAMA */}
-  <PosSystemFeatures lang={lang} />
+  {/* 4. FITUR-FITUR UTAMA */}
+  <PosSystemFeatures lang={lang} service={service} />
 
-  {/* 6. CONTOH SISTEM KASIR YANG PERNAH DIBUAT (PORTOFOLIO) */}
-  <PosSystemPortfolio lang={lang} />
+  {/* 5. FAQ */}
+  <PosSystemFAQ lang={lang} service={service} />
 
-  {/* 7. HARGA & PAKET */}
-  <PosSystemPricing lang={lang} />
-
-  {/* 8. FAQ */}
-  <PosSystemFAQ lang={lang} />
-
-  {/* 9. FINAL CTA */}
-  <PosSystemCTA lang={lang} />
+  {/* 6. FINAL CTA */}
+  <PosSystemCTA lang={lang} service={service} />
 </div>
+

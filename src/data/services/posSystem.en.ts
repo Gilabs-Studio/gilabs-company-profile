@@ -4,9 +4,10 @@ export const posSystemEn: ServicePageData = {
   slug: "custom-pos-system-development",
   category: "software",
   eyebrow: "Custom POS & Cashier System",
-  title: "A POS System That Never Makes Customer Queues Longer",
-  subtitle: "Lightning-fast checkouts, automated stock deductions, and live sales telemetry. Built to match your specific retail or restaurant flow, not a generic rigid template.",
+  title: "Fast Cashier System Without Long Queues",
+  subtitle: "Fast checkouts, automatic inventory sync, and real-time sales reports. Built for your specific store or restaurant workflow without rigid templates.",
   heroIllustration: "/images/services/pos-system/hero-pos-system.png",
+  heroImageAlt: "Modern POS Cashier Station Terminal - Gilabs",
   metaTitle: "Custom POS & Cashier Software Development | Gilabs",
   metaDescription: "Custom Point of Sale (POS) software for retail, cafes, restaurants, and multi-outlet stores. Rapid checkout, automatic inventory sync, offline mode, and real-time reports.",
   keywords: [
@@ -18,29 +19,75 @@ export const posSystemEn: ServicePageData = {
     "bespoke pos software indonesia"
   ],
   primaryCtaText: "Discuss Your Needs",
-  secondaryCtaText: "View Built Systems",
-  problemsTitle: "Manual Cashier Operations Are Prone to Costly Bottlenecks",
+  secondaryCtaText: "Explore Solutions",
+  problemsEyebrow: "Operational Pitfalls",
+  problemsTitle: "Manual Cashier Operations Cause Costly Bottlenecks",
   problemsSubtitle: "Three operational headaches caused by manual pen-and-paper notes or rigid off-the-shelf POS software.",
   problems: [
     {
-      pain: "Unnoticed Stock Discrepancies",
-      solution: "Manual tracking errors go completely unnoticed until stressful monthly physical stock audits."
+      pain: "01. Unnoticed Stock Discrepancies",
+      solution: "Manual tracking errors go unnoticed until stressful monthly physical stock audits.",
+      metric: "Causes inventory leakage and revenue loss"
     },
     {
-      pain: "Congested Checkout Queues",
-      solution: "Sluggish transaction processes cause frustrating customer lines during peak rush hours."
+      pain: "02. Congested Checkout Queues",
+      solution: "Sluggish transaction processes cause frustrating customer lines during peak rush hours.",
+      metric: "Reduces customer satisfaction and retention"
     },
     {
-      pain: "Delayed Sales Reporting",
-      solution: "Business owners only see daily revenue long after store closing and tedious manual bookkeeping."
+      pain: "03. Delayed Sales Reporting",
+      solution: "Business owners only see daily revenue long after store closing and tedious manual bookkeeping.",
+      metric: "Harder to make swift business decisions without live data"
     }
   ],
-  featuresTitle: "Core Features in Our POS Systems",
-  featuresSubtitle: "Engineered to empower cashiers with effortless speed while providing owners with full operational oversight.",
+  solutionsEyebrow: "POS Solutions",
+  solutionsTitle: "Faster, More Efficient Cashier Operations",
+  solutionsSubtitle: "Responsive cashier interfaces with automatic backend synchronization to your store inventory.",
+  solutions: [
+    {
+      number: "01",
+      title: "Fast Checkouts",
+      subtitle: "Intuitive interface so even newly hired cashiers can start immediately without lengthy training.",
+      image: "/images/services/pos-system/solution-fast-transactions.png",
+      alt: "Fast Checkout POS Terminal Experience",
+      points: [
+        "Minimalist cashier UI optimized for rapid touch and high-speed keystrokes",
+        "Instant menu & product search via barcode scan or visual quick categories",
+        "One-click split bill, percentage promotions, and dynamic QRIS display"
+      ]
+    },
+    {
+      number: "02",
+      title: "Automatic Inventory Sync",
+      subtitle: "Every completed transaction instantly deducts stock, eliminating manual double entry.",
+      image: "/images/services/pos-system/solution-auto-inventory.png",
+      alt: "Automated POS Stock Deduction Engine",
+      points: [
+        "Finished retail goods and kitchen raw materials deducted automatically",
+        "Automated threshold alerts when product quantities reach minimum safety stock",
+        "Prevents overselling and eliminates discrepancies during periodic stock audits"
+      ]
+    },
+    {
+      number: "03",
+      title: "Real-Time Reporting",
+      subtitle: "Business owners monitor revenue anytime, from anywhere, directly on their mobile phone.",
+      image: "/images/services/pos-system/solution-realtime-insights.png",
+      alt: "Real-time Mobile Sales Analytics",
+      points: [
+        "Live daily revenue telemetry, gross profit margins, and peak shopping hours",
+        "Transparent cashier shift recaps to eliminate end-of-day drawer shortages",
+        "Instant export to structured Excel spreadsheets and formatted audit PDFs"
+      ]
+    }
+  ],
+  featuresEyebrow: "Core Features",
+  featuresTitle: "Complete Cashier System Features",
+  featuresSubtitle: "Engineered to empower cashiers with speed while providing owners with full operational oversight.",
   features: [
     {
       title: "Multi-Method Payment Checkout",
-      description: "Support cash, dynamic/static QRIS, bank transfers, e-wallets, and debit cards in a single fluid screen."
+      description: "Support cash, dynamic/static QRIS, bank transfers, e-wallets, and debit/credit cards in a single fluid screen."
     },
     {
       title: "Automated Inventory Deduction",
@@ -48,7 +95,7 @@ export const posSystemEn: ServicePageData = {
     },
     {
       title: "Split Bill & Flexible Discounts",
-      description: "Seamless bill splitting per table/group, percentage promotions, promotional coupons, and custom discounts."
+      description: "Seamless bill splitting per table or group, percentage promotions, promotional coupons, and custom discounts."
     },
     {
       title: "Thermal & Digital Receipts",
@@ -59,8 +106,8 @@ export const posSystemEn: ServicePageData = {
       description: "Automated daily summaries covering total revenue, gross margins, top-selling items, and payment method breakdowns."
     },
     {
-      title: "Multi-Cashier & Multi-Branch",
-      description: "Manage multiple cashier shifts and oversee sales across all branch locations from a centralized dashboard."
+      title: "Multi-Cashier & Role Access",
+      description: "Manage multiple cashier shifts with distinct access permissions (cashier, supervisor, owner) from a centralized system."
     },
     {
       title: "Printer & Barcode Scanner Integration",
@@ -71,49 +118,6 @@ export const posSystemEn: ServicePageData = {
       description: "Cashiers process transactions smoothly even when internet drops, syncing automatically upon reconnection."
     }
   ],
-  packagesTitle: "Scale with Your Store or Restaurant Size",
-  packagesSubtitle: "Transparent software investment with zero recurring per-outlet subscription fees. 100% full source code ownership.",
-  packages: [
-    {
-      name: "BASIC",
-      price: "From $350",
-      isPopular: false,
-      description: "For small businesses with a single checkout station",
-      features: [
-        "Core Transaction & Inventory Tracking",
-        "1 Cashier Device (Web / Android)",
-        "Daily Sales Reports",
-        "Menu & Product Database Setup",
-        "1-Month Bug Fix Warranty"
-      ]
-    },
-    {
-      name: "STANDARD",
-      price: "From $950",
-      isPopular: true,
-      description: "For expanding stores needing complete hardware integration",
-      features: [
-        "Multi-Cashier Shifts per Branch",
-        "Thermal Printer & Barcode Scanner Sync",
-        "Comprehensive Reports & Excel/PDF Export",
-        "Offline Mode with Auto Cloud Sync",
-        "3-Month Warranty & Dedicated Support"
-      ]
-    },
-    {
-      name: "CUSTOM",
-      price: "Contact Us",
-      isPopular: false,
-      description: "For multi-outlet retail chains & restaurant franchises",
-      features: [
-        "Consolidated Multi-Branch Real-Time Network",
-        "ERP & Financial Accounting Integration",
-        "Bespoke Business Logic (Kitchen Display System, Table Management, etc.)",
-        "Supervisor Permissions & Security Hardening",
-        "Dedicated Support & Maintenance SLA"
-      ]
-    }
-  ],
   techStackTitle: "Fast & Resilient Cashier Stack",
   techStackSubtitle: "Combining instant UI responsiveness with ACID-compliant central synchronization.",
   techStack: [
@@ -121,6 +125,7 @@ export const posSystemEn: ServicePageData = {
     { name: "PostgreSQL & SQLite", category: "Data Tier", description: "Strict transaction integrity ensuring zero lost receipts or duplicate orders." },
     { name: "Node.js / Golang", category: "Sync Engine", description: "Instant synchronization between outlets, central warehouses, and owner dashboards." }
   ],
+  faqEyebrow: "FAQ",
   faqTitle: "Frequently Asked Questions",
   faqSubtitle: "Key inquiries regarding bespoke POS system engineering with Gilabs.",
   faqs: [
@@ -134,14 +139,14 @@ export const posSystemEn: ServicePageData = {
     },
     {
       question: "Can we monitor multiple branch outlets simultaneously?",
-      answer: "Yes, available starting from our Custom tier with an executive multi-outlet dashboard accessible directly from your smartphone."
+      answer: "Yes, an executive multi-outlet dashboard is available to monitor all branch operations directly from your smartphone."
     },
     {
       question: "Is receipt printer integration included?",
-      answer: "Included starting from our Standard tier, supporting USB, Bluetooth, and network LAN/Wi-Fi thermal printers."
+      answer: "Yes, supporting USB, Bluetooth, and network LAN/Wi-Fi thermal printers."
     }
   ],
-  ctaTitle: "Tidy Cashiers, Stress-Free Reporting",
+  ctaTitle: "Build a POS System Tailored to Your Business",
   ctaSubtitle: "Walk us through your transaction flow and we will build a tailored system to maximize efficiency. Free consultation, zero commitment.",
   ctaButton: "Start Free Discussion"
 };
