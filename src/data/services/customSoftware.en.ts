@@ -4,8 +4,8 @@ export const customSoftwareEn: ServicePageData = {
   slug: "custom-software-development",
   category: "software",
   eyebrow: "Custom Software & Web App",
-  title: "Systems Built Around How You Work, Not the Other Way Around",
-  subtitle: "When off-the-shelf software is too rigid for your unique business processes, it is time to build one that fits perfectly.",
+  title: "Custom Software Built for Your Workflow",
+  subtitle: "Build tailored systems when off-the-shelf software no longer fits your operational needs.",
   heroIllustration: "/images/services/custom-software/hero-custom-software.png",
   metaTitle: "Custom Software & Web App Development Services | Gilabs",
   metaDescription: "Custom software and web application development. Tailored operational systems, ERP/CRM, approval workflows, and client portals built for your business.",
@@ -18,25 +18,71 @@ export const customSoftwareEn: ServicePageData = {
     "business intelligence dashboard"
   ],
   primaryCtaText: "Discuss Your Needs",
-  secondaryCtaText: "View Case Studies",
-  problemsTitle: "When Is It Time for a Custom System?",
-  problemsSubtitle: "Three clear indicators that generic software and spreadsheets are holding your business back.",
+  secondaryCtaText: "Explore Solutions",
+  problemsEyebrow: "Operational Bottlenecks",
+  problemsTitle: "When Do You Need Custom Software?",
+  problemsSubtitle: "Signs your business is outgrowing spreadsheets and rigid tools.",
   problems: [
     {
-      pain: "Excel Is No Longer Enough",
-      solution: "Data scattered across files, difficult to monitor, and prone to costly human errors."
+      pain: "01. Spreadsheets Overload",
+      solution: "Scattered files, difficult tracking, and frequent manual errors.",
+      metric: "Data duplicates & human error"
     },
     {
-      pain: "Generic Software Is Too Rigid",
-      solution: "Features do not match your workflow; you pay high fees for tools your team never touches."
+      pain: "02. Off-The-Shelf Tools Are Rigid",
+      solution: "Forced to adapt your workflow to rigid templates while paying for unused features.",
+      metric: "Wasted subscription fees & friction"
     },
     {
-      pain: "Need Seamless System Integration",
-      solution: "Disjointed apps operating in silos, causing duplicate data entry and manual overhead."
+      pain: "03. Disconnected Systems",
+      solution: "Siloed tools force your team into repetitive manual data entry.",
+      metric: "Time wasted on manual data copy"
     }
   ],
+  solutionsEyebrow: "Why Build Custom",
+  solutionsTitle: "Why Build Custom with Gilabs?",
+  solutionsSubtitle: "We engineer systems that are efficient, intuitive for your team, and built to scale.",
+  solutions: [
+    {
+      number: "01",
+      title: "Tailored to Your Workflow",
+      subtitle: "We map your exact workflow before writing a single line of code.",
+      image: "/images/services/custom-software/solution-tailored-process.png",
+      alt: "Systems Tailored to Your Real Workflow",
+      points: [
+        "System matches your company SOP without compromises",
+        "Custom forms and permissions matched to your team",
+        "Clean interface that is easy for staff to use"
+      ]
+    },
+    {
+      number: "02",
+      title: "Built to Scale",
+      subtitle: "Launch with core features first (MVP) and expand as your business grows.",
+      image: "/images/services/custom-software/solution-scalable-growth.png",
+      alt: "Modular & Scalable Custom Software Architecture",
+      points: [
+        "Cost-effective start focusing on high-impact features",
+        "Add branches, warehouses, and users without slowdowns",
+        "Clean architecture ready for future expansion"
+      ]
+    },
+    {
+      number: "03",
+      title: "Fully Integrated",
+      subtitle: "Connect seamlessly to WhatsApp, payment gateways, accounting systems, and POS.",
+      image: "/images/services/custom-software/solution-fully-integrated.png",
+      alt: "Fully Integrated Ecosystem & API Connections",
+      points: [
+        "Automated WhatsApp & email alerts for instant approvals",
+        "Direct sync with POS, bank feeds, and accounting",
+        "Secure APIs for logistics and third-party services"
+      ]
+    }
+  ],
+  featuresEyebrow: "Systems We Build",
   featuresTitle: "What Can We Build for You?",
-  featuresSubtitle: "Tailored software solutions engineered to resolve operational bottlenecks and drive efficiency.",
+  featuresSubtitle: "From internal operational tools to high-scale transactional platforms.",
   features: [
     {
       title: "HRIS, Inventory & Asset Management",
@@ -63,47 +109,33 @@ export const customSoftwareEn: ServicePageData = {
       description: "Connect legacy databases with modern apps, payment gateways, or third-party logistics."
     }
   ],
-  packagesTitle: "Investment Scaled to Your Needs",
-  packagesSubtitle: "Transparent development pricing with zero recurring per-user licensing fees. 100% full source code ownership.",
-  packages: [
+  processEyebrow: "Development Process",
+  processTitle: "From Concept to Launch",
+  processSubtitle: "A transparent, milestone-driven process ensuring software that fits your goals.",
+  processSteps: [
     {
-      name: "BASIC",
-      price: "From $350",
-      isPopular: false,
-      description: "Best for: MVPs, simple internal tools, or automating a single workflow.",
-      features: [
-        "1 Core Module / Workflow",
-        "Web-Based Responsive Design",
-        "Database Architecture Setup",
-        "Basic Auth & Role Access",
-        "1-Month Bug Warranty"
-      ]
+      step: "01",
+      stage: "Phase 1",
+      title: "Requirements Analysis",
+      description: "Deep dive into your workflows, operational bottlenecks, and user roles."
     },
     {
-      name: "STANDARD",
-      price: "From $950",
-      isPopular: true,
-      description: "Best for: Business operations systems, bespoke SMB CRM/ERP platforms.",
-      features: [
-        "Multi-Module & Multi-Role Users",
-        "Web App + Responsive Dashboard",
-        "API & Notifications (WA/Email)",
-        "Data Export/Import & Reporting",
-        "3-Month Warranty & Support"
-      ]
+      step: "02",
+      stage: "Phase 2",
+      title: "System Architecture Design",
+      description: "Interactive wireframes and database architecture ensure complete clarity before coding."
     },
     {
-      name: "CUSTOM",
-      price: "Contact Us",
-      isPopular: false,
-      description: "Best for: Large-scale enterprise platforms, complex architectures, high-load requirements.",
-      features: [
-        "Microservices / Scalable Architecture",
-        "Multi-Platform (Web + Mobile App)",
-        "Legacy & Third-Party System Sync",
-        "Security Hardening & Audit Logs",
-        "Dedicated Support & SLA"
-      ]
+      step: "03",
+      stage: "Phase 3",
+      title: "Iterative Development",
+      description: "Sprint-by-sprint builds with regular demos to track real progress."
+    },
+    {
+      step: "04",
+      stage: "Phase 4",
+      title: "Testing & Deployment",
+      description: "User acceptance testing with your team, training, and smooth launch."
     }
   ],
   techStackTitle: "Modern & Scalable Tech Stack",
@@ -113,6 +145,7 @@ export const customSoftwareEn: ServicePageData = {
     { name: "Node.js / Golang", category: "Backend Logic", description: "High-throughput APIs and reliable business logic execution." },
     { name: "PostgreSQL & Redis", category: "Data Tier", description: "ACID-compliant relational database and ultra-fast caching." }
   ],
+  faqEyebrow: "Common Inquiries",
   faqTitle: "Frequently Asked Questions",
   faqSubtitle: "Key questions about custom software development with Gilabs.",
   faqs: [
@@ -133,7 +166,7 @@ export const customSoftwareEn: ServicePageData = {
       answer: "All projects include a post-deployment bug warranty. We also offer monthly retainer packages for dedicated technical standby, updates, and continuous feature expansion."
     }
   ],
-  ctaTitle: "Have a Business Process Ready for Automation?",
-  ctaSubtitle: "Walk us through your workflow and we will help map the right solution. Free initial consultation, zero confusing jargon.",
+  ctaTitle: "Ready to Build Your Custom System?",
+  ctaSubtitle: "Tell us about your workflow and we will help map the solution. Free initial consultation.",
   ctaButton: "Start Free Discussion"
 };

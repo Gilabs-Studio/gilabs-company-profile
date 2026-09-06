@@ -7,91 +7,62 @@ import {
   ShieldCheck,
   Workflow
 } from "lucide-react";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const types = [
-  {
-    number: "01",
-    title: lang === "en" ? "HRIS, Inventory & Asset Management" : "HRIS, Inventory & Asset Management",
-    description: lang === "en"
-      ? "Manage employees, inventory warehouse stock, and company physical assets from a single consolidated dashboard."
-      : "Kelola karyawan, stok barang, atau aset perusahaan dalam satu dashboard.",
-    Icon: Users
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Marketplace & Multi-Vendor Platforms" : "Marketplace & Platform Multi-vendor",
-    description: lang === "en"
-      ? "Buy-sell platforms equipped with automated commissions, split settlement payments, and independent multi-store portals."
-      : "Platform jual-beli dengan sistem komisi, split payment, dan multi-toko.",
-    Icon: Store
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "Analytics & Reporting Dashboards" : "Dashboard Analitik & Reporting",
-    description: lang === "en"
-      ? "Pull live data from multiple databases and external tools, visualizing operational and financial KPIs in real-time."
-      : "Tarik data dari berbagai sumber, visualisasikan performa bisnis secara real-time.",
-    Icon: BarChart3
-  },
-  {
-    number: "04",
-    title: lang === "en" ? "Approval & Workflow Systems" : "Sistem Approval & Workflow",
-    description: lang === "en"
-      ? "Digital leave requests, expense reimbursements, and purchase orders configured with multi-tier approval hierarchies."
-      : "Pengajuan izin, reimburse, atau purchase order dengan alur approval bertingkat.",
-    Icon: CheckSquare
-  },
-  {
-    number: "05",
-    title: lang === "en" ? "Client Portals & Member Areas" : "Portal Client & Member Area",
-    description: lang === "en"
-      ? "Dedicated secure areas for clients or subscribers to access services, upload docs, and track order progress."
-      : "Area khusus untuk pelanggan atau member mengakses layanan dan tracking progress.",
-    Icon: ShieldCheck
-  },
-  {
-    number: "06",
-    title: lang === "en" ? "API Integration & Third-Party Automation" : "Integrasi API & Otomasi Pihak Ketiga",
-    description: lang === "en"
-      ? "Bridge legacy internal tools with modern apps, payment rails, WhatsApp Business APIs, and logistics partners."
-      : "Hubungkan software lama ke sistem baru, payment gateway, atau layanan logistik.",
-    Icon: Workflow
-  }
-];
+const icons = [Users, Store, BarChart3, CheckSquare, ShieldCheck, Workflow];
+
+const {
+  featuresEyebrow,
+  featuresTitle,
+  featuresSubtitle,
+  features = [],
+} = service;
+
+const displayTypes = features.map((f, idx) => ({
+  number: String(idx + 1).padStart(2, "0"),
+  title: f.title,
+  description: f.description,
+  Icon: icons[idx % icons.length]
+}));
 ---
 
-<section class="py-16 md:py-24 relative">
+<section id="jenis-sistem" class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Systems We Build" : "Jenis Sistem"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {featuresEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {featuresEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
-      <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "What Can We Build for You?" : "Apa yang Bisa Kami Buatkan?"}
-      </h2>
+      {featuresTitle && (
+        <h2 class="typography-section-title mb-4">
+          {featuresTitle}
+        </h2>
+      )}
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "From departmental workflow tools to multi-tenant transactional web apps, engineered to your exact specifications."
-          : "Dari sistem operasional departemen hingga platform transaksional skala besar, semua dirancang presisi sesuai kebutuhan Anda."}
-      </p>
+      {featuresSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {featuresSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 6 Types Grid */}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-      {types.map((item) => (
+      {displayTypes.map((item) => (
         <div class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between mb-6">
@@ -116,3 +87,4 @@ const types = [
     </div>
   </div>
 </section>
+

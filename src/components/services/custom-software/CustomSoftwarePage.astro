@@ -4,8 +4,6 @@ import CustomSoftwareProblems from "./CustomSoftwareProblems.astro";
 import CustomSoftwareSolutions from "./CustomSoftwareSolutions.astro";
 import CustomSoftwareTypes from "./CustomSoftwareTypes.astro";
 import CustomSoftwareProcess from "./CustomSoftwareProcess.astro";
-import CustomSoftwarePortfolio from "./CustomSoftwarePortfolio.astro";
-import CustomSoftwarePricing from "./CustomSoftwarePricing.astro";
 import CustomSoftwareFAQ from "./CustomSoftwareFAQ.astro";
 import CustomSoftwareCTA from "./CustomSoftwareCTA.astro";
 import type { ServicePageData } from "../../../data/services/types";
@@ -20,36 +18,23 @@ const { lang, service } = Astro.props;
 
 <div class="custom-software-service-page">
   {/* 1. HERO SECTION */}
-  <CustomSoftwareHero
-    lang={lang}
-    eyebrow={service.eyebrow}
-    title={service.title}
-    subtitle={service.subtitle}
-    primaryCtaText={service.primaryCtaText}
-    secondaryCtaText={service.secondaryCtaText}
-  />
+  <CustomSoftwareHero lang={lang} service={service} />
 
   {/* 2. MASALAH YANG SERING DITEMUI */}
-  <CustomSoftwareProblems lang={lang} />
+  <CustomSoftwareProblems lang={lang} service={service} />
 
-  {/* 4. SOLUSI / VALUE PROPOSITION (3 PILAR) */}
-  <CustomSoftwareSolutions lang={lang} />
+  {/* 3. SOLUSI / VALUE PROPOSITION */}
+  <CustomSoftwareSolutions lang={lang} service={service} />
 
-  {/* 5. JENIS SISTEM YANG BISA DIBANGUN (6 ITEMS) */}
-  <CustomSoftwareTypes lang={lang} />
+  {/* 4. JENIS SISTEM YANG BISA DIBANGUN */}
+  <CustomSoftwareTypes lang={lang} service={service} />
 
-  {/* 6. PROSES KERJA (4 LANGKAH) */}
-  <CustomSoftwareProcess lang={lang} />
+  {/* 5. PROSES KERJA */}
+  <CustomSoftwareProcess lang={lang} service={service} />
 
-  {/* 7. PORTOFOLIO / STUDI KASUS */}
-  <CustomSoftwarePortfolio lang={lang} />
+  {/* 6. FAQ */}
+  <CustomSoftwareFAQ lang={lang} service={service} />
 
-  {/* 8. PRICING / PAKET */}
-  <CustomSoftwarePricing lang={lang} />
-
-  {/* 9. FAQ */}
-  <CustomSoftwareFAQ lang={lang} />
-
-  {/* 10. FINAL CTA */}
-  <CustomSoftwareCTA lang={lang} />
+  {/* 7. FINAL CTA */}
+  <CustomSoftwareCTA lang={lang} service={service} />
 </div>

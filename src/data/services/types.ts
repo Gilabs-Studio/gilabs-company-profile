@@ -4,6 +4,7 @@ export interface ServicePackage {
   period?: string;
   description: string;
   isPopular?: boolean;
+  badge?: string;
   features: string[];
 }
 
@@ -15,6 +16,21 @@ export interface ServiceFeature {
   alt?: string;
   badge?: string;
   points?: string[];
+  subtitle?: string;
+  icon?: string;
+  href?: string;
+  ctaText?: string;
+}
+
+export interface ServiceSolution {
+  number?: string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  image?: string;
+  alt?: string;
+  badge?: string;
+  points: string[];
 }
 
 export interface ServiceProblem {
@@ -34,10 +50,36 @@ export interface TechStackItem {
   description: string;
 }
 
+export interface ServiceAudienceItem {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
 export interface ProcessStep {
   step: string;
   title: string;
   description: string;
+  stage?: string;
+}
+
+export interface ErpCrmModuleItem {
+  title: string;
+  description: string;
+  icon?: string;
+}
+
+export interface ErpCrmModuleGroup {
+  badge: string;
+  title: string;
+  modules: ErpCrmModuleItem[];
+}
+
+export interface ErpCrmModulesData {
+  erpGroup: ErpCrmModuleGroup;
+  crmGroup: ErpCrmModuleGroup;
+  bridgeTitle: string;
+  bridgeDescription: string;
 }
 
 export interface ServicePageData {
@@ -57,10 +99,19 @@ export interface ServicePageData {
   problemsTitle: string;
   problemsSubtitle: string;
   problems: ServiceProblem[];
+  solutionsEyebrow?: string;
+  solutionsTitle?: string;
+  solutionsSubtitle?: string;
+  solutions?: ServiceSolution[];
   featuresEyebrow?: string;
   featuresTitle: string;
   featuresSubtitle: string;
   features: ServiceFeature[];
+  erpCrmModules?: ErpCrmModulesData;
+  audienceEyebrow?: string;
+  audienceTitle?: string;
+  audienceSubtitle?: string;
+  audiences?: ServiceAudienceItem[];
   processEyebrow?: string;
   processTitle?: string;
   processSubtitle?: string;
@@ -75,9 +126,9 @@ export interface ServicePageData {
   pricingEyebrow?: string;
   pricingSelectPlanText?: string;
   pricingPopularBadgeText?: string;
-  packagesTitle: string;
-  packagesSubtitle: string;
-  packages: ServicePackage[];
+  packagesTitle?: string;
+  packagesSubtitle?: string;
+  packages?: ServicePackage[];
   techStackTitle: string;
   techStackSubtitle: string;
   techStack: TechStackItem[];
@@ -88,4 +139,5 @@ export interface ServicePageData {
   ctaTitle: string;
   ctaSubtitle: string;
   ctaButton: string;
+  ctaSecondaryButton?: string;
 }

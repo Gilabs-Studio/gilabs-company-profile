@@ -1,64 +1,63 @@
 ---
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const problems = [
-  {
-    number: "01",
-    title: lang === "en" ? "Excel Is No Longer Enough" : "Excel Udah Nggak Cukup",
-    description: lang === "en"
-      ? "Data scattered across multiple spreadsheets, difficult to monitor in real-time, and highly prone to human error."
-      : "Data tersebar di banyak file, sulit dipantau, rawan human error.",
-    metric: lang === "en" ? "Risk of inaccurate manual entries & version conflicts" : "Risiko salah input data & duplikasi file manual"
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Generic Software Is Too Rigid" : "Software Umum Terlalu Kaku",
-    description: lang === "en"
-      ? "Features do not match your workflow; you pay high fees for complex modules that your team never uses."
-      : "Fitur yang ada nggak sesuai alur kerja, bayar mahal tapi banyak yang nggak kepakai.",
-    metric: lang === "en" ? "Paying for bloated features that slow operations down" : "Membayar fitur mubazir yang membingungkan staf"
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "Need Seamless System Integration" : "Butuh Integrasi Antar Sistem",
-    description: lang === "en"
-      ? "Multiple standalone applications operating in silos with zero connection, causing double the manual workload."
-      : "Punya beberapa aplikasi tapi nggak nyambung satu sama lain, kerjaan jadi dobel.",
-    metric: lang === "en" ? "Wasting hours manually syncing records between tools" : "Menghabiskan waktu menyalin data antar platform"
-  }
-];
+const {
+  problemsEyebrow,
+  problemsTitle,
+  problemsSubtitle,
+  problems = [],
+} = service;
+
+const displayProblems = problems.map((problem, idx) => {
+  const match = problem.pain.match(/^(\d+)\.\s*(.*)/);
+  const number = match ? match[1] : String(idx + 1).padStart(2, "0");
+  const itemTitle = match ? match[2] : problem.pain;
+  return {
+    number,
+    title: itemTitle,
+    description: problem.solution,
+    metric: problem.metric,
+  };
+});
 ---
 
-<section class="py-16 md:py-24 relative">
+<section id="masalah" class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Bottlenecks & Symptoms" : "Masalah yang Sering Ditemui"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {problemsEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {problemsEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
-      <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "When Is It Time for a Custom System?" : "Kapan Waktunya Butuh Sistem Custom?"}
-      </h2>
+      {problemsTitle && (
+        <h2 class="typography-section-title mb-4">
+          {problemsTitle}
+        </h2>
+      )}
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Three telltale signs that spreadsheets and pre-packaged tools are bottlenecking your business growth."
-          : "Tiga tanda nyata ketika spreadsheet dan software generik mulai membatasi kelancaran operasional bisnis Anda."}
-      </p>
+      {problemsSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {problemsSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 3 Columns Grid */}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-      {problems.map((problem) => (
+      {displayProblems.map((problem) => (
         <div class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           <div>
             <div class="mb-5">
@@ -77,12 +76,15 @@ const problems = [
           </div>
 
           {/* Bottom metric callout */}
-          <div class="pt-4 border-t border-border/40 flex items-center gap-2 text-xs font-medium text-foreground/70">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>
-            <span>{problem.metric}</span>
-          </div>
+          {problem.metric && (
+            <div class="pt-4 border-t border-border/40 flex items-center gap-2 text-xs font-medium text-foreground/70">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>
+              <span>{problem.metric}</span>
+            </div>
+          )}
         </div>
       ))}
     </div>
   </div>
 </section>
+

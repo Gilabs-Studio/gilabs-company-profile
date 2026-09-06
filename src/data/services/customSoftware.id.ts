@@ -4,8 +4,8 @@ export const customSoftwareId: ServicePageData = {
   slug: "jasa-pembuatan-custom-software",
   category: "software",
   eyebrow: "Custom Software & Web App",
-  title: "Sistem yang Dibangun Mengikuti Cara Kerja Kamu, Bukan Sebaliknya",
-  subtitle: "Kalau proses bisnis kamu udah terlalu unik buat software siap pakai, saatnya bangun yang benar-benar pas.",
+  title: "Software Custom Sesuai Alur Kerja Bisnis",
+  subtitle: "Bangun sistem yang pas saat software siap pakai tidak lagi cukup mendukung operasional Anda.",
   heroIllustration: "/images/services/custom-software/hero-custom-software.png",
   metaTitle: "Jasa Pembuatan Custom Software & Web App Indonesia | Gilabs",
   metaDescription: "Jasa pembuatan custom software dan web app Indonesia. Sistem operasional, ERP/CRM, workflow approval, dan portal client sesuai cara kerja bisnis Anda.",
@@ -20,25 +20,71 @@ export const customSoftwareId: ServicePageData = {
     "dashboard analitik bisnis"
   ],
   primaryCtaText: "Diskusikan Kebutuhan Kamu",
-  secondaryCtaText: "Lihat Contoh Sistem",
-  problemsTitle: "Kapan Waktunya Butuh Sistem Custom?",
-  problemsSubtitle: "Tiga tanda nyata ketika solusi off-the-shelf dan spreadsheet mulai membatasi pertumbuhan bisnis Anda.",
+  secondaryCtaText: "Pelajari Solusi",
+  problemsEyebrow: "Masalah Operasional",
+  problemsTitle: "Kapan Butuh Software Custom?",
+  problemsSubtitle: "Tanda operasional bisnis Anda mulai terhambat alat kerja yang terbatas.",
   problems: [
     {
-      pain: "Excel Udah Nggak Cukup",
-      solution: "Data tersebar di banyak file, sulit dipantau, rawan human error."
+      pain: "01. Spreadsheet Berantakan",
+      solution: "Banyak file tersebar, sulit dipantau, dan rawan salah input data.",
+      metric: "Risiko data ganda & human error"
     },
     {
-      pain: "Software Umum Terlalu Kaku",
-      solution: "Fitur yang ada nggak sesuai alur kerja, bayar mahal tapi banyak yang nggak kepakai."
+      pain: "02. Template Software Kaku",
+      solution: "Alur kerja dipaksa ikut template software, bayar mahal untuk fitur yang tidak terpakai.",
+      metric: "Biaya langganan terbuang & alur kerja terhambat"
     },
     {
-      pain: "Butuh Integrasi Antar Sistem",
-      solution: "Punya beberapa aplikasi tapi nggak nyambung satu sama lain, kerjaan jadi dobel."
+      pain: "03. Sistem Belum Terintegrasi",
+      solution: "Aplikasi jalan sendiri-sendiri, tim terpaksa input ulang data yang sama berkali-kali.",
+      metric: "Waktu terbuang untuk salin data manual"
     }
   ],
+  solutionsEyebrow: "Solusi Gilabs",
+  solutionsTitle: "Kenapa Bangun Bersama Gilabs?",
+  solutionsSubtitle: "Kami buatkan sistem yang efisien, mudah dipakai tim, dan siap berkembang.",
+  solutions: [
+    {
+      number: "01",
+      title: "Sesuai Alur Kerja",
+      subtitle: "Kami petakan alur kerja Anda sebelum mulai membuat sistem.",
+      image: "/images/services/custom-software/solution-tailored-process.png",
+      alt: "Sistem yang Dirancang Sesuai Alur Kerja Nyata",
+      points: [
+        "Sistem mengikuti SOP perusahaan tanpa kompromi",
+        "Formulir, validasi, dan hak akses sesuai struktur tim",
+        "Tampilan simpel dan mudah dipahami staf lapangan"
+      ]
+    },
+    {
+      number: "02",
+      title: "Mudah Dikembangkan",
+      subtitle: "Bisa mulai dari fitur inti (MVP) lalu ditambah seiring bisnis jalan.",
+      image: "/images/services/custom-software/solution-scalable-growth.png",
+      alt: "Arsitektur Software Modular dan Skalabel",
+      points: [
+        "Investasi awal terukur dengan fokus ke fitur utama",
+        "Tambah cabang, gudang, dan user tanpa kendala performa",
+        "Struktur kode rapi siap diekspansi kapan saja"
+      ]
+    },
+    {
+      number: "03",
+      title: "Terintegrasi Penuh",
+      subtitle: "Bisa dihubungkan ke WhatsApp, payment gateway, sistem akuntansi, dan POS.",
+      image: "/images/services/custom-software/solution-fully-integrated.png",
+      alt: "Ekosistem Terintegrasi Penuh dengan API",
+      points: [
+        "Notifikasi otomatis ke WhatsApp dan email untuk approval cepat",
+        "Sinkronisasi langsung ke sistem kasir, bank, atau akuntansi",
+        "Koneksi API aman ke partner logistik dan pihak ketiga"
+      ]
+    }
+  ],
+  featuresEyebrow: "Jenis Sistem",
   featuresTitle: "Apa yang Bisa Kami Buatkan?",
-  featuresSubtitle: "Solusi sistem custom yang dirancang presisi untuk menyelesaikan masalah operasional harian Anda.",
+  featuresSubtitle: "Dari sistem operasional internal hingga platform berskala besar.",
   features: [
     {
       title: "HRIS, Inventory & Asset Management",
@@ -65,47 +111,33 @@ export const customSoftwareId: ServicePageData = {
       description: "Hubungkan software lama ke sistem baru, payment gateway, atau layanan logistik."
     }
   ],
-  packagesTitle: "Investasi Sesuai Skala Kebutuhan",
-  packagesSubtitle: "Estimasi biaya transparan tanpa biaya lisensi per-user bulanan. Source code 100% milik Anda.",
-  packages: [
+  processEyebrow: "Cara Kerja",
+  processTitle: "Dari Diskusi Sampai Sistem Berjalan",
+  processSubtitle: "Tahapan jelas dan transparan agar hasil sesuai target kebutuhan Anda.",
+  processSteps: [
     {
-      name: "BASIC",
-      price: "Mulai Rp 5.000.000",
-      isPopular: false,
-      description: "Cocok untuk: MVP, sistem internal sederhana, automasi satu alur kerja spesifik.",
-      features: [
-        "1 Modul/Alur Utama",
-        "Web-based Responsive",
-        "Database Setup",
-        "Basic Auth & Role",
-        "Garansi Bug Fixes 1 Bulan"
-      ]
+      step: "01",
+      stage: "Tahap 1",
+      title: "Analisis Kebutuhan",
+      description: "Bedah alur kerja, kendala operasional, dan kebutuhan pengguna sistem."
     },
     {
-      name: "STANDARD",
-      price: "Mulai Rp 15.000.000",
-      isPopular: true,
-      description: "Cocok untuk: Sistem operasional bisnis, CRM/ERP custom skala UKM.",
-      features: [
-        "Multi-modul & Multi-role User",
-        "Web App + Responsive Dashboard",
-        "Integrasi API & Notifikasi (WA/Email)",
-        "Export/Import Data & Reporting",
-        "Garansi & Support 3 Bulan"
-      ]
+      step: "02",
+      stage: "Tahap 2",
+      title: "Perancangan Sistem",
+      description: "Buat wireframe dan rancangan database agar alur jelas sebelum coding."
     },
     {
-      name: "CUSTOM",
-      price: "Hubungi Kami",
-      isPopular: false,
-      description: "Cocok untuk: Platform skala besar, arsitektur kompleks, kebutuhan high traffic.",
-      features: [
-        "Arsitektur Microservices / Scalable",
-        "Multi-platform (Web + Mobile App)",
-        "Integrasi Sistem Legacy & Third-party",
-        "Security Hardening & Audit Log",
-        "Dedicated Support & SLA"
-      ]
+      step: "03",
+      stage: "Tahap 3",
+      title: "Development Bertahap",
+      description: "Pengerjaan per modul dengan demo berkala untuk cek progress nyata."
+    },
+    {
+      step: "04",
+      stage: "Tahap 4",
+      title: "Testing & Deployment",
+      description: "Uji coba bareng tim Anda, panduan pemakaian, lalu rilis ke production."
     }
   ],
   techStackTitle: "Teknologi Modern & Skalabel",
@@ -115,6 +147,7 @@ export const customSoftwareId: ServicePageData = {
     { name: "Node.js / Golang", category: "Backend Logic", description: "API tangguh dan throughput tinggi." },
     { name: "PostgreSQL & Redis", category: "Data Tier", description: "Database relasional ACID dan caching super cepat." }
   ],
+  faqEyebrow: "FAQ",
   faqTitle: "Pertanyaan yang Sering Ditanyakan",
   faqSubtitle: "Hal penting seputar proses pembuatan custom software di Gilabs.",
   faqs: [
@@ -135,7 +168,7 @@ export const customSoftwareId: ServicePageData = {
       answer: "Ada masa garansi bug fixes setelah deployment. Kami juga menyediakan opsi retainer bulanan kalau kamu butuh tim teknis untuk standby, update berkala, atau penambahan fitur berkelanjutan."
     }
   ],
-  ctaTitle: "Punya Proses Bisnis yang Belum Ada Sistemnya?",
-  ctaSubtitle: "Ceritakan alur kerja kamu, kami bantu petakan solusinya. Konsultasi awal gratis, tanpa jargon teknis yang membingungkan.",
+  ctaTitle: "Punya Alur Bisnis yang Butuh Sistem Khusus?",
+  ctaSubtitle: "Ceritakan kebutuhan operasional Anda, kami bantu petakan solusinya. Konsultasi awal gratis.",
   ctaButton: "Mulai Diskusi Gratis"
 };

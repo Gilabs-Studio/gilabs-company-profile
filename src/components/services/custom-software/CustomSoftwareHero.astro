@@ -2,42 +2,43 @@
 import { ArrowRight } from "lucide-react";
 import { getWhatsAppLink } from "../../../lib/utils";
 import HeroParallaxImage from "../HeroParallaxImage.astro";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
-  lang: "en" | "id";
-  eyebrow?: string;
-  title: string;
-  subtitle: string;
-  primaryCtaText?: string;
-  secondaryCtaText?: string;
+  lang?: "en" | "id";
+  service: ServicePageData;
 }
 
 const {
   lang = "id",
-  eyebrow = "Custom Software & Web App",
-  title = lang === "en"
-    ? "Systems Built Around How You Work, Not the Other Way Around"
-    : "Sistem yang Dibangun Mengikuti Cara Kerja Kamu, Bukan Sebaliknya",
-  subtitle = lang === "en"
-    ? "When off-the-shelf software is too rigid for your unique business processes, it is time to build one that fits perfectly."
-    : "Kalau proses bisnis kamu udah terlalu unik buat software siap pakai, saatnya bangun yang benar-benar pas.",
-  primaryCtaText = lang === "en" ? "Discuss Your Needs" : "Diskusikan Kebutuhan Kamu",
-  secondaryCtaText = lang === "en" ? "View Case Studies" : "Lihat Contoh Sistem",
+  service,
 } = Astro.props;
 
-const heroImageUrl = "/images/services/custom-software/hero-custom-software.png";
+const {
+  eyebrow,
+  title,
+  subtitle,
+  primaryCtaText,
+  secondaryCtaText,
+  heroIllustration,
+  heroImageAlt,
+} = service;
+
+const heroImageUrl = heroIllustration || "/images/services/custom-software/hero-custom-software.png";
 ---
 
 <section class="relative pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden">
   <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10 text-center">
     {/* Eyebrow */}
-    <div class="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
-      <div class="h-px w-8 sm:w-16 bg-primary/20"></div>
-      <span class="typography-eyebrow text-foreground/80 tracking-widest">
-        {eyebrow}
-      </span>
-      <div class="h-px w-8 sm:w-16 bg-primary/20"></div>
-    </div>
+    {eyebrow && (
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div class="h-px w-8 sm:w-16 bg-primary/20"></div>
+        <span class="typography-eyebrow text-foreground/80 tracking-widest">
+          {eyebrow}
+        </span>
+        <div class="h-px w-8 sm:w-16 bg-primary/20"></div>
+      </div>
+    )}
 
     {/* Headline */}
     <h1 class="typography-hero-title mb-6 sm:mb-8 text-foreground max-w-4xl mx-auto">
@@ -51,28 +52,33 @@ const heroImageUrl = "/images/services/custom-software/hero-custom-software.png"
 
     {/* CTA Buttons */}
     <div class="flex flex-wrap items-center justify-center gap-4 mb-12 sm:mb-16">
-      <a
-        href={getWhatsAppLink("hero-custom-software", lang)}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 typography-button text-white bg-brand rounded-full hover:bg-brand/90 transition-colors cursor-pointer shadow-md shadow-brand/20"
-      >
-        <span>{primaryCtaText}</span>
-        <ArrowRight className="w-4 h-4" />
-      </a>
+      {primaryCtaText && (
+        <a
+          href={getWhatsAppLink("hero-custom-software", lang)}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 typography-button text-white bg-brand rounded-full hover:bg-brand/90 transition-colors cursor-pointer shadow-md shadow-brand/20"
+        >
+          <span>{primaryCtaText}</span>
+          <ArrowRight className="w-4 h-4" />
+        </a>
+      )}
 
-      <a
-        href="#portofolio"
-        class="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 typography-button text-foreground bg-white hover:bg-secondary/40 border border-border/80 rounded-full transition-colors cursor-pointer shadow-sm"
-      >
-        {secondaryCtaText}
-      </a>
+      {secondaryCtaText && (
+        <a
+          href="#solusi"
+          class="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 typography-button text-foreground bg-white hover:bg-secondary/40 border border-border/80 rounded-full transition-colors cursor-pointer shadow-sm"
+        >
+          {secondaryCtaText}
+        </a>
+      )}
     </div>
 
     {/* Custom Software Web App Hero Showcase */}
     <HeroParallaxImage
       src={heroImageUrl}
-      alt="Custom Software & Web Application Showcase - Gilabs"
+      alt={heroImageAlt || title}
     />
   </div>
 </section>
+
