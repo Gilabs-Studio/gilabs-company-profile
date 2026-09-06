@@ -1,24 +1,21 @@
 ---
 import { WhatsAppIcon } from "../../react/WhatsAppIcon";
 import { getWhatsAppLink } from "../../../lib/utils";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
+  title?: string;
+  subtitle?: string;
+  buttonText?: string;
 }
 
-const { lang = "id" } = Astro.props;
+const { lang = "id", service, title: propTitle, subtitle: propSubtitle, buttonText: propButtonText } = Astro.props;
 
-const title = lang === "en"
-  ? "Ready to Bring Your App Idea to Life?"
-  : "Ide Aplikasi Kamu Siap Diwujudkan";
-
-const subtitle = lang === "en"
-  ? "From concept in your mind to live release on the App Store and Google Play Store. Free initial consultation, zero commitment."
-  : "Dari konsep di kepala sampai live di App Store dan Play Store. Konsultasi awal gratis, tanpa jargon teknis yang membingungkan.";
-
-const buttonText = lang === "en"
-  ? "Start Free Discussion"
-  : "Mulai Diskusi Gratis";
+const title = propTitle || service.ctaTitle;
+const subtitle = propSubtitle || service.ctaSubtitle;
+const buttonText = propButtonText || service.ctaButton;
 ---
 
 <section class="py-12 sm:py-16 md:py-24 lg:py-32 relative">

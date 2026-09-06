@@ -7,91 +7,62 @@ import {
   Users,
   Cpu
 } from "lucide-react";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const types = [
-  {
-    number: "01",
-    title: lang === "en" ? "E-Commerce & Marketplace Apps" : "Aplikasi E-Commerce & Marketplace",
-    description: lang === "en"
-      ? "Interactive mobile product catalog, intuitive cart, instant multi-courier shipping rates, and automated payment gateway checkout."
-      : "Katalog produk interaktif, keranjang belanja, cek ongkir otomatis, dan checkout kilat dengan payment gateway terintegrasi.",
-    Icon: ShoppingBag
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "On-Demand Service Apps" : "Aplikasi On-Demand Service",
-    description: lang === "en"
-      ? "Instant service booking, driver/courier dispatching, live real-time GPS tracking, and automated transparent fare calculation."
-      : "Pemesanan layanan instan, dispatch armada, pelacakan rute GPS real-time, dan kalkulasi tarif otomatis transparan.",
-    Icon: Navigation
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "Internal Enterprise Apps" : "Aplikasi Internal Perusahaan",
-    description: lang === "en"
-      ? "GPS geofenced employee attendance, multi-tier approval workflows, field worker inspections, and mobile sales force reporting."
-      : "Presensi lokasi geofencing, approval operasional bertingkat, inspeksi lapangan, dan tracking tim sales lapangan.",
-    Icon: Building2
-  },
-  {
-    number: "04",
-    title: lang === "en" ? "Booking & Reservation Apps" : "Aplikasi Booking & Reservasi",
-    description: lang === "en"
-      ? "Direct ticket purchasing, appointment scheduling, real-time quota synchronization, and automatic push notification reminders."
-      : "Pemesanan tiket, reservasi jadwal dokter/layanan, sinkronisasi kuota real-time, dan pengingat jadwal otomatis.",
-    Icon: CalendarCheck
-  },
-  {
-    number: "05",
-    title: lang === "en" ? "Community & Social Apps" : "Aplikasi Komunitas / Sosial",
-    description: lang === "en"
-      ? "Dynamic activity feeds, discussion forums, user profiles, real-time 1-on-1 and group chat, and exclusive content channels."
-      : "Feed aktivitas dinamis, forum diskusi, profil member, direct chat real-time, dan konten khusus member komunitas.",
-    Icon: Users
-  },
-  {
-    number: "06",
-    title: lang === "en" ? "IoT Connected Apps" : "Aplikasi dengan Fitur IoT",
-    description: lang === "en"
-      ? "Hardware pairing via Bluetooth Low Energy / Wi-Fi, real-time telemetry sensor charts, and remote hardware device controls."
-      : "Koneksi hardware via Bluetooth / Wi-Fi, monitoring telemetri sensor real-time, dan kontrol perangkat pintar jarak jauh.",
-    Icon: Cpu
-  }
-];
+const icons = [ShoppingBag, Navigation, Building2, CalendarCheck, Users, Cpu];
+
+const {
+  featuresEyebrow,
+  featuresTitle,
+  featuresSubtitle,
+  features = [],
+} = service;
+
+const displayTypes = features.map((item, idx) => ({
+  number: item.number || String(idx + 1).padStart(2, "0"),
+  title: item.title,
+  description: item.description,
+  Icon: icons[idx % icons.length]
+}));
 ---
 
-<section class="py-16 md:py-24 relative">
+<section id="kategori" class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "App Categories" : "Jenis Aplikasi"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {featuresEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {featuresEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
-      <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Categories We Regularly Build" : "Beberapa Kategori yang Sering Kami Kerjakan"}
-      </h2>
+      {featuresTitle && (
+        <h2 class="typography-section-title mb-4">
+          {featuresTitle}
+        </h2>
+      )}
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Specialized mobile architectures engineered to serve diverse operational tasks and customer engagement models."
-          : "Arsitektur mobile terspesialisasi yang dirancang untuk mendukung berbagai kebutuhan operasional dan engagement pelanggan."}
-      </p>
+      {featuresSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {featuresSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 6 Types Grid */}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-      {types.map((item) => (
+      {displayTypes.map((item) => (
         <div class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           <div>
             <div class="flex items-center justify-between mb-6">

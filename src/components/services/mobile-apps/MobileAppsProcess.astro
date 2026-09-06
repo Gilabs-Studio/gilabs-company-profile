@@ -1,72 +1,51 @@
 ---
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const steps = [
-  {
-    step: "01",
-    title: lang === "en" ? "Research & Planning" : "Riset & Perancangan",
-    description: lang === "en"
-      ? "We study your target users, benchmark competitor applications, and map out clear user flows."
-      : "Kami pelajari target pengguna dan susun user flow.",
-    stage: lang === "en" ? "Phase 1" : "Tahap 1"
-  },
-  {
-    step: "02",
-    title: lang === "en" ? "UI/UX Design" : "UI/UX Design",
-    description: lang === "en"
-      ? "Interface layouts are designed and validated through interactive clickable prototypes."
-      : "Desain interface dibuat dan divalidasi lewat prototype.",
-    stage: lang === "en" ? "Phase 2" : "Tahap 2"
-  },
-  {
-    step: "03",
-    title: lang === "en" ? "Sprint Development" : "Development",
-    description: lang === "en"
-      ? "Built in disciplined sprints with frequent functional testing on real iOS and Android devices."
-      : "Dibangun dengan sprint, testing dilakukan berkala.",
-    stage: lang === "en" ? "Phase 3" : "Tahap 3"
-  },
-  {
-    step: "04",
-    title: lang === "en" ? "Publish to Stores" : "Publish ke Store",
-    description: lang === "en"
-      ? "App submitted to Google Play and Apple App Store, with complete guidance until approval."
-      : "Aplikasi disubmit ke App Store dan Play Store, kami bantu prosesnya.",
-    stage: lang === "en" ? "Phase 4" : "Tahap 4"
-  }
-];
+const {
+  processEyebrow,
+  processTitle,
+  processSubtitle,
+  processSteps = [],
+} = service;
 ---
 
-<section class="py-16 md:py-24 relative overflow-hidden">
+<section id="proses" class="py-16 md:py-24 relative overflow-hidden">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Mobile Roadmap" : "Proses Kerja"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {processEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {processEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
-      <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "From Concept to Live on App Stores" : "Dari Konsep Sampai Live di Store"}
-      </h2>
+      {processTitle && (
+        <h2 class="typography-section-title mb-4">
+          {processTitle}
+        </h2>
+      )}
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "A transparent, milestone-driven mobile development process ensuring on-time delivery and seamless store approval."
-          : "Alur kerja terstruktur dari analisis kebutuhan hingga aplikasi Anda resmi dapat diunduh oleh ribuan pengguna di Play Store & App Store."}
-      </p>
+      {processSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {processSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 4 Steps Grid */}
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-      {steps.map((item) => (
+      {processSteps.map((item) => (
         <div class="bg-white border border-border/50 rounded-2xl p-6 sm:p-7 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           <div>
             {/* Step Number in Brand Blue */}
@@ -74,9 +53,11 @@ const steps = [
               <span class="text-3xl sm:text-4xl font-mono font-bold text-brand">
                 {item.step}
               </span>
-              <span class="text-xs font-mono text-muted-foreground/60 uppercase">
-                {item.stage}
-              </span>
+              {item.stage && (
+                <span class="text-xs font-mono text-muted-foreground/60 uppercase">
+                  {item.stage}
+                </span>
+              )}
             </div>
 
             {/* Title */}
