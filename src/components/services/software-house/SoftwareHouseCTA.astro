@@ -1,24 +1,20 @@
 ---
 import { WhatsAppIcon } from "../../react/WhatsAppIcon";
 import { getWhatsAppLink } from "../../../lib/utils";
+import type { ServicePageData } from "../../../data/services/types";
 
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { lang = "id", service } = Astro.props;
 
-const title = lang === "en"
-  ? "Tell Us Your Business Challenge, We'll Architect the Solution"
-  : "Ceritakan Masalah Bisnis Kamu, Kami Bantu Cari Solusinya";
-
-const subtitle = lang === "en"
-  ? "Free initial consultation. No commitment, zero confusing technical jargon."
-  : "Konsultasi awal gratis. Tanpa komitmen, tanpa jargon teknis yang membingungkan.";
-
-const buttonText = lang === "en"
-  ? "Schedule Free Consultation"
-  : "Jadwalkan Diskusi Gratis";
+const {
+  ctaTitle,
+  ctaSubtitle,
+  ctaButton,
+} = service;
 ---
 
 <section class="py-12 sm:py-16 md:py-24 lg:py-32 relative">
@@ -33,28 +29,32 @@ const buttonText = lang === "en"
       <div class="relative z-10 px-2 sm:px-4 max-w-4xl mx-auto">
         {/* Headline */}
         <h2 class="typography-hero-title text-background mb-6 sm:mb-8 md:mb-10 max-w-4xl mx-auto">
-          {title}
+          {ctaTitle}
         </h2>
 
         {/* Subtitle */}
-        <div class="space-y-2 sm:space-y-3 text-background/90 mb-8 sm:mb-10 md:mb-14 max-w-3xl mx-auto">
-          <p class="text-base sm:text-lg md:text-xl font-light text-background/90 leading-relaxed">
-            {subtitle}
-          </p>
-        </div>
+        {ctaSubtitle && (
+          <div class="space-y-2 sm:space-y-3 text-background/90 mb-8 sm:mb-10 md:mb-14 max-w-3xl mx-auto">
+            <p class="text-base sm:text-lg md:text-xl font-light text-background/90 leading-relaxed">
+              {ctaSubtitle}
+            </p>
+          </div>
+        )}
 
         {/* WhatsApp Button */}
-        <div>
-          <a
-            href={getWhatsAppLink("final-cta-software", lang)}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 py-3.5 sm:py-4 bg-background text-foreground typography-button rounded-full hover:bg-white transition-colors whitespace-nowrap cursor-pointer shadow-lg"
-          >
-            <span>{buttonText}</span>
-            <WhatsAppIcon client:load className="w-5 h-5 sm:w-6 sm:h-6" />
-          </a>
-        </div>
+        {ctaButton && (
+          <div>
+            <a
+              href={getWhatsAppLink("final-cta-software", lang)}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center gap-3 sm:gap-4 px-6 sm:px-8 py-3.5 sm:py-4 bg-background text-foreground typography-button rounded-full hover:bg-white transition-colors whitespace-nowrap cursor-pointer shadow-lg"
+            >
+              <span>{ctaButton}</span>
+              <WhatsAppIcon client:load className="w-5 h-5 sm:w-6 sm:h-6" />
+            </a>
+          </div>
+        )}
       </div>
     </div>
   </div>

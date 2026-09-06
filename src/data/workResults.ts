@@ -348,8 +348,8 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       ]
     },
     {
-      title: 'Portfolio Website Digital Marketer',
-      description: 'A modern, interactive portfolio website to showcase creative projects, professional experience, and contact information. Built with Next.js and React, featuring smooth animations, project galleries, and a responsive design.',
+      title: 'Website Digital Marketer',
+      description: 'Interactive portfolio website featuring smooth animations, high-converting project galleries, and modern responsive layouts.',
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
       githubUrl: 'https://github.com/Kevin5621/portofolio-website-digital-marketer-2',
       type: 'real',
@@ -934,8 +934,8 @@ export const workResultsProjects: Record<string, WorkResultProject[]> = {
       ]
     },
     {
-      title: 'Portfolio Website Digital Marketer',
-      description: 'Website portfolio modern dan interaktif untuk menampilkan proyek kreatif, pengalaman profesional, dan informasi kontak. Dibangun dengan Next.js dan React, menampilkan animasi halus, galeri proyek, dan desain responsif.',
+      title: 'Website Digital Marketer',
+      description: 'Website portfolio interaktif dengan animasi halus, galeri proyek berkonversi tinggi, dan tata letak responsif modern.',
       technologies: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Framer Motion'],
       githubUrl: 'https://github.com/Kevin5621/portofolio-website-digital-marketer-2',
       type: 'real',

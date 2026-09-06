@@ -4,9 +4,10 @@ export const softwareHouseId: ServicePageData = {
   slug: "software-house-indonesia",
   category: "software",
   eyebrow: "Software House Indonesia",
-  title: "Partner Teknologi untuk Bisnis yang Serius Bertumbuh",
-  subtitle: "Dari ide sampai sistem yang jalan tiap hari, kami bangun software yang benar-benar dipakai tim kamu, bukan cuma demo yang bagus di presentasi.",
+  title: "Partner Pengembangan Software Bisnis",
+  subtitle: "Kami membangun software handal dan terarah untuk mempermudah alur kerja operasional tim Anda.",
   heroIllustration: "/images/services/software-house/hero-dashboard-dark.png",
+  heroImageAlt: "Dashboard Sistem Operasional dan Enterprise - Gilabs Software House",
   metaTitle: "Software House Indonesia Terpercaya | Gilabs Engineering Partner",
   metaDescription: "Software house Indonesia terpercaya untuk custom software, sistem internal, web app, dan mobile app. 100% kepemilikan source code tanpa biaya lisensi per user.",
   keywords: [
@@ -20,88 +21,148 @@ export const softwareHouseId: ServicePageData = {
     "web application developer"
   ],
   primaryCtaText: "Diskusikan Kebutuhan Kamu",
-  secondaryCtaText: "Lihat Studi Kasus",
-  problemsTitle: "Software Off-the-Shelf Nggak Selalu Cocok",
-  problemsSubtitle: "Tiga batasan utama software siap pakai yang sering menghambat ekspansi bisnis kamu.",
+  secondaryCtaText: "Pelajari Layanan",
+  problemsEyebrow: "Masalah yang Sering Ditemui",
+  problemsTitle: "Keterbatasan Software Siap Pakai",
+  problemsSubtitle: "Tiga kendala umum software siap pakai yang sering menghambat operasional bisnis.",
   problems: [
     {
-      pain: "Proses Bisnis Unik",
-      solution: "Software siap pakai dipaksa ikut alur mereka, bukan alur kamu."
+      pain: "01. Alur Bisnis Tidak Sesuai",
+      solution: "Software siap pakai memaksa tim mengikuti alur template mereka, bukan alur kerja operasional perusahaan Anda.",
+      metric: "Staf menghabiskan waktu menyesuaikan cara kerja dengan batasan template"
     },
     {
-      pain: "Biaya Lisensi Menumpuk",
-      solution: "Bayar per user tiap bulan, makin besar tim makin mahal tanpa batas."
+      pain: "02. Biaya Lisensi Bertambah Tiap Pengguna",
+      solution: "Skema bayar per pengguna setiap bulan membuat biaya langganan membengkak seiring pertambahan anggota tim.",
+      metric: "Biaya lisensi berulang meningkat tanpa kepemilikan aset perangkat lunak"
     },
     {
-      pain: "Data Nggak Sepenuhnya Milik Kamu",
-      solution: "Terikat vendor, sulit migrasi, serta risiko keamanan data bisnis."
+      pain: "03. Kendali Data Terbatas",
+      solution: "Data tersimpan di platform pihak ketiga dan sulit dimigrasikan saat kebutuhan sistem perusahaan berkembang.",
+      metric: "Risiko ketergantungan vendor dan hambatan migrasi database"
     }
   ],
+  featuresEyebrow: "Layanan Kami",
   featuresTitle: "Apa yang Bisa Kami Bangun untuk Kamu?",
-  featuresSubtitle: "Solusi engineering menyeluruh yang disesuaikan dengan alur operasional bisnis Anda.",
+  featuresSubtitle: "Pengembangan software yang disesuaikan dengan alur operasional bisnis Anda.",
   features: [
     {
+      number: "01",
+      icon: "laptop",
       title: "Custom Web Application",
-      description: "Sistem internal, portal klien, dan platform SaaS yang dirancang spesifik untuk kebutuhan bisnismu."
+      subtitle: "Sistem Internal, Portal Klien, Platform SaaS",
+      description: "Sistem internal, portal klien, dan platform SaaS yang dirancang spesifik untuk kebutuhan operasional bisnis Anda.",
+      href: "/id/services/jasa-pembuatan-custom-software",
+      ctaText: "Konsultasikan"
     },
     {
+      number: "02",
+      icon: "smartphone",
       title: "Mobile Apps (iOS & Android)",
-      description: "Aplikasi operasional lapangan, customer app, dan manajemen tim mobile responsif."
+      subtitle: "Aplikasi Operasional Lapangan & Customer App",
+      description: "Aplikasi operasional lapangan, customer app, dan manajemen tim mobile yang terintegrasi secara real-time.",
+      href: "/id/services/jasa-pembuatan-aplikasi-mobile-android-ios",
+      ctaText: "Konsultasikan"
     },
     {
+      number: "03",
+      icon: "database",
       title: "ERP & CRM Sederhana",
-      description: "Sesuai alur bisnismu, tanpa fitur mubazir yang bikin bingung tim operasional."
+      subtitle: "Sesuai Alur Bisnis, Tanpa Fitur Berlebih",
+      description: "Sistem manajemen operasional dan relasi pelanggan yang fokus pada alur kerja nyata tanpa fitur rumit yang tidak terpakai.",
+      href: "/id/services/jasa-pembuatan-sistem-erp-crm",
+      ctaText: "Konsultasikan"
     },
     {
+      number: "04",
+      icon: "workflow",
       title: "Integrasi Sistem & API",
-      description: "Hubungkan software lama ke sistem baru, payment gateway, atau layanan pihak ketiga tanpa batas."
+      subtitle: "Hubungkan Sistem Lama ke Ekosistem Baru",
+      description: "Integrasi antar sistem internal, payment gateway, WhatsApp API, dan layanan pihak ketiga secara aman dan stabil.",
+      href: "/id/services/jasa-pembuatan-custom-software",
+      ctaText: "Konsultasikan"
     },
     {
+      number: "05",
+      icon: "shield-check",
       title: "Maintenance & Code Audit",
-      description: "Lanjutkan atau perbaiki project yang mangkrak dengan standar kode bersih dan refactoring terarah."
+      subtitle: "Perbaikan dan Optimalisasi Sistem Berjalan",
+      description: "Audit arsitektur, perbaikan celah keamanan, refactoring kode, dan optimasi performa database untuk software yang sudah berjalan.",
+      href: "whatsapp:service-audit",
+      ctaText: "Konsultasikan"
     }
   ],
-  packagesTitle: "Investasi Sesuai Skala Kebutuhan",
-  packagesSubtitle: "Estimasi biaya transparan tanpa biaya lisensi per-user bulanan. Source code 100% milik Anda.",
-  packages: [
+  solutionsEyebrow: "Kenapa Pilih Kami",
+  solutionsTitle: "Software yang Dibangun Sesuai Kebutuhan Bisnis",
+  solutionsSubtitle: "Software yang baik fokus menyelesaikan masalah operasional dan memberi dampak langsung pada efisiensi kerja tim.",
+  solutions: [
     {
-      name: "BASIC",
-      price: "Mulai Rp 5.000.000",
-      isPopular: false,
-      description: "Cocok untuk: MVP, sistem internal sederhana, automasi satu alur kerja spesifik",
-      features: [
-        "1 Modul/Alur Utama",
-        "Web-based Responsive",
-        "Database Setup",
-        "Basic Authentication & Role",
-        "Garansi Bug Fixes 1 Bulan"
+      number: "01",
+      badge: "Analisis Kebutuhan",
+      title: "Paham Alur Bisnis Sebelum Koding",
+      description: "Kami mendalami alur operasional bisnis Anda terlebih dahulu, memetakan kebutuhan nyata, lalu merancang arsitektur solusi yang tepat.",
+      points: [
+        "Pemetaan detail alur operasional dan titik rawan kesalahan input",
+        "Penyederhanaan proses kerja sebelum mulai menulis baris kode",
+        "Antarmuka intuitif agar tim operasional langsung terbiasa menggunakannya"
       ]
     },
     {
-      name: "STANDARD",
-      price: "Mulai Rp 15.000.000",
-      isPopular: true,
-      description: "Cocok untuk: Sistem operasional bisnis, CRM/ERP custom skala UKM",
-      features: [
-        "Multi-modul & Multi-role User",
-        "Web App + Responsive Dashboard",
-        "Integrasi API & Notifikasi (WA/Email)",
-        "Export/Import Data & Reporting",
-        "Garansi & Support 3 Bulan"
+      number: "02",
+      badge: "Standar Industri",
+      title: "Arsitektur Skalabel dan Mudah Dikembangkan",
+      description: "Ditulis dengan standar kode industri yang rapi, terdokumentasi lengkap, dan siap diteruskan oleh tim internal Anda kapan pun dibutuhkan.",
+      points: [
+        "Penerapan arsitektur modular yang rapi dan terstruktur",
+        "Dokumentasi API lengkap dan skema database terstandarisasi",
+        "100% penyerahan repository Git dan hak kekayaan intelektual"
       ]
     },
     {
-      name: "CUSTOM",
-      price: "Hubungi Kami",
-      isPopular: false,
-      description: "Cocok untuk: Platform skala besar, arsitektur kompleks, kebutuhan high traffic",
-      features: [
-        "Arsitektur Microservices / Scalable",
-        "Multi-platform (Web + Mobile App)",
-        "Integrasi Sistem Legacy & Third-party",
-        "Security Hardening & Audit Log",
-        "Dedicated Support & SLA"
+      number: "03",
+      badge: "Transparansi Penuh",
+      title: "Proses Transparan dari Awal Hingga Selesai",
+      description: "Pembaruan berkala, demo modul yang siap diuji, dan akses langsung ke manajemen proyek tanpa kendala tak terduga di akhir.",
+      points: [
+        "Pengembangan bertahap dengan demo fitur nyata yang dapat langsung diuji",
+        "Akses transparan ke papan manajemen proyek dan pembaruan fitur",
+        "Ruang lingkup kerja pasti dengan target penyelesaian yang terukur"
       ]
+    }
+  ],
+  processEyebrow: "Proses Kerja",
+  processTitle: "Dari Diskusi Sampai Software Berjalan",
+  processSubtitle: "Alur kerja terstruktur dari analisis kebutuhan hingga sistem aktif digunakan oleh tim Anda.",
+  processSteps: [
+    {
+      step: "01",
+      stage: "Tahap 1",
+      title: "Analisis Kebutuhan Bisnis",
+      description: "Memetakan alur kerja operasional, identifikasi kebutuhan teknis, dan menyepakati ruang lingkup proyek secara transparan."
+    },
+    {
+      step: "02",
+      stage: "Tahap 2",
+      title: "Desain Sistem & Prototype",
+      description: "Merancang skema database, arsitektur API, dan purwarupa antarmuka interaktif sebelum penulisan kode dimulai."
+    },
+    {
+      step: "03",
+      stage: "Tahap 3",
+      title: "Pengembangan Berkala (Sprint)",
+      description: "Pengerjaan bertahap dengan target milestone yang jelas. Anda dapat meninjau dan menguji fitur baru secara berkala."
+    },
+    {
+      step: "04",
+      stage: "Tahap 4",
+      title: "Pengujian & Deployment",
+      description: "Pengujian menyeluruh terhadap fungsionalitas, performa, dan keamanan sebelum sistem resmi dirilis ke server produksi."
+    },
+    {
+      step: "05",
+      stage: "Tahap 5",
+      title: "Serah Terima & Garansi",
+      description: "Pelatihan tim pengguna, dokumentasi teknis lengkap, penyerahan akses repository, dan masa garansi perbaikan bug."
     }
   ],
   techStackTitle: "Tech Stack Modern & Skalabel",
@@ -112,27 +173,28 @@ export const softwareHouseId: ServicePageData = {
     { name: "Flutter & React Native", category: "Mobile Apps", description: "Aplikasi cross-platform iOS & Android dengan satu basis kode." },
     { name: "PostgreSQL & Redis", category: "Data Tier", description: "Penyimpanan data relasional berintegritas tinggi dan caching kilat." }
   ],
+  faqEyebrow: "Pertanyaan Umum",
   faqTitle: "FAQ Pengembangan Software",
-  faqSubtitle: "Hal penting seputar proses kemitraan pengembangan software di Gilabs.",
+  faqSubtitle: "Hal penting seputar proses kerja sama dan teknis pengembangan software di Gilabs.",
   faqs: [
     {
       question: "Berapa lama estimasi pengerjaan sebuah project software?",
-      answer: "Tergantung kompleksitas. Project sederhana (MVP) biasanya 3-6 minggu. Sistem yang lebih kompleks seperti ERP/CRM custom butuh 2-4 bulan. Kami selalu tentukan timeline yang realistis di awal sebelum mulai."
+      answer: "Tergantung kompleksitas sistem. Project sederhana (MVP) biasanya 3-6 minggu. Sistem yang lebih komprehensif seperti ERP atau CRM butuh 2-4 bulan. Timeline realistis disepakati di awal sebelum pengerjaan dimulai."
     },
     {
-      question: "Apakah source code jadi milik kami setelah project selesai?",
-      answer: "Ya, 100%. Source code sepenuhnya menjadi aset milik perusahaan kamu setelah pelunasan, lengkap dengan dokumentasi dan akses repository."
+      question: "Apakah source code sepenuhnya menjadi milik kami?",
+      answer: "Ya, 100%. Seluruh source code, dokumentasi teknis, dan akses repository diserahkan penuh kepada Anda setelah proyek selesai tanpa biaya lisensi berkelanjutan."
     },
     {
-      question: "Bagaimana kalau di tengah jalan ada fitur tambahan yang ingin dibuat?",
-      answer: "Kami menggunakan pendekatan fleksibel (Change Request). Fitur baru akan diestimasi scope dan biayanya secara transparan tanpa mengganggu timeline milestone yang sedang berjalan."
+      question: "Bagaimana jika ada kebutuhan fitur tambahan di tengah pengerjaan?",
+      answer: "Kami menerapkan skema Change Request yang terstruktur. Fitur tambahan akan diestimasi lingkup kerja dan biayanya secara transparan tanpa mengganggu jadwal milestone yang sedang berjalan."
     },
     {
       question: "Apakah ada dukungan teknis setelah software resmi digunakan?",
-      answer: "Setiap project dilengkapi masa garansi bug fixes (1-3 bulan tergantung paket). Setelahnya, kami menyediakan paket retainer bulanan untuk maintenance, server monitoring, dan penambahan fitur berkelanjutan."
+      answer: "Setiap proyek dilengkapi masa garansi perbaikan bug (1-3 bulan). Setelah masa garansi, kami menyediakan paket pemeliharaan berkala untuk monitoring server, update keamanan, dan penambahan fitur."
     }
   ],
-  ctaTitle: "Ceritakan Masalah Bisnis Kamu, Kami Bantu Cari Solusinya",
-  ctaSubtitle: "Konsultasi awal gratis. Tanpa komitmen, tanpa jargon teknis yang membingungkan.",
-  ctaButton: "Jadwalkan Diskusi Gratis"
+  ctaTitle: "Konsultasikan Kebutuhan Software Bisnis Anda",
+  ctaSubtitle: "Diskusikan kendala operasional Anda bersama tim kami untuk menemukan solusi teknis yang tepat.",
+  ctaButton: "Konsultasi Gratis Sekarang"
 };

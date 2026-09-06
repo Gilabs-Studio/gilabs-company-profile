@@ -1,80 +1,49 @@
 ---
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { lang = "id", service } = Astro.props;
 
-const steps = [
-  {
-    step: "01",
-    title: lang === "en" ? "Discovery & Business Analysis" : "Discovery & Business Analysis",
-    description: lang === "en"
-      ? "Map out workflows, identify technical requirements, and define a realistic, committed project scope."
-      : "Pahami alur kerja, identifikasi kebutuhan, dan tentukan scope project yang realistis.",
-    stage: lang === "en" ? "Phase 1" : "Tahap 1"
-  },
-  {
-    step: "02",
-    title: lang === "en" ? "System Design & Prototype" : "Desain Sistem & Prototype",
-    description: lang === "en"
-      ? "Architect database schemas, API specs, and clickable UI prototypes before writing code."
-      : "Rancang arsitektur database dan prototype interaktif sebelum mulai koding.",
-    stage: lang === "en" ? "Phase 2" : "Tahap 2"
-  },
-  {
-    step: "03",
-    title: lang === "en" ? "Agile Sprint Development" : "Development Bertahap (Sprint)",
-    description: lang === "en"
-      ? "Structured coding sprints with clear milestones. Review and test working modules every 2 weeks."
-      : "Koding dengan milestone jelas. Kamu bisa pantau dan coba fiturnya tiap beberapa minggu.",
-    stage: lang === "en" ? "Phase 3" : "Tahap 3"
-  },
-  {
-    step: "04",
-    title: lang === "en" ? "Testing & Deployment" : "Testing & Deployment",
-    description: lang === "en"
-      ? "Rigorous performance, stress, and security testing before production release to your server."
-      : "Uji performa, keamanan, dan fungsionalitas sebelum sistem resmi digunakan tim kamu.",
-    stage: lang === "en" ? "Phase 4" : "Tahap 4"
-  },
-  {
-    step: "05",
-    title: lang === "en" ? "Handover & Warranty" : "Handover & Warranty",
-    description: lang === "en"
-      ? "Comprehensive team training, complete source code handover, and bug-fix warranty post go-live."
-      : "Pelatihan tim, dokumentasi lengkap, dan masa garansi bug fixes setelah go-live.",
-    stage: lang === "en" ? "Phase 5" : "Tahap 5"
-  }
-];
+const {
+  processEyebrow,
+  processTitle,
+  processSubtitle,
+  processSteps = [],
+} = service;
 ---
 
 <section class="py-16 md:py-24 relative overflow-hidden">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Development Methodology" : "Proses Kerja"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {processEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {processEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "From Discussion to Production-Ready Software" : "Dari Diskusi Sampai Software Berjalan"}
+        {processTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "A transparent, structured engineering lifecycle ensuring on-time delivery with zero surprises."
-          : "Alur kerja bertahap yang terukur dari fase analisis hingga sistem aktif digunakan oleh seluruh tim Anda."}
-      </p>
+      {processSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {processSubtitle}
+        </p>
+      )}
     </div>
 
-    {/* 5 Steps Grid */}
+    {/* Steps Grid */}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 sm:gap-6 items-stretch">
-      {steps.map((item) => (
+      {processSteps.map((item) => (
         <div class="bg-white border border-border/50 rounded-2xl p-6 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           <div>
             {/* Step Number in Brand Blue */}
@@ -82,9 +51,11 @@ const steps = [
               <span class="text-2xl sm:text-3xl font-mono font-bold text-brand">
                 {item.step}
               </span>
-              <span class="text-[11px] font-mono text-muted-foreground/70 uppercase">
-                {item.stage}
-              </span>
+              {item.stage && (
+                <span class="text-[11px] font-mono text-muted-foreground/70 uppercase">
+                  {item.stage}
+                </span>
+              )}
             </div>
 
             {/* Title */}

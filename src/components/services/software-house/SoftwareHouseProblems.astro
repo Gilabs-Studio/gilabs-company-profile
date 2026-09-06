@@ -1,64 +1,61 @@
 ---
+import type { ServicePageData } from "../../../data/services/types";
+
 interface Props {
   lang?: "en" | "id";
+  service: ServicePageData;
 }
 
-const { lang = "id" } = Astro.props;
+const { service } = Astro.props;
 
-const problems = [
-  {
-    number: "01",
-    title: lang === "en" ? "Unique Business Processes" : "Proses Bisnis Unik",
-    description: lang === "en"
-      ? "Generic off-the-shelf software forces your operations into their rigid workflow, rather than adapting to yours."
-      : "Software siap pakai dipaksa ikut alur mereka, bukan alur kamu.",
-    metric: lang === "en" ? "Staff waste 40% more time wrestling with ill-fitting software" : "Tim operasional terpaksa kerja ganda akibat sistem tidak klop"
-  },
-  {
-    number: "02",
-    title: lang === "en" ? "Escalating User License Fees" : "Biaya Lisensi Menumpuk",
-    description: lang === "en"
-      ? "Paying per user monthly compounds uncontrollably as your team expands, without an upper cap."
-      : "Bayar per user tiap bulan, makin besar tim makin mahal tanpa batas.",
-    metric: lang === "en" ? "Recurring SaaS license bills multiply year-over-year" : "Pengeluaran membengkak setiap kali menambah karyawan baru"
-  },
-  {
-    number: "03",
-    title: lang === "en" ? "Data Isn't Truly Yours" : "Data Nggak Sepenuhnya Milik Kamu",
-    description: lang === "en"
-      ? "Locked in vendor silos, migrations are daunting, posing commercial security and operational continuity risks."
-      : "Terikat vendor, sulit migrasi, serta risiko keamanan data bisnis.",
-    metric: lang === "en" ? "Zero vendor lock-in with full database migration freedom" : "Terkunci di database vendor dan berisiko saat ada sengketa"
-  }
-];
+const {
+  problemsEyebrow,
+  problemsTitle,
+  problemsSubtitle,
+  problems = [],
+} = service;
+
+const displayProblems = problems.map((problem, idx) => {
+  const match = problem.pain.match(/^(\d+)\.\s*(.*)/);
+  const number = match ? match[1] : String(idx + 1).padStart(2, "0");
+  const itemTitle = match ? match[2] : problem.pain;
+  return {
+    number,
+    title: itemTitle,
+    description: problem.solution,
+    metric: problem.metric
+  };
+});
 ---
 
 <section class="py-16 md:py-24 relative">
   <div class="container mx-auto px-4 max-w-6xl">
     {/* Section Header */}
     <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
-      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-        <span class="typography-eyebrow text-foreground/80">
-          {lang === "en" ? "Traditional Software Pitfalls" : "Masalah yang Sering Ditemui"}
-        </span>
-        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
-      </div>
+      {problemsEyebrow && (
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+          <span class="typography-eyebrow text-foreground/80">
+            {problemsEyebrow}
+          </span>
+          <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        </div>
+      )}
 
       <h2 class="typography-section-title mb-4">
-        {lang === "en" ? "Off-the-Shelf Software Doesn't Always Fit" : "Software Off-the-Shelf Nggak Selalu Cocok"}
+        {problemsTitle}
       </h2>
 
-      <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
-        {lang === "en"
-          ? "Three fundamental limitations of pre-packaged software that bottleneck growth and drive hidden operational overhead."
-          : "Tiga hal ini yang paling sering bikin biaya operasional membengkak dan sistem kaku saat bisnis kamu sedang berkembang pesat."}
-      </p>
+      {problemsSubtitle && (
+        <p class="typography-subtitle max-w-2xl mx-auto leading-relaxed text-foreground/80 font-light">
+          {problemsSubtitle}
+        </p>
+      )}
     </div>
 
     {/* 3 Columns Grid */}
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-      {problems.map((problem) => (
+      {displayProblems.map((problem) => (
         <div class="bg-white border border-border/50 rounded-2xl p-7 sm:p-8 hover:border-brand/50 transition-colors shadow-sm flex flex-col justify-between group">
           <div>
             <div class="mb-5">
@@ -77,10 +74,12 @@ const problems = [
           </div>
 
           {/* Bottom metric callout */}
-          <div class="pt-4 border-t border-border/40 flex items-center gap-2 text-xs font-medium text-foreground/70">
-            <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>
-            <span>{problem.metric}</span>
-          </div>
+          {problem.metric && (
+            <div class="pt-4 border-t border-border/40 flex items-center gap-2 text-xs font-medium text-foreground/70">
+              <span class="w-1.5 h-1.5 rounded-full bg-brand flex-shrink-0"></span>
+              <span>{problem.metric}</span>
+            </div>
+          )}
         </div>
       ))}
     </div>

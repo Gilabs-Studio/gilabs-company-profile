@@ -4,8 +4,6 @@ import SoftwareHouseProblems from "./SoftwareHouseProblems.astro";
 import SoftwareHouseServices from "./SoftwareHouseServices.astro";
 import SoftwareHouseWhyUs from "./SoftwareHouseWhyUs.astro";
 import SoftwareHouseProcess from "./SoftwareHouseProcess.astro";
-import SoftwareHousePortfolio from "./SoftwareHousePortfolio.astro";
-import SoftwareHousePricing from "./SoftwareHousePricing.astro";
 import SoftwareHouseFAQ from "./SoftwareHouseFAQ.astro";
 import SoftwareHouseCTA from "./SoftwareHouseCTA.astro";
 import type { ServicePageData } from "../../../data/services/types";
@@ -20,36 +18,23 @@ const { lang, service } = Astro.props;
 
 <div class="software-house-service-page">
   {/* 1. HERO SECTION */}
-  <SoftwareHouseHero
-    lang={lang}
-    eyebrow={service.eyebrow}
-    title={service.title}
-    subtitle={service.subtitle}
-    primaryCtaText={service.primaryCtaText}
-    secondaryCtaText={service.secondaryCtaText}
-  />
+  <SoftwareHouseHero lang={lang} service={service} />
 
   {/* 2. MASALAH YANG SERING DITEMUI */}
-  <SoftwareHouseProblems lang={lang} />
+  <SoftwareHouseProblems lang={lang} service={service} />
 
-  {/* 4. LAYANAN KAMI */}
-  <SoftwareHouseServices lang={lang} />
+  {/* 3. LAYANAN KAMI */}
+  <SoftwareHouseServices lang={lang} service={service} />
 
-  {/* 5. KENAPA PILIH KAMI (3 PILAR) */}
-  <SoftwareHouseWhyUs lang={lang} />
+  {/* 4. KENAPA PILIH KAMI */}
+  <SoftwareHouseWhyUs lang={lang} service={service} />
 
-  {/* 6. PROSES KERJA (5 LANGKAH) */}
-  <SoftwareHouseProcess lang={lang} />
+  {/* 5. PROSES KERJA (5 LANGKAH) */}
+  <SoftwareHouseProcess lang={lang} service={service} />
 
-  {/* 7. PORTOFOLIO / STUDI KASUS */}
-  <SoftwareHousePortfolio lang={lang} />
+  {/* 6. FAQ */}
+  <SoftwareHouseFAQ lang={lang} service={service} />
 
-  {/* 8. PAKET / ESTIMASI BIAYA */}
-  <SoftwareHousePricing lang={lang} />
-
-  {/* 9. FAQ */}
-  <SoftwareHouseFAQ lang={lang} />
-
-  {/* 10. FINAL CTA */}
-  <SoftwareHouseCTA lang={lang} />
+  {/* 7. FINAL CTA */}
+  <SoftwareHouseCTA lang={lang} service={service} />
 </div>
