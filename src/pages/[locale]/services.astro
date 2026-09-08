@@ -4,11 +4,9 @@ import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/sections/Footer.astro';
 import ServicesHero from '../../components/services/ServicesHero.astro';
 import ServicesGrid from '../../components/services/ServicesGrid.astro';
-import ServicesPackages from '../../components/services/ServicesPackages.astro';
-import ServicesErpCrm from '../../components/services/ServicesErpCrm.astro';
 import ServicesAiAddons from '../../components/services/ServicesAiAddons.astro';
-import ServicesCta from '../../components/services/ServicesCta.astro';
 import Comparison from '../../components/sections/Comparison.astro';
+import ServicesCta from '../../components/services/ServicesCta.astro';
 
 export function getStaticPaths() {
   return [
@@ -176,8 +174,6 @@ const breadcrumbSchema = {
   <main class="min-h-screen bg-background">
     <ServicesHero lang={lang} />
     <ServicesGrid lang={lang} />
-    <ServicesPackages lang={lang} />
-    <ServicesErpCrm lang={lang} />
     <ServicesAiAddons lang={lang} />
     <Comparison lang={lang} />
     <ServicesCta lang={lang} />
