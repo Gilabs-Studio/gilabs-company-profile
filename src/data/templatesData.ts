@@ -257,14 +257,25 @@ export const websiteEditingAddon: AddonItem = {
 
 export const templatesPageContent = {
   id: {
-    heroTag: 'Katalog Template Website',
-    heroTitle: 'Pilih Desain yang Mewakili Bisnismu',
-    heroSubtitle: 'Solusi lengkap pembuatan website bisnis: sudah termasuk template siap pakai, domain, cloud hosting cepat, SSL keamanan, email bisnis, dan pemeliharaan rutin.',
-    guarantees: [
-      'Domain & Hosting Termasuk',
-      'SSL Gratis & Email Bisnis',
-      'Pemeliharaan & Maintenance Rutin',
-      'Dukungan Teknis Langsung'
+    heroTag: 'Website Siap Pakai • Langsung Online Hari Ini',
+    heroTitle: 'Malas Cari Vendor? Website Siap Jadi Hari Ini',
+    heroSubtitle: 'Pilih template siap pakai, langsung online hari ini lengkap dengan domain dan hosting. Bisa kami bantu editkan konten atau custom sesuai kebutuhan.',
+    valueProps: [
+      {
+        badge: '01. Cepat & Hemat',
+        title: 'Tanpa Ribet Cari Vendor',
+        description: 'Tanpa meeting panjang atau biaya overbudget. Website profesional siap pakai dalam sekejap.'
+      },
+      {
+        badge: '02. Instan',
+        title: 'Langsung Online Hari Ini',
+        description: 'Pilih desain, hubungkan domain dan hosting, website langsung aktif hari ini.'
+      },
+      {
+        badge: '03. Terima Beres',
+        title: 'Bisa Dieditkan & Custom',
+        description: 'Malas edit sendiri? Tim kami bantu isi konten dan logo. Butuh fitur khusus juga bisa.'
+      }
     ],
     searchPlaceholder: 'Cari template website...',
     sortOptions: {
@@ -297,23 +308,31 @@ export const templatesPageContent = {
       guaranteeNote: 'Sudah termasuk nama domain, cloud hosting, SSL, email bisnis, dan bantuan tim teknis.'
     },
     faqTitle: 'Pertanyaan Umum Seputar Pemesanan Website',
-    faqSubtitle: 'Informasi mengenai paket domain, hosting, pemeliharaan rutin, dan jasa editing website.',
+    faqSubtitle: 'Jawaban seputar aktivasi instan, bantuan edit konten, opsi custom, dan hosting.',
     faqs: [
       {
-        q: 'Apakah harga sudah termasuk domain dan hosting?',
-        a: 'Ya. Setiap paket sudah mencakup nama domain pilihan Anda (.com/.id), cloud hosting cepat, SSL keamanan, akun email bisnis, dan pemeliharaan berkala selama periode paket aktif.'
+        q: 'Berapa lama waktu yang dibutuhkan sampai website bisa langsung aktif?',
+        a: 'Website langsung aktif hari ini setelah domain terhubung. Jika menggunakan jasa editing konten, proses selesai dalam hitungan jam hingga maksimal 24 jam.'
       },
       {
-        q: 'Apa itu add-on Jasa Editing Website?',
-        a: 'Jika Anda belum memiliki waktu untuk mengedit konten sendiri, Anda dapat memilih add-on Jasa Editing Website (+Rp 250.000). Tim kami akan membantu memasukkan seluruh teks profil, foto produk/layanan, logo, dan kontak sampai website siap tayang.'
+        q: 'Bagaimana jika saya malas atau tidak punya waktu mengedit konten sendiri?',
+        a: 'Pilih add-on "Jasa Editing Website". Cukup kirim materi via WhatsApp, tim kami yang menginput teks, foto, dan logo sampai siap tayang.'
       },
       {
-        q: 'Apakah bisa ganti template setelah website aktif?',
-        a: 'Bisa. Desain template dapat disesuaikan atau diganti kapan saja dengan bantuan tim support kami.'
+        q: 'Apakah harga paket sudah termasuk domain dan hosting?',
+        a: 'Ya, sudah termasuk nama domain (.com/.id), cloud hosting cepat, SSL gratis, email bisnis, dan pemeliharaan rutin tanpa biaya tersembunyi.'
+      },
+      {
+        q: 'Apakah template ini bisa di-custom atau ditambah fitur baru di kemudian hari?',
+        a: 'Bisa. Dibuat dengan kode modern standar software house, Anda bisa menambahkan modul baru, integrasi API, atau custom fitur kapan saja.'
+      },
+      {
+        q: 'Apa bedanya beli template Gilabs dibanding membuat website custom dari nol ke vendor lain?',
+        a: 'Bikin website dari nol ke vendor butuh 1-3 bulan dan biaya tinggi. Template Gilabs hemat hingga 80% dengan kualitas setara, siap online hari ini.'
       },
       {
         q: 'Bagaimana prosedur perpanjangan setelah masa paket habis?',
-        a: 'Sebelum masa paket berakhir (1, 2, atau 3 tahun), kami akan mengirimkan pengingat perpanjangan hosting dan domain dengan biaya transparan tanpa biaya tersembunyi.'
+        a: 'Kami akan kirimkan pengingat sebelum masa paket habis dengan biaya perpanjangan domain dan hosting yang transparan tanpa biaya tersembunyi.'
       }
     ],
     customCta: {
@@ -323,14 +342,25 @@ export const templatesPageContent = {
     }
   },
   en: {
-    heroTag: 'Website Template Catalog',
-    heroTitle: 'Choose a Design That Represents Your Business',
-    heroSubtitle: 'Complete business website solution: includes ready-to-use template, domain, high-speed cloud hosting, SSL, business email, and regular maintenance.',
-    guarantees: [
-      'Domain & Hosting Included',
-      'Free SSL & Business Email',
-      'Continuous Maintenance',
-      'Direct Technical Support'
+    heroTag: 'Turnkey Website Templates • Go Live Today',
+    heroTitle: 'No Time for Vendors? Your Website Is Ready Today',
+    heroSubtitle: 'Ready-to-use business templates, live today with domain and hosting included. We can edit content or build custom features for you.',
+    valueProps: [
+      {
+        badge: '01. Fast & Affordable',
+        title: 'Skip the Vendor Hassle',
+        description: 'No endless meetings or high costs. Launch a professional website in minutes.'
+      },
+      {
+        badge: '02. Instant Launch',
+        title: 'Launch Online Today',
+        description: 'Pick a design, connect your domain and hosting, and go live today.'
+      },
+      {
+        badge: '03. Turnkey',
+        title: 'We Edit & Customize for You',
+        description: 'No time to edit? We populate your content and logo, or build custom features on demand.'
+      }
     ],
     searchPlaceholder: 'Search website templates...',
     sortOptions: {
@@ -363,23 +393,31 @@ export const templatesPageContent = {
       guaranteeNote: 'Includes domain registration, cloud hosting, SSL, business email, and support.'
     },
     faqTitle: 'Frequently Asked Questions',
-    faqSubtitle: 'Information regarding domain, hosting packages, regular maintenance, and editing services.',
+    faqSubtitle: 'Quick answers about instant setup, content editing, custom features, and hosting.',
     faqs: [
       {
+        q: 'How fast can the website go live?',
+        a: 'Your website can go live today once the domain is connected. If you choose our editing service, content setup takes only a few hours up to 24 hours.'
+      },
+      {
+        q: 'What if I do not have time or prefer not to edit content myself?',
+        a: 'Select the "Website Content Editing" add-on. Simply send your materials via WhatsApp, and our team will handle texts, images, and branding for you.'
+      },
+      {
         q: 'Is domain and hosting included in the price?',
-        a: 'Yes. Every package includes your chosen domain name (.com/.id), fast cloud hosting, SSL certificate, business email accounts, and regular maintenance.'
+        a: 'Yes, all-in. Every plan includes your domain (.com/.id), high-speed cloud hosting, free SSL, business email, and regular maintenance.'
       },
       {
-        q: 'What is the Website Content Editing add-on?',
-        a: 'If you want our team to populate your texts, photos, logo, and contact details, you can add the Editing Service (+Rp 250.000). We deliver a 100% turnkey website.'
+        q: 'Can this template be customized or extended with new features later?',
+        a: 'Yes. Built with clean modern code, our engineering team can add custom features, integrations, or workflows whenever your business grows.'
       },
       {
-        q: 'Can I switch templates later?',
-        a: 'Yes. Templates can be adjusted or upgraded at any time with the assistance of our support team.'
+        q: 'How does a Gilabs template differ from hiring an agency to build from scratch?',
+        a: 'Agencies take 1-3 months with high overhead. Gilabs templates save you up to 80% with identical professional quality, ready today.'
       },
       {
         q: 'How does renewal work after the period ends?',
-        a: 'We send renewal notifications prior to your plan expiry (1, 2, or 3 years) with transparent standard renewal rates.'
+        a: 'We will send a renewal reminder before your plan expires with transparent rates and no hidden fees.'
       }
     ],
     customCta: {

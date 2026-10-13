@@ -121,6 +121,10 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
               : `/templates/order?template=${template.id}`;
             const title = lang === 'en' && template.titleEn ? template.titleEn : template.title;
 
+            const imageAlt = lang === 'en'
+              ? `${title} - Ready-to-Use Business Website Template Gilabs`
+              : `${title} - Template Website Bisnis Siap Pakai Gilabs`;
+
             return (
               <div
                 key={template.id}
@@ -132,12 +136,16 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
                   target="_blank"
                   rel="noopener noreferrer"
                   className="aspect-[16/10] bg-muted/40 relative overflow-hidden block group cursor-pointer border-b border-border/50"
-                  aria-label={`Lihat Demo ${title}`}
+                  aria-label={`${t.card.livePreview}: ${title}`}
+                  title={`${t.card.livePreview}: ${title}`}
                 >
                   <img
                     src={template.previewImage}
-                    alt={title}
+                    alt={imageAlt}
+                    width={640}
+                    height={400}
                     loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
@@ -158,6 +166,7 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
                         target="_blank"
                         rel="noopener noreferrer"
                         className="hover:text-brand transition-colors cursor-pointer inline-flex items-center gap-1.5"
+                        title={`${t.card.livePreview} - ${title}`}
                       >
                         <span>{title}</span>
                         <ExternalLink className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
@@ -188,6 +197,8 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
                         href={template.demoUrl}
                         target="_blank"
                         rel="noopener noreferrer"
+                        aria-label={`${t.card.livePreview} ${title}`}
+                        title={`${t.card.livePreview} ${title}`}
                         className="text-xs font-medium py-2 px-2 rounded-lg border border-border/80 hover:bg-secondary text-foreground text-center cursor-pointer transition-colors inline-flex items-center justify-center gap-1"
                       >
                         <span>{t.card.livePreview}</span>
@@ -196,6 +207,8 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
 
                       <a
                         href={orderUrl}
+                        aria-label={`${t.card.buyNow} ${title}`}
+                        title={`${t.card.buyNow} ${title}`}
                         className="text-xs font-semibold py-2 px-2 rounded-lg bg-foreground text-background hover:opacity-90 text-center cursor-pointer transition-opacity inline-flex items-center justify-center"
                       >
                         {t.card.buyNow}
