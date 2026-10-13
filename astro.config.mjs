@@ -27,6 +27,12 @@ export default defineConfig({
           // @ts-ignore
           item.changefreq = 'weekly';
         }
+        // Templates product pages
+        else if (item.url.includes('/templates')) {
+          item.priority = 0.95;
+          // @ts-ignore
+          item.changefreq = 'weekly';
+        }
         // Services pages are very important for SEO
         else if (item.url.includes('/services')) {
           item.priority = 0.95;

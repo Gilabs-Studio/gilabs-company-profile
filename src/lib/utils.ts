@@ -53,6 +53,10 @@ export function getWhatsAppLink(
       en: "Hello! I would like to consult with Gilabs about software development.",
       id: "Halo! Saya ingin konsultasi dengan Gilabs mengenai pembuatan software.",
     },
+    template: {
+      en: "Hello! I'm interested in purchasing a software template from Gilabs. Can we discuss the details?",
+      id: "Halo! Saya tertarik untuk membeli template software dari Gilabs. Bisakah kita diskusikan detailnya?",
+    },
   };
 
   let message =
@@ -69,7 +73,82 @@ export function getWhatsAppLink(
     }
   }
 
+  // If planName is provided and template is template (SaaS template purchase)
+  if (planName && template === "template") {
+    if (lang === "en") {
+      message = `Hello Gilabs! I'm interested in purchasing the template "${planName}". Can you guide me through the payment process and source code repository access?`;
+    } else {
+      message = `Halo Gilabs! Saya tertarik untuk membeli template "${planName}". Bagaimana prosedur pembayaran dan pengiriman akses source code-nya?`;
+    }
+  }
+
   const encodedMessage = encodeURIComponent(message);
 
   return `${baseUrl}?text=${encodedMessage}`;
 }
+
+export interface WebsiteOrderDetails {
+  templateTitle: string;
+  durationPlanName: string;
+  durationYears: number;
+  durationPriceIdr: number;
+  domainName: string;
+  hasEditingAddon: boolean;
+  addonPriceIdr: number;
+  totalPriceIdr: number;
+  customerName?: string;
+  companyName?: string;
+  customerEmail?: string;
+  lang?: "en" | "id";
+}
+
+/**
+ * Generate formatted WhatsApp checkout link for website template orders
+ */
+export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): string {
+  const phoneNumber = "6289526770703";
+  const baseUrl = `https://wa.me/${phoneNumber}`;
+  const isEn = details.lang === "en";
+
+  const customerLines = details.customerName
+    ? [
+        ``,
+        `*Data Pemesan:*`,
+        `• Nama: ${details.customerName}`,
+        details.companyName ? `• Perusahaan/Brand: ${details.companyName}` : null,
+        details.customerEmail ? `• Email: ${details.customerEmail}` : null,
+      ].filter(Boolean)
+    : [];
+
+  const lines = isEn
+    ? [
+        `*ORDER WEBSITE TEMPLATE - GILABS*`,
+        ``,
+        `*Detail Pesanan:*`,
+        `• Template: ${details.templateTitle}`,
+        `• Paket Durasi: ${details.durationPlanName} (${details.durationYears} Year${details.durationYears > 1 ? 's' : ''})`,
+        `• Domain: ${details.domainName || "(Not specified yet)"}`,
+        `• Editing Add-on: ${details.hasEditingAddon ? "Yes (+Rp 250.000)" : "No"}`,
+        `• Total: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
+        ...customerLines,
+        ``,
+        `Hello Gilabs, I would like to proceed with the website order above. Please share the invoice and setup instructions. Thank you!`,
+      ]
+    : [
+        `*FORM PEMESANAN WEBSITE - GILABS*`,
+        ``,
+        `*Detail Pesanan:*`,
+        `• Template: ${details.templateTitle}`,
+        `• Paket Durasi: ${details.durationPlanName} (${details.durationYears} Tahun)`,
+        `• Domain Pilihan: ${details.domainName || "(Belum ditentukan)"}`,
+        `• Jasa Editing Website: ${details.hasEditingAddon ? "Ya (+Rp 250.000)" : "Tidak"}`,
+        `• Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
+        ...customerLines,
+        ``,
+        `Halo Gilabs, saya ingin melanjutkan pemesanan website di atas. Mohon info nomor rekening / invoice dan langkah aktivasi selanjutnya. Terima kasih!`,
+      ];
+
+  const message = lines.filter((line) => line !== null && line !== undefined).join("\n");
+  return `${baseUrl}?text=${encodeURIComponent(message)}`;
+}
+

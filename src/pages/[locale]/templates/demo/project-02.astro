@@ -1,0 +1,15 @@
+---
+import Project02Page from '../../../../features/template/project-02/Project02Page.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<Project02Page lang={lang} />

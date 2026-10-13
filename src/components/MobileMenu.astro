@@ -13,10 +13,16 @@ const lang: "id" | "en" = rawLang === "en" ? "en" : "id";
 const pathPrefix = `/${lang}`;
 
 const links = [
-  { href: `${pathPrefix}/services`, label: lang === "en" ? "Services" : "Layanan", isDropdown: true },
+  { href: `${pathPrefix}/templates`, label: lang === "en" ? "Product" : "Produk", isDropdown: true, dropdownType: "product" },
+  { href: `${pathPrefix}/services`, label: lang === "en" ? "Services" : "Layanan", isDropdown: true, dropdownType: "services" },
   { href: `${pathPrefix}/solutions`, label: lang === "en" ? "Solutions" : "Solusi" },
   { href: `${pathPrefix}/work-results`, label: lang === "en" ? "Our Work" : "Hasil Pekerjaan" },
   { href: `${pathPrefix}/blog`, label: lang === "en" ? "Blog" : "Blog" },
+];
+
+const productSublinks = [
+  { href: "https://salesview.id", label: "Product ERP", external: true },
+  { href: `${pathPrefix}/templates`, label: "Template Website", external: false },
 ];
 
 const serviceSublinks = [
@@ -62,7 +68,30 @@ if (serviceMatch) {
   
   <div class="flex flex-col items-center gap-5 text-center my-auto py-6 w-full max-w-sm">
     {links.map(link => {
-      if (link.isDropdown) {
+      if (link.isDropdown && link.dropdownType === "product") {
+        return (
+          <div class="w-full space-y-2">
+            <span class="text-xl font-bold text-foreground block py-1">
+              {link.label}
+            </span>
+            <div class="grid grid-cols-2 gap-1.5 py-1 px-3 bg-secondary/30 rounded-xl border border-border/40">
+              {productSublinks.map(sub => (
+                <a 
+                  href={sub.href}
+                  target={sub.external ? "_blank" : undefined}
+                  rel={sub.external ? "noopener noreferrer" : undefined}
+                  class="text-xs font-medium text-muted-foreground hover:text-brand py-1.5 text-center mobile-link flex items-center justify-center gap-1"
+                >
+                  <span>{sub.label}</span>
+                  {sub.external && <span class="text-[10px]">↗</span>}
+                </a>
+              ))}
+            </div>
+          </div>
+        );
+      }
+
+      if (link.isDropdown && link.dropdownType === "services") {
         return (
           <div class="w-full space-y-2">
             <a 

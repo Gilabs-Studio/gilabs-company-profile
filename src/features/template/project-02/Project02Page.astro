@@ -1,0 +1,237 @@
+---
+import { getWhatsAppLink } from '../../../lib/utils';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+
+const templateTitle = lang === 'en' ? "Template 02: High-Converting Landing Page" : "Template 02: High-Converting Landing Page";
+const templatePrice = "Rp 350.000";
+const buyUrl = getWhatsAppLink('template', lang, templateTitle);
+const catalogUrl = `/${lang}/templates`;
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{templateTitle} - Live Demo</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="stylesheet" href="/src/styles/globals.css" />
+</head>
+<body class="bg-[#FAF5FF] text-[#18181B] font-sans antialiased selection:bg-[#9333EA] selection:text-white">
+
+  {/* Fixed Top Demo Bar */}
+  <header class="sticky top-0 z-50 bg-[#18181B] text-white px-4 py-2.5 text-xs flex items-center justify-between shadow-md">
+    <div class="flex items-center gap-3">
+      <a 
+        href={catalogUrl} 
+        class="text-zinc-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer"
+      >
+        <span>←</span>
+        <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
+      </a>
+      <span class="text-zinc-600 hidden sm:inline">|</span>
+      <span class="font-semibold text-zinc-200 hidden sm:inline">{templateTitle}</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span class="text-zinc-300 font-mono hidden md:inline">{templatePrice} {lang === 'en' ? '(One-time)' : '(Sekali Bayar)'}</span>
+      <a
+        href={buyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-[#9333EA] hover:bg-purple-700 text-white font-medium px-3.5 py-1.5 rounded text-xs transition-colors cursor-pointer"
+      >
+        {lang === 'en' ? 'Purchase Template' : 'Beli Template Ini'}
+      </a>
+    </div>
+  </header>
+
+  {/* Landing Page Navbar */}
+  <nav class="border-b border-purple-100 bg-white/95 backdrop-blur-md sticky top-[41px] z-40">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-8">
+        <a href="#hero" class="font-black text-lg tracking-tight text-zinc-900 flex items-center gap-2">
+          <span class="w-7 h-7 rounded bg-[#9333EA] text-white flex items-center justify-center text-xs font-bold">C</span>
+          <span>CONVERT<span class="text-[#9333EA]">PAGE</span></span>
+        </a>
+        <div class="hidden md:flex items-center gap-6 text-xs font-medium text-zinc-600">
+          <a href="#manfaat" class="hover:text-zinc-900 transition-colors">Keunggulan</a>
+          <a href="#harga" class="hover:text-zinc-900 transition-colors">Paket Harga</a>
+          <a href="#testimoni" class="hover:text-zinc-900 transition-colors">Testimoni</a>
+          <a href="#faq" class="hover:text-zinc-900 transition-colors">FAQ</a>
+        </div>
+      </div>
+      <div class="flex items-center gap-3">
+        <a 
+          href="#harga" 
+          class="text-xs font-semibold bg-[#16A34A] text-white hover:bg-green-700 px-4 py-2 rounded-lg transition-colors cursor-pointer inline-flex items-center gap-1.5"
+        >
+          <span>💬</span>
+          <span>Order via WhatsApp</span>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  {/* Hero Section */}
+  <section id="hero" class="py-16 sm:py-24 px-4 sm:px-6 max-w-5xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 bg-purple-100 border border-purple-200 rounded-full px-3.5 py-1 text-xs font-semibold text-purple-800 mb-6">
+      <span>★</span>
+      <span>Halaman Penawaran Khusus Promo</span>
+    </div>
+
+    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-zinc-900 leading-[1.15] max-w-4xl mx-auto">
+      Tingkatkan Penjualan &amp; Lead dengan Halaman Penawaran Persuasif
+    </h1>
+
+    <p class="mt-5 text-sm sm:text-base text-zinc-600 max-w-2xl mx-auto leading-relaxed">
+      Didesain khusus untuk kampanye iklan dan promosi produk. Mengarahkan setiap pengunjung menjadi calon pembeli dengan tombol order langsung ke WhatsApp.
+    </p>
+
+    <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+      <a href="#harga" class="w-full sm:w-auto text-xs font-semibold bg-[#16A34A] hover:bg-green-700 text-white px-6 py-3 rounded-lg transition-colors shadow-sm">
+        Pesan Sekarang via WhatsApp
+      </a>
+      <a href="#manfaat" class="w-full sm:w-auto text-xs font-medium bg-white hover:bg-purple-50 border border-purple-200 text-purple-900 px-6 py-3 rounded-lg transition-colors">
+        Pelajari Keunggulan
+      </a>
+    </div>
+
+    {/* Social Proof Strip */}
+    <div class="mt-12 py-3 px-6 rounded-xl border border-purple-200 bg-white shadow-xs max-w-3xl mx-auto flex flex-wrap items-center justify-around gap-4 text-xs font-medium text-zinc-700">
+      <div class="flex items-center gap-1.5 text-purple-700 font-bold">
+        <span>★ 4.9/5</span>
+        <span class="text-zinc-600 font-normal">Rating Konsumen</span>
+      </div>
+      <div>• 2.400+ Pesanan Terkirim</div>
+      <div>• Garansi Kepuasan 100%</div>
+      <div>• Buka Setiap Hari</div>
+    </div>
+  </section>
+
+  {/* Problem vs Solution */}
+  <section id="manfaat" class="py-16 bg-white border-t border-purple-100">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <h2 class="text-2xl font-bold tracking-tight text-zinc-900">Mengapa Landing Page Ini Berbeda?</h2>
+        <p class="text-xs text-zinc-600 mt-2">Fokus pada satu tujuan utama: mengubah pengunjung menjadi pelanggan setia.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+        <div class="p-6 rounded-xl border border-zinc-200 bg-zinc-50/50">
+          <div class="w-10 h-10 rounded-lg bg-green-100 text-green-700 flex items-center justify-center text-lg mb-4">⚡</div>
+          <h3 class="text-sm font-bold text-zinc-900">Loading Sangat Cepat</h3>
+          <p class="text-xs text-zinc-600 mt-2 leading-relaxed">
+            Halaman terbuka seketika tanpa jeda loading yang membuang biaya iklan Anda. Skor PageSpeed 98+.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl border border-zinc-200 bg-zinc-50/50">
+          <div class="w-10 h-10 rounded-lg bg-purple-100 text-purple-700 flex items-center justify-center text-lg mb-4">💬</div>
+          <h3 class="text-sm font-bold text-zinc-900">One-Click Chat WhatsApp</h3>
+          <p class="text-xs text-zinc-600 mt-2 leading-relaxed">
+            Format pesan otomatis langsung terisi nama produk dan paket yang dipilih saat tombol diklik.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-xl border border-zinc-200 bg-zinc-50/50">
+          <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center text-lg mb-4">📱</div>
+          <h3 class="text-sm font-bold text-zinc-900">Nyaman di Smartphone</h3>
+          <p class="text-xs text-zinc-600 mt-2 leading-relaxed">
+            Tata letak didesain khusus agar nyaman dibaca dan mudah di-scroll oleh pengguna handphone.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Pricing Plans */}
+  <section id="harga" class="py-16 bg-purple-50/60 border-t border-purple-100">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-xl mx-auto mb-12">
+        <h2 class="text-2xl font-bold tracking-tight text-zinc-900">Pilihan Paket Promo Hari Ini</h2>
+        <p class="text-xs text-zinc-600 mt-2">Pilih paket terbaik yang sesuai dengan kebutuhan Anda.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="bg-white p-6 rounded-xl border border-zinc-200 shadow-xs flex flex-col justify-between">
+          <div>
+            <div class="text-xs font-bold text-zinc-500 uppercase">Paket Basic</div>
+            <div class="text-2xl font-bold text-zinc-900 mt-2">Rp 150.000</div>
+            <p class="text-xs text-zinc-600 mt-2">Cocok untuk pemesanan satuan atau uji coba pertama kali.</p>
+            <ul class="mt-4 space-y-2 text-xs text-zinc-700">
+              <li>✓ 1 Pcs Produk Utama</li>
+              <li>✓ Free Ongkir Pulau Jawa</li>
+              <li>✓ Garansi Retur 7 Hari</li>
+            </ul>
+          </div>
+          <button class="mt-6 w-full py-2.5 rounded-lg border border-zinc-300 text-xs font-semibold text-zinc-800 hover:bg-zinc-50 transition-colors">
+            Pilih Paket Basic
+          </button>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl border-2 border-[#9333EA] shadow-md flex flex-col justify-between relative">
+          <span class="absolute -top-3 right-5 bg-[#9333EA] text-white text-[10px] font-bold px-2 py-0.5 rounded">PALING LARIS</span>
+          <div>
+            <div class="text-xs font-bold text-[#9333EA] uppercase">Paket Hemat (Isi 3)</div>
+            <div class="text-2xl font-bold text-zinc-900 mt-2">Rp 350.000 <span class="text-xs text-zinc-400 line-through font-normal">Rp 450.000</span></div>
+            <p class="text-xs text-zinc-600 mt-2">Pilihan favorit pelanggan. Lebih hemat dan dapat bonus eksklusif.</p>
+            <ul class="mt-4 space-y-2 text-xs text-zinc-700">
+              <li>✓ 3 Pcs Produk Utama</li>
+              <li>✓ Free Ongkir Seluruh Indonesia</li>
+              <li>✓ Bonus Aksesoris Spesial</li>
+              <li>✓ Garansi Penuh 30 Hari</li>
+            </ul>
+          </div>
+          <button class="mt-6 w-full py-2.5 rounded-lg bg-[#9333EA] hover:bg-purple-700 text-white text-xs font-semibold transition-colors">
+            Pesan Paket Hemat
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA Section */}
+  <section class="py-16 bg-white border-t border-purple-100 text-center">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <h2 class="text-2xl font-bold tracking-tight text-zinc-900">Ingin Menggunakan Template Ini untuk Bisnis Anda?</h2>
+      <p class="text-xs text-zinc-600 mt-2 max-w-lg mx-auto">
+        Dapatkan full source code template landing page ini dengan sekali bayar, siap pakai dan mudah dikustomisasi sesuai produk Anda.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a 
+          href={buyUrl} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          class="text-xs font-semibold px-6 py-3 rounded-lg bg-[#9333EA] hover:bg-purple-700 text-white transition-colors cursor-pointer"
+        >
+          Beli Template Ini ({templatePrice})
+        </a>
+        <a 
+          href={catalogUrl} 
+          class="text-xs font-medium px-6 py-3 rounded-lg border border-zinc-300 hover:bg-zinc-50 text-zinc-700 transition-colors cursor-pointer"
+        >
+          Lihat Template Lainnya
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* Footer */}
+  <footer class="border-t border-purple-100 bg-white py-10 text-center text-xs text-zinc-500">
+    <div class="max-w-5xl mx-auto px-4">
+      <p>© 2026 ConvertPage - High-Converting Landing Page Template.</p>
+      <div class="mt-3">
+        <a href={catalogUrl} class="text-[#9333EA] hover:underline font-medium">← {lang === 'en' ? 'Back to Gilabs Template Catalog' : 'Kembali ke Katalog Template Gilabs'}</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
