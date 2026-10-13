@@ -98,7 +98,7 @@ const Section2React: React.FC<Section2ReactProps> = ({ lang }) => {
             }}
             className="absolute left-[7%] top-[42%] bg-background/80 backdrop-blur-md border border-border/50 px-5 py-2.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center gap-3 pointer-events-auto cursor-default hover:border-brand/40 transition-colors z-30"
           >
-            <div className="p-1.5 rounded-full bg-emerald-500/10 text-emerald-500">
+            <div className="p-1.5 rounded-full bg-success/10 text-success">
               <Layers className="w-4 h-4" />
             </div>
             <span className="text-sm font-medium whitespace-nowrap">{data.hero.tagsLeft[1]}</span>
@@ -197,7 +197,7 @@ const Section2React: React.FC<Section2ReactProps> = ({ lang }) => {
           {[
             { label: data.hero.tagsLeft[0], icon: Users, color: 'text-orange-500', bg: 'bg-orange-500/10' },
             { label: data.hero.tagsRight[0], icon: DollarSign, color: 'text-purple-500', bg: 'bg-purple-500/10' },
-            { label: data.hero.tagsLeft[1], icon: Layers, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
+            { label: data.hero.tagsLeft[1], icon: Layers, color: 'text-success', bg: 'bg-success/10' },
             { label: data.hero.tagsRight[1], icon: Zap, color: 'text-pink-500', bg: 'bg-pink-500/10' },
             { label: data.hero.tagsLeft[2], icon: ShieldCheck, color: 'text-blue-500', bg: 'bg-blue-500/10' },
             { label: data.hero.tagsRight[2], icon: Sparkles, color: 'text-yellow-500', bg: 'bg-yellow-500/10' },

@@ -109,7 +109,7 @@ const ServicesIntroSection: React.FC<ServicesIntroSectionProps> = ({ lang }) => 
               }}
               className="absolute left-[7%] top-[42%] bg-background/80 backdrop-blur-md border border-border/50 px-5 py-2.5 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex items-center gap-3 pointer-events-auto cursor-default hover:border-brand/40 transition-colors z-30"
             >
-              <div className="p-1.5 rounded-full bg-emerald-500/10 text-emerald-500">
+              <div className="p-1.5 rounded-full bg-success/10 text-success">
                 <ShieldCheck className="w-4 h-4" />
               </div>
               <span className="text-sm font-medium whitespace-nowrap">{data.hero.tagsLeft[1]}</span>
@@ -208,7 +208,7 @@ const ServicesIntroSection: React.FC<ServicesIntroSectionProps> = ({ lang }) => 
             {[
               { label: data.hero.tagsLeft[0], icon: Users, color: 'text-orange-500', bg: 'bg-orange-500/10' },
               { label: data.hero.tagsRight[0], icon: Sparkles, color: 'text-purple-500', bg: 'bg-purple-500/10' },
-              { label: data.hero.tagsLeft[1], icon: ShieldCheck, color: 'text-emerald-500', bg: 'bg-emerald-500/10' },
+              { label: data.hero.tagsLeft[1], icon: ShieldCheck, color: 'text-success', bg: 'bg-success/10' },
               { label: data.hero.tagsRight[1], icon: Layers, color: 'text-pink-500', bg: 'bg-pink-500/10' },
               { label: data.hero.tagsLeft[2], icon: DollarSign, color: 'text-blue-500', bg: 'bg-blue-500/10' },
               { label: data.hero.tagsRight[2], icon: Zap, color: 'text-yellow-500', bg: 'bg-yellow-500/10' },
@@ -355,13 +355,13 @@ const ServicesIntroSection: React.FC<ServicesIntroSectionProps> = ({ lang }) => 
                         </td>
                         <td className="p-4 sm:p-6 text-sm sm:text-base text-muted-foreground">
                           <div className="flex items-start gap-2">
-                            <X className="w-4 h-4 sm:w-5 sm:h-5 text-red-500 shrink-0 mt-0.5" />
+                            <X className="w-4 h-4 sm:w-5 sm:h-5 text-destructive shrink-0 mt-0.5" />
                             <span>{item.saas}</span>
                           </div>
                         </td>
                         <td className="p-4 sm:p-6 text-sm sm:text-base text-foreground">
                           <div className="flex items-start gap-2">
-                            <Check className="w-4 h-4 sm:w-5 sm:h-5 text-green-500 shrink-0 mt-0.5" />
+                            <Check className="w-4 h-4 sm:w-5 sm:h-5 text-success shrink-0 mt-0.5" />
                             <span className={item.highlight ? 'font-bold text-brand' : ''}>{item.custom}</span>
                           </div>
                         </td>
@@ -428,7 +428,7 @@ const ServicesIntroSection: React.FC<ServicesIntroSectionProps> = ({ lang }) => 
                       <span className="text-sm sm:text-base text-muted-foreground">
                         {lang === 'en' ? '3 Years' : '3 Tahun'}
                       </span>
-                      <span className="text-xl font-bold text-red-500">
+                      <span className="text-xl font-bold text-destructive">
                         {scenario.saasModel.threeYears}
                       </span>
                     </div>
@@ -436,7 +436,7 @@ const ServicesIntroSection: React.FC<ServicesIntroSectionProps> = ({ lang }) => 
                       <span className="text-sm sm:text-base text-muted-foreground font-medium uppercase tracking-wider">
                         {lang === 'en' ? '5 Years Cost' : 'Biaya 5 Tahun'}
                       </span>
-                      <span className="text-2xl font-bold text-red-500">
+                      <span className="text-2xl font-bold text-destructive">
                         {scenario.saasModel.fiveYears}
                       </span>
                     </div>

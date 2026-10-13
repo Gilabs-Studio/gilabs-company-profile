@@ -508,7 +508,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                     </div>
 
                     {/* Savings tag */}
-                    <div className="pt-2 border-t border-border/50 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
+                    <div className="pt-2 border-t border-border/50 text-[11px] font-semibold text-success">
                       {plan.savings[lang]}
                     </div>
                   </button>
@@ -658,7 +658,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
               <h3 className="text-xs font-bold tracking-wider text-muted-foreground uppercase">
                 {t.summaryTitle}
               </h3>
-              <span className="text-[10px] font-semibold text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded">
+              <span className="text-[10px] font-semibold text-success bg-success/10 px-2 py-0.5 rounded">
                 {selectedDuration.savings[lang]}
               </span>
             </div>
@@ -708,7 +708,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                     {t.summaryDomainVal}
                   </div>
                 </div>
-                <div className="text-right text-[11px] font-medium text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
+                <div className="text-right text-[11px] font-medium text-success whitespace-nowrap">
                   {t.summaryDomainStatus}
                 </div>
               </div>
