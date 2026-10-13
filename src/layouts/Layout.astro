@@ -40,7 +40,7 @@ const enUrl = alternateUrls?.en ?? `${siteUrl}/en${pathWithoutLocale === '/' ? '
 const idUrl = alternateUrls?.id ?? `${siteUrl}/id${pathWithoutLocale === '/' ? '' : pathWithoutLocale}`;
 
 // Keep the homepage x-default anchored to the root canonical URL.
-const defaultUrl = alternateUrls?.['x-default'] ?? (pathWithoutLocale === '/' ? siteUrl : enUrl);
+const defaultUrl = alternateUrls?.['x-default'] ?? (pathWithoutLocale === '/' ? siteUrl : idUrl);
 
 // Schema.org: Organization + LocalBusiness
 const organizationSchema = {

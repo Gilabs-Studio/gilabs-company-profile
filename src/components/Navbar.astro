@@ -66,9 +66,23 @@ if (serviceMatch) {
   const altSlug = getAlternateServiceSlug(currentSlug, targetLang);
   switchLangPath = altSlug ? `/${targetLang}/services/${altSlug}` : `/${targetLang}/services`;
 } else {
-  switchLangPath = lang === "id"
-    ? (currentPath === "/" ? "/en" : currentPath.replace(/^\/id/, "/en"))
-    : (currentPath.startsWith("/en") ? currentPath.replace(/^\/en/, "/id") : `/id${currentPath}`);
+  if (lang === "id") {
+    if (currentPath === "/") {
+      switchLangPath = "/en";
+    } else if (currentPath.startsWith("/id/")) {
+      switchLangPath = currentPath.replace(/^\/id/, "/en");
+    } else if (currentPath === "/id") {
+      switchLangPath = "/en";
+    } else {
+      switchLangPath = `/en${currentPath}`;
+    }
+  } else {
+    if (currentPath === "/en" || currentPath === "/en/") {
+      switchLangPath = "/";
+    } else {
+      switchLangPath = currentPath.replace(/^\/en/, "") || "/";
+    }
+  }
 }
 ---
 

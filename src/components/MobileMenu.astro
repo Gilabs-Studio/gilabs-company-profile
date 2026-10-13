@@ -12,7 +12,15 @@ const { lang: rawLang = "id" } = Astro.props;
 const lang: "id" | "en" = rawLang === "en" ? "en" : "id";
 const pathPrefix = `/${lang}`;
 
-const links = [
+interface NavLink {
+  href: string;
+  label: string;
+  isDropdown?: boolean;
+  dropdownType?: string;
+  external?: boolean;
+}
+
+const links: NavLink[] = [
   { href: `${pathPrefix}/templates`, label: lang === "en" ? "Product" : "Produk", isDropdown: true, dropdownType: "product" },
   { href: `${pathPrefix}/services`, label: lang === "en" ? "Services" : "Layanan", isDropdown: true, dropdownType: "services" },
   { href: `${pathPrefix}/solutions`, label: lang === "en" ? "Solutions" : "Solusi" },
@@ -20,7 +28,7 @@ const links = [
   { href: `${pathPrefix}/blog`, label: lang === "en" ? "Blog" : "Blog" },
 ];
 
-const productSublinks = [
+const productSublinks: NavLink[] = [
   { href: "https://salesview.id", label: "Product ERP", external: true },
   { href: `${pathPrefix}/templates`, label: "Template Website", external: false },
 ];
@@ -45,9 +53,23 @@ if (serviceMatch) {
   const altSlug = getAlternateServiceSlug(currentSlug, targetLang);
   switchLangPath = altSlug ? `/${targetLang}/services/${altSlug}` : `/${targetLang}/services`;
 } else {
-  switchLangPath = lang === "id"
-    ? (currentPath === "/" ? "/en" : currentPath.replace(/^\/id/, "/en"))
-    : (currentPath.startsWith("/en") ? currentPath.replace(/^\/en/, "/id") : `/id${currentPath}`);
+  if (lang === "id") {
+    if (currentPath === "/") {
+      switchLangPath = "/en";
+    } else if (currentPath.startsWith("/id/")) {
+      switchLangPath = currentPath.replace(/^\/id/, "/en");
+    } else if (currentPath === "/id") {
+      switchLangPath = "/en";
+    } else {
+      switchLangPath = `/en${currentPath}`;
+    }
+  } else {
+    if (currentPath === "/en" || currentPath === "/en/") {
+      switchLangPath = "/";
+    } else {
+      switchLangPath = currentPath.replace(/^\/en/, "") || "/";
+    }
+  }
 }
 ---
 

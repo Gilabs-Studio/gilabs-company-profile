@@ -92,7 +92,7 @@ export interface WebsiteOrderDetails {
   durationPlanName: string;
   durationYears: number;
   durationPriceIdr: number;
-  domainName: string;
+  domainName?: string;
   hasEditingAddon: boolean;
   addonPriceIdr: number;
   totalPriceIdr: number;
@@ -110,42 +110,38 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
   const baseUrl = `https://wa.me/${phoneNumber}`;
   const isEn = details.lang === "en";
 
-  const customerLines = details.customerName
-    ? [
-        ``,
-        `*Data Pemesan:*`,
-        `• Nama: ${details.customerName}`,
-        details.companyName ? `• Perusahaan/Brand: ${details.companyName}` : null,
-        details.customerEmail ? `• Email: ${details.customerEmail}` : null,
-      ].filter(Boolean)
-    : [];
-
   const lines = isEn
     ? [
-        `*ORDER WEBSITE TEMPLATE - GILABS*`,
+        `Halo Tim GiLabs, saya ingin memesan website:`,
         ``,
-        `*Detail Pesanan:*`,
-        `• Template: ${details.templateTitle}`,
-        `• Paket Durasi: ${details.durationPlanName} (${details.durationYears} Year${details.durationYears > 1 ? 's' : ''})`,
-        `• Domain: ${details.domainName || "(Not specified yet)"}`,
-        `• Editing Add-on: ${details.hasEditingAddon ? "Yes (+Rp 250.000)" : "No"}`,
-        `• Total: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
-        ...customerLines,
+        `*FORM PEMESANAN WEBSITE*`,
+        `Nama: ${details.customerName || "[Nama Anda]"}`,
+        `Perusahaan: ${details.companyName || "-"}`,
+        `Email: ${details.customerEmail || "-"}`,
         ``,
-        `Hello Gilabs, I would like to proceed with the website order above. Please share the invoice and setup instructions. Thank you!`,
+        `Template: ${details.templateTitle}`,
+        `Paket Durasi: ${details.durationPlanName} (${details.durationYears} Year${details.durationYears > 1 ? "s" : ""})`,
+        `Add-on Editing: ${details.hasEditingAddon ? "Ya (+Rp 250.000)" : "Tidak"}`,
+        `Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
+        ``,
+        `Catatan: Domain gratis dikonsultasikan saat aktivasi.`,
+        `Mohon info invoice dan langkah aktivasinya. Terima kasih!`,
       ]
     : [
-        `*FORM PEMESANAN WEBSITE - GILABS*`,
+        `Halo Tim GiLabs, saya ingin memesan website:`,
         ``,
-        `*Detail Pesanan:*`,
-        `• Template: ${details.templateTitle}`,
-        `• Paket Durasi: ${details.durationPlanName} (${details.durationYears} Tahun)`,
-        `• Domain Pilihan: ${details.domainName || "(Belum ditentukan)"}`,
-        `• Jasa Editing Website: ${details.hasEditingAddon ? "Ya (+Rp 250.000)" : "Tidak"}`,
-        `• Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
-        ...customerLines,
+        `*FORM PEMESANAN WEBSITE*`,
+        `Nama: ${details.customerName || "[Nama Anda]"}`,
+        `Perusahaan: ${details.companyName || "-"}`,
+        `Email: ${details.customerEmail || "-"}`,
         ``,
-        `Halo Gilabs, saya ingin melanjutkan pemesanan website di atas. Mohon info nomor rekening / invoice dan langkah aktivasi selanjutnya. Terima kasih!`,
+        `Template: ${details.templateTitle}`,
+        `Paket Durasi: ${details.durationPlanName} (${details.durationYears} Tahun)`,
+        `Add-on Editing: ${details.hasEditingAddon ? "Ya (+Rp 250.000)" : "Tidak"}`,
+        `Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
+        ``,
+        `Catatan: Domain gratis dikonsultasikan saat aktivasi.`,
+        `Mohon info invoice dan langkah aktivasinya. Terima kasih!`,
       ];
 
   const message = lines.filter((line) => line !== null && line !== undefined).join("\n");

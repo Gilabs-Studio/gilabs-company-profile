@@ -8,7 +8,6 @@ import {
   Check, 
   ChevronRight, 
   ExternalLink, 
-  Globe, 
   CreditCard, 
   ShieldCheck, 
   Search, 
@@ -29,16 +28,12 @@ interface OrderFlowProps {
   lang?: 'id' | 'en';
 }
 
-const TLD_OPTIONS = ['.com', '.id', '.co.id', '.net', '.org'];
-
 export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowProps) {
   // 1. Order State
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>(
     initialTemplateId || 'company-profile'
   );
   const [selectedDurationId, setSelectedDurationId] = useState<'1-year' | '2-year' | '3-year'>('3-year');
-  const [domainPrefix, setDomainPrefix] = useState<string>('');
-  const [domainTld, setDomainTld] = useState<string>('.com');
   const [hasEditingAddon, setHasEditingAddon] = useState<boolean>(false);
 
   // Customer Contact Info
@@ -76,15 +71,6 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
     ? selectedTemplate.titleEn 
     : selectedTemplate.title;
 
-  const fullDomainName = useMemo(() => {
-    const cleanPrefix = domainPrefix.trim().toLowerCase().replace(/https?:\/\//, '').replace(/\/.*$/, '');
-    if (!cleanPrefix) return '';
-    if (cleanPrefix.includes('.')) {
-      return cleanPrefix;
-    }
-    return `${cleanPrefix}${domainTld}`;
-  }, [domainPrefix, domainTld]);
-
   // Pricing calculations
   const durationPrice = selectedDuration.priceIdr;
   const addonPrice = hasEditingAddon ? websiteEditingAddon.priceIdr : 0;
@@ -110,7 +96,6 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       durationPlanName: selectedDuration.name[lang],
       durationYears: selectedDuration.years,
       durationPriceIdr: durationPrice,
-      domainName: fullDomainName,
       hasEditingAddon,
       addonPriceIdr: addonPrice,
       totalPriceIdr: totalPrice,
@@ -119,7 +104,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       customerEmail: customerEmail.trim() || undefined,
       lang,
     });
-  }, [templateDisplayTitle, selectedDuration, fullDomainName, hasEditingAddon, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
+  }, [templateDisplayTitle, selectedDuration, hasEditingAddon, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
 
   // Localized texts
   const t = {
@@ -154,16 +139,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       addonCheckboxDesc: 'Tim software engineer GiLabs bantu input seluruh materi teks, upload foto produk/layanan, konfigurasi logo perusahaan, dan penyesuaian layout sampai website 100% siap online.',
       
       // Section 3
-      sectionDomainNum: '03',
-      sectionDomainTitle: 'Nama Domain Bisnis',
-      sectionDomainDesc: 'Pendaftaran domain (.com / .id) sudah termasuk gratis dalam semua paket website GiLabs tanpa biaya tersembunyi.',
-      domainPlaceholder: 'namabisnisanda',
-      domainSuccess: 'siap didaftarkan gratis untuk paket website Anda.',
-      domainExample: 'Contoh:',
-      existingDomainNote: 'Sudah punya domain sendiri? Anda dapat menggunakan domain yang sudah ada, tim kami bantu konfigurasi DNS secara gratis.',
-      
-      // Section 4
-      sectionContactNum: '04',
+      sectionContactNum: '03',
       sectionContactTitle: 'Data Diri & Kontak Aktivasi',
       sectionContactDesc: 'Data ini dibutuhkan untuk verifikasi kepemilikan nama domain, sertifikat SSL, dan penerbitan invoice resmi.',
       nameLabel: 'Nama Lengkap / Penanggung Jawab',
@@ -181,9 +157,9 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       summaryTemplate: 'Template',
       summaryIncluded: 'Termasuk Paket',
       summaryDuration: 'Paket Durasi',
-      summaryDomain: 'Domain',
-      summaryDomainFree: 'Gratis',
-      summaryDomainNotSet: '(Belum ditentukan)',
+      summaryDomain: 'Domain (.com / .id)',
+      summaryDomainVal: 'Gratis (Konsultasi via WA)',
+      summaryDomainStatus: 'Termasuk',
       summaryAddon: 'Add-on Editing',
       summaryTotalLabel: 'Total Investasi',
       summaryTotalNote: 'Sudah mencakup Template + Domain + Cloud Hosting + SSL + Maintenance',
@@ -226,16 +202,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       addonCheckboxDesc: 'GiLabs software engineers will input your text copy, upload your product/service photos, apply your brand logo, and polish page layouts until 100% launch-ready.',
       
       // Section 3
-      sectionDomainNum: '03',
-      sectionDomainTitle: 'Business Domain Name',
-      sectionDomainDesc: 'A domain registration (.com / .id) is included free in all GiLabs packages with zero hidden fees.',
-      domainPlaceholder: 'yourbrandname',
-      domainSuccess: 'is ready to be registered with your website package.',
-      domainExample: 'Example:',
-      existingDomainNote: 'Already own a domain? You can connect your existing domain — our team configures DNS pointing at no extra charge.',
-      
-      // Section 4
-      sectionContactNum: '04',
+      sectionContactNum: '03',
       sectionContactTitle: 'Contact Details for Activation',
       sectionContactDesc: 'Required for official domain ownership validation, SSL security certificates, and invoice generation.',
       nameLabel: 'Full Name / Contact Person',
@@ -253,9 +220,9 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       summaryTemplate: 'Template',
       summaryIncluded: 'Package Included',
       summaryDuration: 'Package Duration',
-      summaryDomain: 'Domain',
-      summaryDomainFree: 'Free',
-      summaryDomainNotSet: '(Not specified yet)',
+      summaryDomain: 'Domain (.com / .id)',
+      summaryDomainVal: 'Free (Consultation via WA)',
+      summaryDomainStatus: 'Included',
       summaryAddon: 'Editing Add-on',
       summaryTotalLabel: 'Total Investment',
       summaryTotalNote: 'All-inclusive: Template + Domain + Cloud Hosting + SSL + Maintenance',
@@ -495,10 +462,11 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                 const isSelected = plan.id === selectedDurationId;
 
                 return (
-                  <div
+                  <button
+                    type="button"
                     key={plan.id}
                     onClick={() => setSelectedDurationId(plan.id)}
-                    className={`rounded-xl p-4 flex flex-col justify-between cursor-pointer transition-all border relative ${
+                    className={`text-left w-full rounded-xl p-4 flex flex-col justify-between cursor-pointer transition-all border relative ${
                       isSelected
                         ? 'border-primary bg-card shadow-xs ring-2 ring-primary/15'
                         : 'border-border bg-card/60 hover:border-foreground/40'
@@ -543,7 +511,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                     <div className="pt-2 border-t border-border/50 text-[11px] font-semibold text-emerald-600 dark:text-emerald-400">
                       {plan.savings[lang]}
                     </div>
-                  </div>
+                  </button>
                 );
               })}
             </div>
@@ -568,7 +536,6 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
             {/* Optional Add-on: Elegant Interactive Card */}
             <div className="pt-2">
               <label
-                onClick={() => setHasEditingAddon(!hasEditingAddon)}
                 className={`flex items-start gap-3.5 p-4 rounded-xl border transition-all cursor-pointer ${
                   hasEditingAddon
                     ? 'border-primary bg-primary/5 ring-1 ring-primary/20'
@@ -578,7 +545,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                 <input
                   type="checkbox"
                   checked={hasEditingAddon}
-                  onChange={() => {}}
+                  onChange={(e) => setHasEditingAddon(e.target.checked)}
                   className="mt-0.5 w-4 h-4 rounded text-foreground cursor-pointer flex-shrink-0"
                 />
                 <div className="space-y-1">
@@ -599,72 +566,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
           </section>
 
           {/* ------------------------------------------------------- */}
-          {/* SECTION 03: DOMAIN NAME                                 */}
-          {/* ------------------------------------------------------- */}
-          <section className="border-t border-border/60 pt-8 space-y-4">
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-mono font-bold text-muted-foreground/70">
-                  {t.sectionDomainNum}
-                </span>
-                <h2 className="text-sm font-bold text-foreground uppercase tracking-wider">
-                  {t.sectionDomainTitle}
-                </h2>
-              </div>
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
-                {t.sectionDomainDesc}
-              </p>
-            </div>
-
-            {/* Input Group */}
-            <div className="space-y-3">
-              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
-                <div className="relative flex-1">
-                  <Globe className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-                  <input
-                    type="text"
-                    value={domainPrefix}
-                    onChange={(e) => setDomainPrefix(e.target.value.toLowerCase().trim())}
-                    placeholder={t.domainPlaceholder}
-                    className="w-full text-xs sm:text-sm bg-background border border-border rounded-lg pl-9 pr-3 py-2.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-foreground transition-colors font-mono"
-                  />
-                </div>
-
-                <select
-                  value={domainTld}
-                  onChange={(e) => setDomainTld(e.target.value)}
-                  className="text-xs sm:text-sm bg-background border border-border rounded-lg px-3 py-2.5 text-foreground focus:outline-none focus:ring-1 focus:ring-foreground font-mono cursor-pointer"
-                >
-                  {TLD_OPTIONS.map((ext) => (
-                    <option key={ext} value={ext}>
-                      {ext} ({t.summaryDomainFree})
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              {/* Status pill or example */}
-              {fullDomainName ? (
-                <div className="flex items-center gap-2 p-2.5 rounded-lg bg-secondary/50 border border-border/60 text-xs text-foreground">
-                  <Check className="w-3.5 h-3.5 text-emerald-500 flex-shrink-0" />
-                  <div className="flex-1 text-[11px] sm:text-xs">
-                    <span className="font-semibold text-foreground">{fullDomainName}</span> — {t.domainSuccess}
-                  </div>
-                </div>
-              ) : (
-                <p className="text-[11px] text-muted-foreground">
-                  {t.domainExample} <code className="text-foreground font-mono bg-secondary px-1.5 py-0.5 rounded">bisnissaya.com</code> atau <code className="text-foreground font-mono bg-secondary px-1.5 py-0.5 rounded">perusahaan.id</code>
-                </p>
-              )}
-
-              <p className="text-[11px] text-muted-foreground leading-relaxed pt-1">
-                {t.existingDomainNote}
-              </p>
-            </div>
-          </section>
-
-          {/* ------------------------------------------------------- */}
-          {/* SECTION 04: CONTACT DETAILS                             */}
+          {/* SECTION 03: CONTACT DETAILS                             */}
           {/* ------------------------------------------------------- */}
           <section className="border-t border-border/60 pt-8 space-y-4">
             <div>
@@ -802,12 +704,12 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   <span className="text-[11px] font-medium text-muted-foreground">
                     {t.summaryDomain}
                   </span>
-                  <div className="text-foreground font-semibold font-mono text-[11px] truncate max-w-[160px]">
-                    {fullDomainName || t.summaryDomainNotSet}
+                  <div className="text-foreground font-semibold text-[11px]">
+                    {t.summaryDomainVal}
                   </div>
                 </div>
                 <div className="text-right text-[11px] font-medium text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
-                  {t.summaryDomainFree}
+                  {t.summaryDomainStatus}
                 </div>
               </div>
 
