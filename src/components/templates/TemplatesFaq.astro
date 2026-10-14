@@ -1,7 +1,6 @@
 ---
 import { FAQList } from '../react/FAQList';
 import { templatesPageContent } from '../../data/templatesData';
-import { getWhatsAppLink } from '../../lib/utils';
 
 interface Props {
   lang?: 'id' | 'en';
@@ -14,47 +13,27 @@ const faqItems = t.faqs.map(item => ({
   question: item.q,
   answer: item.a
 }));
-
-const consultWhatsappUrl = getWhatsAppLink('template', lang);
 ---
 
-<section class="mt-20 pt-16 border-t border-border/60">
-  <div class="max-w-3xl mx-auto">
+<section class="py-20 md:py-24 relative z-10 border-t border-border/60" id="faq">
+  <div class="container mx-auto px-4 max-w-4xl">
     {/* FAQ Header */}
-    <div class="text-center mb-10">
-      <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="typography-section-title mb-4">
         {t.faqTitle}
       </h2>
-      <p class="text-xs sm:text-sm text-muted-foreground mt-2 max-w-xl mx-auto">
+      <p class="typography-subtitle max-w-2xl mx-auto">
         {t.faqSubtitle}
       </p>
     </div>
 
     {/* FAQ Accordion */}
-    <FAQList 
-      client:visible 
-      items={faqItems} 
-      itemClassName="border border-border/70 rounded-lg overflow-hidden bg-card shadow-none transition-colors duration-200 hover:border-foreground/30 relative z-10" 
-    />
-
-    {/* Custom Development Banner */}
-    <div class="mt-14 p-6 sm:p-8 bg-secondary/50 border border-border/70 rounded-xl text-center">
-      <h3 class="text-base sm:text-lg font-bold text-foreground">
-        {t.customCta.title}
-      </h3>
-      <p class="text-xs sm:text-sm text-muted-foreground mt-2 max-w-xl mx-auto leading-relaxed">
-        {t.customCta.subtitle}
-      </p>
-      <div class="mt-5">
-        <a
-          href={consultWhatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-block text-xs font-semibold px-5 py-2.5 rounded-lg bg-foreground text-background hover:opacity-90 transition-opacity cursor-pointer"
-        >
-          {t.customCta.buttonText}
-        </a>
-      </div>
+    <div class="space-y-4">
+      <FAQList 
+        client:visible 
+        items={faqItems} 
+      />
     </div>
   </div>
 </section>
+

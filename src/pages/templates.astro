@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/sections/Footer.astro';
 import TemplatesCatalog from '../components/templates/TemplatesCatalog';
 import TemplatesFaq from '../components/templates/TemplatesFaq.astro';
+import TemplatesCta from '../components/templates/TemplatesCta.astro';
 import { templatesData, templatesPageContent } from '../data/templatesData';
 
 const lang = 'id';
@@ -110,10 +111,10 @@ const faqSchema = {
   <Navbar lang={lang} />
 
   <main class="pt-24 sm:pt-28 pb-20 bg-background min-h-screen">
-    {/* Consistent wide container (max-w-6xl) */}
-    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+    {/* Container aligned with Navbar */}
+    <div class="container mx-auto px-4 sm:px-6">
       {/* Compact Minimal Header Section with Pain-Point Slogan */}
-      <header class="py-3 sm:py-8 mb-3 text-center flex flex-col items-center">
+      <header class="py-3 sm:py-8 mb-6 text-center flex flex-col items-center">
         <div class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-2">
           {t.heroTag}
         </div>
@@ -125,39 +126,19 @@ const faqSchema = {
         </p>
       </header>
 
-      {/* Pain Points Solved / Value Proposition Cards */}
-      {t.valueProps && (
-        <section aria-label="Keunggulan Template Gilabs" class="mb-8">
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {t.valueProps.map((prop) => (
-              <div class="bg-card border border-border/70 rounded-lg p-4 sm:p-5 flex flex-col justify-between hover:border-foreground/30 transition-colors">
-                <div>
-                  <span class="inline-block text-[10px] font-semibold tracking-wider uppercase px-2 py-0.5 rounded bg-secondary text-muted-foreground mb-2">
-                    {prop.badge}
-                  </span>
-                  <h2 class="text-sm sm:text-base font-semibold text-foreground tracking-tight">
-                    {prop.title}
-                  </h2>
-                  <p class="text-xs text-muted-foreground mt-1.5 leading-relaxed">
-                    {prop.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Catalog Component with Instant Filter & Detail Modal */}
+      {/* Catalog Component with Tier Containers & Instant Filter */}
       <TemplatesCatalog 
         client:load 
         templates={templatesData} 
         lang={lang} 
       />
-
-      {/* FAQ and Custom Request Section */}
-      <TemplatesFaq lang={lang} />
     </div>
+
+    {/* FAQ Section */}
+    <TemplatesFaq lang={lang} />
+
+    {/* Custom Development / Fitur Khusus CTA Section */}
+    <TemplatesCta lang={lang} />
   </main>
 
   <Footer lang={lang} />
