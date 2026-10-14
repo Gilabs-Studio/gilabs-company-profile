@@ -8,6 +8,7 @@ export interface TemplateItem {
     id: string;
     en: string;
   };
+  tier: 1 | 2 | 3;
   description: {
     id: string;
     en: string;
@@ -65,6 +66,167 @@ export const templateCategories = [
   { id: 'event', label: { id: 'Event & Tiket', en: 'Events & Ticketing' } },
 ] as const;
 
+export interface TierSpecItem {
+  id: string;
+  en: string;
+}
+
+export interface TierInfo {
+  tierNumber: 1 | 2 | 3 | 4;
+  title: string;
+  titleEn: string;
+  tagline: {
+    id: string;
+    en: string;
+  };
+  description: {
+    id: string;
+    en: string;
+  };
+  hookHeadline?: {
+    id: string;
+    en: string;
+  };
+  pricing: {
+    price: string;
+    originalPrice: string;
+    discountLabel?: {
+      id: string;
+      en: string;
+    };
+    note: {
+      id: string;
+      en: string;
+    };
+  };
+  specs: {
+    pages: TierSpecItem;
+    animation: TierSpecItem;
+    assets: TierSpecItem;
+    extras: TierSpecItem;
+    revisions: TierSpecItem;
+  };
+  ctaText?: {
+    id: string;
+    en: string;
+  };
+}
+
+export const tiersData: TierInfo[] = [
+  {
+    tierNumber: 1,
+    title: 'Tier 1 • Static',
+    titleEn: 'Tier 1 • Static',
+    tagline: {
+      id: '1 halaman, tanpa animasi berat, load instan',
+      en: '1 page, no heavy animations, instant loading'
+    },
+    description: {
+      id: 'Landing page ringkas & cepat. Pilihan tepat untuk profil bisnis esensial, validasi ide, dan iklan WhatsApp.',
+      en: 'Fast and lightweight landing page. Ideal for essential business profiles, idea validation, and WhatsApp ad campaigns.'
+    },
+    pricing: {
+      price: 'Rp 689.000',
+      originalPrice: 'Rp 959.000',
+      discountLabel: { id: 'Hemat 28%', en: '28% OFF' },
+      note: { id: 'Sudah include domain, hosting & siap online', en: 'Includes domain, hosting & full setup' }
+    },
+    specs: {
+      pages: { id: '1 Halaman', en: '1 Page' },
+      animation: { id: 'Tanpa animasi berat', en: 'No heavy animations' },
+      assets: { id: 'Aset visual dari AI', en: 'AI-generated visual assets' },
+      extras: { id: 'Form & tombol WhatsApp', en: 'Form & WhatsApp button' },
+      revisions: { id: '1x revisi', en: '1x revision' }
+    }
+  },
+  {
+    tierNumber: 2,
+    title: 'Tier 2 • Motion',
+    titleEn: 'Tier 2 • Motion',
+    tagline: {
+      id: '3–5 halaman, animasi masuk, parallax ringan',
+      en: '3–5 pages, entrance reveal, subtle parallax'
+    },
+    description: {
+      id: 'Website interaktif multi-halaman dengan transisi visual halus untuk meningkatkan impresi dan kredibilitas bisnis.',
+      en: 'Interactive multi-page website with smooth visual motion to elevate brand trust and credibility.'
+    },
+    pricing: {
+      price: 'Rp 1.289.000',
+      originalPrice: 'Rp 2.199.000',
+      discountLabel: { id: 'Hemat 41%', en: '41% OFF' },
+      note: { id: 'Sudah include domain, hosting & siap online', en: 'Includes domain, hosting & full setup' }
+    },
+    specs: {
+      pages: { id: '3–5 Halaman', en: '3–5 Pages' },
+      animation: { id: 'Entrance reveal & parallax ringan', en: 'Entrance reveal & subtle parallax' },
+      assets: { id: 'Aset AI teroptimasi & ditailor', en: 'Tailored & optimized AI assets' },
+      extras: { id: 'Form & tombol WhatsApp', en: 'Form & WhatsApp button' },
+      revisions: { id: '2x revisi', en: '2x revisions' }
+    }
+  },
+  {
+    tierNumber: 3,
+    title: 'Tier 3 • Immersive',
+    titleEn: 'Tier 3 • Immersive',
+    tagline: {
+      id: 'Scroll storytelling, visual dinamis, transisi halaman',
+      en: 'Scroll storytelling, dynamic visuals, page transitions'
+    },
+    description: {
+      id: 'Pengalaman visual imersif dengan animasi scroll terkoreografi untuk perusahaan & brand skala enterprise.',
+      en: 'Immersive digital experience with choreographed scroll motion for enterprise brands.'
+    },
+    pricing: {
+      price: 'Rp 2.800.000',
+      originalPrice: 'Rp 4.950.000',
+      discountLabel: { id: 'Hemat 43%', en: '43% OFF' },
+      note: { id: 'Sudah include domain, hosting & siap online', en: 'Includes domain, hosting & full setup' }
+    },
+    specs: {
+      pages: { id: 'Sampai 8 Halaman', en: 'Up to 8 Pages' },
+      animation: { id: 'Koreografi scroll & transisi halaman', en: 'Choreographed scroll & transitions' },
+      assets: { id: 'Foto bergerak, video loop & cutout', en: 'Motion photos, video loop & cutouts' },
+      extras: { id: 'Interaktif 3D ringan, analytics, copywriting', en: 'Light 3D interactive, analytics, copywriting' },
+      revisions: { id: '3x revisi', en: '3x revisions' }
+    }
+  },
+  {
+    tierNumber: 4,
+    title: 'Tier 4 • Custom Development',
+    titleEn: 'Tier 4 • Custom Development',
+    hookHeadline: {
+      id: 'Punya Alur Bisnis Unik yang Tidak Bisa Pakai Template?',
+      en: 'Have a Unique Business Workflow That Outgrows Templates?'
+    },
+    tagline: {
+      id: 'Desain dari nol, CMS kustom, arsitektur sistem & integrasi API',
+      en: 'Built from scratch, custom CMS, architecture & API integrations'
+    },
+    description: {
+      id: 'Ketika kebutuhan bisnis Anda memerlukan logika sistem khusus, integrasi ERP/database, atau platform web yang scalable — engineer Gilabs merancang arsitektur kustom dari nol.',
+      en: 'When your business demands bespoke logic, ERP/database integrations, or a scalable web platform — Gilabs engineers build custom architecture from scratch.'
+    },
+    pricing: {
+      price: 'Mulai Rp 5.000.000',
+      originalPrice: 'Rp 12.000.000',
+      discountLabel: { id: 'Hemat 58%', en: '58% OFF' },
+      note: { id: 'Milestone proyek • Termasuk setup cloud', en: 'Milestone-based • Cloud setup included' }
+    },
+    specs: {
+      pages: { id: 'Fleksibel sesuai skala sistem', en: 'Flexible per system scope' },
+      animation: { id: 'Desain UI/UX eksklusif (Figma ke Kode)', en: 'Exclusive UI/UX design (Figma to Code)' },
+      assets: { id: 'Full branding & aset kustom', en: 'Full branding & bespoke assets' },
+      extras: { id: 'CMS kustom, database, API, auth & workflow', en: 'Custom CMS, database, APIs, auth & workflow' },
+      revisions: { id: 'Sesuai milestone proyek', en: 'Per project milestone' }
+    },
+    ctaText: {
+      id: 'Konsultasi Custom via WhatsApp',
+      en: 'Discuss Custom Project via WhatsApp'
+    }
+  }
+];
+
 export const templatesData: TemplateItem[] = [
   {
     id: 'adiguna-machinery',
@@ -76,35 +238,16 @@ export const templatesData: TemplateItem[] = [
       id: 'Manufaktur & Industri',
       en: 'Manufacturing & Industry'
     },
+    tier: 1,
     description: {
       id: 'Template website profil manufaktur mesin industri, workshop CNC, dan pabrik presisi berstandar internasional dengan nuansa profesional dan spesifikasi teknis mendalam.',
       en: 'Modern website template for industrial machinery manufacturers, CNC workshops, and precision engineering plants.'
     },
-    startingPriceIdr: 1250000,
+    startingPriceIdr: 689000,
     previewImage: '/templates/adiguna-machinery/preview.webp',
     gallery: ['/templates/adiguna-machinery/preview.webp'],
     demoUrl: '/templates/demo/adiguna',
     buyersCount: 142
-  },
-  {
-    id: 'gke-enterprise',
-    slug: 'gke-enterprise-supply',
-    title: 'Website Enterprise & Supply Chain',
-    titleEn: 'Enterprise Engineering & Supply Chain Website',
-    category: 'company',
-    categoryLabel: {
-      id: 'Enterprise & B2B',
-      en: 'Enterprise & Corporate'
-    },
-    description: {
-      id: 'Template website profil perusahaan skala enterprise, supply chain, dan distributor suku cadang industri dengan tipografi editorial modern dan performa tinggi.',
-      en: 'Corporate profile website template for enterprise firms, industrial supply chains, and B2B engineering solutions.'
-    },
-    startingPriceIdr: 1250000,
-    previewImage: '/templates/gke-enterprise/preview.webp',
-    gallery: ['/templates/gke-enterprise/preview.webp'],
-    demoUrl: '/templates/demo/gke',
-    buyersCount: 188
   },
   {
     id: 'koperasi-digital',
@@ -116,35 +259,16 @@ export const templatesData: TemplateItem[] = [
       id: 'Koperasi & Finansial',
       en: 'Cooperative & Finance'
     },
+    tier: 1,
     description: {
       id: 'Template website profil koperasi simpan pinjam modern dan institusi keuangan komunitas dengan estetika bersih, pratinjau modul konsol, dan transparansi laporan.',
       en: 'Modern website template for savings & credit cooperatives and digital financial institutions with daylight architectural aesthetics.'
     },
-    startingPriceIdr: 1250000,
+    startingPriceIdr: 689000,
     previewImage: '/templates/koperasi-digital/preview.webp',
     gallery: ['/templates/koperasi-digital/preview.webp'],
     demoUrl: '/templates/demo/koperasi',
     buyersCount: 165
-  },
-  {
-    id: 'shipagency-maritime',
-    slug: 'nautiva-ocean-shipping-agency',
-    title: 'Website Keagenan Kapal & Logistik Maritim',
-    titleEn: 'Maritime Ship Agency & Port Logistics Website',
-    category: 'service',
-    categoryLabel: {
-      id: 'Jasa & Maritim',
-      en: 'Services & Maritime'
-    },
-    description: {
-      id: 'Template website keagenan kapal pelabuhan, manajemen sertifikat perkapalan, dan logistik maritim terintegrasi dengan nuansa oceanic gelap dan metrik operasional terpercaya.',
-      en: 'Specialized website template for shipping agencies, vessel clearance operations, and maritime logistics companies.'
-    },
-    startingPriceIdr: 1250000,
-    previewImage: '/templates/shipagency-maritime/preview.webp',
-    gallery: ['/templates/shipagency-maritime/preview.webp'],
-    demoUrl: '/templates/demo/shipagency',
-    buyersCount: 129
   },
   {
     id: 'ticketing-events',
@@ -156,15 +280,58 @@ export const templatesData: TemplateItem[] = [
       id: 'Event & Tiket',
       en: 'Events & Ticketing'
     },
+    tier: 1,
     description: {
-      id: 'Template website event festival musik, konser, dan seminar dengan dynamic live countdown timer, efek ambience beams rave modern, dan showcase tiket terintegrasi.',
+      id: 'Template website event festival musik, konser, dan seminar dengan dynamic live countdown timer, visual ambience rave modern, dan showcase tiket terintegrasi.',
       en: 'High-energy event ticketing and festival website template featuring live countdown timers, glowing ambient visual aesthetics, and ticket tier showcases.'
     },
-    startingPriceIdr: 1250000,
+    startingPriceIdr: 689000,
     previewImage: '/templates/ticketing-events/preview.webp',
     gallery: ['/templates/ticketing-events/preview.webp'],
     demoUrl: '/templates/demo/ticketing',
     buyersCount: 204
+  },
+  {
+    id: 'shipagency-maritime',
+    slug: 'nautiva-ocean-shipping-agency',
+    title: 'Website Keagenan Kapal & Logistik Maritim',
+    titleEn: 'Maritime Ship Agency & Port Logistics Website',
+    category: 'service',
+    categoryLabel: {
+      id: 'Jasa & Maritim',
+      en: 'Services & Maritime'
+    },
+    tier: 2,
+    description: {
+      id: 'Template website keagenan kapal pelabuhan, manajemen sertifikat perkapalan, dan logistik maritim terintegrasi dengan nuansa oceanic gelap dan metrik operasional terpercaya.',
+      en: 'Specialized website template for shipping agencies, vessel clearance operations, and maritime logistics companies.'
+    },
+    startingPriceIdr: 1289000,
+    previewImage: '/templates/shipagency-maritime/preview.webp',
+    gallery: ['/templates/shipagency-maritime/preview.webp'],
+    demoUrl: '/templates/demo/shipagency',
+    buyersCount: 129
+  },
+  {
+    id: 'gke-enterprise',
+    slug: 'gke-enterprise-supply',
+    title: 'Website Enterprise & Supply Chain',
+    titleEn: 'Enterprise Engineering & Supply Chain Website',
+    category: 'company',
+    categoryLabel: {
+      id: 'Enterprise & B2B',
+      en: 'Enterprise & Corporate'
+    },
+    tier: 3,
+    description: {
+      id: 'Template website profil perusahaan skala enterprise, supply chain, dan distributor suku cadang industri dengan tipografi editorial modern dan performa tinggi.',
+      en: 'Corporate profile website template for enterprise firms, industrial supply chains, and B2B engineering solutions.'
+    },
+    startingPriceIdr: 2800000,
+    previewImage: '/templates/gke-enterprise/preview.webp',
+    gallery: ['/templates/gke-enterprise/preview.webp'],
+    demoUrl: '/templates/demo/gke',
+    buyersCount: 188
   }
 ];
 
@@ -329,7 +496,7 @@ export const templatesPageContent = {
       includedNote: 'Termasuk Domain + Hosting + Maintenance',
       oneTimePayment: 'Sekali bayar',
       viewDetail: 'Detail',
-      buyNow: 'Pilih & Pesan',
+      buyNow: 'Beli Template Ini',
       livePreview: 'Lihat Demo',
       buyersNote: '{count} orang memilih ini'
     },
@@ -414,7 +581,7 @@ export const templatesPageContent = {
       includedNote: 'Includes Domain + Hosting + Maintenance',
       oneTimePayment: 'One-time payment',
       viewDetail: 'Details',
-      buyNow: 'Select & Order',
+      buyNow: 'Buy This Template',
       livePreview: 'Live Preview',
       buyersNote: '{count} users chose this'
     },

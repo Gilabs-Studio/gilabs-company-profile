@@ -272,31 +272,33 @@ function TierInfoCard({ tier, lang }: TierInfoCardProps) {
         </div>
       </div>
 
-      {/* Pricing Breakdown Box (Full price, No maintenance) */}
+      {/* Psychological Single Focal Pricing Box with Discount Anchor */}
       <div className="mt-5 pt-3.5 border-t border-border/60 bg-secondary/35 rounded-lg p-3.5 relative z-10">
-        <div className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider mb-2">
-          {lang === 'id' ? 'Estimasi Biaya Pembuatan' : 'Estimated Build Cost'}
-        </div>
-        <div className="grid grid-cols-2 gap-2">
-          <div>
-            <div className="typography-small text-muted-foreground">
-              {lang === 'id' ? 'Biaya Pembuatan' : 'Development'}
-            </div>
-            <div className="typography-card-title text-base sm:text-lg font-bold text-foreground mt-0.5">
-              {tier.pricing.basePrice}
-            </div>
+        <div className="flex items-center justify-between gap-2 mb-1">
+          <div className="flex items-center gap-2">
+            <span className="text-xs sm:text-sm text-muted-foreground/60 line-through font-mono">
+              {tier.pricing.originalPrice}
+            </span>
+            {tier.pricing.discountLabel && (
+              <span className="text-[10px] font-mono font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                {tier.pricing.discountLabel[lang]}
+              </span>
+            )}
           </div>
-          <div>
-            <div className="typography-small text-muted-foreground">
-              {lang === 'id' ? 'Siap Online (+300k)' : 'Turnkey (+300k)'}
-            </div>
-            <div className="typography-card-title text-base sm:text-lg font-bold text-foreground mt-0.5">
-              {tier.pricing.readyOnline}
-            </div>
-          </div>
+          <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
+            {lang === 'id' ? 'Promo Terbatas' : 'Limited Offer'}
+          </span>
         </div>
-        <div className="mt-2.5 pt-2 border-t border-border/40 text-[11px] text-muted-foreground font-light">
-          {lang === 'id' ? 'Termasuk Setup Domain & Cloud Hosting' : 'Includes Domain & Cloud Hosting Setup'}
+
+        <div className="typography-card-title text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+          {tier.pricing.price}
+        </div>
+
+        <div className="mt-2.5 pt-2 border-t border-border/40 text-[11px] text-muted-foreground font-light flex items-center justify-between">
+          <span>{tier.pricing.note[lang]}</span>
+          <span className="text-[10px] font-mono text-emerald-600/90 dark:text-emerald-400 font-medium">
+            {lang === 'id' ? 'Siap Pakai' : 'Turnkey'}
+          </span>
         </div>
       </div>
     </div>
@@ -469,14 +471,24 @@ function TierCustomWideCard({ tier, lang }: TierCustomWideCardProps) {
             </div>
           </div>
 
-          {/* Bottom Bar: Full Pricing & WhatsApp CTA */}
+          {/* Bottom Bar: Full Pricing & WhatsApp CTA with Anchor Discount */}
           <div className="pt-4 border-t border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-secondary/30 rounded-xl p-4 sm:p-5">
             <div>
+              <div className="flex items-center gap-2 mb-1">
+                <span className="text-xs sm:text-sm text-muted-foreground/60 line-through font-mono">
+                  {tier.pricing.originalPrice}
+                </span>
+                {tier.pricing.discountLabel && (
+                  <span className="text-[10px] font-mono font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                    {tier.pricing.discountLabel[lang]}
+                  </span>
+                )}
+              </div>
               <div className="typography-section-title text-2xl sm:text-3xl font-bold text-foreground">
-                {tier.pricing.basePrice}
+                {tier.pricing.price}
               </div>
               <div className="typography-small text-muted-foreground mt-0.5">
-                • {tier.pricing.readyOnline}
+                • {tier.pricing.note[lang]}
               </div>
             </div>
 
@@ -536,8 +548,8 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
 
       {/* Main 3-Column Tier Grid (Tier 1, Tier 2, Tier 3) as per sketch */}
       <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
-        {/* Column 1: Tier 1 Container Wrapper */}
-        <div className="bg-secondary/10 border border-border/50 rounded-2xl p-3.5 sm:p-4 flex flex-col gap-4 transition-all duration-300">
+        {/* Column 1: Tier 1 Container Wrapper with Subtle Cyan Border */}
+        <div className="bg-secondary/10 border border-cyan-500/25 hover:border-cyan-500/45 rounded-2xl p-3.5 sm:p-4 flex flex-col gap-4 transition-all duration-300 shadow-xs hover:shadow-cyan-500/5">
           <TierInfoCard tier={tier1} lang={lang} />
           
           <div className="flex flex-col gap-4">
@@ -553,8 +565,8 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
           </div>
         </div>
 
-        {/* Column 2: Tier 2 Container Wrapper */}
-        <div className="bg-secondary/10 border border-border/50 rounded-2xl p-3.5 sm:p-4 flex flex-col gap-4 transition-all duration-300">
+        {/* Column 2: Tier 2 Container Wrapper with Subtle Purple Border */}
+        <div className="bg-secondary/10 border border-purple-500/25 hover:border-purple-500/45 rounded-2xl p-3.5 sm:p-4 flex flex-col gap-4 transition-all duration-300 shadow-xs hover:shadow-purple-500/5">
           <TierInfoCard tier={tier2} lang={lang} />
           
           <div className="flex flex-col gap-4">
@@ -570,8 +582,8 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
           </div>
         </div>
 
-        {/* Column 3: Tier 3 Container Wrapper */}
-        <div className="bg-secondary/10 border border-border/50 rounded-2xl p-3.5 sm:p-4 flex flex-col gap-4 transition-all duration-300">
+        {/* Column 3: Tier 3 Container Wrapper with Subtle Rose Border */}
+        <div className="bg-secondary/10 border border-rose-500/25 hover:border-rose-500/45 rounded-2xl p-3.5 sm:p-4 flex flex-col gap-4 transition-all duration-300 shadow-xs hover:shadow-rose-500/5">
           <TierInfoCard tier={tier3} lang={lang} />
           
           <div className="flex flex-col gap-4">
