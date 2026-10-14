@@ -14,16 +14,12 @@ import {
   Sparkles,
   ArrowRight,
   ArrowUpRight,
-  Check,
   CheckCircle2,
   X,
-  Ticket,
   Instagram,
   Twitter,
   Youtube,
   Linkedin,
-  ShieldCheck,
-  CreditCard,
 } from "lucide-react";
 
 interface TicketingLandingProps {
@@ -39,51 +35,35 @@ interface TicketTier {
   isPopular?: boolean;
 }
 
-export const ShineBorder: FC<{
-  borderWidth?: number;
-  duration?: number;
-  shineColor?: string | string[];
-  className?: string;
-  style?: React.CSSProperties;
-}> = ({
-  borderWidth = 2,
-  duration = 14,
-  shineColor = [
-    "oklch(0.50 0.12 288)",
-    "oklch(0.55 0.13 337)",
-    "oklch(0.65 0.15 11)",
-  ],
-  className = "",
-  style = {},
-}) => {
-  return (
-    <div
-      style={
-        {
-          "--border-width": `${borderWidth}px`,
-          "--duration": `${duration}s`,
-          backgroundImage: `radial-gradient(transparent,transparent, ${
-            Array.isArray(shineColor) ? shineColor.join(",") : shineColor
-          },transparent,transparent)`,
-          backgroundSize: "300% 300%",
-          mask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
-          WebkitMask: `linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)`,
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
-          padding: "var(--border-width)",
-          ...style,
-        } as React.CSSProperties
-      }
-      className={`animate-shine pointer-events-none absolute inset-0 size-full rounded-[inherit] will-change-[background-position] ${className}`}
-    />
-  );
-};
-
 export default function TicketingLanding({
   locale = "id",
 }: TicketingLandingProps) {
   // Navigation active tab
   const [activeTab, setActiveTab] = useState("ticket");
+
+  // Countdown timer matching reference image (44 Hari 23 Jam 58 Menit 16 Detik)
+  const [timeLeft, setTimeLeft] = useState({
+    days: 44,
+    hours: 23,
+    minutes: 58,
+    seconds: 16,
+  });
+
+  // Beams live shader ready state for smooth transition over instant static background
+  const [beamsReady, setBeamsReady] = useState(false);
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev.seconds > 0) return { ...prev, seconds: prev.seconds - 1 };
+        if (prev.minutes > 0) return { ...prev, minutes: 59, seconds: 59 };
+        if (prev.hours > 0) return { ...prev, hours: prev.hours - 1, minutes: 59, seconds: 59 };
+        if (prev.days > 0) return { ...prev, days: prev.days - 1, hours: 23, minutes: 59, seconds: 59 };
+        return prev;
+      });
+    }, 1000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   // Ticket Tiers data
   const ticketTiers: TicketTier[] = [
@@ -93,7 +73,7 @@ export default function TicketingLanding({
       price: 499000,
       formattedPrice: "Rp 499.000",
       description: locale === "en" 
-        ? "Full access to all event sessions and main exhibition area."
+        ? "Akses penuh ke semua sesi acara dan area pameran."
         : "Akses penuh ke semua sesi acara dan area pameran.",
     },
     {
@@ -102,7 +82,7 @@ export default function TicketingLanding({
       price: 999000,
       formattedPrice: "Rp 999.000",
       description: locale === "en"
-        ? "Exclusive access + VIP lounge, priority seating, and official goodie bag."
+        ? "Akses eksklusif + lounge VIP, prioritas seating, dan goodie bag."
         : "Akses eksklusif + lounge VIP, prioritas seating, dan goodie bag.",
       isPopular: true,
     },
@@ -112,7 +92,7 @@ export default function TicketingLanding({
       price: 299000,
       formattedPrice: "Rp 299.000",
       description: locale === "en"
-        ? "Special price for students with valid student ID card verification."
+        ? "Khusus mahasiswa dengan kartu pelajar/mahasiswa."
         : "Khusus mahasiswa dengan kartu pelajar/mahasiswa.",
     },
     {
@@ -121,7 +101,7 @@ export default function TicketingLanding({
       price: 1999000,
       formattedPrice: "Rp 1.999.000",
       description: locale === "en"
-        ? "Special discounted bundle for group purchases (minimum 5 persons)."
+        ? "Diskon khusus untuk pembelian grup (minimal 5 orang)."
         : "Diskon khusus untuk pembelian grup (minimal 5 orang).",
     },
   ];
@@ -167,19 +147,11 @@ export default function TicketingLanding({
 
   return (
     <div className="dark bg-black text-white font-sans antialiased selection:bg-amber-500 selection:text-black">
-      {/* 00. Floating Modern Minimalist Header */}
-      <header className="fixed top-[41px] left-0 right-0 z-40 bg-black/70 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+      {/* 00. Floating Header matching reference image */}
+      <header className="fixed top-[41px] left-0 right-0 z-40 bg-black/60 backdrop-blur-md transition-all duration-300">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          {/* Brand Logo */}
-          <a
-            href="#hero"
-            className="text-base font-light tracking-widest text-white hover:text-amber-400 transition-colors cursor-pointer"
-          >
-            LOREM IPSUM
-          </a>
-
-          {/* Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-xs font-light tracking-wider uppercase">
+          {/* Navigation Links (Left) */}
+          <nav className="flex items-center gap-6 sm:gap-8 text-xs font-light tracking-wider uppercase">
             <a
               href="#hero"
               onClick={() => setActiveTab("home")}
@@ -230,7 +202,7 @@ export default function TicketingLanding({
             </a>
           </nav>
 
-          {/* Action Button: Login / Quick Buy */}
+          {/* Action Button: Login (Right) */}
           <div className="flex items-center gap-3">
             <a
               href="#tickets"
@@ -242,13 +214,18 @@ export default function TicketingLanding({
         </div>
       </header>
 
-      {/* 01. WINDOW 1: HERO SECTION (WebGL Beams + Tickets Ready Status) */}
+      {/* 01. WINDOW 1: HERO SECTION */}
+      {/* Background image loads INSTANTLY on first paint; WebGL live beams render smoothly on top */}
       <section
         id="hero"
-        className="relative min-h-[calc(100vh-41px)] w-full overflow-hidden flex items-center justify-center bg-black pt-16"
+        className="relative min-h-[calc(100vh-41px)] w-full overflow-hidden flex items-center justify-center bg-black bg-[url('/templates/ticketing/hero-bg.webp')] bg-cover bg-center pt-16"
       >
-        {/* Three.js Beams Shader Background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
+        {/* Three.js Beams Live Shader Layer (fades in smoothly over instant background feedback) */}
+        <div
+          className={`absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000 ${
+            beamsReady ? "opacity-90" : "opacity-0"
+          }`}
+        >
           <Beams
             beamWidth={3}
             beamHeight={30}
@@ -259,82 +236,74 @@ export default function TicketingLanding({
             scale={0.2}
             rotation={30}
             backgroundImage="/templates/ticketing/bg.jpg"
+            onReady={() => setBeamsReady(true)}
           />
         </div>
 
-        {/* Ambient Dark Gradient Layer */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 pointer-events-none z-[1]" />
+        {/* Ambient Overlay Layer */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none z-[1]" />
 
-        {/* Hero Main Content */}
+        {/* Hero Content: 100% Matching Reference Image */}
         <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto py-20">
-          {/* Ready Ticket Status Indicator */}
-          <div className="mb-6 inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 backdrop-blur-md text-amber-300 text-xs font-light tracking-widest uppercase">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-            </span>
-            <span>{locale === "en" ? "Official Presale Tickets Available" : "Tiket Resmi Sudah Dibuka — Presale Siap"}</span>
-          </div>
-
           {/* Huge Main Title */}
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-tight text-white mb-6 drop-shadow-[0_15px_40px_rgba(0,0,0,0.9)]">
+          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-light tracking-tight text-white mb-10 drop-shadow-[0_15px_40px_rgba(0,0,0,0.95)]">
             LOREM IPSUM
           </h1>
 
-          {/* Event Date & Location Subtitle */}
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-sm sm:text-base font-light text-neutral-300 tracking-wider mb-10">
-            <span className="flex items-center gap-1.5">
-              <Calendar className="h-4 w-4 text-amber-400 shrink-0" />
-              23 Agustus 2025
-            </span>
-            <span className="text-neutral-600 hidden sm:inline">•</span>
-            <span className="flex items-center gap-1.5">
-              <MapPin className="h-4 w-4 text-amber-400 shrink-0" />
-              The Ritz-Carlton Jakarta
-            </span>
-            <span className="text-neutral-600 hidden sm:inline">•</span>
-            <span className="flex items-center gap-1.5">
-              <Ticket className="h-4 w-4 text-amber-400 shrink-0" />
-              Mulai Rp 299K
-            </span>
-          </div>
-
-          {/* Call-to-Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <div className="relative inline-block rounded-md">
-              <ShineBorder
-                borderWidth={2}
-                duration={14}
-                shineColor={[
-                  "oklch(0.85 0.18 85)",
-                  "oklch(0.70 0.16 65)",
-                  "oklch(0.95 0.12 95)",
-                ]}
-                className="rounded-md"
-              />
-              <a
-                href="#tickets"
-                className="relative z-10 inline-flex items-center justify-center h-12 px-8 rounded-md bg-neutral-900/90 text-white text-xs sm:text-sm font-light uppercase tracking-widest hover:bg-neutral-800 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer border border-amber-500/30 gap-2 shadow-lg shadow-amber-500/10"
-              >
-                <span>{locale === "en" ? "Get Tickets Now" : "Dapatkan Tiket"}</span>
-                <ArrowRight className="h-4 w-4 text-amber-400" />
-              </a>
+          {/* Countdown Numbers (44 HARI, 23 JAM, 58 MENIT, 16 DETIK) */}
+          <div className="flex items-center justify-center gap-6 sm:gap-10 md:gap-12 mb-10">
+            <div className="flex flex-col items-center">
+              <div className="text-3xl sm:text-5xl md:text-6xl font-extralight tracking-tight text-white tabular-nums">
+                {String(timeLeft.days).padStart(2, "0")}
+              </div>
+              <div className="text-[10px] sm:text-xs font-light text-neutral-400 uppercase tracking-widest mt-1.5">
+                HARI
+              </div>
             </div>
 
-            <a
-              href="#event"
-              className="inline-flex items-center justify-center h-12 px-7 rounded-md border border-white/20 text-xs sm:text-sm font-light uppercase tracking-widest text-neutral-300 hover:text-white hover:border-white/40 bg-black/40 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-            >
-              {locale === "en" ? "Explore Event" : "Pelajari Acara"}
-            </a>
+            <div className="flex flex-col items-center">
+              <div className="text-3xl sm:text-5xl md:text-6xl font-extralight tracking-tight text-white tabular-nums">
+                {String(timeLeft.hours).padStart(2, "0")}
+              </div>
+              <div className="text-[10px] sm:text-xs font-light text-neutral-400 uppercase tracking-widest mt-1.5">
+                JAM
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <div className="text-3xl sm:text-5xl md:text-6xl font-extralight tracking-tight text-white tabular-nums">
+                {String(timeLeft.minutes).padStart(2, "0")}
+              </div>
+              <div className="text-[10px] sm:text-xs font-light text-neutral-400 uppercase tracking-widest mt-1.5">
+                MENIT
+              </div>
+            </div>
+
+            <div className="flex flex-col items-center">
+              <div className="text-3xl sm:text-5xl md:text-6xl font-extralight tracking-tight text-white tabular-nums">
+                {String(timeLeft.seconds).padStart(2, "0")}
+              </div>
+              <div className="text-[10px] sm:text-xs font-light text-neutral-400 uppercase tracking-widest mt-1.5">
+                DETIK
+              </div>
+            </div>
           </div>
+
+          {/* Single Clean Button: [ DAPATKAN TIKET → ] */}
+          <a
+            href="#tickets"
+            className="inline-flex items-center justify-center h-11 px-8 rounded-md bg-black/60 hover:bg-neutral-900 border border-white/20 hover:border-amber-400/60 text-white text-xs font-light uppercase tracking-widest transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer gap-2 backdrop-blur-sm"
+          >
+            <span>DAPATKAN TIKET</span>
+            <ArrowRight className="h-3.5 w-3.5 text-neutral-300" />
+          </a>
         </div>
       </section>
 
-      {/* 02. WINDOW 2: THE EVENT SECTION */}
+      {/* 02. WINDOW 2: THE EVENT SECTION (Clean, Direct Photo Without Border, Naked Icons) */}
       <section
         id="event"
-        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 border-t border-white/10 bg-black"
+        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 bg-black"
       >
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Text & Details */}
@@ -345,62 +314,56 @@ export default function TicketingLanding({
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-light text-white leading-tight tracking-tight mb-6">
               Lebih dari Sekadar<br />Sebuah Acara
             </h2>
-            <p className="text-sm sm:text-base font-light text-neutral-300 leading-relaxed mb-10 max-w-xl">
+            <p className="text-sm sm:text-base font-light text-neutral-300 leading-relaxed mb-12 max-w-xl">
               Lorem ipsum adalah sebuah pengalaman yang dirancang untuk menginspirasi, menghubungkan, dan membuka peluang baru. Bergabunglah dengan kami dalam sebuah acara eksklusif yang menghadirkan pembicara terbaik, sesi interaktif, dan networking berkualitas.
             </p>
 
-            {/* 3 Metric Rows */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t border-white/10">
-              <div className="flex items-start gap-3.5">
-                <div className="p-2.5 rounded-lg bg-neutral-900 border border-white/10 text-amber-400 shrink-0">
-                  <Calendar className="h-4 w-4" />
-                </div>
+            {/* 3 Metric Rows: Direct Naked Icons without background boxes or border */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+              {/* 1. Date */}
+              <div className="flex items-start gap-3">
+                <Calendar className="h-6 w-6 text-neutral-400 stroke-[1.25] shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-sm font-medium text-white">23 Agustus 2025</div>
-                  <div className="text-xs font-light text-neutral-400 mt-0.5">Sabtu, 08:00 – 17:00</div>
+                  <div className="text-sm font-normal text-white">23 Agustus 2025</div>
+                  <div className="text-xs font-light text-neutral-400 mt-1">Sabtu, 08:00 – 17:00</div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5">
-                <div className="p-2.5 rounded-lg bg-neutral-900 border border-white/10 text-amber-400 shrink-0">
-                  <MapPin className="h-4 w-4" />
-                </div>
+              {/* 2. Venue */}
+              <div className="flex items-start gap-3">
+                <MapPin className="h-6 w-6 text-neutral-400 stroke-[1.25] shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-sm font-medium text-white">The Ritz-Carlton Jakarta</div>
-                  <div className="text-xs font-light text-neutral-400 mt-0.5">Jl. Dr. Ide Anak Agung Gde Agung No.1</div>
+                  <div className="text-sm font-normal text-white">The Ritz-Carlton Jakarta</div>
+                  <div className="text-xs font-light text-neutral-400 mt-1">Jl. Dr. Ide Anak Agung Gde Agung No.1, Jakarta</div>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3.5">
-                <div className="p-2.5 rounded-lg bg-neutral-900 border border-white/10 text-amber-400 shrink-0">
-                  <Users className="h-4 w-4" />
-                </div>
+              {/* 3. Capacity */}
+              <div className="flex items-start gap-3">
+                <Users className="h-6 w-6 text-neutral-400 stroke-[1.25] shrink-0 mt-0.5" />
                 <div>
-                  <div className="text-sm font-medium text-white">1.000+</div>
-                  <div className="text-xs font-light text-neutral-400 mt-0.5">Peserta dari berbagai industri</div>
+                  <div className="text-sm font-normal text-white">1.000+</div>
+                  <div className="text-xs font-light text-neutral-400 mt-1">Peserta dari berbagai industri</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Right Stage Showcase Image */}
+          {/* Right Stage Photo: Direct photo with rounded corners, NO border */}
           <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-neutral-950 shadow-2xl shadow-black/80 aspect-[16/10]">
-              <img
-                src="/templates/ticketing/stage-ideas.png"
-                alt="Ideas Connect People Stage"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-            </div>
+            <img
+              src="/templates/ticketing/stage-ideas.webp"
+              alt="Ideas Connect People Stage"
+              className="w-full h-auto rounded-2xl shadow-2xl object-cover"
+            />
           </div>
         </div>
       </section>
 
-      {/* 03. WINDOW 3: WHY ATTEND SECTION */}
+      {/* 03. WINDOW 3: WHY ATTEND SECTION (Clean, Minimalist Naked Columns, No Cards) */}
       <section
         id="why-attend"
-        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 border-t border-white/10 bg-neutral-950"
+        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 bg-black"
       >
         <div className="max-w-7xl mx-auto w-full">
           {/* Header Row */}
@@ -418,43 +381,35 @@ export default function TicketingLanding({
             </p>
           </div>
 
-          {/* 4 Feature Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="p-8 rounded-xl border border-white/10 bg-neutral-900/50 hover:border-amber-400/40 hover:bg-neutral-900/80 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="h-10 w-10 rounded-lg bg-neutral-800 border border-white/10 flex items-center justify-center mb-6 text-amber-400 group-hover:scale-110 transition-transform">
-                <Zap className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-normal text-white mb-3">Keynote Speakers</h3>
+          {/* 4 Items: Direct, Clean, Minimalist (No card border) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+            <div>
+              <Zap className="h-6 w-6 text-amber-400/90 stroke-[1.5] mb-4" />
+              <h3 className="text-base sm:text-lg font-normal text-white mb-2">Keynote Speakers</h3>
               <p className="text-xs font-light text-neutral-400 leading-relaxed">
                 Dengarkan langsung dari para ahli dan praktisi industri.
               </p>
             </div>
 
-            <div className="p-8 rounded-xl border border-white/10 bg-neutral-900/50 hover:border-amber-400/40 hover:bg-neutral-900/80 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="h-10 w-10 rounded-lg bg-neutral-800 border border-white/10 flex items-center justify-center mb-6 text-amber-400 group-hover:scale-110 transition-transform">
-                <Users className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-normal text-white mb-3">Networking</h3>
+            <div>
+              <Users className="h-6 w-6 text-amber-400/90 stroke-[1.5] mb-4" />
+              <h3 className="text-base sm:text-lg font-normal text-white mb-2">Networking</h3>
               <p className="text-xs font-light text-neutral-400 leading-relaxed">
                 Bangun koneksi dengan profesional dari berbagai latar belakang.
               </p>
             </div>
 
-            <div className="p-8 rounded-xl border border-white/10 bg-neutral-900/50 hover:border-amber-400/40 hover:bg-neutral-900/80 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="h-10 w-10 rounded-lg bg-neutral-800 border border-white/10 flex items-center justify-center mb-6 text-amber-400 group-hover:scale-110 transition-transform">
-                <Star className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-normal text-white mb-3">Interactive Session</h3>
+            <div>
+              <Star className="h-6 w-6 text-amber-400/90 stroke-[1.5] mb-4" />
+              <h3 className="text-base sm:text-lg font-normal text-white mb-2">Interactive Session</h3>
               <p className="text-xs font-light text-neutral-400 leading-relaxed">
                 Ikuti sesi diskusi dan workshop yang aplikatif.
               </p>
             </div>
 
-            <div className="p-8 rounded-xl border border-white/10 bg-neutral-900/50 hover:border-amber-400/40 hover:bg-neutral-900/80 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="h-10 w-10 rounded-lg bg-neutral-800 border border-white/10 flex items-center justify-center mb-6 text-amber-400 group-hover:scale-110 transition-transform">
-                <Sparkles className="h-5 w-5" />
-              </div>
-              <h3 className="text-lg font-normal text-white mb-3">Exclusive Experience</h3>
+            <div>
+              <Sparkles className="h-6 w-6 text-amber-400/90 stroke-[1.5] mb-4" />
+              <h3 className="text-base sm:text-lg font-normal text-white mb-2">Exclusive Experience</h3>
               <p className="text-xs font-light text-neutral-400 leading-relaxed">
                 Dapatkan akses ke konten premium dan komunitas khusus.
               </p>
@@ -466,7 +421,7 @@ export default function TicketingLanding({
       {/* 04. WINDOW 4: SPEAKERS SECTION */}
       <section
         id="speakers"
-        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 border-t border-white/10 bg-black"
+        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 bg-black"
       >
         <div className="max-w-7xl mx-auto w-full">
           {/* Header Row */}
@@ -491,8 +446,8 @@ export default function TicketingLanding({
           {/* 4 Speaker Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Speaker 1 */}
-            <div className="rounded-xl border border-white/10 bg-neutral-900/40 p-4 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-950 mb-4 border border-white/5">
+            <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900 mb-4">
                 <img
                   src="/templates/ticketing/speaker-1.png"
                   alt="Alex Pratama"
@@ -501,14 +456,14 @@ export default function TicketingLanding({
               </div>
               <h3 className="text-base font-normal text-white mb-0.5">Alex Pratama</h3>
               <p className="text-xs font-light text-neutral-400 mb-4">CEO, Techverse</p>
-              <span className="inline-block px-2.5 py-1 rounded border border-white/10 text-[10px] font-mono uppercase tracking-wider text-neutral-400">
+              <span className="inline-block px-2.5 py-1 rounded border border-neutral-800 text-[10px] font-mono uppercase tracking-wider text-neutral-400">
                 Technology
               </span>
             </div>
 
             {/* Speaker 2 */}
-            <div className="rounded-xl border border-white/10 bg-neutral-900/40 p-4 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-950 mb-4 border border-white/5">
+            <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900 mb-4">
                 <img
                   src="/templates/ticketing/speaker-2.png"
                   alt="Sarah Wijaya"
@@ -517,14 +472,14 @@ export default function TicketingLanding({
               </div>
               <h3 className="text-base font-normal text-white mb-0.5">Sarah Wijaya</h3>
               <p className="text-xs font-light text-neutral-400 mb-4">Founder, Lumina Studio</p>
-              <span className="inline-block px-2.5 py-1 rounded border border-white/10 text-[10px] font-mono uppercase tracking-wider text-neutral-400">
+              <span className="inline-block px-2.5 py-1 rounded border border-neutral-800 text-[10px] font-mono uppercase tracking-wider text-neutral-400">
                 Business
               </span>
             </div>
 
             {/* Speaker 3 */}
-            <div className="rounded-xl border border-white/10 bg-neutral-900/40 p-4 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-950 mb-4 border border-white/5">
+            <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900 mb-4">
                 <img
                   src="/templates/ticketing/speaker-3.png"
                   alt="Ryan Maulana"
@@ -533,14 +488,14 @@ export default function TicketingLanding({
               </div>
               <h3 className="text-base font-normal text-white mb-0.5">Ryan Maulana</h3>
               <p className="text-xs font-light text-neutral-400 mb-4">Product Lead, Nusantara AI</p>
-              <span className="inline-block px-2.5 py-1 rounded border border-white/10 text-[10px] font-mono uppercase tracking-wider text-neutral-400">
+              <span className="inline-block px-2.5 py-1 rounded border border-neutral-800 text-[10px] font-mono uppercase tracking-wider text-neutral-400">
                 Product
               </span>
             </div>
 
             {/* Speaker 4 */}
-            <div className="rounded-xl border border-white/10 bg-neutral-900/40 p-4 hover:border-amber-400/30 transition-all duration-300 hover:-translate-y-1 group">
-              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-950 mb-4 border border-white/5">
+            <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition-all duration-300 hover:-translate-y-1 group">
+              <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900 mb-4">
                 <img
                   src="/templates/ticketing/speaker-4.png"
                   alt="Diana Lestari"
@@ -549,7 +504,7 @@ export default function TicketingLanding({
               </div>
               <h3 className="text-base font-normal text-white mb-0.5">Diana Lestari</h3>
               <p className="text-xs font-light text-neutral-400 mb-4">Creative Director, Kreasi.id</p>
-              <span className="inline-block px-2.5 py-1 rounded border border-white/10 text-[10px] font-mono uppercase tracking-wider text-neutral-400">
+              <span className="inline-block px-2.5 py-1 rounded border border-neutral-800 text-[10px] font-mono uppercase tracking-wider text-neutral-400">
                 Creative
               </span>
             </div>
@@ -560,7 +515,7 @@ export default function TicketingLanding({
       {/* 05. WINDOW 5: TICKET SECTION (Pilih Tiketmu) */}
       <section
         id="tickets"
-        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 border-t border-white/10 bg-neutral-950"
+        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 bg-black"
       >
         <div className="max-w-7xl mx-auto w-full">
           {/* Header Row */}
@@ -578,17 +533,17 @@ export default function TicketingLanding({
             </p>
           </div>
 
-          {/* 4 Ticket Cards */}
+          {/* 4 Ticket Cards matching reference image */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {ticketTiers.map((tier) => {
               const isVip = tier.isPopular;
               return (
                 <div
                   key={tier.id}
-                  className={`rounded-xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 relative ${
+                  className={`rounded-xl p-6 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 relative bg-neutral-950 ${
                     isVip
-                      ? "border border-amber-500/60 bg-gradient-to-b from-amber-500/10 via-neutral-900/80 to-neutral-900 shadow-xl shadow-amber-500/10"
-                      : "border border-white/10 bg-neutral-900/40 hover:border-white/25"
+                      ? "border border-amber-500/80 shadow-xl shadow-amber-500/10"
+                      : "border border-neutral-800"
                   }`}
                 >
                   {/* Top Tier Info */}
@@ -604,7 +559,7 @@ export default function TicketingLanding({
                       </div>
                       <div
                         className={`h-4 w-4 rounded-full border flex items-center justify-center ${
-                          isVip ? "border-amber-400" : "border-neutral-600"
+                          isVip ? "border-amber-400" : "border-neutral-700"
                         }`}
                       >
                         {isVip && <div className="h-2 w-2 rounded-full bg-amber-400" />}
@@ -617,7 +572,7 @@ export default function TicketingLanding({
                   </div>
 
                   {/* Price & CTA Button */}
-                  <div className="pt-6 border-t border-white/10">
+                  <div className="pt-6">
                     <div className="text-xl font-light text-white tracking-tight mb-4">
                       {tier.formattedPrice}
                     </div>
@@ -628,7 +583,7 @@ export default function TicketingLanding({
                       className={`w-full h-10 rounded-md text-xs font-light uppercase tracking-wider transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer flex items-center justify-center gap-2 ${
                         isVip
                           ? "bg-[#F4B342] hover:bg-amber-400 text-black font-semibold shadow-lg shadow-amber-500/20"
-                          : "border border-white/20 text-white hover:bg-white/10 bg-white/5"
+                          : "border border-neutral-800 text-white hover:border-neutral-700 bg-neutral-900"
                       }`}
                     >
                       <span>Beli Tiket</span>
@@ -642,22 +597,19 @@ export default function TicketingLanding({
         </div>
       </section>
 
-      {/* 06. WINDOW 6: VENUE SECTION */}
+      {/* 06. WINDOW 6: VENUE SECTION (Direct Photo Without Border) */}
       <section
         id="venue"
-        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 border-t border-white/10 bg-black"
+        className="relative min-h-screen w-full flex items-center justify-center py-24 px-6 sm:px-12 lg:px-20 bg-black"
       >
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-          {/* Left Exterior Venue Image */}
+          {/* Left Exterior Venue Image: Direct clean photo, NO border */}
           <div className="relative">
-            <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-neutral-950 shadow-2xl shadow-black/80 aspect-[16/10]">
-              <img
-                src="/templates/ticketing/venue-exterior.png"
-                alt="The Ritz-Carlton Jakarta Venue"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
-            </div>
+            <img
+              src="/templates/ticketing/venue-exterior.webp"
+              alt="The Ritz-Carlton Jakarta Venue"
+              className="w-full h-auto rounded-2xl shadow-2xl object-cover"
+            />
           </div>
 
           {/* Right Venue Details */}
@@ -669,11 +621,11 @@ export default function TicketingLanding({
               The Ritz-Carlton Jakarta
             </h2>
             <div className="flex items-center gap-2 text-xs font-light text-neutral-300 mb-6">
-              <MapPin className="h-4 w-4 text-amber-400 shrink-0" />
+              <MapPin className="h-4 w-4 text-neutral-400 shrink-0" />
               <span>Jl. Dr. Ide Anak Agung Gde Agung No.1, Jakarta</span>
             </div>
 
-            <p className="text-sm sm:text-base font-light text-neutral-300 leading-relaxed mb-8 max-w-xl">
+            <p className="text-sm sm:text-base font-light text-neutral-400 leading-relaxed mb-8 max-w-xl">
               Berlokasi di jantung Jakarta, The Ritz-Carlton menawarkan pengalaman kelas dunia dengan fasilitas premium yang akan membuat acara ini semakin berkesan.
             </p>
 
@@ -681,20 +633,20 @@ export default function TicketingLanding({
               href="https://maps.google.com/?q=The+Ritz-Carlton+Jakarta+Mega+Kuningan"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center h-11 px-6 rounded-md border border-white/20 text-xs font-light uppercase tracking-wider text-white hover:border-amber-400 hover:text-amber-400 bg-white/5 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer gap-2"
+              className="inline-flex items-center justify-center h-10 px-6 rounded-md border border-neutral-800 text-xs font-light uppercase tracking-wider text-white hover:border-amber-400 hover:text-amber-400 bg-neutral-900 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer gap-2"
             >
               <span>Lihat Lokasi</span>
-              <ArrowUpRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
       </section>
 
-      {/* 07. NEWSLETTER / UPDATE BANNER */}
-      <section className="relative w-full py-16 px-6 sm:px-12 lg:px-20 border-t border-white/10 bg-neutral-950">
+      {/* 07. NEWSLETTER BANNER (Clean Container) */}
+      <section className="relative w-full py-16 px-6 sm:px-12 lg:px-20 bg-black">
         <div className="max-w-7xl mx-auto">
-          <div className="relative rounded-2xl overflow-hidden border border-amber-500/30 p-8 sm:p-12 bg-gradient-to-r from-neutral-950 via-neutral-900 to-neutral-950">
-            {/* Background Texture Accents */}
+          <div className="relative rounded-2xl overflow-hidden border border-neutral-800 p-8 sm:p-12 bg-neutral-950">
+            {/* Ambient Gold Radial Flare */}
             <div className="absolute top-0 right-0 -mr-16 -mt-16 w-80 h-80 rounded-full bg-amber-500/10 blur-3xl pointer-events-none" />
 
             <div className="relative z-10 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
@@ -718,7 +670,7 @@ export default function TicketingLanding({
                   placeholder="Masukkan email kamu"
                   value={newsletterEmail}
                   onChange={(e) => setNewsletterEmail(e.target.value)}
-                  className="h-11 px-4 rounded-md bg-black/60 border border-white/15 text-xs text-white placeholder:text-neutral-500 focus:outline-none focus:border-amber-400 w-full sm:w-72"
+                  className="h-11 px-4 rounded-md bg-black border border-neutral-800 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-neutral-600 w-full sm:w-72"
                 />
                 <button
                   type="submit"
@@ -733,8 +685,8 @@ export default function TicketingLanding({
       </section>
 
       {/* 08. FOOTER */}
-      <footer className="relative w-full border-t border-white/10 bg-black py-12 px-6 sm:px-12 lg:px-20 text-xs font-light text-neutral-400">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
+      <footer className="relative w-full bg-black py-12 px-6 sm:px-12 lg:px-20 text-xs font-light text-neutral-400">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-neutral-900">
           {/* Logo */}
           <div className="text-base font-light tracking-widest text-white">
             LOREM IPSUM
@@ -758,16 +710,16 @@ export default function TicketingLanding({
 
           {/* Social Icons */}
           <div className="flex items-center gap-4">
-            <a href="#" className="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center hover:border-amber-400 hover:text-amber-400 transition-colors cursor-pointer">
+            <a href="#" className="h-8 w-8 rounded-full border border-neutral-800 flex items-center justify-center hover:border-amber-400 hover:text-amber-400 transition-colors cursor-pointer">
               <Instagram className="h-3.5 w-3.5" />
             </a>
-            <a href="#" className="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center hover:border-amber-400 hover:text-amber-400 transition-colors cursor-pointer">
+            <a href="#" className="h-8 w-8 rounded-full border border-neutral-800 flex items-center justify-center hover:border-amber-400 hover:text-amber-400 transition-colors cursor-pointer">
               <Twitter className="h-3.5 w-3.5" />
             </a>
-            <a href="#" className="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center hover:border-amber-400 hover:text-amber-400 transition-colors cursor-pointer">
+            <a href="#" className="h-8 w-8 rounded-full border border-neutral-800 flex items-center justify-center hover:border-amber-400 hover:text-amber-400 transition-colors cursor-pointer">
               <Youtube className="h-3.5 w-3.5" />
             </a>
-            <a href="#" className="h-8 w-8 rounded-full border border-white/10 flex items-center justify-center hover:border-amber-400 hover:text-amber-400 transition-colors cursor-pointer">
+            <a href="#" className="h-8 w-8 rounded-full border border-neutral-800 flex items-center justify-center hover:border-amber-400 hover:text-amber-400 transition-colors cursor-pointer">
               <Linkedin className="h-3.5 w-3.5" />
             </a>
           </div>
@@ -790,7 +742,7 @@ export default function TicketingLanding({
       {/* 09. INTERACTIVE TICKET PURCHASE MODAL DIALOG */}
       {selectedTier && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
-          <div className="relative w-full max-w-lg rounded-2xl border border-white/15 bg-neutral-950 p-6 sm:p-8 shadow-2xl text-left">
+          <div className="relative w-full max-w-lg rounded-2xl border border-neutral-800 bg-neutral-950 p-6 sm:p-8 shadow-2xl text-left">
             {/* Close Button */}
             <button
               onClick={closePurchaseModal}
@@ -813,7 +765,7 @@ export default function TicketingLanding({
                 </p>
 
                 {/* Ticket Quantity & Pricing */}
-                <div className="p-4 rounded-xl border border-white/10 bg-neutral-900/60 mb-6 flex items-center justify-between">
+                <div className="p-4 rounded-xl border border-neutral-800 bg-neutral-900/60 mb-6 flex items-center justify-between">
                   <div>
                     <div className="text-xs font-light text-neutral-400">Harga Satuan</div>
                     <div className="text-base font-medium text-white">{selectedTier.formattedPrice}</div>
@@ -823,7 +775,7 @@ export default function TicketingLanding({
                     <button
                       type="button"
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="h-8 w-8 rounded border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors cursor-pointer"
+                      className="h-8 w-8 rounded border border-neutral-700 flex items-center justify-center text-white hover:bg-neutral-800 transition-colors cursor-pointer"
                     >
                       -
                     </button>
@@ -833,7 +785,7 @@ export default function TicketingLanding({
                     <button
                       type="button"
                       onClick={() => setQuantity(Math.min(10, quantity + 1))}
-                      className="h-8 w-8 rounded border border-white/20 flex items-center justify-center text-white hover:bg-white/10 transition-colors cursor-pointer"
+                      className="h-8 w-8 rounded border border-neutral-700 flex items-center justify-center text-white hover:bg-neutral-800 transition-colors cursor-pointer"
                     >
                       +
                     </button>
@@ -841,7 +793,7 @@ export default function TicketingLanding({
                 </div>
 
                 {/* Total Calculation */}
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+                <div className="flex items-center justify-between mb-6 pb-4 border-b border-neutral-850">
                   <span className="text-xs font-light text-neutral-300">Total Pembayaran ({quantity} tiket)</span>
                   <span className="text-lg font-semibold text-amber-400">
                     Rp {(selectedTier.price * quantity).toLocaleString("id-ID")}
@@ -860,7 +812,7 @@ export default function TicketingLanding({
                       placeholder="Contoh: Budi Santoso"
                       value={buyerName}
                       onChange={(e) => setBuyerName(e.target.value)}
-                      className="w-full h-10 px-3 rounded-lg bg-neutral-900 border border-white/15 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-amber-400"
+                      className="w-full h-10 px-3 rounded-lg bg-neutral-900 border border-neutral-800 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
@@ -874,7 +826,7 @@ export default function TicketingLanding({
                       placeholder="nama@email.com"
                       value={buyerEmail}
                       onChange={(e) => setBuyerEmail(e.target.value)}
-                      className="w-full h-10 px-3 rounded-lg bg-neutral-900 border border-white/15 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-amber-400"
+                      className="w-full h-10 px-3 rounded-lg bg-neutral-900 border border-neutral-800 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
@@ -887,7 +839,7 @@ export default function TicketingLanding({
                       placeholder="0812xxxxxxxx"
                       value={buyerPhone}
                       onChange={(e) => setBuyerPhone(e.target.value)}
-                      className="w-full h-10 px-3 rounded-lg bg-neutral-900 border border-white/15 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-amber-400"
+                      className="w-full h-10 px-3 rounded-lg bg-neutral-900 border border-neutral-800 text-xs text-white placeholder:text-neutral-600 focus:outline-none focus:border-amber-400"
                     />
                   </div>
 
@@ -912,7 +864,7 @@ export default function TicketingLanding({
                   Terima kasih, <strong className="text-white">{buyerName}</strong>. Detail tiket <strong className="text-amber-400">{selectedTier.name} ({quantity}x)</strong> dan instruksi pembayaran telah dikirim ke <strong className="text-white">{buyerEmail}</strong>.
                 </p>
 
-                <div className="p-4 rounded-xl border border-white/10 bg-neutral-900 text-left mb-6 text-xs space-y-1.5 font-light">
+                <div className="p-4 rounded-xl border border-neutral-800 bg-neutral-900 text-left mb-6 text-xs space-y-1.5 font-light">
                   <div className="flex justify-between text-neutral-400">
                     <span>ID Transaksi:</span>
                     <span className="font-mono text-white">#TKT-{Math.floor(100000 + Math.random() * 900000)}</span>
@@ -925,7 +877,7 @@ export default function TicketingLanding({
                     <span>Jumlah:</span>
                     <span className="text-white">{quantity} Tiket</span>
                   </div>
-                  <div className="flex justify-between text-neutral-400 pt-2 border-t border-white/10">
+                  <div className="flex justify-between text-neutral-400 pt-2 border-t border-neutral-800">
                     <span>Total:</span>
                     <span className="text-amber-400 font-semibold">Rp {(selectedTier.price * quantity).toLocaleString("id-ID")}</span>
                   </div>
@@ -934,7 +886,7 @@ export default function TicketingLanding({
                 <button
                   type="button"
                   onClick={closePurchaseModal}
-                  className="w-full h-10 rounded-lg bg-white/10 hover:bg-white/20 text-white text-xs font-light uppercase tracking-wider transition-colors cursor-pointer"
+                  className="w-full h-10 rounded-lg bg-neutral-800 hover:bg-neutral-700 text-white text-xs font-light uppercase tracking-wider transition-colors cursor-pointer"
                 >
                   Selesai
                 </button>

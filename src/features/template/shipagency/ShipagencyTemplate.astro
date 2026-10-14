@@ -2,6 +2,17 @@
 import { getWhatsAppLink } from '../../../lib/utils';
 import '../../../styles/globals.css';
 
+import ShipagencyNavbar from './components/ShipagencyNavbar.astro';
+import HeroSection from './components/HeroSection.astro';
+import FinancingSolutionSection from './components/FinancingSolutionSection.astro';
+import FinancingProductsSection from './components/FinancingProductsSection.astro';
+import WhyChooseUsSection from './components/WhyChooseUsSection.astro';
+import ApplicationProcessSection from './components/ApplicationProcessSection.astro';
+import AchievementsSection from './components/AchievementsSection.astro';
+import TestimonialsSection from './components/TestimonialsSection.astro';
+import FaqSection from './components/FaqSection.astro';
+import ShipagencyFooter from './components/ShipagencyFooter.astro';
+
 interface Props {
   lang?: 'id' | 'en';
 }
@@ -9,8 +20,8 @@ interface Props {
 const { lang = 'id' } = Astro.props;
 
 const templateTitle = lang === 'en' 
-  ? "Template 04: Maritime Port Agency & Vessel Clearance" 
-  : "Template 04: Keagenan Kapal Pelabuhan & Maritim";
+  ? "Template 04: Maritime Port Agency & Fleet Financing" 
+  : "Template 04: Keagenan Kapal Pelabuhan & Pembiayaan Maritim";
 const templatePrice = "Rp 1.400.000";
 const buyUrl = getWhatsAppLink('template', lang, templateTitle);
 const catalogUrl = `/${lang}/templates`;
@@ -24,9 +35,9 @@ const catalogUrl = `/${lang}/templates`;
   <title>{templateTitle} - Live Demo</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
-<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950">
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen">
 
-  <!--  Top Sticky Demo Header Bar  -->
+  <!-- Top Sticky Demo Header Bar -->
   <header class="sticky top-0 z-50 bg-[#0f172a] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
     <div class="flex items-center gap-3">
       <a 
@@ -41,7 +52,7 @@ const catalogUrl = `/${lang}/templates`;
     </div>
 
     <div class="flex items-center gap-3">
-      <span class="text-slate-300 font-mono hidden md:inline">{templatePrice} </span>
+      <span class="text-slate-300 font-mono hidden md:inline">{templatePrice}</span>
       <a
         href={buyUrl}
         target="_blank"
@@ -53,200 +64,38 @@ const catalogUrl = `/${lang}/templates`;
     </div>
   </header>
 
-  <!--  Maritime Header matching docs/shipagrncy Navbar.tsx  -->
-  <header
-    id="ship-nav"
-    class="fixed top-[41px] left-0 right-0 z-40 w-full px-6 sm:px-12 py-4 transition-all duration-300 bg-transparent"
-  >
-    <div class="mx-auto max-w-7xl flex items-center justify-between gap-4">
-      <!--  Logo & Brand  -->
-      <a href="#beranda" class="flex items-center gap-2 cursor-pointer group">
-        <span class="text-base sm:text-lg font-extrabold tracking-tight text-white group-hover:text-emerald-400 transition-colors drop-shadow-md cursor-pointer">
-          PT. LOREM IPSUM MARITIME
-        </span>
-      </a>
+  <!-- Sticky Maritime Floating Navbar -->
+  <ShipagencyNavbar lang={lang} />
 
-      <!--  Navigation Links  -->
-      <nav class="hidden md:flex items-center gap-6 text-xs font-semibold text-slate-200 tracking-wide">
-        <a
-          href="#beranda"
-          class="text-emerald-400 font-bold border-b-2 border-emerald-400 pb-0.5 cursor-pointer"
-        >
-          {lang === 'en' ? 'Home' : 'Beranda'}
-        </a>
-        <a href="#layanan" class="hover:text-emerald-400 transition-colors cursor-pointer">
-          {lang === 'en' ? 'Services' : 'Layanan'}
-        </a>
-        <a href="#armada" class="hover:text-emerald-400 transition-colors cursor-pointer">
-          {lang === 'en' ? 'Vessels' : 'Armada'}
-        </a>
-        <a href="#operasional" class="hover:text-emerald-400 transition-colors cursor-pointer">
-          {lang === 'en' ? 'Statistics' : 'Statistik'}
-        </a>
-      </nav>
+  <!-- Main Sections Orchestration (1 Section = 1 Window Layout Cadence) -->
+  <main class="w-full">
+    <!-- 01. Hero Section (100dvh) -->
+    <HeroSection lang={lang} />
 
-      <!--  Right Header Actions  -->
-      <div class="flex items-center gap-4">
-        <!--  Flag Switcher  -->
-        <a
-          href={`/${lang === 'id' ? 'en' : 'id'}/templates/demo/shipagency`}
-          class="cursor-pointer transition-transform hover:scale-110 active:scale-95 flex items-center justify-center p-0"
-          title={lang === 'id' ? 'Switch to English' : 'Switch to Bahasa Indonesia'}
-        >
-          <img
-            src={lang === 'id' ? '/templates/shipagency/flag/flag-for-flag-monaco-svgrepo-com.svg' : '/templates/shipagency/flag/flag-for-flag-united-kingdom-svgrepo-com.svg'}
-            alt={lang.toUpperCase()}
-            class="w-6 h-4 object-cover rounded-xs shadow-xs"
-          />
-        </a>
+    <!-- 02. Financing Solutions Section (100dvh) -->
+    <FinancingSolutionSection lang={lang} />
 
-        <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-[11px] font-mono text-emerald-400">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          <span>VHF CH 16 STANDBY</span>
-        </div>
+    <!-- 03. Financing Products 4-Card Section (100dvh) -->
+    <FinancingProductsSection lang={lang} />
 
-        <a
-          href="#kontak"
-          class="hidden sm:inline-flex h-9 px-4 rounded bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-semibold text-xs uppercase tracking-wider items-center justify-center transition-colors cursor-pointer"
-        >
-          {lang === 'en' ? 'Contact Agency' : 'Hubungi Agen'}
-        </a>
-      </div>
-    </div>
-  </header>
+    <!-- 04. Why Choose Us Section with Vessel Watermark (100dvh) -->
+    <WhyChooseUsSection lang={lang} />
 
-  <script>
-    const shipNav = document.getElementById('ship-nav');
-    window.addEventListener('scroll', () => {
-      if (window.scrollY > 20) {
-        shipNav?.classList.add('bg-slate-950/85', 'backdrop-blur-md', 'border-b', 'border-slate-800');
-        shipNav?.classList.remove('bg-transparent');
-      } else {
-        shipNav?.classList.remove('bg-slate-950/85', 'backdrop-blur-md', 'border-b', 'border-slate-800');
-        shipNav?.classList.add('bg-transparent');
-      }
-    }, { passive: true });
-  </script>
+    <!-- 05. Application Process 4-Step Flow (100dvh) -->
+    <ApplicationProcessSection lang={lang} />
 
-  <!--  01. HERO SECTION (100% exact match of HeroSection.tsx from docs/shipagrncy)  -->
-  <section
-    id="beranda"
-    class="relative h-[100dvh] min-h-[100dvh] max-h-[100dvh] w-full bg-slate-950 text-slate-100 flex flex-col justify-between overflow-hidden selection:bg-emerald-500 selection:text-slate-950"
-  >
-    <!--  LAYER 0 (z-0): BACKGROUND IMAGE (STATIC, HEAVY OVERLAY)  -->
-    <div class="absolute inset-0 z-0 h-full w-full pointer-events-none">
-      <img
-        src="/templates/shipagency/hero-bg.webp"
-        alt="Ship Agency Background"
-        class="w-full h-full object-cover object-center opacity-65 scale-105"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-gradient-to-b from-slate-950/85 via-slate-950/50 to-slate-950"></div>
-    </div>
+    <!-- 06. Achievements & Track Record Section (90-100dvh) -->
+    <AchievementsSection lang={lang} />
 
-    <!--  Intense Dark Bottom Shadow  -->
-    <div class="absolute inset-x-0 bottom-0 h-36 sm:h-44 lg:h-48 bg-gradient-to-t from-slate-950 via-slate-950/95 via-50% to-transparent z-25 pointer-events-none"></div>
+    <!-- 07. Testimonials Carousel Section (100dvh) -->
+    <TestimonialsSection lang={lang} />
 
-    <!--  LAYER 2 (z-20): HERO PEOPLE FOREGROUND  -->
-    <div class="relative z-20 w-full max-w-[1650px] h-[78vh] sm:h-[86vh] lg:h-[92vh] mx-auto pointer-events-none flex items-end justify-center px-0 mt-auto">
-      <div class="relative w-[680px] sm:w-full min-w-[680px] sm:min-w-0 h-full flex items-end justify-center shrink-0">
-        <img
-          src="/templates/shipagency/hero-people.webp"
-          alt="Lorem Ipsum Maritime Team"
-          class="w-full h-full object-contain object-bottom scale-100 sm:scale-115 lg:scale-120 translate-y-1 sm:translate-y-10 lg:translate-y-16 drop-shadow-[0_45px_100px_rgba(0,0,0,0.85)]"
-          loading="eager"
-        />
-      </div>
-    </div>
+    <!-- 08. FAQ 2-Column Accordion Section (100dvh) -->
+    <FaqSection lang={lang} />
+  </main>
 
-    <!--  LAYER 3 (z-30): TYPOGRAPHY OVERLAY  -->
-    <div class="absolute top-[300px] sm:top-auto sm:bottom-10 inset-x-0 z-30 px-4 sm:px-8 text-center pointer-events-none select-none">
-      <h1 class="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tight leading-none drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)] whitespace-normal sm:whitespace-nowrap">
-        LOREM IPSUM
-      </h1>
-      <p class="text-sm sm:text-lg lg:text-2xl text-slate-200/90 font-semibold tracking-wide drop-shadow-[0_8px_20px_rgba(0,0,0,0.8)] mt-2 sm:mt-3 max-w-3xl mx-auto">
-        {lang === 'en' ? 'Outsourcing Port & Vessel Agency' : 'Outsourcing Agen Perkapalan & Maritim'}
-      </p>
-    </div>
-  </section>
-
-  <!--  02. SERVICES SECTION  -->
-  <section id="layanan" class="relative z-20 min-h-screen bg-slate-950 py-16 sm:py-24 px-6 sm:px-10 border-t border-slate-900 shadow-2xl shadow-black/90 flex flex-col justify-center">
-    <div class="max-w-7xl mx-auto relative z-10 w-full">
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-14 text-center lg:text-left">
-        <div>
-          <span class="text-emerald-400 font-mono text-xs font-semibold uppercase tracking-wider block mb-2">
-            PORT AGENCY SOLUTIONS
-          </span>
-          <h2 class="text-white text-2xl sm:text-4xl font-bold tracking-tight max-w-xl leading-tight">
-            Layanan Komprehensif Keagenan Kapal &amp; Pelabuhan
-          </h2>
-        </div>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg lg:text-right font-light">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mendukung kelancaran turnaround time kapal di seluruh pelabuhan utama.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 w-full">
-        <div class="rounded-xl bg-[#091129]/80 border border-[#1a2d54] p-6 hover:border-emerald-500/50 transition-all hover:-translate-y-1">
-          <div class="w-12 h-12 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
-            👥
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Crew Handling &amp; Husbandry</h3>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-            Pergantian kru, penjemputan bandara, izin imigrasi, dan kebutuhan medis kapal.
-          </p>
-        </div>
-
-        <div class="rounded-xl bg-[#091129]/80 border border-[#1a2d54] p-6 hover:border-emerald-500/50 transition-all hover:-translate-y-1">
-          <div class="w-12 h-12 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
-            📄
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Port Clearance &amp; Dokumen</h3>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-            Pengurusan izin sandar, bea cukai, karantina, dan sertifikasi kelaiklautan kapal.
-          </p>
-        </div>
-
-        <div class="rounded-xl bg-[#091129]/80 border border-[#1a2d54] p-6 hover:border-emerald-500/50 transition-all hover:-translate-y-1">
-          <div class="w-12 h-12 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
-            ⛽
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Bunkering &amp; Fresh Water</h3>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-            Pasokan bahan bakar laut MGO/VLSFO, pelumas, dan air tawar berkualitas tinggi.
-          </p>
-        </div>
-
-        <div class="rounded-xl bg-[#091129]/80 border border-[#1a2d54] p-6 hover:border-emerald-500/50 transition-all hover:-translate-y-1">
-          <div class="w-12 h-12 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
-            ⚓
-          </div>
-          <h3 class="text-lg font-bold text-white mb-2">Stevedoring &amp; Cargo</h3>
-          <p class="text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
-            Koordinasi bongkar muat kargo curah, peti kemas, dan kapal tanker secara efisien.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!--  03. FOOTER  -->
-  <footer id="kontak" class="bg-slate-950 text-white py-16 px-6 sm:px-12 border-t border-slate-900">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-      <div>
-        <span class="text-xl font-black tracking-tight text-white">
-          PT. LOREM IPSUM MARITIME
-        </span>
-        <p class="text-xs text-slate-400 mt-2">
-          Layanan Keagenan Kapal Pelabuhan Terpercaya &bull; 24/7 Port Operation
-        </p>
-      </div>
-      <p class="text-xs text-slate-500">
-        &copy; 2026 PT. Lorem Ipsum Maritime. All rights reserved.
-      </p>
-    </div>
-  </footer>
+  <!-- 09. Dark Navy Footer -->
+  <ShipagencyFooter lang={lang} />
 
 </body>
 </html>

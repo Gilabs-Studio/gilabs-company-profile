@@ -1,0 +1,119 @@
+---
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const faqs = [
+  {
+    q: lang === 'en'
+      ? 'What documents are required to apply for financing?'
+      : 'Apa saja dokumen yang dibutuhkan untuk pengajuan pembiayaan?',
+    a: lang === 'en'
+      ? 'Corporate legal documents (NIB, business license), audited financial statements from the past 2 years, vessel ownership documentation (Grosse Akte, Seaworthiness Certificates), and the procurement proposal.'
+      : 'Dokumen legalitas perusahaan (NIB, SIUP/NIB), laporan keuangan 2 tahun terakhir, dokumen kelaiklautan dan kepemilikan kapal (Grosse Akte, Sertifikat Statutoria), serta proposal rencana pembiayaan.'
+  },
+  {
+    q: lang === 'en'
+      ? 'What types of vessels are eligible for financing?'
+      : 'Apa saja jenis kapal yang bisa dibiayai?',
+    a: lang === 'en'
+      ? 'We support commercial vessels including container cargo ships, oil/chemical tankers, tugboats, barges, passenger vessels, and offshore support vessels (OSV).'
+      : 'Kami membiayai berbagai jenis kapal niaga seperti kapal kargo kontainer, tanker minyak/kimia, tugboat, tongkang (barge), kapal perintis, dan offshore support vessel (OSV).'
+  },
+  {
+    q: lang === 'en'
+      ? 'How long does the financing approval process take?'
+      : 'Berapa lama proses persetujuan pembiayaan?',
+    a: lang === 'en'
+      ? 'Initial assessment takes 24 hours, and final committee approval generally completes within 3 to 7 working days upon complete document submission.'
+      : 'Pemeriksaan awal berlangsung dalam 24 jam, dan persetujuan komite pembiayaan umumnya selesai dalam 3 hingga 7 hari kerja setelah seluruh berkas lengkap.'
+  },
+  {
+    q: lang === 'en'
+      ? 'What are the available installment payment methods?'
+      : 'Bagaimana cara pembayaran angsuran?',
+    a: lang === 'en'
+      ? 'Installments can be serviced via automated bank direct debit or corporate wire transfer, scheduled monthly or tied to charter freight cycles.'
+      : 'Pembayaran angsuran dapat dilakukan melalui auto-debet perbankan atau transfer rekening koran perusahaan dengan skema bulanan yang disesuaikan arus kas charter.'
+  },
+  {
+    q: lang === 'en'
+      ? 'Are there any hidden administration fees?'
+      : 'Apakah ada biaya administrasi?',
+    a: lang === 'en'
+      ? 'All administrative fees, notary legalities, and provision rates are fully declared upfront in the financing term sheet with zero hidden charges.'
+      : 'Seluruh biaya administrasi, provisi, dan legalitas notaris diuraikan secara transparan di awal tanpa ada biaya siluman atau tersembunyi.'
+  },
+  {
+    q: lang === 'en'
+      ? 'Is collateral required for vessel financing?'
+      : 'Apakah ada agunan untuk pembiayaan kapal?',
+    a: lang === 'en'
+      ? 'The principal security is typically the vessel asset itself via maritime mortgage registration, accompanied by tailored corporate guarantees.'
+      : 'Agunan utama pada umumnya adalah unit kapal yang dibiayai (hipotek kapal maritim resmi) didukung jaminan fidusia operasional sesuai kesepakatan.'
+  }
+];
+---
+
+<section
+  id="faq"
+  class="relative min-h-[100dvh] w-full bg-white text-slate-900 flex flex-col justify-center items-center py-20 sm:py-24 px-6 sm:px-12 lg:px-16 border-t border-slate-100"
+>
+  <div class="mx-auto max-w-7xl w-full">
+    <!-- Top Header Row -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 sm:mb-14">
+      <div>
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">
+          <span>{lang === 'en' ? 'FREQUENTLY ASKED QUESTIONS' : 'PERTANYAAN YANG SERING DIAJUKAN'}</span>
+        </div>
+
+        <h2 class="text-2xl sm:text-4xl lg:text-4xl font-black text-[#0c2340] tracking-tight leading-tight">
+          {lang === 'en' ? 'Questions About Vessel Financing' : 'Pertanyaan Seputar Pembiayaan'}
+        </h2>
+
+        <p class="text-slate-600 text-xs sm:text-sm mt-2 max-w-xl leading-relaxed">
+          {lang === 'en'
+            ? 'Find immediate answers to common inquiries regarding our maritime credit and fleet solutions.'
+            : 'Temukan jawaban atas pertanyaan yang sering diajukan terkait layanan pembiayaan kami.'}
+        </p>
+      </div>
+
+      <!-- Right Action Pill Button -->
+      <div>
+        <a
+          href="#kontak"
+          class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-blue-200 hover:border-blue-400 bg-white hover:bg-blue-50 text-blue-700 font-bold text-xs sm:text-sm shadow-xs transition-all hover:-translate-y-0.5 cursor-pointer shrink-0"
+        >
+          <span>{lang === 'en' ? 'View All FAQs' : 'Lihat Semua FAQ'}</span>
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- 2 Column x 3 Row FAQ Accordion Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5 w-full">
+      {faqs.map((faq, idx) => (
+        <details
+          class="faq-item group bg-[#f8fafc] border border-blue-100/80 rounded-2xl p-5 hover:border-blue-300 transition-all duration-200 cursor-pointer open:bg-blue-50/40 open:border-blue-300"
+        >
+          <summary class="flex items-center justify-between gap-4 font-bold text-xs sm:text-sm text-slate-800 list-none select-none cursor-pointer">
+            <span class="group-open:text-blue-700 transition-colors">
+              {faq.q}
+            </span>
+            <span class="w-6 h-6 rounded-full bg-blue-100/70 text-blue-700 flex items-center justify-center shrink-0 text-sm font-bold group-open:rotate-45 transition-transform duration-200">
+              +
+            </span>
+          </summary>
+          <div class="pt-3.5 mt-2 border-t border-blue-100/60 text-xs sm:text-sm text-slate-600 leading-relaxed font-normal">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

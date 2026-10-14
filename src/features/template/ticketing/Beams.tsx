@@ -90,11 +90,15 @@ function extendMaterial<T extends THREE.Material = THREE.Material>(
   return mat;
 }
 
-const CanvasWrapper: FC<{ children: ReactNode }> = ({ children }) => (
+const CanvasWrapper: FC<{ children: ReactNode; onCreated?: () => void }> = ({
+  children,
+  onCreated,
+}) => (
   <Canvas
     dpr={[1, 2]}
     frameloop="always"
     className="w-full h-full relative"
+    onCreated={onCreated}
     gl={{
       outputColorSpace: THREE.SRGBColorSpace,
       toneMapping: THREE.NoToneMapping,
@@ -199,6 +203,7 @@ export interface BeamsProps {
   scale?: number;
   rotation?: number;
   backgroundImage?: string;
+  onReady?: () => void;
 }
 
 export const Beams: FC<BeamsProps> = React.memo(
@@ -212,6 +217,7 @@ export const Beams: FC<BeamsProps> = React.memo(
     scale = 0.2,
     rotation = 0,
     backgroundImage = "/templates/ticketing/bg.jpg",
+    onReady,
   }) => {
     const meshRef = useRef<
       THREE.Mesh<THREE.BufferGeometry, THREE.ShaderMaterial>
@@ -277,7 +283,7 @@ export const Beams: FC<BeamsProps> = React.memo(
     );
 
     return (
-      <CanvasWrapper>
+      <CanvasWrapper onCreated={() => onReady?.()}>
         <Suspense fallback={null}>
           <BackgroundScene imageUrl={backgroundImage} />
         </Suspense>
@@ -288,6 +294,7 @@ export const Beams: FC<BeamsProps> = React.memo(
             count={beamNumber}
             width={beamWidth}
             height={beamHeight}
+            onReady={onReady}
           />
           <DirLight color={lightColor} position={[0, 3, 10]} />
         </group>
@@ -364,8 +371,9 @@ const MergedPlanes = forwardRef<
     width: number;
     count: number;
     height: number;
+    onReady?: () => void;
   }
->(({ material, width, count, height }, ref) => {
+>(({ material, width, count, height, onReady }, ref) => {
   const mesh = useRef<THREE.Mesh<THREE.BufferGeometry, THREE.ShaderMaterial>>(
     null!,
   );
@@ -374,9 +382,15 @@ const MergedPlanes = forwardRef<
     () => createStackedPlanesBufferGeometry(count, width, height, 0, 100),
     [count, width, height],
   );
+  const readyFired = useRef(false);
+
   useFrame((_, delta) => {
     if (mesh.current?.material?.uniforms?.time) {
-      mesh.current.material.uniforms.time.value += 0.1 * delta;
+      mesh.current.material.uniforms.time.value += 0.8 * delta;
+      if (!readyFired.current) {
+        readyFired.current = true;
+        onReady?.();
+      }
     }
   });
   return <mesh ref={mesh} geometry={geometry} material={material} />;
@@ -390,6 +404,7 @@ const PlaneNoise = forwardRef<
     width: number;
     count: number;
     height: number;
+    onReady?: () => void;
   }
 >((props, ref) => (
   <MergedPlanes
@@ -398,6 +413,7 @@ const PlaneNoise = forwardRef<
     width={props.width}
     count={props.count}
     height={props.height}
+    onReady={props.onReady}
   />
 ));
 PlaneNoise.displayName = "PlaneNoise";

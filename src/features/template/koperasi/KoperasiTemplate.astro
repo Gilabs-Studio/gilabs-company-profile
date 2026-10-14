@@ -9,11 +9,308 @@ interface Props {
 const { lang = 'id' } = Astro.props;
 
 const templateTitle = lang === 'en' 
-  ? "Template 03: Cooperative Financial & Member Governance" 
-  : "Template 03: Tata Kelola Finansial & Anggota Koperasi";
-const templatePrice = "Rp 1.350.000";
+  ? "Digital Cooperative & Finance Platform" 
+  : "Website Koperasi Digital & Keuangan";
+const templatePrice = "Rp 1.250.000";
 const buyUrl = getWhatsAppLink('template', lang, templateTitle);
 const catalogUrl = `/${lang}/templates`;
+
+const content = {
+  id: {
+    backToCatalog: "Kembali ke Katalog",
+    purchaseTemplate: "Beli Template Ini",
+    nav: {
+      home: "Beranda",
+      about: "Tentang",
+      products: "Produk",
+      features: "Fitur Utama",
+      security: "Keamanan",
+      memberPortal: "Portal Anggota",
+    },
+    hero: {
+      badge: "Solusi Finansial Terpadu",
+      highlight: "Digitalisasi",
+      title: "Keuangan Koperasi untuk Masa Depan yang Lebih Baik",
+      subtitle: "Platform finance modern yang membantu koperasi mengelola keuangan, simpanan, pinjaman, dan layanan keuangan lainnya dengan mudah, aman, dan transparan.",
+      ctaPrimary: "Mulai Sekarang",
+      ctaSecondary: "Pelajari Lebih Lanjut",
+      trust1: "Aman & Terpercaya",
+      trust2: "Mudah Digunakan",
+      trust3: "Transparan",
+    },
+    features: {
+      badge: "FITUR UNGGULAN",
+      title: "Semua Kebutuhan Keuangan Koperasi dalam Satu Platform",
+      subtitle: "Kami menghadirkan solusi lengkap untuk mendukung pengelolaan keuangan koperasi secara digital, efisien, dan aman.",
+      readMore: "Pelajari Selengkapnya",
+      items: [
+        {
+          img: "/templates/koperasi/images/illustrations/modul-simpanan.webp",
+          title: "Simpanan Anggota",
+          desc: "Kelola simpanan anggota dengan aman, mudah, dan terintegrasi.",
+        },
+        {
+          img: "/templates/koperasi/images/illustrations/modul-pinjaman.webp",
+          title: "Pinjaman & Pembiayaan",
+          desc: "Proses pinjaman cepat dan transparan untuk mendukung kebutuhan anggota.",
+        },
+        {
+          img: "/templates/koperasi/images/illustrations/modul-anggota.webp",
+          title: "Data Anggota Mandiri",
+          desc: "Anggota dapat mengakses informasi pribadi dan transaksi secara mandiri.",
+        },
+      ]
+    },
+    about: {
+      badge: "TENTANG PRODUK",
+      title: "Solusi Finance Digital untuk Koperasi Modern",
+      desc: "Finance adalah platform digital yang dirancang khusus untuk koperasi, memberikan kemudahan dalam pengelolaan keuangan, transaksi simpanan, pinjaman, serta pelaporan keuangan secara real-time dan terintegrasi.",
+      points: [
+        "Pengelolaan keuangan yang lebih efisien",
+        "Akses data kapan saja dan di mana saja",
+        "Terintegrasi dengan sistem koperasi",
+        "Mendukung pertumbuhan anggota dan koperasi"
+      ],
+      cta: "Jelajahi Fitur",
+    },
+    howItWorks: {
+      badge: "CARA KERJA",
+      title: "Mudah, Cepat, dan Aman",
+      subtitle: "Hanya dalam beberapa langkah, Anda sudah bisa menikmati seluruh layanan keuangan koperasi secara digital.",
+      steps: [
+        {
+          step: "1. Daftar Akun",
+          desc: "Daftar sebagai anggota koperasi melalui aplikasi atau website.",
+        },
+        {
+          step: "2. Verifikasi Data",
+          desc: "Lengkapi data diri dan verifikasi identitas secara online.",
+        },
+        {
+          step: "3. Mulai Bertransaksi",
+          desc: "Akses layanan simpanan, pinjaman, dan fitur lainnya dengan mudah.",
+        },
+        {
+          step: "4. Nikmati Layanan",
+          desc: "Kelola keuangan koperasi Anda dengan aman dan nyaman.",
+        },
+      ]
+    },
+    stats: {
+      badge: "BERSAMA KOPERASI",
+      title: "Tumbuh Lebih Kuat, Lebih Mandiri",
+      items: [
+        { value: "120+", label: "Koperasi Mitra" },
+        { value: "50.000+", label: "Anggota Aktif" },
+        { value: "99,9%", label: "Uptime Sistem" }
+      ]
+    },
+    modules: {
+      badge: "MODUL UTAMA",
+      title: "Fitur Lengkap untuk Pengelolaan Koperasi",
+      desc: "Semua fitur yang Anda butuhkan untuk mengelola koperasi, dalam satu ekosistem digital.",
+      cta: "Lihat Semua Fitur",
+      items: [
+        {
+          title: "Simpanan Anggota",
+          desc: "Kelola simpanan dengan fleksibel dan aman.",
+          icon: "piggy"
+        },
+        {
+          title: "Pinjaman & Pembiayaan",
+          desc: "Proses cepat, bunga kompetitif.",
+          icon: "loan"
+        },
+        {
+          title: "Pembukuan & Laporan",
+          desc: "Laporan keuangan real-time dan akurat.",
+          icon: "report"
+        },
+        {
+          title: "Manajemen Anggota",
+          desc: "Data anggota terpusat dan terintegrasi.",
+          icon: "users"
+        },
+        {
+          title: "Notifikasi & Pengingat",
+          desc: "Pengingat otomatis untuk setiap transaksi.",
+          icon: "bell"
+        },
+        {
+          title: "Keamanan Data",
+          desc: "Teknologi enkripsi dan backup berkala.",
+          icon: "shield"
+        }
+      ]
+    },
+    testimonials: {
+      badge: "APA KATA MEREKA",
+      title: "Dipercaya oleh Ratusan Koperasi di Seluruh Indonesia",
+      quote: "Sejak menggunakan platform ini, pengelolaan keuangan koperasi kami menjadi jauh lebih mudah dan transparan. Anggota juga lebih aktif menggunakan layanan digital.",
+      author: "Budi Santoso",
+      role: "Ketua Koperasi Sejahtera Bersama",
+      avatar: "/templates/koperasi/images/avatar-budi.webp"
+    },
+    ctaBanner: {
+      title: "Siap Meningkatkan Efisiensi Keuangan Koperasi Anda?",
+      desc: "Bergabung sekarang dan rasakan kemudahan mengelola keuangan koperasi secara digital dengan Finance.",
+      cta: "Daftar Sekarang"
+    },
+    footer: {
+      copyright: "© 2025 LoremIpsum. All rights reserved.",
+      terms: "Syarat & Ketentuan",
+      privacy: "Kebijakan Privasi"
+    }
+  },
+  en: {
+    backToCatalog: "Back to Catalog",
+    purchaseTemplate: "Purchase Template",
+    nav: {
+      home: "Home",
+      about: "About",
+      products: "Products",
+      features: "Features",
+      security: "Security",
+      memberPortal: "Member Portal",
+    },
+    hero: {
+      badge: "Integrated Financial Solution",
+      highlight: "Digitalizing",
+      title: "Cooperative Finance for a Brighter Future",
+      subtitle: "A modern fintech platform helping cooperatives manage finances, savings, loans, and other financial services easily, securely, and transparently.",
+      ctaPrimary: "Get Started Now",
+      ctaSecondary: "Learn More",
+      trust1: "Secure & Trusted",
+      trust2: "Easy to Use",
+      trust3: "Transparent",
+    },
+    features: {
+      badge: "FEATURED CAPABILITIES",
+      title: "All Cooperative Financial Needs in One Unified Platform",
+      subtitle: "We provide comprehensive solutions to empower digital, efficient, and secure cooperative financial management.",
+      readMore: "Learn More",
+      items: [
+        {
+          img: "/templates/koperasi/images/illustrations/modul-simpanan.webp",
+          title: "Member Savings",
+          desc: "Manage member savings securely, easily, and fully integrated.",
+        },
+        {
+          img: "/templates/koperasi/images/illustrations/modul-pinjaman.webp",
+          title: "Loans & Financing",
+          desc: "Swift and transparent loan processing to support member needs.",
+        },
+        {
+          img: "/templates/koperasi/images/illustrations/modul-anggota.webp",
+          title: "Member Self-Service",
+          desc: "Members can access personal information and transaction records independently.",
+        },
+      ]
+    },
+    about: {
+      badge: "ABOUT THE PRODUCT",
+      title: "Digital Finance Solutions for Modern Cooperatives",
+      desc: "Finance is a digital platform specifically engineered for cooperatives, offering effortless financial management, transactions, and real-time synchronized reporting.",
+      points: [
+        "More efficient financial governance",
+        "Data access anytime and anywhere",
+        "Integrated seamlessly with cooperative workflows",
+        "Accelerating member and cooperative growth"
+      ],
+      cta: "Explore Features",
+    },
+    howItWorks: {
+      badge: "HOW IT WORKS",
+      title: "Simple, Fast, and Secure",
+      subtitle: "Enjoy all digital cooperative financial services in just a few simple steps.",
+      steps: [
+        {
+          step: "1. Register Account",
+          desc: "Register as a cooperative member via mobile app or website.",
+        },
+        {
+          step: "2. Verify Identity",
+          desc: "Complete personal profile and identity verification online.",
+        },
+        {
+          step: "3. Start Transacting",
+          desc: "Access savings, loans, and payment features with ease.",
+        },
+        {
+          step: "4. Enjoy Services",
+          desc: "Govern your cooperative finances comfortably and securely.",
+        },
+      ]
+    },
+    stats: {
+      badge: "WITH COOPERATIVE",
+      title: "Grow Stronger, More Independent",
+      items: [
+        { value: "120+", label: "Partner Cooperatives" },
+        { value: "50,000+", label: "Active Members" },
+        { value: "99.9%", label: "System Uptime" }
+      ]
+    },
+    modules: {
+      badge: "MAIN MODULES",
+      title: "Comprehensive Features for Cooperative Management",
+      desc: "All the capabilities you need to manage your cooperative within a unified digital ecosystem.",
+      cta: "View All Features",
+      items: [
+        {
+          title: "Member Savings",
+          desc: "Manage savings with flexibility and high security.",
+          icon: "piggy"
+        },
+        {
+          title: "Loans & Credit",
+          desc: "Fast processing with competitive loan interest calculation.",
+          icon: "loan"
+        },
+        {
+          title: "Bookkeeping & Reports",
+          desc: "Real-time and accurate financial statements.",
+          icon: "report"
+        },
+        {
+          title: "Member Management",
+          desc: "Centralized and synchronized member database.",
+          icon: "users"
+        },
+        {
+          title: "Alerts & Notifications",
+          desc: "Automated real-time notifications for every transaction.",
+          icon: "bell"
+        },
+        {
+          title: "Data Security",
+          desc: "Military-grade encryption and scheduled backups.",
+          icon: "shield"
+        }
+      ]
+    },
+    testimonials: {
+      badge: "TESTIMONIALS",
+      title: "Trusted by Hundreds of Cooperatives Across Indonesia",
+      quote: "Since using this platform, our cooperative financial management has become significantly easier and transparent. Members are also much more active in using digital services.",
+      author: "Budi Santoso",
+      role: "Chairman of Sejahtera Bersama Cooperative",
+      avatar: "/templates/koperasi/images/avatar-budi.webp"
+    },
+    ctaBanner: {
+      title: "Ready to Boost Your Cooperative's Financial Efficiency?",
+      desc: "Join today and experience the convenience of modern cooperative digital finance.",
+      cta: "Register Now"
+    },
+    footer: {
+      copyright: "© 2025 LoremIpsum. All rights reserved.",
+      terms: "Terms & Conditions",
+      privacy: "Privacy Policy"
+    }
+  }
+};
+
+const t = content[lang];
 ---
 
 <!DOCTYPE html>
@@ -23,377 +320,695 @@ const catalogUrl = `/${lang}/templates`;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{templateTitle} - Live Demo</title>
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+  </style>
 </head>
-<body class="bg-[#FAF9F5] text-stone-900 font-sans antialiased selection:bg-stone-900 selection:text-white">
+<body class="bg-white text-slate-800 antialiased selection:bg-blue-600 selection:text-white">
 
-  <!--  Top Sticky Demo Header Bar  -->
-  <header class="sticky top-0 z-50 bg-[#0f172a] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
+  <!-- ==========================================
+       00. TOP STICKY DEMO HEADER (GiLabs Bar)
+       ========================================== -->
+  <header class="sticky top-0 z-50 bg-[#0A1128] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800/80 shadow-md">
     <div class="flex items-center gap-3">
       <a 
         href={catalogUrl} 
-        class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-medium"
+        class="text-slate-400 hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer font-medium"
       >
-        <span>←</span>
-        <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
+        <span>&larr;</span>
+        <span>{t.backToCatalog}</span>
       </a>
-      <span class="text-slate-600 hidden sm:inline">|</span>
+      <span class="text-slate-700 hidden sm:inline">|</span>
       <span class="font-semibold text-slate-200 hidden sm:inline">{templateTitle}</span>
     </div>
 
     <div class="flex items-center gap-3">
-      <span class="text-slate-300 font-mono hidden md:inline">{templatePrice} </span>
+      <span class="text-slate-300 font-mono hidden md:inline font-semibold">{templatePrice}</span>
       <a
         href={buyUrl}
         target="_blank"
         rel="noopener noreferrer"
-        class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3.5 py-1.5 rounded text-xs transition-colors cursor-pointer"
+        class="bg-blue-600 hover:bg-blue-500 text-white font-medium px-4 py-1.5 rounded text-xs transition-all shadow-sm hover:shadow-blue-500/20 cursor-pointer"
       >
-        {lang === 'en' ? 'Purchase Template' : 'Beli Template Ini'}
+        {t.purchaseTemplate}
       </a>
     </div>
   </header>
 
-  <!--  Floating Minimalist Pill Navbar matching docs/koperasi landing-navbar.tsx  -->
+  <!-- ==========================================
+       01. FLOATING MINIMALIST PILL NAVBAR
+       ========================================== -->
   <header class="fixed top-[45px] inset-x-0 z-40 max-w-5xl mx-auto px-4 mt-3">
-    <div class="rounded-full bg-white/85 backdrop-blur-md border border-stone-200/80 px-6 py-3 flex items-center justify-between shadow-sm">
-      <a href="#hero" class="flex items-center gap-2.5 cursor-pointer">
-        <div class="w-7 h-7 rounded-full bg-stone-900 text-white flex items-center justify-center font-serif text-xs font-bold">
+    <div class="rounded-full bg-white/95 backdrop-blur-md border border-slate-200/80 px-6 py-2.5 flex items-center justify-between shadow-sm transition-all hover:shadow-md">
+      <!-- Logo -->
+      <a href="#hero" class="flex items-center gap-2.5 cursor-pointer group">
+        <div class="w-7 h-7 rounded-full bg-slate-900 text-white flex items-center justify-center font-bold text-xs shadow-sm group-hover:scale-105 transition-transform">
           LI
         </div>
-        <span class="font-semibold text-stone-900 text-sm tracking-tight">
-          LOREM<span class="font-light text-stone-500">IPSUM</span>
+        <span class="font-bold text-slate-900 text-sm tracking-tight">
+          LOREM<span class="font-light text-slate-500">IPSUM</span>
         </span>
       </a>
 
-      <div class="hidden md:flex items-center gap-7 text-xs font-light text-stone-600 tracking-wide">
-        <a href="#hero" class="hover:text-stone-900 transition-colors cursor-pointer">Beranda</a>
-        <a href="#tentang" class="hover:text-stone-900 transition-colors cursor-pointer">Tentang</a>
-        <a href="#modul" class="hover:text-stone-900 transition-colors cursor-pointer">Modul</a>
-        <a href="#fitur" class="hover:text-stone-900 transition-colors cursor-pointer">Fitur Utama</a>
-        <a href="#keamanan" class="hover:text-stone-900 transition-colors cursor-pointer">Keamanan</a>
-      </div>
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-medium text-slate-600 tracking-normal">
+        <a href="#hero" class="hover:text-blue-600 transition-colors cursor-pointer">{t.nav.home}</a>
+        <a href="#tentang" class="hover:text-blue-600 transition-colors cursor-pointer">{t.nav.about}</a>
+        <a href="#produk" class="hover:text-blue-600 transition-colors cursor-pointer">{t.nav.products}</a>
+        <a href="#fitur" class="hover:text-blue-600 transition-colors cursor-pointer">{t.nav.features}</a>
+        <a href="#keamanan" class="hover:text-blue-600 transition-colors cursor-pointer">{t.nav.security}</a>
+      </nav>
 
+      <!-- Right CTA -->
       <div class="flex items-center gap-3">
         <a
-          href="#kontak"
-          class="h-8 px-4 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-[11px] font-medium flex items-center justify-center transition-colors cursor-pointer"
+          href={buyUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="h-8 px-4 rounded-full bg-slate-900 hover:bg-slate-800 text-white text-[11px] font-medium flex items-center gap-1.5 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-sm"
         >
-          Portal Anggota &rarr;
+          <span>{t.nav.memberPortal}</span>
+          <span>&rarr;</span>
         </a>
       </div>
     </div>
   </header>
 
-  <!--  01. HERO SECTION (Full-screen hero-cinematic.png background + Bottom context bar exactly like docs/koperasi hero-section.tsx)  -->
-  <section id="hero" class="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-stone-900 text-white pt-32 pb-12 px-6 sm:px-10 lg:px-16">
-    <!--  Full Cover Background  -->
-    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-      <img
-        src="/templates/koperasi/images/hero-cinematic.png"
-        alt="Lorem Ipsum Daylight Architecture"
-        class="w-full h-full object-cover object-center"
-        loading="eager"
-      />
-      <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/60"></div>
-    </div>
+  <main class="w-full overflow-hidden">
 
-    <!--  Top Spacer  -->
-    <div class="h-8 sm:h-12"></div>
-
-    <!--  Main Center Typography matching docs/koperasi  -->
-    <div class="relative z-10 mx-auto max-w-6xl text-center flex flex-col items-center justify-center my-auto py-16 sm:py-24">
-      <p class="text-xs sm:text-sm font-light tracking-[0.3em] uppercase text-white/90 mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
-        PLATFORM FINANSIAL TERBUKA &bull; TATA KELOLA MODERN
-      </p>
-
-      <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] font-light tracking-[-0.03em] text-white leading-[1.08] max-w-5xl drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)]">
-        Digitalisasi Koperasi <br />
-        <span class="font-serif italic font-normal text-stone-200">
-          Transparan &amp; Akuntabel
-        </span>
-      </h1>
-    </div>
-
-    <!--  Bottom Floating Bar matching docs/koperasi hero-section.tsx  -->
-    <div class="relative z-10 mx-auto max-w-7xl w-full">
-      <div class="rounded-lg bg-black/55 backdrop-blur-md border border-white/20 px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
-        <span class="text-xs font-medium tracking-[0.2em] uppercase text-emerald-400 whitespace-nowrap self-start md:self-center flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          LOREM IPSUM ONLINE
-        </span>
-
-        <p class="text-xs sm:text-sm text-white/90 font-light text-left max-w-2xl leading-relaxed">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Menghubungkan seluruh pencatatan simpan pinjam, pembagian SHU, dan pembukuan kas dalam satu kesatuan sistem real-time.
-        </p>
-
-        <a
-          href="#modul"
-          class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white text-stone-950 text-xs font-medium tracking-wider uppercase transition-all duration-200 hover:bg-stone-100 cursor-pointer shrink-0 shadow-sm"
-        >
-          <span>Jelajahi Modul</span>
-          <span>&darr;</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!--  02. PROBLEM & POSITIONING (With tentang-sistem.webp from docs/koperasi)  -->
-  <section id="tentang" class="py-24 px-6 sm:px-10 lg:px-16 bg-white border-t border-stone-200">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-      <div>
-        <span class="text-xs font-light tracking-[0.2em] uppercase text-stone-400 block mb-3">
-          TENTANG SISTEM
-        </span>
-        <h2 class="text-3xl sm:text-5xl font-light tracking-tight text-stone-900 leading-[1.15]">
-          Dari Pembukuan Manual Menuju Efisiensi Digital
-        </h2>
-        <p class="mt-6 text-stone-600 text-sm sm:text-base font-light leading-relaxed">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mengeliminasi selisih hitung dan mempercepat laporan pertanggungjawaban anggota.
-        </p>
-        <div class="mt-8 space-y-4">
-          <div class="flex items-start gap-3">
-            <span class="w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">✓</span>
-            <p class="text-sm text-stone-700 font-light">Rekapitulasi otomatis simpanan pokok, wajib, dan sukarela.</p>
+    <!-- ==========================================
+         02. HERO SECTION (WINDOW 1)
+         Plek ketiplek dengan referensi:
+         - Background lembut konsisten #F5F9FD
+         - Gambar full di sisi kanan tanpa border, tanpa shadow, tanpa efek hover
+         ========================================== -->
+    <section 
+      id="hero" 
+      class="relative w-full min-h-[calc(100vh-45px)] flex flex-col justify-center bg-[#F5F9FD] pt-24 pb-16 lg:py-20 px-6 sm:px-10 lg:px-16"
+    >
+      <div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center my-auto">
+        <!-- Left Column: Copy & Actions -->
+        <div class="lg:col-span-6 flex flex-col items-start text-left">
+          <!-- Tag Pill -->
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 border border-blue-200/70 text-blue-600 text-xs font-semibold tracking-wider uppercase mb-5 shadow-xs">
+            {t.hero.badge}
           </div>
-          <div class="flex items-start gap-3">
-            <span class="w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">✓</span>
-            <p class="text-sm text-stone-700 font-light">Kalkulasi bunga dan jatuh tempo pembiayaan akurat.</p>
+
+          <!-- Main Headline -->
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-[2.75rem] font-bold tracking-tight text-slate-900 leading-[1.2]">
+            <span class="text-blue-600">{t.hero.highlight}</span> {t.hero.title}
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="mt-5 text-sm sm:text-base text-slate-600 font-normal leading-relaxed max-w-xl">
+            {t.hero.subtitle}
+          </p>
+
+          <!-- Buttons -->
+          <div class="mt-8 flex flex-wrap items-center gap-4">
+            <a
+              href="#fitur"
+              class="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm inline-flex items-center gap-2 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/35 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            >
+              <span>{t.hero.ctaPrimary}</span>
+              <span>&rarr;</span>
+            </a>
+
+            <a
+              href="#tentang"
+              class="px-6 py-3 rounded-full bg-white hover:bg-slate-50 text-blue-600 font-medium text-xs sm:text-sm border border-blue-200 hover:border-blue-300 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-xs"
+            >
+              {t.hero.ctaSecondary}
+            </a>
           </div>
-          <div class="flex items-start gap-3">
-            <span class="w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">✓</span>
-            <p class="text-sm text-stone-700 font-light">Buku kas dan jurnal umum terintegrasi standar akuntansi.</p>
+
+          <!-- Trust Badges Row -->
+          <div class="mt-10 pt-6 border-t border-slate-200/70 w-full flex flex-wrap items-center gap-6 sm:gap-8 text-xs font-medium text-slate-700">
+            <!-- 1. Aman & Terpercaya -->
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+              </span>
+              <span>{t.hero.trust1}</span>
+            </div>
+
+            <!-- 2. Mudah Digunakan -->
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </span>
+              <span>{t.hero.trust2}</span>
+            </div>
+
+            <!-- 3. Transparan -->
+            <div class="flex items-center gap-2">
+              <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                </svg>
+              </span>
+              <span>{t.hero.trust3}</span>
+            </div>
           </div>
+        </div>
+
+        <!-- Right Column: Hero Illustration (Full, No Border, No Hover Effect) -->
+        <div class="lg:col-span-6 flex justify-center lg:justify-end items-center">
+          <img
+            src="/templates/koperasi/images/hero-fintech.webp"
+            alt="Digitalisasi Keuangan Koperasi"
+            class="w-full max-w-xl lg:max-w-none h-auto select-none pointer-events-none block"
+            loading="eager"
+          />
         </div>
       </div>
+    </section>
 
-      <div class="rounded-xl overflow-hidden border border-stone-200 shadow-sm bg-stone-50">
-        <img
-          src="/templates/koperasi/images/dashboard/tentang-sistem.webp"
-          alt="Tentang Sistem Dashboard"
-          class="w-full h-auto object-cover"
-          loading="lazy"
-        />
-      </div>
-    </div>
-  </section>
-
-  <!--  03. CORE MODULES SHOWCASE (6 Module cards with real illustrations from docs/koperasi)  -->
-  <section id="modul" class="py-24 px-6 sm:px-10 lg:px-16 bg-[#FAF9F5] border-t border-stone-200">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-light tracking-[0.2em] uppercase text-stone-400 block mb-3">
-          SATU PLATFORM LENGKAP
-        </span>
-        <h2 class="text-3xl sm:text-5xl font-light tracking-tight text-stone-900">
-          Modul Terintegrasi Tata Kelola Koperasi
-        </h2>
-        <p class="mt-4 text-stone-600 font-light text-sm sm:text-base leading-relaxed">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!--  Module 1  -->
-        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
-          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
-            <img
-              src="/templates/koperasi/images/illustrations/modul-simpanan.webp"
-              alt="Modul Simpanan"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-          <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-medium text-stone-900 mb-2">Simpanan Anggota</h3>
-            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
-            </p>
-          </div>
-        </div>
-
-        <!--  Module 2  -->
-        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
-          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
-            <img
-              src="/templates/koperasi/images/illustrations/modul-pinjaman.webp"
-              alt="Modul Pinjaman"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-          <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-medium text-stone-900 mb-2">Pinjaman &amp; Pembiayaan</h3>
-            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
-            </p>
-          </div>
-        </div>
-
-        <!--  Module 3  -->
-        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
-          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
-            <img
-              src="/templates/koperasi/images/illustrations/modul-anggota.webp"
-              alt="Modul Anggota"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-          <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-medium text-stone-900 mb-2">Data Anggota Mandiri</h3>
-            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
-            </p>
-          </div>
-        </div>
-
-        <!--  Module 4  -->
-        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
-          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
-            <img
-              src="/templates/koperasi/images/illustrations/modul-shu.webp"
-              alt="Modul SHU"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-          <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-medium text-stone-900 mb-2">Perhitungan SHU</h3>
-            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
-            </p>
-          </div>
-        </div>
-
-        <!--  Module 5  -->
-        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
-          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
-            <img
-              src="/templates/koperasi/images/illustrations/modul-keuangan.webp"
-              alt="Modul Keuangan"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-          <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-medium text-stone-900 mb-2">Pembukuan &amp; Jurnal Kas</h3>
-            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
-            </p>
-          </div>
-        </div>
-
-        <!--  Module 6  -->
-        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
-          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
-            <img
-              src="/templates/koperasi/images/illustrations/modul-laporan.webp"
-              alt="Modul Laporan"
-              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
-            />
-          </div>
-          <div class="p-6 flex-1 flex flex-col">
-            <h3 class="text-xl font-medium text-stone-900 mb-2">Laporan RAT Siap Unduh</h3>
-            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!--  04. FEATURE SHOWCASE (3 feature illustrations from docs/koperasi)  -->
-  <section id="fitur" class="py-24 px-6 sm:px-10 lg:px-16 bg-white border-t border-stone-200">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center max-w-3xl mx-auto mb-16">
-        <span class="text-xs font-light tracking-[0.2em] uppercase text-stone-400 block mb-3">
-          TRANSPARANSI DIGITAL
-        </span>
-        <h2 class="text-3xl sm:text-5xl font-light tracking-tight text-stone-900">
-          Dari Transaksi Menjadi Informasi Akurat
-        </h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="text-center">
-          <div class="aspect-square rounded-2xl bg-stone-50 border border-stone-200/80 p-6 flex items-center justify-center mb-6">
-            <img
-              src="/templates/koperasi/images/illustrations/feature-anggota.webp"
-              alt="Feature Anggota"
-              class="max-h-full max-w-full object-contain"
-              loading="lazy"
-            />
-          </div>
-          <h3 class="text-lg font-medium text-stone-900 mb-2">Registrasi Digital</h3>
-          <p class="text-xs sm:text-sm text-stone-600 font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-
-        <div class="text-center">
-          <div class="aspect-square rounded-2xl bg-stone-50 border border-stone-200/80 p-6 flex items-center justify-center mb-6">
-            <img
-              src="/templates/koperasi/images/illustrations/feature-pinjaman.webp"
-              alt="Feature Pinjaman"
-              class="max-h-full max-w-full object-contain"
-              loading="lazy"
-            />
-          </div>
-          <h3 class="text-lg font-medium text-stone-900 mb-2">Simulasi Real-time</h3>
-          <p class="text-xs sm:text-sm text-stone-600 font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-
-        <div class="text-center">
-          <div class="aspect-square rounded-2xl bg-stone-50 border border-stone-200/80 p-6 flex items-center justify-center mb-6">
-            <img
-              src="/templates/koperasi/images/illustrations/feature-shu.webp"
-              alt="Feature SHU"
-              class="max-h-full max-w-full object-contain"
-              loading="lazy"
-            />
-          </div>
-          <h3 class="text-lg font-medium text-stone-900 mb-2">Distribusi Hasil Adil</h3>
-          <p class="text-xs sm:text-sm text-stone-600 font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!--  05. CTA FOOTER  -->
-  <footer id="kontak" class="bg-stone-900 text-stone-100 py-16 px-6 sm:px-10 lg:px-16">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm text-stone-400">
-      <div class="md:col-span-2">
-        <div class="flex items-center gap-2.5 mb-4">
-          <div class="w-8 h-8 rounded-full bg-white text-stone-900 flex items-center justify-center font-serif text-sm font-bold">
-            LI
-          </div>
-          <span class="text-xl font-medium tracking-tight text-white">
-            LOREM<span class="font-light text-stone-400">IPSUM</span>
+    <!-- ==========================================
+         03. FITUR UNGGULAN (WINDOW 2)
+         ========================================== -->
+    <section 
+      id="fitur" 
+      class="min-h-screen flex flex-col justify-center py-24 sm:py-28 px-6 sm:px-10 lg:px-16 bg-white border-t border-slate-100"
+    >
+      <div class="max-w-6xl mx-auto w-full my-auto">
+        <!-- Section Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+          <span class="text-xs font-semibold tracking-wider uppercase text-blue-600 block mb-2">
+            {t.features.badge}
           </span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
+            {t.features.title}
+          </h2>
+          <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            {t.features.subtitle}
+          </p>
         </div>
-        <p class="max-w-md font-light leading-relaxed text-stone-400">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Platform digitalisasi tata kelola operasional dan akuntansi keuangan anggota terpercaya.
-        </p>
+
+        <!-- 3 Feature Cards Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {t.features.items.map((item) => (
+            <div class="bg-white rounded-2xl border border-blue-100/90 hover:border-blue-300 shadow-sm hover:shadow-xl hover:shadow-blue-500/8 transition-all duration-300 hover:-translate-y-1.5 p-8 flex flex-col items-center text-center group cursor-pointer">
+              <!-- Illustration Container -->
+              <div class="w-full aspect-[4/3] rounded-xl bg-gradient-to-b from-blue-50/50 to-white flex items-center justify-center p-4 mb-6 overflow-hidden">
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-lg font-bold text-slate-900 mb-2.5 group-hover:text-blue-600 transition-colors">
+                {item.title}
+              </h3>
+
+              <!-- Description -->
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-6 font-normal">
+                {item.desc}
+              </p>
+
+              <!-- Link -->
+              <div class="mt-auto inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 group-hover:gap-2.5 transition-all">
+                <span>{t.features.readMore}</span>
+                <span>&rarr;</span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         04. TENTANG PRODUK (WINDOW 3)
+         ========================================== -->
+    <section 
+      id="tentang" 
+      class="min-h-screen flex flex-col justify-center py-24 sm:py-28 px-6 sm:px-10 lg:px-16 bg-[#F5F9FD] border-t border-slate-100"
+    >
+      <div class="max-w-6xl mx-auto w-full my-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Left: Product Mockup Illustration -->
+        <div class="lg:col-span-6 flex justify-center items-center">
+          <img
+            src="/templates/koperasi/images/dashboard/tentang-sistem.webp"
+            alt="Solusi Finance Digital Koperasi"
+            class="w-full max-w-lg h-auto object-contain select-none"
+            loading="lazy"
+          />
+        </div>
+
+        <!-- Right: Content & Checklist -->
+        <div class="lg:col-span-6 flex flex-col items-start text-left">
+          <span class="text-xs font-semibold tracking-wider uppercase text-blue-600 block mb-2">
+            {t.about.badge}
+          </span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
+            {t.about.title}
+          </h2>
+          <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            {t.about.desc}
+          </p>
+
+          <!-- Checkmarks List -->
+          <ul class="mt-6 space-y-3.5 w-full">
+            {t.about.points.map((point) => (
+              <li class="flex items-start gap-3">
+                <span class="w-5 h-5 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0 mt-0.5 shadow-xs">
+                  <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                  </svg>
+                </span>
+                <span class="text-xs sm:text-sm text-slate-700 font-medium leading-relaxed">
+                  {point}
+                </span>
+              </li>
+            ))}
+          </ul>
+
+          <!-- CTA Button -->
+          <div class="mt-8">
+            <a
+              href="#modul"
+              class="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm inline-flex items-center gap-2 shadow-lg shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            >
+              <span>{t.about.cta}</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         05. CARA KERJA (WINDOW 4)
+         ========================================== -->
+    <section 
+      id="produk" 
+      class="min-h-screen flex flex-col justify-center py-24 sm:py-28 px-6 sm:px-10 lg:px-16 bg-white border-t border-slate-100"
+    >
+      <div class="max-w-6xl mx-auto w-full my-auto">
+        <!-- Header -->
+        <div class="text-center max-w-3xl mx-auto mb-16 sm:mb-20">
+          <span class="text-xs font-semibold tracking-wider uppercase text-blue-600 block mb-2">
+            {t.howItWorks.badge}
+          </span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
+            {t.howItWorks.title}
+          </h2>
+          <p class="mt-3 text-sm sm:text-base text-slate-600 max-w-xl mx-auto leading-relaxed font-normal">
+            {t.howItWorks.subtitle}
+          </p>
+        </div>
+
+        <!-- 4 Steps Flow with Arrow Connectors -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative items-start">
+          {t.howItWorks.steps.map((item, idx) => (
+            <div class="flex flex-col items-center text-center relative group">
+              <!-- Circular Step Icon -->
+              <div class="w-16 h-16 rounded-full bg-blue-50 border border-blue-200/80 text-blue-600 flex items-center justify-center mb-5 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shadow-sm">
+                {idx === 0 && (
+                  <!-- User Plus Icon -->
+                  <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                  </svg>
+                )}
+                {idx === 1 && (
+                  <!-- Fingerprint Verification Icon -->
+                  <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.026.99-4.18.99-6.415a9 9 0 00-18 0c0 1.488.241 2.92.688 4.26" />
+                  </svg>
+                )}
+                {idx === 2 && (
+                  <!-- Credit Card Transaction Icon -->
+                  <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                  </svg>
+                )}
+                {idx === 3 && (
+                  <!-- Check Shield Service Icon -->
+                  <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )}
+              </div>
+
+              <!-- Step Title -->
+              <h3 class="text-base font-bold text-slate-900 mb-2">
+                {item.step}
+              </h3>
+
+              <!-- Step Desc -->
+              <p class="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal max-w-xs">
+                {item.desc}
+              </p>
+
+              <!-- Horizontal Arrow Connector (Visible between items on Desktop) -->
+              {idx < 3 && (
+                <div class="hidden lg:block absolute top-8 -right-4 translate-x-1/2 text-slate-300 font-light text-xl select-none pointer-events-none">
+                  &rarr;
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         06. STATS WAVE BANNER (BERSAMA KOPERASI)
+         ========================================== -->
+    <section class="relative w-full bg-[#0B1B3D] text-white py-16 sm:py-20 px-6 sm:px-10 lg:px-16 overflow-hidden">
+      <!-- Curved Wave Background Accents -->
+      <div class="absolute inset-0 pointer-events-none opacity-20">
+        <svg class="w-full h-full object-cover" viewBox="0 0 1200 300" preserveAspectRatio="none" fill="none">
+          <path d="M0,150 C300,280 600,20 1200,180 L1200,300 L0,300 Z" fill="url(#wave-grad)"></path>
+          <defs>
+            <linearGradient id="wave-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#3B82F6" />
+              <stop offset="100%" stop-color="#1D4ED8" />
+            </linearGradient>
+          </defs>
+        </svg>
       </div>
 
-      <div>
-        <p class="font-medium text-white uppercase text-xs tracking-wider mb-4">Navigasi</p>
-        <ul class="space-y-2">
-          <li><a href="#hero" class="hover:text-white transition-colors">Beranda</a></li>
-          <li><a href="#tentang" class="hover:text-white transition-colors">Tentang</a></li>
-          <li><a href="#modul" class="hover:text-white transition-colors">Modul Sistem</a></li>
-          <li><a href="#fitur" class="hover:text-white transition-colors">Fitur Utama</a></li>
-        </ul>
+      <div class="relative z-10 max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-10">
+        <!-- Left: Tag & Heading -->
+        <div class="text-center lg:text-left">
+          <span class="text-xs font-semibold tracking-wider uppercase text-blue-300 block mb-2">
+            {t.stats.badge}
+          </span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white leading-tight">
+            {t.stats.title}
+          </h2>
+        </div>
+
+        <!-- Right: 3 Metric Counters -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-12 w-full lg:w-auto text-center">
+          {t.stats.items.map((stat) => (
+            <div class="flex flex-col items-center lg:items-start">
+              <span class="text-3xl sm:text-4xl font-bold text-white tracking-tight">
+                {stat.value}
+              </span>
+              <span class="text-xs sm:text-sm text-slate-300 font-light mt-1 whitespace-nowrap">
+                {stat.label}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         07. MODUL UTAMA (WINDOW 5)
+         ========================================== -->
+    <section 
+      id="modul" 
+      class="min-h-screen flex flex-col justify-center py-24 sm:py-28 px-6 sm:px-10 lg:px-16 bg-white border-t border-slate-100"
+    >
+      <div class="max-w-6xl mx-auto w-full my-auto grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+        <!-- Left: Heading & Description & Button -->
+        <div class="lg:col-span-5 flex flex-col items-start text-left">
+          <span class="text-xs font-semibold tracking-wider uppercase text-blue-600 block mb-2">
+            {t.modules.badge}
+          </span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-[1.2]">
+            {t.modules.title}
+          </h2>
+          <p class="mt-4 text-sm sm:text-base text-slate-600 leading-relaxed font-normal">
+            {t.modules.desc}
+          </p>
+
+          <div class="mt-8">
+            <a
+              href={buyUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="px-6 py-3 rounded-full bg-blue-600 hover:bg-blue-700 text-white font-medium text-xs sm:text-sm inline-flex items-center gap-2 shadow-lg shadow-blue-500/25 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            >
+              <span>{t.modules.cta}</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: 6 Feature Cards Grid (2 cols x 3 rows) -->
+        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 w-full">
+          {t.modules.items.map((mod) => (
+            <div class="p-6 rounded-xl bg-white border border-slate-200/90 hover:border-blue-300 shadow-xs hover:shadow-md transition-all duration-300 hover:-translate-y-1 flex flex-col group cursor-pointer">
+              <!-- Module Icon -->
+              <div class="text-blue-600 mb-4 group-hover:scale-110 transition-transform origin-left">
+                {mod.icon === 'piggy' && (
+                  <!-- Piggy Bank -->
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                  </svg>
+                )}
+                {mod.icon === 'loan' && (
+                  <!-- Loan / Financing -->
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                )}
+                {mod.icon === 'report' && (
+                  <!-- Accounting / Report -->
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                )}
+                {mod.icon === 'users' && (
+                  <!-- Users Management -->
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                )}
+                {mod.icon === 'bell' && (
+                  <!-- Bell Notification -->
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                  </svg>
+                )}
+                {mod.icon === 'shield' && (
+                  <!-- Security Data Shield -->
+                  <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                )}
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors">
+                {mod.title}
+              </h3>
+
+              <!-- Description -->
+              <p class="text-xs text-slate-500 font-normal leading-relaxed">
+                {mod.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         08. APA KATA MEREKA (WINDOW 6 - TESTIMONIAL)
+         ========================================== -->
+    <section 
+      id="keamanan" 
+      class="py-24 sm:py-28 px-6 sm:px-10 lg:px-16 bg-[#F5F9FD] border-t border-slate-100 flex flex-col justify-center"
+    >
+      <div class="max-w-4xl mx-auto w-full my-auto text-center">
+        <!-- Header -->
+        <span class="text-xs font-semibold tracking-wider uppercase text-blue-600 block mb-2">
+          {t.testimonials.badge}
+        </span>
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-slate-900 leading-tight mb-12">
+          {t.testimonials.title}
+        </h2>
+
+        <!-- Interactive Testimonial Slider Wrapper -->
+        <div class="relative flex items-center justify-center">
+          <!-- Prev Button -->
+          <button 
+            type="button"
+            aria-label="Previous Testimonial"
+            class="hidden sm:flex absolute -left-4 lg:-left-12 w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-300 items-center justify-center transition-all shadow-xs cursor-pointer z-10"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <!-- Testimonial Card -->
+          <div class="bg-white rounded-2xl border border-blue-100/80 p-8 sm:p-12 max-w-2xl mx-auto shadow-sm relative">
+            <!-- Blue Quote Icon -->
+            <div class="text-blue-500 mb-6 flex justify-center">
+              <svg class="w-8 h-8 opacity-80" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+              </svg>
+            </div>
+
+            <!-- Quote Text -->
+            <p class="text-slate-700 text-sm sm:text-base leading-relaxed font-normal italic">
+              “{t.testimonials.quote}”
+            </p>
+
+            <!-- Author & Avatar -->
+            <div class="mt-8 flex items-center justify-center gap-3">
+              <img
+                src={t.testimonials.avatar}
+                alt={t.testimonials.author}
+                class="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
+                loading="lazy"
+              />
+              <div class="text-left">
+                <p class="font-bold text-slate-900 text-sm">
+                  {t.testimonials.author}
+                </p>
+                <p class="text-xs text-slate-500 font-normal">
+                  {t.testimonials.role}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Next Button -->
+          <button 
+            type="button"
+            aria-label="Next Testimonial"
+            class="hidden sm:flex absolute -right-4 lg:-right-12 w-10 h-10 rounded-full bg-white border border-slate-200 text-slate-600 hover:text-blue-600 hover:border-blue-300 items-center justify-center transition-all shadow-xs cursor-pointer z-10"
+          >
+            <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Slider Pagination Dots -->
+        <div class="flex items-center justify-center gap-2 mt-8">
+          <span class="w-2.5 h-2.5 rounded-full bg-blue-600 transition-all cursor-pointer"></span>
+          <span class="w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all cursor-pointer"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         09 & 10. UNIFIED CTA BANNER & FOOTER
+         Satu canvas warna konsisten #0B1B3D:
+         - Background dan warna wave menyatu 100% tanpa garis pemisah
+         - Footer menyatu dengan warna dasar gelombang
+         ========================================== -->
+    <div class="relative w-full bg-[#0B1B3D] text-white overflow-hidden">
+      <!-- Background Wave Flowing Accents -->
+      <div class="absolute inset-0 pointer-events-none opacity-40">
+        <svg class="w-full h-full object-cover" viewBox="0 0 1440 400" preserveAspectRatio="none" fill="none">
+          <path d="M0,140 C320,60 640,220 1020,110 C1240,40 1380,80 1440,100 L1440,400 L0,400 Z" fill="#132B5C"></path>
+          <path d="M0,200 C380,140 780,260 1140,170 C1320,130 1400,160 1440,170 L1440,400 L0,400 Z" fill="#0E224A"></path>
+        </svg>
       </div>
 
-      <div>
-        <p class="font-medium text-white uppercase text-xs tracking-wider mb-4">Kontak</p>
-        <p class="leading-relaxed">lorem@ipsum.id</p>
-        <p class="leading-relaxed">+62 21 0000 0000</p>
-        <p class="leading-relaxed mt-2 text-xs text-stone-500">Kawasan Layanan Finansial Indonesia</p>
+      <!-- CTA Content -->
+      <div class="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 pt-16 sm:pt-20 pb-14 flex flex-col md:flex-row items-center justify-between gap-8">
+        <!-- Text -->
+        <div class="text-center md:text-left max-w-2xl">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight leading-tight">
+            {t.ctaBanner.title}
+          </h2>
+          <p class="mt-2 text-xs sm:text-sm text-slate-300 font-light leading-relaxed">
+            {t.ctaBanner.desc}
+          </p>
+        </div>
+
+        <!-- Action Button -->
+        <div class="shrink-0">
+          <a
+            href={buyUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="px-8 py-3.5 rounded-full bg-white hover:bg-slate-100 text-slate-900 font-semibold text-xs sm:text-sm inline-flex items-center gap-2 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+          >
+            <span>{t.ctaBanner.cta}</span>
+            <span>&rarr;</span>
+          </a>
+        </div>
       </div>
+
+      <!-- Footer Content (Seamlessly integrated into #0B1B3D canvas) -->
+      <footer class="relative z-10 max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 pb-12 pt-6">
+        <!-- Top Row: Brand, Nav, Socials -->
+        <div class="flex flex-col md:flex-row items-center justify-between gap-6 pb-8 border-b border-white/10">
+          <!-- Brand -->
+          <div class="flex items-center gap-2.5">
+            <div class="w-7 h-7 rounded-full bg-white text-slate-900 flex items-center justify-center font-bold text-xs">
+              LI
+            </div>
+            <span class="font-bold text-white text-sm tracking-tight">
+              LOREM<span class="font-light text-slate-300">IPSUM</span>
+            </span>
+          </div>
+
+          <!-- Links -->
+          <div class="flex flex-wrap items-center justify-center gap-6 text-xs text-slate-300 font-medium">
+            <a href="#hero" class="hover:text-white transition-colors cursor-pointer">{t.nav.home}</a>
+            <a href="#tentang" class="hover:text-white transition-colors cursor-pointer">{t.nav.about}</a>
+            <a href="#produk" class="hover:text-white transition-colors cursor-pointer">{t.nav.products}</a>
+            <a href="#fitur" class="hover:text-white transition-colors cursor-pointer">{t.nav.features}</a>
+            <a href="#keamanan" class="hover:text-white transition-colors cursor-pointer">{t.nav.security}</a>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="flex items-center gap-4 text-slate-300">
+            <!-- Facebook -->
+            <a href="#" aria-label="Facebook" class="hover:text-white transition-colors cursor-pointer">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <!-- Instagram -->
+            <a href="#" aria-label="Instagram" class="hover:text-white transition-colors cursor-pointer">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <!-- YouTube -->
+            <a href="#" aria-label="YouTube" class="hover:text-white transition-colors cursor-pointer">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+              </svg>
+            </a>
+            <!-- LinkedIn -->
+            <a href="#" aria-label="LinkedIn" class="hover:text-white transition-colors cursor-pointer">
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Copyright & Policies -->
+        <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+          <p>{t.footer.copyright}</p>
+          <div class="flex items-center gap-4 text-slate-400">
+            <a href="#" class="hover:text-white transition-colors cursor-pointer">{t.footer.terms}</a>
+            <span>|</span>
+            <a href="#" class="hover:text-white transition-colors cursor-pointer">{t.footer.privacy}</a>
+          </div>
+        </div>
+      </footer>
     </div>
-  </footer>
+
+  </main>
 
 </body>
 </html>

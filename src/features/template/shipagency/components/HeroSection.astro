@@ -1,0 +1,48 @@
+---
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+---
+
+<section
+  id="beranda"
+  class="relative h-[calc(100dvh-41px)] min-h-[calc(100dvh-41px)] max-h-[calc(100dvh-41px)] w-full bg-slate-950 text-slate-100 flex flex-col justify-between overflow-hidden selection:bg-emerald-500 selection:text-slate-950"
+>
+  <!-- LAYER 0 (z-0): BACKGROUND SHIP IMAGE -->
+  <div class="absolute inset-0 z-0 h-full w-full pointer-events-none overflow-hidden">
+    <img
+      src="/templates/shipagency/hero-bg.webp"
+      alt="Maritime Cargo Ship Background"
+      class="w-full h-full object-cover object-center opacity-65 scale-105"
+      loading="eager"
+    />
+    <div class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/40 to-slate-950/95"></div>
+  </div>
+
+  <!-- Intense Dark Bottom Shadow Gradient for Text Contrast -->
+  <div class="absolute inset-x-0 bottom-0 h-36 sm:h-48 lg:h-56 bg-gradient-to-t from-slate-950 via-slate-950/90 via-50% to-transparent z-25 pointer-events-none"></div>
+
+  <!-- LAYER 1 (z-20): 5 CREW MEMBERS CUTOUT FOREGROUND -->
+  <div class="relative z-20 w-full max-w-[1650px] h-[70vh] sm:h-[78vh] lg:h-[84vh] mx-auto pointer-events-none flex items-end justify-center px-0 mt-auto">
+    <div class="relative w-[680px] sm:w-full min-w-[680px] sm:min-w-0 h-full flex items-end justify-center shrink-0">
+      <img
+        src="/templates/shipagency/hero-people.webp"
+        alt="Lorem Ipsum Maritime Crew Team"
+        class="w-full h-full object-contain object-bottom scale-100 sm:scale-105 lg:scale-110 translate-y-1 sm:translate-y-4 lg:translate-y-6 drop-shadow-[0_45px_100px_rgba(0,0,0,0.85)]"
+        loading="eager"
+      />
+    </div>
+  </div>
+
+  <!-- LAYER 2 (z-30): TYPOGRAPHY OVERLAY -->
+  <div class="absolute bottom-6 sm:bottom-8 lg:bottom-10 inset-x-0 z-30 px-4 sm:px-8 text-center pointer-events-none select-none">
+    <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tight leading-none drop-shadow-[0_20px_40px_rgba(0,0,0,0.95)] whitespace-normal sm:whitespace-nowrap">
+      LOREM IPSUM
+    </h1>
+    <p class="text-xs sm:text-base lg:text-xl text-slate-200/95 font-semibold tracking-wide drop-shadow-[0_8px_20px_rgba(0,0,0,0.85)] mt-1.5 sm:mt-2 max-w-3xl mx-auto">
+      {lang === 'en' ? 'Outsourcing Port & Vessel Agency' : 'Outsourcing Agen Perkapalan & Maritim'}
+    </p>
+  </div>
+</section>

@@ -1,0 +1,121 @@
+---
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const steps = [
+  {
+    step: 1,
+    title: lang === 'en' ? 'Initial Consultation' : 'Konsultasi Awal',
+    desc: lang === 'en'
+      ? 'Contact our advisory team to obtain detailed information and tailored consultation.'
+      : 'Hubungi kami untuk mendapatkan informasi lebih lanjut.',
+    icon: 'chat'
+  },
+  {
+    step: 2,
+    title: lang === 'en' ? 'Document Submission' : 'Pengajuan Dokumen',
+    desc: lang === 'en'
+      ? 'Prepare the required operational and vessel legal documents according to financing type.'
+      : 'Siapkan dokumen yang dibutuhkan sesuai jenis pembiayaan.',
+    icon: 'doc'
+  },
+  {
+    step: 3,
+    title: lang === 'en' ? 'Analysis & Approval' : 'Analisis & Persetujuan',
+    desc: lang === 'en'
+      ? 'Our expert maritime risk analysts promptly evaluate your request for swift approval.'
+      : 'Tim kami akan melakukan analisis dan memberikan keputusan cepat.',
+    icon: 'check'
+  },
+  {
+    step: 4,
+    title: lang === 'en' ? 'Fund Disbursement' : 'Pencairan Dana',
+    desc: lang === 'en'
+      ? 'Approved financing capital is disbursed directly into your designated corporate account.'
+      : 'Dana akan langsung dicairkan ke rekening Anda.',
+    icon: 'money'
+  }
+];
+---
+
+<section
+  id="cara-pengajuan"
+  class="relative min-h-[100dvh] w-full bg-white text-slate-900 flex flex-col justify-center items-center py-20 sm:py-24 px-6 sm:px-12 lg:px-16 border-t border-slate-100"
+>
+  <div class="mx-auto max-w-7xl w-full flex flex-col items-center">
+    <!-- Section Top Header & Badge -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">
+      <span>{lang === 'en' ? 'HOW TO APPLY' : 'CARA PENGAJUAN'}</span>
+    </div>
+
+    <h2 class="text-2xl sm:text-4xl lg:text-4xl font-black text-[#0c2340] text-center tracking-tight max-w-3xl leading-tight">
+      {lang === 'en' ? 'A Simple & Straightforward Application Process' : 'Proses Pengajuan yang Sederhana'}
+    </h2>
+
+    <p class="text-slate-600 text-xs sm:text-sm text-center max-w-2xl mt-3 leading-relaxed">
+      {lang === 'en'
+        ? 'In just a few straightforward steps, you can secure the vital financing support your maritime operations need.'
+        : 'Hanya dalam beberapa langkah, Anda sudah bisa mendapatkan pembiayaan yang Anda butuhkan.'}
+    </p>
+
+    <!-- 4 Horizontal Process Steps Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 w-full mt-14 sm:mt-16 relative">
+      {steps.map((item, idx) => (
+        <div class="flex flex-col items-center text-center relative group">
+          <!-- Step Icon Bubble -->
+          <div class="relative">
+            <div class="w-18 h-18 rounded-full bg-blue-50/80 border-2 border-blue-100 group-hover:border-blue-400 group-hover:bg-blue-100/60 text-blue-600 flex items-center justify-center transition-all duration-300 shadow-xs">
+              {item.icon === 'chat' && (
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                </svg>
+              )}
+              {item.icon === 'doc' && (
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+              )}
+              {item.icon === 'check' && (
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                </svg>
+              )}
+              {item.icon === 'money' && (
+                <svg class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              )}
+            </div>
+
+            <!-- Connecting Arrow to Next Step (desktop only) -->
+            {idx < steps.length - 1 && (
+              <div class="hidden lg:flex absolute top-1/2 -right-12 -translate-y-1/2 text-blue-300">
+                <svg class="w-6 h-6 animate-pulse" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </div>
+            )}
+          </div>
+
+          <!-- Step Number Badge + Title Row -->
+          <div class="flex items-center gap-2 mt-5 mb-2">
+            <span class="w-6 h-6 rounded-full bg-[#1e61d5] text-white font-extrabold text-xs flex items-center justify-center shrink-0 shadow-xs">
+              {item.step}
+            </span>
+            <h3 class="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
+              {item.title}
+            </h3>
+          </div>
+
+          <!-- Description -->
+          <p class="text-xs sm:text-sm text-slate-600 max-w-xs leading-relaxed">
+            {item.desc}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

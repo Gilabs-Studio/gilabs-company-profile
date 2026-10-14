@@ -1,0 +1,77 @@
+---
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+---
+
+<header
+  id="ship-nav"
+  class="fixed top-[41px] left-0 right-0 z-40 w-full px-6 sm:px-12 py-4 transition-all duration-300 bg-transparent"
+>
+  <div class="mx-auto max-w-7xl flex items-center justify-between gap-4">
+    <!-- Brand Logo -->
+    <a href="#beranda" class="flex items-center gap-2 cursor-pointer group">
+      <span class="text-base sm:text-lg font-black tracking-wider text-white group-hover:text-emerald-400 transition-colors drop-shadow-md cursor-pointer">
+        PT. LOREM IPSUM MARITIME
+      </span>
+    </a>
+
+    <!-- Navigation Menu Links -->
+    <nav class="hidden md:flex items-center gap-7 text-xs font-semibold text-slate-200 tracking-wide">
+      <a
+        href="#beranda"
+        class="text-emerald-400 font-bold border-b-2 border-emerald-400 pb-0.5 cursor-pointer transition-colors"
+      >
+        {lang === 'en' ? 'Home' : 'Beranda'}
+      </a>
+      <a href="#solusi" class="hover:text-emerald-400 transition-colors cursor-pointer">
+        {lang === 'en' ? 'Services' : 'Layanan'}
+      </a>
+      <a href="#produk" class="hover:text-emerald-400 transition-colors cursor-pointer">
+        {lang === 'en' ? 'Vessels' : 'Armada'}
+      </a>
+      <a href="#statistik" class="hover:text-emerald-400 transition-colors cursor-pointer">
+        {lang === 'en' ? 'Statistics' : 'Statistik'}
+      </a>
+    </nav>
+
+    <!-- Right Header Actions -->
+    <div class="flex items-center gap-4">
+      <!-- Flag Switcher -->
+      <a
+        href={`/${lang === 'id' ? 'en' : 'id'}/templates/demo/shipagency`}
+        class="cursor-pointer transition-transform hover:scale-110 active:scale-95 flex items-center justify-center p-0.5"
+        title={lang === 'id' ? 'Switch to English' : 'Ganti ke Bahasa Indonesia'}
+      >
+        <img
+          src={lang === 'id' ? '/templates/shipagency/flag/flag-for-flag-monaco-svgrepo-com.svg' : '/templates/shipagency/flag/flag-for-flag-united-kingdom-svgrepo-com.svg'}
+          alt={lang.toUpperCase()}
+          class="w-6 h-4 object-cover rounded shadow-xs"
+        />
+      </a>
+
+      <!-- Action Button -->
+      <a
+        href="#kontak"
+        class="inline-flex h-9 px-4 rounded bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-slate-950 font-bold text-xs uppercase tracking-wider items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:shadow-emerald-500/20"
+      >
+        {lang === 'en' ? 'Contact Agency' : 'Hubungi Agen'}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const shipNav = document.getElementById('ship-nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      shipNav?.classList.add('bg-slate-950/90', 'backdrop-blur-md', 'border-b', 'border-slate-800/80', 'py-3');
+      shipNav?.classList.remove('bg-transparent', 'py-4');
+    } else {
+      shipNav?.classList.remove('bg-slate-950/90', 'backdrop-blur-md', 'border-b', 'border-slate-800/80', 'py-3');
+      shipNav?.classList.add('bg-transparent', 'py-4');
+    }
+  }, { passive: true });
+</script>

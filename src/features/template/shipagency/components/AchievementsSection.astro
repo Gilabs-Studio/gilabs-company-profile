@@ -1,0 +1,113 @@
+---
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const stats = [
+  {
+    icon: 'ship',
+    value: '120+',
+    label: lang === 'en' ? 'Vessels Financed' : 'Kapal Didanai'
+  },
+  {
+    icon: 'users',
+    value: '200+',
+    label: lang === 'en' ? 'Active Clients' : 'Klien Aktif'
+  },
+  {
+    icon: 'rate',
+    value: '98%',
+    label: lang === 'en' ? 'Approval Rate' : 'Tingkat Persetujuan'
+  },
+  {
+    icon: 'calendar',
+    value: '5 Tahun+',
+    label: lang === 'en' ? 'Years Experience' : 'Pengalaman'
+  }
+];
+---
+
+<section
+  id="statistik"
+  class="relative w-full bg-white py-12 sm:py-16 px-4 sm:px-8 lg:px-12 flex items-center justify-center"
+>
+  <!-- Banner Container matching media_1791948067543.png (compact card, not full window) -->
+  <div class="relative w-full max-w-7xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-[#061e47] border border-blue-500/20 min-h-[300px] sm:min-h-[340px] flex flex-col justify-between p-8 sm:p-10 lg:p-12">
+    
+    <!-- Background Image: Exact Naval / Research Vessel from Reference -->
+    <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <img
+        src="/templates/shipagency/images/ship-pencapaian.webp"
+        alt="Naval Maritime Research Vessel"
+        class="w-full h-full object-cover object-right sm:object-[80%_center] scale-105"
+        loading="lazy"
+      />
+      <!-- Deep Blue Gradient Overlay on the Left -->
+      <div class="absolute inset-0 bg-gradient-to-r from-[#061e47] via-[#061e47]/95 via-45% sm:via-55% to-transparent"></div>
+    </div>
+
+    <!-- Content: Top Heading -->
+    <div class="relative z-10 max-w-xl">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-600/30 border border-blue-400/40 text-blue-300 text-[11px] font-bold uppercase tracking-wider mb-3">
+        <span>{lang === 'en' ? 'OUR TRACK RECORD' : 'PENCAPAIAN KAMI'}</span>
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white leading-tight tracking-tight">
+        {lang === 'en' 
+          ? 'Together Building a Stronger Maritime Industry' 
+          : 'Bersama Membangun Industri Maritim yang Lebih Kuat'}
+      </h2>
+    </div>
+
+    <!-- Content: Bottom 4 Stats with Vertical Divider Lines -->
+    <div class="relative z-10 flex flex-wrap items-center gap-6 sm:gap-0 mt-8 pt-6 border-t border-blue-400/20 max-w-2xl sm:max-w-3xl">
+      {stats.map((stat, idx) => (
+        <>
+          <div class="flex-1 min-w-[120px] sm:min-w-0 sm:pr-6 sm:pl-0 first:pl-0">
+            <!-- Icon -->
+            <div class="text-white mb-2">
+              {stat.icon === 'ship' && (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 2v4m0 0H8m4 0h4M3 13h18l-2 7H5l-2-7zm2-3l2-4h10l2 4H5z" />
+                </svg>
+              )}
+              {stat.icon === 'users' && (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              )}
+              {stat.icon === 'rate' && (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="9" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 3" />
+                </svg>
+              )}
+              {stat.icon === 'calendar' && (
+                <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              )}
+            </div>
+
+            <!-- Value -->
+            <div class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-none">
+              {stat.value}
+            </div>
+
+            <!-- Label -->
+            <div class="text-[11px] sm:text-xs text-blue-200/90 font-medium mt-1">
+              {stat.label}
+            </div>
+          </div>
+
+          <!-- Vertical Divider between Stats -->
+          {idx < stats.length - 1 && (
+            <div class="hidden sm:block h-10 w-[1px] bg-blue-300/25 mx-4 sm:mx-6 shrink-0"></div>
+          )}
+        </>
+      ))}
+    </div>
+  </div>
+</section>

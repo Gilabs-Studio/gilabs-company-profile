@@ -1,0 +1,161 @@
+---
+interface Props {
+  lang: 'id' | 'en';
+}
+
+const { lang } = Astro.props;
+
+const testimonials = [
+  {
+    quote: lang === 'en'
+      ? '"The financing process was exceptionally prompt and transparent. Their dedicated team is truly responsive."'
+      : '"Proses pengajuan pembiayaan sangat cepat dan mudah. Timnya profesional dan responsif."',
+    author: 'Budi Santosa',
+    role: 'Direktur PT Samudera Jaya',
+    avatar: '/templates/shipagency/images/avatar-budi.webp'
+  },
+  {
+    quote: lang === 'en'
+      ? '"Vessel operational funding dramatically boosted our delivery turnaround. The interest rates offered are highly competitive."'
+      : '"Pembiayaan untuk kapal kami sangat membantu kelancaran operasional. Bunga yang ditawarkan juga kompetitif."',
+    author: 'Siti Rahayu',
+    role: 'Owner CV Lautan Indah',
+    avatar: '/templates/shipagency/images/avatar-siti.webp'
+  },
+  {
+    quote: lang === 'en'
+      ? '"Outstanding service standard! From initial consultation to fund disbursement, everything was completely transparent."'
+      : '"Pelayanannya luar biasa, dari awal sampai pencairan dana semuanya transparan dan jelas."',
+    author: 'Ahmad Fauzi',
+    role: 'Manajer Operasional PT Bahari',
+    avatar: '/templates/shipagency/images/avatar-ahmad.webp'
+  }
+];
+---
+
+<section
+  id="testimoni"
+  class="relative min-h-[100dvh] w-full bg-[#f8fafc] text-slate-900 flex flex-col justify-center items-center py-20 sm:py-24 px-6 sm:px-12 lg:px-16 border-t border-slate-100"
+>
+  <div class="mx-auto max-w-7xl w-full flex flex-col items-center">
+    <!-- Header -->
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold uppercase tracking-wider mb-3">
+      <span>{lang === 'en' ? 'TESTIMONIALS' : 'TESTIMONI'}</span>
+    </div>
+
+    <h2 class="text-2xl sm:text-4xl lg:text-4xl font-black text-[#0c2340] text-center tracking-tight max-w-3xl leading-tight">
+      {lang === 'en' ? 'What Our Maritime Clients Say' : 'Apa Kata Mereka?'}
+    </h2>
+
+    <p class="text-slate-600 text-xs sm:text-sm text-center max-w-2xl mt-3 leading-relaxed">
+      {lang === 'en'
+        ? 'Client trust and fleet success are our core inspirations to continuously deliver prime services.'
+        : 'Kepercayaan pelanggan adalah motivasi kami untuk terus memberikan layanan terbaik.'}
+    </p>
+
+    <!-- Testimonials Slider Wrapper with Nav Buttons -->
+    <div class="relative w-full mt-12 sm:mt-16 flex items-center justify-center">
+      <!-- Left Nav Arrow Button -->
+      <button
+        id="prev-testi-btn"
+        aria-label="Previous Testimonial"
+        class="hidden lg:flex absolute -left-4 xl:-left-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-md items-center justify-center transition-all z-20 cursor-pointer hover:scale-105 active:scale-95"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- 3 Testimonial Cards Grid -->
+      <div id="testi-track" class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+        {testimonials.map((t) => (
+          <div class="bg-white rounded-2xl border border-blue-100/90 p-7 sm:p-8 shadow-xs hover:shadow-xl hover:border-blue-300 transition-all duration-300 flex flex-col justify-between hover:-translate-y-1">
+            <p class="text-xs sm:text-sm text-slate-700 font-medium italic leading-relaxed mb-6">
+              {t.quote}
+            </p>
+
+            <div>
+              <!-- Author Profile Row -->
+              <div class="flex items-center gap-3.5 mb-3">
+                <img
+                  src={t.avatar}
+                  alt={t.author}
+                  class="w-11 h-11 rounded-full object-cover border-2 border-blue-100 shadow-xs shrink-0"
+                  loading="lazy"
+                />
+                <div>
+                  <h4 class="text-sm font-bold text-slate-900 leading-tight">
+                    {t.author}
+                  </h4>
+                  <p class="text-xs text-slate-500 mt-0.5">
+                    {t.role}
+                  </p>
+                </div>
+              </div>
+
+              <!-- 5 Star Rating -->
+              <div class="flex items-center gap-1 text-amber-400">
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+                <span>★</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Right Nav Arrow Button -->
+      <button
+        id="next-testi-btn"
+        aria-label="Next Testimonial"
+        class="hidden lg:flex absolute -right-4 xl:-right-6 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 shadow-md items-center justify-center transition-all z-20 cursor-pointer hover:scale-105 active:scale-95"
+      >
+        <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- 4 Pagination Dots -->
+    <div class="flex items-center gap-2 mt-10">
+      <button class="w-2.5 h-2.5 rounded-full bg-[#1e61d5] transition-all cursor-pointer" aria-label="Page 1"></button>
+      <button class="w-2.5 h-2.5 rounded-full bg-blue-200 hover:bg-blue-300 transition-all cursor-pointer" aria-label="Page 2"></button>
+      <button class="w-2.5 h-2.5 rounded-full bg-blue-200 hover:bg-blue-300 transition-all cursor-pointer" aria-label="Page 3"></button>
+      <button class="w-2.5 h-2.5 rounded-full bg-blue-200 hover:bg-blue-300 transition-all cursor-pointer" aria-label="Page 4"></button>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Simple interactive testimonial carousel feedback
+  const prevBtn = document.getElementById('prev-testi-btn');
+  const nextBtn = document.getElementById('next-testi-btn');
+  const track = document.getElementById('testi-track');
+
+  let activeIndex = 0;
+  const cards = track?.children;
+
+  function highlight(index: number) {
+    if (!cards) return;
+    for (let i = 0; i < cards.length; i++) {
+      const card = cards[i] as HTMLElement;
+      if (i === index) {
+        card.classList.add('border-blue-400', 'shadow-md');
+      } else {
+        card.classList.remove('border-blue-400', 'shadow-md');
+      }
+    }
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    activeIndex = (activeIndex - 1 + (cards?.length || 3)) % (cards?.length || 3);
+    highlight(activeIndex);
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    activeIndex = (activeIndex + 1) % (cards?.length || 3);
+    highlight(activeIndex);
+  });
+</script>
