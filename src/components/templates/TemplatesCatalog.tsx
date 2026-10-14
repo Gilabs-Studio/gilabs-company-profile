@@ -11,6 +11,64 @@ interface TemplatesCatalogProps {
   lang: 'id' | 'en';
 }
 
+interface TemplateLivePreviewProps {
+  demoUrl: string;
+  title: string;
+}
+
+function TemplateLivePreview({ demoUrl, title }: TemplateLivePreviewProps) {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.28);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+    const updateScale = () => {
+      if (containerRef.current) {
+        const width = containerRef.current.clientWidth;
+        if (width > 0) {
+          setScale(width / 1280);
+        }
+      }
+    };
+    updateScale();
+    const observer = new ResizeObserver(updateScale);
+    observer.observe(containerRef.current);
+    const timer = setTimeout(() => setIsLoaded(true), 1200);
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
+  }, []);
+
+  return (
+    <div
+      ref={containerRef}
+      className="w-full h-full relative overflow-hidden bg-muted/30 select-none pointer-events-none"
+    >
+      {!isLoaded && (
+        <div className="absolute inset-0 bg-secondary/50 animate-pulse flex items-center justify-center">
+          <span className="text-[11px] text-muted-foreground font-mono">Loading Preview...</span>
+        </div>
+      )}
+      <iframe
+        src={demoUrl}
+        title={title}
+        tabIndex={-1}
+        loading="lazy"
+        onLoad={() => setIsLoaded(true)}
+        className="border-0 absolute top-0 left-0 origin-top-left pointer-events-none transition-opacity duration-300"
+        style={{
+          width: '1280px',
+          height: '800px',
+          transform: `scale(${scale})`,
+          opacity: isLoaded ? 1 : 0,
+        }}
+      />
+    </div>
+  );
+}
+
 export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCatalogProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -130,25 +188,29 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
                 key={template.id}
                 className="bg-card border border-border/70 rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:border-foreground/40 hover:shadow-xs"
               >
-                {/* Thumbnail Preview linking to Demo */}
+                {/* Thumbnail Live Preview linking to Demo */}
                 <a
                   href={template.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="aspect-[16/10] bg-muted/40 relative overflow-hidden block group cursor-pointer border-b border-border/50"
+                  className="aspect-[16/10] bg-muted/20 relative overflow-hidden block group cursor-pointer border-b border-border/50"
                   aria-label={`${t.card.livePreview}: ${title}`}
                   title={`${t.card.livePreview}: ${title}`}
                 >
-                  <img
-                    src={template.previewImage}
-                    alt={imageAlt}
-                    width={640}
-                    height={400}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/15 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  {template.previewImage ? (
+                    <img
+                      src={template.previewImage}
+                      alt={imageAlt}
+                      width={640}
+                      height={400}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <TemplateLivePreview demoUrl={template.demoUrl} title={title} />
+                  )}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
                     <span className="bg-background/95 backdrop-blur-xs text-foreground text-xs font-semibold px-3 py-1.5 rounded-md shadow-xs flex items-center gap-1.5">
                       <span>{t.card.livePreview}</span>
                       <ExternalLink className="w-3.5 h-3.5" />

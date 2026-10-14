@@ -1,0 +1,15 @@
+---
+import GkeTemplate from '../../../../features/template/gke/GkeTemplate.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<GkeTemplate lang={lang} />

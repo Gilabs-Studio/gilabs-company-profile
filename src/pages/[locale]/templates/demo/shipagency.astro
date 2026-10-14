@@ -1,0 +1,15 @@
+---
+import ShipagencyTemplate from '../../../../features/template/shipagency/ShipagencyTemplate.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<ShipagencyTemplate lang={lang} />

@@ -28,10 +28,40 @@ interface OrderFlowProps {
   lang?: 'id' | 'en';
 }
 
+function OrderMiniPreview({ demoUrl, title }: { demoUrl: string; title: string }) {
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [scale, setScale] = useState(0.15);
+
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+    const width = containerRef.current.clientWidth;
+    if (width > 0) {
+      setScale(width / 1280);
+    }
+  }, []);
+
+  return (
+    <div ref={containerRef} className="w-full h-full relative overflow-hidden bg-muted/30 pointer-events-none select-none">
+      <iframe
+        src={demoUrl}
+        title={title}
+        tabIndex={-1}
+        loading="lazy"
+        className="border-0 absolute top-0 left-0 origin-top-left pointer-events-none"
+        style={{
+          width: '1280px',
+          height: '800px',
+          transform: `scale(${scale})`,
+        }}
+      />
+    </div>
+  );
+}
+
 export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowProps) {
   // 1. Order State
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>(
-    initialTemplateId || 'company-profile'
+    initialTemplateId || templatesData[0]?.id || 'adiguna-machinery'
   );
   const [selectedDurationId, setSelectedDurationId] = useState<'1-year' | '2-year' | '3-year'>('3-year');
   const [hasEditingAddon, setHasEditingAddon] = useState<boolean>(false);
@@ -314,13 +344,17 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   href={selectedTemplate.demoUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full sm:w-44 aspect-[16/10] bg-muted/40 rounded-lg overflow-hidden border border-border/60 flex-shrink-0 block group relative cursor-pointer"
+                  className="w-full sm:w-44 aspect-16/10 bg-muted/40 rounded-lg overflow-hidden border border-border/60 shrink-0 block group relative cursor-pointer"
                 >
-                  <img
-                    src={selectedTemplate.previewImage}
-                    alt={templateDisplayTitle}
-                    className="w-full h-full object-cover transition-transform group-hover:scale-[1.02]"
-                  />
+                  {selectedTemplate.previewImage ? (
+                    <img
+                      src={selectedTemplate.previewImage}
+                      alt={templateDisplayTitle}
+                      className="w-full h-full object-cover transition-transform group-hover:scale-[1.02]"
+                    />
+                  ) : (
+                    <OrderMiniPreview demoUrl={selectedTemplate.demoUrl} title={templateDisplayTitle} />
+                  )}
                   <div className="absolute inset-0 bg-black/10 group-hover:bg-black/25 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <span className="bg-background/95 text-foreground text-[10px] font-semibold px-2 py-1 rounded shadow-xs flex items-center gap-1">
                       <span>{t.viewDemo}</span>
@@ -412,19 +446,23 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                           isChosen ? 'border-primary ring-2 ring-primary/20' : 'border-border'
                         }`}
                       >
-                        <div className="aspect-[16/10] bg-muted/40 rounded overflow-hidden mb-2.5 border border-border/50">
-                          <img
-                            src={item.previewImage}
-                            alt={itemTitle}
-                            className="w-full h-full object-cover"
-                          />
+                        <div className="aspect-16/10 bg-muted/40 rounded overflow-hidden mb-2.5 border border-border/50">
+                          {item.previewImage ? (
+                            <img
+                              src={item.previewImage}
+                              alt={itemTitle}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            <OrderMiniPreview demoUrl={item.demoUrl} title={itemTitle} />
+                          )}
                         </div>
                         <div className="flex items-center justify-between">
                           <h4 className="text-xs font-bold text-foreground truncate mr-2">
                             {itemTitle}
                           </h4>
                           {isChosen && (
-                            <span className="text-[10px] font-bold text-primary flex-shrink-0">
+                            <span className="text-[10px] font-bold text-primary shrink-0">
                               ✓ {t.activeTemplateBadge}
                             </span>
                           )}
@@ -526,7 +564,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 pt-0.5">
                 {selectedDuration.features[lang].map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-2 text-xs text-foreground/80 leading-relaxed">
-                    <Check className="w-3.5 h-3.5 text-primary flex-shrink-0 mt-0.5" />
+                    <Check className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
                     <span>{feature}</span>
                   </div>
                 ))}
@@ -546,7 +584,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   type="checkbox"
                   checked={hasEditingAddon}
                   onChange={(e) => setHasEditingAddon(e.target.checked)}
-                  className="mt-0.5 w-4 h-4 rounded text-foreground cursor-pointer flex-shrink-0"
+                  className="mt-0.5 w-4 h-4 rounded text-foreground cursor-pointer shrink-0"
                 />
                 <div className="space-y-1">
                   <div className="flex flex-wrap items-center justify-between gap-2">
@@ -767,7 +805,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
             <div className="mt-5 pt-4 border-t border-border/60 space-y-2">
               {t.trustPoints.map((point, idx) => (
                 <div key={idx} className="flex items-center gap-2 text-[11px] text-muted-foreground">
-                  <ShieldCheck className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                  <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" />
                   <span>{point}</span>
                 </div>
               ))}

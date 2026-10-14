@@ -1,0 +1,15 @@
+---
+import KoperasiTemplate from '../../../../features/template/koperasi/KoperasiTemplate.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<KoperasiTemplate lang={lang} />

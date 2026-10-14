@@ -1,5 +1,5 @@
 ---
-import Project02Page from '../../../../features/template/project-02/Project02Page.astro';
+import GkeTemplate from '../../../../features/template/gke/GkeTemplate.astro';
 
 export function getStaticPaths() {
   return [
@@ -12,4 +12,4 @@ const { locale } = Astro.params;
 const lang = locale === 'en' ? 'en' : 'id';
 ---
 
-<Project02Page lang={lang} />
+<GkeTemplate lang={lang} />

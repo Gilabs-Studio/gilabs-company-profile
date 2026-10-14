@@ -1,5 +1,5 @@
 ---
-import Project01Page from '../../../../features/template/project-01/Project01Page.astro';
+import AdigunaTemplate from '../../../../features/template/adiguna/AdigunaTemplate.astro';
 
 export function getStaticPaths() {
   return [
@@ -12,4 +12,4 @@ const { locale } = Astro.params;
 const lang = locale === 'en' ? 'en' : 'id';
 ---
 
-<Project01Page lang={lang} />
+<AdigunaTemplate lang={lang} />

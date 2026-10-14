@@ -1,0 +1,399 @@
+---
+import { getWhatsAppLink } from '../../../lib/utils';
+import '../../../styles/globals.css';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+
+const templateTitle = lang === 'en' 
+  ? "Template 03: Cooperative Financial & Member Governance" 
+  : "Template 03: Tata Kelola Finansial & Anggota Koperasi";
+const templatePrice = "Rp 1.350.000";
+const buyUrl = getWhatsAppLink('template', lang, templateTitle);
+const catalogUrl = `/${lang}/templates`;
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{templateTitle} - Live Demo</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+</head>
+<body class="bg-[#FAF9F5] text-stone-900 font-sans antialiased selection:bg-stone-900 selection:text-white">
+
+  <!--  Top Sticky Demo Header Bar  -->
+  <header class="sticky top-0 z-50 bg-[#0f172a] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
+    <div class="flex items-center gap-3">
+      <a 
+        href={catalogUrl} 
+        class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-medium"
+      >
+        <span>←</span>
+        <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
+      </a>
+      <span class="text-slate-600 hidden sm:inline">|</span>
+      <span class="font-semibold text-slate-200 hidden sm:inline">{templateTitle}</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span class="text-slate-300 font-mono hidden md:inline">{templatePrice} </span>
+      <a
+        href={buyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3.5 py-1.5 rounded text-xs transition-colors cursor-pointer"
+      >
+        {lang === 'en' ? 'Purchase Template' : 'Beli Template Ini'}
+      </a>
+    </div>
+  </header>
+
+  <!--  Floating Minimalist Pill Navbar matching docs/koperasi landing-navbar.tsx  -->
+  <header class="fixed top-[45px] inset-x-0 z-40 max-w-5xl mx-auto px-4 mt-3">
+    <div class="rounded-full bg-white/85 backdrop-blur-md border border-stone-200/80 px-6 py-3 flex items-center justify-between shadow-sm">
+      <a href="#hero" class="flex items-center gap-2.5 cursor-pointer">
+        <div class="w-7 h-7 rounded-full bg-stone-900 text-white flex items-center justify-center font-serif text-xs font-bold">
+          LI
+        </div>
+        <span class="font-semibold text-stone-900 text-sm tracking-tight">
+          LOREM<span class="font-light text-stone-500">IPSUM</span>
+        </span>
+      </a>
+
+      <div class="hidden md:flex items-center gap-7 text-xs font-light text-stone-600 tracking-wide">
+        <a href="#hero" class="hover:text-stone-900 transition-colors cursor-pointer">Beranda</a>
+        <a href="#tentang" class="hover:text-stone-900 transition-colors cursor-pointer">Tentang</a>
+        <a href="#modul" class="hover:text-stone-900 transition-colors cursor-pointer">Modul</a>
+        <a href="#fitur" class="hover:text-stone-900 transition-colors cursor-pointer">Fitur Utama</a>
+        <a href="#keamanan" class="hover:text-stone-900 transition-colors cursor-pointer">Keamanan</a>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <a
+          href="#kontak"
+          class="h-8 px-4 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-[11px] font-medium flex items-center justify-center transition-colors cursor-pointer"
+        >
+          Portal Anggota &rarr;
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!--  01. HERO SECTION (Full-screen hero-cinematic.png background + Bottom context bar exactly like docs/koperasi hero-section.tsx)  -->
+  <section id="hero" class="relative w-full min-h-screen flex flex-col justify-between overflow-hidden bg-stone-900 text-white pt-32 pb-12 px-6 sm:px-10 lg:px-16">
+    <!--  Full Cover Background  -->
+    <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      <img
+        src="/templates/koperasi/images/hero-cinematic.png"
+        alt="Lorem Ipsum Daylight Architecture"
+        class="w-full h-full object-cover object-center"
+        loading="eager"
+      />
+      <div class="absolute inset-0 bg-gradient-to-b from-black/45 via-black/20 to-black/60"></div>
+    </div>
+
+    <!--  Top Spacer  -->
+    <div class="h-8 sm:h-12"></div>
+
+    <!--  Main Center Typography matching docs/koperasi  -->
+    <div class="relative z-10 mx-auto max-w-6xl text-center flex flex-col items-center justify-center my-auto py-16 sm:py-24">
+      <p class="text-xs sm:text-sm font-light tracking-[0.3em] uppercase text-white/90 mb-6 drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
+        PLATFORM FINANSIAL TERBUKA &bull; TATA KELOLA MODERN
+      </p>
+
+      <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-[5.4rem] font-light tracking-[-0.03em] text-white leading-[1.08] max-w-5xl drop-shadow-[0_2px_16px_rgba(0,0,0,0.5)]">
+        Digitalisasi Koperasi <br />
+        <span class="font-serif italic font-normal text-stone-200">
+          Transparan &amp; Akuntabel
+        </span>
+      </h1>
+    </div>
+
+    <!--  Bottom Floating Bar matching docs/koperasi hero-section.tsx  -->
+    <div class="relative z-10 mx-auto max-w-7xl w-full">
+      <div class="rounded-lg bg-black/55 backdrop-blur-md border border-white/20 px-6 py-5 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl">
+        <span class="text-xs font-medium tracking-[0.2em] uppercase text-emerald-400 whitespace-nowrap self-start md:self-center flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          LOREM IPSUM ONLINE
+        </span>
+
+        <p class="text-xs sm:text-sm text-white/90 font-light text-left max-w-2xl leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Menghubungkan seluruh pencatatan simpan pinjam, pembagian SHU, dan pembukuan kas dalam satu kesatuan sistem real-time.
+        </p>
+
+        <a
+          href="#modul"
+          class="w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white text-stone-950 text-xs font-medium tracking-wider uppercase transition-all duration-200 hover:bg-stone-100 cursor-pointer shrink-0 shadow-sm"
+        >
+          <span>Jelajahi Modul</span>
+          <span>&darr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!--  02. PROBLEM & POSITIONING (With tentang-sistem.webp from docs/koperasi)  -->
+  <section id="tentang" class="py-24 px-6 sm:px-10 lg:px-16 bg-white border-t border-stone-200">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div>
+        <span class="text-xs font-light tracking-[0.2em] uppercase text-stone-400 block mb-3">
+          TENTANG SISTEM
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-light tracking-tight text-stone-900 leading-[1.15]">
+          Dari Pembukuan Manual Menuju Efisiensi Digital
+        </h2>
+        <p class="mt-6 text-stone-600 text-sm sm:text-base font-light leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Mengeliminasi selisih hitung dan mempercepat laporan pertanggungjawaban anggota.
+        </p>
+        <div class="mt-8 space-y-4">
+          <div class="flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">✓</span>
+            <p class="text-sm text-stone-700 font-light">Rekapitulasi otomatis simpanan pokok, wajib, dan sukarela.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">✓</span>
+            <p class="text-sm text-stone-700 font-light">Kalkulasi bunga dan jatuh tempo pembiayaan akurat.</p>
+          </div>
+          <div class="flex items-start gap-3">
+            <span class="w-5 h-5 rounded-full bg-stone-900 text-white flex items-center justify-center text-xs shrink-0 mt-0.5">✓</span>
+            <p class="text-sm text-stone-700 font-light">Buku kas dan jurnal umum terintegrasi standar akuntansi.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="rounded-xl overflow-hidden border border-stone-200 shadow-sm bg-stone-50">
+        <img
+          src="/templates/koperasi/images/dashboard/tentang-sistem.webp"
+          alt="Tentang Sistem Dashboard"
+          class="w-full h-auto object-cover"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!--  03. CORE MODULES SHOWCASE (6 Module cards with real illustrations from docs/koperasi)  -->
+  <section id="modul" class="py-24 px-6 sm:px-10 lg:px-16 bg-[#FAF9F5] border-t border-stone-200">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-light tracking-[0.2em] uppercase text-stone-400 block mb-3">
+          SATU PLATFORM LENGKAP
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-light tracking-tight text-stone-900">
+          Modul Terintegrasi Tata Kelola Koperasi
+        </h2>
+        <p class="mt-4 text-stone-600 font-light text-sm sm:text-base leading-relaxed">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!--  Module 1  -->
+        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
+          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
+            <img
+              src="/templates/koperasi/images/illustrations/modul-simpanan.webp"
+              alt="Modul Simpanan"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Simpanan Anggota</h3>
+            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+            </p>
+          </div>
+        </div>
+
+        <!--  Module 2  -->
+        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
+          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
+            <img
+              src="/templates/koperasi/images/illustrations/modul-pinjaman.webp"
+              alt="Modul Pinjaman"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Pinjaman &amp; Pembiayaan</h3>
+            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+            </p>
+          </div>
+        </div>
+
+        <!--  Module 3  -->
+        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
+          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
+            <img
+              src="/templates/koperasi/images/illustrations/modul-anggota.webp"
+              alt="Modul Anggota"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Data Anggota Mandiri</h3>
+            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+            </p>
+          </div>
+        </div>
+
+        <!--  Module 4  -->
+        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
+          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
+            <img
+              src="/templates/koperasi/images/illustrations/modul-shu.webp"
+              alt="Modul SHU"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Perhitungan SHU</h3>
+            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+            </p>
+          </div>
+        </div>
+
+        <!--  Module 5  -->
+        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
+          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
+            <img
+              src="/templates/koperasi/images/illustrations/modul-keuangan.webp"
+              alt="Modul Keuangan"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Pembukuan &amp; Jurnal Kas</h3>
+            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+            </p>
+          </div>
+        </div>
+
+        <!--  Module 6  -->
+        <div class="bg-white rounded-xl border border-stone-200 overflow-hidden shadow-sm flex flex-col group hover:shadow-md transition-shadow">
+          <div class="relative w-full aspect-[16/10] bg-stone-100 overflow-hidden">
+            <img
+              src="/templates/koperasi/images/illustrations/modul-laporan.webp"
+              alt="Modul Laporan"
+              class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              loading="lazy"
+            />
+          </div>
+          <div class="p-6 flex-1 flex flex-col">
+            <h3 class="text-xl font-medium text-stone-900 mb-2">Laporan RAT Siap Unduh</h3>
+            <p class="text-xs sm:text-sm text-stone-600 font-light leading-relaxed">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod tempor.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--  04. FEATURE SHOWCASE (3 feature illustrations from docs/koperasi)  -->
+  <section id="fitur" class="py-24 px-6 sm:px-10 lg:px-16 bg-white border-t border-stone-200">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-light tracking-[0.2em] uppercase text-stone-400 block mb-3">
+          TRANSPARANSI DIGITAL
+        </span>
+        <h2 class="text-3xl sm:text-5xl font-light tracking-tight text-stone-900">
+          Dari Transaksi Menjadi Informasi Akurat
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="aspect-square rounded-2xl bg-stone-50 border border-stone-200/80 p-6 flex items-center justify-center mb-6">
+            <img
+              src="/templates/koperasi/images/illustrations/feature-anggota.webp"
+              alt="Feature Anggota"
+              class="max-h-full max-w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-lg font-medium text-stone-900 mb-2">Registrasi Digital</h3>
+          <p class="text-xs sm:text-sm text-stone-600 font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="aspect-square rounded-2xl bg-stone-50 border border-stone-200/80 p-6 flex items-center justify-center mb-6">
+            <img
+              src="/templates/koperasi/images/illustrations/feature-pinjaman.webp"
+              alt="Feature Pinjaman"
+              class="max-h-full max-w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-lg font-medium text-stone-900 mb-2">Simulasi Real-time</h3>
+          <p class="text-xs sm:text-sm text-stone-600 font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+
+        <div class="text-center">
+          <div class="aspect-square rounded-2xl bg-stone-50 border border-stone-200/80 p-6 flex items-center justify-center mb-6">
+            <img
+              src="/templates/koperasi/images/illustrations/feature-shu.webp"
+              alt="Feature SHU"
+              class="max-h-full max-w-full object-contain"
+              loading="lazy"
+            />
+          </div>
+          <h3 class="text-lg font-medium text-stone-900 mb-2">Distribusi Hasil Adil</h3>
+          <p class="text-xs sm:text-sm text-stone-600 font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--  05. CTA FOOTER  -->
+  <footer id="kontak" class="bg-stone-900 text-stone-100 py-16 px-6 sm:px-10 lg:px-16">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12 text-sm text-stone-400">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-2.5 mb-4">
+          <div class="w-8 h-8 rounded-full bg-white text-stone-900 flex items-center justify-center font-serif text-sm font-bold">
+            LI
+          </div>
+          <span class="text-xl font-medium tracking-tight text-white">
+            LOREM<span class="font-light text-stone-400">IPSUM</span>
+          </span>
+        </div>
+        <p class="max-w-md font-light leading-relaxed text-stone-400">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Platform digitalisasi tata kelola operasional dan akuntansi keuangan anggota terpercaya.
+        </p>
+      </div>
+
+      <div>
+        <p class="font-medium text-white uppercase text-xs tracking-wider mb-4">Navigasi</p>
+        <ul class="space-y-2">
+          <li><a href="#hero" class="hover:text-white transition-colors">Beranda</a></li>
+          <li><a href="#tentang" class="hover:text-white transition-colors">Tentang</a></li>
+          <li><a href="#modul" class="hover:text-white transition-colors">Modul Sistem</a></li>
+          <li><a href="#fitur" class="hover:text-white transition-colors">Fitur Utama</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-medium text-white uppercase text-xs tracking-wider mb-4">Kontak</p>
+        <p class="leading-relaxed">lorem@ipsum.id</p>
+        <p class="leading-relaxed">+62 21 0000 0000</p>
+        <p class="leading-relaxed mt-2 text-xs text-stone-500">Kawasan Layanan Finansial Indonesia</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

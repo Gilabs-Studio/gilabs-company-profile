@@ -3,7 +3,7 @@ export interface TemplateItem {
   slug: string;
   title: string;
   titleEn?: string;
-  category: 'service' | 'ekspor' | 'company';
+  category: 'manufaktur' | 'company' | 'fintech' | 'service' | 'event' | 'ekspor';
   categoryLabel: {
     id: string;
     en: string;
@@ -58,77 +58,113 @@ export interface AddonItem {
 
 export const templateCategories = [
   { id: 'all', label: { id: 'Semua Kategori', en: 'All Categories' } },
-  { id: 'service', label: { id: 'Website Jasa & Konsultan', en: 'Services & Consultants' } },
-  { id: 'ekspor', label: { id: 'Produk Ekspor & Manufaktur', en: 'Export Products & Industry' } },
-  { id: 'company', label: { id: 'Company Profile Korporat', en: 'Corporate Company Profile' } },
+  { id: 'manufaktur', label: { id: 'Manufaktur & Industri', en: 'Manufacturing & Industry' } },
+  { id: 'company', label: { id: 'Enterprise & B2B', en: 'Enterprise & Corporate' } },
+  { id: 'fintech', label: { id: 'Koperasi & Keuangan', en: 'Cooperative & Finance' } },
+  { id: 'service', label: { id: 'Jasa & Maritim', en: 'Services & Maritime' } },
+  { id: 'event', label: { id: 'Event & Tiket', en: 'Events & Ticketing' } },
 ] as const;
 
 export const templatesData: TemplateItem[] = [
   {
-    id: 'website-jasa',
-    slug: 'website-jasa-konsultan',
-    title: 'Website Jasa & Konsultan Bisnis',
-    titleEn: 'Services & Business Consulting Website',
-    category: 'service',
+    id: 'adiguna-machinery',
+    slug: 'adiguna-machinery-industrial',
+    title: 'Website Industri & Manufaktur Presisi',
+    titleEn: 'Precision Industrial Machinery Website',
+    category: 'manufaktur',
     categoryLabel: {
-      id: 'Website Jasa',
-      en: 'Services'
+      id: 'Manufaktur & Industri',
+      en: 'Manufacturing & Industry'
     },
     description: {
-      id: 'Template website profil penyedia jasa, konsultan, klinik, agensi, dan kontraktor. Dilengkapi katalog layanan, tim ahli, testimoni klien, dan tombol chat WhatsApp langsung.',
-      en: 'Professional website template for service providers, consultants, agencies, and clinics. Features service catalog, team profiles, client reviews, and direct WhatsApp chat.'
+      id: 'Template website profil manufaktur mesin industri, workshop CNC, dan pabrik presisi berstandar internasional dengan nuansa profesional dan spesifikasi teknis mendalam.',
+      en: 'Modern website template for industrial machinery manufacturers, CNC workshops, and precision engineering plants.'
     },
     startingPriceIdr: 1250000,
-    previewImage: '/templates/project-01/preview.svg',
-    gallery: [
-      '/templates/project-01/preview.svg'
-    ],
-    demoUrl: '/templates/demo/project-01',
-    buyersCount: 196
+    previewImage: '/templates/adiguna-machinery/preview.webp',
+    gallery: ['/templates/adiguna-machinery/preview.webp'],
+    demoUrl: '/templates/demo/adiguna',
+    buyersCount: 142
   },
   {
-    id: 'website-ekspor',
-    slug: 'website-ekspor-manufaktur',
-    title: 'Website Ekspor & Manufaktur',
-    titleEn: 'Export & Manufacturing Website',
-    category: 'ekspor',
-    categoryLabel: {
-      id: 'Produk Ekspor',
-      en: 'Export Products'
-    },
-    description: {
-      id: 'Template website untuk eksportir komoditas, pabrik manufaktur, dan pengrajin lokal. Dilengkapi spesifikasi produk, sertifikasi mutu, dokumen ekspor, dan inquiry buyer.',
-      en: 'Website template for commodity exporters, manufacturing plants, and artisans. Features product specifications, quality certifications, and direct buyer inquiry.'
-    },
-    startingPriceIdr: 1250000,
-    previewImage: '/templates/project-02/preview.svg',
-    gallery: [
-      '/templates/project-02/preview.svg'
-    ],
-    demoUrl: '/templates/demo/project-02',
-    buyersCount: 210
-  },
-  {
-    id: 'company-profile',
-    slug: 'company-profile-korporat',
-    title: 'Website Company Profile Korporat',
-    titleEn: 'Corporate Company Profile Website',
+    id: 'gke-enterprise',
+    slug: 'gke-enterprise-supply',
+    title: 'Website Enterprise & Supply Chain',
+    titleEn: 'Enterprise Engineering & Supply Chain Website',
     category: 'company',
     categoryLabel: {
-      id: 'Company Profile',
-      en: 'Company Profile'
+      id: 'Enterprise & B2B',
+      en: 'Enterprise & Corporate'
     },
     description: {
-      id: 'Template profil perusahaan modern dan elegan untuk korporat, holding company, dan B2B. Membangun kredibilitas tinggi di hadapan klien dan mitra bisnis besar.',
-      en: 'Modern and credible corporate profile website template for enterprises and B2B firms. Designed to build strong authority with prospective partners.'
+      id: 'Template website profil perusahaan skala enterprise, supply chain, dan distributor suku cadang industri dengan tipografi editorial modern dan performa tinggi.',
+      en: 'Corporate profile website template for enterprise firms, industrial supply chains, and B2B engineering solutions.'
     },
     startingPriceIdr: 1250000,
-    previewImage: '/templates/project-01/preview.svg',
-    gallery: [
-      '/templates/project-01/preview.svg'
-    ],
-    demoUrl: '/templates/demo/project-01',
-    buyersCount: 184
+    previewImage: '/templates/gke-enterprise/preview.webp',
+    gallery: ['/templates/gke-enterprise/preview.webp'],
+    demoUrl: '/templates/demo/gke',
+    buyersCount: 188
+  },
+  {
+    id: 'koperasi-digital',
+    slug: 'koperasi-fintech-cooperative',
+    title: 'Website Koperasi Digital & Keuangan',
+    titleEn: 'Digital Cooperative & Financial Platform',
+    category: 'fintech',
+    categoryLabel: {
+      id: 'Koperasi & Finansial',
+      en: 'Cooperative & Finance'
+    },
+    description: {
+      id: 'Template website profil koperasi simpan pinjam modern dan institusi keuangan komunitas dengan estetika bersih, pratinjau modul konsol, dan transparansi laporan.',
+      en: 'Modern website template for savings & credit cooperatives and digital financial institutions with daylight architectural aesthetics.'
+    },
+    startingPriceIdr: 1250000,
+    previewImage: '/templates/koperasi-digital/preview.webp',
+    gallery: ['/templates/koperasi-digital/preview.webp'],
+    demoUrl: '/templates/demo/koperasi',
+    buyersCount: 165
+  },
+  {
+    id: 'shipagency-maritime',
+    slug: 'nautiva-ocean-shipping-agency',
+    title: 'Website Keagenan Kapal & Logistik Maritim',
+    titleEn: 'Maritime Ship Agency & Port Logistics Website',
+    category: 'service',
+    categoryLabel: {
+      id: 'Jasa & Maritim',
+      en: 'Services & Maritime'
+    },
+    description: {
+      id: 'Template website keagenan kapal pelabuhan, manajemen sertifikat perkapalan, dan logistik maritim terintegrasi dengan nuansa oceanic gelap dan metrik operasional terpercaya.',
+      en: 'Specialized website template for shipping agencies, vessel clearance operations, and maritime logistics companies.'
+    },
+    startingPriceIdr: 1250000,
+    previewImage: '/templates/shipagency-maritime/preview.webp',
+    gallery: ['/templates/shipagency-maritime/preview.webp'],
+    demoUrl: '/templates/demo/shipagency',
+    buyersCount: 129
+  },
+  {
+    id: 'ticketing-events',
+    slug: 'euforia-festival-ticketing',
+    title: 'Website Tiket Konser & Festival Event',
+    titleEn: 'Concert & Festival Event Ticketing Website',
+    category: 'event',
+    categoryLabel: {
+      id: 'Event & Tiket',
+      en: 'Events & Ticketing'
+    },
+    description: {
+      id: 'Template website event festival musik, konser, dan seminar dengan dynamic live countdown timer, efek ambience beams rave modern, dan showcase tiket terintegrasi.',
+      en: 'High-energy event ticketing and festival website template featuring live countdown timers, glowing ambient visual aesthetics, and ticket tier showcases.'
+    },
+    startingPriceIdr: 1250000,
+    previewImage: '/templates/ticketing-events/preview.webp',
+    gallery: ['/templates/ticketing-events/preview.webp'],
+    demoUrl: '/templates/demo/ticketing',
+    buyersCount: 204
   }
 ];
 
@@ -258,7 +294,7 @@ export const websiteEditingAddon: AddonItem = {
 export const templatesPageContent = {
   id: {
     heroTag: 'Website Siap Pakai • Langsung Online Hari Ini',
-    heroTitle: 'Malas Cari Vendor? Website Siap Jadi Hari Ini',
+    heroTitle: 'Malas Cari Vendor? Website Siap Jadi Hari Ini!',
     heroSubtitle: 'Pilih template siap pakai, langsung online hari ini lengkap dengan domain dan hosting. Bisa kami bantu editkan konten atau custom sesuai kebutuhan.',
     valueProps: [
       {
@@ -343,7 +379,7 @@ export const templatesPageContent = {
   },
   en: {
     heroTag: 'Turnkey Website Templates • Go Live Today',
-    heroTitle: 'No Time for Vendors? Your Website Is Ready Today',
+    heroTitle: 'No Time for Vendors? Your Website Is Ready Today!',
     heroSubtitle: 'Ready-to-use business templates, live today with domain and hosting included. We can edit content or build custom features for you.',
     valueProps: [
       {

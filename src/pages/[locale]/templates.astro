@@ -53,7 +53,7 @@ const templateListSchema = {
       "@type": "Product",
       "name": lang === 'en' && item.titleEn ? item.titleEn : item.title,
       "description": item.description[lang],
-      "image": `${siteUrl}${item.previewImage}`,
+      "image": item.previewImage ? `${siteUrl}${item.previewImage}` : `${siteUrl}${item.demoUrl}`,
       "brand": {
         "@type": "Brand",
         "name": "Gilabs"
@@ -129,7 +129,7 @@ const faqSchema = {
     {/* Consistent wide container (max-w-6xl) */}
     <div class="max-w-6xl mx-auto px-4 sm:px-6">
       {/* Compact Minimal Header Section with Pain-Point Slogan */}
-      <header class="py-3 sm:py-8 mb-3">
+      <header class="py-3 sm:py-8 mb-3 text-center flex flex-col items-center">
         <div class="text-[11px] font-semibold uppercase tracking-wider text-muted-foreground mb-2">
           {t.heroTag}
         </div>

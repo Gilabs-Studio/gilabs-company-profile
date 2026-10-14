@@ -1,0 +1,15 @@
+---
+import AdigunaTemplate from '../../../../features/template/adiguna/AdigunaTemplate.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<AdigunaTemplate lang={lang} />

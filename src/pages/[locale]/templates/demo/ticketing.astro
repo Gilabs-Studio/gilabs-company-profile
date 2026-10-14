@@ -1,0 +1,15 @@
+---
+import TicketingTemplate from '../../../../features/template/ticketing/TicketingTemplate.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<TicketingTemplate lang={lang} />

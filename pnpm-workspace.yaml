@@ -1,3 +1,5 @@
 allowBuilds:
   esbuild: false
   sharp: false
+blockExoticSubdeps: false
+storeDir: /home/kevin/snap/code/244/.local/share/pnpm/store/v11
