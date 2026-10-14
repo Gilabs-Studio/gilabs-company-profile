@@ -4,13 +4,8 @@ import '../../../styles/globals.css';
 
 import ShipagencyNavbar from './components/ShipagencyNavbar.astro';
 import HeroSection from './components/HeroSection.astro';
-import FinancingSolutionSection from './components/FinancingSolutionSection.astro';
-import FinancingProductsSection from './components/FinancingProductsSection.astro';
-import WhyChooseUsSection from './components/WhyChooseUsSection.astro';
-import ApplicationProcessSection from './components/ApplicationProcessSection.astro';
-import AchievementsSection from './components/AchievementsSection.astro';
-import TestimonialsSection from './components/TestimonialsSection.astro';
-import FaqSection from './components/FaqSection.astro';
+import ServicesSection from './components/ServicesSection.astro';
+import AboutStatsScrollSection from './components/AboutStatsScrollSection';
 import ShipagencyFooter from './components/ShipagencyFooter.astro';
 
 interface Props {
@@ -20,8 +15,8 @@ interface Props {
 const { lang = 'id' } = Astro.props;
 
 const templateTitle = lang === 'en' 
-  ? "Template 04: Maritime Port Agency & Fleet Financing" 
-  : "Template 04: Keagenan Kapal Pelabuhan & Pembiayaan Maritim";
+  ? "Template 04: PT. Nautiva Ocean Agency — Ship Agency & Fleet Outsourcing" 
+  : "Template 04: PT. Nautiva Ocean Agency — Keagenan Kapal & Outsourcing Maritim";
 const templatePrice = "Rp 1.400.000";
 const buyUrl = getWhatsAppLink('template', lang, templateTitle);
 const catalogUrl = `/${lang}/templates`;
@@ -67,34 +62,19 @@ const catalogUrl = `/${lang}/templates`;
   <!-- Sticky Maritime Floating Navbar -->
   <ShipagencyNavbar lang={lang} />
 
-  <!-- Main Sections Orchestration (1 Section = 1 Window Layout Cadence) -->
+  <!-- Main Sections Orchestration (Exactly Matching docs/ship Full Landing Page) -->
   <main class="w-full">
-    <!-- 01. Hero Section (100dvh) -->
+    <!-- 01. Hero Section (100dvh) with Parallax & Entrance Animation -->
     <HeroSection lang={lang} />
 
-    <!-- 02. Financing Solutions Section (100dvh) -->
-    <FinancingSolutionSection lang={lang} />
+    <!-- 02. Services Section (4 Cards Grid) -->
+    <ServicesSection lang={lang} />
 
-    <!-- 03. Financing Products 4-Card Section (100dvh) -->
-    <FinancingProductsSection lang={lang} />
-
-    <!-- 04. Why Choose Us Section with Vessel Watermark (100dvh) -->
-    <WhyChooseUsSection lang={lang} />
-
-    <!-- 05. Application Process 4-Step Flow (100dvh) -->
-    <ApplicationProcessSection lang={lang} />
-
-    <!-- 06. Achievements & Track Record Section (90-100dvh) -->
-    <AchievementsSection lang={lang} />
-
-    <!-- 07. Testimonials Carousel Section (100dvh) -->
-    <TestimonialsSection lang={lang} />
-
-    <!-- 08. FAQ 2-Column Accordion Section (100dvh) -->
-    <FaqSection lang={lang} />
+    <!-- 03. About & Stats Scroll Frame Animation Section (Canvas Frame Playback 1-95) -->
+    <AboutStatsScrollSection client:load lang={lang} />
   </main>
 
-  <!-- 09. Dark Navy Footer -->
+  <!-- 04. Dark Maritime Footer -->
   <ShipagencyFooter lang={lang} />
 
 </body>

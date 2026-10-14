@@ -4,6 +4,7 @@ interface Props {
 }
 
 const { lang } = Astro.props;
+const isEn = lang === 'en';
 ---
 
 <header
@@ -12,28 +13,28 @@ const { lang } = Astro.props;
 >
   <div class="mx-auto max-w-7xl flex items-center justify-between gap-4">
     <!-- Brand Logo -->
-    <a href="#beranda" class="flex items-center gap-2 cursor-pointer group">
+    <a href="#hero" class="flex items-center gap-2 cursor-pointer group">
       <span class="text-base sm:text-lg font-black tracking-wider text-white group-hover:text-emerald-400 transition-colors drop-shadow-md cursor-pointer">
-        PT. LOREM IPSUM MARITIME
+        PT. NAUTIVA OCEAN AGENCY
       </span>
     </a>
 
     <!-- Navigation Menu Links -->
     <nav class="hidden md:flex items-center gap-7 text-xs font-semibold text-slate-200 tracking-wide">
       <a
-        href="#beranda"
+        href="#hero"
         class="text-emerald-400 font-bold border-b-2 border-emerald-400 pb-0.5 cursor-pointer transition-colors"
       >
-        {lang === 'en' ? 'Home' : 'Beranda'}
+        {isEn ? 'Home' : 'Beranda'}
       </a>
-      <a href="#solusi" class="hover:text-emerald-400 transition-colors cursor-pointer">
-        {lang === 'en' ? 'Services' : 'Layanan'}
+      <a href="#services" class="hover:text-emerald-400 transition-colors cursor-pointer">
+        {isEn ? 'Services' : 'Layanan Kami'}
       </a>
-      <a href="#produk" class="hover:text-emerald-400 transition-colors cursor-pointer">
-        {lang === 'en' ? 'Vessels' : 'Armada'}
+      <a href="#about" class="hover:text-emerald-400 transition-colors cursor-pointer">
+        {isEn ? 'About Us' : 'Tentang Kami'}
       </a>
-      <a href="#statistik" class="hover:text-emerald-400 transition-colors cursor-pointer">
-        {lang === 'en' ? 'Statistics' : 'Statistik'}
+      <a href="#kontak" class="hover:text-emerald-400 transition-colors cursor-pointer">
+        {isEn ? 'Contact' : 'Kontak'}
       </a>
     </nav>
 
@@ -48,7 +49,7 @@ const { lang } = Astro.props;
         <img
           src={lang === 'id' ? '/templates/shipagency/flag/flag-for-flag-monaco-svgrepo-com.svg' : '/templates/shipagency/flag/flag-for-flag-united-kingdom-svgrepo-com.svg'}
           alt={lang.toUpperCase()}
-          class="w-6 h-4 object-cover rounded shadow-xs"
+          class="w-7 h-[20px] object-cover rounded shadow-xs"
         />
       </a>
 
@@ -57,7 +58,7 @@ const { lang } = Astro.props;
         href="#kontak"
         class="inline-flex h-9 px-4 rounded bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-slate-950 font-bold text-xs uppercase tracking-wider items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:shadow-emerald-500/20"
       >
-        {lang === 'en' ? 'Contact Agency' : 'Hubungi Agen'}
+        {isEn ? 'Contact Agency' : 'Hubungi Agen'}
       </a>
     </div>
   </div>
