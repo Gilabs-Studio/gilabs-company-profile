@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState, useMemo } from 'react';
-import type { TemplateItem } from '../../data/templatesData';
-import { templateCategories, templatesPageContent } from '../../data/templatesData';
+import type { TemplateItem, TierInfo } from '../../data/templatesData';
+import { tiersData, templatesPageContent } from '../../data/templatesData';
 import { getWhatsAppLink } from '../../lib/utils';
-import { Search, X, ExternalLink } from 'lucide-react';
+import { Search, X, ExternalLink, ArrowRight, MessageCircle } from 'lucide-react';
 
 interface TemplatesCatalogProps {
   templates: TemplateItem[];
@@ -143,227 +143,453 @@ function TemplateCardPreview({ src, alt }: TemplateCardPreviewProps) {
   );
 }
 
-export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCatalogProps) {
-  const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  const [searchQuery, setSearchQuery] = useState<string>('');
-  const [sortBy, setSortBy] = useState<'recommended' | 'priceLow' | 'priceHigh' | 'popular'>('recommended');
+interface TierInfoCardProps {
+  tier: TierInfo;
+  lang: 'id' | 'en';
+}
 
-  const t = templatesPageContent[lang];
+function TierInfoCard({ tier, lang }: TierInfoCardProps) {
+  const title = lang === 'en' ? tier.titleEn : tier.title;
+  const whatsappUrl = getWhatsAppLink('template', lang, title);
 
-  // Filter and sort templates
-  const filteredTemplates = useMemo(() => {
-    return templates
-      .filter((item) => {
-        const matchesCategory = selectedCategory === 'all' || item.category === selectedCategory;
-        const query = searchQuery.toLowerCase().trim();
-        if (!query) return matchesCategory;
-
-        const titleMatch = item.title.toLowerCase().includes(query);
-        const categoryMatch = item.categoryLabel[lang].toLowerCase().includes(query);
-
-        return matchesCategory && (titleMatch || categoryMatch);
-      })
-      .sort((a, b) => {
-        if (sortBy === 'priceLow') {
-          return a.startingPriceIdr - b.startingPriceIdr;
-        }
-        if (sortBy === 'priceHigh') {
-          return b.startingPriceIdr - a.startingPriceIdr;
-        }
-        if (sortBy === 'popular') {
-          return b.buyersCount - a.buyersCount;
-        }
-        return 0; // default / recommended
-      });
-  }, [templates, selectedCategory, searchQuery, sortBy, lang]);
-
-  const formatPrice = (priceIdr: number) => {
-    return `Rp ${priceIdr.toLocaleString('id-ID')}`;
+  // Classy, modern, clean minimalist tier accents (no tacky pill badges, no dots)
+  const tierAccent = {
+    1: {
+      tag: '01 / STATIC',
+      tagColor: 'text-cyan-600 dark:text-cyan-400',
+      hairline: 'from-cyan-500/0 via-cyan-500/80 to-cyan-500/0',
+      glow: 'bg-cyan-500/5',
+    },
+    2: {
+      tag: '02 / MOTION',
+      tagColor: 'text-purple-600 dark:text-purple-400',
+      hairline: 'from-purple-500/0 via-purple-500/80 to-purple-500/0',
+      glow: 'bg-purple-500/5',
+    },
+    3: {
+      tag: '03 / IMMERSIVE',
+      tagColor: 'text-rose-600 dark:text-rose-400',
+      hairline: 'from-rose-500/0 via-rose-500/80 to-rose-500/0',
+      glow: 'bg-rose-500/5',
+    },
+    4: {
+      tag: '04 / CUSTOM',
+      tagColor: 'text-indigo-600 dark:text-indigo-400',
+      hairline: 'from-indigo-500/0 via-indigo-500/80 to-indigo-500/0',
+      glow: 'bg-indigo-500/5',
+    }
+  }[tier.tierNumber] || {
+    tag: `0${tier.tierNumber}`,
+    tagColor: 'text-muted-foreground',
+    hairline: 'from-transparent via-border to-transparent',
+    glow: '',
   };
 
   return (
-    <div className="w-full">
-      {/* Category Filter Pills */}
-      <div className="flex items-center gap-1.5 overflow-x-auto pb-2 scrollbar-none">
-        {templateCategories.map((cat) => {
-          const isActive = selectedCategory === cat.id;
-          return (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`text-xs px-3.5 py-1.5 rounded-lg whitespace-nowrap transition-colors cursor-pointer ${
-                isActive
-                  ? 'bg-foreground text-background font-medium'
-                  : 'bg-secondary/70 text-muted-foreground hover:text-foreground hover:bg-secondary'
-              }`}
-            >
-              {cat.label[lang]}
-            </button>
-          );
-        })}
-      </div>
+    <div className="relative overflow-hidden bg-card border border-border/70 rounded-xl p-5 sm:p-6 flex flex-col justify-between hover:border-foreground/30 transition-all duration-300 shadow-xs h-full">
+      {/* Precision Hairline Top Accent Line */}
+      <div className={`absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r ${tierAccent.hairline}`} aria-hidden="true" />
+      {/* Ambient Atmospheric Glow */}
+      <div className={`absolute top-0 inset-x-4 h-12 ${tierAccent.glow} blur-xl pointer-events-none`} aria-hidden="true" />
 
-      {/* Search and Sort Toolbar */}
-      <div className="mt-4 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-3 border-t border-border/60">
-        {/* Search Input */}
-        <div className="relative flex-1 max-w-md">
-          <Search className="w-4 h-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
-          <input
-            type="text"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder={t.searchPlaceholder}
-            className="w-full text-xs bg-background border border-border/80 rounded-lg pl-9 pr-8 py-2 text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:ring-1 focus:ring-foreground transition-colors"
-          />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery('')}
-              className="absolute right-2.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground cursor-pointer"
-              aria-label="Clear search"
-            >
-              <X className="w-3.5 h-3.5" />
-            </button>
-          )}
+      <div className="relative z-10">
+        {/* Tier Header: Clean Minimalist, Pure Typography */}
+        <div className="flex items-baseline justify-between pb-3.5 border-b border-border/50">
+          <div>
+            <span className={`text-[11px] font-mono tracking-widest uppercase font-semibold ${tierAccent.tagColor}`}>
+              {tierAccent.tag}
+            </span>
+            <h3 className="typography-card-title text-foreground mt-1">
+              {title}
+            </h3>
+          </div>
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={lang === 'id' ? `Konsultasi ${title}` : `Consult about ${title}`}
+            className="text-xs font-medium text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors cursor-pointer"
+          >
+            <span>{lang === 'id' ? 'Tanya' : 'Ask'}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
         </div>
 
-        {/* Sort Dropdown & Counter */}
-        <div className="flex items-center justify-between sm:justify-end gap-3">
-          <span className="text-xs text-muted-foreground whitespace-nowrap">
-            {t.showingResults.replace('{count}', filteredTemplates.length.toString())}
+        {/* Tagline & SEO Copywriting */}
+        <p className="typography-body text-foreground/90 font-medium mt-3 leading-snug">
+          {tier.tagline[lang]}
+        </p>
+        <p className="typography-small text-muted-foreground mt-1.5 leading-relaxed">
+          {tier.description[lang]}
+        </p>
+
+        {/* Measurable Differentiators (No Performance) */}
+        <div className="mt-4 pt-3.5 border-t border-border/50 space-y-2.5 typography-small font-light">
+          <div className="flex items-start justify-between gap-2">
+            <span className="text-muted-foreground flex-shrink-0">
+              {lang === 'id' ? 'Halaman' : 'Pages'}
+            </span>
+            <span className="text-foreground text-right font-medium">
+              {tier.specs.pages[lang]}
+            </span>
+          </div>
+
+          <div className="flex items-start justify-between gap-2">
+            <span className="text-muted-foreground flex-shrink-0">
+              {lang === 'id' ? 'Animasi' : 'Animation'}
+            </span>
+            <span className="text-foreground text-right font-medium">
+              {tier.specs.animation[lang]}
+            </span>
+          </div>
+
+          <div className="flex items-start justify-between gap-2">
+            <span className="text-muted-foreground flex-shrink-0">
+              {lang === 'id' ? 'Aset' : 'Assets'}
+            </span>
+            <span className="text-foreground text-right font-medium">
+              {tier.specs.assets[lang]}
+            </span>
+          </div>
+
+          <div className="flex items-start justify-between gap-2">
+            <span className="text-muted-foreground flex-shrink-0">
+              {lang === 'id' ? 'Ekstra' : 'Extras'}
+            </span>
+            <span className="text-foreground text-right font-medium">
+              {tier.specs.extras[lang]}
+            </span>
+          </div>
+
+          <div className="flex items-start justify-between gap-2">
+            <span className="text-muted-foreground flex-shrink-0">
+              {lang === 'id' ? 'Revisi' : 'Revisions'}
+            </span>
+            <span className="text-foreground text-right font-medium">
+              {tier.specs.revisions[lang]}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Pricing Breakdown Box (Full price, No maintenance) */}
+      <div className="mt-5 pt-3.5 border-t border-border/60 bg-secondary/35 rounded-lg p-3.5 relative z-10">
+        <div className="text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-wider mb-2">
+          {lang === 'id' ? 'Estimasi Biaya Pembuatan' : 'Estimated Build Cost'}
+        </div>
+        <div className="grid grid-cols-2 gap-2">
+          <div>
+            <div className="typography-small text-muted-foreground">
+              {lang === 'id' ? 'Biaya Pembuatan' : 'Development'}
+            </div>
+            <div className="typography-card-title text-base sm:text-lg font-bold text-foreground mt-0.5">
+              {tier.pricing.basePrice}
+            </div>
+          </div>
+          <div>
+            <div className="typography-small text-muted-foreground">
+              {lang === 'id' ? 'Siap Online (+300k)' : 'Turnkey (+300k)'}
+            </div>
+            <div className="typography-card-title text-base sm:text-lg font-bold text-foreground mt-0.5">
+              {tier.pricing.readyOnline}
+            </div>
+          </div>
+        </div>
+        <div className="mt-2.5 pt-2 border-t border-border/40 text-[11px] text-muted-foreground font-light">
+          {lang === 'id' ? 'Termasuk Setup Domain & Cloud Hosting' : 'Includes Domain & Cloud Hosting Setup'}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface TemplateCardProps {
+  template: TemplateItem;
+  lang: 'id' | 'en';
+}
+
+function TemplateCard({ template, lang }: TemplateCardProps) {
+  const t = templatesPageContent[lang];
+  const orderUrl = lang === 'en' 
+    ? `/en/templates/order?template=${template.id}` 
+    : `/templates/order?template=${template.id}`;
+  const title = lang === 'en' && template.titleEn ? template.titleEn : template.title;
+
+  const imageAlt = lang === 'en'
+    ? `${title} - Ready-to-Use Business Website Template Gilabs`
+    : `${title} - Template Website Bisnis Siap Pakai Gilabs`;
+
+  return (
+    <div className="bg-card border border-border/70 rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:border-foreground/40 hover:shadow-xs">
+      {/* Live Preview Thumbnail */}
+      <a
+        href={template.demoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="aspect-[16/10] bg-muted/20 relative overflow-hidden block group cursor-pointer border-b border-border/50"
+        aria-label={`${t.card.livePreview}: ${title}`}
+        title={`${t.card.livePreview}: ${title}`}
+      >
+        {template.previewImage ? (
+          <TemplateCardPreview src={template.previewImage} alt={imageAlt} />
+        ) : (
+          <TemplateLivePreview demoUrl={template.demoUrl} title={title} />
+        )}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+          <span className="bg-background/95 backdrop-blur-xs text-foreground text-xs font-semibold px-3 py-1.5 rounded-md shadow-xs flex items-center gap-1.5">
+            <span>{t.card.livePreview}</span>
+            <ExternalLink className="w-3.5 h-3.5" />
           </span>
-          <select
-            value={sortBy}
-            onChange={(e) => setSortBy(e.target.value as any)}
-            className="text-xs bg-background border border-border/80 rounded-lg px-2.5 py-2 text-foreground focus:outline-none focus:ring-1 focus:ring-foreground cursor-pointer"
+        </div>
+      </a>
+
+      {/* Card Content without pricing */}
+      <div className="p-4 sm:p-4.5 flex-1 flex flex-col justify-between">
+        <div>
+          <h4 className="typography-body-large font-semibold text-foreground tracking-tight leading-snug">
+            <a
+              href={template.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-brand transition-colors cursor-pointer inline-flex items-center gap-1.5"
+              title={`${t.card.livePreview} - ${title}`}
+            >
+              <span>{title}</span>
+              <ExternalLink className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+            </a>
+          </h4>
+          <p className="typography-small text-muted-foreground mt-1.5 line-clamp-2 leading-relaxed">
+            {template.description[lang]}
+          </p>
+        </div>
+
+        {/* Action Buttons: Live Demo + Select as Reference */}
+        <div className="mt-4 pt-3 border-t border-border/50 grid grid-cols-2 gap-2">
+          <a
+            href={template.demoUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${t.card.livePreview} ${title}`}
+            title={`${t.card.livePreview} ${title}`}
+            className="typography-small font-medium py-2 px-2 rounded-lg border border-border/80 hover:bg-secondary text-foreground text-center cursor-pointer transition-colors inline-flex items-center justify-center gap-1"
           >
-            <option value="recommended">{t.sortOptions.recommended}</option>
-            <option value="popular">{t.sortOptions.popular}</option>
-            <option value="priceLow">{t.sortOptions.priceLow}</option>
-            <option value="priceHigh">{t.sortOptions.priceHigh}</option>
-          </select>
+            <span>{t.card.livePreview}</span>
+            <ExternalLink className="w-3 h-3 text-muted-foreground" />
+          </a>
+
+          <a
+            href={orderUrl}
+            aria-label={`${t.card.buyNow} ${title}`}
+            title={`${t.card.buyNow} ${title}`}
+            className="typography-small font-semibold py-2 px-2 rounded-lg bg-foreground text-background hover:opacity-90 text-center cursor-pointer transition-opacity inline-flex items-center justify-center"
+          >
+            {t.card.buyNow}
+          </a>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+interface TierCustomWideCardProps {
+  tier: TierInfo;
+  lang: 'id' | 'en';
+}
+
+function TierCustomWideCard({ tier, lang }: TierCustomWideCardProps) {
+  const title = lang === 'en' ? tier.titleEn : tier.title;
+  const whatsappUrl = getWhatsAppLink('template', lang, title);
+
+  return (
+    <div className="mt-8 relative p-[1.5px] rounded-2xl bg-[linear-gradient(90deg,#6366f1,#8b5cf6,#ec4899,#f43f5e,#f59e0b,#10b981,#06b6d4,#6366f1)] bg-[length:300%_300%] animate-[gradient-shift_8s_ease_infinite] shadow-lg shadow-purple-500/5">
+      <div className="bg-card rounded-[calc(var(--radius)+8px)] p-6 sm:p-8 lg:p-10 relative overflow-hidden">
+        {/* Subtle decorative glow */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-br from-purple-500/10 via-rose-500/5 to-transparent rounded-full blur-3xl pointer-events-none -mr-20 -mt-20"></div>
+
+        <div className="relative z-10 space-y-6">
+          {/* Header Bar: Classy Minimalist, No Alay Badges or Dots */}
+          <div className="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-border/50">
+            <span className="text-[11px] font-mono font-semibold tracking-widest uppercase bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 bg-clip-text text-transparent">
+              04 / CUSTOM DEVELOPMENT
+            </span>
+            <span className="typography-small font-mono text-muted-foreground">
+              {lang === 'id' ? 'Arsitektur Kustom dari Nol' : 'Bespoke Architecture from Scratch'}
+            </span>
+          </div>
+
+          {/* Hook Headline & Copywriting */}
+          <div className="max-w-3xl space-y-2">
+            <h3 className="typography-section-title text-foreground tracking-tight leading-tight">
+              {tier.hookHeadline ? tier.hookHeadline[lang] : title}
+            </h3>
+            <p className="typography-subtitle text-foreground/90 font-light leading-relaxed">
+              {tier.tagline[lang]}
+            </p>
+            <p className="typography-body text-muted-foreground leading-relaxed pt-1">
+              {tier.description[lang]}
+            </p>
+          </div>
+
+          {/* 4 Pillars of Custom Development */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-2">
+            <div className="bg-secondary/25 border border-border/40 rounded-lg p-4 space-y-1">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                {lang === 'id' ? '01. Desain UI/UX' : '01. UI/UX Design'}
+              </div>
+              <div className="typography-body font-medium text-foreground">
+                {tier.specs.animation[lang]}
+              </div>
+            </div>
+
+            <div className="bg-secondary/25 border border-border/40 rounded-lg p-4 space-y-1">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                {lang === 'id' ? '02. CMS & Integrasi' : '02. CMS & Integration'}
+              </div>
+              <div className="typography-body font-medium text-foreground">
+                {tier.specs.extras[lang]}
+              </div>
+            </div>
+
+            <div className="bg-secondary/25 border border-border/40 rounded-lg p-4 space-y-1">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                {lang === 'id' ? '03. Skalabilitas' : '03. Scalability'}
+              </div>
+              <div className="typography-body font-medium text-foreground">
+                {tier.specs.pages[lang]}
+              </div>
+            </div>
+
+            <div className="bg-secondary/25 border border-border/40 rounded-lg p-4 space-y-1">
+              <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                {lang === 'id' ? '04. Alur Kerja' : '04. Workflow'}
+              </div>
+              <div className="typography-body font-medium text-foreground">
+                {tier.specs.revisions[lang]}
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Bar: Full Pricing & WhatsApp CTA */}
+          <div className="pt-4 border-t border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-secondary/30 rounded-xl p-4 sm:p-5">
+            <div>
+              <div className="typography-section-title text-2xl sm:text-3xl font-bold text-foreground">
+                {tier.pricing.basePrice}
+              </div>
+              <div className="typography-small text-muted-foreground mt-0.5">
+                • {tier.pricing.readyOnline}
+              </div>
+            </div>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 typography-small font-semibold px-6 py-3 rounded-lg bg-foreground text-background hover:opacity-90 transition-opacity cursor-pointer whitespace-nowrap shadow-sm hover:-translate-y-0.5 active:translate-y-0"
+            >
+              <span>{tier.ctaText ? tier.ctaText[lang] : (lang === 'id' ? 'Konsultasi Custom via WhatsApp' : 'Discuss Custom via WhatsApp')}</span>
+              <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCatalogProps) {
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const t = templatesPageContent[lang];
+
+  // Retrieve tiers
+  const tier1 = tiersData.find(t => t.tierNumber === 1)!;
+  const tier2 = tiersData.find(t => t.tierNumber === 2)!;
+  const tier3 = tiersData.find(t => t.tierNumber === 3)!;
+  const tier4 = tiersData.find(t => t.tierNumber === 4)!;
+
+  // Filter templates per tier based on search query
+  const query = searchQuery.toLowerCase().trim();
+
+  const filterFn = (item: TemplateItem) => {
+    if (!query) return true;
+    const titleMatch = item.title.toLowerCase().includes(query) || (item.titleEn?.toLowerCase().includes(query) ?? false);
+    const descMatch = item.description[lang].toLowerCase().includes(query);
+    const categoryMatch = item.categoryLabel[lang].toLowerCase().includes(query);
+    return titleMatch || descMatch || categoryMatch;
+  };
+
+  const tier1Templates = useMemo(() => {
+    return templates.filter((item) => item.tier === 1 && filterFn(item));
+  }, [templates, query, lang]);
+
+  const tier2Templates = useMemo(() => {
+    return templates.filter((item) => item.tier === 2 && filterFn(item));
+  }, [templates, query, lang]);
+
+  const tier3Templates = useMemo(() => {
+    return templates.filter((item) => item.tier === 3 && filterFn(item));
+  }, [templates, query, lang]);
+
+  const totalFilteredCount = tier1Templates.length + tier2Templates.length + tier3Templates.length;
+
+  return (
+    <div className="w-full">
+
+      {/* Main 3-Column Tier Grid (Tier 1, Tier 2, Tier 3) as per sketch */}
+      <div className="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+        {/* Column 1: Tier 1 Container Wrapper */}
+        <div className="bg-secondary/10 border border-border/50 rounded-2xl p-3.5 sm:p-4 flex flex-col gap-4 transition-all duration-300">
+          <TierInfoCard tier={tier1} lang={lang} />
+          
+          <div className="flex flex-col gap-4">
+            {tier1Templates.length > 0 ? (
+              tier1Templates.map((template) => (
+                <TemplateCard key={template.id} template={template} lang={lang} />
+              ))
+            ) : (
+              <div className="text-center py-6 px-3 border border-dashed border-border/60 rounded-lg text-xs text-muted-foreground">
+                {t.emptyStateTitle}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Column 2: Tier 2 Container Wrapper */}
+        <div className="bg-secondary/10 border border-border/50 rounded-2xl p-3.5 sm:p-4 flex flex-col gap-4 transition-all duration-300">
+          <TierInfoCard tier={tier2} lang={lang} />
+          
+          <div className="flex flex-col gap-4">
+            {tier2Templates.length > 0 ? (
+              tier2Templates.map((template) => (
+                <TemplateCard key={template.id} template={template} lang={lang} />
+              ))
+            ) : (
+              <div className="text-center py-6 px-3 border border-dashed border-border/60 rounded-lg text-xs text-muted-foreground">
+                {t.emptyStateTitle}
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* Column 3: Tier 3 Container Wrapper */}
+        <div className="bg-secondary/10 border border-border/50 rounded-2xl p-3.5 sm:p-4 flex flex-col gap-4 transition-all duration-300">
+          <TierInfoCard tier={tier3} lang={lang} />
+          
+          <div className="flex flex-col gap-4">
+            {tier3Templates.length > 0 ? (
+              tier3Templates.map((template) => (
+                <TemplateCard key={template.id} template={template} lang={lang} />
+              ))
+            ) : (
+              <div className="text-center py-6 px-3 border border-dashed border-border/60 rounded-lg text-xs text-muted-foreground">
+                {t.emptyStateTitle}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Templates Grid - Clean Minimal 3-Column Cards */}
-      {filteredTemplates.length > 0 ? (
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredTemplates.map((template) => {
-            const orderUrl = lang === 'en' 
-              ? `/en/templates/order?template=${template.id}` 
-              : `/templates/order?template=${template.id}`;
-            const title = lang === 'en' && template.titleEn ? template.titleEn : template.title;
-
-            const imageAlt = lang === 'en'
-              ? `${title} - Ready-to-Use Business Website Template Gilabs`
-              : `${title} - Template Website Bisnis Siap Pakai Gilabs`;
-
-            return (
-              <div
-                key={template.id}
-                className="bg-card border border-border/70 rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:border-foreground/40 hover:shadow-xs"
-              >
-                {/* Thumbnail Live Preview linking to Demo */}
-                <a
-                  href={template.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="aspect-[16/10] bg-muted/20 relative overflow-hidden block group cursor-pointer border-b border-border/50"
-                  aria-label={`${t.card.livePreview}: ${title}`}
-                  title={`${t.card.livePreview}: ${title}`}
-                >
-                  {template.previewImage ? (
-                    <TemplateCardPreview src={template.previewImage} alt={imageAlt} />
-                  ) : (
-                    <TemplateLivePreview demoUrl={template.demoUrl} title={title} />
-                  )}
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                    <span className="bg-background/95 backdrop-blur-xs text-foreground text-xs font-semibold px-3 py-1.5 rounded-md shadow-xs flex items-center gap-1.5">
-                      <span>{t.card.livePreview}</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
-                    </span>
-                  </div>
-                </a>
-
-                {/* Card Content - Clean: Title, Price, Action buttons */}
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-                  <div>
-                    {/* Title */}
-                    <h3 className="text-base font-semibold text-foreground tracking-tight leading-snug">
-                      <a
-                        href={template.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:text-brand transition-colors cursor-pointer inline-flex items-center gap-1.5"
-                        title={`${t.card.livePreview} - ${title}`}
-                      >
-                        <span>{title}</span>
-                        <ExternalLink className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
-                      </a>
-                    </h3>
-                  </div>
-
-                  {/* Pricing and Actions Row */}
-                  <div className="mt-5 pt-3.5 border-t border-border/50">
-                    <div className="flex items-baseline justify-between mb-3.5">
-                      <div>
-                        <div className="text-base sm:text-lg font-bold text-foreground">
-                          {formatPrice(template.startingPriceIdr)}
-                        </div>
-                        <div className="text-[11px] text-muted-foreground mt-0.5">
-                          {t.card.oneTimePayment}
-                        </div>
-                      </div>
-
-                      <span className="text-[11px] text-muted-foreground">
-                        {t.card.buyersNote.replace('{count}', template.buyersCount.toString())}
-                      </span>
-                    </div>
-
-                    {/* Actions: Live Demo + Order */}
-                    <div className="grid grid-cols-2 gap-2">
-                      <a
-                        href={template.demoUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`${t.card.livePreview} ${title}`}
-                        title={`${t.card.livePreview} ${title}`}
-                        className="text-xs font-medium py-2 px-2 rounded-lg border border-border/80 hover:bg-secondary text-foreground text-center cursor-pointer transition-colors inline-flex items-center justify-center gap-1"
-                      >
-                        <span>{t.card.livePreview}</span>
-                        <ExternalLink className="w-3 h-3 text-muted-foreground" />
-                      </a>
-
-                      <a
-                        href={orderUrl}
-                        aria-label={`${t.card.buyNow} ${title}`}
-                        title={`${t.card.buyNow} ${title}`}
-                        className="text-xs font-semibold py-2 px-2 rounded-lg bg-foreground text-background hover:opacity-90 text-center cursor-pointer transition-opacity inline-flex items-center justify-center"
-                      >
-                        {t.card.buyNow}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        /* Empty State */
-        <div className="mt-12 text-center py-12 border border-dashed border-border/70 rounded-lg max-w-xl mx-auto">
-          <p className="text-sm font-semibold text-foreground">{t.emptyStateTitle}</p>
-          <p className="text-xs text-muted-foreground mt-1">{t.emptyStateSubtitle}</p>
-          <button
-            onClick={() => {
-              setSelectedCategory('all');
-              setSearchQuery('');
-            }}
-            className="mt-4 text-xs font-medium px-3 py-1.5 rounded-lg border border-border hover:bg-secondary text-foreground cursor-pointer transition-colors"
-          >
-            Reset Filter
-          </button>
-        </div>
-      )}
+      {/* Tier 4 Custom Development: 1-Column Wide Container Below Grid 3 with Rainbow Border Effect */}
+      <TierCustomWideCard tier={tier4} lang={lang} />
     </div>
   );
 }

@@ -4,7 +4,6 @@ import React, {
   useRef,
   type FC,
 } from "react";
-import Beams from "./Beams";
 import {
   Calendar,
   MapPin,
@@ -49,8 +48,6 @@ export default function TicketingLanding({
     seconds: 16,
   });
 
-  // Beams live shader ready state for smooth transition over instant static background
-  const [beamsReady, setBeamsReady] = useState(false);
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -220,25 +217,6 @@ export default function TicketingLanding({
         id="hero"
         className="relative min-h-[calc(100vh-41px)] w-full overflow-hidden flex items-center justify-center bg-black bg-[url('/templates/ticketing/hero-bg.webp')] bg-cover bg-center pt-16"
       >
-        {/* Three.js Beams Live Shader Layer (fades in smoothly over instant background feedback) */}
-        <div
-          className={`absolute inset-0 z-0 pointer-events-none transition-opacity duration-1000 ${
-            beamsReady ? "opacity-90" : "opacity-0"
-          }`}
-        >
-          <Beams
-            beamWidth={3}
-            beamHeight={30}
-            beamNumber={20}
-            lightColor="#F4B342"
-            speed={2}
-            noiseIntensity={1.75}
-            scale={0.2}
-            rotation={30}
-            backgroundImage="/templates/ticketing/bg.webp"
-            onReady={() => setBeamsReady(true)}
-          />
-        </div>
 
         {/* Ambient Overlay Layer */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 pointer-events-none z-[1]" />

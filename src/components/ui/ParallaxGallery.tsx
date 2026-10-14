@@ -19,6 +19,7 @@ interface ParallaxGalleryProps {
 }
 
 const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
   const gallery = useRef<HTMLDivElement>(null);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
   const [isMobile, setIsMobile] = useState(false);
@@ -39,18 +40,19 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   }, []);
 
   const { scrollYProgress } = useScroll({
-    target: gallery,
+    target: containerRef,
     offset: ['start end', 'end start'],
   });
 
   const { height } = dimension;
+  const effectiveHeight = height || 800;
   const dimensions = getDimensions(isMobile);
   
   // Adjust parallax speeds
-  const y = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.3 : 0.5)]);
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.6 : 1.0)]);
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.25 : 0.4)]);
-  const y4 = useTransform(scrollYProgress, [0, 1], [0, height * (isMobile ? 0.45 : 0.8)]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, effectiveHeight * (isMobile ? 0.3 : 0.5)]);
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, effectiveHeight * (isMobile ? 0.6 : 1.0)]);
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, effectiveHeight * (isMobile ? 0.25 : 0.4)]);
+  const y4 = useTransform(scrollYProgress, [0, 1], [0, effectiveHeight * (isMobile ? 0.45 : 0.8)]);
 
   // Scale transform:
   const scale = useTransform(
@@ -180,7 +182,7 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
   const yTransforms = [y, y2, y3, y4];
 
   return (
-    <div className="relative w-full bg-background text-foreground overflow-visible">
+    <div ref={containerRef} className="relative w-full bg-background text-foreground overflow-visible">
       {/* Parallax Gallery Content */}
       <motion.div
         ref={gallery}
