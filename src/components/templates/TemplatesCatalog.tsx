@@ -276,9 +276,11 @@ function TierInfoCard({ tier, lang }: TierInfoCardProps) {
       <div className="mt-5 pt-3.5 border-t border-border/60 bg-secondary/35 rounded-lg p-3.5 relative z-10">
         <div className="flex items-center justify-between gap-2 mb-1">
           <div className="flex items-center gap-2">
-            <span className="text-xs sm:text-sm text-muted-foreground/60 line-through font-mono">
-              {tier.pricing.originalPrice}
-            </span>
+            {tier.pricing.originalPrice && (
+              <span className="text-xs sm:text-sm text-muted-foreground/60 line-through font-mono">
+                {tier.pricing.originalPrice}
+              </span>
+            )}
             {tier.pricing.discountLabel && (
               <span className="text-[10px] font-mono font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
                 {tier.pricing.discountLabel[lang]}
@@ -474,16 +476,20 @@ function TierCustomWideCard({ tier, lang }: TierCustomWideCardProps) {
           {/* Bottom Bar: Full Pricing & WhatsApp CTA with Anchor Discount */}
           <div className="pt-4 border-t border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-secondary/30 rounded-xl p-4 sm:p-5">
             <div>
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-xs sm:text-sm text-muted-foreground/60 line-through font-mono">
-                  {tier.pricing.originalPrice}
-                </span>
-                {tier.pricing.discountLabel && (
-                  <span className="text-[10px] font-mono font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                    {tier.pricing.discountLabel[lang]}
-                  </span>
-                )}
-              </div>
+              {(tier.pricing.originalPrice || tier.pricing.discountLabel) && (
+                <div className="flex items-center gap-2 mb-1">
+                  {tier.pricing.originalPrice && (
+                    <span className="text-xs sm:text-sm text-muted-foreground/60 line-through font-mono">
+                      {tier.pricing.originalPrice}
+                    </span>
+                  )}
+                  {tier.pricing.discountLabel && (
+                    <span className="text-[10px] font-mono font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                      {tier.pricing.discountLabel[lang]}
+                    </span>
+                  )}
+                </div>
+              )}
               <div className="typography-section-title text-2xl sm:text-3xl font-bold text-foreground">
                 {tier.pricing.price}
               </div>

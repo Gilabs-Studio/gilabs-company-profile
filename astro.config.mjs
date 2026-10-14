@@ -139,7 +139,8 @@ export default defineConfig({
           '**/.astro/**',
           '**/dist/**',
           '**/public/images/**',
-          '**/.gemini/**'
+          '**/.gemini/**',
+          '**/docs/**'
         ]
       }
     }

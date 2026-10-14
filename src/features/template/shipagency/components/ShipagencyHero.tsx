@@ -49,9 +49,6 @@ export default function ShipagencyHero({ lang = 'id' }: ShipagencyHeroProps) {
         className="relative z-20 w-full max-w-[1650px] h-[78vh] sm:h-[86vh] lg:h-[92vh] mx-auto pointer-events-none flex items-end justify-center px-0 mt-auto"
       >
         <motion.div
-          initial={{ y: 150, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           className="relative w-[680px] sm:w-full min-w-[680px] sm:min-w-0 h-full flex items-end justify-center shrink-0"
         >
           <img

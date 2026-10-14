@@ -89,7 +89,7 @@ export interface TierInfo {
   };
   pricing: {
     price: string;
-    originalPrice: string;
+    originalPrice?: string;
     discountLabel?: {
       id: string;
       en: string;
@@ -114,117 +114,127 @@ export interface TierInfo {
 
 export const tiersData: TierInfo[] = [
   {
-    tierNumber: 1,
-    title: 'Tier 1 • Static',
-    titleEn: 'Tier 1 • Static',
-    tagline: {
-      id: '1 halaman, tanpa animasi berat, load instan',
-      en: '1 page, no heavy animations, instant loading'
-    },
-    description: {
-      id: 'Landing page ringkas & cepat. Pilihan tepat untuk profil bisnis esensial, validasi ide, dan iklan WhatsApp.',
-      en: 'Fast and lightweight landing page. Ideal for essential business profiles, idea validation, and WhatsApp ad campaigns.'
-    },
-    pricing: {
-      price: 'Rp 689.000',
-      originalPrice: 'Rp 959.000',
-      discountLabel: { id: 'Hemat 28%', en: '28% OFF' },
-      note: { id: 'Sudah include domain, hosting & siap online', en: 'Includes domain, hosting & full setup' }
-    },
-    specs: {
-      pages: { id: '1 Halaman', en: '1 Page' },
-      animation: { id: 'Tanpa animasi berat', en: 'No heavy animations' },
-      assets: { id: 'Aset visual dari AI', en: 'AI-generated visual assets' },
-      extras: { id: 'Form & tombol WhatsApp', en: 'Form & WhatsApp button' },
-      revisions: { id: '1x revisi', en: '1x revision' }
+  tierNumber: 1,
+  title: 'Tier 1 • Essential',
+  titleEn: 'Tier 1 • Essential',
+  tagline: {
+    id: 'Website satu halaman yang ringkas dan profesional',
+    en: 'A clean and professional one-page website'
+  },
+  description: {
+    id: 'Tampilkan profil bisnis, layanan, dan informasi penting dalam satu halaman yang mudah diakses.',
+    en: 'Showcase your business, services, and key information on one easy-to-access page.'
+  },
+  pricing: {
+    price: 'Rp 689.000',
+    originalPrice: 'Rp 959.000',
+    discountLabel: { id: 'Hemat 28%', en: '28% OFF' },
+    note: {
+      id: 'Termasuk domain, hosting & setup',
+      en: 'Domain, hosting & setup included'
     }
   },
-  {
-    tierNumber: 2,
-    title: 'Tier 2 • Motion',
-    titleEn: 'Tier 2 • Motion',
-    tagline: {
-      id: '3–5 halaman, animasi masuk, parallax ringan',
-      en: '3–5 pages, entrance reveal, subtle parallax'
-    },
-    description: {
-      id: 'Website interaktif multi-halaman dengan transisi visual halus untuk meningkatkan impresi dan kredibilitas bisnis.',
-      en: 'Interactive multi-page website with smooth visual motion to elevate brand trust and credibility.'
-    },
-    pricing: {
-      price: 'Rp 1.289.000',
-      originalPrice: 'Rp 2.199.000',
-      discountLabel: { id: 'Hemat 41%', en: '41% OFF' },
-      note: { id: 'Sudah include domain, hosting & siap online', en: 'Includes domain, hosting & full setup' }
-    },
-    specs: {
-      pages: { id: '3–5 Halaman', en: '3–5 Pages' },
-      animation: { id: 'Entrance reveal & parallax ringan', en: 'Entrance reveal & subtle parallax' },
-      assets: { id: 'Aset AI teroptimasi & ditailor', en: 'Tailored & optimized AI assets' },
-      extras: { id: 'Form & tombol WhatsApp', en: 'Form & WhatsApp button' },
-      revisions: { id: '2x revisi', en: '2x revisions' }
-    }
-  },
-  {
-    tierNumber: 3,
-    title: 'Tier 3 • Immersive',
-    titleEn: 'Tier 3 • Immersive',
-    tagline: {
-      id: 'Scroll storytelling, visual dinamis, transisi halaman',
-      en: 'Scroll storytelling, dynamic visuals, page transitions'
-    },
-    description: {
-      id: 'Pengalaman visual imersif dengan animasi scroll terkoreografi untuk perusahaan & brand skala enterprise.',
-      en: 'Immersive digital experience with choreographed scroll motion for enterprise brands.'
-    },
-    pricing: {
-      price: 'Rp 2.800.000',
-      originalPrice: 'Rp 4.950.000',
-      discountLabel: { id: 'Hemat 43%', en: '43% OFF' },
-      note: { id: 'Sudah include domain, hosting & siap online', en: 'Includes domain, hosting & full setup' }
-    },
-    specs: {
-      pages: { id: 'Sampai 8 Halaman', en: 'Up to 8 Pages' },
-      animation: { id: 'Koreografi scroll & transisi halaman', en: 'Choreographed scroll & transitions' },
-      assets: { id: 'Foto bergerak, video loop & cutout', en: 'Motion photos, video loop & cutouts' },
-      extras: { id: 'Interaktif 3D ringan, analytics, copywriting', en: 'Light 3D interactive, analytics, copywriting' },
-      revisions: { id: '3x revisi', en: '3x revisions' }
-    }
-  },
-  {
-    tierNumber: 4,
-    title: 'Tier 4 • Custom Development',
-    titleEn: 'Tier 4 • Custom Development',
-    hookHeadline: {
-      id: 'Punya Alur Bisnis Unik yang Tidak Bisa Pakai Template?',
-      en: 'Have a Unique Business Workflow That Outgrows Templates?'
-    },
-    tagline: {
-      id: 'Desain dari nol, CMS kustom, arsitektur sistem & integrasi API',
-      en: 'Built from scratch, custom CMS, architecture & API integrations'
-    },
-    description: {
-      id: 'Ketika kebutuhan bisnis Anda memerlukan logika sistem khusus, integrasi ERP/database, atau platform web yang scalable — engineer Gilabs merancang arsitektur kustom dari nol.',
-      en: 'When your business demands bespoke logic, ERP/database integrations, or a scalable web platform — Gilabs engineers build custom architecture from scratch.'
-    },
-    pricing: {
-      price: 'Mulai Rp 5.000.000',
-      originalPrice: 'Rp 12.000.000',
-      discountLabel: { id: 'Hemat 58%', en: '58% OFF' },
-      note: { id: 'Milestone proyek • Termasuk setup cloud', en: 'Milestone-based • Cloud setup included' }
-    },
-    specs: {
-      pages: { id: 'Fleksibel sesuai skala sistem', en: 'Flexible per system scope' },
-      animation: { id: 'Desain UI/UX eksklusif (Figma ke Kode)', en: 'Exclusive UI/UX design (Figma to Code)' },
-      assets: { id: 'Full branding & aset kustom', en: 'Full branding & bespoke assets' },
-      extras: { id: 'CMS kustom, database, API, auth & workflow', en: 'Custom CMS, database, APIs, auth & workflow' },
-      revisions: { id: 'Sesuai milestone proyek', en: 'Per project milestone' }
-    },
-    ctaText: {
-      id: 'Konsultasi Custom via WhatsApp',
-      en: 'Discuss Custom Project via WhatsApp'
-    }
+  specs: {
+    pages: { id: '1 Halaman', en: '1 Page' },
+    animation: { id: 'Desain ringan & responsif', en: 'Lightweight & responsive design' },
+    assets: { id: 'Visual sesuai bisnis Anda', en: 'Business-tailored visuals' },
+    extras: { id: 'Form kontak & tombol WhatsApp', en: 'Contact form & WhatsApp button' },
+    revisions: { id: '1x revisi', en: '1 revision' }
   }
+},
+{
+  tierNumber: 2,
+  title: 'Tier 2 • Motion',
+  titleEn: 'Tier 2 • Motion',
+  tagline: {
+    id: 'Website multi-halaman dengan animasi halus',
+    en: 'A multi-page website with smooth animations'
+  },
+  description: {
+    id: 'Tampilkan bisnis Anda secara lebih lengkap dengan desain dinamis dan pengalaman navigasi yang nyaman.',
+    en: 'Showcase your business with dynamic visuals and a smooth browsing experience.'
+  },
+  pricing: {
+    price: 'Rp 1.289.000',
+    originalPrice: 'Rp 2.199.000',
+    discountLabel: { id: 'Hemat 41%', en: '41% OFF' },
+    note: {
+      id: 'Termasuk domain, hosting & setup',
+      en: 'Domain, hosting & setup included'
+    }
+  },
+  specs: {
+    pages: { id: '3–5 Halaman', en: '3–5 Pages' },
+    animation: { id: 'Animasi & efek scroll', en: 'Animations & scroll effects' },
+    assets: { id: 'Visual sesuai identitas brand', en: 'Brand-tailored visuals' },
+    extras: { id: 'Form kontak & tombol WhatsApp', en: 'Contact form & WhatsApp button' },
+    revisions: { id: '2x revisi', en: '2 revisions' }
+  }
+},
+{
+  tierNumber: 3,
+  title: 'Tier 3 • Immersive',
+  titleEn: 'Tier 3 • Immersive',
+  tagline: {
+    id: 'Website dengan storytelling visual yang memikat',
+    en: 'A website with immersive visual storytelling'
+  },
+  description: {
+    id: 'Perkuat karakter brand dengan visual dinamis, animasi khusus, dan transisi yang berkesan.',
+    en: 'Elevate your brand with dynamic visuals, custom animations, and memorable transitions.'
+  },
+  pricing: {
+    price: 'Rp 2.800.000',
+    originalPrice: 'Rp 4.950.000',
+    discountLabel: { id: 'Hemat 43%', en: '43% OFF' },
+    note: {
+      id: 'Termasuk domain, hosting & setup',
+      en: 'Domain, hosting & setup included'
+    }
+  },
+  specs: {
+    pages: { id: 'Hingga 8 Halaman', en: 'Up to 8 Pages' },
+    animation: { id: 'Animasi scroll & transisi khusus', en: 'Custom scroll animations & transitions' },
+    assets: { id: 'Kombinasi foto, video & visual dinamis', en: 'Photography, video & dynamic visuals' },
+    extras: { id: 'Elemen 3D & copywriting', en: '3D elements, analytics & copywriting' },
+    revisions: { id: '3x revisi', en: '3 revisions' }
+  }
+},
+{
+  tierNumber: 4,
+  title: 'Tier 4 • Custom Development',
+  titleEn: 'Tier 4 • Custom Development',
+  hookHeadline: {
+    id: 'Butuh Website dengan Fitur Khusus?',
+    en: 'Need a Website with Custom Features?'
+  },
+  tagline: {
+    id: 'Solusi digital yang dibangun sesuai kebutuhan bisnis',
+    en: 'Digital solutions built around your business needs'
+  },
+  description: {
+    id: 'Bangun website, dashboard, atau sistem terintegrasi dengan fitur dan alur kerja yang dirancang khusus untuk bisnis Anda.',
+    en: 'Build websites, dashboards, or integrated systems with features and workflows tailored to your business.'
+  },
+  pricing: {
+    price: 'Mulai Rp 5.000.000',
+    note: {
+      id: 'Harga sesuai ruang lingkup proyek',
+      en: 'Pricing based on project scope'
+    }
+  },
+  specs: {
+    pages: { id: 'Sesuai kebutuhan proyek', en: 'Based on project scope' },
+    animation: { id: 'Desain UI/UX khusus', en: 'Custom UI/UX design' },
+    assets: { id: 'Desain & aset sesuai kebutuhan', en: 'Tailored design & visual assets' },
+    extras: { id: 'CMS, database, API & workflow kustom', en: 'Custom CMS, database, APIs & workflows' },
+    revisions: { id: 'Sesuai milestone proyek', en: 'Based on project milestones' }
+  },
+  ctaText: {
+    id: 'Konsultasi via WhatsApp',
+    en: 'Discuss Your Project'
+  }
+}
 ];
 
 export const templatesData: TemplateItem[] = [
