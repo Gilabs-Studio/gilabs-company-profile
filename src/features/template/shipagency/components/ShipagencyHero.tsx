@@ -9,14 +9,14 @@ export default function ShipagencyHero({ lang = 'id' }: ShipagencyHeroProps) {
   const containerRef = useRef<HTMLElement>(null);
   const isEn = lang === 'en';
 
-  // Scroll progress for parallax effect on hero people (matching docs/ship)
+  // Scroll progress for parallax effect on hero people only
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end start"],
   });
 
-  // Parallax scroll shift on hero-people (moves with scroll [0, 140]px)
-  const peopleY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+  // Strengthened parallax scroll shift on hero-people ONLY (increased from 140px to 260px)
+  const peopleY = useTransform(scrollYProgress, [0, 1], [0, 260]);
 
   return (
     <section
@@ -25,7 +25,7 @@ export default function ShipagencyHero({ lang = 'id' }: ShipagencyHeroProps) {
       className="relative h-[calc(100dvh-41px)] min-h-[calc(100dvh-41px)] max-h-[calc(100dvh-41px)] w-full bg-slate-950 text-slate-100 flex flex-col justify-between overflow-hidden selection:bg-emerald-500 selection:text-slate-950"
     >
       {/* ==================================================== */}
-      {/* LAYER 0 (z-0): BACKGROUND SHIP IMAGE                  */}
+      {/* LAYER 0 (z-0): BACKGROUND SHIP IMAGE (STATIC)        */}
       {/* ==================================================== */}
       <div className="absolute inset-0 z-0 h-full w-full pointer-events-none overflow-hidden">
         <img
@@ -42,26 +42,24 @@ export default function ShipagencyHero({ lang = 'id' }: ShipagencyHeroProps) {
       <div className="absolute inset-x-0 bottom-0 h-36 sm:h-44 lg:h-48 bg-gradient-to-t from-slate-950 via-slate-950/95 via-50% to-transparent z-25 pointer-events-none"></div>
 
       {/* ==================================================== */}
-      {/* LAYER 2 (z-20): HERO PEOPLE WITH PARALLAX & ENTRANCE */}
+      {/* LAYER 2 (z-20): HERO PEOPLE WITH STRONGER PARALLAX   */}
       {/* ==================================================== */}
       <motion.div
         style={{ y: peopleY }}
         className="relative z-20 w-full max-w-[1650px] h-[78vh] sm:h-[86vh] lg:h-[92vh] mx-auto pointer-events-none flex items-end justify-center px-0 mt-auto"
       >
-        <motion.div
-          className="relative w-[680px] sm:w-full min-w-[680px] sm:min-w-0 h-full flex items-end justify-center shrink-0"
-        >
+        <div className="relative w-[680px] sm:w-full min-w-[680px] sm:min-w-0 h-full flex items-end justify-center shrink-0">
           <img
             src="/templates/shipagency/hero-people.webp"
             alt="PT. Nautiva Ocean Agency Team"
             className="w-full h-full object-contain object-bottom scale-100 sm:scale-115 lg:scale-120 translate-y-1 sm:translate-y-10 lg:translate-y-16 drop-shadow-[0_45px_100px_rgba(0,0,0,0.85)]"
             loading="eager"
           />
-        </motion.div>
+        </div>
       </motion.div>
 
       {/* ==================================================== */}
-      {/* LAYER 3 (z-30): TYPOGRAPHY OVERLAY                    */}
+      {/* LAYER 3 (z-30): TYPOGRAPHY OVERLAY (STATIC)          */}
       {/* ==================================================== */}
       <div className="absolute bottom-6 sm:bottom-10 inset-x-0 z-30 px-4 sm:px-8 text-center pointer-events-none select-none">
         <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl font-black text-white tracking-tight leading-none drop-shadow-[0_15px_35px_rgba(0,0,0,0.9)] whitespace-normal sm:whitespace-nowrap">

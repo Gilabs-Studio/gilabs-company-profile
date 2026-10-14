@@ -5,6 +5,7 @@ import '../../../styles/globals.css';
 import ShipagencyNavbar from './components/ShipagencyNavbar.astro';
 import HeroSection from './components/HeroSection.astro';
 import ServicesSection from './components/ServicesSection.astro';
+import ShipagencyTestimonials from './components/ShipagencyTestimonials';
 import AboutStatsScrollSection from './components/AboutStatsScrollSection';
 import ShipagencyFooter from './components/ShipagencyFooter.astro';
 
@@ -69,6 +70,9 @@ const catalogUrl = `/${lang}/templates`;
 
     <!-- 02. Services Section (4 Cards Grid) -->
     <ServicesSection lang={lang} />
+
+    <!-- 02.5. Testimonials Section (Interactive Maritime Client Endorsements) -->
+    <ShipagencyTestimonials client:load lang={lang} />
 
     <!-- 03. About & Stats Scroll Frame Animation Section (Canvas Frame Playback 1-95) -->
     <AboutStatsScrollSection client:load lang={lang} />
