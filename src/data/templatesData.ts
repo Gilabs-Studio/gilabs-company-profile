@@ -1,9 +1,30 @@
+export interface IndustryAdaptation {
+  id: string;
+  industry: { id: string; en: string };
+  title: { id: string; en: string };
+  description: { id: string; en: string };
+  image: string;
+  tags: string[];
+}
+
+export interface TemplateServiceFeature {
+  title: { id: string; en: string };
+  description: { id: string; en: string };
+  tag: string;
+  icon: string;
+}
+
+export interface TemplateTechSpec {
+  label: { id: string; en: string };
+  value: { id: string; en: string };
+}
+
 export interface TemplateItem {
   id: string;
   slug: string;
   title: string;
   titleEn?: string;
-  category: 'manufaktur' | 'company' | 'fintech' | 'service' | 'event' | 'ekspor';
+  category: 'manufaktur' | 'company' | 'service' | 'event' | 'ekspor';
   categoryLabel: {
     id: string;
     en: string;
@@ -13,11 +34,13 @@ export interface TemplateItem {
     id: string;
     en: string;
   };
-  startingPriceIdr: number;
   previewImage: string;
   gallery: string[];
   demoUrl: string;
   buyersCount: number;
+  serviceFeatures?: TemplateServiceFeature[];
+  industryAdaptations?: IndustryAdaptation[];
+  techSpecs?: TemplateTechSpec[];
 }
 
 export interface DurationPlan {
@@ -61,7 +84,6 @@ export const templateCategories = [
   { id: 'all', label: { id: 'Semua Kategori', en: 'All Categories' } },
   { id: 'manufaktur', label: { id: 'Manufaktur & Industri', en: 'Manufacturing & Industry' } },
   { id: 'company', label: { id: 'Enterprise & B2B', en: 'Enterprise & Corporate' } },
-  { id: 'fintech', label: { id: 'Koperasi & Keuangan', en: 'Cooperative & Finance' } },
   { id: 'service', label: { id: 'Jasa & Maritim', en: 'Services & Maritime' } },
   { id: 'event', label: { id: 'Event & Tiket', en: 'Events & Ticketing' } },
 ] as const;
@@ -237,6 +259,57 @@ export const tiersData: TierInfo[] = [
 }
 ];
 
+export const defaultIndustryAdaptations: IndustryAdaptation[] = [
+  {
+    id: 'cafe',
+    industry: { id: 'Kafe & Resto (F&B)', en: 'Cafe & Restaurant (F&B)' },
+    title: { id: 'Artisan Cafe, Coffee Shop & Restoran', en: 'Artisan Cafe, Coffee Shop & Restaurant' },
+    description: {
+      id: 'Tata letak diubah menjadi etalase menu signature, foto ambience tempat yang estetik, jam operasional, lokasi Google Maps, dan tombol reservasi meja instan terhubung langsung ke WhatsApp.',
+      en: 'Adapted into signature menu showcases, warm ambient photography, business hours, Google Maps, and direct WhatsApp table reservation.'
+    },
+    image: '/templates/adaptations/cafe-preview.jpg',
+    tags: ['Menu Showcase', 'Reservasi WhatsApp', 'Lokasi Maps', 'Foto Ambience']
+  },
+  {
+    id: 'retail',
+    industry: { id: 'Fashion & Ritel', en: 'Fashion & Retail' },
+    title: { id: 'Butik Fashion, Toko Ritel & Brand Lokal', en: 'Fashion Boutique, Retail & Local Brand' },
+    description: {
+      id: 'Disesuaikan menjadi galeri lookbook koleksi musiman, highlight produk best seller, ulasan testimoni pembeli, dan integrasi tombol pemesanan instan tanpa perlu checkout ribet.',
+      en: 'Customized into seasonal lookbook galleries, best-seller product grids, customer reviews, and direct instant ordering buttons.'
+    },
+    image: '/templates/adaptations/boutique-preview.jpg',
+    tags: ['Lookbook Gallery', 'Best Seller Grid', 'Testimoni Pembeli', 'Order Instan']
+  },
+  {
+    id: 'workshop',
+    industry: { id: 'Manufaktur & Teknik', en: 'Manufacturing & Workshop' },
+    title: { id: 'Manufaktur Mesin, Bengkel Bubut & Pabrik', en: 'Machinery Manufacturing & CNC Workshop' },
+    description: {
+      id: 'Ditransformasikan menjadi katalog lini permesinan presisi, tabel spesifikasi teknis, sertifikasi standar mutu ISO, dan formulir permintaan quotation pengadaan B2B.',
+      en: 'Transformed into precision machinery showcases, technical specification tables, ISO quality certifications, and B2B RFQ quotation forms.'
+    },
+    image: '/templates/adaptations/workshop-preview.jpg',
+    tags: ['Katalog Mesin', 'Spesifikasi Teknis', 'Sertifikasi Mutu', 'Form RFQ']
+  },
+  {
+    id: 'corporate',
+    industry: { id: 'Konsultan & Korporat', en: 'Consulting & Corporate' },
+    title: { id: 'Konsultan Bisnis, Jasa Hukum & Korporasi', en: 'Corporate Consulting, Legal & Business Services' },
+    description: {
+      id: 'Dikonversi menjadi profil kantor kredibel, metrik pencapaian proyek klien, ringkasan paket jasa konsultasi, dan formulir booking jadwal meeting konsultasi online.',
+      en: 'Converted into credible corporate profiles, client success metrics, advisory package overviews, and online meeting booking forms.'
+    },
+    image: '/templates/adaptations/corporate-preview.jpg',
+    tags: ['Profil Perusahaan', 'Metrik Kinerja', 'Paket Layanan', 'Jadwal Konsultasi']
+  }
+];
+
+export function getTierInfoByNumber(tierNumber: number): TierInfo {
+  return tiersData.find((t) => t.tierNumber === tierNumber) || tiersData[0];
+}
+
 export const templatesData: TemplateItem[] = [
   {
     id: 'adiguna-machinery',
@@ -253,32 +326,11 @@ export const templatesData: TemplateItem[] = [
       id: 'Template website profil manufaktur mesin industri, workshop CNC, dan pabrik presisi berstandar internasional dengan nuansa profesional dan spesifikasi teknis mendalam.',
       en: 'Modern website template for industrial machinery manufacturers, CNC workshops, and precision engineering plants.'
     },
-    startingPriceIdr: 689000,
     previewImage: '/templates/adiguna-machinery/preview.webp',
     gallery: ['/templates/adiguna-machinery/preview.webp'],
     demoUrl: '/templates/demo/adiguna',
-    buyersCount: 142
-  },
-  {
-    id: 'koperasi-digital',
-    slug: 'koperasi-fintech-cooperative',
-    title: 'Website Koperasi Digital & Keuangan',
-    titleEn: 'Digital Cooperative & Financial Platform',
-    category: 'fintech',
-    categoryLabel: {
-      id: 'Koperasi & Finansial',
-      en: 'Cooperative & Finance'
-    },
-    tier: 1,
-    description: {
-      id: 'Template website profil koperasi simpan pinjam modern dan institusi keuangan komunitas dengan estetika bersih, pratinjau modul konsol, dan transparansi laporan.',
-      en: 'Modern website template for savings & credit cooperatives and digital financial institutions with daylight architectural aesthetics.'
-    },
-    startingPriceIdr: 689000,
-    previewImage: '/templates/koperasi-digital/preview.webp',
-    gallery: ['/templates/koperasi-digital/preview.webp'],
-    demoUrl: '/templates/demo/koperasi',
-    buyersCount: 165
+    buyersCount: 142,
+    industryAdaptations: defaultIndustryAdaptations
   },
   {
     id: 'ticketing-events',
@@ -295,11 +347,11 @@ export const templatesData: TemplateItem[] = [
       id: 'Template website event festival musik, konser, dan seminar dengan dynamic live countdown timer, visual ambience rave modern, dan showcase tiket terintegrasi.',
       en: 'High-energy event ticketing and festival website template featuring live countdown timers, glowing ambient visual aesthetics, and ticket tier showcases.'
     },
-    startingPriceIdr: 689000,
     previewImage: '/templates/ticketing-events/preview.webp',
     gallery: ['/templates/ticketing-events/preview.webp'],
     demoUrl: '/templates/demo/ticketing',
-    buyersCount: 204
+    buyersCount: 204,
+    industryAdaptations: defaultIndustryAdaptations
   },
   {
     id: 'shipagency-maritime',
@@ -316,11 +368,11 @@ export const templatesData: TemplateItem[] = [
       id: 'Template website keagenan kapal pelabuhan, manajemen sertifikat perkapalan, dan logistik maritim terintegrasi dengan nuansa oceanic gelap dan metrik operasional terpercaya.',
       en: 'Specialized website template for shipping agencies, vessel clearance operations, and maritime logistics companies.'
     },
-    startingPriceIdr: 1289000,
     previewImage: '/templates/shipagency-maritime/preview.webp',
     gallery: ['/templates/shipagency-maritime/preview.webp'],
     demoUrl: '/templates/demo/shipagency',
-    buyersCount: 129
+    buyersCount: 129,
+    industryAdaptations: defaultIndustryAdaptations
   },
   {
     id: 'gke-enterprise',
@@ -337,11 +389,11 @@ export const templatesData: TemplateItem[] = [
       id: 'Template website profil perusahaan skala enterprise, supply chain, dan distributor suku cadang industri dengan tipografi editorial modern dan performa tinggi.',
       en: 'Corporate profile website template for enterprise firms, industrial supply chains, and B2B engineering solutions.'
     },
-    startingPriceIdr: 2800000,
     previewImage: '/templates/gke-enterprise/preview.webp',
     gallery: ['/templates/gke-enterprise/preview.webp'],
     demoUrl: '/templates/demo/gke',
-    buyersCount: 188
+    buyersCount: 188,
+    industryAdaptations: defaultIndustryAdaptations
   }
 ];
 

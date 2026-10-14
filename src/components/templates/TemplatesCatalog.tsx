@@ -314,6 +314,9 @@ interface TemplateCardProps {
 
 function TemplateCard({ template, lang }: TemplateCardProps) {
   const t = templatesPageContent[lang];
+  const detailUrl = lang === 'en'
+    ? `/en/templates/${template.slug}`
+    : `/templates/${template.slug}`;
   const orderUrl = lang === 'en' 
     ? `/en/templates/order?template=${template.id}` 
     : `/templates/order?template=${template.id}`;
@@ -325,14 +328,12 @@ function TemplateCard({ template, lang }: TemplateCardProps) {
 
   return (
     <div className="bg-card border border-border/70 rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:border-foreground/40 hover:shadow-xs">
-      {/* Live Preview Thumbnail */}
+      {/* Live Preview Thumbnail / Detail Link */}
       <a
-        href={template.demoUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={detailUrl}
         className="aspect-[16/10] bg-muted/20 relative overflow-hidden block group cursor-pointer border-b border-border/50"
-        aria-label={`${t.card.livePreview}: ${title}`}
-        title={`${t.card.livePreview}: ${title}`}
+        aria-label={`${t.card.viewDetail}: ${title}`}
+        title={`${t.card.viewDetail}: ${title}`}
       >
         {template.previewImage ? (
           <TemplateCardPreview src={template.previewImage} alt={imageAlt} />
@@ -341,8 +342,8 @@ function TemplateCard({ template, lang }: TemplateCardProps) {
         )}
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
           <span className="bg-background/95 backdrop-blur-xs text-foreground text-xs font-semibold px-3 py-1.5 rounded-md shadow-xs flex items-center gap-1.5">
-            <span>{t.card.livePreview}</span>
-            <ExternalLink className="w-3.5 h-3.5" />
+            <span>{t.card.viewDetail}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
           </span>
         </div>
       </a>
@@ -352,14 +353,12 @@ function TemplateCard({ template, lang }: TemplateCardProps) {
         <div>
           <h4 className="typography-body-large font-semibold text-foreground tracking-tight leading-snug">
             <a
-              href={template.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={detailUrl}
               className="hover:text-brand transition-colors cursor-pointer inline-flex items-center gap-1.5"
-              title={`${t.card.livePreview} - ${title}`}
+              title={`${t.card.viewDetail} - ${title}`}
             >
               <span>{title}</span>
-              <ExternalLink className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
             </a>
           </h4>
           <p className="typography-small text-muted-foreground mt-1.5 line-clamp-2 leading-relaxed">
@@ -367,18 +366,16 @@ function TemplateCard({ template, lang }: TemplateCardProps) {
           </p>
         </div>
 
-        {/* Action Buttons: Live Demo + Select as Reference */}
+        {/* Action Buttons: Detail + Order / Select as Reference */}
         <div className="mt-4 pt-3 border-t border-border/50 grid grid-cols-2 gap-2">
           <a
-            href={template.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={`${t.card.livePreview} ${title}`}
-            title={`${t.card.livePreview} ${title}`}
-            className="typography-small font-medium py-2 px-2 rounded-lg border border-border/80 hover:bg-secondary text-foreground text-center cursor-pointer transition-colors inline-flex items-center justify-center gap-1"
+            href={detailUrl}
+            aria-label={`${t.card.viewDetail} ${title}`}
+            title={`${t.card.viewDetail} ${title}`}
+            className="typography-small font-medium py-2 px-2 rounded-lg border border-border/80 hover:bg-secondary text-foreground text-center cursor-pointer transition-colors inline-flex items-center justify-center gap-1.5"
           >
-            <span>{t.card.livePreview}</span>
-            <ExternalLink className="w-3 h-3 text-muted-foreground" />
+            <span>{t.card.viewDetail}</span>
+            <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
           </a>
 
           <a

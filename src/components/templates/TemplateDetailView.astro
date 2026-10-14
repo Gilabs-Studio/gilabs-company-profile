@@ -1,0 +1,243 @@
+---
+import type { TemplateItem } from '../../data/templatesData';
+import { tiersData, defaultIndustryAdaptations } from '../../data/templatesData';
+import IndustryAdaptationGallery from './IndustryAdaptationGallery';
+import { getWhatsAppLink } from '../../lib/utils';
+import { 
+  ArrowLeft, 
+  ExternalLink, 
+  ArrowRight
+} from 'lucide-react';
+
+interface Props {
+  template: TemplateItem;
+  lang: 'id' | 'en';
+}
+
+const { template, lang = 'id' } = Astro.props;
+
+// Determine tier
+const tier = tiersData.find((t) => t.tierNumber === template.tier) || tiersData[0];
+const title = lang === 'en' && template.titleEn ? template.titleEn : template.title;
+const tierTitle = lang === 'en' ? tier.titleEn : tier.title;
+
+const orderUrl = lang === 'en' 
+  ? `/en/templates/order?template=${template.id}` 
+  : `/templates/order?template=${template.id}`;
+
+const catalogUrl = lang === 'en' ? '/en/templates' : '/templates';
+const whatsappUrl = getWhatsAppLink('template', lang, `${title} (${tierTitle})`);
+
+const adaptations = template.industryAdaptations && template.industryAdaptations.length > 0
+  ? template.industryAdaptations
+  : defaultIndustryAdaptations;
+
+// Simple deliverables list
+const deliverables = lang === 'id' ? [
+  'Nama domain aktif 1 tahun (.com / .id resmi)',
+  'Cloud hosting cepat & sertifikat SSL gratis',
+  'Setup penuh server & konfigurasi DNS',
+  'Pengisian seluruh materi teks & logo bisnis',
+  'Upload & optimasi foto produk atau layanan',
+  'Integrasi tombol WhatsApp & formulir kontak',
+  'Pemeliharaan teknis & backup berkala'
+] : [
+  '1-Year active domain registration (.com / .id)',
+  'High-speed cloud hosting & free SSL security',
+  'Full server setup & DNS configuration to live',
+  'Complete input of your text content & business logo',
+  'Upload & optimization of product/service photos',
+  'Direct WhatsApp button & contact form integration',
+  'Technical maintenance & routine backups included'
+];
+
+// Minimalist technical specs
+const specs = [
+  { label: lang === 'id' ? 'Paket Layanan' : 'Service Tier', value: tierTitle },
+  { label: lang === 'id' ? 'Arsitektur Web' : 'Web Architecture', value: 'Modern Web (Astro / Next.js)' },
+  { label: lang === 'id' ? 'Performa' : 'Performance', value: 'PageSpeed 95+ (Tanpa plugin berat)' },
+  { label: lang === 'id' ? 'Responsivitas' : 'Responsiveness', value: 'Mobile, Tablet & Desktop' },
+  { label: lang === 'id' ? 'Model Pengerjaan' : 'Execution Model', value: lang === 'id' ? 'Terima Beres (Full Setup oleh Gilabs)' : 'Turnkey (Fully Managed by Gilabs)' }
+];
+---
+
+<div class="w-full">
+  {/* Window 1: Hero & Preview (1 Full Viewport Window) */}
+  <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-between py-8 sm:py-12 border-b border-border/50">
+    <div class="container mx-auto px-4 sm:px-6">
+      
+      {/* Top Action */}
+      <div class="mb-6 sm:mb-10">
+        <a 
+          href={catalogUrl} 
+          class="inline-flex items-center gap-1.5 text-xs font-mono text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>{lang === 'id' ? 'Kembali ke Katalog' : 'Back to Catalog'}</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center my-auto">
+        
+        {/* Left Column: Title Only, Direct Copy, Pricing & CTAs */}
+        <div class="lg:col-span-6 space-y-6 text-left">
+          {/* TITLE ONLY - No eyebrow, no lines */}
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-foreground leading-[1.08]">
+            {title}
+          </h1>
+
+          {/* Simple, to the point copywriting */}
+          <p class="text-base sm:text-lg text-muted-foreground font-light leading-relaxed max-w-xl">
+            {lang === 'id' 
+              ? 'Layanan pembuatan website bisnis siap online berbasis layout ini. Domain, cloud hosting, dan setup konten terima beres oleh tim Gilabs.'
+              : 'Turnkey business website service based on this layout. Includes domain, high-speed cloud hosting, and complete content setup.'}
+          </p>
+
+          {/* Minimal Pricing & Inclusions */}
+          <div class="pt-2 pb-1 space-y-1 border-t border-border/40">
+            <div class="text-3xl sm:text-4xl font-mono font-bold text-foreground tracking-tight">
+              {tier.pricing.price}
+            </div>
+            <p class="text-xs text-muted-foreground font-light">
+              • {tier.pricing.note[lang]} • {lang === 'id' ? 'Tanpa biaya tersembunyi' : 'No hidden fees'}
+            </p>
+          </div>
+
+          {/* Clean Action Buttons */}
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href={orderUrl}
+              class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-foreground text-background font-semibold text-xs sm:text-sm hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
+            >
+              <span>{lang === 'id' ? 'Pesan Website Ini' : 'Order This Website'}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+
+            <a
+              href={template.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-border/80 hover:bg-secondary text-foreground font-medium text-xs sm:text-sm transition-colors cursor-pointer"
+            >
+              <span>{lang === 'id' ? 'Live Preview Demo' : 'Live Preview'}</span>
+              <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
+            </a>
+
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-3 cursor-pointer"
+            >
+              {lang === 'id' ? 'Konsultasi WhatsApp →' : 'Consult via WhatsApp →'}
+            </a>
+          </div>
+        </div>
+
+        {/* Right Column: Clean Large Preview Frame */}
+        <div class="lg:col-span-6 flex items-center justify-center">
+          <div class="w-full rounded-xl overflow-hidden border border-border/70 bg-card shadow-xs">
+            <div class="bg-secondary/40 px-4 py-2 border-b border-border/50 flex items-center justify-between text-xs text-muted-foreground">
+              <span class="font-mono text-xs truncate max-w-[240px]">gilabs.id{template.demoUrl}</span>
+              <a
+                href={template.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:text-foreground inline-flex items-center gap-1.5 cursor-pointer text-xs"
+              >
+                <span>{lang === 'id' ? 'Buka Demo' : 'Open Demo'}</span>
+                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+            </div>
+
+            <div class="aspect-[16/10] bg-muted/10 relative overflow-hidden">
+              <img
+                src={template.previewImage}
+                alt={title}
+                class="w-full h-full object-cover"
+                loading="eager"
+              />
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-6"></div>
+    </div>
+  </section>
+
+  {/* Window 2: Cakupan Layanan (1 Full Viewport Window) */}
+  <section class="min-h-screen flex flex-col justify-center py-16 sm:py-24 border-b border-border/50">
+    <div class="container mx-auto px-4 sm:px-6">
+      
+      {/* TITLE ONLY - No eyebrow */}
+      <div class="max-w-2xl mb-12 sm:mb-16">
+        <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-foreground">
+          {lang === 'id' ? 'Cakupan Layanan' : 'Scope of Service'}
+        </h2>
+        <p class="text-base sm:text-lg text-muted-foreground font-light mt-3 leading-relaxed">
+          {lang === 'id'
+            ? 'Semua urusan teknis dan pengisian konten dikerjakan terima beres oleh tim Gilabs.'
+            : 'All technical configuration and content onboarding are handled directly by Gilabs.'}
+        </p>
+      </div>
+
+      {/* Spacious Open Editorial Grid */}
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+        
+        {/* Deliverables with Editorial Numbering */}
+        <div class="lg:col-span-7 divide-y divide-border/60">
+          {deliverables.map((item, idx) => (
+            <div class="py-4.5 flex items-center gap-5 sm:gap-6">
+              <span class="text-xs sm:text-sm font-mono text-muted-foreground w-6">
+                {String(idx + 1).padStart(2, '0')}
+              </span>
+              <span class="text-sm sm:text-base font-light text-foreground">
+                {item}
+              </span>
+            </div>
+          ))}
+        </div>
+
+        {/* Technical Specifications */}
+        <div class="lg:col-span-5 divide-y divide-border/60 border-t lg:border-t-0 border-border/60">
+          {specs.map((spec) => (
+            <div class="py-5 flex items-center justify-between gap-4">
+              <span class="text-xs sm:text-sm font-mono uppercase text-muted-foreground">{spec.label}</span>
+              <span class="text-sm sm:text-base font-medium text-foreground text-right">{spec.value}</span>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* Window 3: Adaptasi Industri (1 Full Viewport Window) */}
+  <section class="min-h-screen flex flex-col justify-center py-16 sm:py-24">
+    <div class="container mx-auto px-4 sm:px-6">
+      
+      {/* TITLE ONLY - No eyebrow */}
+      <div class="max-w-2xl mb-10 sm:mb-14">
+        <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-foreground">
+          {lang === 'id' ? 'Adaptasi Bisnis' : 'Business Adaptations'}
+        </h2>
+        <p class="text-base sm:text-lg text-muted-foreground font-light mt-3 leading-relaxed">
+          {lang === 'id'
+            ? 'Satu tata letak, fleksibel untuk berbagai sektor usaha Anda.'
+            : 'One foundational layout, seamlessly tailored to your specific industry.'}
+        </p>
+      </div>
+
+      {/* Clean Interactive Showcase */}
+      <IndustryAdaptationGallery 
+        client:load 
+        adaptations={adaptations} 
+        lang={lang} 
+        orderUrl={orderUrl} 
+      />
+
+    </div>
+  </section>
+</div>

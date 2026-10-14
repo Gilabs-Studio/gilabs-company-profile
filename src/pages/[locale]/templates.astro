@@ -5,7 +5,7 @@ import Footer from '../../components/sections/Footer.astro';
 import TemplatesCatalog from '../../components/templates/TemplatesCatalog';
 import TemplatesFaq from '../../components/templates/TemplatesFaq.astro';
 import TemplatesCta from '../../components/templates/TemplatesCta.astro';
-import { templatesData, templatesPageContent } from '../../data/templatesData';
+import { templatesData, templatesPageContent, tiersData } from '../../data/templatesData';
 
 export function getStaticPaths() {
   return [
@@ -47,34 +47,39 @@ const templateListSchema = {
   "description": pageDescription,
   "url": canonical,
   "numberOfItems": templatesData.length,
-  "itemListElement": templatesData.map((item, idx) => ({
-    "@type": "ListItem",
-    "position": idx + 1,
-    "item": {
-      "@type": "Product",
-      "name": lang === 'en' && item.titleEn ? item.titleEn : item.title,
-      "description": item.description[lang],
-      "image": item.previewImage ? `${siteUrl}${item.previewImage}` : `${siteUrl}${item.demoUrl}`,
-      "brand": {
-        "@type": "Brand",
-        "name": "Gilabs"
-      },
-      "sku": `GILABS-${item.id.toUpperCase()}`,
-      "offers": {
-        "@type": "Offer",
-        "price": item.startingPriceIdr,
-        "priceCurrency": "IDR",
-        "availability": "https://schema.org/InStock",
-        "url": `${siteUrl}${item.demoUrl}`,
-        "priceValidUntil": "2027-12-31",
-        "seller": {
-          "@type": "Organization",
-          "name": "Gilabs",
-          "url": siteUrl
+  "itemListElement": templatesData.map((item, idx) => {
+    const tier = tiersData.find((t) => t.tierNumber === item.tier);
+    const numericPrice = tier ? parseInt(tier.pricing.price.replace(/[^0-9]/g, ''), 10) : 689000;
+    const itemUrl = lang === 'en' ? `${siteUrl}/en/templates/${item.slug}` : `${siteUrl}/templates/${item.slug}`;
+    return {
+      "@type": "ListItem",
+      "position": idx + 1,
+      "item": {
+        "@type": "Product",
+        "name": lang === 'en' && item.titleEn ? item.titleEn : item.title,
+        "description": item.description[lang],
+        "image": item.previewImage ? `${siteUrl}${item.previewImage}` : `${siteUrl}${item.demoUrl}`,
+        "brand": {
+          "@type": "Brand",
+          "name": "Gilabs"
+        },
+        "sku": `GILABS-${item.id.toUpperCase()}`,
+        "offers": {
+          "@type": "Offer",
+          "price": numericPrice,
+          "priceCurrency": "IDR",
+          "availability": "https://schema.org/InStock",
+          "url": itemUrl,
+          "priceValidUntil": "2027-12-31",
+          "seller": {
+            "@type": "Organization",
+            "name": "Gilabs",
+            "url": siteUrl
+          }
         }
       }
-    }
-  }))
+    };
+  })
 };
 
 // Structured Data: BreadcrumbList
