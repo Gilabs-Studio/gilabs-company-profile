@@ -7,7 +7,7 @@ date: "2026-04-15"
 category: "Enterprise Solutions"
 tags: ["CRM", "ERP", "Custom Software", "SaaS", "Enterprise"]
 readTime: "6 min read"
-image: "/images/blog/crm-erp-landscape.png"
+image: "/images/blog/crm-erp-landscape.webp"
 takeaways:
   - "SaaS pay-per-seat pricing scales linearly with your headcount — custom software does not"
   - "Off-the-shelf software forces your SOPs to adapt to the tool, not the other way around"

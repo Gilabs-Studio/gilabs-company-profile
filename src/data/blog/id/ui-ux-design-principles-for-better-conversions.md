@@ -7,7 +7,7 @@ date: "2025-02-01"
 category: "Design"
 tags: ["UI/UX","Design","User Experience","Conversion Optimization"]
 readTime: "5 menit"
-image: "/images/blog/uiux-landscape.png"
+image: "/images/blog/uiux-landscape.webp"
 takeaways:
   - "CTA yang hebat butuh kejelasan, kontras visual, dan kedekatan dengan konten yang membenarkan aksi"
   - "Whitespace adalah keputusan desain — bukan ruang yang terbuang"

@@ -6,7 +6,7 @@ export const softwareHouseEn: ServicePageData = {
   eyebrow: "Software House Indonesia",
   title: "Custom Software Development Partner for Business",
   subtitle: "We build reliable, mission-focused software tailored to streamline your team's operational workflows.",
-  heroIllustration: "/images/services/software-house/hero-dashboard-dark.png",
+  heroIllustration: "/images/services/software-house/hero-dashboard-dark.webp",
   heroImageAlt: "Enterprise System and Operations Dashboard Showcase - Gilabs Software House",
   metaTitle: "Top Software House Indonesia | Gilabs Engineering Partner",
   metaDescription: "Trusted Indonesia software house for custom software, internal enterprise tools, web applications, and mobile apps. 100% source code ownership with zero per-user license fees.",

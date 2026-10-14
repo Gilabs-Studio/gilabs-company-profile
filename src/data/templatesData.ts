@@ -121,8 +121,8 @@ export const templatesData: TemplateItem[] = [
       en: 'Modern website template for savings & credit cooperatives and digital financial institutions with daylight architectural aesthetics.'
     },
     startingPriceIdr: 1250000,
-    previewImage: '/templates/koperasi-digital/preview.png',
-    gallery: ['/templates/koperasi-digital/preview.png'],
+    previewImage: '/templates/koperasi-digital/preview.webp',
+    gallery: ['/templates/koperasi-digital/preview.webp'],
     demoUrl: '/templates/demo/koperasi',
     buyersCount: 165
   },

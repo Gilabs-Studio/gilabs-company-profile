@@ -6,7 +6,7 @@ export const mobileAppsId: ServicePageData = {
   eyebrow: "Aplikasi Mobile Android & iOS",
   title: "Aplikasi Mobile yang Mudah Digunakan dan Andal",
   subtitle: "Kami mengembangkan aplikasi Android dan iOS yang responsif, mudah digunakan, dan siap mendukung pertumbuhan bisnis Anda.",
-  heroIllustration: "/images/services/mobile-apps/hero-mobile-apps.png",
+  heroIllustration: "/images/services/mobile-apps/hero-mobile-apps.webp",
   heroImageAlt: "Mockup Aplikasi Mobile Android dan iOS - Gilabs",
   metaTitle: "Jasa Pembuatan Aplikasi Mobile Android & iOS | Gilabs",
   metaDescription: "Jasa pembuatan aplikasi Android & iOS profesional. Desain UX intuitif, performa cepat responsif native & cross-platform, dan siap scale.",
@@ -49,7 +49,7 @@ export const mobileAppsId: ServicePageData = {
       number: "01",
       title: "UX Sebagai Prioritas Utama",
       subtitle: "Alur penggunaan dirancang sesederhana mungkin sejak awal.",
-      image: "/images/services/mobile-apps/solution-ux-priority.png",
+      image: "/images/services/mobile-apps/solution-ux-priority.webp",
       alt: "Desain UX Aplikasi Mobile Intuitif dan Nyaman",
       points: [
         "Alur onboarding ringkas yang langsung membawa user ke fungsi utama",
@@ -61,7 +61,7 @@ export const mobileAppsId: ServicePageData = {
       number: "02",
       title: "Native & Cross-platform",
       subtitle: "Pilih sesuai kebutuhan, performa optimal di Android maupun iOS.",
-      image: "/images/services/mobile-apps/solution-native-crossplatform.png",
+      image: "/images/services/mobile-apps/solution-native-crossplatform.webp",
       alt: "Efisiensi Cross-Platform dengan Flutter & Native",
       points: [
         "Satu basis kode dengan Flutter hemat biaya & waktu hingga 50%",
@@ -73,7 +73,7 @@ export const mobileAppsId: ServicePageData = {
       number: "03",
       title: "Siap untuk Scale",
       subtitle: "Arsitektur backend disiapkan menampung pertumbuhan user.",
-      image: "/images/services/mobile-apps/solution-scale-growth.png",
+      image: "/images/services/mobile-apps/solution-scale-growth.webp",
       alt: "Arsitektur Cloud Skalabel untuk Aplikasi Mobile",
       points: [
         "Sinkronisasi offline-first tetap jalan meski koneksi internet terputus",

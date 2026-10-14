@@ -7,7 +7,7 @@ date: "2025-02-05"
 category: "Web Development"
 tags: ["Next.js","Astro","Framework Comparison","Web Development"]
 readTime: "8 menit"
-image: "/images/blog/nextastro-landscape.png"
+image: "/images/blog/nextastro-landscape.webp"
 takeaways:
   - "Astro mengirim hampir nol JavaScript secara default — ideal untuk situs berbasis konten yang butuh SEO kuat"
   - "Next.js adalah fondasi yang lebih kuat untuk aplikasi dengan autentikasi, data real-time, atau API routes"

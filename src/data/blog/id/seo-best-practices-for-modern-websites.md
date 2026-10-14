@@ -7,7 +7,7 @@ date: "2025-01-25"
 category: "SEO"
 tags: ["SEO","Digital Marketing","Web Performance","Content Strategy"]
 readTime: "7 menit"
-image: "/images/blog/seo-landscape.png"
+image: "/images/blog/seo-landscape.webp"
 takeaways:
   - "Core Web Vitals (LCP, INP, CLS) kini menjadi sinyal peringkat Google langsung — bukan opsional"
   - "E-E-A-T: tulis dengan kedalaman dan keahlian nyata, bukan hanya kepadatan kata kunci"

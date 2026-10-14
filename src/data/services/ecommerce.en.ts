@@ -6,7 +6,7 @@ export const ecommerceEn: ServicePageData = {
   eyebrow: "E-Commerce & Online Store",
   title: "Automated Online Stores Ready to Sell 24/7",
   subtitle: "From product catalogs to automated payment gateways, everything is built so you can focus strictly on inventory and order fulfillment.",
-  heroIllustration: "/images/services/ecommerce/hero-ecommerce.png",
+  heroIllustration: "/images/services/ecommerce/hero-ecommerce.webp",
   heroImageAlt: "E-Commerce Online Store Mockup on Desktop and Mobile - Gilabs Studio",
   metaTitle: "Professional Online Store & E-Commerce Web Development | Gilabs",
   metaDescription: "Custom online store development ready to sell 24/7. Automated payment gateway integration, real-time courier shipping, easy stock control, and 0% marketplace commission.",
@@ -47,7 +47,7 @@ export const ecommerceEn: ServicePageData = {
       number: "01",
       title: "Full Brand Ownership",
       subtitle: "Your own custom domain, bespoke styling matching your identity, zero generic cookie-cutter templates.",
-      image: "/images/services/ecommerce/solution-branding.png",
+      image: "/images/services/ecommerce/solution-branding.webp",
       alt: "Exclusive Online Store Design Matching Brand Identity",
       badge: "Brand Equity",
       points: [
@@ -60,7 +60,7 @@ export const ecommerceEn: ServicePageData = {
       number: "02",
       title: "Integrated Payment Gateways",
       subtitle: "Bank transfer, QRIS, e-wallets, credit cards verified automatically straight into your account.",
-      image: "/images/services/ecommerce/solution-payment.png",
+      image: "/images/services/ecommerce/solution-payment.webp",
       alt: "Automated Integrated Payment Gateways",
       badge: "Auto Verification",
       points: [
@@ -73,7 +73,7 @@ export const ecommerceEn: ServicePageData = {
       number: "03",
       title: "Effortless Product Management",
       subtitle: "Update inventory, prices, and promo discount codes without needing to wait on developers.",
-      image: "/images/services/ecommerce/solution-inventory.png",
+      image: "/images/services/ecommerce/solution-inventory.webp",
       alt: "Store Product and Inventory Dashboard",
       badge: "Admin Control",
       points: [

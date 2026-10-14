@@ -7,7 +7,7 @@ date: "2025-01-25"
 category: "SEO"
 tags: ["SEO","Digital Marketing","Web Performance","Content Strategy"]
 readTime: "7 min read"
-image: "/images/blog/seo-landscape.png"
+image: "/images/blog/seo-landscape.webp"
 takeaways:
   - "Core Web Vitals (LCP, INP, CLS) are now direct Google ranking signals — not optional"
   - "E-E-A-T: write with genuine depth and expertise, not just keyword density"

@@ -7,7 +7,7 @@ date: "2025-01-20"
 category: "Mobile Development"
 tags: ["Flutter","Mobile Development","Cross-Platform","App Development"]
 readTime: "6 min read"
-image: "/images/blog/flutter-landscape.png"
+image: "/images/blog/flutter-landscape.webp"
 takeaways:
   - "Flutter renders its own pixel-perfect widgets — no compromise on performance or UI fidelity"
   - "One codebase can serve iOS and Android with 85–95% code reuse, cutting dev time in half"

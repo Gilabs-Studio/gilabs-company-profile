@@ -6,7 +6,7 @@ export const customSoftwareId: ServicePageData = {
   eyebrow: "Custom Software & Web App",
   title: "Software Custom Sesuai Alur Kerja Bisnis",
   subtitle: "Bangun sistem yang pas saat software siap pakai tidak lagi cukup mendukung operasional Anda.",
-  heroIllustration: "/images/services/custom-software/hero-custom-software.png",
+  heroIllustration: "/images/services/custom-software/hero-custom-software.webp",
   metaTitle: "Jasa Pembuatan Custom Software & Web App Indonesia | Gilabs",
   metaDescription: "Jasa pembuatan custom software dan web app Indonesia. Sistem operasional, ERP/CRM, workflow approval, dan portal client sesuai cara kerja bisnis Anda.",
   keywords: [
@@ -49,7 +49,7 @@ export const customSoftwareId: ServicePageData = {
       number: "01",
       title: "Sesuai Alur Kerja",
       subtitle: "Kami petakan alur kerja Anda sebelum mulai membuat sistem.",
-      image: "/images/services/custom-software/solution-tailored-process.png",
+      image: "/images/services/custom-software/solution-tailored-process.webp",
       alt: "Sistem yang Dirancang Sesuai Alur Kerja Nyata",
       points: [
         "Sistem mengikuti SOP perusahaan tanpa kompromi",
@@ -61,7 +61,7 @@ export const customSoftwareId: ServicePageData = {
       number: "02",
       title: "Mudah Dikembangkan",
       subtitle: "Bisa mulai dari fitur inti (MVP) lalu ditambah seiring bisnis jalan.",
-      image: "/images/services/custom-software/solution-scalable-growth.png",
+      image: "/images/services/custom-software/solution-scalable-growth.webp",
       alt: "Arsitektur Software Modular dan Skalabel",
       points: [
         "Investasi awal terukur dengan fokus ke fitur utama",
@@ -73,7 +73,7 @@ export const customSoftwareId: ServicePageData = {
       number: "03",
       title: "Terintegrasi Penuh",
       subtitle: "Bisa dihubungkan ke WhatsApp, payment gateway, sistem akuntansi, dan POS.",
-      image: "/images/services/custom-software/solution-fully-integrated.png",
+      image: "/images/services/custom-software/solution-fully-integrated.webp",
       alt: "Ekosistem Terintegrasi Penuh dengan API",
       points: [
         "Notifikasi otomatis ke WhatsApp dan email untuk approval cepat",

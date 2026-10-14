@@ -6,7 +6,7 @@ export const posSystemEn: ServicePageData = {
   eyebrow: "Custom POS & Cashier System",
   title: "Fast Cashier System Without Long Queues",
   subtitle: "Fast checkouts, automatic inventory sync, and real-time sales reports. Built for your specific store or restaurant workflow without rigid templates.",
-  heroIllustration: "/images/services/pos-system/hero-pos-system.png",
+  heroIllustration: "/images/services/pos-system/hero-pos-system.webp",
   heroImageAlt: "Modern POS Cashier Station Terminal - Gilabs",
   metaTitle: "Custom POS & Cashier Software Development | Gilabs",
   metaDescription: "Custom Point of Sale (POS) software for retail, cafes, restaurants, and multi-outlet stores. Rapid checkout, automatic inventory sync, offline mode, and real-time reports.",
@@ -48,7 +48,7 @@ export const posSystemEn: ServicePageData = {
       number: "01",
       title: "Fast Checkouts",
       subtitle: "Intuitive interface so even newly hired cashiers can start immediately without lengthy training.",
-      image: "/images/services/pos-system/solution-fast-transactions.png",
+      image: "/images/services/pos-system/solution-fast-transactions.webp",
       alt: "Fast Checkout POS Terminal Experience",
       points: [
         "Minimalist cashier UI optimized for rapid touch and high-speed keystrokes",
@@ -60,7 +60,7 @@ export const posSystemEn: ServicePageData = {
       number: "02",
       title: "Automatic Inventory Sync",
       subtitle: "Every completed transaction instantly deducts stock, eliminating manual double entry.",
-      image: "/images/services/pos-system/solution-auto-inventory.png",
+      image: "/images/services/pos-system/solution-auto-inventory.webp",
       alt: "Automated POS Stock Deduction Engine",
       points: [
         "Finished retail goods and kitchen raw materials deducted automatically",
@@ -72,7 +72,7 @@ export const posSystemEn: ServicePageData = {
       number: "03",
       title: "Real-Time Reporting",
       subtitle: "Business owners monitor revenue anytime, from anywhere, directly on their mobile phone.",
-      image: "/images/services/pos-system/solution-realtime-insights.png",
+      image: "/images/services/pos-system/solution-realtime-insights.webp",
       alt: "Real-time Mobile Sales Analytics",
       points: [
         "Live daily revenue telemetry, gross profit margins, and peak shopping hours",

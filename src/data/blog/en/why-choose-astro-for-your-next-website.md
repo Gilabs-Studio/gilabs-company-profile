@@ -7,7 +7,7 @@ date: "2025-01-15"
 category: "Web Development"
 tags: ["Astro","Web Development","Performance","SEO"]
 readTime: "5 min read"
-image: "/images/blog/astrospeed-landscape.png"
+image: "/images/blog/astrospeed-landscape.webp"
 takeaways:
   - "Astro ships zero JavaScript by default — resulting in Lighthouse scores that consistently hit 100"
   - "Islands Architecture hydrates only the components that need it, leaving everything else as raw HTML"

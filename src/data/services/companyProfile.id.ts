@@ -6,7 +6,7 @@ export const companyProfileId: ServicePageData = {
   eyebrow: "Jasa Web Company Profile",
   title: "Company Profile Profesional",
   subtitle: "Bangun reputasi digital bisnis Anda dengan website profil perusahaan yang kredibel, elegan, dan informatif.",
-  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.png",
+  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.webp",
   heroImageAlt: "Mockup Website Company Profile di Desktop - Gilabs Studio",
   metaTitle: "Jasa Website Company Profile Perusahaan Profesional | Gilabs",
   metaDescription: "Bangun kesan pertama yang solid bagi calon klien, mitra bisnis, dan investor dengan website company profile yang kredibel, elegan, responsif, dan siap tender.",
@@ -51,7 +51,7 @@ export const companyProfileId: ServicePageData = {
       number: "01",
       title: "Citra Profesional",
       subtitle: "Desain yang mencerminkan standar dan kredibilitas industri Anda.",
-      image: "/images/services/company-profile/solution-prestige.png",
+      image: "/images/services/company-profile/solution-prestige.webp",
       alt: "Desain Company Profile Profesional",
       badge: "Standar Korporat",
       points: [
@@ -64,7 +64,7 @@ export const companyProfileId: ServicePageData = {
       number: "02",
       title: "Struktur Informasi Jelas",
       subtitle: "Profil bisnis, layanan, portofolio, hingga kontak tersusun rapi dan mudah ditemukan.",
-      image: "/images/services/company-profile/solution-architecture.png",
+      image: "/images/services/company-profile/solution-architecture.webp",
       alt: "Struktur Informasi Company Profile",
       badge: "Arsitektur Informasi",
       points: [
@@ -77,7 +77,7 @@ export const companyProfileId: ServicePageData = {
       number: "03",
       title: "Mudah Diperbarui",
       subtitle: "Sistem pengelolaan konten (CMS) yang mudah digunakan mandiri tanpa kendala teknis.",
-      image: "/images/services/company-profile/solution-cms.png",
+      image: "/images/services/company-profile/solution-cms.webp",
       alt: "CMS Dashboard Kelola Konten Mandiri",
       badge: "CMS Mandiri",
       points: [
@@ -94,37 +94,37 @@ export const companyProfileId: ServicePageData = {
     {
       title: "Profil Perusahaan & Sejarah",
       description: "Ceritakan latar belakang dan perjalanan bisnis secara berbobot.",
-      image: "/images/services/company-profile/feature-01.png"
+      image: "/images/services/company-profile/feature-01.webp"
     },
     {
       title: "Visi, Misi & Nilai Perusahaan",
       description: "Tampilkan arah dan prinsip bisnis secara jelas dan profesional.",
-      image: "/images/services/company-profile/feature-02.png"
+      image: "/images/services/company-profile/feature-02.webp"
     },
     {
       title: "Struktur Organisasi / Tim Inti",
       description: "Tampilkan tim di balik perusahaan untuk memperkuat rasa percaya.",
-      image: "/images/services/company-profile/feature-03.png"
+      image: "/images/services/company-profile/feature-03.webp"
     },
     {
       title: "Portofolio Proyek & Klien",
       description: "Etalase hasil kerja nyata yang dapat diverifikasi oleh calon klien.",
-      image: "/images/services/company-profile/feature-04.png"
+      image: "/images/services/company-profile/feature-04.webp"
     },
     {
       title: "Halaman Karir (Opsional)",
       description: "Publikasi lowongan kerja dan rekrut talenta langsung melalui website.",
-      image: "/images/services/company-profile/feature-06.png"
+      image: "/images/services/company-profile/feature-06.webp"
     },
     {
       title: "Kontak & Lokasi Cabang",
       description: "Integrasi peta Google Maps dan formulir kontak yang terhubung langsung ke email/WhatsApp tim.",
-      image: "/images/services/company-profile/feature-07.png"
+      image: "/images/services/company-profile/feature-07.webp"
     },
     {
       title: "Integrasi Media Sosial",
       description: "Tautkan seluruh akun media sosial resmi perusahaan dalam satu tempat.",
-      image: "/images/services/company-profile/feature-08.png"
+      image: "/images/services/company-profile/feature-08.webp"
     }
   ],
   packagesTitle: "Pilihan Paket Company Profile",

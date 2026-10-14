@@ -7,7 +7,7 @@ date: "2025-02-01"
 category: "Design"
 tags: ["UI/UX","Design","User Experience","Conversion Optimization"]
 readTime: "5 min read"
-image: "/images/blog/uiux-landscape.png"
+image: "/images/blog/uiux-landscape.webp"
 takeaways:
   - "A great CTA needs clarity, contrast, and proximity to the content that justifies the action"
   - "Whitespace is a design decision — not wasted territory"

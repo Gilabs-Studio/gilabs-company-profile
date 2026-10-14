@@ -6,7 +6,7 @@ export const companyProfileEn: ServicePageData = {
   eyebrow: "Company Profile Website",
   title: "Professional Company Profile",
   subtitle: "Establish a strong first impression for prospective clients, partners, and investors with a credible, elegant, and informative corporate website.",
-  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.png",
+  heroIllustration: "/images/services/company-profile/hero-corporate-mockup.webp",
   heroImageAlt: "Corporate Company Profile Website Mockup on Desktop - Gilabs Studio",
   metaTitle: "Professional Corporate Company Profile Web Development | Gilabs",
   metaDescription: "Establish a strong first impression with an authoritative, elegant, and tender-ready corporate website. Fast, responsive, and secure.",
@@ -48,7 +48,7 @@ export const companyProfileEn: ServicePageData = {
       number: "01",
       title: "Professional Image",
       subtitle: "Design tailored to reflect the standards and credibility of your industry.",
-      image: "/images/services/company-profile/solution-prestige.png",
+      image: "/images/services/company-profile/solution-prestige.webp",
       alt: "Professional Corporate Website Design",
       badge: "Corporate Standard",
       points: [
@@ -61,7 +61,7 @@ export const companyProfileEn: ServicePageData = {
       number: "02",
       title: "Clear Information Architecture",
       subtitle: "Company overview, services, portfolio, and contact info structured for effortless discovery.",
-      image: "/images/services/company-profile/solution-architecture.png",
+      image: "/images/services/company-profile/solution-architecture.webp",
       alt: "Clear Information Architecture",
       badge: "Information Architecture",
       points: [
@@ -74,7 +74,7 @@ export const companyProfileEn: ServicePageData = {
       number: "03",
       title: "Easy to Update",
       subtitle: "An intuitive content management system (CMS) that your team can maintain independently.",
-      image: "/images/services/company-profile/solution-cms.png",
+      image: "/images/services/company-profile/solution-cms.webp",
       alt: "Self-Serve CMS Dashboard",
       badge: "Self-Serve CMS",
       points: [
@@ -91,37 +91,37 @@ export const companyProfileEn: ServicePageData = {
     {
       title: "Company Profile & History",
       description: "Present your company's journey and capabilities with dignified visual storytelling.",
-      image: "/images/services/company-profile/feature-01.png"
+      image: "/images/services/company-profile/feature-01.webp"
     },
     {
       title: "Vision, Mission & Values",
       description: "Display guiding principles and strategic vision clearly and professionally.",
-      image: "/images/services/company-profile/feature-02.png"
+      image: "/images/services/company-profile/feature-02.webp"
     },
     {
       title: "Organization Structure / Core Team",
       description: "Showcase the leadership and key talent behind the enterprise to build trust.",
-      image: "/images/services/company-profile/feature-03.png"
+      image: "/images/services/company-profile/feature-03.webp"
     },
     {
       title: "Project & Client Portfolio",
       description: "A verifiable digital showcase of past results and trusted client engagements.",
-      image: "/images/services/company-profile/feature-04.png"
+      image: "/images/services/company-profile/feature-04.webp"
     },
     {
       title: "Career Portal (Optional)",
       description: "Publish vacancies and attract top industry talent directly on your domain.",
-      image: "/images/services/company-profile/feature-06.png"
+      image: "/images/services/company-profile/feature-06.webp"
     },
     {
       title: "Contact & Branch Locations",
       description: "Interactive maps and direct inquiries routed straight to team email or WhatsApp.",
-      image: "/images/services/company-profile/feature-07.png"
+      image: "/images/services/company-profile/feature-07.webp"
     },
     {
       title: "Social Media Integration",
       description: "Centralize all official social channels in one unified, accessible place.",
-      image: "/images/services/company-profile/feature-08.png"
+      image: "/images/services/company-profile/feature-08.webp"
     }
   ],
   packagesTitle: "Company Profile Investment Packages",

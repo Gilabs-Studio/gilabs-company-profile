@@ -7,7 +7,7 @@ date: "2025-02-05"
 category: "Web Development"
 tags: ["Next.js","Astro","Framework Comparison","Web Development"]
 readTime: "8 min read"
-image: "/images/blog/nextastro-landscape.png"
+image: "/images/blog/nextastro-landscape.webp"
 takeaways:
   - "Astro ships near-zero JavaScript by default — ideal for content-heavy, SEO-critical sites"
   - "Next.js is the stronger foundation for apps with auth, real-time data, or API routes"

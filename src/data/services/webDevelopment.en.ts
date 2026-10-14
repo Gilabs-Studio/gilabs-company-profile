@@ -6,7 +6,7 @@ export const webDevelopmentEn: ServicePageData = {
   eyebrow: "Web Development",
   title: "Websites Engineered to Build Trust & Drive Real Growth",
   subtitle: "Elevate your business authority with sub-second website performance, bespoke design, and conversion flows engineered to turn visitors into paying clients.",
-  heroIllustration: "/images/services/web-dev/hero-mockup.jpg",
+  heroIllustration: "/images/services/web-dev/hero-mockup.webp",
   heroImageAlt: "Website Mockup on Laptop and Mobile - Gilabs Web Development",
   metaTitle: "Professional Web Development Services | Gilabs",
   metaDescription: "Professional web development: corporate websites, landing pages, and custom portals. Sub-second performance, responsive, SEO-ready, and full code ownership.",
@@ -49,7 +49,7 @@ export const webDevelopmentEn: ServicePageData = {
       number: "01",
       title: "Authority-Building Visual Design",
       description: "Bespoke, distraction-free layouts that instantly establish market credibility and guide visitors toward action.",
-      image: "/images/services/web-dev/solution-design.jpg",
+      image: "/images/services/web-dev/solution-design.webp",
       alt: "High-Converting Wireframe and Website Design",
       badge: "Conversion-Centric",
       points: [
@@ -62,7 +62,7 @@ export const webDevelopmentEn: ServicePageData = {
       number: "02",
       title: "Sub-Second Speed That Retains Every Lead",
       description: "Sub-2-second load times keep prospects actively engaged, maximizing ad spend and user retention.",
-      image: "/images/services/web-dev/solution-speed.png",
+      image: "/images/services/web-dev/solution-speed.webp",
       alt: "Google PageSpeed 100 Score Scorecard",
       badge: "Core Web Vitals Pass",
       points: [
@@ -75,7 +75,7 @@ export const webDevelopmentEn: ServicePageData = {
       number: "03",
       title: "Search Engine Visibility from Day One",
       description: "Semantic HTML, structured data, and performance best practices engineered for rapid Google ranking.",
-      image: "/images/services/web-dev/solution-seo.jpg",
+      image: "/images/services/web-dev/solution-seo.webp",
       alt: "Google Search Ranking SERP Preview",
       badge: "Structured Data & SERP",
       points: [

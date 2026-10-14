@@ -235,7 +235,7 @@ export default function TicketingLanding({
             noiseIntensity={1.75}
             scale={0.2}
             rotation={30}
-            backgroundImage="/templates/ticketing/bg.jpg"
+            backgroundImage="/templates/ticketing/bg.webp"
             onReady={() => setBeamsReady(true)}
           />
         </div>
@@ -449,7 +449,7 @@ export default function TicketingLanding({
             <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition-all duration-300 hover:-translate-y-1 group">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900 mb-4">
                 <img
-                  src="/templates/ticketing/speaker-1.png"
+                  src="/templates/ticketing/speaker-1.webp"
                   alt="Alex Pratama"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
@@ -465,7 +465,7 @@ export default function TicketingLanding({
             <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition-all duration-300 hover:-translate-y-1 group">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900 mb-4">
                 <img
-                  src="/templates/ticketing/speaker-2.png"
+                  src="/templates/ticketing/speaker-2.webp"
                   alt="Sarah Wijaya"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
@@ -481,7 +481,7 @@ export default function TicketingLanding({
             <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition-all duration-300 hover:-translate-y-1 group">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900 mb-4">
                 <img
-                  src="/templates/ticketing/speaker-3.png"
+                  src="/templates/ticketing/speaker-3.webp"
                   alt="Ryan Maulana"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />
@@ -497,7 +497,7 @@ export default function TicketingLanding({
             <div className="rounded-xl border border-neutral-800 bg-neutral-950 p-4 transition-all duration-300 hover:-translate-y-1 group">
               <div className="aspect-[4/3] rounded-lg overflow-hidden bg-neutral-900 mb-4">
                 <img
-                  src="/templates/ticketing/speaker-4.png"
+                  src="/templates/ticketing/speaker-4.webp"
                   alt="Diana Lestari"
                   className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
                 />

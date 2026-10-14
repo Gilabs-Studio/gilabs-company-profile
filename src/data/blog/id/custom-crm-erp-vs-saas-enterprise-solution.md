@@ -7,7 +7,7 @@ date: "2026-04-15"
 category: "Enterprise Solutions"
 tags: ["CRM", "ERP", "Custom Software", "SaaS", "Enterprise"]
 readTime: "6 menit"
-image: "/images/blog/crm-erp-landscape.png"
+image: "/images/blog/crm-erp-landscape.webp"
 takeaways:
   - "Harga SaaS per-seat berkembang linear dengan jumlah karyawan — custom software tidak"
   - "Software off-the-shelf memaksa SOP Anda menyesuaikan tool, bukan sebaliknya"

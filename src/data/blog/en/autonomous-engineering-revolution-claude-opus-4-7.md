@@ -7,7 +7,7 @@ date: "2026-04-17"
 category: "Technology"
 tags: ["AI", "Software Engineering", "Tech Updates", "Claude", "Anthropic"]
 readTime: "4 min read"
-image: "/images/blog/claude-opus-4-7-launch.png"
+image: "/images/blog/claude-opus-4-7-launch.webp"
 takeaways:
   - "Opus 4.7 scores 87.6% on the SWE-bench Verified benchmark for autonomous coding tasks"
   - "Vision support increased 3x to 3.75 megapixels for precise interface understanding"

@@ -7,7 +7,7 @@ date: "2025-01-15"
 category: "Web Development"
 tags: ["Astro","Web Development","Performance","SEO"]
 readTime: "5 menit"
-image: "/images/blog/astrospeed-landscape.png"
+image: "/images/blog/astrospeed-landscape.webp"
 takeaways:
   - "Astro mengirim nol JavaScript secara default — menghasilkan skor Lighthouse yang konsisten mencapai 100"
   - "Islands Architecture hanya menghidrasi komponen yang perlu, sisanya tetap sebagai HTML murni"

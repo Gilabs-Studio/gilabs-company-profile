@@ -6,7 +6,7 @@ export const pricingGuidesEn: Record<string, PricingGuidePage> = {
     eyebrow: "2026 Website Cost & Pricing Guide",
     title: "How Much Does Professional Web Development Cost in Indonesia?",
     subtitle: "A transparent breakdown of website pricing: from promotional landing pages and corporate portals to custom web applications with zero hidden fees.",
-    heroIllustration: "/illustrations/pricing-calculator-sketch.png",
+    heroIllustration: "/illustrations/pricing-calculator-sketch.webp",
     metaTitle: "Website Development Cost & Pricing Guide 2026 | Gilabs",
     metaDescription: "Transparent guide to web development costs, comparison of cheap templates vs custom development, and digital ROI estimations.",
     keywords: [
@@ -84,7 +84,7 @@ export const pricingGuidesEn: Record<string, PricingGuidePage> = {
     eyebrow: "2026 Mobile App Pricing Guide",
     title: "Mobile App Development Cost Breakdown (iOS & Android)",
     subtitle: "Understand key cost components for mobile application development from UI/UX design and backend APIs to App Store deployments.",
-    heroIllustration: "/illustrations/pricing-calculator-sketch.png",
+    heroIllustration: "/illustrations/pricing-calculator-sketch.webp",
     metaTitle: "Mobile App Development Cost Breakdown 2026 | Gilabs",
     metaDescription: "Complete pricing guide for iOS and Android mobile app development with Flutter. Real-world cost benchmarks for startups and enterprises.",
     keywords: [
@@ -138,7 +138,7 @@ export const pricingGuidesEn: Record<string, PricingGuidePage> = {
     eyebrow: "2026 Custom Software Pricing Guide",
     title: "Custom Software, ERP, & CRM Price Estimator",
     subtitle: "Learn how enterprise software development costs are structured based on functional scope, integration requirements, and business complexity.",
-    heroIllustration: "/illustrations/pricing-calculator-sketch.png",
+    heroIllustration: "/illustrations/pricing-calculator-sketch.webp",
     metaTitle: "Custom Software & ERP Development Cost Estimator | Gilabs",
     metaDescription: "Calculate costs for custom software, ERP, CRM, and management information systems in Indonesia. Transparent milestones with full code transfer.",
     keywords: [

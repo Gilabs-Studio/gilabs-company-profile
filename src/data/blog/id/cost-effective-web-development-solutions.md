@@ -7,7 +7,7 @@ date: "2025-02-10"
 category: "Business"
 tags: ["Small Business","Web Development","Budget","Cost-Effective Solutions"]
 readTime: "6 menit"
-image: "/images/blog/budget-landscape.png"
+image: "/images/blog/budget-landscape.webp"
 takeaways:
   - "Definisikan lingkup proyek secara tegas sebelum menulis satu baris kode pun"
   - "Website statis cepat, aman, dan sering kali biaya hosting di bawah Rp 150.000/bulan"

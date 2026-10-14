@@ -37,7 +37,7 @@ export const pricingGuidesId: Record<string, PricingGuidePage> = {
     eyebrow: "Panduan Biaya & Estimasi Harga 2026",
     title: "Berapa Sebenarnya Biaya Pembuatan Website Profesional di Indonesia?",
     subtitle: "Rincian transparan harga pembuatan website: dari landing page UMKM, company profile korporasi, hingga portal custom tanpa biaya tersembunyi.",
-    heroIllustration: "/illustrations/pricing-calculator-sketch.png",
+    heroIllustration: "/illustrations/pricing-calculator-sketch.webp",
     metaTitle: "Biaya Pembuatan Website Perusahaan & Harga Jasa Web 2026 | Gilabs",
     metaDescription: "Panduan lengkap estimasi biaya pembuatan website perusahaan, harga jasa pembuatan website murah vs profesional, dan simulasi ROI investasi digital.",
     keywords: [
@@ -139,7 +139,7 @@ export const pricingGuidesId: Record<string, PricingGuidePage> = {
     eyebrow: "Panduan Biaya Aplikasi Mobile 2026",
     title: "Estimasi Biaya Pembuatan Aplikasi Mobile Android & iOS",
     subtitle: "Ketahui secara rinci komponen biaya pembuatan aplikasi mobile mulai dari UI/UX, backend API, hingga biaya rilis ke Play Store dan App Store.",
-    heroIllustration: "/illustrations/pricing-calculator-sketch.png",
+    heroIllustration: "/illustrations/pricing-calculator-sketch.webp",
     metaTitle: "Biaya Buat Aplikasi Mobile Android & iOS 2026 | Gilabs",
     metaDescription: "Panduan lengkap biaya pembuatan aplikasi mobile Android dan iOS. Estimasi harga MVP startup, aplikasi bisnis, dan e-commerce dengan Flutter.",
     keywords: [
@@ -218,7 +218,7 @@ export const pricingGuidesId: Record<string, PricingGuidePage> = {
     eyebrow: "Estimasi Biaya Software House 2026",
     title: "Panduan Estimasi Harga Pembuatan Custom Software, ERP, & CRM",
     subtitle: "Pahami cara menghitung anggaran pengembangan sistem informasi perusahaan kustom berdasarkan Scope of Work (SOW) dan kompleksitas alur bisnis.",
-    heroIllustration: "/illustrations/pricing-calculator-sketch.png",
+    heroIllustration: "/illustrations/pricing-calculator-sketch.webp",
     metaTitle: "Estimasi Harga Software Custom, ERP & CRM Enterprise | Gilabs",
     metaDescription: "Simulasi dan estimasi harga pembuatan software custom perusahaan, sistem ERP, CRM, dan sistem informasi manajemen di Indonesia. Transparan & full code ownership.",
     keywords: [

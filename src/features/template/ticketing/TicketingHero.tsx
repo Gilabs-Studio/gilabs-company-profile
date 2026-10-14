@@ -105,7 +105,7 @@ export default function TicketingHero({ locale = "id" }: TicketingHeroProps) {
           noiseIntensity={1.75}
           scale={0.2}
           rotation={30}
-          backgroundImage="/templates/ticketing/bg.jpg"
+          backgroundImage="/templates/ticketing/bg.webp"
         />
       </div>
 

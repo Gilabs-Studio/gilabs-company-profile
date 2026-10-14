@@ -6,7 +6,7 @@ export const customSoftwareEn: ServicePageData = {
   eyebrow: "Custom Software & Web App",
   title: "Custom Software Built for Your Workflow",
   subtitle: "Build tailored systems when off-the-shelf software no longer fits your operational needs.",
-  heroIllustration: "/images/services/custom-software/hero-custom-software.png",
+  heroIllustration: "/images/services/custom-software/hero-custom-software.webp",
   metaTitle: "Custom Software & Web App Development Services | Gilabs",
   metaDescription: "Custom software and web application development. Tailored operational systems, ERP/CRM, approval workflows, and client portals built for your business.",
   keywords: [
@@ -47,7 +47,7 @@ export const customSoftwareEn: ServicePageData = {
       number: "01",
       title: "Tailored to Your Workflow",
       subtitle: "We map your exact workflow before writing a single line of code.",
-      image: "/images/services/custom-software/solution-tailored-process.png",
+      image: "/images/services/custom-software/solution-tailored-process.webp",
       alt: "Systems Tailored to Your Real Workflow",
       points: [
         "System matches your company SOP without compromises",
@@ -59,7 +59,7 @@ export const customSoftwareEn: ServicePageData = {
       number: "02",
       title: "Built to Scale",
       subtitle: "Launch with core features first (MVP) and expand as your business grows.",
-      image: "/images/services/custom-software/solution-scalable-growth.png",
+      image: "/images/services/custom-software/solution-scalable-growth.webp",
       alt: "Modular & Scalable Custom Software Architecture",
       points: [
         "Cost-effective start focusing on high-impact features",
@@ -71,7 +71,7 @@ export const customSoftwareEn: ServicePageData = {
       number: "03",
       title: "Fully Integrated",
       subtitle: "Connect seamlessly to WhatsApp, payment gateways, accounting systems, and POS.",
-      image: "/images/services/custom-software/solution-fully-integrated.png",
+      image: "/images/services/custom-software/solution-fully-integrated.webp",
       alt: "Fully Integrated Ecosystem & API Connections",
       points: [
         "Automated WhatsApp & email alerts for instant approvals",

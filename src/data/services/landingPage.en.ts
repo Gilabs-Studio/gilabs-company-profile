@@ -6,7 +6,7 @@ export const landingPageEn: ServicePageData = {
   eyebrow: "Landing Page Development",
   title: "Landing Pages Built for Conversion",
   subtitle: "Expensive ads, steady traffic, but low conversion? The bottleneck is often your landing page, not your ad budget.",
-  heroIllustration: "/images/services/landing-page/hero-landing-page.png",
+  heroIllustration: "/images/services/landing-page/hero-landing-page.webp",
   heroImageAlt: "Single Scroll Landing Page Mockup on Laptop - Gilabs",
   metaTitle: "High-Converting Landing Page Development Agency | Gilabs",
   metaDescription: "Landing pages engineered specifically for Google Ads, Meta Ads, and TikTok Ads. Sub-second loading speed, persuasive copywriting, and direct WhatsApp integration.",
@@ -47,7 +47,7 @@ export const landingPageEn: ServicePageData = {
       number: "01",
       title: "Conversion-Centric",
       subtitle: "Zero distractions. Every headline, image, and section funnels visitors to one singular action.",
-      image: "/images/services/landing-page/solution-focus.png",
+      image: "/images/services/landing-page/solution-focus.webp",
       alt: "Wireframe Conversion Focused Landing Page",
       badge: "High Intent",
       points: [
@@ -60,7 +60,7 @@ export const landingPageEn: ServicePageData = {
       number: "02",
       title: "Targeted Messaging",
       subtitle: "We help structure clear narrative hooks that guide visitors to make purchasing decisions faster.",
-      image: "/images/services/landing-page/solution-copywriting.png",
+      image: "/images/services/landing-page/solution-copywriting.webp",
       alt: "Targeted Sales Copywriting Structure",
       badge: "Clear Value",
       points: [
@@ -73,7 +73,7 @@ export const landingPageEn: ServicePageData = {
       number: "03",
       title: "Instant Load",
       subtitle: "Optimized for traffic from Meta Ads, Google Ads, and TikTok with sub-second opening speeds.",
-      image: "/images/services/landing-page/solution-speed.png",
+      image: "/images/services/landing-page/solution-speed.webp",
       alt: "Google PageSpeed Score 100",
       badge: "Sub-Second Speed",
       points: [

@@ -6,7 +6,7 @@ export const mobileAppsEn: ServicePageData = {
   eyebrow: "Android & iOS Mobile Apps",
   title: "Intuitive, High-Performance Mobile Apps",
   subtitle: "We engineer responsive Android and iOS applications designed for usability, speed, and business growth.",
-  heroIllustration: "/images/services/mobile-apps/hero-mobile-apps.png",
+  heroIllustration: "/images/services/mobile-apps/hero-mobile-apps.webp",
   heroImageAlt: "Android and iOS Mobile App Showcase - Gilabs",
   metaTitle: "Android & iOS Mobile App Development Services | Gilabs",
   metaDescription: "Professional mobile app development for Android & iOS. High-performance cross-platform Flutter engineering, intuitive UX, and scalable architecture.",
@@ -48,7 +48,7 @@ export const mobileAppsEn: ServicePageData = {
       number: "01",
       title: "UX as Top Priority",
       subtitle: "User flows designed as simply as possible from day one, ensuring zero friction.",
-      image: "/images/services/mobile-apps/solution-ux-priority.png",
+      image: "/images/services/mobile-apps/solution-ux-priority.webp",
       alt: "Intuitive and Seamless Mobile UX Design",
       points: [
         "Frictionless onboarding that guides users directly to core value",
@@ -60,7 +60,7 @@ export const mobileAppsEn: ServicePageData = {
       number: "02",
       title: "Native & Cross-Platform",
       subtitle: "Choose what fits your goals: optimal 60fps performance on both Android and iOS.",
-      image: "/images/services/mobile-apps/solution-native-crossplatform.png",
+      image: "/images/services/mobile-apps/solution-native-crossplatform.webp",
       alt: "Cross-Platform Harmony with Flutter & Native",
       points: [
         "Single codebase with Flutter for up to 50% budget & time savings",
@@ -72,7 +72,7 @@ export const mobileAppsEn: ServicePageData = {
       number: "03",
       title: "Ready to Scale",
       subtitle: "Backend architecture engineered from the start to accommodate rapid user growth.",
-      image: "/images/services/mobile-apps/solution-scale-growth.png",
+      image: "/images/services/mobile-apps/solution-scale-growth.webp",
       alt: "Scalable Cloud Architecture for Mobile Apps",
       points: [
         "Real-time sync with offline caching for erratic network environments",

@@ -409,7 +409,7 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
         lang === "en"
           ? "High-precision custom component manufacturing conforming strictly to international ISO standards and rigorous quality controls."
           : "Pengerjaan suku cadang kustom berpresisi tinggi dengan sertifikasi bahan standar ISO serta kendali mutu menyeluruh.",
-      image: "/templates/gke/company/img3.png",
+      image: "/templates/gke/company/img3.webp",
     },
     {
       index: "02",
@@ -418,7 +418,7 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
         lang === "en"
           ? "Automated inventory networks ensuring continuous supply without machinery pauses or manufacturing line interruptions."
           : "Sistem pergudangan cerdas memastikan ketersediaan suku cadang tanpa jeda operasional pabrik atau hambatan jalur produksi.",
-      image: "/templates/gke/company/img.png",
+      image: "/templates/gke/company/img.webp",
     },
     {
       index: "03",
@@ -427,20 +427,20 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
         lang === "en"
           ? "Experienced engineering teams assisting with diagnostics, periodic inspection, wiring setups, and production line optimization."
           : "Dukungan insinyur berpengalaman untuk inspeksi berkala, pengujian kondisi mesin, serta optimalisasi lini operasional industri.",
-      image: "/templates/gke/company/service-product-consultation.png",
+      image: "/templates/gke/company/service-product-consultation.webp",
     },
   ];
 
   const brandLogos = [
     { name: "Lorem Brand 01", logo: "/templates/gke/logo/BSQ-Logo-e1710849402525.webp" },
-    { name: "Lorem Brand 02", logo: "/templates/gke/logo/autonics-seeklogo.png" },
-    { name: "Lorem Brand 03", logo: "/templates/gke/logo/ckd-seeklogo.png" },
-    { name: "Lorem Brand 04", logo: "/templates/gke/logo/images.png" },
-    { name: "Lorem Brand 05", logo: "/templates/gke/logo/kubler-8-5020-8341-1000-encoder.png" },
+    { name: "Lorem Brand 02", logo: "/templates/gke/logo/autonics-seeklogo.webp" },
+    { name: "Lorem Brand 03", logo: "/templates/gke/logo/ckd-seeklogo.webp" },
+    { name: "Lorem Brand 04", logo: "/templates/gke/logo/images.webp" },
+    { name: "Lorem Brand 05", logo: "/templates/gke/logo/kubler-8-5020-8341-1000-encoder.webp" },
     { name: "Lorem Brand 06", logo: "/templates/gke/logo/download_500x500.webp" },
-    { name: "Lorem Brand 07", logo: "/templates/gke/logo/mitsubishi-electric-changes-for-the-better-logo-png_seeklogo-93542.png" },
-    { name: "Lorem Brand 08", logo: "/templates/gke/logo/omron-logo-png_seeklogo-103109.png" },
-    { name: "Lorem Brand 09", logo: "/templates/gke/logo/thk-seeklogo.png" },
+    { name: "Lorem Brand 07", logo: "/templates/gke/logo/mitsubishi-electric-changes-for-the-better-logo-png_seeklogo-93542.webp" },
+    { name: "Lorem Brand 08", logo: "/templates/gke/logo/omron-logo-png_seeklogo-103109.webp" },
+    { name: "Lorem Brand 09", logo: "/templates/gke/logo/thk-seeklogo.webp" },
   ];
 
   const proofItems = [
@@ -615,14 +615,14 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
           >
             <source src="/templates/gke/company/hero.mp4" type="video/mp4" />
             <img
-              src="/templates/gke/company/gke-industrial-parts.png"
+              src="/templates/gke/company/gke-industrial-parts.webp"
               alt="Industrial parts hero"
               className="object-cover object-right h-full w-full"
             />
           </video>
         ) : (
           <img
-            src="/templates/gke/company/gke-industrial-parts.png"
+            src="/templates/gke/company/gke-industrial-parts.webp"
             alt="Industrial parts hero"
             className="absolute inset-0 h-full w-full object-cover object-right opacity-35 sm:opacity-55 lg:opacity-90 xl:opacity-100"
           />

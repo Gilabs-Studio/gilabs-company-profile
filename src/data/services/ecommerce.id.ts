@@ -6,7 +6,7 @@ export const ecommerceId: ServicePageData = {
   eyebrow: "Jasa Toko Online E-Commerce",
   title: "Toko Online Mandiri Siap Jualan 24 Jam",
   subtitle: "Dari katalog produk hingga pembayaran otomatis, semua disiapkan agar Anda fokus mengelola stok dan pengiriman pesanan.",
-  heroIllustration: "/images/services/ecommerce/hero-ecommerce.png",
+  heroIllustration: "/images/services/ecommerce/hero-ecommerce.webp",
   heroImageAlt: "Mockup Toko Online E-Commerce di Desktop dan Mobile - Gilabs Studio",
   metaTitle: "Jasa Pembuatan Toko Online E-Commerce Profesional | Gilabs",
   metaDescription: "Pembuatan website toko online mandiri siap jualan 24 jam. Payment gateway Midtrans/Xendit otomatis, cek ongkir real-time, kelola stok mudah, dan 0% potongan marketplace.",
@@ -48,7 +48,7 @@ export const ecommerceId: ServicePageData = {
       number: "01",
       title: "Branding Penuh",
       subtitle: "Domain sendiri, desain sesuai identitas brand, bukan template generik.",
-      image: "/images/services/ecommerce/solution-branding.png",
+      image: "/images/services/ecommerce/solution-branding.webp",
       alt: "Desain Toko Online Eksklusif Sesuai Identitas Brand",
       badge: "Identitas Eksklusif",
       points: [
@@ -61,7 +61,7 @@ export const ecommerceId: ServicePageData = {
       number: "02",
       title: "Payment Gateway Terintegrasi",
       subtitle: "Transfer bank, e-wallet, kartu kredit, semua otomatis masuk sistem.",
-      image: "/images/services/ecommerce/solution-payment.png",
+      image: "/images/services/ecommerce/solution-payment.webp",
       alt: "Payment Gateway Terintegrasi Otomatis",
       badge: "Verifikasi Otomatis",
       points: [
@@ -74,7 +74,7 @@ export const ecommerceId: ServicePageData = {
       number: "03",
       title: "Kelola Produk Mudah",
       subtitle: "Update stok, harga, dan promo tanpa perlu tunggu developer.",
-      image: "/images/services/ecommerce/solution-inventory.png",
+      image: "/images/services/ecommerce/solution-inventory.webp",
       alt: "Dashboard Kelola Produk dan Stok Toko Online",
       badge: "Kelola Mandiri",
       points: [

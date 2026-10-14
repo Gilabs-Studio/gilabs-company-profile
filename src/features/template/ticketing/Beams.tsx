@@ -216,7 +216,7 @@ export const Beams: FC<BeamsProps> = React.memo(
     noiseIntensity = 1.75,
     scale = 0.2,
     rotation = 0,
-    backgroundImage = "/templates/ticketing/bg.jpg",
+    backgroundImage = "/templates/ticketing/bg.webp",
     onReady,
   }) => {
     const meshRef = useRef<

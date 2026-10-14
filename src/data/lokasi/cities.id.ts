@@ -33,7 +33,7 @@ export const citiesDataId: Record<string, CityPageData> = {
     eyebrow: "Software House & Web Developer Jakarta",
     title: "Jasa Pembuatan Website & Software House Profesional di Jakarta",
     subtitle: "Partner transformasi digital bagi korporat, B2B, manufaktur, dan startup di wilayah Jakarta & sekitarnya dengan standar engineering modern, reliabel, dan full source code.",
-    heroIllustration: "/illustrations/local-city-sketch.png",
+    heroIllustration: "/illustrations/local-city-sketch.webp",
     metaTitle: "Software House Jakarta & Jasa Pembuatan Website Terbaik | Gilabs",
     metaDescription: "Jasa pembuatan website Jakarta, software house Jakarta untuk custom ERP, CRM, dan aplikasi mobile enterprise. Konsultasi tatap muka & online terpercaya.",
     keywords: [
@@ -80,7 +80,7 @@ export const citiesDataId: Record<string, CityPageData> = {
     eyebrow: "Kantor Pusat Gilabs (Headquarters)",
     title: "Software House & Jasa Pembuatan Website Terbaik di Semarang",
     subtitle: "Pusat inovasi engineering PT Griya Innovations Labs. Melayani instansi, industri manufaktur, distributor, dan bisnis modern di Semarang & Jawa Tengah.",
-    heroIllustration: "/illustrations/local-city-sketch.png",
+    heroIllustration: "/illustrations/local-city-sketch.webp",
     metaTitle: "Software House Semarang & Jasa Pembuatan Website Terbaik | Gilabs HQ",
     metaDescription: "Kantor pusat software house Semarang: PT Griya Innovations Labs. Jasa pembuatan website, custom ERP manufaktur, CRM, dan sistem informasi Jawa Tengah.",
     keywords: [
@@ -125,7 +125,7 @@ export const citiesDataId: Record<string, CityPageData> = {
     eyebrow: "Software House & Web Developer Surabaya",
     title: "Jasa Pembuatan Website & Software House Terpercaya di Surabaya",
     subtitle: "Mendukung percepatan digitalisasi bisnis distributor, logistik pelabuhan, dan industri manufaktur di Surabaya, Sidoarjo, Gresik, dan Indonesia Timur.",
-    heroIllustration: "/illustrations/local-city-sketch.png",
+    heroIllustration: "/illustrations/local-city-sketch.webp",
     metaTitle: "Software House Surabaya & Jasa Pembuatan Website Murah | Gilabs",
     metaDescription: "Jasa pembuatan website Surabaya, software house Surabaya untuk ERP logistik distributor, web e-commerce, dan aplikasi mobile Jawa Timur.",
     keywords: [
@@ -167,7 +167,7 @@ export const citiesDataId: Record<string, CityPageData> = {
     eyebrow: "Software House & Web Developer Bandung",
     title: "Jasa Pembuatan Website & Custom Software Kreatif di Bandung",
     subtitle: "Membangun website modern, aplikasi mobile, dan sistem bisnis untuk industri kreatif, tekstil, pariwisata, dan instansi di Bandung Raya.",
-    heroIllustration: "/illustrations/local-city-sketch.png",
+    heroIllustration: "/illustrations/local-city-sketch.webp",
     metaTitle: "Software House Bandung & Jasa Pembuatan Website | Gilabs",
     metaDescription: "Jasa pembuatan website Bandung, software house Bandung untuk aplikasi mobile, custom software pabrik tekstil, dan web e-commerce brand.",
     keywords: [
@@ -208,7 +208,7 @@ export const citiesDataId: Record<string, CityPageData> = {
     eyebrow: "Software House & Web Developer Jogja",
     title: "Jasa Pembuatan Website & Software House di Yogyakarta",
     subtitle: "Partner teknologi terpercaya untuk instansi pendidikan, perhotelan, UMKM unggulan, dan startup di Yogyakarta.",
-    heroIllustration: "/illustrations/local-city-sketch.png",
+    heroIllustration: "/illustrations/local-city-sketch.webp",
     metaTitle: "Software House Jogja & Jasa Pembuatan Website Yogyakarta | Gilabs",
     metaDescription: "Jasa pembuatan website Jogja, software house Yogyakarta untuk sistem informasi kampus, platform pariwisata, dan aplikasi mobile.",
     keywords: [

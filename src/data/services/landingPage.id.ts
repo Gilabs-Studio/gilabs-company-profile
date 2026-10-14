@@ -6,7 +6,7 @@ export const landingPageId: ServicePageData = {
   eyebrow: "Jasa Pembuatan Landing Page",
   title: "Landing Page Khusus Konversi",
   subtitle: "Iklan mahal, traffic ada, tapi konversi rendah? Masalahnya sering ada di landing page, bukan di budget iklan kamu.",
-  heroIllustration: "/images/services/landing-page/hero-landing-page.png",
+  heroIllustration: "/images/services/landing-page/hero-landing-page.webp",
   heroImageAlt: "Mockup Landing Page Single Scroll di Laptop - Gilabs",
   metaTitle: "Jasa Pembuatan Landing Page Konversi Tinggi & Cepat | Gilabs",
   metaDescription: "Landing page yang dirancang khusus untuk konversi iklan Google Ads, Meta Ads, dan TikTok Ads. Loading sub-detik, copywriting teruji, dan integrasi WhatsApp.",
@@ -48,7 +48,7 @@ export const landingPageId: ServicePageData = {
       number: "01",
       title: "Fokus Konversi",
       subtitle: "Bebas distraksi visual, seluruh elemen mengarah ke satu CTA.",
-      image: "/images/services/landing-page/solution-focus.png",
+      image: "/images/services/landing-page/solution-focus.webp",
       alt: "Wireframe Landing Page Berfokus Konversi",
       badge: "Fokus 1 Aksi",
       points: [
@@ -61,7 +61,7 @@ export const landingPageId: ServicePageData = {
       number: "02",
       title: "Copywriting Terarah",
       subtitle: "Kami bantu susun narasi terarah yang bikin calon pembeli paham nilai produk tanpa bertele-tele.",
-      image: "/images/services/landing-page/solution-copywriting.png",
+      image: "/images/services/landing-page/solution-copywriting.webp",
       alt: "Struktur Copywriting Penjualan Terarah",
       badge: "Pesan Terarah",
       points: [
@@ -74,7 +74,7 @@ export const landingPageId: ServicePageData = {
       number: "03",
       title: "Load Instan",
       subtitle: "Optimal buat traffic dari Facebook Ads, Google Ads, atau Instagram.",
-      image: "/images/services/landing-page/solution-speed.png",
+      image: "/images/services/landing-page/solution-speed.webp",
       alt: "Google PageSpeed Skor 100",
       badge: "Kecepatan Sub-Detik",
       points: [

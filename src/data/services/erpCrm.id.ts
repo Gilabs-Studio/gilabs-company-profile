@@ -6,7 +6,7 @@ export const erpCrmId: ServicePageData = {
   eyebrow: "Sistem ERP & CRM Custom",
   title: "Sistem Terpadu Operasional & Sales",
   subtitle: "Tinggalkan belasan spreadsheet terpisah yang memperlambat tim. Kami bangun ERP dan CRM terintegrasi yang presisi mengikuti proses bisnis kamu.",
-  heroIllustration: "/images/services/erp-crm/hero-erp-crm.png",
+  heroIllustration: "/images/services/erp-crm/hero-erp-crm.webp",
   heroImageAlt: "Enterprise ERP & CRM Operations Dashboard Showcase - Gilabs",
   metaTitle: "Jasa Pembuatan Sistem ERP & CRM Custom Indonesia | Gilabs",
   metaDescription: "Jasa pembuatan sistem ERP dan CRM custom Indonesia. Integrasi operasional, stok gudang, penjualan, dan data pelanggan dalam satu sistem terpadu.",
@@ -48,7 +48,7 @@ export const erpCrmId: ServicePageData = {
       number: "01",
       title: "Terintegrasi Antar Divisi",
       subtitle: "Sales, gudang, keuangan, semua baca dari satu sumber data yang sama.",
-      image: "/images/services/erp-crm/solution-integrated-divisions.png",
+      image: "/images/services/erp-crm/solution-integrated-divisions.webp",
       alt: "Integrasi Data Menyeluruh Antar Divisi",
       points: [
         "Saat sales closing order, stok gudang otomatis terpotong secara real-time",
@@ -60,7 +60,7 @@ export const erpCrmId: ServicePageData = {
       number: "02",
       title: "Custom Sesuai Alur Kerja",
       subtitle: "Bukan template generik, modul dibangun mengikuti proses bisnis kamu.",
-      image: "/images/services/erp-crm/solution-bespoke-workflow.png",
+      image: "/images/services/erp-crm/solution-bespoke-workflow.webp",
       alt: "Modul Sistem Disesuaikan Presisi dengan SOP",
       points: [
         "Alur approval berjenjang mengikuti struktur wewenang nyata di kantor Anda",
@@ -72,7 +72,7 @@ export const erpCrmId: ServicePageData = {
       number: "03",
       title: "Laporan Real-time",
       subtitle: "Manajemen bisa pantau angka penting kapan saja tanpa nunggu rekap manual.",
-      image: "/images/services/erp-crm/solution-realtime-reports.png",
+      image: "/images/services/erp-crm/solution-realtime-reports.webp",
       alt: "Dashboard Laporan Keuangan dan Penjualan Real-time",
       points: [
         "Pantau omzet harian, laba kotor, dan saldo piutang hanya dalam satu layar",

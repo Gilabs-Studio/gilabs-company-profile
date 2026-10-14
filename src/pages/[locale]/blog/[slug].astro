@@ -51,7 +51,7 @@ const postKeywords = post.tags && post.tags.length > 0
     : 'pengembangan web, pengembangan aplikasi mobile, pengembangan software, software house, desain UI/UX, SEO, tren teknologi, agen software';
 
 // Build absolute OG image URL from post image field
-const ogImagePath = post.image || '/og-image.png';
+const ogImagePath = post.image || '/og-image.webp';
 const ogImage = ogImagePath.startsWith('http') ? ogImagePath : `${siteUrl}${ogImagePath}`;
 
 // ISO date strings for Article schema

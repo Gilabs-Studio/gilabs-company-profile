@@ -6,7 +6,7 @@ export const erpCrmEn: ServicePageData = {
   eyebrow: "Custom ERP & CRM System",
   title: "Unified System for Operations & Sales",
   subtitle: "Stop running your business across dozens of disconnected spreadsheets. We build bespoke ERP and CRM platforms tailored exactly to your real operational workflows.",
-  heroIllustration: "/images/services/erp-crm/hero-erp-crm.png",
+  heroIllustration: "/images/services/erp-crm/hero-erp-crm.webp",
   heroImageAlt: "Enterprise ERP & CRM Operations Dashboard Showcase - Gilabs",
   metaTitle: "Custom ERP & CRM System Development | Gilabs",
   metaDescription: "Custom ERP and CRM development services. Seamlessly unify multi-warehouse inventory, purchasing, financial ledgering, sales pipelines, and customer tracking.",
@@ -48,7 +48,7 @@ export const erpCrmEn: ServicePageData = {
       number: "01",
       title: "Integrated Across Divisions",
       subtitle: "Sales, warehouse, and finance all read from and update the exact same single source of truth.",
-      image: "/images/services/erp-crm/solution-integrated-divisions.png",
+      image: "/images/services/erp-crm/solution-integrated-divisions.webp",
       alt: "Unified Data Across All Corporate Divisions",
       points: [
         "When sales closes an order, inventory reserves automatically in real-time",
@@ -60,7 +60,7 @@ export const erpCrmEn: ServicePageData = {
       number: "02",
       title: "Custom to Your Workflow",
       subtitle: "Not a rigid generic template; every module is built around your specific business rules.",
-      image: "/images/services/erp-crm/solution-bespoke-workflow.png",
+      image: "/images/services/erp-crm/solution-bespoke-workflow.webp",
       alt: "Bespoke System Workflow Tailored to Your SOPs",
       points: [
         "Approval hierarchies mapped to your actual company delegation of authority",
@@ -72,7 +72,7 @@ export const erpCrmEn: ServicePageData = {
       number: "03",
       title: "Real-Time Reporting",
       subtitle: "Management monitors critical metrics anytime without waiting for manual end-of-month recaps.",
-      image: "/images/services/erp-crm/solution-realtime-reports.png",
+      image: "/images/services/erp-crm/solution-realtime-reports.webp",
       alt: "Live Telemetry and Real-Time Financial Reports",
       points: [
         "Instant visibility on daily revenue, gross margins, and outstanding receivables",

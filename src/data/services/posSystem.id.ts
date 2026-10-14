@@ -6,7 +6,7 @@ export const posSystemId: ServicePageData = {
   eyebrow: "Aplikasi Kasir / POS Custom",
   title: "Sistem Kasir Cepat Tanpa Antrean Panjang",
   subtitle: "Transaksi cepat, stok otomatis terpotong, dan laporan penjualan real-time. Disesuaikan dengan alur bisnis Anda tanpa template kaku.",
-  heroIllustration: "/images/services/pos-system/hero-pos-system.png",
+  heroIllustration: "/images/services/pos-system/hero-pos-system.webp",
   heroImageAlt: "Antarmuka Kasir POS Modern - Gilabs",
   metaTitle: "Jasa Pembuatan Aplikasi Kasir POS Custom | Gilabs",
   metaDescription: "Jasa pembuatan aplikasi kasir POS custom untuk retail, cafe, resto, dan toko multi cabang. Transaksi cepat, stok otomatis, mode offline, dan laporan real-time.",
@@ -49,7 +49,7 @@ export const posSystemId: ServicePageData = {
       number: "01",
       title: "Transaksi Cepat",
       subtitle: "Interface simpel, kasir baru pun bisa langsung pakai tanpa training lama.",
-      image: "/images/services/pos-system/solution-fast-transactions.png",
+      image: "/images/services/pos-system/solution-fast-transactions.webp",
       alt: "Antarmuka Kasir POS Cepat dan Intuitif",
       points: [
         "Desain UI kasir responsif dan minim klik untuk checkout kilat",
@@ -61,7 +61,7 @@ export const posSystemId: ServicePageData = {
       number: "02",
       title: "Stok Update Otomatis",
       subtitle: "Setiap transaksi langsung mengurangi stok tanpa perlu rekap atau input manual berulang.",
-      image: "/images/services/pos-system/solution-auto-inventory.png",
+      image: "/images/services/pos-system/solution-auto-inventory.webp",
       alt: "Sistem Pengurangan Stok Otomatis Kasir",
       points: [
         "Stok barang jadi dan bahan baku resto otomatis terpotong saat transaksi",
@@ -73,7 +73,7 @@ export const posSystemId: ServicePageData = {
       number: "03",
       title: "Laporan Real-time",
       subtitle: "Owner bisa pantau omzet dari mana saja, kapan saja, langsung dari HP.",
-      image: "/images/services/pos-system/solution-realtime-insights.png",
+      image: "/images/services/pos-system/solution-realtime-insights.webp",
       alt: "Dashboard Laporan Penjualan Real-time",
       points: [
         "Pantau grafik omzet harian, laba kotor, dan jam sibuk toko secara real-time",

@@ -6,7 +6,7 @@ export const webDevelopmentId: ServicePageData = {
   eyebrow: "Jasa Pembuatan Website",
   title: "Website yang Bikin Orang Percaya Sama Bisnis Kamu",
   subtitle: "Bangun reputasi digital yang kuat dengan website berkecepatan tinggi, tampilan profesional, dan alur konversi yang terbukti menghasilkan penjualan.",
-  heroIllustration: "/images/services/web-dev/hero-mockup.jpg",
+  heroIllustration: "/images/services/web-dev/hero-mockup.webp",
   heroImageAlt: "Mockup Website di Laptop dan Mobile - Gilabs Web Development",
   metaTitle: "Jasa Pembuatan Website Profesional & Terpercaya | Gilabs",
   metaDescription: "Bangun website profesional berkecepatan tinggi yang benar-benar dipakai, dilihat, dan dipercaya calon pelanggan untuk menghasilkan konversi penjualan nyata.",
@@ -49,7 +49,7 @@ export const webDevelopmentId: ServicePageData = {
       number: "01",
       title: "Tampilan Kredibel yang Membangun Rasa Percaya",
       description: "Tata letak elegan dan terarah yang langsung memperlihatkan keunggulan bisnis Anda tanpa elemen membingungkan.",
-      image: "/images/services/web-dev/solution-design.jpg",
+      image: "/images/services/web-dev/solution-design.webp",
       alt: "Wireframe dan Desain Website Berkonversi Tinggi",
       badge: "Fokus Konversi",
       points: [
@@ -62,7 +62,7 @@ export const webDevelopmentId: ServicePageData = {
       number: "02",
       title: "Akses Kilat Tanpa Waktu Tunggu",
       description: "Website terbuka instan dalam hitungan milidetik sehingga setiap calon pembeli tetap terhubung tanpa rasa jenuh.",
-      image: "/images/services/web-dev/solution-speed.png",
+      image: "/images/services/web-dev/solution-speed.webp",
       alt: "Google PageSpeed 100 Score Scorecard",
       badge: "Google PageSpeed 100",
       points: [
@@ -75,7 +75,7 @@ export const webDevelopmentId: ServicePageData = {
       number: "03",
       title: "Siap Tampil di Halaman Pencarian Google",
       description: "Fondasi struktur semantik dan SEO teknis yang rapi agar bisnis Anda mudah ditemukan calon pelanggan potensial.",
-      image: "/images/services/web-dev/solution-seo.jpg",
+      image: "/images/services/web-dev/solution-seo.webp",
       alt: "Google Search Ranking SERP Preview",
       badge: "Optimasi Mesin Pencari",
       points: [

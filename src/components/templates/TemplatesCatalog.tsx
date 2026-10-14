@@ -69,6 +69,53 @@ function TemplateLivePreview({ demoUrl, title }: TemplateLivePreviewProps) {
   );
 }
 
+interface TemplateCardPreviewProps {
+  src: string;
+  alt: string;
+}
+
+function TemplateCardPreview({ src, alt }: TemplateCardPreviewProps) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
+  const thumbSrc = useMemo(() => src.replace(/\/([^\/]+)$/, '/thumb/$1'), [src]);
+
+  React.useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [src]);
+
+  return (
+    <div className="relative w-full h-full overflow-hidden bg-muted/20">
+      {/* 1. Instant micro-thumbnail (~300B) rendered immediately with blur filter */}
+      <img
+        src={encodeURI(thumbSrc)}
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        className={`absolute inset-0 w-full h-full object-cover filter blur-md scale-105 transition-opacity duration-300 pointer-events-none ${
+          isLoaded ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
+      {/* 2. High-res WebP image with smooth cross-fade */}
+      <img
+        ref={imgRef}
+        src={encodeURI(src)}
+        alt={alt}
+        width={640}
+        height={400}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        className={`relative z-10 w-full h-full object-cover transition-opacity duration-300 ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+    </div>
+  );
+}
+
 export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCatalogProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -198,15 +245,7 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
                   title={`${t.card.livePreview}: ${title}`}
                 >
                   {template.previewImage ? (
-                    <img
-                      src={template.previewImage}
-                      alt={imageAlt}
-                      width={640}
-                      height={400}
-                      loading="lazy"
-                      decoding="async"
-                      className="w-full h-full object-cover"
-                    />
+                    <TemplateCardPreview src={template.previewImage} alt={imageAlt} />
                   ) : (
                     <TemplateLivePreview demoUrl={template.demoUrl} title={title} />
                   )}

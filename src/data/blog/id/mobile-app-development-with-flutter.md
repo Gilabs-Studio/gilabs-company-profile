@@ -7,7 +7,7 @@ date: "2025-01-20"
 category: "Mobile Development"
 tags: ["Flutter","Mobile Development","Cross-Platform","App Development"]
 readTime: "6 menit"
-image: "/images/blog/flutter-landscape.png"
+image: "/images/blog/flutter-landscape.webp"
 takeaways:
   - "Flutter merender widget-nya sendiri secara pixel-perfect — tanpa kompromi pada performa atau fidelitas UI"
   - "Satu codebase bisa melayani iOS dan Android dengan reuse kode 85–95%, memotong waktu dev hingga separuh"

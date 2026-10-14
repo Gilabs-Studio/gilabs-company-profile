@@ -7,7 +7,7 @@ date: "2025-02-10"
 category: "Business"
 tags: ["Small Business","Web Development","Budget","Cost-Effective Solutions"]
 readTime: "6 min read"
-image: "/images/blog/budget-landscape.png"
+image: "/images/blog/budget-landscape.webp"
 takeaways:
   - "Define your scope ruthlessly before writing a single line of code"
   - "Static sites are fast, secure, and often cost under $10/month to host"

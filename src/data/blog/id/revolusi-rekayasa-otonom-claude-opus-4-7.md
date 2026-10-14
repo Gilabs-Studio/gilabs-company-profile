@@ -7,7 +7,7 @@ date: "2026-04-17"
 category: "Technology"
 tags: ["AI", "Software Engineering", "Tech Updates", "Claude", "Anthropic"]
 readTime: "4 min read"
-image: "/images/blog/claude-opus-4-7-launch.png"
+image: "/images/blog/claude-opus-4-7-launch.webp"
 takeaways:
   - "Opus 4.7 mencetak skor 87,6% pada tolok ukur SWE-bench Verified untuk tugas pengkodean otonom"
   - "Dukungan visi ditingkatkan 3x lipat hingga 3,75 megapiksel untuk pemahaman antarmuka secara presisi"

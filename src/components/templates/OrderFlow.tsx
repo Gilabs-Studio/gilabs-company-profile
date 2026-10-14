@@ -58,6 +58,44 @@ function OrderMiniPreview({ demoUrl, title }: { demoUrl: string; title: string }
   );
 }
 
+function OrderTemplateImage({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const imgRef = React.useRef<HTMLImageElement>(null);
+  const thumbSrc = useMemo(() => src.replace(/\/([^\/]+)$/, '/thumb/$1'), [src]);
+
+  useEffect(() => {
+    if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
+      setIsLoaded(true);
+    }
+  }, [src]);
+
+  return (
+    <div className={`relative w-full h-full overflow-hidden ${className}`}>
+      <img
+        src={encodeURI(thumbSrc)}
+        alt=""
+        aria-hidden="true"
+        loading="eager"
+        decoding="async"
+        className={`absolute inset-0 w-full h-full object-cover filter blur-md scale-105 transition-opacity duration-300 pointer-events-none ${
+          isLoaded ? 'opacity-0' : 'opacity-100'
+        }`}
+      />
+      <img
+        ref={imgRef}
+        src={encodeURI(src)}
+        alt={alt}
+        loading="lazy"
+        decoding="async"
+        onLoad={() => setIsLoaded(true)}
+        className={`relative z-10 w-full h-full object-cover transition-opacity duration-300 ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
+      />
+    </div>
+  );
+}
+
 export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowProps) {
   // 1. Order State
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>(
@@ -347,10 +385,9 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   className="w-full sm:w-44 aspect-16/10 bg-muted/40 rounded-lg overflow-hidden border border-border/60 shrink-0 block group relative cursor-pointer"
                 >
                   {selectedTemplate.previewImage ? (
-                    <img
+                    <OrderTemplateImage
                       src={selectedTemplate.previewImage}
                       alt={templateDisplayTitle}
-                      className="w-full h-full object-cover transition-transform group-hover:scale-[1.02]"
                     />
                   ) : (
                     <OrderMiniPreview demoUrl={selectedTemplate.demoUrl} title={templateDisplayTitle} />
@@ -448,10 +485,9 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                       >
                         <div className="aspect-16/10 bg-muted/40 rounded overflow-hidden mb-2.5 border border-border/50">
                           {item.previewImage ? (
-                            <img
+                            <OrderTemplateImage
                               src={item.previewImage}
                               alt={itemTitle}
-                              className="w-full h-full object-cover"
                             />
                           ) : (
                             <OrderMiniPreview demoUrl={item.demoUrl} title={itemTitle} />
