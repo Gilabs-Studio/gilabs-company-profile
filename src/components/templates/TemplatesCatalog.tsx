@@ -76,17 +76,43 @@ interface TemplateCardPreviewProps {
 
 function TemplateCardPreview({ src, alt }: TemplateCardPreviewProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const imgRef = React.useRef<HTMLImageElement>(null);
   const thumbSrc = useMemo(() => src.replace(/\/([^\/]+)$/, '/thumb/$1'), [src]);
 
+  // Independent lazy loading: Start fetching high-res image as soon as card is near viewport (250px margin)
+  React.useEffect(() => {
+    if (!containerRef.current) return;
+    if (typeof IntersectionObserver === 'undefined') {
+      setIsInView(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting) {
+          setIsInView(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '250px' }
+    );
+
+    observer.observe(containerRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // Instant display if high-res image is already completed or cached
   React.useEffect(() => {
     if (imgRef.current?.complete && imgRef.current?.naturalWidth > 0) {
       setIsLoaded(true);
     }
-  }, [src]);
+  }, [isInView, src]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-muted/20">
+    <div ref={containerRef} className="relative w-full h-full overflow-hidden bg-muted/20">
       {/* 1. Instant micro-thumbnail (~300B) rendered immediately with blur filter */}
       <img
         src={encodeURI(thumbSrc)}
@@ -98,20 +124,21 @@ function TemplateCardPreview({ src, alt }: TemplateCardPreviewProps) {
           isLoaded ? 'opacity-0' : 'opacity-100'
         }`}
       />
-      {/* 2. High-res WebP image with smooth cross-fade */}
-      <img
-        ref={imgRef}
-        src={encodeURI(src)}
-        alt={alt}
-        width={640}
-        height={400}
-        loading="lazy"
-        decoding="async"
-        onLoad={() => setIsLoaded(true)}
-        className={`relative z-10 w-full h-full object-cover transition-opacity duration-300 ${
-          isLoaded ? 'opacity-100' : 'opacity-0'
-        }`}
-      />
+      {/* 2. High-res WebP image: Loads in parallel, displays immediately when ready without waiting for other images */}
+      {isInView && (
+        <img
+          ref={imgRef}
+          src={encodeURI(src)}
+          alt={alt}
+          width={640}
+          height={400}
+          decoding="async"
+          onLoad={() => setIsLoaded(true)}
+          className={`relative z-10 w-full h-full object-cover transition-opacity duration-300 ${
+            isLoaded ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      )}
     </div>
   );
 }
