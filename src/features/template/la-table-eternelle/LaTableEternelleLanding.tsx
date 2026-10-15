@@ -104,50 +104,52 @@ export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternell
       {/* ========================================================= */}
       {/* 1. NAVIGATION BAR                                         */}
       {/* ========================================================= */}
-      <nav className="absolute top-[41px] inset-x-0 z-40 px-6 sm:px-10 lg:px-16 py-6 flex items-center justify-between bg-transparent">
-        {/* Logo in Pinyon Script */}
-        <a
-          href="#home"
-          style={scriptStyle}
-          className="text-3xl sm:text-4xl text-white tracking-wide hover:opacity-90 transition-opacity cursor-pointer leading-none"
-        >
-          La Table Éternelle
-        </a>
-
-        {/* Center Nav Links */}
-        <div className="hidden md:flex items-center gap-7 lg:gap-10 text-[11px] tracking-[0.22em] uppercase font-medium text-neutral-300">
-          <a href="#home" className="text-[#C5A880] flex items-center gap-1.5 cursor-pointer transition-colors">
-            <span className="text-[9px]">•</span>
-            <span>HOME</span>
-            <span className="text-[9px]">•</span>
-          </a>
-          <a href="#about" className="hover:text-white transition-colors cursor-pointer">
-            OUR STORY
-          </a>
-          <a href="#menu" className="hover:text-white transition-colors cursor-pointer">
-            MENU
-          </a>
-          <a href="#ambience" className="hover:text-white transition-colors cursor-pointer">
-            GALLERY
-          </a>
-          <a href="#reservation" className="hover:text-white transition-colors cursor-pointer">
-            RESERVATION
-          </a>
-        </div>
-
-        {/* Book a table pill button */}
-        <div className="flex items-center">
-          <button
-            onClick={() => setIsModalOpen(true)}
-            className="border border-neutral-400/70 hover:border-white text-white hover:bg-white hover:text-black rounded-full px-5 py-2 text-[11px] tracking-[0.2em] uppercase font-medium transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+      <nav className="absolute top-[41px] inset-x-0 z-40 px-6 sm:px-10 lg:px-16 py-6 bg-transparent">
+        <div className="max-w-7xl mx-auto flex items-center justify-between">
+          {/* Logo in Pinyon Script */}
+          <a
+            href="#home"
+            style={scriptStyle}
+            className="text-3xl sm:text-4xl text-white tracking-wide hover:opacity-90 transition-opacity cursor-pointer leading-none"
           >
-            {lang === 'en' ? 'BOOK A TABLE' : 'BOOK A TABLE'}
-          </button>
+            La Table Éternelle
+          </a>
+
+          {/* Center Nav Links */}
+          <div className="hidden md:flex items-center gap-7 lg:gap-10 text-[11px] tracking-[0.22em] uppercase font-medium text-neutral-300">
+            <a href="#home" className="text-[#C5A880] flex items-center gap-1.5 cursor-pointer transition-colors">
+              <span className="text-[9px]">•</span>
+              <span>HOME</span>
+              <span className="text-[9px]">•</span>
+            </a>
+            <a href="#about" className="hover:text-white transition-colors cursor-pointer">
+              OUR STORY
+            </a>
+            <a href="#menu" className="hover:text-white transition-colors cursor-pointer">
+              MENU
+            </a>
+            <a href="#ambience" className="hover:text-white transition-colors cursor-pointer">
+              GALLERY
+            </a>
+            <a href="#reservation" className="hover:text-white transition-colors cursor-pointer">
+              RESERVATION
+            </a>
+          </div>
+
+          {/* Book a table pill button */}
+          <div className="flex items-center">
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="border border-neutral-400/70 hover:border-white text-white hover:bg-white hover:text-black rounded-full px-5 py-2 text-[11px] tracking-[0.2em] uppercase font-medium transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            >
+              {lang === 'en' ? 'BOOK A TABLE' : 'BOOK A TABLE'}
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* ========================================================= */}
-      {/* 2. HERO SECTION WITH PROPER DIRECT BOOKING                */}
+      {/* 2. HERO SECTION (ALIGNED TO MAX-W-7XL CENTER GRID)        */}
       {/* ========================================================= */}
       <section id="home" className="relative min-h-[calc(100vh-41px)] flex flex-col justify-between pt-24 sm:pt-28 pb-5 px-6 sm:px-10 lg:px-16 overflow-hidden">
         {/* Full Hero Background Image */}
@@ -157,58 +159,69 @@ export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternell
             alt="La Table Éternelle Dining Experience"
             className="w-full h-full object-cover object-[72%_center] md:object-center"
           />
-          {/* Subtle natural dark gradient for left-side text contrast */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/95 via-[#080808]/80 to-transparent sm:via-[#080808]/65" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-black/30" />
+          {/* Refined gradient: dark left vignette for text legibility, while letting the warm center dining table and ambient light emerge */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/92 via-[#080808]/45 to-transparent sm:via-[#080808]/30 max-w-5xl" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-black/25" />
         </div>
 
-        {/* Hero Content Left */}
-        <div className="relative z-10 max-w-xl xl:max-w-2xl pt-10 md:pt-14">
-          <p className="text-[11px] font-medium tracking-[0.28em] text-neutral-400 uppercase mb-4">
-            {lang === 'en' ? 'FINE DINING EXPERIENCE' : 'FINE DINING EXPERIENCE'}
-          </p>
+        {/* Hero Middle Content: Headline on Left, 50th Heritage Emblem on Right - Perfectly Centered in max-w-7xl mx-auto */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full flex-1 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-10 my-auto">
+          {/* Left Column: Headline & Direct Booking CTAs */}
+          <div className="max-w-xl xl:max-w-2xl py-6 sm:py-8">
+            <p className="text-[11px] font-medium tracking-[0.28em] text-neutral-400 uppercase mb-4">
+              {lang === 'en' ? 'FINE DINING EXPERIENCE' : 'FINE DINING EXPERIENCE'}
+            </p>
 
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-medium text-white tracking-tight leading-[1.08] mb-5">
-            Rasa yang<br />
-            <span
-              style={goldGradientStyle}
-              className="text-5xl sm:text-6xl md:text-7xl lg:text-[86px] font-normal leading-[1.02] pr-4 drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]"
-            >
-              Menyatukan
-            </span><br />
-            Cerita
-          </h1>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-medium text-white tracking-tight leading-[1.08] mb-5">
+              Rasa yang<br />
+              <span
+                style={goldGradientStyle}
+                className="text-5xl sm:text-6xl md:text-7xl lg:text-[86px] font-normal leading-[1.02] pr-4 drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]"
+              >
+                Menyatukan
+              </span><br />
+              Cerita
+            </h1>
 
-          <p className="text-neutral-300 text-sm md:text-[15px] leading-relaxed max-w-md mb-8">
-            {lang === 'en'
-              ? 'More than just a meal, this is a culinary journey bringing warmth, intimacy, and precious moments with your loved ones.'
-              : 'Lebih dari sekadar makan, ini adalah perjalanan rasa yang menghadirkan kehangatan, keintiman, dan momen berharga bersama orang tersayang.'}
-          </p>
+            <p className="text-neutral-300 text-sm md:text-[15px] leading-relaxed max-w-md mb-8">
+              {lang === 'en' ? (
+                <>
+                  More than just dining.<br />
+                  A sensory journey crafted for moments worthy of remembrance.
+                </>
+              ) : (
+                <>
+                  Lebih dari sekadar bersantap.<br />
+                  Sebuah perjalanan rasa untuk momen yang layak dikenang.
+                </>
+              )}
+            </p>
 
-          {/* Action Row: Direct Book Button + Explore Menu */}
-          <div className="flex flex-wrap items-center gap-5 sm:gap-6 mb-8">
+            {/* Action Row: Direct Book Button + Explore Menu */}
+            <div className="flex flex-wrap items-center gap-4 sm:gap-6">
 
-            <a
-              href="#menu"
-              className="inline-flex items-center gap-3 group text-xs tracking-[0.22em] uppercase font-semibold text-neutral-200 hover:text-white cursor-pointer transition-colors"
-            >
-              <span className="w-8 h-8 rounded-full border border-neutral-500/80 flex items-center justify-center text-xs group-hover:border-white group-hover:bg-white/10 transition-all duration-300">
-                →
-              </span>
-              <span>{lang === 'en' ? 'EXPLORE OUR MENU' : 'EXPLORE OUR MENU'}</span>
-            </a>
+              <a
+                href="#menu"
+                className="inline-flex items-center gap-3 group text-xs tracking-[0.22em] uppercase font-semibold text-neutral-300 hover:text-white cursor-pointer transition-colors py-2"
+              >
+                <span className="w-8 h-8 rounded-full border border-neutral-500/80 flex items-center justify-center text-xs group-hover:border-white group-hover:bg-white/10 transition-all duration-300">
+                  →
+                </span>
+                <span>{lang === 'en' ? 'EXPLORE OUR MENU' : 'EXPLORE OUR MENU'}</span>
+              </a>
+            </div>
           </div>
 
-        </div>
-
-        {/* 50th Anniversary Laurel Wreath Emblem on the right */}
-        <div className="hidden lg:block absolute right-10 xl:right-16 bottom-20 select-none pointer-events-none z-10">
+          {/* Right Column: 50th Anniversary Emblem + Editorial Heritage Note */}
+          <div className="hidden lg:block absolute right-10 xl:right-16 bottom-20 select-none pointer-events-none z-10">
           <img
             src="/templates/la-table-eternelle/emblem-50th.png"
             alt="50th Anniversary"
             className="w-36 h-36 xl:w-40 xl:h-40 object-contain drop-shadow-[0_12px_24px_rgba(0,0,0,0.8)]"
           />
+          </div>
         </div>
+
       </section>
 
       {/* ========================================================= */}
