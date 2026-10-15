@@ -68,10 +68,10 @@ export interface DurationPlan {
 }
 
 export type AddonTier = 1 | 2 | 3;
-export type AddonUnit = 'per-page' | 'per-round' | 'flat';
+export type AddonUnit = 'per-page' | 'per-round' | 'per-language';
 
 export interface AddonItem {
-  id: 'extra-page' | 'extra-revision' | 'copywriting' | 'bilingual';
+  id: 'extra-page' | 'extra-revision' | 'multilingual';
   unit: AddonUnit;
   priceByTier: Record<AddonTier, number | null>;
   maxQtyByTier: Record<AddonTier, number>;
@@ -321,6 +321,64 @@ export function getTierInfoByNumber(tierNumber: number): TierInfo {
 }
 
 export const templatesData: TemplateItem[] = [
+  {
+    id: 'la-table-eternelle',
+    slug: 'la-table-eternelle-fine-dining',
+    title: 'Website Restoran Fine Dining & Luxury Hospitality',
+    titleEn: 'Luxury Fine Dining & Hospitality Website',
+    category: 'service',
+    categoryLabel: {
+      id: 'Restoran & Hospitality',
+      en: 'Dining & Hospitality'
+    },
+    tier: 1,
+    description: {
+      id: 'Template website profil restoran fine dining mewah, lounge eksklusif, dan culinary hospitality dengan tipografi editorial klasik, showcase menu signature berkelas, dan sistem reservasi meja WhatsApp instan.',
+      en: 'Luxury fine dining restaurant and hospitality website template featuring timeless editorial typography, signature dish showcases, atmospheric ambience gallery, and direct table reservation.'
+    },
+    previewImage: '/templates/la-table-eternelle/preview.webp',
+    gallery: [
+      '/templates/la-table-eternelle/preview.webp',
+      '/templates/la-table-eternelle/dish-wagyu.webp',
+      '/templates/la-table-eternelle/dish-lobster.webp',
+      '/templates/la-table-eternelle/dish-mousse.webp'
+    ],
+    demoUrl: '/templates/demo/la-table-eternelle',
+    buyersCount: 165,
+    serviceFeatures: [
+      {
+        title: { id: 'Signature Dish Showcase', en: 'Signature Dish Showcase' },
+        description: { id: 'Presentasi menu eksklusif dengan fotografi berkelas, komposisi bahan, dan harga transparan.', en: 'Exclusive culinary presentation with fine dining imagery, gourmet ingredients, and transparent pricing.' },
+        tag: 'Culinary',
+        icon: 'UtensilsCrossed'
+      },
+      {
+        title: { id: 'Reservasi Meja Instan', en: 'Instant Table Reservation' },
+        description: { id: 'Kemudahan booking meja makan malam dan private dining langsung terhubung ke WhatsApp concierge.', en: 'Seamless dinner table and private dining room booking connected directly to your WhatsApp concierge.' },
+        tag: 'Concierge',
+        icon: 'CalendarCheck'
+      },
+      {
+        title: { id: 'Galeri Ambience & Interior', en: 'Atmospheric Ambience Gallery' },
+        description: { id: 'Membangun impresi prestisius lewat showcase pencahayaan intim, arsitektur, dan suasana bar.', en: 'Build a prestigious impression through intimate lighting, architecture, and luxury bar showcases.' },
+        tag: 'Ambience',
+        icon: 'Sparkles'
+      },
+      {
+        title: { id: 'Kisah Filosofi Kuliner', en: 'Culinary Heritage Story' },
+        description: { id: 'Menarasikan perpaduan teknik klasik Prancis dengan kekayaan cita rasa Nusantara secara elegan.', en: 'Elegantly narrating the harmony of classic French techniques with Indonesian heritage ingredients.' },
+        tag: 'Heritage',
+        icon: 'BookOpen'
+      }
+    ],
+    techSpecs: [
+      { label: { id: 'Tipe Layout', en: 'Layout Architecture' }, value: { id: 'Single Page Unified Hero Canvas', en: 'Single Page Unified Hero Canvas' } },
+      { label: { id: 'Gaya Desain', en: 'Design Style' }, value: { id: 'Dark Moody Luxury & Editorial Typography', en: 'Dark Moody Luxury & Editorial Typography' } },
+      { label: { id: 'Optimasi Kecepatan', en: 'Performance' }, value: { id: 'Skor 98+ Google Lighthouse', en: 'Score 98+ Google Lighthouse' } },
+      { label: { id: 'Dukungan Mobile', en: 'Mobile Responsive' }, value: { id: '100% Responsif di Semua Perangkat', en: '100% Responsive Across All Devices' } }
+    ],
+    industryAdaptations: defaultIndustryAdaptations
+  },
   {
     id: 'buildly-property',
     slug: 'buildly-contractor-property',
@@ -610,26 +668,14 @@ export const templateAddons: AddonItem[] = [
     }
   },
   {
-    id: 'copywriting',
-    unit: 'per-page',
-    priceByTier: { 1: 150000, 2: 150000, 3: null },
-    maxQtyByTier: { 1: 3, 2: 8, 3: 0 },
-    includedIn: [3],
-    name: { id: 'Copywriting', en: 'Copywriting' },
+    id: 'multilingual',
+    unit: 'per-language',
+    priceByTier: { 1: 100000, 2: 100000, 3: 100000 },
+    maxQtyByTier: { 1: 5, 2: 5, 3: 5 },
+    name: { id: 'Multi Bahasa', en: 'Multi-Language' },
     description: {
-      id: 'Tim kami menuliskan teks yang persuasif dan sesuai karakter bisnis Anda, per halaman.',
-      en: 'Our team writes persuasive, on-brand copy for your business, per page.'
-    }
-  },
-  {
-    id: 'bilingual',
-    unit: 'flat',
-    priceByTier: { 1: 200000, 2: 390000, 3: 850000 },
-    maxQtyByTier: { 1: 1, 2: 1, 3: 1 },
-    name: { id: 'Dua Bahasa (ID & EN)', en: 'Bilingual (ID & EN)' },
-    description: {
-      id: 'Website tersedia dalam Bahasa Indonesia dan Inggris dengan tombol ganti bahasa. Sekitar 30% dari harga paket.',
-      en: 'Website available in Indonesian and English with a language switcher. Around 30% of the package price.'
+      id: 'Dukungan bahasa tambahan (cth. Inggris, Mandarin, Jepang) lengkap dengan selector bahasa.',
+      en: 'Support for additional languages (e.g. English, Mandarin, Japanese) with a language switcher.'
     }
   }
 ];
@@ -637,7 +683,7 @@ export const templateAddons: AddonItem[] = [
 export const addonUnitLabel: Record<AddonUnit, { id: string; en: string }> = {
   'per-page': { id: '/halaman', en: '/page' },
   'per-round': { id: '/putaran', en: '/round' },
-  flat: { id: '', en: '' }
+  'per-language': { id: '/bahasa', en: '/language' }
 };
 
 /** Status add-on untuk tier tertentu. */
