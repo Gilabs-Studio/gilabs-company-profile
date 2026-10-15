@@ -103,7 +103,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
             <span className="font-outfit font-extrabold text-[15px] sm:text-base leading-none text-[#121518] tracking-tight">
               TastyBite
             </span>
-            <span className="text-[10px] sm:text-[11px] font-semibold text-neutral-400 leading-none mt-1">
+            <span className="text-[10px] sm:text-[11px] font-semibold text-neutral-600 leading-none mt-1">
               F&B Studio
             </span>
           </div>
@@ -147,7 +147,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
             </h1>
 
             {/* Description with <br> matching exact mockup */}
-            <p className="mt-6 text-neutral-400 sm:text-neutral-500 text-base sm:text-lg md:text-xl font-normal leading-relaxed">
+            <p className="mt-6 text-neutral-600 sm:text-neutral-600 text-base sm:text-lg md:text-xl font-normal leading-relaxed">
               Fresh ingredients, creative recipes,<br />
               and a whole lot of love in every bite.
             </p>
@@ -165,7 +165,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
                     className={`cursor-pointer transition-colors ${
-                      activeCategory === cat ? "text-[#121518] font-black" : "hover:text-neutral-500"
+                      activeCategory === cat ? "text-[#121518] font-black" : "hover:text-neutral-600"
                     }`}
                   >
                     {cat}
@@ -264,7 +264,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               </div>
 
               <div className="md:pt-3">
-                <p className="text-neutral-500 text-base sm:text-lg leading-relaxed max-w-lg">
+                <p className="text-neutral-600 text-base sm:text-lg leading-relaxed max-w-lg">
                   We're not just serving meals, we're creating experiences. From our fresh ingredients to our cozy spaces, every detail is made to make your day a little brighter.
                 </p>
                 <div className="mt-6">
@@ -288,7 +288,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h3 className="font-outfit font-black text-xl sm:text-2xl text-[#121518]">
                 Fresh Ingredients
               </h3>
-              <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed mt-2">
+              <p className="text-neutral-600 text-sm sm:text-[15px] leading-relaxed mt-2">
                 Only the freshest, highest quality ingredients.
               </p>
             </div>
@@ -301,7 +301,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h3 className="font-outfit font-black text-xl sm:text-2xl text-[#121518]">
                 Creative Recipes
               </h3>
-              <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed mt-2">
+              <p className="text-neutral-600 text-sm sm:text-[15px] leading-relaxed mt-2">
                 Unique flavors, crafted with passion.
               </p>
             </div>
@@ -314,7 +314,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h3 className="font-outfit font-black text-xl sm:text-2xl text-[#121518]">
                 Cozy Spaces
               </h3>
-              <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed mt-2">
+              <p className="text-neutral-600 text-sm sm:text-[15px] leading-relaxed mt-2">
                 A comfortable place for every moment.
               </p>
             </div>
@@ -327,7 +327,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h3 className="font-outfit font-black text-xl sm:text-2xl text-[#121518]">
                 Great Service
               </h3>
-              <p className="text-neutral-400 text-sm sm:text-[15px] leading-relaxed mt-2">
+              <p className="text-neutral-600 text-sm sm:text-[15px] leading-relaxed mt-2">
                 Friendly team, always ready for you.
               </p>
             </div>
@@ -380,7 +380,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                 <h4 className="font-outfit font-black text-lg sm:text-xl text-[#121518]">
                   Classic Burger
                 </h4>
-                <p className="text-neutral-400 text-xs sm:text-sm mt-1.5 leading-normal">
+                <p className="text-neutral-600 text-xs sm:text-sm mt-1.5 leading-normal">
                   Juicy beef, fresh veggies, secret sauce.
                 </p>
               </div>
@@ -411,7 +411,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                 <h4 className="font-outfit font-black text-lg sm:text-xl text-[#121518]">
                   Chicken Rice Bowl
                 </h4>
-                <p className="text-neutral-400 text-xs sm:text-sm mt-1.5 leading-normal">
+                <p className="text-neutral-600 text-xs sm:text-sm mt-1.5 leading-normal">
                   Tender chicken, savory rice, fresh greens.
                 </p>
               </div>
@@ -442,7 +442,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                 <h4 className="font-outfit font-black text-lg sm:text-xl text-[#121518]">
                   Iced Latte
                 </h4>
-                <p className="text-neutral-400 text-xs sm:text-sm mt-1.5 leading-normal">
+                <p className="text-neutral-600 text-xs sm:text-sm mt-1.5 leading-normal">
                   Smooth coffee, perfect for any time.
                 </p>
               </div>
@@ -473,7 +473,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                 <h4 className="font-outfit font-black text-lg sm:text-xl text-[#121518]">
                   Strawberry Pancake
                 </h4>
-                <p className="text-neutral-400 text-xs sm:text-sm mt-1.5 leading-normal">
+                <p className="text-neutral-600 text-xs sm:text-sm mt-1.5 leading-normal">
                   Fluffy pancakes, fresh strawberries, maple syrup.
                 </p>
               </div>
@@ -515,7 +515,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                 </h2>
               </div>
               <div className="flex flex-col sm:items-end gap-3.5">
-                <p className="text-neutral-400 sm:text-neutral-500 text-base sm:text-lg font-medium">
+                <p className="text-neutral-600 sm:text-neutral-600 text-base sm:text-lg font-medium">
                   Ordering your favorite food is easier than ever.
                 </p>
                 <button className="bg-[#121518] text-white text-xs sm:text-sm font-bold px-6 py-3 rounded-full inline-flex items-center gap-2 cursor-pointer shadow-sm hover:bg-neutral-800 transition-colors">
@@ -537,7 +537,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h3 className="font-outfit font-black text-xl sm:text-2xl text-[#121518]">
                 Choose Your Menu
               </h3>
-              <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-[220px] leading-relaxed">
+              <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-[220px] leading-relaxed">
                 Browse our delicious options.
               </p>
               <div className="hidden lg:flex items-center justify-center absolute -right-6 top-11 sm:top-14 text-neutral-300 text-2xl font-light">
@@ -553,7 +553,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h3 className="font-outfit font-black text-xl sm:text-2xl text-[#121518]">
                 Place Your Order
               </h3>
-              <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-[220px] leading-relaxed">
+              <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-[220px] leading-relaxed">
                 Quick and easy checkout.
               </p>
               <div className="hidden lg:flex items-center justify-center absolute -right-6 top-11 sm:top-14 text-neutral-300 text-2xl font-light">
@@ -569,7 +569,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h3 className="font-outfit font-black text-xl sm:text-2xl text-[#121518]">
                 We Prepare It
               </h3>
-              <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-[220px] leading-relaxed">
+              <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-[220px] leading-relaxed">
                 Freshly made just for you.
               </p>
               <div className="hidden lg:flex items-center justify-center absolute -right-6 top-11 sm:top-14 text-neutral-300 text-2xl font-light">
@@ -585,7 +585,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h3 className="font-outfit font-black text-xl sm:text-2xl text-[#121518]">
                 Enjoy Your Meal
               </h3>
-              <p className="text-neutral-400 text-sm sm:text-base mt-2 max-w-[220px] leading-relaxed">
+              <p className="text-neutral-600 text-sm sm:text-base mt-2 max-w-[220px] leading-relaxed">
                 Delivered or ready for pickup.
               </p>
             </div>
@@ -625,7 +625,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                 Big Dreams.
               </h2>
 
-              <p className="text-neutral-500 text-base sm:text-lg leading-relaxed mt-5 max-w-lg">
+              <p className="text-neutral-600 text-base sm:text-lg leading-relaxed mt-5 max-w-lg">
                 TastyBite started with a simple idea: good food brings people together. Since day one, we've been on a mission to serve fresh, delicious meals that make everyday moments special.
               </p>
 
@@ -703,7 +703,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                     <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.62-.75 1.04-1.8 0.92-2.85-.9.04-1.98.6-2.62 1.34-.56.64-.99 1.7-0.86 2.73 1.01.08 2.03-.51 2.56-1.22z" />
                   </svg>
                   <div className="flex flex-col text-left leading-none">
-                    <span className="text-[10px] text-neutral-400 font-normal">Download on the</span>
+                    <span className="text-[10px] text-neutral-600 font-normal">Download on the</span>
                     <span className="text-[14px] font-bold tracking-tight mt-1">App Store</span>
                   </div>
                 </a>
@@ -717,7 +717,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                     <path d="M3.609 1.814L13.792 12 3.61 22.186a1.996 1.996 0 0 1-.61-.383V2.197c.189-.147.399-.279.609-.383zm11.235 11.238l2.25 2.25-11.704 6.643 9.454-8.893zm0-2.104L5.39 2.055l11.704 6.643-2.25 2.25zm1.484 1.052l3.411 1.936a1.18 1.18 0 0 1 0 2.088l-3.411 1.936-2.023-2.023 2.023-2.037z" />
                   </svg>
                   <div className="flex flex-col text-left leading-none">
-                    <span className="text-[10px] text-neutral-400 font-normal">GET IT ON</span>
+                    <span className="text-[10px] text-neutral-600 font-normal">GET IT ON</span>
                     <span className="text-[14px] font-bold tracking-tight mt-1">Google Play</span>
                   </div>
                 </a>
@@ -871,12 +871,12 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                   <span className="font-outfit font-extrabold text-[15px] sm:text-base leading-none text-white tracking-tight">
                     TastyBite
                   </span>
-                  <span className="text-[10px] sm:text-[11px] font-semibold text-neutral-400 leading-none mt-1">
+                  <span className="text-[10px] sm:text-[11px] font-semibold text-neutral-600 leading-none mt-1">
                     F&B Studio
                   </span>
                 </div>
               </div>
-              <p className="text-neutral-400 text-xs sm:text-[13px] mt-4 font-normal">
+              <p className="text-neutral-600 text-xs sm:text-[13px] mt-4 font-normal">
                 Good food. Better mood.
               </p>
             </div>
@@ -886,7 +886,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h4 className="font-outfit font-bold text-xs sm:text-sm text-neutral-200 tracking-wider">
                 Menu
               </h4>
-              <ul className="mt-3 space-y-2 text-xs text-neutral-400 font-medium">
+              <ul className="mt-3 space-y-2 text-xs text-neutral-600 font-medium">
                 <li><a href="#menu" className="hover:text-white transition-colors cursor-pointer">Burgers</a></li>
                 <li><a href="#menu" className="hover:text-white transition-colors cursor-pointer">Rice Bowls</a></li>
                 <li><a href="#menu" className="hover:text-white transition-colors cursor-pointer">Coffee</a></li>
@@ -900,7 +900,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               <h4 className="font-outfit font-bold text-xs sm:text-sm text-neutral-200 tracking-wider">
                 About
               </h4>
-              <ul className="mt-3 space-y-2 text-xs text-neutral-400 font-medium">
+              <ul className="mt-3 space-y-2 text-xs text-neutral-600 font-medium">
                 <li><a href="#about" className="hover:text-white transition-colors cursor-pointer">Our Story</a></li>
                 <li><a href="#locations" className="hover:text-white transition-colors cursor-pointer">Locations</a></li>
                 <li><a href="#careers" className="hover:text-white transition-colors cursor-pointer">Careers</a></li>
@@ -917,21 +917,21 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
                 <a
                   href="#instagram"
                   aria-label="Instagram"
-                  className="w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-neutral-400 hover:text-white transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-neutral-600 hover:text-white transition-colors cursor-pointer"
                 >
                   <Instagram className="w-4 h-4" />
                 </a>
                 <a
                   href="#facebook"
                   aria-label="Facebook"
-                  className="w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-neutral-400 hover:text-white transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-neutral-600 hover:text-white transition-colors cursor-pointer"
                 >
                   <Facebook className="w-4 h-4" />
                 </a>
                 <a
                   href="#twitter"
                   aria-label="Twitter"
-                  className="w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-neutral-400 hover:text-white transition-colors cursor-pointer"
+                  className="w-8 h-8 rounded-full border border-neutral-700 flex items-center justify-center text-neutral-600 hover:text-white transition-colors cursor-pointer"
                 >
                   <Twitter className="w-4 h-4" />
                 </a>
@@ -961,13 +961,13 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
           </div>
 
           {/* Bottom Legal / Copyright Bar */}
-          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-500 gap-3">
+          <div className="mt-6 flex flex-col sm:flex-row items-center justify-between text-[11px] text-neutral-600 gap-3">
             <span>© 2025 TastyBite. All rights reserved.</span>
             <div className="flex items-center gap-6">
-              <a href="#privacy" className="hover:text-neutral-400 transition-colors cursor-pointer">
+              <a href="#privacy" className="hover:text-neutral-600 transition-colors cursor-pointer">
                 Privacy Policy
               </a>
-              <a href="#terms" className="hover:text-neutral-400 transition-colors cursor-pointer">
+              <a href="#terms" className="hover:text-neutral-600 transition-colors cursor-pointer">
                 Terms of Service
               </a>
             </div>

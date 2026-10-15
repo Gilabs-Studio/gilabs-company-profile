@@ -371,7 +371,7 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
         id="beranda"
         className="relative overflow-hidden flex items-center min-h-[calc(100vh-72px)]"
       >
-        {/* Unified 3D Illustration Canvas - tightly anchored and filling right 58% */}
+        {/* Unified Illustration Canvas - tightly anchored and filling right 58% */}
         <div
           className="absolute right-0 top-0 bottom-0 pointer-events-none z-0 hidden lg:flex items-center justify-end"
           style={{ width: "58%" }}
@@ -481,7 +481,7 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
           <div className="mt-10 block lg:hidden">
             <img
               src="/templates/buildly/hero-3d.webp"
-              alt="Buildly 3D Construction Model"
+              alt="Buildly Construction Model"
               className="w-full max-w-lg mx-auto object-contain"
             />
           </div>
@@ -492,11 +492,11 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
       <section id="tentang" className="min-h-[calc(100vh-72px)] flex items-center py-20 lg:py-24">
         <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-            {/* Left: 100% BORDERLESS 3D Architectural Model Card with Floating Pill */}
+            {/* Left: 100% BORDERLESS Architectural Model Card with Floating Pill */}
             <div className="relative rounded-3xl overflow-hidden aspect-[4/3] w-full shadow-md">
               <img
                 src="/templates/buildly/about-model.webp"
-                alt="3D Architectural Neighborhood Model"
+                alt="Architectural Neighborhood Model"
                 className="w-full h-full object-cover"
               />
 
@@ -815,11 +815,11 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
             className="rounded-3xl border border-[#ECE8FF] relative overflow-hidden flex flex-col lg:flex-row items-center justify-between shadow-xs"
             style={{ backgroundColor: "#F1EFF9" }}
           >
-            {/* Left: 3D Modern City Image - Full height from top to bottom on left */}
+            {/* Left: Modern City Image - Full height from top to bottom on left */}
             <div className="relative w-full lg:absolute lg:left-0 lg:top-0 lg:bottom-0 lg:w-[37%] h-56 sm:h-64 lg:h-full overflow-hidden pointer-events-none z-0">
               <img
                 src="/templates/buildly/cta-buildings.webp"
-                alt="3D Cluster of modern buildings"
+                alt="Cluster of modern buildings"
                 className="w-full h-full object-cover object-left"
               />
             </div>

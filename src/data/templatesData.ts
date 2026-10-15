@@ -7,18 +7,6 @@ export interface IndustryAdaptation {
   tags: string[];
 }
 
-export interface TemplateServiceFeature {
-  title: { id: string; en: string };
-  description: { id: string; en: string };
-  tag: string;
-  icon: string;
-}
-
-export interface TemplateTechSpec {
-  label: { id: string; en: string };
-  value: { id: string; en: string };
-}
-
 export interface TemplateItem {
   id: string;
   slug: string;
@@ -38,9 +26,7 @@ export interface TemplateItem {
   gallery: string[];
   demoUrl: string;
   buyersCount: number;
-  serviceFeatures?: TemplateServiceFeature[];
   industryAdaptations?: IndustryAdaptation[];
-  techSpecs?: TemplateTechSpec[];
 }
 
 export interface DurationPlan {
@@ -228,7 +214,7 @@ export const tiersData: TierInfo[] = [
     pages: { id: 'Hingga 8 Halaman', en: 'Up to 8 Pages' },
     animation: { id: 'Animasi scroll & transisi khusus', en: 'Custom scroll animations & transitions' },
     assets: { id: 'Kombinasi foto, video & visual dinamis', en: 'Photography, video & dynamic visuals' },
-    extras: { id: 'Elemen 3D & copywriting', en: '3D elements, analytics & copywriting' },
+    extras: { id: 'Fitur interaktif & copywriting', en: 'Interactive elements, analytics & copywriting' },
     revisions: { id: '3x revisi', en: '3 revisions' }
   }
 },
@@ -324,8 +310,8 @@ export const templatesData: TemplateItem[] = [
   {
     id: 'nusantara',
     slug: 'nusantara-minimalist-apparel',
-    title: 'Website Brand Fashion & Luxury Minimalist Apparel',
-    titleEn: 'Luxury Minimalist Apparel & Fashion Brand Website',
+    title: 'Brand Fashion',
+    titleEn: 'Fashion Brand',
     category: 'company',
     categoryLabel: {
       id: 'Fashion & Luxury Apparel',
@@ -345,45 +331,13 @@ export const templatesData: TemplateItem[] = [
     ],
     demoUrl: '/templates/demo/nusantara',
     buyersCount: 194,
-    serviceFeatures: [
-      {
-        title: { id: 'Unified Hero Typography Canvas', en: 'Unified Hero Typography Canvas' },
-        description: { id: 'Integrasi visual multi-layer di mana tipografi brand raksasa menyatu di belakang model secara presisi.', en: 'Multi-layer visual integration where bold brand typography sits seamlessly behind the model.' },
-        tag: 'Editorial',
-        icon: 'Layout'
-      },
-      {
-        title: { id: 'Katalog Koleksi & New Drops', en: 'Curated Drops & Lookbook' },
-        description: { id: 'Showcase produk minimalis dengan detail harga transparan dan layout grid editorial presisi tinggi.', en: 'Minimalist product showcases with transparent pricing and high-precision editorial grid layouts.' },
-        tag: 'Collection',
-        icon: 'ShoppingBag'
-      },
-      {
-        title: { id: 'Brand Philosophy & Storytelling', en: 'Brand Philosophy & Storytelling' },
-        description: { id: 'Menarasikan nilai luhur karya, esensi budaya, dan filosofi pakaian abadi lintas generasi.', en: 'Articulating brand heritage, timeless values, and cultural craftsmanship across generations.' },
-        tag: 'Heritage',
-        icon: 'BookOpen'
-      },
-      {
-        title: { id: 'Pemesanan Instan Direct Link', en: 'Direct Order Integration' },
-        description: { id: 'Akses pembelian produk dan konsultasi katalog terintegrasi langsung ke WhatsApp concierge.', en: 'Streamlined purchase flow and catalog inquiries directly connected to WhatsApp concierge.' },
-        tag: 'Conversion',
-        icon: 'Send'
-      }
-    ],
-    techSpecs: [
-      { label: { id: 'Tipe Layout', en: 'Layout Architecture' }, value: { id: 'Single Page Multi-layer Hero Canvas', en: 'Single Page Multi-layer Hero Canvas' } },
-      { label: { id: 'Gaya Desain', en: 'Design Style' }, value: { id: 'Minimalist Brutalist & Stone Editorial', en: 'Minimalist Brutalist & Stone Editorial' } },
-      { label: { id: 'Optimasi Kecepatan', en: 'Performance' }, value: { id: 'Skor 99+ Google Lighthouse', en: 'Score 99+ Google Lighthouse' } },
-      { label: { id: 'Dukungan Mobile', en: 'Mobile Responsive' }, value: { id: '100% Responsif di Semua Perangkat', en: '100% Responsive Across All Devices' } }
-    ],
     industryAdaptations: defaultIndustryAdaptations
   },
   {
     id: 'la-table-eternelle',
     slug: 'la-table-eternelle-fine-dining',
-    title: 'Website Restoran Fine Dining & Luxury Hospitality',
-    titleEn: 'Luxury Fine Dining & Hospitality Website',
+    title: 'Fine Dining',
+    titleEn: 'Fine Dining',
     category: 'service',
     categoryLabel: {
       id: 'Restoran & Hospitality',
@@ -403,45 +357,13 @@ export const templatesData: TemplateItem[] = [
     ],
     demoUrl: '/templates/demo/la-table-eternelle',
     buyersCount: 165,
-    serviceFeatures: [
-      {
-        title: { id: 'Signature Dish Showcase', en: 'Signature Dish Showcase' },
-        description: { id: 'Presentasi menu eksklusif dengan fotografi berkelas, komposisi bahan, dan harga transparan.', en: 'Exclusive culinary presentation with fine dining imagery, gourmet ingredients, and transparent pricing.' },
-        tag: 'Culinary',
-        icon: 'UtensilsCrossed'
-      },
-      {
-        title: { id: 'Reservasi Meja Instan', en: 'Instant Table Reservation' },
-        description: { id: 'Kemudahan booking meja makan malam dan private dining langsung terhubung ke WhatsApp concierge.', en: 'Seamless dinner table and private dining room booking connected directly to your WhatsApp concierge.' },
-        tag: 'Concierge',
-        icon: 'CalendarCheck'
-      },
-      {
-        title: { id: 'Galeri Ambience & Interior', en: 'Atmospheric Ambience Gallery' },
-        description: { id: 'Membangun impresi prestisius lewat showcase pencahayaan intim, arsitektur, dan suasana bar.', en: 'Build a prestigious impression through intimate lighting, architecture, and luxury bar showcases.' },
-        tag: 'Ambience',
-        icon: 'Sparkles'
-      },
-      {
-        title: { id: 'Kisah Filosofi Kuliner', en: 'Culinary Heritage Story' },
-        description: { id: 'Menarasikan perpaduan teknik klasik Prancis dengan kekayaan cita rasa Nusantara secara elegan.', en: 'Elegantly narrating the harmony of classic French techniques with Indonesian heritage ingredients.' },
-        tag: 'Heritage',
-        icon: 'BookOpen'
-      }
-    ],
-    techSpecs: [
-      { label: { id: 'Tipe Layout', en: 'Layout Architecture' }, value: { id: 'Single Page Unified Hero Canvas', en: 'Single Page Unified Hero Canvas' } },
-      { label: { id: 'Gaya Desain', en: 'Design Style' }, value: { id: 'Dark Moody Luxury & Editorial Typography', en: 'Dark Moody Luxury & Editorial Typography' } },
-      { label: { id: 'Optimasi Kecepatan', en: 'Performance' }, value: { id: 'Skor 98+ Google Lighthouse', en: 'Score 98+ Google Lighthouse' } },
-      { label: { id: 'Dukungan Mobile', en: 'Mobile Responsive' }, value: { id: '100% Responsif di Semua Perangkat', en: '100% Responsive Across All Devices' } }
-    ],
     industryAdaptations: defaultIndustryAdaptations
   },
   {
     id: 'buildly-property',
     slug: 'buildly-contractor-property',
-    title: 'Website Kontraktor & Pengembang Properti',
-    titleEn: 'Modern Property Contractor & Real Estate Website',
+    title: 'Kontraktor Properti',
+    titleEn: 'Property Contractor',
     category: 'service',
     categoryLabel: {
       id: 'Jasa & Properti',
@@ -449,8 +371,8 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 1,
     description: {
-      id: 'Template website profil kontraktor bangunan, pengembang properti, renovasi & interior dengan visual 3D modern, showcase portofolio proyek real estate, dan metrik kepercayaan.',
-      en: 'Modern website template for building contractors, property developers, and interior renovation firms featuring 3D visuals, project showcases, and credible stats.'
+      id: 'Template website profil kontraktor bangunan, pengembang properti, renovasi & interior dengan visual modern, showcase portofolio proyek real estate, dan metrik kepercayaan.',
+      en: 'Modern website template for building contractors, property developers, and interior renovation firms featuring modern visuals, project showcases, and credible stats.'
     },
     previewImage: '/templates/buildly/preview.webp',
     gallery: [
@@ -461,45 +383,13 @@ export const templatesData: TemplateItem[] = [
     ],
     demoUrl: '/templates/demo/buildly',
     buyersCount: 178,
-    serviceFeatures: [
-      {
-        title: { id: 'Konstruksi Bangunan', en: 'Building Construction' },
-        description: { id: 'Pembangunan rumah, ruko, kantor dan fasilitas komersial dengan standar terbaik.', en: 'High-standard construction of residences, commercial shophouses, and corporate offices.' },
-        tag: 'Core',
-        icon: 'Building2'
-      },
-      {
-        title: { id: 'Pengembangan Properti', en: 'Property Development' },
-        description: { id: 'Dari perencanaan hingga serah terima, mengelola setiap tahap secara profesional.', en: 'End-to-end management from planning and design to unit handover.' },
-        tag: 'Turnkey',
-        icon: 'Home'
-      },
-      {
-        title: { id: 'Renovasi & Interior', en: 'Renovation & Interior' },
-        description: { id: 'Meningkatkan fungsi dan nilai properti Anda dengan desain modern dan pengerjaan rapi.', en: 'Enhancing functional value and aesthetics with modern interior design.' },
-        tag: 'Modern',
-        icon: 'Paintbrush'
-      },
-      {
-        title: { id: 'Konsultasi & Perencanaan', en: 'Consultation & Planning' },
-        description: { id: 'Solusi perencanaan yang tepat, efisien, dan sesuai dengan kebutuhan anggaran.', en: 'Precise planning, efficient cost estimation, and technical advisory.' },
-        tag: 'Advisory',
-        icon: 'Compass'
-      }
-    ],
-    techSpecs: [
-      { label: { id: 'Tipe Layout', en: 'Layout Architecture' }, value: { id: 'Single Page Unified Hero Canvas', en: 'Single Page Unified Hero Canvas' } },
-      { label: { id: 'Gaya Desain', en: 'Design Style' }, value: { id: '3D Isometric Clay & Lavender Theme', en: '3D Isometric Clay & Lavender Theme' } },
-      { label: { id: 'Optimasi Kecepatan', en: 'Performance' }, value: { id: 'Skor 98+ Google Lighthouse', en: 'Score 98+ Google Lighthouse' } },
-      { label: { id: 'Dukungan Mobile', en: 'Mobile Responsive' }, value: { id: '100% Responsif di Semua Perangkat', en: '100% Responsive Across All Devices' } }
-    ],
     industryAdaptations: defaultIndustryAdaptations
   },
   {
     id: 'adiguna-machinery',
     slug: 'adiguna-machinery-industrial',
-    title: 'Website Industri & Manufaktur Presisi',
-    titleEn: 'Precision Industrial Machinery Website',
+    title: 'Manufaktur Industri',
+    titleEn: 'Industrial Manufacturing',
     category: 'manufaktur',
     categoryLabel: {
       id: 'Manufaktur & Industri',
@@ -519,8 +409,8 @@ export const templatesData: TemplateItem[] = [
   {
     id: 'ticketing-events',
     slug: 'euforia-festival-ticketing',
-    title: 'Website Tiket Konser & Festival Event',
-    titleEn: 'Concert & Festival Event Ticketing Website',
+    title: 'Tiket Event',
+    titleEn: 'Event Ticketing',
     category: 'event',
     categoryLabel: {
       id: 'Event & Tiket',
@@ -540,14 +430,14 @@ export const templatesData: TemplateItem[] = [
   {
     id: 'shipagency-maritime',
     slug: 'nautiva-ocean-shipping-agency',
-    title: 'Website Keagenan Kapal & Logistik Maritim',
-    titleEn: 'Maritime Ship Agency & Port Logistics Website',
+    title: 'Keagenan Kapal',
+    titleEn: 'Ship Agency',
     category: 'service',
     categoryLabel: {
       id: 'Jasa & Maritim',
       en: 'Services & Maritime'
     },
-    tier: 2,
+    tier: 3,
     description: {
       id: 'Template website keagenan kapal pelabuhan, manajemen sertifikat perkapalan, dan logistik maritim terintegrasi dengan nuansa oceanic gelap dan metrik operasional terpercaya.',
       en: 'Specialized website template for shipping agencies, vessel clearance operations, and maritime logistics companies.'
@@ -561,8 +451,8 @@ export const templatesData: TemplateItem[] = [
   {
     id: 'tastybite',
     slug: 'tastybite-fnb-studio',
-    title: 'TastyBite • Website Kafe, Restoran & F&B Studio Modern',
-    titleEn: 'TastyBite • Modern F&B Studio & Cafe Restaurant Website',
+    title: 'Studio Kuliner',
+    titleEn: 'Culinary Studio',
     category: 'service',
     categoryLabel: {
       id: 'Kafe, Resto & F&B',
@@ -570,8 +460,8 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 2,
     description: {
-      id: 'Template website profil restoran, kafe artisan, dan studio kuliner modern dengan visual 3D kawaii yang playful, etalase menu signature pastel, integrasi pesanan instan, serta narasi brand yang memikat.',
-      en: 'Modern website template for restaurants, artisan cafes, and F&B studios featuring playful 3D kawaii visuals, pastel signature menu showcases, instant ordering integration, and compelling brand storytelling.'
+      id: 'Template website profil restoran, kafe artisan, dan studio kuliner modern dengan visual ilustratif yang playful, etalase menu signature pastel, integrasi pesanan instan, serta narasi brand yang memikat.',
+      en: 'Modern website template for restaurants, artisan cafes, and F&B studios featuring playful illustrative visuals, pastel signature menu showcases, instant ordering integration, and compelling brand storytelling.'
     },
     previewImage: '/templates/tastybite/preview.webp',
     gallery: [
@@ -581,45 +471,13 @@ export const templatesData: TemplateItem[] = [
     ],
     demoUrl: '/templates/demo/tastybite',
     buyersCount: 168,
-    serviceFeatures: [
-      {
-        title: { id: 'Unified Hero Canvas & 3D Mascot', en: 'Unified Hero Canvas & 3D Mascot' },
-        description: { id: 'Teks bold dinamis dan maskot mangkuk 3D kawaii menyatu dalam kanvas latar mulus tanpa sekat.', en: 'Bold display typography and 3D kawaii mascot seamless on a unified canvas without borders.' },
-        tag: 'Playful',
-        icon: 'Sparkles'
-      },
-      {
-        title: { id: 'Scalloped Ribbon Category Strip', en: 'Scalloped Ribbon Category Strip' },
-        description: { id: 'Banner highlight kategori warna-warni bertepi gelombang scallop dengan aksen coretan tangan doodle.', en: 'Vibrant wave-scalloped highlight ribbon featuring best sellers and handwritten doodles.' },
-        tag: 'Showcase',
-        icon: 'Layout'
-      },
-      {
-        title: { id: 'Signature Favorites Pastel Grid', en: 'Signature Favorites Pastel Grid' },
-        description: { id: 'Etalase menu unggulan dengan kartu warna pastel lembut, informasi harga transparan, dan tombol pemesanan cepat.', en: 'Curated menu items with soft pastel cards, transparent pricing, and instant add buttons.' },
-        tag: 'Menu',
-        icon: 'UtensilsCrossed'
-      },
-      {
-        title: { id: 'App Showcase & Instant Order Flow', en: 'App Showcase & Instant Order Flow' },
-        description: { id: 'Panduan alur order mudah 4 langkah serta seksi promosi aplikasi mobile dengan tautan WhatsApp terhubung.', en: 'Simple 4-step ordering guide and mobile app showcase integrated with instant WhatsApp order.' },
-        tag: 'Conversion',
-        icon: 'Send'
-      }
-    ],
-    techSpecs: [
-      { label: { id: 'Tipe Layout', en: 'Layout Architecture' }, value: { id: 'Unified Canvas Hero & Motion Narrative', en: 'Unified Canvas Hero & Motion Narrative' } },
-      { label: { id: 'Gaya Desain', en: 'Design Style' }, value: { id: 'Playful 3D Kawaii Clay & Modern Bold Sans', en: 'Playful 3D Kawaii Clay & Modern Bold Sans' } },
-      { label: { id: 'Optimasi Kecepatan', en: 'Performance' }, value: { id: 'Skor 99+ Google Lighthouse', en: 'Score 99+ Google Lighthouse' } },
-      { label: { id: 'Dukungan Mobile', en: 'Mobile Responsive' }, value: { id: '100% Responsif di Semua Perangkat', en: '100% Responsive Across All Devices' } }
-    ],
     industryAdaptations: defaultIndustryAdaptations
   },
   {
     id: 'gke-enterprise',
     slug: 'gke-enterprise-supply',
-    title: 'Website Enterprise & Supply Chain',
-    titleEn: 'Enterprise Engineering & Supply Chain Website',
+    title: 'Enterprise Logistik',
+    titleEn: 'Enterprise Logistics',
     category: 'company',
     categoryLabel: {
       id: 'Enterprise & B2B',

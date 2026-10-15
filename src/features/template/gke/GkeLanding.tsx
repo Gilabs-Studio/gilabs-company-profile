@@ -1189,7 +1189,7 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
         </div>
       </section>
 
-      {/* 07. Animated Testimonials with 3D RotateY and Word Blur */}
+      {/* 07. Animated Testimonials with RotateY and Word Blur */}
       <section className="px-5 py-24 sm:px-8 lg:px-12 bg-white flex items-center border-t border-slate-200/80">
         <div className="mx-auto w-full max-w-screen-2xl">
           <motion.div
