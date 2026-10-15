@@ -93,7 +93,8 @@ export interface WebsiteOrderDetails {
   durationYears: number;
   durationPriceIdr: number;
   domainName?: string;
-  hasEditingAddon: boolean;
+  /** Add-on terpilih, sudah dalam bentuk label siap tampil (mis. "Halaman Tambahan x2") */
+  addons: { label: string; subtotalIdr: number }[];
   addonPriceIdr: number;
   totalPriceIdr: number;
   customerName?: string;
@@ -109,6 +110,14 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
   const phoneNumber = "6289526770703";
   const baseUrl = `https://wa.me/${phoneNumber}`;
   const isEn = details.lang === "en";
+  const formatIdr = (val: number) => `Rp ${val.toLocaleString("id-ID")}`;
+  const addonLines =
+    details.addons.length > 0
+      ? [
+          `Add-on:`,
+          ...details.addons.map((a) => `- ${a.label} (+${formatIdr(a.subtotalIdr)})`),
+        ]
+      : [`Add-on: Tidak ada`];
 
   const lines = isEn
     ? [
@@ -121,7 +130,7 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
         ``,
         `Template: ${details.templateTitle}`,
         `Paket Durasi: ${details.durationPlanName} (${details.durationYears} Year${details.durationYears > 1 ? "s" : ""})`,
-        `Add-on Editing: ${details.hasEditingAddon ? "Ya (+Rp 250.000)" : "Tidak"}`,
+        ...addonLines,
         `Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
         ``,
         `Catatan: Domain gratis dikonsultasikan saat aktivasi.`,
@@ -137,7 +146,7 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
         ``,
         `Template: ${details.templateTitle}`,
         `Paket Durasi: ${details.durationPlanName} (${details.durationYears} Tahun)`,
-        `Add-on Editing: ${details.hasEditingAddon ? "Ya (+Rp 250.000)" : "Tidak"}`,
+        ...addonLines,
         `Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
         ``,
         `Catatan: Domain gratis dikonsultasikan saat aktivasi.`,

@@ -1,0 +1,15 @@
+---
+import BuildlyTemplate from '../../../../features/template/buildly/BuildlyTemplate.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<BuildlyTemplate lang={lang} />

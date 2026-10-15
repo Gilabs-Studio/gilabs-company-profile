@@ -1,0 +1,64 @@
+---
+import { getWhatsAppLink } from '../../../lib/utils';
+import '../../../styles/globals.css';
+import BuildlyLanding from './BuildlyLanding';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+
+const templateTitle = lang === 'en' 
+  ? "Template 02: Modern Property Contractor & Developer" 
+  : "Template 02: Kontraktor Bangunan & Pengembang Properti";
+const templatePrice = "Rp 689.000";
+const buyUrl = getWhatsAppLink('template', lang, templateTitle);
+const catalogUrl = `/${lang}/templates`;
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{templateTitle} - Live Demo</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white text-[#0B0B0F] font-sans antialiased selection:bg-[#ECE8FF] selection:text-[#5B46E5]">
+
+  <!-- Top Sticky Demo Header Bar -->
+  <header class="sticky top-0 z-50 bg-[#0f172a] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
+    <div class="flex items-center gap-3">
+      <a 
+        href={catalogUrl} 
+        class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-medium"
+      >
+        <span>←</span>
+        <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
+      </a>
+      <span class="text-neutral-600 hidden sm:inline">|</span>
+      <span class="font-semibold text-neutral-200 hidden sm:inline">{templateTitle}</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span class="text-neutral-300 font-mono hidden md:inline">{templatePrice}</span>
+      <a
+        href={buyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3.5 py-1.5 rounded text-xs transition-colors cursor-pointer"
+      >
+        {lang === 'en' ? 'Purchase Template' : 'Beli Template Ini'}
+      </a>
+    </div>
+  </header>
+
+  <!-- Complete Buildly Landing Page mounted with client:load -->
+  <BuildlyLanding client:load lang={lang} />
+
+</body>
+</html>

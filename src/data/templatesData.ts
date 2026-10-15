@@ -67,14 +67,24 @@ export interface DurationPlan {
   };
 }
 
+export type AddonTier = 1 | 2 | 3;
+export type AddonUnit = 'per-page' | 'per-round' | 'flat';
+
 export interface AddonItem {
-  id: string;
-  priceIdr: number;
+  id: 'extra-page' | 'extra-revision' | 'copywriting' | 'bilingual';
+  unit: AddonUnit;
+  priceByTier: Record<AddonTier, number | null>;
+  maxQtyByTier: Record<AddonTier, number>;
+  includedIn?: AddonTier[];
   name: {
     id: string;
     en: string;
   };
   description: {
+    id: string;
+    en: string;
+  };
+  upgradeHint?: {
     id: string;
     en: string;
   };
@@ -312,6 +322,64 @@ export function getTierInfoByNumber(tierNumber: number): TierInfo {
 
 export const templatesData: TemplateItem[] = [
   {
+    id: 'buildly-property',
+    slug: 'buildly-contractor-property',
+    title: 'Website Kontraktor & Pengembang Properti',
+    titleEn: 'Modern Property Contractor & Real Estate Website',
+    category: 'service',
+    categoryLabel: {
+      id: 'Jasa & Properti',
+      en: 'Services & Property'
+    },
+    tier: 1,
+    description: {
+      id: 'Template website profil kontraktor bangunan, pengembang properti, renovasi & interior dengan visual 3D modern, showcase portofolio proyek real estate, dan metrik kepercayaan.',
+      en: 'Modern website template for building contractors, property developers, and interior renovation firms featuring 3D visuals, project showcases, and credible stats.'
+    },
+    previewImage: '/templates/buildly/preview.webp',
+    gallery: [
+      '/templates/buildly/preview.webp',
+      '/templates/buildly/project-aurora.webp',
+      '/templates/buildly/project-nusantara.webp',
+      '/templates/buildly/project-lakeside.webp'
+    ],
+    demoUrl: '/templates/demo/buildly',
+    buyersCount: 178,
+    serviceFeatures: [
+      {
+        title: { id: 'Konstruksi Bangunan', en: 'Building Construction' },
+        description: { id: 'Pembangunan rumah, ruko, kantor dan fasilitas komersial dengan standar terbaik.', en: 'High-standard construction of residences, commercial shophouses, and corporate offices.' },
+        tag: 'Core',
+        icon: 'Building2'
+      },
+      {
+        title: { id: 'Pengembangan Properti', en: 'Property Development' },
+        description: { id: 'Dari perencanaan hingga serah terima, mengelola setiap tahap secara profesional.', en: 'End-to-end management from planning and design to unit handover.' },
+        tag: 'Turnkey',
+        icon: 'Home'
+      },
+      {
+        title: { id: 'Renovasi & Interior', en: 'Renovation & Interior' },
+        description: { id: 'Meningkatkan fungsi dan nilai properti Anda dengan desain modern dan pengerjaan rapi.', en: 'Enhancing functional value and aesthetics with modern interior design.' },
+        tag: 'Modern',
+        icon: 'Paintbrush'
+      },
+      {
+        title: { id: 'Konsultasi & Perencanaan', en: 'Consultation & Planning' },
+        description: { id: 'Solusi perencanaan yang tepat, efisien, dan sesuai dengan kebutuhan anggaran.', en: 'Precise planning, efficient cost estimation, and technical advisory.' },
+        tag: 'Advisory',
+        icon: 'Compass'
+      }
+    ],
+    techSpecs: [
+      { label: { id: 'Tipe Layout', en: 'Layout Architecture' }, value: { id: 'Single Page Unified Hero Canvas', en: 'Single Page Unified Hero Canvas' } },
+      { label: { id: 'Gaya Desain', en: 'Design Style' }, value: { id: '3D Isometric Clay & Lavender Theme', en: '3D Isometric Clay & Lavender Theme' } },
+      { label: { id: 'Optimasi Kecepatan', en: 'Performance' }, value: { id: 'Skor 98+ Google Lighthouse', en: 'Score 98+ Google Lighthouse' } },
+      { label: { id: 'Dukungan Mobile', en: 'Mobile Responsive' }, value: { id: '100% Responsif di Semua Perangkat', en: '100% Responsive Across All Devices' } }
+    ],
+    industryAdaptations: defaultIndustryAdaptations
+  },
+  {
     id: 'adiguna-machinery',
     slug: 'adiguna-machinery-industrial',
     title: 'Website Industri & Manufaktur Presisi',
@@ -507,18 +575,82 @@ export const durationPlans: DurationPlan[] = [
   }
 ];
 
-export const websiteEditingAddon: AddonItem = {
-  id: 'editing',
-  priceIdr: 250000,
-  name: {
-    id: 'Jasa Editing Website',
-    en: 'Website Content Editing Service'
+/**
+ * Add-on katalog template (Tier 1–3).
+ * - Harga tetap (bukan rentang) agar jelas di checkout.
+ * - `null` pada priceByTier = tidak tersedia; `includedIn` = sudah termasuk paket tier tersebut.
+ * - Fitur di luar ini (blog/CMS, booking, pembayaran) diarahkan ke Tier 4 / konsultasi.
+ * - Pengisian konten (teks, logo, foto) sudah termasuk di semua tier, jadi tidak dijual terpisah.
+ */
+export const templateAddons: AddonItem[] = [
+  {
+    id: 'extra-page',
+    unit: 'per-page',
+    priceByTier: { 1: 200000, 2: 200000, 3: 200000 },
+    maxQtyByTier: { 1: 2, 2: 3, 3: 4 },
+    name: { id: 'Halaman Tambahan', en: 'Extra Page' },
+    description: {
+      id: 'Tambah halaman baru seperti Tentang Kami, Galeri, atau Detail Layanan dengan gaya desain yang sama.',
+      en: 'Add new pages such as About Us, Gallery, or Service Details using the same design style.'
+    },
+    upgradeHint: {
+      id: 'Butuh lebih banyak halaman? Upgrade ke tier berikutnya lebih hemat.',
+      en: 'Need more pages? Upgrading to the next tier is more cost-effective.'
+    }
   },
-  description: {
-    id: 'Tim Gilabs bantu input seluruh teks, upload foto produk/layanan, pasang logo perusahaan, dan penyesuaian layout sampai website siap online.',
-    en: 'The Gilabs team assists in inputting texts, uploading product photos, applying your logo, and adjusting layout ready for launch.'
+  {
+    id: 'extra-revision',
+    unit: 'per-round',
+    priceByTier: { 1: 150000, 2: 150000, 3: 150000 },
+    maxQtyByTier: { 1: 3, 2: 3, 3: 3 },
+    name: { id: 'Revisi Tambahan', en: 'Extra Revision' },
+    description: {
+      id: 'Satu putaran revisi tambahan di luar jatah revisi paket Anda.',
+      en: 'One additional revision round beyond your package allowance.'
+    }
+  },
+  {
+    id: 'copywriting',
+    unit: 'per-page',
+    priceByTier: { 1: 150000, 2: 150000, 3: null },
+    maxQtyByTier: { 1: 3, 2: 8, 3: 0 },
+    includedIn: [3],
+    name: { id: 'Copywriting', en: 'Copywriting' },
+    description: {
+      id: 'Tim kami menuliskan teks yang persuasif dan sesuai karakter bisnis Anda, per halaman.',
+      en: 'Our team writes persuasive, on-brand copy for your business, per page.'
+    }
+  },
+  {
+    id: 'bilingual',
+    unit: 'flat',
+    priceByTier: { 1: 200000, 2: 390000, 3: 850000 },
+    maxQtyByTier: { 1: 1, 2: 1, 3: 1 },
+    name: { id: 'Dua Bahasa (ID & EN)', en: 'Bilingual (ID & EN)' },
+    description: {
+      id: 'Website tersedia dalam Bahasa Indonesia dan Inggris dengan tombol ganti bahasa. Sekitar 30% dari harga paket.',
+      en: 'Website available in Indonesian and English with a language switcher. Around 30% of the package price.'
+    }
   }
+];
+
+export const addonUnitLabel: Record<AddonUnit, { id: string; en: string }> = {
+  'per-page': { id: '/halaman', en: '/page' },
+  'per-round': { id: '/putaran', en: '/round' },
+  flat: { id: '', en: '' }
 };
+
+/** Status add-on untuk tier tertentu. */
+export function getAddonTierInfo(addon: AddonItem, tier: AddonTier) {
+  const price = addon.priceByTier[tier];
+  const isIncluded = addon.includedIn?.includes(tier) ?? false;
+  return {
+    price,
+    maxQty: addon.maxQtyByTier[tier],
+    isIncluded,
+    isAvailable: price !== null && !isIncluded
+  };
+}
 
 export const templatesPageContent = {
   id: {
