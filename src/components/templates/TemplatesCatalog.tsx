@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import type { TemplateItem, TierInfo } from '../../data/templatesData';
 import { tiersData, templatesPageContent } from '../../data/templatesData';
 import { getWhatsAppLink } from '../../lib/utils';
-import { Search, X, ExternalLink, ArrowRight, MessageCircle } from 'lucide-react';
+import { ExternalLink, ArrowRight, MessageCircle } from 'lucide-react';
 
 interface TemplatesCatalogProps {
   templates: TemplateItem[];
@@ -134,7 +134,7 @@ function TemplateCardPreview({ src, alt }: TemplateCardPreviewProps) {
           height={400}
           decoding="async"
           onLoad={() => setIsLoaded(true)}
-          className={`relative z-10 w-full h-full object-cover transition-opacity duration-300 ${
+          className={`relative z-10 w-full h-full object-cover transition-all duration-300 group-hover:blur-[3px] ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -328,22 +328,26 @@ function TemplateCard({ template, lang }: TemplateCardProps) {
 
   return (
     <div className="bg-card border border-border/70 rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:border-foreground/40 hover:shadow-xs">
-      {/* Live Preview Thumbnail / Detail Link */}
+      {/* Live Preview Thumbnail */}
       <a
-        href={detailUrl}
+        href={template.demoUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="aspect-[16/10] bg-muted/20 relative overflow-hidden block group cursor-pointer border-b border-border/50"
-        aria-label={`${t.card.viewDetail}: ${title}`}
-        title={`${t.card.viewDetail}: ${title}`}
+        aria-label={`${lang === 'id' ? 'Buka Live Preview' : 'Open Live Preview'}: ${title}`}
+        title={`${lang === 'id' ? 'Buka Live Preview' : 'Open Live Preview'}: ${title}`}
       >
         {template.previewImage ? (
           <TemplateCardPreview src={template.previewImage} alt={imageAlt} />
         ) : (
-          <TemplateLivePreview demoUrl={template.demoUrl} title={title} />
+          <div className="w-full h-full transition-all duration-300 group-hover:scale-105 group-hover:blur-[3px]">
+            <TemplateLivePreview demoUrl={template.demoUrl} title={title} />
+          </div>
         )}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-          <span className="bg-background/95 backdrop-blur-xs text-foreground text-xs font-semibold px-3 py-1.5 rounded-md shadow-xs flex items-center gap-1.5">
-            <span>{t.card.viewDetail}</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+        <div className="absolute inset-0 z-20 bg-black/25 dark:bg-black/40 backdrop-blur-[1px] transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+          <span className="bg-background text-foreground text-xs font-semibold px-4 py-2 rounded-lg shadow-md flex items-center gap-1.5 transition-transform duration-200 group-hover:scale-105">
+            <span>{lang === 'id' ? 'Live Preview' : 'Live Preview'}</span>
+            <ExternalLink className="w-3.5 h-3.5" />
           </span>
         </div>
       </a>

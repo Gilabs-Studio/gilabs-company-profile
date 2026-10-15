@@ -2,25 +2,29 @@
 
 import React, { useState, useEffect, useMemo } from 'react';
 import type { TemplateItem, DurationPlan } from '../../data/templatesData';
-import { templatesData, durationPlans, websiteEditingAddon, templateCategories } from '../../data/templatesData';
-import { getWebsiteOrderWhatsAppLink } from '../../lib/utils';
+import { templatesData, durationPlans, templateCategories, addonUnitLabel, tiersData } from '../../data/templatesData';
+import { useOrderAddons } from './hooks/useOrderAddons';
+import { getWebsiteOrderWhatsAppLink, getWhatsAppLink } from '../../lib/utils';
 import { 
   Check, 
-  ChevronRight, 
   ExternalLink, 
-  CreditCard, 
   ShieldCheck, 
   Search, 
   X, 
   RotateCcw,
-  Sparkles,
   Phone,
   ArrowLeft,
   CheckCircle2,
-  Lock,
-  Layers,
-  Clock,
-  Sparkle
+  Minus,
+  Plus,
+  MessageCircle,
+  Languages,
+  FileText,
+  ArrowUpRight,
+  ArrowDownRight,
+  User,
+  Building2,
+  Mail
 } from 'lucide-react';
 
 interface OrderFlowProps {
@@ -116,7 +120,7 @@ function OrderTemplateImage({ src, alt, className = "" }: { src: string; alt: st
           alt={alt}
           decoding="async"
           onLoad={() => setIsLoaded(true)}
-          className={`relative z-10 w-full h-full object-cover transition-opacity duration-300 ${
+          className={`relative z-10 w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:blur-[3px] ${
             isLoaded ? 'opacity-100' : 'opacity-0'
           }`}
         />
@@ -130,8 +134,21 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>(
     initialTemplateId || templatesData[0]?.id || 'adiguna-machinery'
   );
-  const [selectedDurationId, setSelectedDurationId] = useState<'1-year' | '2-year' | '3-year'>('3-year');
-  const [hasEditingAddon, setHasEditingAddon] = useState<boolean>(false);
+  // Read tier immediately on client initialization to prevent lag/flash
+  const [customTier, setCustomTier] = useState<1 | 2 | 3 | null>(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlTier = parseInt(params.get('tier') || '', 10);
+      if ([1, 2, 3].includes(urlTier)) return urlTier as 1 | 2 | 3;
+    }
+    return null;
+  });
+  // Default to 1-year so base price matches detail page tier price exactly
+  const [selectedDurationId, setSelectedDurationId] = useState<'1-year' | '2-year' | '3-year'>('1-year');
+
+  // Addon specification details
+  const [targetLanguages, setTargetLanguages] = useState<string>('');
+  const [extraPagesNotes, setExtraPagesNotes] = useState<string>('');
 
   // Customer Contact Info
   const [customerName, setCustomerName] = useState<string>('');
@@ -152,6 +169,10 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       if (urlTemplate && templatesData.some(t => t.id === urlTemplate)) {
         setSelectedTemplateId(urlTemplate);
       }
+      const urlTier = parseInt(params.get('tier') || '', 10);
+      if ([1, 2, 3].includes(urlTier)) {
+        setCustomTier(urlTier as 1 | 2 | 3);
+      }
     }
   }, []);
 
@@ -160,18 +181,99 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
     return templatesData.find(t => t.id === selectedTemplateId) || templatesData[0];
   }, [selectedTemplateId]);
 
-  const selectedDuration = useMemo(() => {
-    return durationPlans.find(p => p.id === selectedDurationId) || durationPlans[2];
-  }, [selectedDurationId]);
+  const activeTier = (customTier ?? selectedTemplate.tier) as 1 | 2 | 3;
+  const activeTierInfo = useMemo(() => {
+    return tiersData.find((t) => t.tierNumber === activeTier) || tiersData[0];
+  }, [activeTier]);
+  const activeTierTitle = lang === 'en' ? activeTierInfo.titleEn : activeTierInfo.title;
 
   const templateDisplayTitle = lang === 'en' && selectedTemplate.titleEn 
     ? selectedTemplate.titleEn 
     : selectedTemplate.title;
 
+  // Upgrade / Downgrade status determination
+  const isUpgrade = activeTier > selectedTemplate.tier;
+  const isDowngrade = activeTier < selectedTemplate.tier;
+  const tierStatusBadge = isUpgrade
+    ? (lang === 'id' ? `Upgrade dari Tier ${selectedTemplate.tier}` : `Upgraded from Tier ${selectedTemplate.tier}`)
+    : isDowngrade
+    ? (lang === 'id' ? `Downgrade dari Tier ${selectedTemplate.tier}` : `Downgraded from Tier ${selectedTemplate.tier}`)
+    : (lang === 'id' ? 'Sesuai Desain Asli' : 'Base Design');
+
+  // Dynamic duration plans synchronized with active tier base price
+  const tierBasePrice = useMemo(() => {
+    return parseInt(activeTierInfo.pricing.price.replace(/[^0-9]/g, ''), 10);
+  }, [activeTierInfo]);
+
+  const dynamicDurationPlans = useMemo(() => {
+    return [
+      {
+        id: '1-year' as const,
+        years: 1,
+        name: { id: 'Paket 1 Tahun', en: '1-Year Package' },
+        priceIdr: tierBasePrice,
+        monthlyEquivalentIdr: Math.round(tierBasePrice / 12),
+        savings: { id: 'Termasuk Domain & Hosting 1 Thn', en: 'Includes 1-Year Domain & Hosting' },
+        features: durationPlans[0].features
+      },
+      {
+        id: '2-year' as const,
+        years: 2,
+        name: { id: 'Paket 2 Tahun', en: '2-Year Package' },
+        priceIdr: tierBasePrice + 550000,
+        monthlyEquivalentIdr: Math.round((tierBasePrice + 550000) / 24),
+        savings: { id: 'Hemat Rp 250.000 Perpanjangan', en: 'Save Rp 250.000 on Renewal' },
+        features: durationPlans[1].features
+      },
+      {
+        id: '3-year' as const,
+        years: 3,
+        name: { id: 'Paket 3 Tahun', en: '3-Year Package' },
+        priceIdr: tierBasePrice + 950000,
+        monthlyEquivalentIdr: Math.round((tierBasePrice + 950000) / 36),
+        badge: { id: 'HEMAT PALING BANYAK', en: 'BEST VALUE - SAVE MOST' },
+        savings: { id: 'Hemat Rp 650.000 Perpanjangan', en: 'Save Rp 650.000 on Renewal' },
+        features: durationPlans[2].features
+      }
+    ];
+  }, [tierBasePrice]);
+
+  const selectedDuration = useMemo(() => {
+    return dynamicDurationPlans.find((p) => p.id === selectedDurationId) || dynamicDurationPlans[0];
+  }, [dynamicDurationPlans, selectedDurationId]);
+
   // Pricing calculations
+  const {
+    addons: addonOptions,
+    quantities: addonQuantities,
+    setQty: setAddonQty,
+    selectedLines: selectedAddonLines,
+    addonTotal: addonPrice,
+    whatsappAddons,
+  } = useOrderAddons(activeTier, lang);
+
   const durationPrice = selectedDuration.priceIdr;
-  const addonPrice = hasEditingAddon ? websiteEditingAddon.priceIdr : 0;
   const totalPrice = durationPrice + addonPrice;
+
+  // Track specific addon counts
+  const multilingualQty = addonQuantities['multilingual'] ?? 0;
+  const extraPageQty = addonQuantities['extra-page'] ?? 0;
+
+  // Formatted WhatsApp addon lines with customer inputs
+  const formattedWhatsappAddons = useMemo(() => {
+    return selectedAddonLines.map((line) => {
+      let extraNote = '';
+      if (line.addon.id === 'multilingual' && targetLanguages.trim()) {
+        extraNote = ` (Bahasa: ${targetLanguages.trim()})`;
+      } else if (line.addon.id === 'extra-page' && extraPagesNotes.trim()) {
+        extraNote = ` (Rencana: ${extraPagesNotes.trim()})`;
+      }
+      return {
+        label: `${line.addon.name[lang]} x${line.qty}${extraNote}`,
+        subtotalIdr: line.subtotal,
+      };
+    });
+  }, [selectedAddonLines, targetLanguages, extraPagesNotes, lang]);
 
   // Filter templates when user clicks "Ganti Template"
   const selectableTemplates = useMemo(() => {
@@ -189,11 +291,11 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   // WhatsApp Checkout Link
   const whatsappUrl = useMemo(() => {
     return getWebsiteOrderWhatsAppLink({
-      templateTitle: templateDisplayTitle,
+      templateTitle: `${templateDisplayTitle} (${activeTierTitle} • ${tierStatusBadge})`,
       durationPlanName: selectedDuration.name[lang],
       durationYears: selectedDuration.years,
       durationPriceIdr: durationPrice,
-      hasEditingAddon,
+      addons: formattedWhatsappAddons,
       addonPriceIdr: addonPrice,
       totalPriceIdr: totalPrice,
       customerName: customerName.trim() || undefined,
@@ -201,7 +303,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       customerEmail: customerEmail.trim() || undefined,
       lang,
     });
-  }, [templateDisplayTitle, selectedDuration, hasEditingAddon, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
+  }, [templateDisplayTitle, activeTierTitle, tierStatusBadge, selectedDuration, formattedWhatsappAddons, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
 
   // Localized texts
   const t = {
@@ -231,9 +333,14 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       
       // Add-on
       addonHeader: 'Layanan Tambahan Opsional',
-      addonCheckboxTitle: 'Jasa Editing Website',
-      addonCheckboxPrice: '+Rp 250.000',
-      addonCheckboxDesc: 'Tim software engineer GiLabs bantu input seluruh materi teks, upload foto produk/layanan, konfigurasi logo perusahaan, dan penyesuaian layout sampai website 100% siap online.',
+      addonDesc: 'Harga add-on menyesuaikan tier template yang Anda pilih. Pengisian teks, logo, dan foto sudah termasuk paket.',
+      addonIncluded: 'Sudah termasuk',
+      addonMax: 'Maks.',
+      addonDecrease: 'Kurangi',
+      addonIncrease: 'Tambah',
+      addonCustomTitle: 'Butuh blog, booking, katalog, atau pembayaran online?',
+      addonCustomDesc: 'Fitur seperti ini disesuaikan per proyek. Konsultasikan gratis dengan tim kami.',
+      addonCustomCta: 'Konsultasi',
       
       // Section 3
       sectionContactNum: '03',
@@ -257,7 +364,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       summaryDomain: 'Domain (.com / .id)',
       summaryDomainVal: 'Gratis (Konsultasi via WA)',
       summaryDomainStatus: 'Termasuk',
-      summaryAddon: 'Add-on Editing',
+      summaryAddon: 'Add-on',
       summaryTotalLabel: 'Total Investasi',
       summaryTotalNote: 'Sudah mencakup Template + Domain + Cloud Hosting + SSL + Maintenance',
       ctaWhatsapp: 'Pesan via WhatsApp',
@@ -293,10 +400,15 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       includedHeader: "What's included in the",
       
       // Add-on
-      addonHeader: 'Optional Add-on Service',
-      addonCheckboxTitle: 'Website Content Editing Service',
-      addonCheckboxPrice: '+Rp 250.000',
-      addonCheckboxDesc: 'GiLabs software engineers will input your text copy, upload your product/service photos, apply your brand logo, and polish page layouts until 100% launch-ready.',
+      addonHeader: 'Optional Add-ons',
+      addonDesc: 'Add-on pricing follows the tier of your selected template. Text, logo, and photo input are already included.',
+      addonIncluded: 'Included',
+      addonMax: 'Max.',
+      addonDecrease: 'Decrease',
+      addonIncrease: 'Increase',
+      addonCustomTitle: 'Need a blog, booking, catalog, or online payments?',
+      addonCustomDesc: 'These features are scoped per project. Get a free consultation with our team.',
+      addonCustomCta: 'Consult',
       
       // Section 3
       sectionContactNum: '03',
@@ -320,7 +432,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       summaryDomain: 'Domain (.com / .id)',
       summaryDomainVal: 'Free (Consultation via WA)',
       summaryDomainStatus: 'Included',
-      summaryAddon: 'Editing Add-on',
+      summaryAddon: 'Add-on',
       summaryTotalLabel: 'Total Investment',
       summaryTotalNote: 'All-inclusive: Template + Domain + Cloud Hosting + SSL + Maintenance',
       ctaWhatsapp: 'Order via WhatsApp',
@@ -421,10 +533,10 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   ) : (
                     <OrderMiniPreview demoUrl={selectedTemplate.demoUrl} title={templateDisplayTitle} />
                   )}
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-black/25 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                    <span className="bg-background/95 text-foreground text-[10px] font-semibold px-2 py-1 rounded shadow-xs flex items-center gap-1">
+                  <div className="absolute inset-0 z-20 bg-black/25 dark:bg-black/40 backdrop-blur-[1px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                    <span className="bg-background text-foreground text-[11px] font-semibold px-3 py-1.5 rounded-lg shadow-md flex items-center gap-1.5 transition-transform duration-200 group-hover:scale-105">
                       <span>{t.viewDemo}</span>
-                      <ExternalLink className="w-3 h-3" />
+                      <ExternalLink className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </a>
@@ -458,6 +570,101 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                       <span>{t.viewDemo}</span>
                       <ExternalLink className="w-3 h-3" />
                     </a>
+                  </div>
+
+                  {/* Upgrade / Downgrade Indicator Banner */}
+                  <div className="pt-2">
+                    {isUpgrade ? (
+                      <div className="flex items-start gap-2.5 p-3 rounded-lg bg-success/10 border border-success/20 text-xs">
+                        <ArrowUpRight className="w-4 h-4 text-success shrink-0 mt-0.5" />
+                        <div className="space-y-0.5">
+                          <div className="font-bold text-success flex items-center gap-1.5">
+                            <span>{lang === 'id' ? 'Status: Upgrade Paket' : 'Status: Package Upgrade'}</span>
+                            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-success/20 text-success font-semibold uppercase">
+                              Tier {activeTier}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-muted-foreground leading-relaxed">
+                            {lang === 'id'
+                              ? `Template dasar ${selectedTemplate.title} (Tier ${selectedTemplate.tier}) ditingkatkan ke ${activeTierInfo.title}. Fitur bertambah: ${activeTierInfo.specs.pages[lang]}, ${activeTierInfo.specs.animation[lang]}.`
+                              : `Base template ${selectedTemplate.title} (Tier ${selectedTemplate.tier}) upgraded to ${activeTierInfo.titleEn}. Includes: ${activeTierInfo.specs.pages[lang]}, ${activeTierInfo.specs.animation[lang]}.`}
+                          </p>
+                        </div>
+                      </div>
+                    ) : isDowngrade ? (
+                      <div className="flex items-start gap-2.5 p-3 rounded-lg bg-amber-500/10 border border-amber-500/20 text-xs">
+                        <ArrowDownRight className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
+                        <div className="space-y-0.5">
+                          <div className="font-bold text-amber-500 flex items-center gap-1.5">
+                            <span>{lang === 'id' ? 'Status: Downgrade Lebih Hemat' : 'Status: Cost-Effective Downgrade'}</span>
+                            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-amber-500/20 text-amber-500 font-semibold uppercase">
+                              Tier {activeTier}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-muted-foreground leading-relaxed">
+                            {lang === 'id'
+                              ? `Template ${selectedTemplate.title} disederhanakan ke ${activeTierInfo.title} (${activeTierInfo.specs.pages[lang]}) untuk efisiensi biaya awal.`
+                              : `Template ${selectedTemplate.title} simplified to ${activeTierInfo.titleEn} (${activeTierInfo.specs.pages[lang]}) for cost efficiency.`}
+                          </p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-center gap-2 p-2 rounded-lg bg-secondary/50 border border-border/60 text-xs">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                        <span className="text-muted-foreground text-[11px]">
+                          {lang === 'id'
+                            ? `Paket standar bawaan template: ${activeTierInfo.title} (${activeTierInfo.specs.pages[lang]}).`
+                            : `Standard base template tier: ${activeTierInfo.titleEn} (${activeTierInfo.specs.pages[lang]}).`}
+                        </span>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Tier Selection - Simple & To The Point */}
+                  <div className="pt-2 border-t border-border/50 space-y-1.5">
+                    <div className="flex items-center justify-between text-xs">
+                      <span className="font-mono text-muted-foreground uppercase tracking-wider text-[11px] font-semibold">
+                        {lang === 'id' ? 'Ubah Tier Website:' : 'Change Website Tier:'}
+                      </span>
+                      <span className="text-[11px] font-medium font-mono text-muted-foreground">
+                        {tierStatusBadge}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {([1, 2, 3] as const).map((tierNum) => {
+                        const isSelected = activeTier === tierNum;
+                        const tInfo = tiersData.find((t) => t.tierNumber === tierNum) || tiersData[0];
+                        const isBase = tierNum === selectedTemplate.tier;
+                        return (
+                          <button
+                            key={tierNum}
+                            type="button"
+                            onClick={() => setCustomTier(tierNum)}
+                            className={`p-2 rounded-lg text-left transition-all cursor-pointer border ${
+                              isSelected
+                                ? 'bg-primary/10 border-primary ring-1 ring-primary/20 text-foreground'
+                                : 'bg-background border-border/80 hover:border-foreground/40 text-muted-foreground'
+                            }`}
+                          >
+                            <div className="flex items-center justify-between text-[11px]">
+                              <span className="font-bold">Tier {tierNum}</span>
+                              {isBase && (
+                                <span className="text-[9px] font-mono px-1 py-0.2 rounded bg-muted text-muted-foreground">
+                                  {lang === 'id' ? 'Asli' : 'Base'}
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-[11px] font-mono font-bold text-foreground mt-0.5">
+                              {tInfo.pricing.price}
+                            </div>
+                            <div className="text-[9px] text-muted-foreground truncate">
+                              {tInfo.specs.pages[lang]}
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -505,22 +712,30 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                       <div
                         key={item.id}
                         onClick={() => {
-                          setSelectedTemplateId(item.id);
+                          setSelectedTemplateId(item.id); setCustomTier(null);
                           setIsChangingTemplate(false);
                         }}
                         className={`bg-card border rounded-lg p-3 flex flex-col justify-between cursor-pointer transition-all hover:border-foreground/50 ${
                           isChosen ? 'border-primary ring-2 ring-primary/20' : 'border-border'
                         }`}
                       >
-                        <div className="aspect-16/10 bg-muted/40 rounded overflow-hidden mb-2.5 border border-border/50">
+                        <div className="aspect-16/10 bg-muted/40 rounded overflow-hidden mb-2.5 border border-border/50 relative group">
                           {item.previewImage ? (
                             <OrderTemplateImage
                               src={item.previewImage}
                               alt={itemTitle}
                             />
                           ) : (
-                            <OrderMiniPreview demoUrl={item.demoUrl} title={itemTitle} />
+                            <div className="w-full h-full transition-all duration-300 group-hover:scale-105 group-hover:blur-[3px]">
+                              <OrderMiniPreview demoUrl={item.demoUrl} title={itemTitle} />
+                            </div>
                           )}
+                          <div className="absolute inset-0 z-20 bg-black/25 dark:bg-black/40 backdrop-blur-[1px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                            <span className="bg-background text-foreground text-[10px] font-semibold px-2.5 py-1 rounded-md shadow-xs flex items-center gap-1">
+                              <span>{t.viewDemo}</span>
+                              <ExternalLink className="w-3 h-3" />
+                            </span>
+                          </div>
                         </div>
                         <div className="flex items-center justify-between">
                           <h4 className="text-xs font-bold text-foreground truncate mr-2">
@@ -561,7 +776,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
 
             {/* 3 Duration Plan Cards */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-              {durationPlans.map((plan) => {
+              {dynamicDurationPlans.map((plan) => {
                 const isSelected = plan.id === selectedDurationId;
 
                 return (
@@ -636,42 +851,190 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
               </div>
             </div>
 
-            {/* Optional Add-on: Elegant Interactive Card */}
-            <div className="pt-2">
-              <label
-                className={`flex items-start gap-3.5 p-4 rounded-xl border transition-all cursor-pointer ${
-                  hasEditingAddon
-                    ? 'border-primary bg-primary/5 ring-1 ring-primary/20'
-                    : 'border-border hover:border-foreground/40 bg-card'
-                }`}
-              >
-                <input
-                  type="checkbox"
-                  checked={hasEditingAddon}
-                  onChange={(e) => setHasEditingAddon(e.target.checked)}
-                  className="mt-0.5 w-4 h-4 rounded text-foreground cursor-pointer shrink-0"
-                />
-                <div className="space-y-1">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
-                    <span className="text-xs font-bold text-foreground">
-                      {t.addonCheckboxTitle}
-                    </span>
-                    <span className="text-xs font-bold text-primary">
-                      {t.addonCheckboxPrice}
-                    </span>
-                  </div>
-                  <p className="text-xs text-muted-foreground leading-relaxed">
-                    {t.addonCheckboxDesc}
-                  </p>
+            {/* Optional Add-ons */}
+            <div className="pt-4 space-y-3">
+              <div>
+                <h3 className="text-xs font-semibold text-foreground">{t.addonHeader}</h3>
+                <p className="mt-0.5 text-[11px] text-muted-foreground leading-relaxed">{t.addonDesc}</p>
+              </div>
+
+              <div className="space-y-2.5">
+                {addonOptions.map(({ addon, price, maxQty, isIncluded, isAvailable }) => {
+                  const qty = addonQuantities[addon.id] ?? 0;
+                  const isActive = qty > 0;
+                  const unit = addonUnitLabel[addon.unit][lang];
+
+
+                  if (isIncluded || !isAvailable) {
+                    return (
+                      <div
+                        key={addon.id}
+                        className="flex items-start justify-between gap-3 p-4 rounded-xl border border-dashed border-border bg-muted/20"
+                      >
+                        <div className="space-y-1">
+                          <span className="text-xs font-bold text-foreground">{addon.name[lang]}</span>
+                          <p className="text-xs text-muted-foreground leading-relaxed">{addon.description[lang]}</p>
+                        </div>
+                        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-success whitespace-nowrap">
+                          <Check className="w-3.5 h-3.5" />
+                          {t.addonIncluded}
+                        </span>
+                      </div>
+                    );
+                  }
+
+                  const cardClass = `flex flex-col p-4 rounded-xl border transition-all ${
+                    isActive
+                      ? 'border-primary bg-card shadow-xs ring-2 ring-primary/15'
+                      : 'border-border hover:border-foreground/40 bg-card/60'
+                  }`;
+
+                  const info = (
+                    <div className="space-y-1 flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <span className="text-xs font-bold text-foreground">{addon.name[lang]}</span>
+                        <span className="text-xs font-bold text-primary whitespace-nowrap">
+                          +{formatPrice(price ?? 0)}
+                          {unit && <span className="font-medium text-muted-foreground">{unit}</span>}
+                        </span>
+                      </div>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{addon.description[lang]}</p>
+                      {addon.upgradeHint && qty >= maxQty && (
+                        <p className="text-[11px] text-warning font-medium">{addon.upgradeHint[lang]}</p>
+                      )}
+                    </div>
+                  );
+
+
+
+                  return (
+                    <div key={addon.id} className={cardClass}>
+                      <div className="flex items-start gap-3.5 justify-between w-full">
+                        {info}
+                        <div className="flex flex-col items-end gap-1 shrink-0 ml-2">
+                          <div className="inline-flex items-center rounded-lg border border-border/80 bg-background">
+                            <button
+                              type="button"
+                              aria-label={`${t.addonDecrease} ${addon.name[lang]}`}
+                              onClick={() => setAddonQty(addon.id, qty - 1)}
+                              disabled={qty === 0}
+                              className="w-7 h-7 flex items-center justify-center text-foreground cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 hover:bg-secondary rounded-l-lg transition-colors"
+                            >
+                              <Minus className="w-3 h-3" />
+                            </button>
+                            <span className="w-7 text-center text-xs font-mono font-bold text-foreground" aria-live="polite">
+                              {qty}
+                            </span>
+                            <button
+                              type="button"
+                              aria-label={`${t.addonIncrease} ${addon.name[lang]}`}
+                              onClick={() => setAddonQty(addon.id, qty + 1)}
+                              disabled={qty >= maxQty}
+                              className="w-7 h-7 flex items-center justify-center text-foreground cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 hover:bg-secondary rounded-r-lg transition-colors"
+                            >
+                              <Plus className="w-3 h-3" />
+                            </button>
+                          </div>
+                          <span className="text-[10px] text-muted-foreground">
+                            {t.addonMax} {maxQty}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Integrated Contextual Sub-form for Multi Bahasa */}
+                      {isActive && addon.id === 'multilingual' && (
+                        <div className="mt-3.5 pt-3.5 border-t border-border/60 space-y-2 animate-in fade-in duration-200">
+                          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+                            <label htmlFor="target-languages" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                              <Languages className="w-3.5 h-3.5 text-primary" />
+                              <span>
+                                {lang === 'id'
+                                  ? `Tentukan ${qty} Bahasa Tambahan:`
+                                  : `Specify ${qty} Additional Language${qty > 1 ? 's' : ''}:`}
+                              </span>
+                            </label>
+                            <span className="text-[10px] font-mono text-muted-foreground">
+                              {lang === 'id' ? 'Bahasa default: Indonesia' : 'Default: English'}
+                            </span>
+                          </div>
+                          <input
+                            id="target-languages"
+                            type="text"
+                            value={targetLanguages}
+                            onChange={(e) => setTargetLanguages(e.target.value)}
+                            placeholder={
+                              lang === 'id'
+                                ? 'cth: Inggris, Mandarin, Jepang, Arab'
+                                : 'e.g. English, Mandarin, Japanese, Arabic'
+                            }
+                            className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-medium"
+                          />
+                          <p className="text-[11px] text-muted-foreground leading-relaxed">
+                            {lang === 'id'
+                              ? 'Tuliskan bahasa apa saja yang ingin disediakan pada tombol pengganti bahasa website.'
+                              : 'Enter the languages you want to provide in the website language switcher.'}
+                          </p>
+                        </div>
+                      )}
+
+                      {/* Integrated Contextual Sub-form for Halaman Tambahan */}
+                      {isActive && addon.id === 'extra-page' && (
+                        <div className="mt-3.5 pt-3.5 border-t border-border/60 space-y-2 animate-in fade-in duration-200">
+                          <label htmlFor="extra-pages-notes" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                            <FileText className="w-3.5 h-3.5 text-primary" />
+                            <span>
+                              {lang === 'id'
+                                ? `Rencana Konten ${qty} Halaman Tambahan:`
+                                : `Planned Content for ${qty} Additional Page${qty > 1 ? 's' : ''}:`}
+                            </span>
+                          </label>
+                          <input
+                            id="extra-pages-notes"
+                            type="text"
+                            value={extraPagesNotes}
+                            onChange={(e) => setExtraPagesNotes(e.target.value)}
+                            placeholder={
+                              lang === 'id'
+                                ? 'cth: Portofolio Klien, Tim & Karir, Galeri Sertifikasi'
+                                : 'e.g. Client Portfolio, Team & Careers, Certification Gallery'
+                            }
+                            className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-medium"
+                          />
+                          <p className="text-[11px] text-muted-foreground leading-relaxed">
+                            {lang === 'id'
+                              ? 'Daftar nama halaman baru yang ingin dibuat sesuai kebutuhan bisnis Anda.'
+                              : 'List of new page names to be created tailored to your business needs.'}
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Custom features → Tier 4 / consultation */}
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-1">
+                <div className="space-y-0.5">
+                  <p className="text-xs font-semibold text-foreground">{t.addonCustomTitle}</p>
+                  <p className="text-[11px] text-muted-foreground leading-relaxed">{t.addonCustomDesc}</p>
                 </div>
-              </label>
+                <a
+                  href={getWhatsAppLink('template', lang, templateDisplayTitle)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-foreground hover:text-primary transition-colors cursor-pointer whitespace-nowrap"
+                >
+                  <MessageCircle className="w-3.5 h-3.5" />
+                  {t.addonCustomCta}
+                </a>
+              </div>
             </div>
           </section>
 
           {/* ------------------------------------------------------- */}
-          {/* SECTION 03: CONTACT DETAILS                             */}
+          {/* SECTION 03: CONTACT DETAILS (ENHANCED CARD UI)          */}
           {/* ------------------------------------------------------- */}
-          <section className="border-t border-border/60 pt-8 space-y-4">
+          <section className="bg-card border border-border rounded-xl p-5 sm:p-6 shadow-xs space-y-5">
             <div>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono font-bold text-muted-foreground/70">
@@ -689,64 +1052,93 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Name */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">
-                  {t.nameLabel} <span className="text-destructive">*</span>
-                </label>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="customer-name" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                    <User className="w-3.5 h-3.5 text-primary shrink-0" />
+                    <span>{t.nameLabel}</span>
+                  </label>
+                  <span className="text-[10px] font-mono text-destructive font-medium">
+                    {lang === 'id' ? '*Wajib' : '*Required'}
+                  </span>
+                </div>
                 <input
+                  id="customer-name"
                   type="text"
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
                   placeholder={t.namePlaceholder}
-                  className="w-full text-xs bg-background border border-border rounded-lg px-3 py-2.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-foreground"
+                  className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 sm:py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-medium"
                 />
               </div>
 
               {/* Company */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">
-                  {t.companyLabel}
-                </label>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="company-name" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                    <Building2 className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                    <span>{t.companyLabel}</span>
+                  </label>
+                  <span className="text-[10px] font-mono text-muted-foreground">
+                    {lang === 'id' ? 'Opsional' : 'Optional'}
+                  </span>
+                </div>
                 <input
+                  id="company-name"
                   type="text"
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder={t.companyPlaceholder}
-                  className="w-full text-xs bg-background border border-border rounded-lg px-3 py-2.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-foreground"
+                  className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 sm:py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-medium"
                 />
               </div>
 
               {/* WhatsApp */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">
-                  {t.phoneLabel} <span className="text-destructive">*</span>
-                </label>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="customer-phone" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                    <Phone className="w-3.5 h-3.5 text-primary shrink-0" />
+                    <span>{t.phoneLabel}</span>
+                  </label>
+                  <span className="text-[10px] font-mono text-destructive font-medium">
+                    {lang === 'id' ? '*Wajib' : '*Required'}
+                  </span>
+                </div>
                 <input
+                  id="customer-phone"
                   type="tel"
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
                   placeholder={t.phonePlaceholder}
-                  className="w-full text-xs bg-background border border-border rounded-lg px-3 py-2.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-foreground font-mono"
+                  className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 sm:py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-mono font-medium"
                 />
               </div>
 
               {/* Email */}
               <div className="space-y-1.5">
-                <label className="text-xs font-semibold text-foreground">
-                  {t.emailLabel}
-                </label>
+                <div className="flex items-center justify-between">
+                  <label htmlFor="customer-email" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
+                    <Mail className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                    <span>{t.emailLabel}</span>
+                  </label>
+                  <span className="text-[10px] font-mono text-muted-foreground">
+                    {lang === 'id' ? 'Opsional' : 'Optional'}
+                  </span>
+                </div>
                 <input
+                  id="customer-email"
                   type="email"
                   value={customerEmail}
                   onChange={(e) => setCustomerEmail(e.target.value)}
                   placeholder={t.emailPlaceholder}
-                  className="w-full text-xs bg-background border border-border rounded-lg px-3 py-2.5 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-1 focus:ring-foreground"
+                  className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 sm:py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-medium"
                 />
               </div>
             </div>
 
-            <p className="text-[11px] text-muted-foreground">
-              {t.privacyNote}
-            </p>
+            <div className="flex items-center gap-2 pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
+              <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
+              <span>{t.privacyNote}</span>
+            </div>
           </section>
 
         </div>
@@ -776,6 +1168,10 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   </span>
                   <div className="text-foreground font-semibold line-clamp-1" title={templateDisplayTitle}>
                     {templateDisplayTitle}
+                  </div>
+                  <div className="text-[10px] text-primary font-mono font-semibold flex items-center gap-1.5">
+                    <span>{activeTierTitle}</span>
+                    <span className="opacity-70">• {tierStatusBadge}</span>
                   </div>
                 </div>
                 <div className="text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">
@@ -817,19 +1213,38 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
               </div>
 
               {/* Add-on Item */}
-              {hasEditingAddon && (
-                <div className="flex items-start justify-between gap-3 pt-2 border-t border-dashed border-border/60">
-                  <div className="space-y-0.5">
-                    <span className="text-[11px] font-medium text-muted-foreground">
-                      {t.summaryAddon}
-                    </span>
-                    <div className="text-foreground font-semibold">
-                      {websiteEditingAddon.name[lang]}
+              {selectedAddonLines.length > 0 && (
+                <div className="pt-2 space-y-2 border-t border-dashed border-border/60">
+                  <span className="text-[11px] font-medium text-muted-foreground">
+                    {t.summaryAddon}
+                  </span>
+                  {selectedAddonLines.map((line) => (
+                    <div key={line.addon.id} className="flex items-start justify-between gap-3">
+                      <div className="space-y-0.5">
+                        <div className="text-foreground font-semibold">
+                          {line.addon.name[lang]}
+                        </div>
+                        {line.addon.id === 'multilingual' && targetLanguages.trim() && (
+                          <div className="text-[10px] text-primary font-medium truncate max-w-[180px]">
+                            {lang === 'id' ? 'Bahasa:' : 'Languages:'} {targetLanguages.trim()}
+                          </div>
+                        )}
+                        {line.addon.id === 'extra-page' && extraPagesNotes.trim() && (
+                          <div className="text-[10px] text-primary font-medium truncate max-w-[180px]">
+                            {lang === 'id' ? 'Halaman:' : 'Pages:'} {extraPagesNotes.trim()}
+                          </div>
+                        )}
+                        {line.addon.unit !== 'flat' && (
+                          <div className="text-[10px] text-muted-foreground">
+                            {line.qty} × {formatPrice(line.unitPrice)}
+                          </div>
+                        )}
+                      </div>
+                      <div className="text-right font-bold text-foreground whitespace-nowrap">
+                        {formatPrice(line.subtotal)}
+                      </div>
                     </div>
-                  </div>
-                  <div className="text-right font-bold text-foreground whitespace-nowrap">
-                    {formatPrice(websiteEditingAddon.priceIdr)}
-                  </div>
+                  ))}
                 </div>
               )}
             </div>

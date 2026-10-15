@@ -1,6 +1,6 @@
 ---
 import type { TemplateItem } from '../../data/templatesData';
-import { tiersData, defaultIndustryAdaptations } from '../../data/templatesData';
+import { tiersData, defaultIndustryAdaptations, templateAddons, addonUnitLabel, getAddonTierInfo } from '../../data/templatesData';
 import IndustryAdaptationGallery from './IndustryAdaptationGallery';
 import { getWhatsAppLink } from '../../lib/utils';
 import { 
@@ -21,9 +21,10 @@ const tier = tiersData.find((t) => t.tierNumber === template.tier) || tiersData[
 const title = lang === 'en' && template.titleEn ? template.titleEn : template.title;
 const tierTitle = lang === 'en' ? tier.titleEn : tier.title;
 
-const orderUrl = lang === 'en' 
+const orderBaseUrl = lang === 'en' 
   ? `/en/templates/order?template=${template.id}` 
   : `/templates/order?template=${template.id}`;
+const orderUrl = `${orderBaseUrl}&tier=${template.tier}`;
 
 const catalogUrl = lang === 'en' ? '/en/templates' : '/templates';
 const whatsappUrl = getWhatsAppLink('template', lang, `${title} (${tierTitle})`);
@@ -51,6 +52,11 @@ const deliverables = lang === 'id' ? [
   'Technical maintenance & routine backups included'
 ];
 
+// Add-on sesuai tier template ini
+const addonList = templateAddons.map((addon) => ({ addon, ...getAddonTierInfo(addon, template.tier) }));
+const formatIdr = (val: number) => `Rp ${val.toLocaleString('id-ID')}`;
+const consultUrl = getWhatsAppLink('template', lang, title);
+
 // Minimalist technical specs
 const specs = [
   { label: lang === 'id' ? 'Paket Layanan' : 'Service Tier', value: tierTitle },
@@ -63,7 +69,7 @@ const specs = [
 
 <div class="w-full">
   {/* Window 1: Hero & Preview (1 Full Viewport Window) */}
-  <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-between py-8 sm:py-12 border-b border-border/50">
+  <section class="min-h-[calc(100vh-4rem)] flex flex-col justify-between py-8 sm:py-12">
     <div class="container mx-auto px-4 sm:px-6">
       
       {/* Top Action */}
@@ -93,44 +99,113 @@ const specs = [
               : 'Turnkey business website service based on this layout. Includes domain, high-speed cloud hosting, and complete content setup.'}
           </p>
 
-          {/* Minimal Pricing & Inclusions */}
-          <div class="pt-2 pb-1 space-y-1 border-t border-border/40">
-            <div class="text-3xl sm:text-4xl font-mono font-bold text-foreground tracking-tight">
-              {tier.pricing.price}
+          {/* Native Ultra-Fast Zero-Lag Tier Switcher */}
+          <div class="space-y-4 pt-2">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between text-xs">
+                <span class="font-mono text-muted-foreground uppercase tracking-wider text-[11px] font-semibold">
+                  {lang === 'id' ? 'Pilihan Tier Website:' : 'Select Website Tier:'}
+                </span>
+                <span id="hero-tier-relationship" class="text-[11px] font-medium font-mono text-muted-foreground">
+                  {lang === 'id' ? 'Bawaan Layout Asli' : 'Original Layout Default'}
+                </span>
+              </div>
+
+              <div class="grid grid-cols-3 gap-2 p-1.5 bg-secondary/50 rounded-xl border border-border/70" id="hero-tier-buttons">
+                {[1, 2, 3].map((tierNum) => {
+                  const t = tiersData[tierNum - 1];
+                  const isBase = tierNum === template.tier;
+                  const isUpgrade = tierNum > template.tier;
+                  const isSelected = tierNum === template.tier;
+
+                  return (
+                    <button
+                      type="button"
+                      data-tier-btn={tierNum}
+                      class={`tier-btn relative p-2.5 sm:p-3 rounded-lg text-left transition-all cursor-pointer flex flex-col justify-between ${
+                        isSelected
+                          ? 'bg-card text-foreground shadow-xs border border-border ring-1 ring-foreground/20'
+                          : 'text-muted-foreground hover:text-foreground hover:bg-card/40 border border-transparent'
+                      }`}
+                    >
+                      <div class="flex items-center justify-between gap-1 mb-1">
+                        <span class={`tier-btn-title text-xs font-bold ${isSelected ? 'text-foreground' : 'text-foreground/80'}`}>
+                          Tier {tierNum}
+                        </span>
+                        {isBase ? (
+                          <span class="tier-btn-badge text-[9px] font-mono px-1.5 py-0.2 rounded bg-primary/10 text-primary font-semibold">
+                            {lang === 'id' ? 'Asli' : 'Base'}
+                          </span>
+                        ) : isUpgrade ? (
+                          <span class="tier-btn-badge text-[9px] font-mono px-1.5 py-0.2 rounded bg-success/10 text-success font-semibold">
+                            {lang === 'id' ? 'Upgrade' : 'Upgrade'}
+                          </span>
+                        ) : (
+                          <span class="tier-btn-badge text-[9px] font-mono px-1.5 py-0.2 rounded bg-muted text-muted-foreground font-semibold">
+                            {lang === 'id' ? 'Hemat' : 'Save'}
+                          </span>
+                        )}
+                      </div>
+
+                      <div class="tier-btn-price text-xs sm:text-sm font-mono font-bold text-foreground tracking-tight">
+                        {t.pricing.price}
+                      </div>
+
+                      <div class="text-[10px] text-muted-foreground truncate mt-0.5">
+                        {t.specs.pages[lang]}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
             </div>
-            <p class="text-xs text-muted-foreground font-light">
-              • {tier.pricing.note[lang]} • {lang === 'id' ? 'Tanpa biaya tersembunyi' : 'No hidden fees'}
-            </p>
-          </div>
 
-          {/* Clean Action Buttons */}
-          <div class="flex flex-wrap items-center gap-3 pt-2">
-            <a
-              href={orderUrl}
-              class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-foreground text-background font-semibold text-xs sm:text-sm hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
-            >
-              <span>{lang === 'id' ? 'Pesan Website Ini' : 'Order This Website'}</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            {/* Pricing Display */}
+            <div class="pt-2 pb-1 space-y-1.5 border-t border-border/40">
+              <div class="flex items-baseline gap-3">
+                <div id="hero-tier-price" class="text-3xl sm:text-4xl font-mono font-bold text-foreground tracking-tight">
+                  {tier.pricing.price}
+                </div>
+                <span id="hero-tier-discount" class="text-xs font-bold text-success bg-success/10 px-2 py-0.5 rounded">
+                  {tier.pricing.discountLabel ? tier.pricing.discountLabel[lang] : ''}
+                </span>
+              </div>
+              <p id="hero-tier-note" class="text-xs text-muted-foreground font-light leading-relaxed">
+                • {tier.pricing.note[lang]} • {tier.specs.animation[lang]} • {lang === 'id' ? 'Tanpa biaya tersembunyi' : 'No hidden fees'}
+              </p>
+            </div>
 
-            <a
-              href={template.demoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-border/80 hover:bg-secondary text-foreground font-medium text-xs sm:text-sm transition-colors cursor-pointer"
-            >
-              <span>{lang === 'id' ? 'Live Preview Demo' : 'Live Preview'}</span>
-              <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
-            </a>
+            {/* Action Buttons */}
+            <div class="flex flex-wrap items-center gap-3 pt-1">
+              <a
+                id="hero-order-btn"
+                href={orderUrl}
+                class="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-lg bg-foreground text-background font-semibold text-xs sm:text-sm hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
+              >
+                <span>{lang === 'id' ? 'Pesan Website Ini' : 'Order This Website'}</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </a>
 
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-3 cursor-pointer"
-            >
-              {lang === 'id' ? 'Konsultasi WhatsApp →' : 'Consult via WhatsApp →'}
-            </a>
+              <a
+                href={template.demoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg border border-border/80 hover:bg-secondary text-foreground font-medium text-xs sm:text-sm transition-colors cursor-pointer"
+              >
+                <span>{lang === 'id' ? 'Live Preview Demo' : 'Live Preview'}</span>
+                <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
+              </a>
+
+              <a
+                id="hero-whatsapp-btn"
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-xs text-muted-foreground hover:text-foreground transition-colors px-2 py-3 cursor-pointer"
+              >
+                {lang === 'id' ? 'Konsultasi WhatsApp →' : 'Consult via WhatsApp →'}
+              </a>
+            </div>
           </div>
         </div>
 
@@ -150,14 +225,26 @@ const specs = [
               </a>
             </div>
 
-            <div class="aspect-[16/10] bg-muted/10 relative overflow-hidden">
+            <a
+              href={template.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="aspect-[16/10] bg-muted/10 relative overflow-hidden block group cursor-pointer"
+              title={lang === 'id' ? 'Buka Live Preview Demo' : 'Open Live Preview Demo'}
+            >
               <img
                 src={template.previewImage}
                 alt={title}
-                class="w-full h-full object-cover"
+                class="w-full h-full object-cover transition-all duration-300 group-hover:scale-105 group-hover:blur-[3px]"
                 loading="eager"
               />
-            </div>
+              <div class="absolute inset-0 z-20 bg-black/25 dark:bg-black/40 backdrop-blur-[1px] transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <span class="bg-background text-foreground text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-lg shadow-lg flex items-center gap-2 transition-transform duration-200 group-hover:scale-105">
+                  <span>{lang === 'id' ? 'Live Preview Demo' : 'Live Preview Demo'}</span>
+                  <ExternalLink className="w-4 h-4" />
+                </span>
+              </div>
+            </a>
           </div>
         </div>
 
@@ -167,54 +254,172 @@ const specs = [
     </div>
   </section>
 
-  {/* Window 2: Cakupan Layanan (1 Full Viewport Window) */}
-  <section class="min-h-screen flex flex-col justify-center py-16 sm:py-24 border-b border-border/50">
+  {/* Window 2: Cakupan Layanan & Layanan Tambahan (1 Section, 2-Column Clean Minimalist Cards Grid) */}
+  <section class="min-h-screen flex flex-col justify-center py-16 sm:py-24">
     <div class="container mx-auto px-4 sm:px-6">
       
-      {/* TITLE ONLY - No eyebrow */}
+      {/* SECTION HEADER - Clean Minimalist */}
       <div class="max-w-2xl mb-12 sm:mb-16">
         <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-foreground">
-          {lang === 'id' ? 'Cakupan Layanan' : 'Scope of Service'}
+          {lang === 'id' ? 'Cakupan & Layanan Tambahan' : 'Scope & Optional Add-ons'}
         </h2>
         <p class="text-base sm:text-lg text-muted-foreground font-light mt-3 leading-relaxed">
           {lang === 'id'
-            ? 'Semua urusan teknis dan pengisian konten dikerjakan terima beres oleh tim Gilabs.'
-            : 'All technical configuration and content onboarding are handled directly by Gilabs.'}
+            ? 'Transparansi penuh atas apa yang sudah termasuk di dalam paket dan opsi pengembangan sesuai skala bisnis Anda.'
+            : 'Full transparency on package inclusions and optional expansion tailored to your business scale.'}
         </p>
       </div>
 
-      {/* Spacious Open Editorial Grid */}
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+      {/* 2-Column Grid: Left (Cakupan Layanan), Right (Layanan Tambahan) */}
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
         
-        {/* Deliverables with Editorial Numbering */}
-        <div class="lg:col-span-7 divide-y divide-border/60">
-          {deliverables.map((item, idx) => (
-            <div class="py-4.5 flex items-center gap-5 sm:gap-6">
-              <span class="text-xs sm:text-sm font-mono text-muted-foreground w-6">
-                {String(idx + 1).padStart(2, '0')}
-              </span>
-              <span class="text-sm sm:text-base font-light text-foreground">
-                {item}
+        {/* CARD KIRI: Cakupan Layanan (Inclusions & Technical Specs) */}
+        <div class="bg-card border border-border/70 rounded-xl p-6 sm:p-8 flex flex-col justify-between hover:border-foreground/30 transition-all duration-300 shadow-xs">
+          <div>
+            {/* Card Header */}
+            <div class="flex items-start justify-between pb-5 border-b border-border/50">
+              <div>
+                <span class="text-[11px] font-mono tracking-widest uppercase font-semibold text-primary">
+                  {lang === 'id' ? '01 • STANDAR PAKET' : '01 • STANDARD INCLUSION'}
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-foreground mt-1">
+                  {lang === 'id' ? 'Cakupan Layanan' : 'Scope of Service'}
+                </h3>
+              </div>
+              <span class="text-xs font-mono font-medium text-success bg-success/10 px-2.5 py-1 rounded">
+                {lang === 'id' ? 'Terima Beres' : 'Turnkey'}
               </span>
             </div>
-          ))}
+
+            <p class="text-xs sm:text-sm text-muted-foreground font-light mt-3.5 leading-relaxed">
+              {lang === 'id'
+                ? 'Semua konfigurasi infrastruktur dan pengisian konten bisnis dikerjakan siap online oleh tim Gilabs.'
+                : 'All infrastructure setup and content onboarding are handled directly to launch by the Gilabs team.'}
+            </p>
+
+            {/* Deliverables List */}
+            <div class="mt-6 divide-y divide-border/50">
+              {deliverables.map((item, idx) => (
+                <div class="py-3 flex items-center gap-3.5">
+                  <span class="text-xs font-mono text-muted-foreground/80 w-5 shrink-0">
+                    {String(idx + 1).padStart(2, '0')}
+                  </span>
+                  <span class="text-xs sm:text-sm font-light text-foreground">
+                    {item}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Technical Specifications Summary */}
+            <div class="mt-6 pt-5 border-t border-border/50 space-y-2.5 text-xs font-light">
+              {specs.map((spec) => (
+                <div class="flex items-center justify-between gap-4 py-1">
+                  <span class="font-mono text-muted-foreground uppercase text-[11px]">{spec.label}</span>
+                  <span id={spec.label.includes("Paket") || spec.label.includes("Tier") ? "detail-spec-tier" : undefined} class="font-medium text-foreground text-right">{spec.value}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div class="mt-8 pt-5 border-t border-border/50 flex items-center justify-between text-xs text-muted-foreground">
+            <span>• {lang === 'id' ? 'Garansi uptime 99.9%' : '99.9% Uptime Guarantee'}</span>
+            <span>• {lang === 'id' ? 'Tanpa biaya tersembunyi' : 'No hidden fees'}</span>
+          </div>
         </div>
 
-        {/* Technical Specifications */}
-        <div class="lg:col-span-5 divide-y divide-border/60 border-t lg:border-t-0 border-border/60">
-          {specs.map((spec) => (
-            <div class="py-5 flex items-center justify-between gap-4">
-              <span class="text-xs sm:text-sm font-mono uppercase text-muted-foreground">{spec.label}</span>
-              <span class="text-sm sm:text-base font-medium text-foreground text-right">{spec.value}</span>
+        {/* CARD KANAN: Layanan Tambahan (Add-ons & Upgrades) */}
+        <div class="bg-card border border-border/70 rounded-xl p-6 sm:p-8 flex flex-col justify-between hover:border-foreground/30 transition-all duration-300 shadow-xs">
+          <div>
+            {/* Card Header */}
+            <div class="flex items-start justify-between pb-5 border-b border-border/50">
+              <div>
+                <span class="text-[11px] font-mono tracking-widest uppercase font-semibold text-muted-foreground">
+                  {lang === 'id' ? '02 • KEBUTUHAN SPESIFIK' : '02 • EXTENSIONS'}
+                </span>
+                <h3 class="text-xl sm:text-2xl font-bold tracking-tight text-foreground mt-1">
+                  {lang === 'id' ? 'Layanan Tambahan' : 'Optional Add-ons'}
+                </h3>
+              </div>
+              <span id="detail-card-tier-badge" class="text-xs font-mono font-medium text-muted-foreground bg-secondary/80 px-2.5 py-1 rounded">
+                {tierTitle}
+              </span>
             </div>
-          ))}
+
+            <p id="detail-card-tier-desc" class="text-xs sm:text-sm text-muted-foreground font-light mt-3.5 leading-relaxed">
+              {lang === 'id'
+                ? `Pilihan add-on fleksibel saat checkout, dihitung secara transparan untuk ${tierTitle}.`
+                : `Transparent add-ons selectable at checkout, calibrated specifically for ${tierTitle}.`}
+            </p>
+
+            {/* Addon Items List */}
+            <div class="mt-6 divide-y divide-border/50">
+              {addonList.map(({ addon, price, isIncluded, isAvailable }) => (
+                <div class="py-3.5 flex items-start justify-between gap-4">
+                  <div class="space-y-0.5 max-w-[280px] sm:max-w-xs">
+                    <span class="text-xs sm:text-sm font-medium text-foreground block">
+                      {addon.name[lang]}
+                    </span>
+                    <p class="text-[11px] sm:text-xs text-muted-foreground font-light leading-relaxed">
+                      {addon.description[lang]}
+                    </p>
+                  </div>
+                  <span class="text-xs sm:text-sm font-mono text-right whitespace-nowrap shrink-0 pt-0.5">
+                    {isIncluded || !isAvailable ? (
+                      <span class="text-success font-medium">{lang === 'id' ? 'Sudah termasuk' : 'Included'}</span>
+                    ) : (
+                      <span class="font-semibold text-foreground">
+                        +{formatIdr(price ?? 0)}
+                        <span class="text-muted-foreground font-normal text-[11px] ml-0.5">{addonUnitLabel[addon.unit][lang]}</span>
+                      </span>
+                    )}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Custom Features Note */}
+            <div class="mt-6 pt-5 border-t border-border/50 space-y-1.5">
+              <p class="text-xs font-medium text-foreground">
+                {lang === 'id' ? 'Butuh blog/CMS, booking, atau gateway pembayaran?' : 'Need a blog/CMS, booking, or payment gateway?'}
+              </p>
+              <p class="text-[11px] sm:text-xs text-muted-foreground font-light leading-relaxed">
+                {lang === 'id'
+                  ? 'Fitur interaktif lanjutan atau alur bisnis khusus dapat dikonsultasikan langsung untuk estimasi pengerjaan.'
+                  : 'Advanced interactive features and specialized business logic can be scoped directly via consultation.'}
+              </p>
+            </div>
+          </div>
+
+          {/* Action CTAs inside Right Card */}
+          <div class="mt-8 pt-5 border-t border-border/50 flex flex-wrap items-center justify-between gap-3">
+            <a
+              id="detail-card-order-btn"
+              href={orderUrl}
+              class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg bg-foreground text-background font-semibold text-xs hover:opacity-90 transition-opacity cursor-pointer shadow-xs"
+            >
+              <span>{lang === 'id' ? 'Pilih Add-on di Pemesanan' : 'Choose Add-ons at Checkout'}</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </a>
+
+            <a
+              id="detail-card-consult-btn"
+              href={consultUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="text-xs text-muted-foreground hover:text-foreground transition-colors cursor-pointer"
+            >
+              {lang === 'id' ? 'Konsultasi custom →' : 'Discuss custom features →'}
+            </a>
+          </div>
         </div>
 
       </div>
+
     </div>
   </section>
 
-  {/* Window 3: Adaptasi Industri (1 Full Viewport Window) */}
+  {/* Window 3: Adaptasi Industri / Galeri (1 Full Viewport Window) */}
   <section class="min-h-screen flex flex-col justify-center py-16 sm:py-24">
     <div class="container mx-auto px-4 sm:px-6">
       
@@ -240,4 +445,129 @@ const specs = [
 
     </div>
   </section>
+
+  <script define:vars={{ baseTier: template.tier, templateTitle: title, templateId: template.id, lang }}>
+    const tiersInfo = [
+      {
+        num: 1,
+        title: 'Tier 1 • Essential',
+        price: 'Rp 689.000',
+        discount: lang === 'en' ? '28% OFF' : 'Hemat 28%',
+        note: lang === 'en' ? 'Domain, hosting & setup included' : 'Termasuk domain, hosting & setup',
+        animation: lang === 'en' ? 'Lightweight & responsive design' : 'Desain ringan & responsif',
+        pages: lang === 'en' ? '1 Page' : '1 Halaman'
+      },
+      {
+        num: 2,
+        title: 'Tier 2 • Motion',
+        price: 'Rp 1.289.000',
+        discount: lang === 'en' ? '41% OFF' : 'Hemat 41%',
+        note: lang === 'en' ? 'Domain, hosting & setup included' : 'Termasuk domain, hosting & setup',
+        animation: lang === 'en' ? 'Animations & scroll effects' : 'Animasi & efek scroll',
+        pages: lang === 'en' ? '3–5 Pages' : '3–5 Halaman'
+      },
+      {
+        num: 3,
+        title: 'Tier 3 • Immersive',
+        price: 'Rp 2.800.000',
+        discount: lang === 'en' ? '43% OFF' : 'Hemat 43%',
+        note: lang === 'en' ? 'Domain, hosting & setup included' : 'Termasuk domain, hosting & setup',
+        animation: lang === 'en' ? 'Custom scroll animations & transitions' : 'Animasi scroll & transisi khusus',
+        pages: lang === 'en' ? 'Up to 8 Pages' : 'Hingga 8 Halaman'
+      }
+    ];
+
+    function selectTier(tierNum) {
+      const t = tiersInfo[tierNum - 1] || tiersInfo[0];
+
+      // 1. Update button visual active states
+      document.querySelectorAll('[data-tier-btn]').forEach((btn) => {
+        const num = parseInt(btn.getAttribute('data-tier-btn') || '1', 10);
+        const isSelected = num === tierNum;
+        btn.className = `tier-btn relative p-2.5 sm:p-3 rounded-lg text-left transition-all cursor-pointer flex flex-col justify-between ${
+          isSelected
+            ? 'bg-card text-foreground shadow-xs border border-border ring-1 ring-foreground/20'
+            : 'text-muted-foreground hover:text-foreground hover:bg-card/40 border border-transparent'
+        }`;
+        const titleEl = btn.querySelector('.tier-btn-title');
+        if (titleEl) {
+          titleEl.className = `tier-btn-title text-xs font-bold ${isSelected ? 'text-foreground' : 'text-foreground/80'}`;
+        }
+      });
+
+      // 2. Update relationship label
+      const relEl = document.getElementById('hero-tier-relationship');
+      if (relEl) {
+        if (tierNum === baseTier) {
+          relEl.textContent = lang === 'en' ? 'Original Layout Default' : 'Bawaan Layout Asli';
+        } else if (tierNum > baseTier) {
+          relEl.textContent = lang === 'en' ? 'Feature & Page Upgrade' : 'Upgrade Fitur & Halaman';
+        } else {
+          relEl.textContent = lang === 'en' ? 'Cost-Effective Downgrade' : 'Downgrade Lebih Hemat';
+        }
+      }
+
+      // 3. Update Hero pricing display
+      const priceEl = document.getElementById('hero-tier-price');
+      if (priceEl) priceEl.textContent = t.price;
+
+      const discountEl = document.getElementById('hero-tier-discount');
+      if (discountEl) discountEl.textContent = t.discount;
+
+      const noteEl = document.getElementById('hero-tier-note');
+      if (noteEl) {
+        noteEl.textContent = `• ${t.note} • ${t.animation} • ${lang === 'en' ? 'No hidden fees' : 'Tanpa biaya tersembunyi'}`;
+      }
+
+      // 4. Update Order Link in Hero
+      const orderBase = lang === 'en' ? `/en/templates/order?template=${templateId}` : `/templates/order?template=${templateId}`;
+      const orderBtn = document.getElementById('hero-order-btn');
+      if (orderBtn) orderBtn.setAttribute('href', `${orderBase}&tier=${tierNum}`);
+
+      // 5. Update Card Kanan Order Link
+      const cardOrderBtn = document.getElementById('detail-card-order-btn');
+      if (cardOrderBtn) cardOrderBtn.setAttribute('href', `${orderBase}&tier=${tierNum}`);
+
+      // 6. Update WhatsApp link
+      const waBtn = document.getElementById('hero-whatsapp-btn');
+      const waText = lang === 'en'
+        ? `Hello! I'm interested in ordering template ${templateTitle} (${t.title}). Please provide more details.`
+        : `Halo! Saya tertarik memesan template ${templateTitle} (${t.title}). Mohon info langkah pemesanannya.`;
+      if (waBtn) waBtn.setAttribute('href', `https://wa.me/6289526770703?text=${encodeURIComponent(waText)}`);
+
+      // 7. Update Card Kanan badge & desc
+      const badge = document.getElementById('detail-card-tier-badge');
+      if (badge) badge.textContent = t.title;
+
+      const desc = document.getElementById('detail-card-tier-desc');
+      if (desc) {
+        desc.textContent = lang === 'en'
+          ? `Transparent add-ons selectable at checkout, calibrated specifically for ${t.title}.`
+          : `Pilihan add-on fleksibel saat checkout, dihitung secara transparan untuk ${t.title}.`;
+      }
+
+      const specTier = document.getElementById('detail-spec-tier');
+      if (specTier) specTier.textContent = t.title;
+
+      // 8. Update URL without reloading
+      const url = new URL(window.location.href);
+      url.searchParams.set('tier', String(tierNum));
+      window.history.replaceState({}, '', url.toString());
+    }
+
+    // Attach immediate click events with 0 lag
+    document.querySelectorAll('[data-tier-btn]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const tierNum = parseInt(btn.getAttribute('data-tier-btn') || '1', 10);
+        selectTier(tierNum);
+      });
+    });
+
+    // Check initial URL param on mount
+    const params = new URLSearchParams(window.location.search);
+    const urlTier = parseInt(params.get('tier') || '', 10);
+    if ([1, 2, 3].includes(urlTier) && urlTier !== baseTier) {
+      selectTier(urlTier);
+    }
+  </script>
 </div>
