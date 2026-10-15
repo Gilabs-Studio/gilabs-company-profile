@@ -287,9 +287,6 @@ function TierInfoCard({ tier, lang }: TierInfoCardProps) {
               </span>
             )}
           </div>
-          <span className="text-[10px] font-mono text-muted-foreground uppercase tracking-wider">
-            {lang === 'id' ? 'Promo Terbatas' : 'Limited Offer'}
-          </span>
         </div>
 
         <div className="typography-card-title text-2xl sm:text-3xl font-bold tracking-tight text-foreground">

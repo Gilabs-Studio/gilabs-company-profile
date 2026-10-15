@@ -322,6 +322,64 @@ export function getTierInfoByNumber(tierNumber: number): TierInfo {
 
 export const templatesData: TemplateItem[] = [
   {
+    id: 'nusantara',
+    slug: 'nusantara-minimalist-apparel',
+    title: 'Website Brand Fashion & Luxury Minimalist Apparel',
+    titleEn: 'Luxury Minimalist Apparel & Fashion Brand Website',
+    category: 'company',
+    categoryLabel: {
+      id: 'Fashion & Luxury Apparel',
+      en: 'Fashion & Luxury Apparel'
+    },
+    tier: 3,
+    description: {
+      id: 'Template website brand fashion, lookbook editorial, dan apparel minimalis kontemporer dengan tata letak multi-layer terpadu, tipografi brutalist berkelas, dan showcase koleksi berpresisi tinggi.',
+      en: 'Modern luxury fashion and minimalist apparel brand website template featuring unified multi-layer hero typography, editorial lookbooks, and high-precision product showcases.'
+    },
+    previewImage: '/templates/nusantara/preview.webp',
+    gallery: [
+      '/templates/nusantara/preview.webp',
+      '/templates/nusantara/featured-model.webp',
+      '/templates/nusantara/cat-outerwear.webp',
+      '/templates/nusantara/journal-bg.webp'
+    ],
+    demoUrl: '/templates/demo/nusantara',
+    buyersCount: 194,
+    serviceFeatures: [
+      {
+        title: { id: 'Unified Hero Typography Canvas', en: 'Unified Hero Typography Canvas' },
+        description: { id: 'Integrasi visual multi-layer di mana tipografi brand raksasa menyatu di belakang model secara presisi.', en: 'Multi-layer visual integration where bold brand typography sits seamlessly behind the model.' },
+        tag: 'Editorial',
+        icon: 'Layout'
+      },
+      {
+        title: { id: 'Katalog Koleksi & New Drops', en: 'Curated Drops & Lookbook' },
+        description: { id: 'Showcase produk minimalis dengan detail harga transparan dan layout grid editorial presisi tinggi.', en: 'Minimalist product showcases with transparent pricing and high-precision editorial grid layouts.' },
+        tag: 'Collection',
+        icon: 'ShoppingBag'
+      },
+      {
+        title: { id: 'Brand Philosophy & Storytelling', en: 'Brand Philosophy & Storytelling' },
+        description: { id: 'Menarasikan nilai luhur karya, esensi budaya, dan filosofi pakaian abadi lintas generasi.', en: 'Articulating brand heritage, timeless values, and cultural craftsmanship across generations.' },
+        tag: 'Heritage',
+        icon: 'BookOpen'
+      },
+      {
+        title: { id: 'Pemesanan Instan Direct Link', en: 'Direct Order Integration' },
+        description: { id: 'Akses pembelian produk dan konsultasi katalog terintegrasi langsung ke WhatsApp concierge.', en: 'Streamlined purchase flow and catalog inquiries directly connected to WhatsApp concierge.' },
+        tag: 'Conversion',
+        icon: 'Send'
+      }
+    ],
+    techSpecs: [
+      { label: { id: 'Tipe Layout', en: 'Layout Architecture' }, value: { id: 'Single Page Multi-layer Hero Canvas', en: 'Single Page Multi-layer Hero Canvas' } },
+      { label: { id: 'Gaya Desain', en: 'Design Style' }, value: { id: 'Minimalist Brutalist & Stone Editorial', en: 'Minimalist Brutalist & Stone Editorial' } },
+      { label: { id: 'Optimasi Kecepatan', en: 'Performance' }, value: { id: 'Skor 99+ Google Lighthouse', en: 'Score 99+ Google Lighthouse' } },
+      { label: { id: 'Dukungan Mobile', en: 'Mobile Responsive' }, value: { id: '100% Responsif di Semua Perangkat', en: '100% Responsive Across All Devices' } }
+    ],
+    industryAdaptations: defaultIndustryAdaptations
+  },
+  {
     id: 'la-table-eternelle',
     slug: 'la-table-eternelle-fine-dining',
     title: 'Website Restoran Fine Dining & Luxury Hospitality',
@@ -498,6 +556,63 @@ export const templatesData: TemplateItem[] = [
     gallery: ['/templates/shipagency-maritime/preview.webp'],
     demoUrl: '/templates/demo/shipagency',
     buyersCount: 129,
+    industryAdaptations: defaultIndustryAdaptations
+  },
+  {
+    id: 'tastybite',
+    slug: 'tastybite-fnb-studio',
+    title: 'TastyBite • Website Kafe, Restoran & F&B Studio Modern',
+    titleEn: 'TastyBite • Modern F&B Studio & Cafe Restaurant Website',
+    category: 'service',
+    categoryLabel: {
+      id: 'Kafe, Resto & F&B',
+      en: 'Cafe, Restaurant & F&B'
+    },
+    tier: 2,
+    description: {
+      id: 'Template website profil restoran, kafe artisan, dan studio kuliner modern dengan visual 3D kawaii yang playful, etalase menu signature pastel, integrasi pesanan instan, serta narasi brand yang memikat.',
+      en: 'Modern website template for restaurants, artisan cafes, and F&B studios featuring playful 3D kawaii visuals, pastel signature menu showcases, instant ordering integration, and compelling brand storytelling.'
+    },
+    previewImage: '/templates/tastybite/preview.webp',
+    gallery: [
+      '/templates/tastybite/preview.webp',
+      '/templates/tastybite/full-strip.webp',
+      '/templates/tastybite/app-banner-card.webp'
+    ],
+    demoUrl: '/templates/demo/tastybite',
+    buyersCount: 168,
+    serviceFeatures: [
+      {
+        title: { id: 'Unified Hero Canvas & 3D Mascot', en: 'Unified Hero Canvas & 3D Mascot' },
+        description: { id: 'Teks bold dinamis dan maskot mangkuk 3D kawaii menyatu dalam kanvas latar mulus tanpa sekat.', en: 'Bold display typography and 3D kawaii mascot seamless on a unified canvas without borders.' },
+        tag: 'Playful',
+        icon: 'Sparkles'
+      },
+      {
+        title: { id: 'Scalloped Ribbon Category Strip', en: 'Scalloped Ribbon Category Strip' },
+        description: { id: 'Banner highlight kategori warna-warni bertepi gelombang scallop dengan aksen coretan tangan doodle.', en: 'Vibrant wave-scalloped highlight ribbon featuring best sellers and handwritten doodles.' },
+        tag: 'Showcase',
+        icon: 'Layout'
+      },
+      {
+        title: { id: 'Signature Favorites Pastel Grid', en: 'Signature Favorites Pastel Grid' },
+        description: { id: 'Etalase menu unggulan dengan kartu warna pastel lembut, informasi harga transparan, dan tombol pemesanan cepat.', en: 'Curated menu items with soft pastel cards, transparent pricing, and instant add buttons.' },
+        tag: 'Menu',
+        icon: 'UtensilsCrossed'
+      },
+      {
+        title: { id: 'App Showcase & Instant Order Flow', en: 'App Showcase & Instant Order Flow' },
+        description: { id: 'Panduan alur order mudah 4 langkah serta seksi promosi aplikasi mobile dengan tautan WhatsApp terhubung.', en: 'Simple 4-step ordering guide and mobile app showcase integrated with instant WhatsApp order.' },
+        tag: 'Conversion',
+        icon: 'Send'
+      }
+    ],
+    techSpecs: [
+      { label: { id: 'Tipe Layout', en: 'Layout Architecture' }, value: { id: 'Unified Canvas Hero & Motion Narrative', en: 'Unified Canvas Hero & Motion Narrative' } },
+      { label: { id: 'Gaya Desain', en: 'Design Style' }, value: { id: 'Playful 3D Kawaii Clay & Modern Bold Sans', en: 'Playful 3D Kawaii Clay & Modern Bold Sans' } },
+      { label: { id: 'Optimasi Kecepatan', en: 'Performance' }, value: { id: 'Skor 99+ Google Lighthouse', en: 'Score 99+ Google Lighthouse' } },
+      { label: { id: 'Dukungan Mobile', en: 'Mobile Responsive' }, value: { id: '100% Responsif di Semua Perangkat', en: '100% Responsive Across All Devices' } }
+    ],
     industryAdaptations: defaultIndustryAdaptations
   },
   {
