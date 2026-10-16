@@ -160,7 +160,7 @@ export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternell
             className="w-full h-full object-cover object-[72%_center] md:object-center"
           />
           {/* Refined gradient: dark left vignette for text legibility, while letting the warm center dining table and ambient light emerge */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#080808]/92 via-[#080808]/45 to-transparent sm:via-[#080808]/30 max-w-5xl" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black to-transparent sm:via-[#080808]/30 " />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-black/25" />
         </div>
 
@@ -173,14 +173,13 @@ export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternell
             </p>
 
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-medium text-white tracking-tight leading-[1.08] mb-5">
-              Rasa yang<br />
+              Rasa Yang<br />
               <span
                 style={goldGradientStyle}
                 className="text-5xl sm:text-6xl md:text-7xl lg:text-[86px] font-normal leading-[1.02] pr-4 drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]"
               >
-                Menyatukan
-              </span><br />
-              Cerita
+                Menyatukan Cerita
+              </span>
             </h1>
 
             <p className="text-neutral-300 text-sm md:text-[15px] leading-relaxed max-w-md mb-8">
