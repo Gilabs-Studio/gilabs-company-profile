@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import type { TemplateItem, TierInfo } from '../../data/templatesData';
 import { tiersData, templatesPageContent } from '../../data/templatesData';
 import { getWhatsAppLink } from '../../lib/utils';
-import { ExternalLink, ArrowRight, MessageCircle } from 'lucide-react';
+import { ExternalLink, ArrowRight, MessageCircle, Monitor, ArrowUpRight } from 'lucide-react';
 
 interface TemplatesCatalogProps {
   templates: TemplateItem[];
@@ -419,92 +419,188 @@ function TierCustomWideCard({ tier, lang }: TierCustomWideCardProps) {
             </span>
           </div>
 
-          {/* Hook Headline & Copywriting */}
-          <div className="max-w-3xl space-y-2">
-            <h3 className="typography-section-title text-foreground tracking-tight leading-tight">
-              {tier.hookHeadline ? tier.hookHeadline[lang] : title}
-            </h3>
-            <p className="typography-subtitle text-foreground/90 font-light leading-relaxed">
-              {tier.tagline[lang]}
-            </p>
-            <p className="typography-body text-muted-foreground leading-relaxed pt-1">
-              {tier.description[lang]}
-            </p>
-          </div>
-
-          {/* 4 Pillars of Custom Development */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 pt-2">
-            <div className="bg-secondary/25 border border-border/40 rounded-lg p-4 space-y-1">
-              <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                {lang === 'id' ? '01. Desain UI/UX' : '01. UI/UX Design'}
-              </div>
-              <div className="typography-body font-medium text-foreground">
-                {tier.specs.animation[lang]}
-              </div>
-            </div>
-
-            <div className="bg-secondary/25 border border-border/40 rounded-lg p-4 space-y-1">
-              <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                {lang === 'id' ? '02. CMS & Integrasi' : '02. CMS & Integration'}
-              </div>
-              <div className="typography-body font-medium text-foreground">
-                {tier.specs.extras[lang]}
-              </div>
-            </div>
-
-            <div className="bg-secondary/25 border border-border/40 rounded-lg p-4 space-y-1">
-              <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                {lang === 'id' ? '03. Skalabilitas' : '03. Scalability'}
-              </div>
-              <div className="typography-body font-medium text-foreground">
-                {tier.specs.pages[lang]}
-              </div>
-            </div>
-
-            <div className="bg-secondary/25 border border-border/40 rounded-lg p-4 space-y-1">
-              <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                {lang === 'id' ? '04. Alur Kerja' : '04. Workflow'}
-              </div>
-              <div className="typography-body font-medium text-foreground">
-                {tier.specs.revisions[lang]}
-              </div>
-            </div>
-          </div>
-
-          {/* Bottom Bar: Full Pricing & WhatsApp CTA with Anchor Discount */}
-          <div className="pt-4 border-t border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-secondary/30 rounded-xl p-4 sm:p-5">
-            <div>
-              {(tier.pricing.originalPrice || tier.pricing.discountLabel) && (
-                <div className="flex items-center gap-2 mb-1">
-                  {tier.pricing.originalPrice && (
-                    <span className="text-xs sm:text-sm text-muted-foreground/60 line-through font-mono">
-                      {tier.pricing.originalPrice}
-                    </span>
-                  )}
-                  {tier.pricing.discountLabel && (
-                    <span className="text-[10px] font-mono font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
-                      {tier.pricing.discountLabel[lang]}
-                    </span>
-                  )}
+          {/* 2-Column Grid Layout: Custom Info on Left, Live Project Showcase on Right */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
+            {/* Left Column: Custom Development Architecture & Consultation */}
+            <div className="flex flex-col justify-between space-y-6">
+              <div className="space-y-6">
+                {/* Hook Headline & Copywriting */}
+                <div className="space-y-2">
+                  <h3 className="typography-section-title text-foreground tracking-tight leading-tight">
+                    {tier.hookHeadline ? tier.hookHeadline[lang] : title}
+                  </h3>
+                  <p className="typography-subtitle text-foreground/90 font-light leading-relaxed">
+                    {tier.tagline[lang]}
+                  </p>
+                  <p className="typography-body text-muted-foreground leading-relaxed pt-1">
+                    {tier.description[lang]}
+                  </p>
                 </div>
-              )}
-              <div className="typography-section-title text-2xl sm:text-3xl font-bold text-foreground">
-                {tier.pricing.price}
+
+                {/* 4 Pillars of Custom Development (2x2 Grid) */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                  <div className="bg-secondary/25 border border-border/40 rounded-lg p-3.5 space-y-1">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                      {lang === 'id' ? '01. Desain UI/UX' : '01. UI/UX Design'}
+                    </div>
+                    <div className="typography-body font-medium text-foreground text-sm">
+                      {tier.specs.animation[lang]}
+                    </div>
+                  </div>
+
+                  <div className="bg-secondary/25 border border-border/40 rounded-lg p-3.5 space-y-1">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                      {lang === 'id' ? '02. CMS & Integrasi' : '02. CMS & Integration'}
+                    </div>
+                    <div className="typography-body font-medium text-foreground text-sm">
+                      {tier.specs.extras[lang]}
+                    </div>
+                  </div>
+
+                  <div className="bg-secondary/25 border border-border/40 rounded-lg p-3.5 space-y-1">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                      {lang === 'id' ? '03. Skalabilitas' : '03. Scalability'}
+                    </div>
+                    <div className="typography-body font-medium text-foreground text-sm">
+                      {tier.specs.pages[lang]}
+                    </div>
+                  </div>
+
+                  <div className="bg-secondary/25 border border-border/40 rounded-lg p-3.5 space-y-1">
+                    <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                      {lang === 'id' ? '04. Alur Kerja' : '04. Workflow'}
+                    </div>
+                    <div className="typography-body font-medium text-foreground text-sm">
+                      {tier.specs.revisions[lang]}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div className="typography-small text-muted-foreground mt-0.5">
-                • {tier.pricing.note[lang]}
+
+              {/* Bottom Bar: Full Pricing & WhatsApp CTA */}
+              <div className="pt-4 border-t border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-secondary/30 rounded-xl p-4 sm:p-5 mt-auto">
+                <div>
+                  {(tier.pricing.originalPrice || tier.pricing.discountLabel) && (
+                    <div className="flex items-center gap-2 mb-1">
+                      {tier.pricing.originalPrice && (
+                        <span className="text-xs sm:text-sm text-muted-foreground/60 line-through font-mono">
+                          {tier.pricing.originalPrice}
+                        </span>
+                      )}
+                      {tier.pricing.discountLabel && (
+                        <span className="text-[10px] font-mono font-semibold tracking-wider uppercase px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+                          {tier.pricing.discountLabel[lang]}
+                        </span>
+                      )}
+                    </div>
+                  )}
+                  <div className="typography-section-title text-2xl sm:text-3xl font-bold text-foreground">
+                    {tier.pricing.price}
+                  </div>
+                  <div className="typography-small text-muted-foreground mt-0.5">
+                    • {tier.pricing.note[lang]}
+                  </div>
+                </div>
+
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center gap-2 typography-small font-semibold px-5 py-3 rounded-lg bg-foreground text-background hover:opacity-90 transition-all duration-300 cursor-pointer whitespace-nowrap shadow-sm hover:-translate-y-0.5 active:translate-y-0"
+                >
+                  <span>{tier.ctaText ? tier.ctaText[lang] : (lang === 'id' ? 'Konsultasi Custom via WhatsApp' : 'Discuss Custom via WhatsApp')}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </a>
               </div>
             </div>
 
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 typography-small font-semibold px-6 py-3 rounded-lg bg-foreground text-background hover:opacity-90 transition-opacity cursor-pointer whitespace-nowrap shadow-sm hover:-translate-y-0.5 active:translate-y-0"
-            >
-              <span>{tier.ctaText ? tier.ctaText[lang] : (lang === 'id' ? 'Konsultasi Custom via WhatsApp' : 'Discuss Custom via WhatsApp')}</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
+            {/* Right Column: Standalone Live Showcase Example (Adhara Eka) */}
+            <div className="flex flex-col h-full bg-secondary/20 border border-border/70 hover:border-foreground/30 rounded-xl overflow-hidden transition-all duration-300 shadow-xs hover:shadow-md group">
+              {/* Minimalist Browser Bar Header */}
+              <div className="px-4 py-2.5 border-b border-border/50 bg-secondary/35 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-border"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-border"></span>
+                  <span className="w-2.5 h-2.5 rounded-full bg-border"></span>
+                  <span className="text-[11px] font-mono text-muted-foreground ml-2">adharaeka.vercel.app</span>
+                </div>
+                <span className="text-[10px] font-mono font-semibold tracking-wider uppercase px-2 py-0.5 rounded bg-purple-500/10 text-purple-600 dark:text-purple-400 border border-purple-500/20">
+                  {lang === 'id' ? 'Live Showcase' : 'Live Showcase'}
+                </span>
+              </div>
+
+              {/* Showcase Image with Live Preview Hover */}
+              <a
+                href="https://adharaeka.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="aspect-[16/10] bg-muted/20 relative overflow-hidden block cursor-pointer border-b border-border/50"
+                aria-label={lang === 'id' ? 'Buka Live Preview Website Adhara Eka' : 'Open Adhara Eka Live Website'}
+                title={lang === 'id' ? 'Buka Live Preview Website Adhara Eka' : 'Open Adhara Eka Live Website'}
+              >
+                <TemplateCardPreview
+                  src="/templates/tier4/preview.webp"
+                  alt="Adhara Eka - Custom Digital Experience & Personal Portfolio"
+                />
+                <div className="absolute inset-0 z-20 bg-black/30 dark:bg-black/50 backdrop-blur-[1px] transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                  <span className="bg-background text-foreground text-xs font-semibold px-4 py-2 rounded-lg shadow-md flex items-center gap-1.5 transition-transform duration-200 group-hover:scale-105">
+                    <span>{lang === 'id' ? 'Buka Live Preview' : 'Open Live Preview'}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </span>
+                </div>
+              </a>
+
+              {/* Showcase Details & Note */}
+              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between gap-4">
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <h4 className="typography-body-large font-bold text-foreground tracking-tight">
+                      <a
+                        href="https://adharaeka.vercel.app/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-brand transition-colors cursor-pointer inline-flex items-center gap-1.5"
+                      >
+                        <span>Adhara Eka</span>
+                        <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+                      </a>
+                    </h4>
+                    <span className="text-[11px] font-mono text-muted-foreground">
+                      {lang === 'id' ? 'Personal Portfolio' : 'Personal Portfolio'}
+                    </span>
+                  </div>
+
+                  <p className="typography-small text-muted-foreground leading-relaxed">
+                    {lang === 'id'
+                      ? 'Website personal portfolio interaktif berstandar tinggi dengan arsitektur visual modern, custom motion, dan transisi dinamis.'
+                      : 'Interactive high-end bespoke portfolio website featuring custom visual architecture, smooth motion, and dynamic transitions.'}
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  {/* Desktop Experience Recommendation Note */}
+                  <div className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg bg-secondary/50 border border-border/60 text-muted-foreground text-xs leading-relaxed">
+                    <Monitor className="w-4 h-4 text-foreground/80 flex-shrink-0" />
+                    <span>
+                      {lang === 'id'
+                        ? 'Catatan: Untuk visual & experience interaktif terbaik, disarankan dibuka melalui desktop.'
+                        : 'Note: For the best visual experience and interactive animations, desktop view is recommended.'}
+                    </span>
+                  </div>
+
+                  {/* Direct Link Button */}
+                  <a
+                    href="https://adharaeka.vercel.app/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full inline-flex items-center justify-center gap-2 typography-small font-semibold py-2.5 px-4 rounded-lg bg-foreground text-background hover:opacity-90 transition-all duration-300 cursor-pointer shadow-sm hover:-translate-y-0.5 active:translate-y-0"
+                  >
+                    <span>{lang === 'id' ? 'Kunjungi Live Website' : 'Explore Live Website'}</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
