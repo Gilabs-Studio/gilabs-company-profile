@@ -1,0 +1,15 @@
+---
+import SuraBayTemplate from '../../../../features/template/sura-bay/SuraBayTemplate.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<SuraBayTemplate lang={lang} />

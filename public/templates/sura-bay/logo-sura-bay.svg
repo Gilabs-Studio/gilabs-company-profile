@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 110" width="200" height="110" fill="none">
+  <!-- Palm Tree Icon -->
+  <g stroke="#C59A53" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <!-- Trunk -->
+    <path d="M100 52 C99 42 101 28 100 16" />
+    <!-- Fronds -->
+    <path d="M100 16 C98 8 102 4 100 2" />
+    <path d="M100 16 C90 10 78 12 72 18" />
+    <path d="M96 15 C88 12 80 15 76 22" />
+    <path d="M100 18 C88 18 76 25 72 34" />
+    <path d="M98 20 C86 24 78 32 76 40" />
+    <path d="M99 24 C89 29 82 38 80 46" />
+    <path d="M100 16 C110 10 122 12 128 18" />
+    <path d="M104 15 C112 12 120 15 124 22" />
+    <path d="M100 18 C112 18 124 25 128 34" />
+    <path d="M102 20 C114 24 122 32 124 40" />
+    <path d="M101 24 C111 29 118 38 120 46" />
+  </g>
+  <!-- Typography -->
+  <text x="100" y="76" text-anchor="middle" font-family="'Playfair Display', Georgia, serif" font-size="18" font-weight="600" letter-spacing="4" fill="#C59A53">SURA BAY</text>
+  <text x="100" y="93" text-anchor="middle" font-family="'Plus Jakarta Sans', sans-serif" font-size="7.5" font-weight="500" letter-spacing="4" fill="#C59A53">BEACH RESTAURANT</text>
+</svg>

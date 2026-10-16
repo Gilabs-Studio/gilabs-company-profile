@@ -308,6 +308,32 @@ export function getTierInfoByNumber(tierNumber: number): TierInfo {
 
 export const templatesData: TemplateItem[] = [
   {
+    id: 'driveloop',
+    slug: 'driveloop-car-rental-adventure',
+    title: 'Rental Mobil Adventure',
+    titleEn: 'Car Rental Adventure',
+    category: 'service',
+    categoryLabel: {
+      id: 'Rental Mobil & Travel',
+      en: 'Car Rental & Travel'
+    },
+    tier: 2,
+    description: {
+      id: 'Template website rental mobil premium, ekspedisi overland, dan petualangan road trip dengan visual cinematic, showcase armada modern, serta formulir pemesanan rute instan.',
+      en: 'Premium car rental and overland adventure website template featuring cinematic visuals, modern fleet showcases, and direct trip booking integration.'
+    },
+    previewImage: '/templates/driveloop/preview.webp',
+    gallery: [
+      '/templates/driveloop/preview.webp',
+      '/templates/driveloop/fleet-4x4.webp',
+      '/templates/driveloop/fleet-suv.webp',
+      '/templates/driveloop/real-stories-bg.webp'
+    ],
+    demoUrl: '/templates/demo/driveloop',
+    buyersCount: 172,
+    industryAdaptations: defaultIndustryAdaptations
+  },
+  {
     id: 'nusantara',
     slug: 'nusantara-minimalist-apparel',
     title: 'Brand Fashion',
@@ -471,6 +497,35 @@ export const templatesData: TemplateItem[] = [
     ],
     demoUrl: '/templates/demo/tastybite',
     buyersCount: 168,
+    industryAdaptations: defaultIndustryAdaptations
+  },
+  {
+    id: 'sura-bay',
+    slug: 'sura-bay-beach-restaurant',
+    title: 'Restoran Beach Club',
+    titleEn: 'Beach Club & Restaurant',
+    category: 'service',
+    categoryLabel: {
+      id: 'Restoran & Hospitality',
+      en: 'Dining & Hospitality'
+    },
+    tier: 1,
+    description: {
+      id: 'Template website beach club mewah, restoran tepi pantai, dan dining eksklusif berkonsep tropical sunset dengan transisi torn-edge artistik, tipografi berkelas, etalase menu signature, dan reservasi meja instan.',
+      en: 'Luxury beachfront restaurant and beach club website template featuring artistic torn-edge transitions, editorial serif typography, signature dish showcases, and instant table reservation.'
+    },
+    previewImage: '/templates/sura-bay/preview.webp',
+    gallery: [
+      '/templates/sura-bay/preview.webp',
+      '/templates/sura-bay/hero-bg.webp',
+      '/templates/sura-bay/story-brush.webp',
+      '/templates/sura-bay/dish-prawn.webp',
+      '/templates/sura-bay/dish-tartare.webp',
+      '/templates/sura-bay/dish-pasta.webp',
+      '/templates/sura-bay/dish-cocktail.webp'
+    ],
+    demoUrl: '/templates/demo/sura-bay',
+    buyersCount: 176,
     industryAdaptations: defaultIndustryAdaptations
   },
   {
