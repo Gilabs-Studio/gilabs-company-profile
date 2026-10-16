@@ -1,0 +1,100 @@
+---
+import { getWhatsAppLink } from '../../../lib/utils';
+import '../../../styles/globals.css';
+import DriveLoopLanding from './DriveLoopLanding';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+
+const templateTitle = lang === 'en' 
+  ? "DriveLoop • Premium Car Rental & Overland Adventure" 
+  : "DriveLoop • Website Rental Mobil Premium & Petualangan";
+const templatePrice = "Rp 1.289.000";
+const buyUrl = getWhatsAppLink('template', lang, templateTitle);
+const catalogUrl = `/${lang}/templates`;
+---
+
+<!DOCTYPE html>
+<html lang={lang} class="scroll-smooth dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{templateTitle} - Live Demo</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style is:global>
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, sans-serif !important;
+      background-color: #0b0f17;
+      color: #ffffff;
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .font-script {
+      font-family: 'Caveat', cursive !important;
+    }
+
+    ::selection {
+      background-color: #2563EB;
+      color: #ffffff;
+    }
+
+    /* Force true rounded UI inside DriveLoop template to override global .rounded-full capping */
+    .driveloop-scope .rounded-full,
+    .driveloop-scope .driveloop-pill {
+      border-radius: 9999px !important;
+    }
+    .driveloop-scope .driveloop-circle {
+      border-radius: 50% !important;
+    }
+    .driveloop-scope .driveloop-card {
+      border-radius: 20px !important;
+    }
+    .driveloop-scope .driveloop-box {
+      border-radius: 22px !important;
+    }
+  </style>
+</head>
+<body class="bg-[#0B0F17] text-white antialiased m-0 p-0">
+
+  <!-- Top Sticky Demo Header Bar -->
+  <header class="sticky top-0 z-50 bg-[#0c1220] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
+    <div class="flex items-center gap-3">
+      <a 
+        href={catalogUrl} 
+        class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-medium"
+      >
+        <span>←</span>
+        <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
+      </a>
+      <span class="text-neutral-600 hidden sm:inline">|</span>
+      <span class="font-semibold text-neutral-200 hidden sm:inline">{templateTitle}</span>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <span class="text-neutral-300 font-mono hidden md:inline">{templatePrice}</span>
+      <a
+        href={buyUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3.5 py-1.5 rounded-full text-xs transition-colors cursor-pointer"
+        style="border-radius: 9999px !important;"
+      >
+        {lang === 'en' ? 'Purchase Template' : 'Beli Template Ini'}
+      </a>
+    </div>
+  </header>
+
+  <!-- Complete DriveLoop Landing Page mounted with client:load -->
+  <DriveLoopLanding client:load lang={lang} />
+
+</body>
+</html>
