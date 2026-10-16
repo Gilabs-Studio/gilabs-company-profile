@@ -15,7 +15,7 @@ export default function NusantaraLanding({ lang = 'id' }: NusantaraLandingProps)
   });
 
   const heroTitleY = useTransform(heroScroll, [0, 1], [0, -180]);
-  const heroModelY = useTransform(heroScroll, [0, 1], [0, 120]);
+  const heroModelY = useTransform(heroScroll, [0, 1], [0, 200]);
   // Captions have a slower parallax scroll effect than the model image
   const heroCaptionY = useTransform(heroScroll, [0, 1], [0, 350]);
 
@@ -105,7 +105,7 @@ export default function NusantaraLanding({ lang = 'id' }: NusantaraLandingProps)
       <section 
         id="hero"
         ref={heroRef}
-        className="relative w-full min-h-[145vh] lg:min-h-[155vh] flex flex-col justify-between overflow-hidden bg-gradient-to-b from-[#DBD9D4] via-[#D8D7D2] to-[#D4D2CD] border-b border-black/10"
+        className="relative w-full min-h-[135vh] lg:min-h-[145vh] flex flex-col justify-between overflow-hidden bg-gradient-to-b from-[#DBD9D4] via-[#D8D7D2] to-[#D4D2CD] border-b border-black/10"
       >
         {/* --- Top Navigation Bar --- */}
         <header className="relative z-30 w-full px-6 sm:px-10 md:px-16 pt-7 pb-4 flex items-center justify-between">
