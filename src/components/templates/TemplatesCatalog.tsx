@@ -622,6 +622,7 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
   const query = searchQuery.toLowerCase().trim();
 
   const filterFn = (item: TemplateItem) => {
+    if (item.hidden) return false;
     if (!query) return true;
     const titleMatch = item.title.toLowerCase().includes(query) || (item.titleEn?.toLowerCase().includes(query) ?? false);
     const descMatch = item.description[lang].toLowerCase().includes(query);
@@ -630,15 +631,15 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
   };
 
   const tier1Templates = useMemo(() => {
-    return templates.filter((item) => item.tier === 1 && filterFn(item));
+    return templates.filter((item) => !item.hidden && item.tier === 1 && filterFn(item));
   }, [templates, query, lang]);
 
   const tier2Templates = useMemo(() => {
-    return templates.filter((item) => item.tier === 2 && filterFn(item));
+    return templates.filter((item) => !item.hidden && item.tier === 2 && filterFn(item));
   }, [templates, query, lang]);
 
   const tier3Templates = useMemo(() => {
-    return templates.filter((item) => item.tier === 3 && filterFn(item));
+    return templates.filter((item) => !item.hidden && item.tier === 3 && filterFn(item));
   }, [templates, query, lang]);
 
   const totalFilteredCount = tier1Templates.length + tier2Templates.length + tier3Templates.length;

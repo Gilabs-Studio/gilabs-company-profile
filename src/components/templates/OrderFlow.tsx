@@ -132,7 +132,7 @@ function OrderTemplateImage({ src, alt, className = "" }: { src: string; alt: st
 export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowProps) {
   // 1. Order State
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>(
-    initialTemplateId || templatesData[0]?.id || 'adiguna-machinery'
+    initialTemplateId || templatesData.find((t) => !t.hidden)?.id || 'adiguna-machinery'
   );
   // Read tier immediately on client initialization to prevent lag/flash
   const [customTier, setCustomTier] = useState<1 | 2 | 3 | null>(() => {
@@ -278,6 +278,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   // Filter templates when user clicks "Ganti Template"
   const selectableTemplates = useMemo(() => {
     return templatesData.filter((item) => {
+      if (item.hidden) return false;
       const matchesCategory = templateFilterCategory === 'all' || item.category === templateFilterCategory;
       const query = templateSearchQuery.toLowerCase().trim();
       if (!query) return matchesCategory;
@@ -285,6 +286,13 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       return matchesCategory && title.includes(query);
     });
   }, [templateFilterCategory, templateSearchQuery, lang]);
+
+  const visibleCategories = useMemo(() => {
+    return templateCategories.filter((cat) => {
+      if (cat.id === 'all') return true;
+      return templatesData.some((t) => !t.hidden && t.category === cat.id);
+    });
+  }, []);
 
   const formatPrice = (val: number) => `Rp ${val.toLocaleString('id-ID')}`;
 
@@ -686,7 +694,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   </div>
 
                   <div className="flex items-center gap-1 overflow-x-auto">
-                    {templateCategories.map((cat) => (
+                    {visibleCategories.map((cat) => (
                       <button
                         key={cat.id}
                         type="button"

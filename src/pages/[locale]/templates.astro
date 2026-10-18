@@ -39,6 +39,8 @@ const keywords = lang === 'en'
   ? 'website templates, ready to use website template, instant website launch, company profile template, landing page template, buy website templates, turnkey website, business website template'
   : 'template website, template website siap pakai, website langsung jadi hari ini, template landing page, template company profile, bikin website tanpa ribet, jasa edit website, jual template website, website bisnis siap online';
 
+const activeTemplates = templatesData.filter((item) => !item.hidden);
+
 // Structured Data: ItemList of Templates (Product Schema with Seller & Offers)
 const templateListSchema = {
   "@context": "https://schema.org",
@@ -46,8 +48,8 @@ const templateListSchema = {
   "name": pageTitle,
   "description": pageDescription,
   "url": canonical,
-  "numberOfItems": templatesData.length,
-  "itemListElement": templatesData.map((item, idx) => {
+  "numberOfItems": activeTemplates.length,
+  "itemListElement": activeTemplates.map((item, idx) => {
     const tier = tiersData.find((t) => t.tierNumber === item.tier);
     const numericPrice = tier ? parseInt(tier.pricing.price.replace(/[^0-9]/g, ''), 10) : 689000;
     const itemUrl = lang === 'en' ? `${siteUrl}/en/templates/${item.slug}` : `${siteUrl}/templates/${item.slug}`;
@@ -156,7 +158,7 @@ const faqSchema = {
       {/* Catalog Component with Tier Containers & Instant Filter */}
       <TemplatesCatalog 
         client:load 
-        templates={templatesData} 
+        templates={activeTemplates} 
         lang={lang} 
       />
     </div>

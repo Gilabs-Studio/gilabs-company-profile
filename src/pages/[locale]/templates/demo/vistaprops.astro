@@ -1,0 +1,15 @@
+---
+import VistaPropsTemplate from '../../../../features/template/vistaprops/VistaPropsTemplate.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<VistaPropsTemplate lang={lang} />

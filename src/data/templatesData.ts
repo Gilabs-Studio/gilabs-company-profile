@@ -27,6 +27,7 @@ export interface TemplateItem {
   demoUrl: string;
   buyersCount: number;
   industryAdaptations?: IndustryAdaptation[];
+  hidden?: boolean;
 }
 
 export interface DurationPlan {
@@ -308,6 +309,33 @@ export function getTierInfoByNumber(tierNumber: number): TierInfo {
 
 export const templatesData: TemplateItem[] = [
   {
+    id: 'vistaprops',
+    slug: 'vistaprops-real-estate-partner',
+    title: 'Lorem • Real Estate Komersial',
+    titleEn: 'Lorem • Commercial Real Estate',
+    category: 'company',
+    categoryLabel: {
+      id: 'Enterprise & Properti',
+      en: 'Enterprise & Property'
+    },
+    tier: 3,
+    description: {
+      id: 'Template website profil perusahaan pengembang kawasan industri, perkantoran Grade-A, dan real estate komersial dengan efek hero stack reveal, tipografi editorial Libre Baskerville, animasi scroll text reveal, dan sticky footer terpadu.',
+      en: 'High-end commercial and industrial real estate developer website template featuring hero stack reveal animations, Libre Baskerville editorial typography, scroll-driven word transitions, and an immersive sticky reveal footer.'
+    },
+    previewImage: '/templates/vistaprops/preview.webp',
+    gallery: [
+      '/templates/vistaprops/preview.webp',
+      '/templates/vistaprops/hero-building.webp',
+      '/templates/vistaprops/warehouse-aerial.webp',
+      '/templates/vistaprops/condo-interior.webp',
+      '/templates/vistaprops/project-serra.webp'
+    ],
+    demoUrl: '/templates/demo/vistaprops',
+    buyersCount: 156,
+    industryAdaptations: defaultIndustryAdaptations
+  },
+  {
     id: 'driveloop',
     slug: 'driveloop-car-rental-adventure',
     title: 'Rental Mobil Adventure',
@@ -343,7 +371,7 @@ export const templatesData: TemplateItem[] = [
       id: 'Fashion & Luxury Apparel',
       en: 'Fashion & Luxury Apparel'
     },
-    tier: 3,
+    tier: 2,
     description: {
       id: 'Template website brand fashion, lookbook editorial, dan apparel minimalis kontemporer dengan tata letak multi-layer terpadu, tipografi brutalist berkelas, dan showcase koleksi berpresisi tinggi.',
       en: 'Modern luxury fashion and minimalist apparel brand website template featuring unified multi-layer hero typography, editorial lookbooks, and high-precision product showcases.'
@@ -437,6 +465,7 @@ export const templatesData: TemplateItem[] = [
     slug: 'euforia-festival-ticketing',
     title: 'Tiket Event',
     titleEn: 'Event Ticketing',
+    hidden: true,
     category: 'event',
     categoryLabel: {
       id: 'Event & Tiket',
@@ -504,6 +533,7 @@ export const templatesData: TemplateItem[] = [
     slug: 'sura-bay-beach-restaurant',
     title: 'Restoran Beach Club',
     titleEn: 'Beach Club & Restaurant',
+    hidden: true,
     category: 'service',
     categoryLabel: {
       id: 'Restoran & Hospitality',
