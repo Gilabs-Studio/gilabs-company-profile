@@ -12,6 +12,7 @@ const t = templatesPageContent[lang];
 
 const siteUrl = 'https://gilabs.id';
 const canonical = `${siteUrl}/templates`;
+const ogImage = `${siteUrl}/og-templates.webp`;
 
 const alternateUrls = {
   en: `${siteUrl}/en/templates`,
@@ -109,6 +110,7 @@ const faqSchema = {
   canonical={canonical}
   keywords={keywords}
   alternateUrls={alternateUrls}
+  ogImage={ogImage}
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify(templateListSchema)} slot="head" />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />

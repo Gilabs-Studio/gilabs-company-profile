@@ -83,6 +83,8 @@ const breadcrumbSchema = {
     }
   ]
 };
+
+const ogImage = `${siteUrl}${template.previewImage}`;
 ---
 
 <Layout
@@ -92,6 +94,7 @@ const breadcrumbSchema = {
   canonical={canonical}
   keywords={keywords}
   alternateUrls={alternateUrls}
+  ogImage={ogImage}
 >
   <script is:inline type="application/ld+json" set:html={JSON.stringify(productSchema)} slot="head" />
   <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
