@@ -13,7 +13,7 @@ const {
 	noindex = false,
 	showRays = true,
 	keywords = 'Gilabs, PT Griya Innovations Labs, software house Indonesia, software house Semarang, software house Jakarta, software development company Indonesia, jasa pengembangan sistem internal perusahaan, jasa pembuatan ERP custom Indonesia, vendor ERP custom untuk perusahaan manufaktur, jasa pembuatan CRM custom Indonesia, software CRM untuk tim sales lapangan, CRM custom terintegrasi WhatsApp, jasa pembuatan aplikasi kasir custom, software POS untuk toko bangunan, jasa pembuatan dashboard monitoring perusahaan, dashboard KPI realtime untuk manajemen, software manufaktur custom Indonesia, aplikasi koperasi simpan pinjam custom, software distributor custom, jasa pembuatan software custom, vendor pengembangan software perusahaan, software house untuk digitalisasi bisnis',
-	ogImage = 'https://gilabs.id/og-image.webp',
+	ogImage = 'https://gilabs.id/og-image.jpg',
 	alternateUrls
 } = Astro.props;
 
@@ -197,12 +197,14 @@ const websiteSchema = {
 		<link rel="alternate" hreflang="id" href={idUrl} />
 		<link rel="alternate" hreflang="x-default" href={defaultUrl} />
 
-		<!-- Open Graph / Facebook -->
+		<!-- Open Graph / Facebook / WhatsApp -->
 		<meta property="og:type" content="website" />
 		<meta property="og:url" content={fullCanonical} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:secure_url" content={ogImage} />
+		<meta property="og:image:type" content={ogImage.endsWith('.png') ? 'image/png' : ogImage.endsWith('.webp') ? 'image/webp' : 'image/jpeg'} />
 		<meta property="og:image:width" content="1200" />
 		<meta property="og:image:height" content="630" />
 		<meta property="og:image:alt" content={title} />

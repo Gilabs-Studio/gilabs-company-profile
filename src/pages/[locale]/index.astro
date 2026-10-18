@@ -24,6 +24,7 @@ export function getStaticPaths() {
 const { locale } = Astro.params;
 const siteUrl = 'https://gilabs.id';
 const canonical = locale === 'en' ? `${siteUrl}/en` : `${siteUrl}/${locale}`;
+const ogImage = locale === 'en' ? `${siteUrl}/og-image-en.jpg` : `${siteUrl}/og-image.jpg`;
 const description = locale === 'id' 
 	? 'Gilabs by PT Griya Innovations Labs adalah software house Indonesia yang fokus pada pengembangan sistem internal kompleks: ERP, CRM, POS, HRIS, finance system, dashboard operasional, workflow approval, dan custom software enterprise.'
 	: 'Gilabs by PT Griya Innovations Labs is an Indonesia software house focused on complex internal systems: ERP, CRM, POS, HRIS, finance systems, operational dashboards, workflow approvals, and custom enterprise software.';
@@ -109,7 +110,7 @@ const faqSchema = {
 	description={description}
 	canonical={canonical}
 	keywords={keywords}
-	ogImage="https://gilabs.id/og-image.webp"
+	ogImage={ogImage}
 	showRays={true}
 >
   <!-- FAQ Schema for homepage -->

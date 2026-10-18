@@ -57,21 +57,9 @@ export default defineConfig({
           // @ts-ignore
           item.changefreq = 'weekly';
         }
-        // Blog listing pages
-        else if (item.url.match(/\/blog\/?$/)) {
-          item.priority = 0.9;
-          // @ts-ignore
-          item.changefreq = 'weekly';
-        }
         // Portfolio page
         else if (item.url.includes('/portfolio')) {
           item.priority = 0.85;
-          // @ts-ignore
-          item.changefreq = 'monthly';
-        }
-        // Individual blog posts
-        else if (item.url.includes('/blog/')) {
-          item.priority = 0.8;
           // @ts-ignore
           item.changefreq = 'monthly';
         }
