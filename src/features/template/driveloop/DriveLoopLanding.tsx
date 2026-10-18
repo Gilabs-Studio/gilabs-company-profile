@@ -543,7 +543,7 @@ export default function DriveLoopLanding({ lang = "id" }: DriveLoopLandingProps)
                 <div
                   key={vehicle.id}
                   onClick={() => setSelectedVehicle(vehicle)}
-                  className="driveloop-card group relative aspect-[3/4.5] overflow-hidden bg-black shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-end p-5 cursor-pointer border-0 border-none"
+                  className="driveloop-card group relative aspect-[4/3] sm:aspect-[3/4.5] overflow-hidden bg-black shadow-lg hover:shadow-2xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-end p-5 cursor-pointer border-0 border-none"
                   style={{ borderRadius: "20px" }}
                 >
                   {/* Vehicle Image */}

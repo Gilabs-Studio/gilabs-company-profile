@@ -846,11 +846,9 @@ export default function VistaPropsLanding({ lang = "id" }: VistaPropsLandingProp
           ======================================================== */}
       <section
         id="hero"
-        className="hero-section relative z-20 w-full min-h-screen flex flex-col justify-center text-white bg-cover bg-center overflow-hidden shadow-2xl"
+        className="hero-section relative z-20 w-full min-h-screen flex flex-col justify-center text-white bg-cover bg-center overflow-hidden shadow-2xl rounded-b-[2.5rem] sm:rounded-b-[4rem] lg:rounded-b-[6.25rem]"
         style={{
           backgroundImage: "url('/templates/vistaprops/hero-building.webp')",
-          borderBottomLeftRadius: "6.25rem",
-          borderBottomRightRadius: "6.25rem",
         }}
       >
         {/* Subtle vignette gradient */}

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { MapPin, Phone, Clock, ArrowRight, Instagram, Facebook, Calendar, Users, X } from 'lucide-react';
+import { MapPin, Phone, Clock, ArrowRight, Instagram, Facebook, Calendar, Users, X, Menu } from 'lucide-react';
 
 interface LaTableEternelleLandingProps {
   lang?: 'id' | 'en';
@@ -10,6 +10,7 @@ interface LaTableEternelleLandingProps {
 export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternelleLandingProps) {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   // Hero quick reservation state
   const [guestCount, setGuestCount] = useState('2');
@@ -136,17 +137,103 @@ export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternell
             </a>
           </div>
 
-          {/* Book a table pill button */}
-          <div className="flex items-center">
+          {/* Book a table pill button & Mobile Menu Toggle */}
+          <div className="flex items-center gap-2.5 sm:gap-3">
             <button
               onClick={() => setIsModalOpen(true)}
-              className="border border-neutral-400/70 hover:border-white text-white hover:bg-white hover:text-black rounded-full px-5 py-2 text-[11px] tracking-[0.2em] uppercase font-medium transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+              className="border border-neutral-400/70 hover:border-white text-white hover:bg-white hover:text-black rounded-full px-3.5 sm:px-5 py-2 text-[10px] sm:text-[11px] tracking-[0.2em] uppercase font-medium transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
             >
               {lang === 'en' ? 'BOOK A TABLE' : 'BOOK A TABLE'}
+            </button>
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden w-9 h-9 rounded-full border border-neutral-700/80 bg-black/40 flex items-center justify-center text-white hover:border-white transition-colors cursor-pointer"
+              aria-label="Toggle Navigation"
+            >
+              {mobileMenuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
             </button>
           </div>
         </div>
       </nav>
+
+      {/* Luxury Mobile Navigation Drawer */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl md:hidden flex flex-col justify-between p-6 sm:p-8">
+          <div>
+            <div className="flex items-center justify-between pb-6 border-b border-white/10">
+              <span style={scriptStyle} className="text-3xl text-white">
+                La Table Éternelle
+              </span>
+              <button
+                onClick={() => setMobileMenuOpen(false)}
+                className="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-white cursor-pointer hover:bg-white/10"
+                aria-label="Close menu"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <nav className="mt-8 flex flex-col gap-5 text-sm tracking-[0.25em] uppercase font-medium text-neutral-300">
+              <a
+                href="#home"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-white flex items-center justify-between py-2 border-b border-white/5 cursor-pointer text-[#C5A880]"
+              >
+                <span>HOME</span>
+                <span className="text-xs text-[#C5A880]">01</span>
+              </a>
+              <a
+                href="#about"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-white flex items-center justify-between py-2 border-b border-white/5 cursor-pointer"
+              >
+                <span>OUR STORY</span>
+                <span className="text-xs text-neutral-500">02</span>
+              </a>
+              <a
+                href="#menu"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-white flex items-center justify-between py-2 border-b border-white/5 cursor-pointer"
+              >
+                <span>MENU</span>
+                <span className="text-xs text-neutral-500">03</span>
+              </a>
+              <a
+                href="#ambience"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-white flex items-center justify-between py-2 border-b border-white/5 cursor-pointer"
+              >
+                <span>GALLERY</span>
+                <span className="text-xs text-neutral-500">04</span>
+              </a>
+              <a
+                href="#reservation"
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-white flex items-center justify-between py-2 border-b border-white/5 cursor-pointer"
+              >
+                <span>RESERVATION</span>
+                <span className="text-xs text-neutral-500">05</span>
+              </a>
+            </nav>
+          </div>
+
+          <div className="pt-6 border-t border-white/10 space-y-4">
+            <button
+              onClick={() => {
+                setMobileMenuOpen(false);
+                setIsModalOpen(true);
+              }}
+              className="w-full bg-[#761314] hover:bg-[#901513] text-white py-3.5 rounded-full text-xs font-semibold tracking-wider uppercase transition-all cursor-pointer shadow-lg flex items-center justify-center gap-2"
+            >
+              <span>{lang === 'en' ? 'BOOK A TABLE NOW' : 'PESAN MEJA SEKARANG'}</span>
+              <span>→</span>
+            </button>
+            <p className="text-[11px] text-neutral-500 text-center tracking-wider uppercase">
+              Jl. Senopati No. 88 • Jakarta Selatan
+            </p>
+          </div>
+        </div>
+      )}
 
       {/* ========================================================= */}
       {/* 2. HERO SECTION (ALIGNED TO MAX-W-7XL CENTER GRID)        */}
@@ -172,11 +259,11 @@ export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternell
               {lang === 'en' ? 'FINE DINING EXPERIENCE' : 'FINE DINING EXPERIENCE'}
             </p>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] font-medium text-white tracking-tight leading-[1.08] mb-5">
+            <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-[70px] font-medium text-white tracking-tight leading-[1.08] mb-5">
               Rasa Yang<br />
               <span
                 style={goldGradientStyle}
-                className="text-5xl sm:text-6xl md:text-7xl lg:text-[86px] font-normal leading-[1.02] pr-4 drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]"
+                className="text-4xl sm:text-6xl md:text-7xl lg:text-[86px] font-normal leading-[1.02] pr-4 drop-shadow-[0_2px_12px_rgba(212,175,55,0.25)]"
               >
                 Menyatukan Cerita
               </span>
@@ -279,10 +366,10 @@ export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternell
             </div>
 
             {/* Right: Vertical Tagline with left divider - GUARANTEED NO CLIPPING */}
-            <div className="border-l border-neutral-800/80 pl-6 lg:pl-8 py-3 flex flex-col justify-center shrink-0">
+            <div className="border-t sm:border-t-0 sm:border-l border-neutral-800/80 pt-6 sm:pt-0 pl-0 sm:pl-6 lg:pl-8 py-3 flex flex-col justify-center shrink-0 text-center sm:text-left">
               <p
                 style={scriptGoldStyle}
-                className="text-3xl sm:text-4xl lg:text-[46px] leading-[1.28] tracking-wide whitespace-nowrap"
+                className="text-3xl sm:text-4xl lg:text-[46px] leading-[1.28] tracking-wide"
               >
                 Classic<br />
                 Technique<br />

@@ -27,6 +27,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
 
   const [activeCategory, setActiveCategory] = useState("BURGERS");
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Scroll-based motion for scalloped ribbon strip
   const ribbonRef = useRef<HTMLDivElement>(null);
@@ -125,13 +126,64 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
           </a>
         </div>
 
-        {/* Navbar CTA Button */}
-        <div>
-          <button className="bg-[#121518] text-white text-xs sm:text-sm font-bold px-5 sm:px-6 py-2.5 rounded-full cursor-pointer shadow-sm hover:bg-neutral-800 transition-colors">
+        {/* Navbar Right Actions: CTA Button & Mobile Menu Toggle */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          <button className="bg-[#121518] text-white text-xs sm:text-sm font-bold px-4 sm:px-6 py-2 sm:py-2.5 rounded-full cursor-pointer shadow-sm hover:bg-neutral-800 transition-colors">
             Order Now
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle navigation menu"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg border border-neutral-200 text-[#121518] hover:bg-neutral-100 transition-colors cursor-pointer"
+          >
+            {mobileMenuOpen ? (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            )}
           </button>
         </div>
       </nav>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="md:hidden px-5 pb-5 pt-2 border-b border-neutral-200 bg-white flex flex-col gap-3 font-semibold text-sm text-neutral-800">
+          <a
+            href="#menu"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 border-b border-neutral-100 hover:text-[#121518] transition-colors"
+          >
+            Menu
+          </a>
+          <a
+            href="#about"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 border-b border-neutral-100 hover:text-[#121518] transition-colors"
+          >
+            About
+          </a>
+          <a
+            href="#locations"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 border-b border-neutral-100 hover:text-[#121518] transition-colors"
+          >
+            Locations
+          </a>
+          <a
+            href="#careers"
+            onClick={() => setMobileMenuOpen(false)}
+            className="py-2 hover:text-[#121518] transition-colors"
+          >
+            Careers
+          </a>
+        </div>
+      )}
 
       {/* ======================================================== */}
       {/* 2. HERO SECTION (MASSIVE HEADLINE & UNIFIED CANVAS)      */}
@@ -141,7 +193,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
           
           {/* Main Massive Headline Content */}
           <div className="max-w-[720px] relative z-10">
-            <h1 className="font-outfit font-black text-6xl sm:text-7xl md:text-8xl lg:text-[112px] xl:text-[124px] 2xl:text-[136px] leading-[0.88] tracking-[-0.04em] text-[#121518]">
+            <h1 className="font-outfit font-black text-5xl sm:text-7xl md:text-8xl lg:text-[112px] xl:text-[124px] 2xl:text-[136px] leading-[0.88] tracking-[-0.04em] text-[#121518]">
               Freshly<br />
               Made<br />
             </h1>
@@ -153,18 +205,18 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
             </p>
 
             {/* CTA Button & Spaced Horizontal Category Chips in One Harmonious Row */}
-            <div className="flex flex-wrap items-center gap-6 sm:gap-8 mt-8">
-              <button className="bg-[#121518] text-white text-xs sm:text-sm md:text-base font-bold px-7 sm:px-8 py-3.5 sm:py-4 rounded-full inline-flex items-center gap-2.5 cursor-pointer shadow-sm hover:bg-neutral-800 transition-colors shrink-0">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 mt-8">
+              <button className="bg-[#121518] text-white text-xs sm:text-sm md:text-base font-bold px-7 sm:px-8 py-3.5 sm:py-4 rounded-full inline-flex items-center justify-center gap-2.5 cursor-pointer shadow-sm hover:bg-neutral-800 transition-colors shrink-0 w-fit">
                 <span>Order Now</span>
                 <span className="text-sm sm:text-base">→</span>
               </button>
 
-              <div className="flex flex-wrap items-center gap-4 sm:gap-6 text-[10px] sm:text-xs font-bold text-neutral-300 tracking-[0.22em] uppercase">
+              <div className="flex items-center gap-4 sm:gap-6 text-[10px] sm:text-xs font-bold text-neutral-300 tracking-[0.22em] uppercase overflow-x-auto no-scrollbar py-1 shrink-0 max-w-full">
                 {categories.map((cat) => (
                   <button
                     key={cat}
                     onClick={() => setActiveCategory(cat)}
-                    className={`cursor-pointer transition-colors ${
+                    className={`cursor-pointer transition-colors whitespace-nowrap ${
                       activeCategory === cat ? "text-[#121518] font-black" : "hover:text-neutral-600"
                     }`}
                   >
@@ -693,7 +745,7 @@ export default function TastybiteLanding({ lang = "id" }: TastybiteLandingProps)
               </div>
 
               {/* Stacked Official Store Badges (Positioned next to text) */}
-              <div className="flex flex-row lg:flex-col gap-3 shrink-0 items-center justify-center">
+              <div className="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0 items-center justify-center w-full sm:w-auto">
                 {/* App Store Badge */}
                 <a
                   href="#app-store"

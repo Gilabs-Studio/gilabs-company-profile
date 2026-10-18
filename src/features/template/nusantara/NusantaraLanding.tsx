@@ -230,11 +230,11 @@ export default function NusantaraLanding({ lang = 'id' }: NusantaraLandingProps)
           />
         </motion.div>
 
-        {/* --- Layer 3: Editorial Captions Left & Right (Centered Vertically, Slower Parallax than Model) --- */}
+        {/* --- Layer 3: Editorial Captions Left & Right (Centered Vertically on desktop, ergonomically spaced on mobile) --- */}
         {/* Left Editorial Caption */}
         <motion.div 
           style={{ y: heroCaptionY }}
-          className="absolute left-6 sm:left-10 md:left-16 top-1/2 -translate-y-1/2 z-30 max-w-[210px] pointer-events-none select-none"
+          className="absolute left-6 sm:left-10 md:left-16 top-[23%] sm:top-1/2 -translate-y-1/2 z-30 max-w-[170px] sm:max-w-[210px] pointer-events-none select-none"
         >
           <p className="text-[10px] sm:text-[11px] md:text-xs font-medium tracking-[0.18em] uppercase text-black leading-[1.55]">
             WEAR<br />
@@ -246,7 +246,7 @@ export default function NusantaraLanding({ lang = 'id' }: NusantaraLandingProps)
         {/* Right Editorial Caption */}
         <motion.div 
           style={{ y: heroCaptionY }}
-          className="absolute right-6 sm:right-10 md:right-16 top-1/2 -translate-y-1/2 z-30 max-w-[230px] text-right pointer-events-none select-none"
+          className="absolute right-6 sm:right-10 md:right-16 bottom-12 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2 z-30 max-w-[190px] sm:max-w-[230px] text-right pointer-events-none select-none"
         >
           <p className="text-[10px] sm:text-[11px] md:text-xs font-medium tracking-[0.18em] uppercase text-black leading-[1.55]">
             INDONESIAN HERITAGE<br />
@@ -268,7 +268,7 @@ export default function NusantaraLanding({ lang = 'id' }: NusantaraLandingProps)
       <section 
         id="featured" 
         ref={featuredRef}
-        className="relative w-full min-h-screen h-screen flex items-center px-6 sm:px-10 md:px-16 bg-[#D5D4CF] border-b border-black/10"
+        className="relative w-full min-h-screen lg:h-screen py-16 lg:py-0 flex items-center px-6 sm:px-10 md:px-16 bg-[#D5D4CF] border-b border-black/10"
       >
         <div className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
           {/* Left Column: Typography & Action */}
@@ -446,7 +446,7 @@ export default function NusantaraLanding({ lang = 'id' }: NusantaraLandingProps)
               <div className="grid grid-cols-1 md:grid-cols-12 min-h-[440px] md:min-h-[500px] lg:min-h-[560px] items-stretch">
                 
                 {/* Left Column: Narrative Box */}
-                <div className="md:col-span-5 p-8 sm:p-12 md:p-14 lg:p-16 flex flex-col justify-center bg-[#141414]">
+                <div className="md:col-span-5 p-6 sm:p-12 md:p-14 lg:p-16 flex flex-col justify-center bg-[#141414]">
                   <span className="text-[10px] md:text-[11px] font-bold tracking-[0.24em] uppercase text-neutral-400 block mb-3">
                     JOURNAL
                   </span>

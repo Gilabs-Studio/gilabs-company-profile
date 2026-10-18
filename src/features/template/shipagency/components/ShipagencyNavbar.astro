@@ -13,9 +13,10 @@ const isEn = lang === 'en';
 >
   <div class="mx-auto max-w-7xl flex items-center justify-between gap-4">
     <!-- Brand Logo -->
-    <a href="#hero" class="flex items-center gap-2 cursor-pointer group">
-      <span class="text-base sm:text-lg font-black tracking-wider text-white group-hover:text-emerald-400 transition-colors drop-shadow-md cursor-pointer">
-        PT. NAUTIVA OCEAN AGENCY
+    <a href="#hero" class="flex items-center gap-2 cursor-pointer group shrink-0">
+      <span class="text-sm sm:text-base md:text-lg font-black tracking-wider text-white group-hover:text-emerald-400 transition-colors drop-shadow-md cursor-pointer whitespace-nowrap">
+        <span class="sm:hidden">PT. NAUTIVA</span>
+        <span class="hidden sm:inline">PT. NAUTIVA OCEAN AGENCY</span>
       </span>
     </a>
 
@@ -42,7 +43,7 @@ const isEn = lang === 'en';
     </nav>
 
     <!-- Right Header Actions -->
-    <div class="flex items-center gap-4">
+    <div class="flex items-center gap-2 sm:gap-4 shrink-0">
       <!-- Flag Switcher -->
       <a
         href={`/${lang === 'id' ? 'en' : 'id'}/templates/demo/shipagency`}
@@ -52,14 +53,62 @@ const isEn = lang === 'en';
         <img
           src={lang === 'id' ? '/templates/shipagency/flag/flag-for-flag-monaco-svgrepo-com.svg' : '/templates/shipagency/flag/flag-for-flag-united-kingdom-svgrepo-com.svg'}
           alt={lang.toUpperCase()}
-          class="w-7 h-[20px] object-cover rounded shadow-xs"
+          class="w-6 sm:w-7 h-[18px] sm:h-[20px] object-cover rounded shadow-xs"
         />
       </a>
 
-      <!-- Action Button -->
+      <!-- Action Button (Desktop/Tablet) -->
       <a
         href="#kontak"
-        class="inline-flex h-9 px-4 rounded bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-slate-950 font-bold text-xs uppercase tracking-wider items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:shadow-emerald-500/20"
+        class="hidden sm:inline-flex h-9 px-4 rounded bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-slate-950 font-bold text-xs uppercase tracking-wider items-center justify-center transition-all duration-200 cursor-pointer shadow-md hover:shadow-emerald-500/20"
+      >
+        {isEn ? 'Contact Agency' : 'Hubungi Agen'}
+      </a>
+
+      <!-- Mobile Hamburger Button -->
+      <button
+        id="ship-mobile-menu-btn"
+        type="button"
+        aria-label="Toggle navigation menu"
+        class="md:hidden inline-flex size-9 items-center justify-center rounded border border-slate-700 bg-slate-900/80 text-white hover:text-emerald-400 hover:border-emerald-500 transition-colors cursor-pointer"
+      >
+        <svg id="ship-icon-open" class="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="ship-icon-close" class="size-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu Drawer -->
+  <div
+    id="ship-mobile-drawer"
+    class="hidden md:hidden fixed inset-x-0 top-[calc(41px+58px)] bottom-0 z-40 bg-slate-950/95 backdrop-blur-xl border-t border-slate-800 px-6 py-6 flex-col justify-between overflow-y-auto"
+  >
+    <div class="flex flex-col gap-4 text-sm font-semibold tracking-wide">
+      <a href="#hero" class="ship-mobile-link text-white hover:text-emerald-400 py-2 border-b border-slate-800 transition-colors">
+        {isEn ? 'Home' : 'Beranda'}
+      </a>
+      <a href="#services" class="ship-mobile-link text-white hover:text-emerald-400 py-2 border-b border-slate-800 transition-colors">
+        {isEn ? 'Services' : 'Layanan Kami'}
+      </a>
+      <a href="#testimonials" class="ship-mobile-link text-white hover:text-emerald-400 py-2 border-b border-slate-800 transition-colors">
+        {isEn ? 'Testimonials' : 'Testimoni'}
+      </a>
+      <a href="#about" class="ship-mobile-link text-white hover:text-emerald-400 py-2 border-b border-slate-800 transition-colors">
+        {isEn ? 'About Us' : 'Tentang Kami'}
+      </a>
+      <a href="#kontak" class="ship-mobile-link text-white hover:text-emerald-400 py-2 transition-colors">
+        {isEn ? 'Contact' : 'Kontak'}
+      </a>
+    </div>
+
+    <div class="pt-6 border-t border-slate-800 flex flex-col gap-3">
+      <a
+        href="#kontak"
+        class="ship-mobile-link inline-flex h-11 w-full rounded bg-emerald-500 hover:bg-emerald-400 active:bg-emerald-600 text-slate-950 font-bold text-xs uppercase tracking-wider items-center justify-center transition-all duration-200 cursor-pointer shadow-md"
       >
         {isEn ? 'Contact Agency' : 'Hubungi Agen'}
       </a>
@@ -78,4 +127,39 @@ const isEn = lang === 'en';
       shipNav?.classList.add('bg-transparent', 'py-4');
     }
   }, { passive: true });
+
+  // Mobile menu toggle
+  const mobileBtn = document.getElementById('ship-mobile-menu-btn');
+  const mobileDrawer = document.getElementById('ship-mobile-drawer');
+  const iconOpen = document.getElementById('ship-icon-open');
+  const iconClose = document.getElementById('ship-icon-close');
+
+  function toggleMobileMenu() {
+    const isHidden = mobileDrawer?.classList.contains('hidden');
+    if (isHidden) {
+      mobileDrawer?.classList.remove('hidden');
+      mobileDrawer?.classList.add('flex');
+      iconOpen?.classList.add('hidden');
+      iconClose?.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    } else {
+      mobileDrawer?.classList.add('hidden');
+      mobileDrawer?.classList.remove('flex');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+  }
+
+  mobileBtn?.addEventListener('click', toggleMobileMenu);
+
+  document.querySelectorAll('.ship-mobile-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileDrawer?.classList.add('hidden');
+      mobileDrawer?.classList.remove('flex');
+      iconOpen?.classList.remove('hidden');
+      iconClose?.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
+  });
 </script>

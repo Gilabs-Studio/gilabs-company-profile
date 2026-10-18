@@ -314,6 +314,7 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
   // Navbar scroll tracking
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [isNavAtTop, setIsNavAtTop] = useState(true);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     let lastScrollY = window.scrollY;
@@ -590,13 +591,72 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
           <div className="flex items-center gap-2">
             <a
               href="#kontak"
-              className="inline-flex h-9 cursor-pointer items-center gap-2 bg-[#2563EB] px-4 text-xs font-light text-white transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 hover:shadow-lg hover:shadow-blue-500/30"
+              className="inline-flex h-9 cursor-pointer items-center gap-2 bg-[#2563EB] px-3.5 sm:px-4 text-xs font-light text-white transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 hover:shadow-lg hover:shadow-blue-500/30"
             >
               <span>{lang === "en" ? "Contact Us" : "Hubungi Kami"}</span>
               <ArrowUpRight className="h-3.5 w-3.5" />
             </a>
+
+            {/* Mobile Menu Toggle Button */}
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle navigation menu"
+              className="md:hidden inline-flex size-9 items-center justify-center rounded border border-slate-300 text-slate-800 hover:text-[#2563EB] hover:border-blue-500 transition-colors cursor-pointer"
+            >
+              {mobileMenuOpen ? (
+                <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              ) : (
+                <svg className="size-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+              )}
+            </button>
           </div>
         </div>
+
+        {/* Mobile Navigation Drawer */}
+        {mobileMenuOpen && (
+          <div className="md:hidden mt-2 mx-auto w-full max-w-screen-2xl bg-white/95 backdrop-blur-md border border-slate-200/80 rounded-lg p-5 shadow-lg flex flex-col gap-3 font-medium text-xs uppercase tracking-wider text-slate-700 pointer-events-auto">
+            <a
+              href="#hero"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 border-b border-slate-100 hover:text-[#2563EB] text-[#2563EB] transition-colors"
+            >
+              {lang === "en" ? "Home" : "Beranda"}
+            </a>
+            <a
+              href="#metrik"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 border-b border-slate-100 hover:text-[#2563EB] transition-colors"
+            >
+              {lang === "en" ? "Metrics" : "Metrik"}
+            </a>
+            <a
+              href="#solusi"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 border-b border-slate-100 hover:text-[#2563EB] transition-colors"
+            >
+              {lang === "en" ? "Solutions" : "Solusi"}
+            </a>
+            <a
+              href="#distribusi"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 border-b border-slate-100 hover:text-[#2563EB] transition-colors"
+            >
+              {lang === "en" ? "Distribution" : "Distribusi"}
+            </a>
+            <a
+              href="#kontak"
+              onClick={() => setMobileMenuOpen(false)}
+              className="py-2 hover:text-[#2563EB] transition-colors"
+            >
+              {lang === "en" ? "Contact" : "Kontak"}
+            </a>
+          </div>
+        )}
       </motion.header>
 
       {/* 01. Hero Section with Video & Progressive Gradient */}
@@ -760,7 +820,7 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
       <section
         id="solusi"
         ref={containerRef}
-        className="relative h-[300vh] bg-white text-slate-900 border-t border-slate-200/80"
+        className="relative h-auto md:h-[300vh] bg-white text-slate-900 border-t border-slate-200/80"
       >
         {/* Desktop Sticky Viewport */}
         <div className="sticky top-0 hidden h-screen w-full overflow-hidden md:block">

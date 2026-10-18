@@ -48,7 +48,7 @@ export default function ShipagencyHero({ lang = 'id' }: ShipagencyHeroProps) {
         style={{ y: peopleY }}
         className="relative z-20 w-full max-w-[1650px] h-[78vh] sm:h-[86vh] lg:h-[92vh] mx-auto pointer-events-none flex items-end justify-center px-0 mt-auto"
       >
-        <div className="relative w-[680px] sm:w-full min-w-[680px] sm:min-w-0 h-full flex items-end justify-center shrink-0">
+        <div className="relative w-full max-w-[500px] sm:max-w-none h-full flex items-end justify-center shrink-0">
           <img
             src="/templates/shipagency/hero-people.webp"
             alt="PT. Nautiva Ocean Agency Team"

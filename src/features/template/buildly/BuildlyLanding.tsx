@@ -217,7 +217,7 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
       }}
     >
       {/* 01. HEADER / NAVBAR */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-100/90 transition-all">
+      <header className="sticky top-[41px] z-40 bg-white/95 backdrop-blur-md border-b border-slate-100/90 transition-all">
         <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12 h-[72px] flex items-center justify-between">
           {/* Brand Logo */}
           <a
@@ -489,7 +489,7 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
       </section>
 
       {/* 03. ABOUT SECTION (FULL WINDOW FEEL, 100% BORDERLESS CARD) */}
-      <section id="tentang" className="min-h-[calc(100vh-72px)] flex items-center py-20 lg:py-24">
+      <section id="tentang" className="lg:min-h-[calc(100vh-72px)] flex items-center py-14 sm:py-20 lg:py-24">
         <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12 w-full">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left: 100% BORDERLESS Architectural Model Card with Floating Pill */}
@@ -550,7 +550,7 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
       </section>
 
       {/* 04. SERVICES SECTION (FULL WINDOW FEEL, PURE WHITE CARDS ON TINTED BG) */}
-      <section id="layanan" className="min-h-screen flex flex-col justify-center py-20 lg:py-28">
+      <section id="layanan" className="lg:min-h-screen flex flex-col justify-center py-14 sm:py-20 lg:py-28">
         <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 lg:mb-14">
             <div>
@@ -618,7 +618,7 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
       </section>
 
       {/* 05. PROJECTS SECTION (FULL WINDOW FEEL, PURE WHITE CARDS ON TINTED BG) */}
-      <section id="proyek" className="min-h-screen flex flex-col justify-center py-20 lg:py-28">
+      <section id="proyek" className="lg:min-h-screen flex flex-col justify-center py-14 sm:py-20 lg:py-28">
         <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 lg:mb-14">
             <div>
@@ -694,10 +694,10 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
       </section>
 
       {/* 06. STATS SECTION (GENEROUS PADDING CONTAINER) */}
-      <section id="angka" className="py-16 lg:py-24">
+      <section id="angka" className="py-12 sm:py-16 lg:py-24">
         <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12 w-full">
           <div
-            className="rounded-3xl p-10 sm:p-14 lg:p-16 border border-[#ECE8FF] flex flex-col lg:flex-row lg:items-center justify-between gap-10 lg:gap-14 shadow-xs"
+            className="rounded-3xl p-6 sm:p-10 lg:p-16 border border-[#ECE8FF] flex flex-col lg:flex-row lg:items-center justify-between gap-8 lg:gap-14 shadow-xs"
             style={{ backgroundColor: "#F1EFF9" }}
           >
             <div className="max-w-md">
@@ -742,7 +742,7 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
       </section>
 
       {/* 07. TESTIMONIALS SECTION (FULL WINDOW FEEL, PURE WHITE CARDS) */}
-      <section id="testimoni" className="min-h-screen flex flex-col justify-center py-20 lg:py-28">
+      <section id="testimoni" className="lg:min-h-screen flex flex-col justify-center py-14 sm:py-20 lg:py-28">
         <div className="max-w-[1360px] mx-auto px-6 sm:px-10 lg:px-12 w-full">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12 lg:mb-14">
             <div>
@@ -914,7 +914,7 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
             </span>
           </div>
 
-          <div className="flex items-center gap-7 text-sm text-[#64748B] font-medium">
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-7 text-sm text-[#64748B] font-medium">
             <a href="#beranda" className="hover:text-[#0B0B0F] transition-colors">
               {texts.nav.beranda}
             </a>
