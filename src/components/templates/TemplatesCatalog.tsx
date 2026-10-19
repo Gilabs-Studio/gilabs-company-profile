@@ -422,63 +422,66 @@ function TierCustomWideCard({ tier, lang }: TierCustomWideCardProps) {
           {/* 2-Column Grid Layout: Custom Info on Left, Live Project Showcase on Right */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-stretch">
             {/* Left Column: Custom Development Architecture & Consultation */}
-            <div className="flex flex-col justify-between space-y-6">
-              <div className="space-y-6">
-                {/* Hook Headline & Copywriting */}
-                <div className="space-y-2">
-                  <h3 className="typography-section-title text-foreground tracking-tight leading-tight">
-                    {tier.hookHeadline ? tier.hookHeadline[lang] : title}
-                  </h3>
-                  <p className="typography-subtitle text-foreground/90 font-light leading-relaxed">
-                    {tier.tagline[lang]}
-                  </p>
-                  <p className="typography-body text-muted-foreground leading-relaxed pt-1">
-                    {tier.description[lang]}
-                  </p>
-                </div>
+            <div className="flex flex-col justify-between gap-6 h-full">
+              {/* Hook Headline & Copywriting */}
+              <div className="space-y-2">
+                <h3 className="typography-section-title text-foreground tracking-tight leading-tight">
+                  {tier.hookHeadline ? tier.hookHeadline[lang] : title}
+                </h3>
+                <p className="typography-subtitle text-foreground/90 font-light leading-relaxed">
+                  {tier.tagline[lang]}
+                </p>
+                <p className="typography-body text-muted-foreground leading-relaxed pt-1">
+                  {tier.description[lang]}
+                </p>
+              </div>
 
-                {/* 4 Pillars of Custom Development (2x2 Grid) */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                  <div className="bg-secondary/25 border border-border/40 rounded-lg p-3.5 space-y-1">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                      {lang === 'id' ? '01. Desain UI/UX' : '01. UI/UX Design'}
+              {/* 4 Pillars of Custom Development: Pure Minimalist List (Memelar Vertikal, Tanpa Box / Card) */}
+              <div className="flex-1 flex flex-col justify-between divide-y divide-border/30 border-y border-border/30 my-1">
+                {[
+                  {
+                    num: '01',
+                    title: lang === 'id' ? 'Desain UI/UX' : 'UI/UX Design',
+                    desc: tier.specs.animation[lang]
+                  },
+                  {
+                    num: '02',
+                    title: lang === 'id' ? 'CMS & Integrasi' : 'CMS & Integration',
+                    desc: tier.specs.extras[lang]
+                  },
+                  {
+                    num: '03',
+                    title: lang === 'id' ? 'Skalabilitas' : 'Scalability',
+                    desc: tier.specs.pages[lang]
+                  },
+                  {
+                    num: '04',
+                    title: lang === 'id' ? 'Alur Kerja' : 'Workflow',
+                    desc: tier.specs.revisions[lang]
+                  }
+                ].map((pillar) => (
+                  <div
+                    key={pillar.num}
+                    className="flex-1 flex flex-col sm:flex-row sm:items-center justify-between gap-1.5 sm:gap-6 py-3.5 sm:py-4 group"
+                  >
+                    <div className="flex items-center gap-3 shrink-0">
+                      <span className="text-[11px] font-mono font-semibold text-muted-foreground/60 group-hover:text-foreground transition-colors tracking-wider">
+                        {pillar.num}
+                      </span>
+                      <span className="h-3 w-px bg-border/50" />
+                      <span className="text-xs font-mono uppercase tracking-wider text-muted-foreground font-semibold">
+                        {pillar.title}
+                      </span>
                     </div>
-                    <div className="typography-body font-medium text-foreground text-sm">
-                      {tier.specs.animation[lang]}
+                    <div className="typography-body font-medium text-foreground text-sm sm:text-right">
+                      {pillar.desc}
                     </div>
                   </div>
-
-                  <div className="bg-secondary/25 border border-border/40 rounded-lg p-3.5 space-y-1">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                      {lang === 'id' ? '02. CMS & Integrasi' : '02. CMS & Integration'}
-                    </div>
-                    <div className="typography-body font-medium text-foreground text-sm">
-                      {tier.specs.extras[lang]}
-                    </div>
-                  </div>
-
-                  <div className="bg-secondary/25 border border-border/40 rounded-lg p-3.5 space-y-1">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                      {lang === 'id' ? '03. Skalabilitas' : '03. Scalability'}
-                    </div>
-                    <div className="typography-body font-medium text-foreground text-sm">
-                      {tier.specs.pages[lang]}
-                    </div>
-                  </div>
-
-                  <div className="bg-secondary/25 border border-border/40 rounded-lg p-3.5 space-y-1">
-                    <div className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground font-semibold">
-                      {lang === 'id' ? '04. Alur Kerja' : '04. Workflow'}
-                    </div>
-                    <div className="typography-body font-medium text-foreground text-sm">
-                      {tier.specs.revisions[lang]}
-                    </div>
-                  </div>
-                </div>
+                ))}
               </div>
 
               {/* Bottom Bar: Full Pricing & WhatsApp CTA */}
-              <div className="pt-4 border-t border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-secondary/30 rounded-xl p-4 sm:p-5 mt-auto">
+              <div className="pt-4 border-t border-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-secondary/30 rounded-xl p-4 sm:p-5">
                 <div>
                   {(tier.pricing.originalPrice || tier.pricing.discountLabel) && (
                     <div className="flex items-center gap-2 mb-1">
