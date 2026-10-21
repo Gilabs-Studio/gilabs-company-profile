@@ -14,11 +14,12 @@ const getDimensions = (isMobile: boolean) => ({
 });
 
 interface ParallaxGalleryProps {
-  images: string[];
+  images?: string[];
+  columns?: string[][];
   lang?: string;
 }
 
-const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
+const ParallaxGallery = ({ images = [], columns, lang = 'en' }: ParallaxGalleryProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const gallery = useRef<HTMLDivElement>(null);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
@@ -161,20 +162,35 @@ const ParallaxGallery = ({ images, lang = 'en' }: ParallaxGalleryProps) => {
     [images]
   );
   
-  // Distribute images evenly across columns WITH flatIndex tracking
+  // Distribute images evenly across columns WITH flatIndex tracking, or use manual columns if provided
   const columnData = useMemo(() => {
+    if (columns && columns.length > 0) {
+      if (isMobile) {
+        // Mobile 2 columns: merge columns [0, 1] into column 0 and [2, 3] into column 1
+        const col0 = [...(columns[0] || []), ...(columns[1] || [])];
+        const col1 = [...(columns[2] || []), ...(columns[3] || [])];
+        return [
+          col0.filter(src => src && src.trim() !== '').map((src, i) => ({ src, flatIndex: i * 2 })),
+          col1.filter(src => src && src.trim() !== '').map((src, i) => ({ src, flatIndex: i * 2 + 1 }))
+        ];
+      }
+      return columns.slice(0, 4).map((col, colIdx) => 
+        col.filter(src => src && src.trim() !== '').map((src, itemIdx) => ({ src, flatIndex: itemIdx * 4 + colIdx }))
+      );
+    }
+
     const numColumns = isMobile ? 2 : 4;
-    const columns: Array<Array<{ src: string; flatIndex: number }>> = Array.from(
+    const cols: Array<Array<{ src: string; flatIndex: number }>> = Array.from(
       { length: numColumns },
       () => []
     );
     
     validImages.forEach((src, index) => {
-      columns[index % numColumns].push({ src, flatIndex: index });
+      cols[index % numColumns].push({ src, flatIndex: index });
     });
     
-    return columns;
-  }, [validImages, isMobile]);
+    return cols;
+  }, [columns, validImages, isMobile]);
 
   const buttonText = lang === 'id' ? 'Lihat Semua Proyek' : 'View All Projects';
   const workResultsUrl = lang === 'id' ? '/id/work-results' : '/en/work-results';
@@ -271,7 +287,12 @@ const BlurImage = memo(({
 }) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement>(null);
-  const thumbSrc = useMemo(() => src.replace('/image/', '/image/thumb/'), [src]);
+  const thumbSrc = useMemo(() => {
+    if (src.includes('/image/')) {
+      return src.replace('/image/', '/image/thumb/');
+    }
+    return src.replace(/\/([^\/]+)$/, '/thumb/$1');
+  }, [src]);
 
   const handleLoadSuccess = useCallback(() => {
     setIsLoaded(true);
@@ -347,7 +368,7 @@ const Column = memo(({ items, y, dimensions, columnIndex, activeLoadIndex, isPar
     >
       {items.map(({ src, flatIndex }) => (
         <BlurImage 
-          key={src}
+          key={`${src}-${flatIndex}`}
           src={src}
           flatIndex={flatIndex}
           shouldLoadHighRes={flatIndex <= activeLoadIndex}

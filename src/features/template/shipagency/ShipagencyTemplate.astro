@@ -1,5 +1,6 @@
 ---
-import { getWhatsAppLink } from '../../../lib/utils';
+import TemplateDemoHeader from '../../../components/templates/TemplateDemoHeader.astro';
+import { templatesData } from '../../../data/templatesData';
 import '../../../styles/globals.css';
 
 import ShipagencyNavbar from './components/ShipagencyNavbar.astro';
@@ -15,12 +16,8 @@ interface Props {
 
 const { lang = 'id' } = Astro.props;
 
-const templateTitle = lang === 'en' 
-  ? "Template 04: PT. Nautiva Ocean Agency — Ship Agency & Fleet Outsourcing" 
-  : "Template 04: PT. Nautiva Ocean Agency — Keagenan Kapal & Outsourcing Maritim";
-const templatePrice = "Rp 1.400.000";
-const buyUrl = getWhatsAppLink('template', lang, templateTitle);
-const catalogUrl = `/${lang}/templates`;
+const template = templatesData.find((t) => t.id === 'shipagency-maritime')!;
+const templateTitle = lang === 'en' && template.titleEn ? template.titleEn : template.title;
 ---
 
 <!DOCTYPE html>
@@ -34,31 +31,7 @@ const catalogUrl = `/${lang}/templates`;
 <body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-emerald-500 selection:text-slate-950 min-h-screen">
 
   <!-- Top Sticky Demo Header Bar -->
-  <header class="sticky top-0 z-50 bg-[#0f172a] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
-    <div class="flex items-center gap-3">
-      <a 
-        href={catalogUrl} 
-        class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-medium"
-      >
-        <span>←</span>
-        <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
-      </a>
-      <span class="text-slate-600 hidden sm:inline">|</span>
-      <span class="font-semibold text-slate-200 hidden sm:inline">{templateTitle}</span>
-    </div>
-
-    <div class="flex items-center gap-3">
-      <span class="text-slate-300 font-mono hidden md:inline">{templatePrice}</span>
-      <a
-        href={buyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3.5 py-1.5 rounded text-xs transition-colors cursor-pointer"
-      >
-        {lang === 'en' ? 'Purchase Template' : 'Beli Template Ini'}
-      </a>
-    </div>
-  </header>
+  <TemplateDemoHeader templateId="shipagency-maritime" lang={lang} />
 
   <!-- Sticky Maritime Floating Navbar -->
   <ShipagencyNavbar lang={lang} />

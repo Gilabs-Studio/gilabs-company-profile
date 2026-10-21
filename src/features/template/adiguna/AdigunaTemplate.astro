@@ -1,4 +1,6 @@
 ---
+import TemplateDemoHeader from '../../../components/templates/TemplateDemoHeader.astro';
+import { templatesData } from '../../../data/templatesData';
 import { getWhatsAppLink } from '../../../lib/utils';
 import '../../../styles/globals.css';
 
@@ -8,12 +10,9 @@ interface Props {
 
 const { lang = 'id' } = Astro.props;
 
-const templateTitle = lang === 'en' 
-  ? "Template 01: Industrial Machinery & Precision Manufacturing" 
-  : "Template 01: Mesin Industri & Manufaktur Presisi";
-const templatePrice = "Rp 1.250.000";
+const template = templatesData.find((t) => t.id === 'adiguna-machinery')!;
+const templateTitle = lang === 'en' && template.titleEn ? template.titleEn : template.title;
 const buyUrl = getWhatsAppLink('template', lang, templateTitle);
-const catalogUrl = `/${lang}/templates`;
 ---
 
 <!DOCTYPE html>
@@ -26,32 +25,8 @@ const catalogUrl = `/${lang}/templates`;
 </head>
 <body class="bg-[#f6f3ee] text-neutral-950 font-sans antialiased selection:bg-amber-400 selection:text-black">
 
-  <!--  Top Sticky Demo Header Bar  -->
-  <header class="sticky top-0 z-50 bg-[#0f172a] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
-    <div class="flex items-center gap-3">
-      <a 
-        href={catalogUrl} 
-        class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-medium"
-      >
-        <span>←</span>
-        <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
-      </a>
-      <span class="text-slate-600 hidden sm:inline">|</span>
-      <span class="font-semibold text-slate-200 hidden sm:inline">{templateTitle}</span>
-    </div>
-
-    <div class="flex items-center gap-3">
-      <span class="text-slate-300 font-mono hidden md:inline">{templatePrice}</span>
-      <a
-        href={buyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3.5 py-1.5 rounded-sm text-xs transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-      >
-        {lang === 'en' ? 'Purchase Template' : 'Beli Template Ini'}
-      </a>
-    </div>
-  </header>
+  <!-- Top Sticky Demo Header Bar -->
+  <TemplateDemoHeader templateId="adiguna-machinery" lang={lang} />
 
   <!--  Minimalist Floating Navigation  -->
   <header

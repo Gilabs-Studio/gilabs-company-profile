@@ -1,38 +1,64 @@
 ---
 import ParallaxGallery from '../ui/ParallaxGallery';
+import { templatesData } from '../../data/templatesData';
 
 const { lang } = Astro.props;
 
-const galleryImages = [
-  // Column 1
-  '/image/Screenshot 2025-11-29 at 09-38-07 Top Gun Barber Shop - Look Sharp. Feel Top.webp',
-  '/image/Screenshot 2025-11-29 at 09-38-23 Jade Inc - Field Research & Coordination Services.webp',
-  '/image/Screenshot 2026-02-22 at 11-52-35 Web Application Platform.webp',
+/**
+ * ============================================================================
+ * PENGATURAN MANUAL URUTAN PREVIEW TEMPLATE PER KOLOM
+ * ============================================================================
+ * Anda dapat bebas memindahkan, menukar, menambah, atau mengurangi gambar di setiap kolom.
+ * 
+ * Daftar gambar preview template yang tersedia di /public/templates/:
+ * - '/templates/driveloop/preview.webp'          (DriveLoop: Rental Mobil Adventure)
+ * - '/templates/nusantara/preview.webp'          (Nusantara: Brand Fashion Minimalis)
+ * - '/templates/la-table-eternelle/preview.webp' (La Table Éternelle: Fine Dining Mewah)
+ * - '/templates/tastybite/preview.webp'          (TastyBite: Studio Kuliner / Kafe Modern)
+ * - '/templates/adiguna-machinery/preview.webp'   (Adiguna: Mesin Industri & Manufaktur)
+ * - '/templates/buildly/preview.webp'            (Buildly: Kontraktor Bangunan & Properti)
+ * - '/templates/sura-bay/preview.webp'           (Sura Bay: Restoran & Beach Club)
+ * - '/templates/shipagency-maritime/preview.webp'(Nautiva: Keagenan Kapal Pelabuhan)
+ * - '/templates/gke-enterprise/preview.webp'     (GKE: Supply Chain B2B & Komponen)
+ * - '/templates/ticketing-events/preview.webp'   (Tiket Konser & Festival Musik)
+ * - '/templates/vistaprops/preview.webp'         (VistaProps: Real Estate Komersial)
+ * - '/templates/tier4/preview.webp'              (Custom Development: Portfolio Adhara Eka)
+ */
 
-  // Column 2
-  '/image/Screenshot 2025-11-29 at 09-29-54 Fiber Monitoring.webp',
-  '/image/Screenshot 2025-11-29 at 09-28-15 Fiber Monitoring.webp',  
-  '/image/Screenshot from 2026-03-31 23-27-46.webp',
-  '/image/Screenshot 2025-11-29 at 09-38-44 Savlo — Simple Secure Financing for Small Businesses.webp',
-  '/image/Screenshot 2025-11-29 at 08-52-19 Fiber Monitoring.webp',
+// Kolom 1 (Kiri)
+const column1 = [
+  '/templates/driveloop/preview.webp',
+  '/templates/la-table-eternelle/preview.webp',
+  '/templates/ticketing-events/preview.webp',
+  '/templates/driveloop/preview.webp',
+];
 
-  // Column 3
-  '/image/Screenshot 2026-01-07 at 19-49-13 CRM Healthcare Platform.webp',
-  '/image/Screenshot 2026-01-07 at 19-48-42 CRM Healthcare Platform.webp',
-  '/image/Screenshot 2025-11-29 at 09-32-48 Adhara Eka - Portfolio.webp',
-  '/image/Screenshot from 2026-03-31 23-21-50.webp',
-  '/image/Screenshot 2025-11-29 at 09-29-20 Fiber Monitoring.webp',
-  
-  // Column 4
-  '/image/Screenshot 2026-01-07 at 19-49-59 CRM Healthcare Platform.webp',
-  '/image/Screenshot 2025-11-29 at 09-37-04 Top Gun Barber Shop - Look Sharp. Feel Top.webp',
-  '/image/Screenshot 2025-11-29 at 09-38-14 Top Gun Barber Shop - Look Sharp. Feel Top.webp',
-  '/image/Screenshot 2025-11-29 at 09-33-07 Adhara Eka - Portfolio.webp',
-  '/image/Screenshot 2025-11-29 at 09-37-26 Top Gun Barber Shop - Look Sharp. Feel Top.webp',
+// Kolom 2 (Tengah Kiri)
+const column2 = [
+  '/templates/adiguna-machinery/preview.webp',
+  '/templates/la-table-eternelle/preview.webp',
+  '/templates/sura-bay/preview.webp',
+  '/templates/adiguna-machinery/preview.webp',
+];
+
+// Kolom 3 (Tengah Kanan)
+const column3 = [
+  '/templates/tastybite/preview.webp',
+  '/templates/buildly/preview.webp',
+  '/templates/nusantara/preview.webp',
+  '/templates/gke-enterprise/preview.webp',
+];
+
+// Kolom 4 (Kanan)
+const column4 = [
+  '/templates/shipagency-maritime/preview.webp',
+  '/templates/tier4/preview.webp',
+  '/templates/vistaprops/preview.webp',
+  '/templates/shipagency-maritime/preview.webp',
 ];
 ---
 
 <section id="design-showcase" class="relative bg-background flex items-center justify-center overflow-hidden z-10 w-full">
   <h2 class="sr-only">Design Showcase</h2>
-  <ParallaxGallery client:load images={galleryImages} lang={lang} />
+  <ParallaxGallery client:load columns={[column1, column2, column3, column4]} lang={lang} />
 </section>

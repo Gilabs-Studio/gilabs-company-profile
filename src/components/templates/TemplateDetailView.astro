@@ -16,10 +16,19 @@ interface Props {
 
 const { template, lang = 'id' } = Astro.props;
 
-// Determine tier
 const tier = tiersData.find((t) => t.tierNumber === template.tier) || tiersData[0];
 const title = lang === 'en' && template.titleEn ? template.titleEn : template.title;
 const tierTitle = lang === 'en' ? tier.titleEn : tier.title;
+
+const clientTiers = tiersData.slice(0, 3).map((t) => ({
+  num: t.tierNumber,
+  title: lang === 'en' ? t.titleEn : t.title,
+  price: t.pricing.price,
+  discount: t.pricing.discountLabel ? t.pricing.discountLabel[lang] : '',
+  note: t.pricing.note[lang],
+  animation: t.specs.animation[lang],
+  pages: t.specs.pages[lang]
+}));
 
 const orderBaseUrl = lang === 'en' 
   ? `/en/templates/order?template=${template.id}` 
@@ -446,36 +455,8 @@ const specs = [
     </div>
   </section>
 
-  <script define:vars={{ baseTier: template.tier, templateTitle: title, templateId: template.id, lang }}>
-    const tiersInfo = [
-      {
-        num: 1,
-        title: 'Tier 1 • Essential',
-        price: 'Rp 689.000',
-        discount: lang === 'en' ? '28% OFF' : 'Hemat 28%',
-        note: lang === 'en' ? 'Domain, hosting & setup included' : 'Termasuk domain, hosting & setup',
-        animation: lang === 'en' ? 'Lightweight & responsive design' : 'Desain ringan & responsif',
-        pages: lang === 'en' ? '1 Page' : '1 Halaman'
-      },
-      {
-        num: 2,
-        title: 'Tier 2 • Motion',
-        price: 'Rp 1.289.000',
-        discount: lang === 'en' ? '41% OFF' : 'Hemat 41%',
-        note: lang === 'en' ? 'Domain, hosting & setup included' : 'Termasuk domain, hosting & setup',
-        animation: lang === 'en' ? 'Animations & scroll effects' : 'Animasi & efek scroll',
-        pages: lang === 'en' ? '3–5 Pages' : '3–5 Halaman'
-      },
-      {
-        num: 3,
-        title: 'Tier 3 • Immersive',
-        price: 'Rp 2.800.000',
-        discount: lang === 'en' ? '43% OFF' : 'Hemat 43%',
-        note: lang === 'en' ? 'Domain, hosting & setup included' : 'Termasuk domain, hosting & setup',
-        animation: lang === 'en' ? 'Custom scroll animations & transitions' : 'Animasi scroll & transisi khusus',
-        pages: lang === 'en' ? 'Up to 8 Pages' : 'Hingga 8 Halaman'
-      }
-    ];
+  <script define:vars={{ baseTier: template.tier, templateTitle: title, templateId: template.id, lang, clientTiers }}>
+    const tiersInfo = clientTiers;
 
     function selectTier(tierNum) {
       const t = tiersInfo[tierNum - 1] || tiersInfo[0];

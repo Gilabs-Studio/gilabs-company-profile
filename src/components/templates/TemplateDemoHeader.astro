@@ -1,0 +1,46 @@
+---
+import { templatesData, getTierInfoByNumber } from '../../data/templatesData';
+
+interface Props {
+  templateId: string;
+  lang?: 'id' | 'en';
+}
+
+const { templateId, lang = 'id' } = Astro.props;
+
+// Ambil template secara dinamis dari templatesData
+const template = templatesData.find((t) => t.id === templateId || t.slug === templateId) || templatesData[0];
+const tierInfo = getTierInfoByNumber(template.tier);
+
+const templateTitle = lang === 'en' && template.titleEn ? template.titleEn : template.title;
+const templatePrice = tierInfo.pricing.price;
+const catalogUrl = lang === 'en' ? '/en/templates' : '/templates';
+const orderUrl = lang === 'en' 
+  ? `/en/templates/order?template=${template.id}&tier=${template.tier}` 
+  : `/templates/order?template=${template.id}&tier=${template.tier}`;
+---
+
+<!-- Top Sticky Demo Header Bar -->
+<header class="sticky top-0 z-50 bg-[#0f172a] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
+  <div class="flex items-center gap-3">
+    <a 
+      href={catalogUrl} 
+      class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-medium"
+    >
+      <span>←</span>
+      <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
+    </a>
+    <span class="text-slate-600 hidden sm:inline">|</span>
+    <span class="font-semibold text-slate-200 hidden sm:inline">{templateTitle}</span>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <span class="text-slate-300 font-mono hidden md:inline">{templatePrice}</span>
+    <a
+      href={orderUrl}
+      class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3.5 py-1.5 rounded text-xs transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+    >
+      {lang === 'en' ? 'Purchase Template' : 'Beli Template Ini'}
+    </a>
+  </div>
+</header>

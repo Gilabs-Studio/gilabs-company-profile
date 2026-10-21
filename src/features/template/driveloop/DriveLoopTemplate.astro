@@ -1,5 +1,6 @@
 ---
-import { getWhatsAppLink } from '../../../lib/utils';
+import TemplateDemoHeader from '../../../components/templates/TemplateDemoHeader.astro';
+import { templatesData } from '../../../data/templatesData';
 import '../../../styles/globals.css';
 import DriveLoopLanding from './DriveLoopLanding';
 
@@ -9,12 +10,8 @@ interface Props {
 
 const { lang = 'id' } = Astro.props;
 
-const templateTitle = lang === 'en' 
-  ? "DriveLoop • Premium Car Rental & Overland Adventure" 
-  : "DriveLoop • Website Rental Mobil Premium & Petualangan";
-const templatePrice = "Rp 1.289.000";
-const buyUrl = getWhatsAppLink('template', lang, templateTitle);
-const catalogUrl = `/${lang}/templates`;
+const template = templatesData.find((t) => t.id === 'driveloop')!;
+const templateTitle = lang === 'en' && template.titleEn ? template.titleEn : template.title;
 ---
 
 <!DOCTYPE html>
@@ -66,32 +63,7 @@ const catalogUrl = `/${lang}/templates`;
 <body class="bg-[#0B0F17] text-white antialiased m-0 p-0">
 
   <!-- Top Sticky Demo Header Bar -->
-  <header class="sticky top-0 z-50 bg-[#0c1220] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
-    <div class="flex items-center gap-3">
-      <a 
-        href={catalogUrl} 
-        class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-medium"
-      >
-        <span>←</span>
-        <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
-      </a>
-      <span class="text-neutral-600 hidden sm:inline">|</span>
-      <span class="font-semibold text-neutral-200 hidden sm:inline">{templateTitle}</span>
-    </div>
-
-    <div class="flex items-center gap-3">
-      <span class="text-neutral-300 font-mono hidden md:inline">{templatePrice}</span>
-      <a
-        href={buyUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3.5 py-1.5 rounded-full text-xs transition-colors cursor-pointer"
-        style="border-radius: 9999px !important;"
-      >
-        {lang === 'en' ? 'Purchase Template' : 'Beli Template Ini'}
-      </a>
-    </div>
-  </header>
+  <TemplateDemoHeader templateId="driveloop" lang={lang} />
 
   <!-- Complete DriveLoop Landing Page mounted with client:load -->
   <DriveLoopLanding client:load lang={lang} />

@@ -581,6 +581,9 @@ export const templatesData: TemplateItem[] = [
   }
 ];
 
+const baseTier1Price = parseInt(tiersData[0].pricing.price.replace(/[^0-9]/g, ''), 10);
+const baseTier1OrigPrice = parseInt((tiersData[0].pricing.originalPrice || '').replace(/[^0-9]/g, ''), 10) || 959000;
+
 export const durationPlans: DurationPlan[] = [
   {
     id: '1-year',
@@ -589,12 +592,12 @@ export const durationPlans: DurationPlan[] = [
       id: 'Paket 1 Tahun',
       en: '1-Year Package'
     },
-    priceIdr: 1250000,
-    originalPriceIdr: 1500000,
-    monthlyEquivalentIdr: 104000,
+    priceIdr: baseTier1Price,
+    originalPriceIdr: baseTier1OrigPrice,
+    monthlyEquivalentIdr: Math.round(baseTier1Price / 12),
     savings: {
-      id: 'Hemat Rp 250.000',
-      en: 'Save Rp 250.000'
+      id: `Hemat Rp ${(baseTier1OrigPrice - baseTier1Price).toLocaleString('id-ID')}`,
+      en: `Save Rp ${(baseTier1OrigPrice - baseTier1Price).toLocaleString('id-ID')}`
     },
     features: {
       id: [
