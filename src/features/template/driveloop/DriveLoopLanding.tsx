@@ -173,7 +173,7 @@ export default function DriveLoopLanding({ lang = "id" }: DriveLoopLandingProps)
         `Mohon konfirmasi ketersediaan unit dan penawaran terbaiknya.`
     );
     setTimeout(() => {
-      window.open(`https://wa.me/6289526770703?text=${textMsg}`, "_blank");
+      window.open(`https://wa.me/6281367954062?text=${textMsg}`, "_blank");
       setBookingSuccess(false);
     }, 600);
   };

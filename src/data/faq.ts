@@ -43,8 +43,16 @@ export const faqData: Record<string, FAQData> = {
         answer: "We offer SLA-based support options, including proactive monitoring, performance optimization, security patching, and upgrade roadmap planning to ensure your product remains competitive and secure.",
       },
       {
-        question: "How do you manage intellectual property and confidentiality?",
-        answer: "We sign NDAs before project commencement. All intellectual property is fully transferred upon payment completion. We guarantee no reuse of proprietary logic and maintain secure repository access control at all times.",
+        question: "How do you handle revisions and pricing transparency?",
+        answer: "Revisions are included in the agreed package and explicitly detailed in the upfront contract. Pricing is 100% transparent with zero hidden fees or surprise billings during project execution.",
+      },
+      {
+        question: "How does Gilabs utilize AI in design and software engineering?",
+        answer: "We leverage AI thoughtfully to accelerate research, concept exploration, and wireframing. However, all UI/UX architecture, brand-tailored aesthetics, and production code are manually crafted and curated by our professional engineers and designers—ensuring original, high-performance output tailored to your specific business.",
+      },
+      {
+        question: "What is the communication and collaboration process during the project?",
+        answer: "We provide a responsive, single point of contact with clear milestone tracking. Clients are actively involved at every stage—from discovery and wireframes to iterative builds and final user acceptance testing—ensuring fast feedback loops without bureaucratic friction.",
       },
     ],
   },
@@ -81,8 +89,16 @@ export const faqData: Record<string, FAQData> = {
         answer: "Kami menawarkan opsi dukungan berbasis SLA, termasuk pemantauan proaktif, optimasi performa, penambalan keamanan (security patching), dan perencanaan peta jalan (roadmap) pembaruan.",
       },
       {
-        question: "Bagaimana Anda mengelola kekayaan intelektual dan kerahasiaan?",
-        answer: "Kami menandatangani NDA sebelum proyek dimulai. Seluruh Hak Kekayaan Intelektual (IP) dialihkan sepenuhnya setelah pelunasan pembayaran. Kami menjamin tidak ada penggunaan ulang logika kepemilikan dan menjaga kontrol akses repositori yang aman.",
+        question: "Bagaimana kebijakan revisi dan transparansi harga di Gilabs?",
+        answer: "Revisi sudah termasuk di dalam paket yang disepakati dan tertulis jelas di dalam kontrak kerja sejak awal. Penetapan harga 100% transparan tanpa biaya tersembunyi (zero hidden fees) atau biaya siluman di tengah proyek.",
+      },
+      {
+        question: "Bagaimana Gilabs memanfaatkan AI dalam proses desain dan pengembangan?",
+        answer: "Kami memanfaatkan AI secara bijak untuk mempercepat riset, eksplorasi konsep, dan wireframing. Namun seluruh antarmuka (UI/UX), estetika visual sesuai brand, arsitektur sistem, dan baris kode tetap dirancang dan dikurasi manual oleh engineer & desainer profesional kami—bukan hasil generate asal jadi.",
+      },
+      {
+        question: "Bagaimana alur komunikasi dan keterlibatan klien selama pengerjaan proyek?",
+        answer: "Kami menerapkan komunikasi satu pintu yang responsif (fast response) dengan pelaporan progres jelas di setiap milestone. Klien dilibatkan secara kolaboratif mulai dari riset kebutuhan, wireframe, pengembangan bertahap, hingga testing akhir tanpa birokrasi berbelit.",
       },
     ],
   },

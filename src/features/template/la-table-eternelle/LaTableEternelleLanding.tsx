@@ -69,7 +69,7 @@ export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternell
     ].filter(Boolean).join('\n');
 
     const message = encodeURIComponent(details);
-    window.open(`https://wa.me/6289526770703?text=${message}`, '_blank');
+    window.open(`https://wa.me/6281367954062?text=${message}`, '_blank');
     setIsModalOpen(false);
   };
 
@@ -663,7 +663,7 @@ export default function LaTableEternelleLanding({ lang = 'id' }: LaTableEternell
             <div className="flex items-center gap-4">
               <Phone className="w-5 h-5 text-neutral-400 shrink-0" />
               <div className="text-xs text-neutral-300 font-mono">
-                <p>+62 21 1234 5678</p>
+                <p>+62 813-6795-4062</p>
               </div>
             </div>
 

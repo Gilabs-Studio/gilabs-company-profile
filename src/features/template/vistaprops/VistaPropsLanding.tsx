@@ -1481,8 +1481,8 @@ export default function VistaPropsLanding({ lang = "id" }: VistaPropsLandingProp
               <h4 className="footer-header text-xs uppercase tracking-widest text-neutral-400 font-semibold mb-1">
                 {isEn ? "Direct Contact" : "Kontak Langsung"}
               </h4>
-              <a href="tel:+6289526770703" className="footer-link text-sm text-neutral-300 hover:text-white transition-colors cursor-pointer">
-                +62 895-2677-0703
+              <a href="tel:+6281367954062" className="footer-link text-sm text-neutral-300 hover:text-white transition-colors cursor-pointer">
+                +62 813-6795-4062
               </a>
               <a href="mailto:info@loremproperties.com" className="footer-link text-sm text-neutral-300 hover:text-white transition-colors cursor-pointer">
                 info@loremproperties.com

@@ -5,7 +5,7 @@ import Hero from '../components/sections/Hero.astro';
 import Portfolio from '../components/sections/Portfolio.astro';
 import Showcase from '../components/sections/Showcase.astro';
 import Process from '../components/sections/Process.astro';
-import Comparison from '../components/sections/Comparison.astro';
+import FeaturedTemplates from '../components/sections/FeaturedTemplates.astro';
 import FAQ from '../components/sections/FAQ.astro';
 import Offer from '../components/sections/Offer.astro';
 import FinalCTA from '../components/sections/FinalCTA.astro';
@@ -68,6 +68,30 @@ const faqSchema = {
 				"@type": "Answer",
 				"text": "Gilabs menggunakan stack modern: Next.js 16 dan React untuk frontend, Go (Golang) dan Node.js untuk backend, PostgreSQL untuk database, Flutter untuk mobile app, TypeScript, Tailwind CSS, dan integrasi AI."
 			}
+		},
+		{
+			"@type": "Question",
+			"name": "Bagaimana kebijakan revisi dan transparansi harga di Gilabs?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Revisi sudah termasuk di dalam paket yang disepakati dan tertulis jelas di dalam kontrak kerja sejak awal. Penetapan harga 100% transparan tanpa biaya tersembunyi (zero hidden fees) atau biaya siluman di tengah proyek."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "Bagaimana Gilabs memanfaatkan AI dalam proses desain dan pengembangan?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Kami memanfaatkan AI secara bijak untuk mempercepat riset, eksplorasi konsep, dan wireframing. Namun seluruh antarmuka (UI/UX), estetika visual sesuai brand, arsitektur sistem, dan baris kode tetap dirancang dan dikurasi manual oleh engineer & desainer profesional kami—bukan hasil generate asal jadi."
+			}
+		},
+		{
+			"@type": "Question",
+			"name": "Bagaimana alur komunikasi dan keterlibatan klien selama pengerjaan proyek?",
+			"acceptedAnswer": {
+				"@type": "Answer",
+				"text": "Kami menerapkan komunikasi satu pintu yang responsif (fast response) dengan pelaporan progres jelas di setiap milestone. Klien dilibatkan secara kolaboratif mulai dari riset kebutuhan, wireframe, pengembangan bertahap, hingga testing akhir tanpa birokrasi berbelit."
+			}
 		}
 	]
 };
@@ -93,7 +117,7 @@ const faqSchema = {
 		<Portfolio lang={lang} />
 		<Offer lang={lang} />
 		<Process lang={lang} />
-		<Comparison lang={lang} />
+		<FeaturedTemplates lang={lang} />
 		<FAQ lang={lang} />
 		<FinalCTA lang={lang} />
 	</main>

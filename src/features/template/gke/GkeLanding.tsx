@@ -673,6 +673,7 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
             onError={() => setHasVideoError(true)}
             className="absolute inset-0 h-full w-full object-cover object-right opacity-35 sm:opacity-55 lg:opacity-90 xl:opacity-100"
           >
+            <source src="/templates/gke/company/hero.webm" type="video/webm" />
             <source src="/templates/gke/company/hero.mp4" type="video/mp4" />
             <img
               src="/templates/gke/company/gke-industrial-parts.webp"
@@ -1303,7 +1304,7 @@ export default function GkeLanding({ lang = "id" }: GkeLandingProps) {
               </p>
               <div className="space-y-1 text-xs text-slate-400">
                 <p>sales@loremipsum.com</p>
-                <p>+62 21-8888-9999</p>
+                <p>+62 813-6795-4062</p>
               </div>
             </div>
 

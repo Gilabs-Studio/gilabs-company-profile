@@ -204,7 +204,7 @@ export default function BuildlyLanding({ lang = "id" }: BuildlyLandingProps) {
         ? "Hello Buildly, I would like to consult about construction and property development."
         : "Halo Buildly, saya ingin konsultasi mengenai rencana pembangunan proyek properti bersama Buildly."
     );
-    window.open(`https://wa.me/6281234567890?text=${text}`, "_blank");
+    window.open(`https://wa.me/6281367954062?text=${text}`, "_blank");
   };
 
   return (

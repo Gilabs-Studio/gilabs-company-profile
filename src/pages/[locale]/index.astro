@@ -6,7 +6,7 @@ import Features from '../../components/sections/Features.astro';
 import Portfolio from '../../components/sections/Portfolio.astro';
 import Showcase from '../../components/sections/Showcase.astro';
 import Process from '../../components/sections/Process.astro';
-import Comparison from '../../components/sections/Comparison.astro';
+import FeaturedTemplates from '../../components/sections/FeaturedTemplates.astro';
 import FAQ from '../../components/sections/FAQ.astro';
 import Offer from '../../components/sections/Offer.astro';
 import FinalCTA from '../../components/sections/FinalCTA.astro';
@@ -99,6 +99,36 @@ const faqSchema = {
           ? "Gilabs menggunakan stack modern: Next.js 16 dan React untuk frontend, Go (Golang) dan Node.js untuk backend, PostgreSQL untuk database, Flutter untuk mobile app, TypeScript, Tailwind CSS, dan integrasi AI (Cerebras, OpenAI)."
           : "Gilabs uses a modern stack: Next.js 16 and React for frontend, Go (Golang) and Node.js for backend, PostgreSQL for database, Flutter for mobile apps, TypeScript, Tailwind CSS, and AI integration (Cerebras, OpenAI)."
       }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Bagaimana kebijakan revisi dan transparansi harga di Gilabs?" : "How do you handle revisions and pricing transparency?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Revisi sudah termasuk di dalam paket yang disepakati dan tertulis jelas di dalam kontrak kerja sejak awal. Penetapan harga 100% transparan tanpa biaya tersembunyi (zero hidden fees) atau biaya siluman di tengah proyek."
+          : "Revisions are included in the agreed package and explicitly detailed in the upfront contract. Pricing is 100% transparent with zero hidden fees or surprise billings during project execution."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Bagaimana Gilabs memanfaatkan AI dalam proses desain dan pengembangan?" : "How does Gilabs utilize AI in design and software engineering?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Kami memanfaatkan AI secara bijak untuk mempercepat riset, eksplorasi konsep, dan wireframing. Namun seluruh antarmuka (UI/UX), estetika visual sesuai brand, arsitektur sistem, dan baris kode tetap dirancang dan dikurasi manual oleh engineer & desainer profesional kami—bukan hasil generate asal jadi."
+          : "We leverage AI thoughtfully to accelerate research, concept exploration, and wireframing. However, all UI/UX architecture, brand-tailored aesthetics, and production code are manually crafted and curated by our professional engineers and designers—ensuring original, high-performance output tailored to your specific business."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Bagaimana alur komunikasi dan keterlibatan klien selama pengerjaan proyek?" : "What is the communication and collaboration process during the project?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Kami menerapkan komunikasi satu pintu yang responsif (fast response) dengan pelaporan progres jelas di setiap milestone. Klien dilibatkan secara kolaboratif mulai dari riset kebutuhan, wireframe, pengembangan bertahap, hingga testing akhir tanpa birokrasi berbelit."
+          : "We provide a responsive, single point of contact with clear milestone tracking. Clients are actively involved at every stage—from discovery and wireframes to iterative builds and final user acceptance testing—ensuring fast feedback loops without bureaucratic friction."
+      }
     }
   ]
 };
@@ -137,8 +167,8 @@ const faqSchema = {
     {/* 5. Process */}
     <Process lang={locale} />
 
-    {/* 6. Comparison */}
-    <Comparison lang={locale} />
+    {/* 6. Featured Templates */}
+    <FeaturedTemplates lang={locale} />
 
     {/* 7. FAQ */}
     <FAQ lang={locale} />

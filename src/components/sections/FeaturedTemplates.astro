@@ -1,0 +1,166 @@
+---
+import { templatesData } from '../../data/templatesData';
+import { ExternalLink, ArrowRight, Sparkles } from 'lucide-react';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const activeLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+
+// Filter active templates and pick 3 random templates
+const activeTemplates = templatesData.filter((item) => !item.hidden);
+const randomTemplates = [...activeTemplates].sort(() => 0.5 - Math.random()).slice(0, 3);
+
+const content = {
+  id: {
+    eyebrow: "Template Website Siap Pakai",
+    title: "Langsung Jadi Hari Ini, Tanpa Ribet",
+    subtitle: "Pilihan website bisnis berstandar tinggi yang siap online hari ini. Lengkap dengan domain, hosting ultra cepat, dan kustomisasi konten terima beres.",
+    viewDemo: "Live Demo",
+    selectTemplate: "Pilih Template",
+    exploreAll: "Jelajahi Semua Template Website",
+    customHintPrefix: "Butuh fitur khusus atau sistem internal dari nol?",
+    customHintLink: "Konsultasikan proyek custom bersama engineer kami →",
+  },
+  en: {
+    eyebrow: "Ready-to-Use Website Templates",
+    title: "Launch Today, Fast & Effortless",
+    subtitle: "High-performance business website templates ready to go live today. Includes custom domain, high-speed hosting, and turnkey content customization.",
+    viewDemo: "Live Demo",
+    selectTemplate: "Select Template",
+    exploreAll: "Explore All Website Templates",
+    customHintPrefix: "Need custom features or an internal enterprise system from scratch?",
+    customHintLink: "Discuss your custom project with our engineers →",
+  },
+};
+
+const t = content[activeLang];
+const templatesCatalogUrl = activeLang === 'en' ? '/en/templates' : '/templates';
+---
+
+<section class="py-20 md:py-28 bg-transparent relative overflow-hidden" id="featured-templates">
+  <div class="container mx-auto px-4 max-w-6xl">
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-12 md:mb-16 px-4">
+      <div class="flex items-center justify-center gap-3 sm:gap-4 mb-3 md:mb-4">
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+        <span class="typography-eyebrow flex items-center gap-1.5">
+          <Sparkles className="w-3.5 h-3.5 text-brand" />
+          {t.eyebrow}
+        </span>
+        <div class="h-px w-6 sm:w-12 bg-primary/10"></div>
+      </div>
+      <h2 class="typography-section-title mb-4">
+        {t.title}
+      </h2>
+      <p class="typography-subtitle max-w-2xl mx-auto">
+        {t.subtitle}
+      </p>
+    </div>
+
+    {/* Templates Showcase Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+      {randomTemplates.map((template) => {
+        const title = activeLang === 'en' && template.titleEn ? template.titleEn : template.title;
+        const detailUrl = activeLang === 'en' ? `/en/templates/${template.slug}` : `/templates/${template.slug}`;
+
+        return (
+          <div class="group relative flex flex-col bg-card border border-border/70 hover:border-foreground/30 rounded-lg overflow-hidden transition-all duration-300 shadow-xs hover:shadow-xl hover:-translate-y-1">
+            {/* Template Preview Image with Live Demo Hover Link */}
+            <a
+              href={template.demoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="relative aspect-[16/10] bg-muted/20 overflow-hidden block cursor-pointer border-b border-border/50"
+              aria-label={`${t.viewDemo} - ${title}`}
+              title={`${t.viewDemo} - ${title}`}
+            >
+              <img
+                src={template.previewImage}
+                alt={title}
+                loading="lazy"
+                class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+              />
+
+              {/* Category Badge */}
+              <div class="absolute top-3 left-3 z-10">
+                <span class="inline-flex items-center text-[10px] font-mono font-semibold uppercase tracking-wider px-2.5 py-1 rounded bg-background/90 text-foreground backdrop-blur-md border border-border/60 shadow-xs">
+                  {template.categoryLabel[activeLang]}
+                </span>
+              </div>
+
+              {/* Hover Overlay with Live Demo Trigger */}
+              <div class="absolute inset-0 z-20 bg-black/40 backdrop-blur-[1px] transition-opacity duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                <span class="bg-background text-foreground text-xs font-semibold px-4 py-2 rounded-lg shadow-md flex items-center gap-1.5 transition-transform duration-200 group-hover:scale-105">
+                  <span>{t.viewDemo}</span>
+                  <ExternalLink className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </a>
+
+            {/* Template Info & Actions */}
+            <div class="p-5 flex-1 flex flex-col justify-between gap-4">
+              <div class="space-y-2">
+                <h3 class="typography-body-large font-bold text-foreground tracking-tight line-clamp-1">
+                  <a
+                    href={detailUrl}
+                    class="hover:text-brand transition-colors cursor-pointer inline-flex items-center gap-1.5"
+                  >
+                    <span>{title}</span>
+                  </a>
+                </h3>
+                <p class="typography-small text-muted-foreground line-clamp-2 leading-relaxed">
+                  {template.description[activeLang]}
+                </p>
+              </div>
+
+              {/* Dual Action Buttons */}
+              <div class="pt-3 border-t border-border/50 grid grid-cols-2 gap-2">
+                <a
+                  href={template.demoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="typography-small font-medium py-2.5 px-3 rounded-lg border border-border/80 hover:bg-secondary text-foreground text-center cursor-pointer transition-colors inline-flex items-center justify-center gap-1.5"
+                >
+                  <span>{t.viewDemo}</span>
+                  <ExternalLink className="w-3.5 h-3.5 text-muted-foreground" />
+                </a>
+
+                <a
+                  href={detailUrl}
+                  class="typography-small font-semibold py-2.5 px-3 rounded-lg bg-foreground text-background hover:opacity-90 text-center cursor-pointer transition-all duration-300 inline-flex items-center justify-center gap-1 hover:-translate-y-0.5 active:translate-y-0 shadow-xs"
+                >
+                  <span>{t.selectTemplate}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+
+    {/* Bottom Catalog CTA */}
+    <div class="mt-12 md:mt-16 text-center space-y-4">
+      <a
+        href={templatesCatalogUrl}
+        class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-lg bg-foreground text-background font-semibold text-sm hover:opacity-90 transition-all duration-300 cursor-pointer shadow-md hover:-translate-y-0.5 active:translate-y-0"
+      >
+        <span>{t.exploreAll}</span>
+        <ArrowRight className="w-4 h-4" />
+      </a>
+
+      <p class="typography-small text-muted-foreground">
+        {t.customHintPrefix}{' '}
+        <a
+          href={activeLang === 'en' ? '/en/services' : '/services'}
+          class="text-foreground font-medium underline hover:text-brand transition-colors cursor-pointer"
+        >
+          {t.customHintLink}
+        </a>
+      </p>
+    </div>
+  </div>
+</section>

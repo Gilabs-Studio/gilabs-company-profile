@@ -17,7 +17,7 @@ export function getWhatsAppLink(
   lang: "en" | "id" = "id",
   planName?: string,
 ): string {
-  const phoneNumber = "6289526770703";
+  const phoneNumber = "6281367954062";
   const baseUrl = `https://wa.me/${phoneNumber}`;
 
   const templates: Record<string, Record<string, string>> = {
@@ -107,7 +107,7 @@ export interface WebsiteOrderDetails {
  * Generate formatted WhatsApp checkout link for website template orders
  */
 export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): string {
-  const phoneNumber = "6289526770703";
+  const phoneNumber = "6281367954062";
   const baseUrl = `https://wa.me/${phoneNumber}`;
   const isEn = details.lang === "en";
   const formatIdr = (val: number) => `Rp ${val.toLocaleString("id-ID")}`;

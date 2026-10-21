@@ -217,7 +217,7 @@ export default function SuraBayLanding({ lang = 'id' }: SuraBayLandingProps) {
     const textMsg = `Halo Sura Bay Beach Restaurant,%0A%0ASaya ingin konfirmasi reservasi meja:%0ANama: ${formData.name}%0ANo. WhatsApp: ${formData.phone}%0ATanggal: ${formData.date}%0AJam: ${formData.time}%0AJumlah Tamu: ${formData.guests} orang%0APilihan Area: ${formData.seating}%0ACatatan: ${formData.specialNotes || '-'}`;
     
     setTimeout(() => {
-      window.open(`https://wa.me/6281234567890?text=${textMsg}`, '_blank');
+      window.open(`https://wa.me/6281367954062?text=${textMsg}`, '_blank');
       setIsReservationOpen(false);
       setIsSubmitted(false);
     }, 1200);
@@ -997,7 +997,7 @@ export default function SuraBayLanding({ lang = 'id' }: SuraBayLandingProps) {
                 <input 
                   type="tel" 
                   required
-                  placeholder="e.g. 081234567890"
+                  placeholder="e.g. 0813-6795-4062"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full bg-[#20221E] border border-neutral-700 focus:border-[#C59A53] rounded px-3 py-2 text-white outline-none transition-colors"
