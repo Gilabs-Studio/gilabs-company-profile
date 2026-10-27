@@ -75,9 +75,17 @@ if (serviceMatch) {
 <div id="mobile-menu" class="fixed inset-0 bg-background/98 backdrop-blur-xl z-9999 flex flex-col items-center justify-between opacity-0 pointer-events-none transition-opacity duration-300 p-6 sm:p-8 overflow-y-auto">
   <!-- Close Button - Top Right -->
   <div class="w-full flex items-center justify-between pb-4 border-b border-border/40">
-    <span class="text-xl font-bold tracking-tighter">
-      GILABS<span class="text-brand">.ID</span>
-    </span>
+    <a href={pathPrefix} class="flex items-center cursor-pointer hover:opacity-90 transition-opacity mobile-link" aria-label="Gilabs Home">
+      <img 
+        src="/Logo Putih 3 crop.png" 
+        alt="Gilabs" 
+        class="h-7 w-auto object-contain" 
+        width="97" 
+        height="28" 
+        loading="eager"
+        decoding="async"
+      />
+    </a>
     <button 
       id="mobile-menu-close" 
       class="p-2 text-foreground/60 hover:text-foreground transition-colors duration-200 cursor-pointer"
