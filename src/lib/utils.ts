@@ -119,22 +119,39 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
         ]
       : [`Add-on: Tidak ada`];
 
+  const domainLine = details.domainName
+    ? (isEn
+        ? `Request Domain: ${details.domainName} (Registration fee confirmed via WhatsApp)`
+        : `Request Domain: ${details.domainName} (Biaya registrasi dikonfirmasi via WhatsApp)`)
+    : (isEn
+        ? `Request Domain: To be consulted via WhatsApp`
+        : `Request Domain: Konsultasikan via WhatsApp`);
+
+  const domainNote = details.domainName
+    ? (isEn
+        ? `Note: Please provide availability & estimated registration fee for domain ${details.domainName}.`
+        : `Catatan: Mohon info ketersediaan & estimasi biaya registrasi domain ${details.domainName}.`)
+    : (isEn
+        ? `Note: Domain recommendations will be discussed during setup.`
+        : `Catatan: Rekomendasi nama domain akan dikonsultasikan saat aktivasi.`);
+
   const lines = isEn
     ? [
-        `Halo Tim GiLabs, saya ingin memesan website:`,
+        `Hello GiLabs Team, I would like to order a website:`,
         ``,
-        `*FORM PEMESANAN WEBSITE*`,
-        `Nama: ${details.customerName || "[Nama Anda]"}`,
-        `Perusahaan: ${details.companyName || "-"}`,
+        `*WEBSITE ORDER FORM*`,
+        `Name: ${details.customerName || "[Your Name]"}`,
+        `Company: ${details.companyName || "-"}`,
         `Email: ${details.customerEmail || "-"}`,
         ``,
         `Template: ${details.templateTitle}`,
-        `Paket Durasi: ${details.durationPlanName} (${details.durationYears} Year${details.durationYears > 1 ? "s" : ""})`,
+        `Plan Duration: ${details.durationPlanName} (${details.durationYears} Year${details.durationYears > 1 ? "s" : ""})`,
+        domainLine,
         ...addonLines,
-        `Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
+        `Total Investment: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
         ``,
-        `Catatan: Domain gratis dikonsultasikan saat aktivasi.`,
-        `Mohon info invoice dan langkah aktivasinya. Terima kasih!`,
+        domainNote,
+        `Please provide the official invoice and activation steps. Thank you!`,
       ]
     : [
         `Halo Tim GiLabs, saya ingin memesan website:`,
@@ -146,10 +163,11 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
         ``,
         `Template: ${details.templateTitle}`,
         `Paket Durasi: ${details.durationPlanName} (${details.durationYears} Tahun)`,
+        domainLine,
         ...addonLines,
         `Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
         ``,
-        `Catatan: Domain gratis dikonsultasikan saat aktivasi.`,
+        domainNote,
         `Mohon info invoice dan langkah aktivasinya. Terima kasih!`,
       ];
 

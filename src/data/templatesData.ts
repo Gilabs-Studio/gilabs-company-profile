@@ -149,8 +149,8 @@ export const tiersData: TierInfo[] = [
     originalPrice: 'Rp 959.000',
     discountLabel: { id: 'Hemat 28%', en: '28% OFF' },
     note: {
-      id: 'Termasuk domain, hosting & setup',
-      en: 'Domain, hosting & setup included'
+      id: 'Termasuk cloud hosting & setup',
+      en: 'Cloud hosting & setup included'
     }
   },
   specs: {
@@ -178,8 +178,8 @@ export const tiersData: TierInfo[] = [
     originalPrice: 'Rp 2.199.000',
     discountLabel: { id: 'Hemat 41%', en: '41% OFF' },
     note: {
-      id: 'Termasuk domain, hosting & setup',
-      en: 'Domain, hosting & setup included'
+      id: 'Termasuk cloud hosting & setup',
+      en: 'Cloud hosting & setup included'
     }
   },
   specs: {
@@ -207,8 +207,8 @@ export const tiersData: TierInfo[] = [
     originalPrice: 'Rp 4.950.000',
     discountLabel: { id: 'Hemat 43%', en: '43% OFF' },
     note: {
-      id: 'Termasuk domain, hosting & setup',
-      en: 'Domain, hosting & setup included'
+      id: 'Termasuk cloud hosting & setup',
+      en: 'Cloud hosting & setup included'
     }
   },
   specs: {
@@ -601,17 +601,15 @@ export const durationPlans: DurationPlan[] = [
     },
     features: {
       id: [
-        'Domain aktif 1 tahun (.com / .id)',
-        'Cloud hosting berkecepatan tinggi',
-        'SSL keamanan gratis',
+        'Cloud hosting cepat 1 tahun & SSL',
+        'Bantuan setup & koneksi domain kustom',
         'Akun email bisnis',
         'Pemeliharaan & backup berkala',
         'Dukungan teknis standar'
       ],
       en: [
-        '1-year active domain (.com / .id)',
-        'High-speed cloud hosting',
-        'Free SSL security certificate',
+        '1-year fast cloud hosting & SSL',
+        'Custom domain setup & DNS connection',
         'Business email account',
         'Routine maintenance and backups',
         'Standard technical support'
@@ -634,17 +632,17 @@ export const durationPlans: DurationPlan[] = [
     },
     features: {
       id: [
-        'Domain aktif 2 tahun',
+        'Cloud hosting 2 tahun & SSL gratis',
         'Hosting unlimited bandwidth',
-        'SSL keamanan gratis',
+        'Bantuan setup & koneksi domain kustom',
         'Akun email bisnis (hingga 3 akun)',
         'Pemeliharaan sistem & backup berkala',
         'Dukungan teknis respons cepat'
       ],
       en: [
-        '2-year active domain',
+        '2-year cloud hosting & free SSL',
         'Unlimited bandwidth hosting',
-        'Free SSL certificate',
+        'Custom domain setup & DNS connection',
         'Business email accounts (up to 3)',
         'Routine maintenance and backups',
         'Fast-response technical support'
@@ -671,9 +669,9 @@ export const durationPlans: DurationPlan[] = [
     },
     features: {
       id: [
-        'Domain 3 tahun',
+        'Cloud hosting 3 tahun & SSL gratis',
         'Hosting unlimited',
-        'SSL gratis',
+        'Bantuan setup & koneksi domain kustom',
         'Akun email bisnis',
         'Hemat paling banyak',
         'Prioritas support',
@@ -681,9 +679,9 @@ export const durationPlans: DurationPlan[] = [
         'Garansi uptime 99.9% & proteksi keamanan'
       ],
       en: [
-        'Domain 3 years',
+        '3-year cloud hosting & free SSL',
         'Hosting unlimited',
-        'Free SSL certificate',
+        'Custom domain setup & DNS connection',
         'Business email accounts',
         'Maximum savings',
         'Priority support',
@@ -763,7 +761,7 @@ export const templatesPageContent = {
   id: {
     heroTag: 'Website Siap Pakai • Langsung Online Hari Ini',
     heroTitle: 'Malas Cari Vendor? Website Siap Jadi Hari Ini!',
-    heroSubtitle: 'Pilih template siap pakai, langsung online hari ini lengkap dengan domain dan hosting. Bisa kami bantu editkan konten atau custom sesuai kebutuhan.',
+    heroSubtitle: 'Pilih template siap pakai, langsung online hari ini lengkap dengan cloud hosting, SSL, dan setup teknis. Bisa kami bantu editkan konten atau custom sesuai kebutuhan.',
     valueProps: [
       {
         badge: '01. Cepat & Hemat',
@@ -794,7 +792,7 @@ export const templatesPageContent = {
     card: {
       startingFrom: 'Mulai dari',
       perYear: '/ tahun',
-      includedNote: 'Termasuk Domain + Hosting + Maintenance',
+      includedNote: 'Termasuk Cloud Hosting + SSL + Maintenance',
       oneTimePayment: 'Sekali bayar',
       viewDetail: 'Detail',
       buyNow: 'Beli Template Ini',
@@ -809,7 +807,7 @@ export const templatesPageContent = {
       priceLabel: 'Mulai dari',
       buyNow: 'Pilih Paket & Konfigurasi',
       openDemo: 'Buka Live Demo',
-      guaranteeNote: 'Sudah termasuk nama domain, cloud hosting, SSL, email bisnis, dan bantuan tim teknis.'
+      guaranteeNote: 'Sudah termasuk cloud hosting cepat, SSL gratis, email bisnis, bantuan koneksi domain, dan tim teknis.'
     },
     faqTitle: 'Pertanyaan Umum Seputar Pemesanan Website',
     faqSubtitle: 'Jawaban seputar aktivasi instan, bantuan edit konten, opsi custom, dan hosting.',
@@ -824,7 +822,7 @@ export const templatesPageContent = {
       },
       {
         q: 'Apakah harga paket sudah termasuk domain dan hosting?',
-        a: 'Ya, sudah termasuk nama domain (.com/.id), cloud hosting cepat, SSL gratis, email bisnis, dan pemeliharaan rutin tanpa biaya tersembunyi.'
+        a: 'Paket website sudah mencakup cloud hosting berkecepatan tinggi, SSL gratis, email bisnis, setup teknis, dan maintenance rutin. Untuk nama domain, Anda dapat me-request nama domain yang diinginkan dan biayanya dikonfirmasikan sesuai harga resmi registrar (belum termasuk dalam paket template).'
       },
       {
         q: 'Apakah template ini bisa di-custom atau ditambah fitur baru di kemudian hari?',
@@ -848,7 +846,7 @@ export const templatesPageContent = {
   en: {
     heroTag: 'Turnkey Website Templates • Go Live Today',
     heroTitle: 'No Time for Vendors? Your Website Is Ready Today!',
-    heroSubtitle: 'Ready-to-use business templates, live today with domain and hosting included. We can edit content or build custom features for you.',
+    heroSubtitle: 'Ready-to-use business templates, live today with cloud hosting, SSL, and technical setup included. We can edit content or build custom features for you.',
     valueProps: [
       {
         badge: '01. Fast & Affordable',
@@ -879,7 +877,7 @@ export const templatesPageContent = {
     card: {
       startingFrom: 'Starting from',
       perYear: '/ year',
-      includedNote: 'Includes Domain + Hosting + Maintenance',
+      includedNote: 'Includes Cloud Hosting + SSL + Maintenance',
       oneTimePayment: 'One-time payment',
       viewDetail: 'Details',
       buyNow: 'Buy This Template',
@@ -894,7 +892,7 @@ export const templatesPageContent = {
       priceLabel: 'Starting from',
       buyNow: 'Select Plan & Configure',
       openDemo: 'Open Live Demo',
-      guaranteeNote: 'Includes domain registration, cloud hosting, SSL, business email, and support.'
+      guaranteeNote: 'Includes high-speed cloud hosting, free SSL, business email, domain connection assistance, and engineering support.'
     },
     faqTitle: 'Frequently Asked Questions',
     faqSubtitle: 'Quick answers about instant setup, content editing, custom features, and hosting.',
@@ -909,7 +907,7 @@ export const templatesPageContent = {
       },
       {
         q: 'Is domain and hosting included in the price?',
-        a: 'Yes, all-in. Every plan includes your domain (.com/.id), high-speed cloud hosting, free SSL, business email, and regular maintenance.'
+        a: 'The website package includes high-speed cloud hosting, free SSL, business email, technical setup, and routine maintenance. For the domain name, you can request your preferred domain and registration costs are confirmed according to official registrar pricing (not included in the template package).'
       },
       {
         q: 'Can this template be customized or extended with new features later?',

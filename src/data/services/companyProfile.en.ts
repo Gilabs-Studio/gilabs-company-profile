@@ -135,7 +135,7 @@ export const companyProfileEn: ServicePageData = {
         "3-5 pages company profile",
         "Corporate clean & responsive design",
         "Contact page & office location map",
-        "1-Year Domain (.com/.id) & Cloud Hosting",
+        "1-Year Domain (.id) & Cloud Hosting",
         "2x Revision rounds"
       ]
     },

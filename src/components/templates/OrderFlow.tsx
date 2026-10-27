@@ -8,23 +8,18 @@ import { getWebsiteOrderWhatsAppLink, getWhatsAppLink } from '../../lib/utils';
 import { 
   Check, 
   ExternalLink, 
-  ShieldCheck, 
-  Search, 
   X, 
   RotateCcw,
-  Phone,
+  Languages,
+  FileText,
+  Loader2,
   ArrowLeft,
-  CheckCircle2,
+  ArrowUpRight,
+  ArrowDownRight,
+  Search,
   Minus,
   Plus,
   MessageCircle,
-  Languages,
-  FileText,
-  ArrowUpRight,
-  ArrowDownRight,
-  User,
-  Building2,
-  Mail
 } from 'lucide-react';
 
 interface OrderFlowProps {
@@ -134,15 +129,8 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   const [selectedTemplateId, setSelectedTemplateId] = useState<string>(
     initialTemplateId || templatesData.find((t) => !t.hidden)?.id || 'adiguna-machinery'
   );
-  // Read tier immediately on client initialization to prevent lag/flash
-  const [customTier, setCustomTier] = useState<1 | 2 | 3 | null>(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      const urlTier = parseInt(params.get('tier') || '', 10);
-      if ([1, 2, 3].includes(urlTier)) return urlTier as 1 | 2 | 3;
-    }
-    return null;
-  });
+  // Initialize to null to avoid SSR hydration mismatch; synchronized via useEffect on mount
+  const [customTier, setCustomTier] = useState<1 | 2 | 3 | null>(null);
   // Default to 1-year so base price matches detail page tier price exactly
   const [selectedDurationId, setSelectedDurationId] = useState<'1-year' | '2-year' | '3-year'>('1-year');
 
@@ -155,6 +143,93 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   const [companyName, setCompanyName] = useState<string>('');
   const [customerPhone, setCustomerPhone] = useState<string>('');
   const [customerEmail, setCustomerEmail] = useState<string>('');
+
+  // Domain Checker State
+  const popularTlds = useMemo(() => [
+    { ext: '.id' },
+    { ext: '.com' },
+    { ext: '.co.id' },
+    { ext: '.net' },
+    { ext: '.org' },
+    { ext: '.biz.id' },
+  ], []);
+
+  const [consultDomainLater, setConsultDomainLater] = useState<boolean>(false);
+  const [domainInput, setDomainInput] = useState<string>('');
+  const [selectedTld, setSelectedTld] = useState<string>('.id');
+  const [domainCheckStatus, setDomainCheckStatus] = useState<'idle' | 'checking' | 'available' | 'taken' | 'error'>('idle');
+  const [checkedDomain, setCheckedDomain] = useState<string>('');
+  const [selectedDomain, setSelectedDomain] = useState<string>('');
+
+  // Form Validation & Touch State
+  const [touchedFields, setTouchedFields] = useState<{ name?: boolean; phone?: boolean }>({});
+
+  const cleanDomainKeyword = (raw: string) => {
+    return raw
+      .toLowerCase()
+      .replace(/^https?:\/\//i, '')
+      .replace(/^www\./i, '')
+      .replace(/[^a-z0-9-.]/g, '')
+      .replace(/^\.+|\.+$/g, '');
+  };
+
+  const handleCheckDomain = async (targetKeyword?: string, targetTld?: string) => {
+    const kw = targetKeyword !== undefined ? targetKeyword : domainInput;
+    const tld = targetTld !== undefined ? targetTld : selectedTld;
+    
+    let cleaned = cleanDomainKeyword(kw);
+    if (!cleaned) return;
+
+    let domainToCheck = cleaned;
+    if (!cleaned.includes('.')) {
+      domainToCheck = `${cleaned}${tld.startsWith('.') ? tld : `.${tld}`}`;
+    } else {
+      const parts = cleaned.split('.');
+      const ext = `.${parts.slice(1).join('.')}`;
+      if (popularTlds.some(p => p.ext === ext)) {
+        setSelectedTld(ext);
+      }
+    }
+
+    setDomainCheckStatus('checking');
+    setCheckedDomain(domainToCheck);
+
+    try {
+      const res = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domainToCheck)}&type=SOA`, {
+        headers: { Accept: 'application/dns-json' },
+      });
+      if (!res.ok) throw new Error('DNS query failed');
+      const data = await res.json();
+      
+      // Status 3 is NXDOMAIN (domain does not exist -> available!)
+      // Status 0 is NOERROR (domain exists -> taken!)
+      if (data.Status === 3) {
+        setDomainCheckStatus('available');
+        setSelectedDomain(domainToCheck);
+      } else if (data.Status === 0) {
+        setDomainCheckStatus('taken');
+        if (selectedDomain === domainToCheck) {
+          setSelectedDomain('');
+        }
+      } else {
+        const nsRes = await fetch(`https://cloudflare-dns.com/dns-query?name=${encodeURIComponent(domainToCheck)}&type=NS`, {
+          headers: { Accept: 'application/dns-json' },
+        });
+        const nsData = await nsRes.json();
+        if (nsData.Status === 3) {
+          setDomainCheckStatus('available');
+          setSelectedDomain(domainToCheck);
+        } else {
+          setDomainCheckStatus('taken');
+          if (selectedDomain === domainToCheck) {
+            setSelectedDomain('');
+          }
+        }
+      }
+    } catch {
+      setDomainCheckStatus('error');
+    }
+  };
 
   // UI State for Template Switcher
   const [isChangingTemplate, setIsChangingTemplate] = useState<boolean>(false);
@@ -213,7 +288,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
         name: { id: 'Paket 1 Tahun', en: '1-Year Package' },
         priceIdr: tierBasePrice,
         monthlyEquivalentIdr: Math.round(tierBasePrice / 12),
-        savings: { id: 'Termasuk Domain & Hosting 1 Thn', en: 'Includes 1-Year Domain & Hosting' },
+        savings: { id: 'Termasuk Cloud Hosting & Setup 1 Thn', en: 'Includes 1-Year Cloud Hosting & Setup' },
         features: durationPlans[0].features
       },
       {
@@ -296,6 +371,36 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
 
   const formatPrice = (val: number) => `Rp ${val.toLocaleString('id-ID')}`;
 
+  // Form Validation Flags
+  const isNameValid = customerName.trim().length >= 2;
+  const isPhoneValid = customerPhone.trim().replace(/[^0-9]/g, '').length >= 8;
+  const isDomainValid = consultDomainLater || Boolean(selectedDomain.trim());
+  const isFormValid = isNameValid && isPhoneValid && isDomainValid;
+
+  const validationHint = useMemo(() => {
+    if (!isNameValid && !isPhoneValid) {
+      return lang === 'en'
+        ? 'Please enter your name and WhatsApp number to order.'
+        : 'Lengkapi nama dan nomor WhatsApp untuk memesan.';
+    }
+    if (!isNameValid) {
+      return lang === 'en'
+        ? 'Please enter your full name to order.'
+        : 'Lengkapi nama lengkap untuk memesan.';
+    }
+    if (!isPhoneValid) {
+      return lang === 'en'
+        ? 'Please enter your WhatsApp number to order.'
+        : 'Lengkapi nomor WhatsApp untuk memesan.';
+    }
+    if (!isDomainValid) {
+      return lang === 'en'
+        ? 'Specify a requested domain or choose WhatsApp consultation.'
+        : 'Tentukan request nama domain atau centang konsultasi via WhatsApp.';
+    }
+    return '';
+  }, [isNameValid, isPhoneValid, isDomainValid, lang]);
+
   // WhatsApp Checkout Link
   const whatsappUrl = useMemo(() => {
     return getWebsiteOrderWhatsAppLink({
@@ -303,6 +408,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       durationPlanName: selectedDuration.name[lang],
       durationYears: selectedDuration.years,
       durationPriceIdr: durationPrice,
+      domainName: selectedDomain ? selectedDomain : undefined,
       addons: formattedWhatsappAddons,
       addonPriceIdr: addonPrice,
       totalPriceIdr: totalPrice,
@@ -311,15 +417,15 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       customerEmail: customerEmail.trim() || undefined,
       lang,
     });
-  }, [templateDisplayTitle, activeTierTitle, tierStatusBadge, selectedDuration, formattedWhatsappAddons, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
+  }, [templateDisplayTitle, activeTierTitle, tierStatusBadge, selectedDuration, durationPrice, selectedDomain, formattedWhatsappAddons, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
 
   // Localized texts
   const t = {
     id: {
       backToCatalog: 'Kembali ke Katalog Template',
-      badge: 'Solusi Website Siap Pakai GiLabs',
+      badge: 'Pemesanan Website',
       pageTitle: 'Konfigurasi Pemesanan Website',
-      pageSubtitle: 'Solusi menyeluruh pembuatan website bisnis profesional: sudah termasuk template siap pakai, domain (.com/.id), cloud hosting cepat, SSL keamanan, email bisnis, dan pemeliharaan berkala.',
+      pageSubtitle: 'Solusi website bisnis profesional: sudah termasuk template siap pakai, cloud hosting cepat, SSL keamanan, email bisnis, bantuan setup domain, dan pemeliharaan berkala.',
       
       // Section 1
       sectionTemplateNum: '01',
@@ -335,7 +441,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       // Section 2
       sectionDurationNum: '02',
       sectionDurationTitle: 'Pilihan Durasi Paket & Layanan Tambahan',
-      sectionDurationDesc: 'Tentukan masa aktif domain, hosting, dan pemeliharaan website. Semakin panjang durasi, semakin hemat investasinya.',
+      sectionDurationDesc: 'Tentukan masa aktif cloud hosting dan pemeliharaan website. Semakin panjang durasi, semakin hemat investasinya.',
       perMonth: 'bln',
       includedHeader: 'Fitur sudah termasuk dalam',
       
@@ -350,31 +456,48 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       addonCustomDesc: 'Fitur seperti ini disesuaikan per proyek. Konsultasikan gratis dengan tim kami.',
       addonCustomCta: 'Konsultasi',
       
-      // Section 3
-      sectionContactNum: '03',
-      sectionContactTitle: 'Data Diri & Kontak Aktivasi',
-      sectionContactDesc: 'Data ini dibutuhkan untuk verifikasi kepemilikan nama domain, sertifikat SSL, dan penerbitan invoice resmi.',
-      nameLabel: 'Nama Lengkap / Penanggung Jawab',
+      // Section 3: Domain
+      sectionDomainNum: '03',
+      sectionDomainTitle: 'Request Nama Domain',
+      sectionDomainDesc: 'Tulis usulan nama domain bisnis yang Anda inginkan. Biaya registrasi domain belum termasuk dalam paket template dan akan dikonfirmasi ketersediaan serta biayanya via WhatsApp.',
+      domainPlaceholder: 'Ketik usulan nama domain (cth. usahasukses)',
+      domainCheckBtn: 'Cek',
+      domainCheckingBtn: 'Memeriksa...',
+      domainAvailableText: 'tersedia',
+      domainTakenText: 'sudah terdaftar',
+      domainSelectBtn: 'Gunakan Request Ini',
+      domainChangeBtn: 'Ganti',
+      domainConsultCheckbox: 'Konsultasikan rekomendasi nama domain nanti via WhatsApp',
+      domainConsultDesc: 'Tim software engineer GiLabs akan membantu memeriksa ketersediaan dan merekomendasikan pilihan nama domain bisnis terbaik (.com, .id, dll.) beserta biaya registrasinya saat koordinasi via WhatsApp.',
+      
+      // Section 4: Contact
+      sectionContactNum: '04',
+      sectionContactTitle: 'Data Kontak',
+      sectionContactDesc: 'Informasi untuk verifikasi kepemilikan nama domain, sertifikat SSL, dan penerbitan invoice resmi.',
+      nameLabel: 'Nama Lengkap',
       namePlaceholder: 'cth. Hendra Gunawan',
+      nameError: 'Nama lengkap wajib diisi (minimal 2 karakter)',
       companyLabel: 'Nama Usaha / Perusahaan',
       companyPlaceholder: 'cth. PT Citra Mandiri Sejahtera',
       phoneLabel: 'Nomor WhatsApp Aktif',
       phonePlaceholder: 'cth. 081367954062',
+      phoneError: 'Nomor WhatsApp wajib diisi (minimal 8 digit)',
       emailLabel: 'Alamat Email',
       emailPlaceholder: 'cth. hendra@bisnis.com',
-      privacyNote: 'Privasi terjamin. Data kontak Anda hanya dipergunakan untuk keperluan aktivasi website dan pengiriman invoice resmi GiLabs.',
+      optionalText: '(Opsional)',
+      privacyNote: 'Data kontak Anda hanya digunakan untuk aktivasi website dan pengiriman invoice resmi GiLabs.',
 
       // Sidebar Summary
       summaryTitle: 'Ringkasan Pesanan',
       summaryTemplate: 'Template',
       summaryIncluded: 'Termasuk Paket',
       summaryDuration: 'Paket Durasi',
-      summaryDomain: 'Domain (.com / .id)',
-      summaryDomainVal: 'Gratis (Konsultasi via WA)',
-      summaryDomainStatus: 'Termasuk',
+      summaryDomain: 'Request Domain',
+      summaryDomainVal: 'Konsultasi Rekomendasi via WA',
+      summaryDomainStatus: 'Belum Termasuk (via WA)',
       summaryAddon: 'Add-on',
       summaryTotalLabel: 'Total Investasi',
-      summaryTotalNote: 'Sudah mencakup Template + Domain + Cloud Hosting + SSL + Maintenance',
+      summaryTotalNote: 'Termasuk Template + Cloud Hosting + SSL + Setup + Maintenance (Belum termasuk biaya domain)',
       ctaWhatsapp: 'Pesan via WhatsApp',
       ctaNote: 'Terhubung langsung dengan tim engineer GiLabs untuk invoice resmi & aktivasi.',
       trustPoints: [
@@ -385,9 +508,9 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
     },
     en: {
       backToCatalog: 'Back to Template Catalog',
-      badge: 'GiLabs Turnkey Website Solution',
+      badge: 'Website Order',
       pageTitle: 'Configure Your Website Package',
-      pageSubtitle: 'All-inclusive turnkey business website solution: includes ready-to-use template, domain registration (.com/.id), high-speed cloud hosting, SSL security, business email, and routine maintenance.',
+      pageSubtitle: 'Turnkey business website solution: includes ready-to-use template, high-speed cloud hosting, SSL security, business email, custom domain setup, and routine maintenance.',
       
       // Section 1
       sectionTemplateNum: '01',
@@ -403,7 +526,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       // Section 2
       sectionDurationNum: '02',
       sectionDurationTitle: 'Plan Duration & Inclusions',
-      sectionDurationDesc: 'Choose your hosting and maintenance duration. Longer plans provide the highest savings and uninterrupted service.',
+      sectionDurationDesc: 'Choose your cloud hosting and maintenance duration. Longer plans provide the highest savings and uninterrupted service.',
       perMonth: 'mo',
       includedHeader: "What's included in the",
       
@@ -418,31 +541,48 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       addonCustomDesc: 'These features are scoped per project. Get a free consultation with our team.',
       addonCustomCta: 'Consult',
       
-      // Section 3
-      sectionContactNum: '03',
-      sectionContactTitle: 'Contact Details for Activation',
+      // Section 3: Domain
+      sectionDomainNum: '03',
+      sectionDomainTitle: 'Domain Name Request',
+      sectionDomainDesc: 'Specify your preferred business domain name. Domain registration fee is not included in the template package and will be confirmed along with availability via WhatsApp.',
+      domainPlaceholder: 'Enter domain name (e.g. yourbusiness)',
+      domainCheckBtn: 'Check',
+      domainCheckingBtn: 'Checking...',
+      domainAvailableText: 'is available',
+      domainTakenText: 'is already registered',
+      domainSelectBtn: 'Use This Request',
+      domainChangeBtn: 'Change',
+      domainConsultCheckbox: 'Consult domain recommendations later via WhatsApp',
+      domainConsultDesc: 'GiLabs software engineers will help check availability and recommend the best domain options (.com, .id, etc.) along with registration fees during kickoff via WhatsApp.',
+      
+      // Section 4: Contact
+      sectionContactNum: '04',
+      sectionContactTitle: 'Contact Details',
       sectionContactDesc: 'Required for official domain ownership validation, SSL security certificates, and invoice generation.',
-      nameLabel: 'Full Name / Contact Person',
+      nameLabel: 'Full Name',
       namePlaceholder: 'e.g. John Doe',
+      nameError: 'Full name is required (min. 2 characters)',
       companyLabel: 'Business / Company Name',
       companyPlaceholder: 'e.g. Acme Corporation Ltd.',
       phoneLabel: 'Active WhatsApp Number',
       phonePlaceholder: 'e.g. +6281367954062',
+      phoneError: 'Active WhatsApp number is required (min. 8 digits)',
       emailLabel: 'Email Address',
       emailPlaceholder: 'e.g. contact@business.com',
-      privacyNote: 'Privacy guaranteed. Your details are solely used for domain setup and GiLabs invoicing.',
+      optionalText: '(Optional)',
+      privacyNote: 'Your details are solely used for domain setup and official GiLabs invoicing.',
 
       // Sidebar Summary
       summaryTitle: 'Order Summary',
       summaryTemplate: 'Template',
-      summaryIncluded: 'Package Included',
+      summaryIncluded: 'Included',
       summaryDuration: 'Package Duration',
-      summaryDomain: 'Domain (.com / .id)',
-      summaryDomainVal: 'Free (Consultation via WA)',
-      summaryDomainStatus: 'Included',
+      summaryDomain: 'Domain Request',
+      summaryDomainVal: 'Consult Recommendation via WA',
+      summaryDomainStatus: 'Not Included (via WA)',
       summaryAddon: 'Add-on',
       summaryTotalLabel: 'Total Investment',
-      summaryTotalNote: 'All-inclusive: Template + Domain + Cloud Hosting + SSL + Maintenance',
+      summaryTotalNote: 'Includes Template + Cloud Hosting + SSL + Setup + Maintenance (Excludes domain registration fee)',
       ctaWhatsapp: 'Order via WhatsApp',
       ctaNote: 'Connect directly with GiLabs software engineers for official invoice & kickoff.',
       trustPoints: [
@@ -468,11 +608,9 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
           <span>{t.backToCatalog}</span>
         </a>
 
-        <div className="flex items-center gap-2 mb-2">
-          <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-primary/10 text-primary">
-            {t.badge}
-          </span>
-        </div>
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-1.5">
+          {t.badge}
+        </p>
 
         <h1 className="text-2xl sm:text-3xl font-extrabold text-foreground tracking-tight">
           {t.pageTitle}
@@ -618,7 +756,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                       </div>
                     ) : (
                       <div className="flex items-center gap-2 p-2 rounded-lg bg-secondary/50 border border-border/60 text-xs">
-                        <CheckCircle2 className="w-3.5 h-3.5 text-primary shrink-0" />
+                        <Check className="w-3.5 h-3.5 text-primary shrink-0" />
                         <span className="text-muted-foreground text-[11px]">
                           {lang === 'id'
                             ? `Paket standar bawaan template: ${activeTierInfo.title} (${activeTierInfo.specs.pages[lang]}).`
@@ -845,7 +983,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
             {/* Included Features: Rendered directly in a clean 2-column checklist WITHOUT a box container */}
             <div className="pt-2 space-y-2.5">
               <div className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                <CheckCircle2 className="w-3.5 h-3.5 text-primary" />
+                <Check className="w-3.5 h-3.5 text-primary" />
                 <span>{t.includedHeader} {selectedDuration.name[lang]}:</span>
               </div>
 
@@ -1040,10 +1178,161 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
           </section>
 
           {/* ------------------------------------------------------- */}
-          {/* SECTION 03: CONTACT DETAILS (ENHANCED CARD UI)          */}
+          {/* SECTION 03: DOMAIN SELECTION & CHECKER                  */}
           {/* ------------------------------------------------------- */}
-          <section className="bg-card border border-border rounded-xl p-5 sm:p-6 shadow-xs space-y-5">
-            <div>
+          <section className="bg-card border border-border rounded-xl p-5 sm:p-6 space-y-4">
+            <div className="space-y-1">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-mono font-bold text-muted-foreground/70">
+                  {t.sectionDomainNum}
+                </span>
+                <h2 className="text-sm font-bold text-foreground uppercase tracking-wider">
+                  {t.sectionDomainTitle}
+                </h2>
+              </div>
+              <p className="text-xs text-muted-foreground leading-relaxed">
+                {t.sectionDomainDesc}
+              </p>
+            </div>
+
+            {!consultDomainLater ? (
+              <div className="space-y-3 pt-1">
+                <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                  <input
+                    type="text"
+                    value={domainInput}
+                    onChange={(e) => {
+                      setDomainInput(e.target.value);
+                      if (domainCheckStatus !== 'idle') setDomainCheckStatus('idle');
+                    }}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleCheckDomain();
+                      }
+                    }}
+                    placeholder={t.domainPlaceholder}
+                    className="flex-1 text-xs sm:text-sm bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-1 focus:ring-primary font-mono transition-colors"
+                  />
+
+                  <div className="flex items-center gap-2 shrink-0">
+                    <select
+                      value={selectedTld}
+                      onChange={(e) => {
+                        setSelectedTld(e.target.value);
+                        if (domainCheckStatus !== 'idle') setDomainCheckStatus('idle');
+                      }}
+                      className="text-xs font-mono font-medium bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3 py-2.5 text-foreground focus:outline-none cursor-pointer"
+                    >
+                      {popularTlds.map((tld) => (
+                        <option key={tld.ext} value={tld.ext}>
+                          {tld.ext}
+                        </option>
+                      ))}
+                    </select>
+
+                    <button
+                      type="button"
+                      onClick={() => handleCheckDomain()}
+                      disabled={domainCheckStatus === 'checking' || !domainInput.trim()}
+                      className="py-2.5 px-4 rounded-lg bg-foreground text-background font-medium text-xs flex items-center justify-center gap-1.5 hover:opacity-90 active:scale-[0.98] transition-all cursor-pointer disabled:cursor-not-allowed disabled:opacity-40 shrink-0"
+                    >
+                      {domainCheckStatus === 'checking' ? (
+                        <>
+                          <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                          <span>{t.domainCheckingBtn}</span>
+                        </>
+                      ) : (
+                        <span>{t.domainCheckBtn}</span>
+                      )}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Results inline */}
+                {domainCheckStatus === 'available' && (
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-xs p-3 rounded-lg bg-muted/40 border border-border">
+                    <div className="flex items-center gap-2 min-w-0 flex-wrap">
+                      <span className="font-mono font-bold text-foreground truncate">{checkedDomain}</span>
+                      <span className="text-muted-foreground">{t.domainAvailableText}</span>
+                      <span className="text-[11px] text-muted-foreground">
+                        ({lang === 'id' ? 'Belum termasuk paket — biaya registrasi via WA' : 'Not included — fee confirmed via WA'})
+                      </span>
+                    </div>
+                    {selectedDomain === checkedDomain ? (
+                      <span className="text-xs font-medium text-foreground flex items-center gap-1 shrink-0">
+                        <Check className="w-3.5 h-3.5 text-primary" />
+                        <span>{lang === 'id' ? 'Request Terpilih' : 'Request Selected'}</span>
+                      </span>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedDomain(checkedDomain)}
+                        className="text-xs font-semibold text-primary hover:underline cursor-pointer shrink-0"
+                      >
+                        {t.domainSelectBtn}
+                      </button>
+                    )}
+                  </div>
+                )}
+
+                {domainCheckStatus === 'taken' && (
+                  <div className="text-xs p-3 rounded-lg bg-muted/40 border border-border text-muted-foreground">
+                    <span className="font-mono font-bold text-foreground">{checkedDomain}</span> {t.domainTakenText}. {lang === 'id' ? 'Silakan coba ekstensi lain atau ubah nama usulan.' : 'Try another extension or enter a different name.'}
+                  </div>
+                )}
+
+                {selectedDomain && domainCheckStatus !== 'available' && (
+                  <div className="flex items-center justify-between gap-3 text-xs p-3 rounded-lg bg-muted/30 border border-border">
+                    <div className="flex items-center gap-2 min-w-0 flex-wrap">
+                      <span className="text-muted-foreground">{lang === 'id' ? 'Request domain aktif:' : 'Active domain request:'}</span>
+                      <span className="font-mono font-bold text-foreground truncate">{selectedDomain}</span>
+                      <span className="text-[11px] text-muted-foreground">
+                        ({lang === 'id' ? 'Biaya registrasi via WA' : 'Fee confirmed via WA'})
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => { setSelectedDomain(''); setDomainCheckStatus('idle'); }}
+                      className="text-xs text-muted-foreground hover:text-foreground underline cursor-pointer shrink-0"
+                    >
+                      {t.domainChangeBtn}
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <div className="p-3.5 rounded-lg bg-muted/30 border border-border text-xs text-muted-foreground leading-relaxed">
+                {t.domainConsultDesc}
+              </div>
+            )}
+
+            {/* Consultation Checkbox */}
+            <div className="pt-2 border-t border-border/60">
+              <label className="flex items-center gap-2.5 text-xs text-muted-foreground hover:text-foreground cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={consultDomainLater}
+                  onChange={(e) => {
+                    const checked = e.target.checked;
+                    setConsultDomainLater(checked);
+                    if (checked) {
+                      setSelectedDomain('');
+                      setDomainCheckStatus('idle');
+                    }
+                  }}
+                  className="w-4 h-4 rounded border-border text-foreground focus:ring-0 cursor-pointer"
+                />
+                <span>{t.domainConsultCheckbox}</span>
+              </label>
+            </div>
+          </section>
+
+          {/* ------------------------------------------------------- */}
+          {/* SECTION 04: CONTACT DETAILS                             */}
+          {/* ------------------------------------------------------- */}
+          <section className="bg-card border border-border rounded-xl p-5 sm:p-6 space-y-4">
+            <div className="space-y-1">
               <div className="flex items-center gap-2">
                 <span className="text-xs font-mono font-bold text-muted-foreground/70">
                   {t.sectionContactNum}
@@ -1052,43 +1341,42 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   {t.sectionContactTitle}
                 </h2>
               </div>
-              <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+              <p className="text-xs text-muted-foreground leading-relaxed">
                 {t.sectionContactDesc}
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
               {/* Name */}
               <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <label htmlFor="customer-name" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                    <User className="w-3.5 h-3.5 text-primary shrink-0" />
-                    <span>{t.nameLabel}</span>
-                  </label>
-                  <span className="text-[10px] font-mono text-destructive font-medium">
-                    {lang === 'id' ? '*Wajib' : '*Required'}
-                  </span>
-                </div>
+                <label htmlFor="customer-name" className="text-xs font-medium text-foreground">
+                  {t.nameLabel} <span className="text-destructive">*</span>
+                </label>
                 <input
                   id="customer-name"
                   type="text"
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
+                  onBlur={() => setTouchedFields(prev => ({ ...prev, name: true }))}
                   placeholder={t.namePlaceholder}
-                  className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 sm:py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-medium"
+                  className={`w-full text-xs sm:text-sm bg-background border rounded-lg px-3.5 py-2.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none transition-colors ${
+                    touchedFields.name && !isNameValid
+                      ? 'border-destructive focus:border-destructive'
+                      : 'border-border/90 hover:border-foreground/40 focus:border-primary'
+                  }`}
                 />
+                {touchedFields.name && !isNameValid && (
+                  <p className="text-[11px] text-destructive">{t.nameError}</p>
+                )}
               </div>
 
               {/* Company */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <label htmlFor="company-name" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                    <Building2 className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
-                    <span>{t.companyLabel}</span>
+                  <label htmlFor="company-name" className="text-xs font-medium text-foreground">
+                    {t.companyLabel}
                   </label>
-                  <span className="text-[10px] font-mono text-muted-foreground">
-                    {lang === 'id' ? 'Opsional' : 'Optional'}
-                  </span>
+                  <span className="text-[10px] text-muted-foreground">{t.optionalText}</span>
                 </div>
                 <input
                   id="company-name"
@@ -1096,41 +1384,40 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   value={companyName}
                   onChange={(e) => setCompanyName(e.target.value)}
                   placeholder={t.companyPlaceholder}
-                  className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 sm:py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-medium"
+                  className="w-full text-xs sm:text-sm bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none transition-colors"
                 />
               </div>
 
               {/* WhatsApp */}
               <div className="space-y-1.5">
-                <div className="flex items-center justify-between">
-                  <label htmlFor="customer-phone" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-primary shrink-0" />
-                    <span>{t.phoneLabel}</span>
-                  </label>
-                  <span className="text-[10px] font-mono text-destructive font-medium">
-                    {lang === 'id' ? '*Wajib' : '*Required'}
-                  </span>
-                </div>
+                <label htmlFor="customer-phone" className="text-xs font-medium text-foreground">
+                  {t.phoneLabel} <span className="text-destructive">*</span>
+                </label>
                 <input
                   id="customer-phone"
                   type="tel"
                   value={customerPhone}
                   onChange={(e) => setCustomerPhone(e.target.value)}
+                  onBlur={() => setTouchedFields(prev => ({ ...prev, phone: true }))}
                   placeholder={t.phonePlaceholder}
-                  className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 sm:py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-mono font-medium"
+                  className={`w-full text-xs sm:text-sm bg-background border rounded-lg px-3.5 py-2.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none transition-colors font-mono ${
+                    touchedFields.phone && !isPhoneValid
+                      ? 'border-destructive focus:border-destructive'
+                      : 'border-border/90 hover:border-foreground/40 focus:border-primary'
+                  }`}
                 />
+                {touchedFields.phone && !isPhoneValid && (
+                  <p className="text-[11px] text-destructive">{t.phoneError}</p>
+                )}
               </div>
 
               {/* Email */}
               <div className="space-y-1.5">
                 <div className="flex items-center justify-between">
-                  <label htmlFor="customer-email" className="text-xs font-semibold text-foreground flex items-center gap-1.5">
-                    <Mail className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
-                    <span>{t.emailLabel}</span>
+                  <label htmlFor="customer-email" className="text-xs font-medium text-foreground">
+                    {t.emailLabel}
                   </label>
-                  <span className="text-[10px] font-mono text-muted-foreground">
-                    {lang === 'id' ? 'Opsional' : 'Optional'}
-                  </span>
+                  <span className="text-[10px] text-muted-foreground">{t.optionalText}</span>
                 </div>
                 <input
                   id="customer-email"
@@ -1138,15 +1425,14 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   value={customerEmail}
                   onChange={(e) => setCustomerEmail(e.target.value)}
                   placeholder={t.emailPlaceholder}
-                  className="w-full text-xs sm:text-sm bg-background/50 hover:bg-background focus:bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 sm:py-3 text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-primary/15 transition-all font-medium"
+                  className="w-full text-xs sm:text-sm bg-background border border-border/90 hover:border-foreground/40 focus:border-primary rounded-lg px-3.5 py-2.5 text-foreground placeholder:text-muted-foreground/50 focus:outline-none transition-colors"
                 />
               </div>
             </div>
 
-            <div className="flex items-center gap-2 pt-2 border-t border-border/50 text-[11px] text-muted-foreground">
-              <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400 shrink-0" />
-              <span>{t.privacyNote}</span>
-            </div>
+            <p className="pt-2 text-[11px] text-muted-foreground leading-relaxed border-t border-border/60">
+              {t.privacyNote}
+            </p>
           </section>
 
         </div>
@@ -1155,15 +1441,12 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
         {/* RIGHT COLUMN (5 COLS): STICKY ORDER SUMMARY & CHECKOUT     */}
         {/* ========================================================= */}
         <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-4">
-          <div className="bg-card border border-border rounded-xl p-5 sm:p-6 shadow-sm">
+          <div className="bg-card border border-border rounded-xl p-5 sm:p-6">
             {/* Header */}
-            <div className="flex items-center justify-between pb-4 border-b border-border/60">
+            <div className="pb-4 border-b border-border/60">
               <h3 className="text-xs font-bold tracking-wider text-muted-foreground uppercase">
                 {t.summaryTitle}
               </h3>
-              <span className="text-[10px] font-semibold text-success bg-success/10 px-2 py-0.5 rounded">
-                {selectedDuration.savings[lang]}
-              </span>
             </div>
 
             {/* Order Items Breakdown */}
@@ -1171,18 +1454,17 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
               {/* Template Item */}
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-0.5">
-                  <span className="text-[11px] font-medium text-muted-foreground">
+                  <span className="text-[11px] text-muted-foreground">
                     {t.summaryTemplate}
                   </span>
                   <div className="text-foreground font-semibold line-clamp-1" title={templateDisplayTitle}>
                     {templateDisplayTitle}
                   </div>
-                  <div className="text-[10px] text-primary font-mono font-semibold flex items-center gap-1.5">
-                    <span>{activeTierTitle}</span>
-                    <span className="opacity-70">• {tierStatusBadge}</span>
+                  <div className="text-[11px] text-muted-foreground">
+                    {activeTierTitle} • {tierStatusBadge}
                   </div>
                 </div>
-                <div className="text-right text-[11px] font-medium text-muted-foreground whitespace-nowrap">
+                <div className="text-right text-[11px] text-muted-foreground whitespace-nowrap">
                   {t.summaryIncluded}
                 </div>
               </div>
@@ -1190,7 +1472,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
               {/* Package Duration Item */}
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-0.5">
-                  <span className="text-[11px] font-medium text-muted-foreground">
+                  <span className="text-[11px] text-muted-foreground">
                     {t.summaryDuration}
                   </span>
                   <div className="text-foreground font-semibold">
@@ -1200,7 +1482,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                     ~Rp {selectedDuration.monthlyEquivalentIdr.toLocaleString('id-ID')}/{t.perMonth}
                   </div>
                 </div>
-                <div className="text-right font-bold text-foreground whitespace-nowrap">
+                <div className="text-right font-semibold text-foreground whitespace-nowrap">
                   {formatPrice(selectedDuration.priceIdr)}
                 </div>
               </div>
@@ -1208,22 +1490,30 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
               {/* Domain Item */}
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-0.5">
-                  <span className="text-[11px] font-medium text-muted-foreground">
+                  <span className="text-[11px] text-muted-foreground">
                     {t.summaryDomain}
                   </span>
-                  <div className="text-foreground font-semibold text-[11px]">
-                    {t.summaryDomainVal}
+                  <div className="text-foreground font-medium text-[11px]">
+                    {selectedDomain ? (
+                      <span className="font-mono font-semibold">{selectedDomain}</span>
+                    ) : consultDomainLater ? (
+                      <span>{t.summaryDomainVal}</span>
+                    ) : (
+                      <span className="text-muted-foreground italic">
+                        {lang === 'id' ? 'Belum ditentukan' : 'Not selected yet'}
+                      </span>
+                    )}
                   </div>
                 </div>
-                <div className="text-right text-[11px] font-medium text-success whitespace-nowrap">
-                  {t.summaryDomainStatus}
+                <div className="text-right text-[11px] text-muted-foreground whitespace-nowrap">
+                  {selectedDomain || consultDomainLater ? t.summaryDomainStatus : '-'}
                 </div>
               </div>
 
               {/* Add-on Item */}
               {selectedAddonLines.length > 0 && (
                 <div className="pt-2 space-y-2 border-t border-dashed border-border/60">
-                  <span className="text-[11px] font-medium text-muted-foreground">
+                  <span className="text-[11px] text-muted-foreground">
                     {t.summaryAddon}
                   </span>
                   {selectedAddonLines.map((line) => (
@@ -1233,22 +1523,20 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                           {line.addon.name[lang]}
                         </div>
                         {line.addon.id === 'multilingual' && targetLanguages.trim() && (
-                          <div className="text-[10px] text-primary font-medium truncate max-w-[180px]">
+                          <div className="text-[10px] text-primary truncate max-w-[180px]">
                             {lang === 'id' ? 'Bahasa:' : 'Languages:'} {targetLanguages.trim()}
                           </div>
                         )}
                         {line.addon.id === 'extra-page' && extraPagesNotes.trim() && (
-                          <div className="text-[10px] text-primary font-medium truncate max-w-[180px]">
+                          <div className="text-[10px] text-primary truncate max-w-[180px]">
                             {lang === 'id' ? 'Halaman:' : 'Pages:'} {extraPagesNotes.trim()}
                           </div>
                         )}
-                        {line.addon.unit !== 'flat' && (
-                          <div className="text-[10px] text-muted-foreground">
-                            {line.qty} × {formatPrice(line.unitPrice)}
-                          </div>
-                        )}
+                        <div className="text-[10px] text-muted-foreground">
+                          {line.qty} × {formatPrice(line.unitPrice)}
+                        </div>
                       </div>
-                      <div className="text-right font-bold text-foreground whitespace-nowrap">
+                      <div className="text-right font-semibold text-foreground whitespace-nowrap">
                         {formatPrice(line.subtotal)}
                       </div>
                     </div>
@@ -1263,7 +1551,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                 <span className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
                   {t.summaryTotalLabel}
                 </span>
-                <span className="text-2xl font-extrabold text-foreground tracking-tight">
+                <span className="text-2xl font-bold text-foreground tracking-tight">
                   {formatPrice(totalPrice)}
                 </span>
               </div>
@@ -1272,30 +1560,46 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
               </p>
             </div>
 
-            {/* Direct WhatsApp CTA Button */}
+            {/* Direct WhatsApp CTA Button with Validation State */}
             <div className="space-y-2.5">
-              <a
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-lg bg-foreground text-background font-semibold text-xs flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.99] transition-all cursor-pointer shadow-xs"
-              >
-                <Phone className="w-4 h-4" />
-                <span>{t.ctaWhatsapp}</span>
-              </a>
+              {isFormValid ? (
+                <a
+                  href={whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3 px-4 rounded-lg bg-foreground text-background font-semibold text-xs flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.99] transition-all cursor-pointer"
+                >
+                  <span>{t.ctaWhatsapp}</span>
+                </a>
+              ) : (
+                <button
+                  type="button"
+                  disabled
+                  className="w-full py-3 px-4 rounded-lg bg-muted text-muted-foreground font-semibold text-xs flex items-center justify-center gap-2 cursor-not-allowed opacity-50 select-none border border-border"
+                >
+                  <span>{t.ctaWhatsapp}</span>
+                </button>
+              )}
 
-              <p className="text-[11px] text-center text-muted-foreground leading-tight px-1">
-                {t.ctaNote}
-              </p>
+              {!isFormValid && (
+                <p className="text-[11px] text-center text-muted-foreground leading-relaxed">
+                  {validationHint}
+                </p>
+              )}
+
+              {isFormValid && (
+                <p className="text-[11px] text-center text-muted-foreground leading-tight px-1">
+                  {t.ctaNote}
+                </p>
+              )}
             </div>
 
-            {/* Trust Assurance Bullets */}
-            <div className="mt-5 pt-4 border-t border-border/60 space-y-2">
+            {/* Trust Points */}
+            <div className="mt-5 pt-4 border-t border-border/60 space-y-1.5 text-[11px] text-muted-foreground">
               {t.trustPoints.map((point, idx) => (
-                <div key={idx} className="flex items-center gap-2 text-[11px] text-muted-foreground">
-                  <ShieldCheck className="w-3.5 h-3.5 text-primary shrink-0" />
-                  <span>{point}</span>
-                </div>
+                <p key={idx} className="leading-relaxed">
+                  • {point}
+                </p>
               ))}
             </div>
           </div>

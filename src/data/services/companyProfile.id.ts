@@ -138,7 +138,7 @@ export const companyProfileId: ServicePageData = {
         "Company profile 3-5 halaman",
         "Desain corporate clean & responsive",
         "Halaman kontak & lokasi",
-        "Domain (.com / .id) + hosting 1 tahun",
+        "Domain (.id) + hosting 1 tahun",
         "Revisi 2x"
       ]
     },

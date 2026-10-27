@@ -183,8 +183,8 @@ export const webDevelopmentId: ServicePageData = {
       answer: "Ada garansi bug fixing 30 hari setelah website live."
     },
     {
-      question: "Apakah harga sudah termasuk hosting?",
-      answer: "Paket Basic dan Standard sudah termasuk domain dan hosting tahun pertama."
+      question: "Apakah harga sudah termasuk hosting dan domain?",
+      answer: "Paket sudah mencakup cloud hosting cepat dan SSL untuk tahun pertama. Untuk nama domain, kami bantu proses registrasi dan setup DNS sesuai nama yang Anda request (biaya resmi domain disesuaikan registrar)."
     }
   ],
   ctaTitle: "Website Anda Bisa Online Minggu Depan",

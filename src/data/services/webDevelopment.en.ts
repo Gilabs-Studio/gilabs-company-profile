@@ -185,7 +185,7 @@ export const webDevelopmentEn: ServicePageData = {
     },
     {
       question: "Are hosting and domain included?",
-      answer: "Yes, all our packages include domain registration (.com / .id) and high-speed cloud hosting for the first year."
+      answer: "Packages include high-speed cloud hosting and SSL security for the first year. For domain names, we handle full DNS setup and registration assistance for your requested domain name (domain registration fees confirmed via registrar)."
     },
     {
       question: "Can our team update content after launch?",
