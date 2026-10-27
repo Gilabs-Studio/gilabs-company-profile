@@ -40,11 +40,11 @@ const words = lang === "en" ? wordsEn : wordsId;
   <div class="relative z-20 flex flex-col items-center justify-center w-full h-full text-center px-4 sm:px-6 pointer-events-none">
     
     {/* Typewriter + Inline Logo Area: Hero title typography scale */}
-    <div class="flex items-center justify-center min-h-[90px] sm:min-h-[120px] md:min-h-[140px] max-w-5xl flex-wrap gap-2.5 sm:gap-4 md:gap-5" id="loader-typewriter-box">
+    <div class="flex items-center justify-center min-h-[90px] sm:min-h-[120px] md:min-h-[140px] max-w-5xl flex-nowrap" id="loader-typewriter-box">
       
-      <div class="inline-flex items-center justify-center" id="loader-text-wrap">
+      <div class="inline-flex items-center justify-center shrink-0" id="loader-text-wrap">
         <span 
-          class="font-heading font-bold text-foreground text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter" 
+          class="font-heading font-medium text-foreground text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter" 
           id="loader-typewriter-text"
         ></span>
         <span 
@@ -53,19 +53,21 @@ const words = lang === "en" ? wordsEn : wordsId;
         ></span>
       </div>
 
-      {/* 3. Logo Reveal (Smoothly fades in beside 'We Are', then gently glides to Navbar) */}
+      {/* 3. Logo Reveal (Masked drawer sliding out from behind 'We Are' towards the right) */}
       <div 
-        class="hidden opacity-0 pointer-events-none will-change-transform z-30 items-center justify-center" 
+        class="hidden w-0 overflow-hidden pointer-events-none will-change-transform z-30 shrink-0 items-center justify-center" 
         id="loader-logo-box"
       >
-        <div class="flex items-center justify-center p-1">
+        <div class="flex items-center justify-center p-1 shrink-0" id="loader-logo-inner">
           <img 
             id="loader-logo-img"
             src="/Logo Putih 3 crop.png" 
             alt="Gilabs" 
-            class="h-8 sm:h-11 md:h-13 lg:h-16 w-auto object-contain" 
+            class="h-8 sm:h-11 md:h-13 lg:h-16 w-auto object-contain shrink-0 will-change-transform" 
             width="220" 
             height="64"
+            loading="eager"
+            decoding="sync"
           />
         </div>
       </div>
@@ -85,6 +87,8 @@ const words = lang === "en" ? wordsEn : wordsId;
   import { gsap } from "gsap";
 
   const criticalImagesToPreload = [
+    // Brand Logo
+    "/Logo Putih 3 crop.png",
     // Tech Stack Logos
     "/logo/go-svgrepo-com.svg",
     "/logo/tailwind-svgrepo-com.svg",
@@ -167,26 +171,73 @@ const words = lang === "en" ? wordsEn : wordsId;
         await sleep(30);
       }
 
-      // If this is the last phrase ("We Are"), reveal the logo inline smoothly!
+      // If this is the last phrase ("We Are"), reveal the logo inline smoothly via masked slide (Left to Right)
       if (i === words.length - 1) {
-        if (logoBox) {
+        const cursor = document.getElementById("loader-typewriter-cursor");
+
+        if (logoBox && centerLogoImg) {
+          // 1. Softly fade out blinking typewriter cursor so visual focus shifts to emerging logo
+          if (cursor) {
+            gsap.to(cursor, { opacity: 0, duration: 0.2, ease: "power2.out" });
+          }
+
+          // 2. Prepare logoBox in DOM at 0 width & 0 margin so text does not snap / jump
           logoBox.classList.remove("hidden");
           logoBox.classList.add("inline-flex");
-          // Smooth fade in without harsh scale pop
-          gsap.fromTo(
+          gsap.set(logoBox, {
+            width: 0,
+            marginLeft: 0,
+            opacity: 1,
+            overflow: "hidden",
+          });
+
+          // 3. Logo starts tucked behind the left boundary (xPercent: -100)
+          gsap.set(centerLogoImg, {
+            xPercent: -100,
+            opacity: 0,
+          });
+
+          // Determine responsive margin/gap
+          const isMobile = window.innerWidth < 640;
+          const targetMargin = isMobile ? 10 : 16;
+
+          // 4. Orchestrated slide reveal: width expands smoothly while logo slides out from behind text
+          const revealTl = gsap.timeline();
+          revealTl.to(
             logoBox,
-            { opacity: 0 },
-            { opacity: 1, duration: 1.7, ease: "power2.out" }
+            {
+              width: "auto",
+              marginLeft: targetMargin,
+              duration: 0.85,
+              ease: "power3.out",
+            },
+            0
           );
+          revealTl.to(
+            centerLogoImg,
+            {
+              xPercent: 0,
+              opacity: 1,
+              duration: 0.85,
+              ease: "power3.out",
+            },
+            0
+          );
+
+          // Wait for the slide reveal animation to complete
+          await new Promise((resolve) => revealTl.eventCallback("onComplete", resolve));
+
+          // Ensure overflow is visible so the exit flight to navbar is completely unclipped
+          logoBox.style.overflow = "visible";
         }
 
         // Jeda nyaman: beri waktu pengguna menikmati "We Are [Logo GiLabs]"
-        await sleep(950);
+        await sleep(850);
         break;
       }
 
       // Jeda membaca nyaman untuk frasa 1 & 2 (cukup waktu untuk membaca dengan santai)
-      await sleep(1100);
+      await sleep(200);
 
       // Delete back
       for (let c = word.length; c >= 0; c--) {
