@@ -137,38 +137,38 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
 
   const lines = isEn
     ? [
-        `Hello GiLabs Team, I would like to order a website:`,
+        `Hello GiLabs Team, I would like to order a turnkey website:`,
         ``,
-        `*WEBSITE ORDER FORM*`,
+        `*TURNKEY WEBSITE ORDER FORM*`,
         `Name: ${details.customerName || "[Your Name]"}`,
         `Company: ${details.companyName || "-"}`,
         `Email: ${details.customerEmail || "-"}`,
         ``,
-        `Template: ${details.templateTitle}`,
+        `Design Reference: ${details.templateTitle}`,
         `Plan Duration: ${details.durationPlanName} (${details.durationYears} Year${details.durationYears > 1 ? "s" : ""})`,
         domainLine,
         ...addonLines,
         `Total Investment: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
         ``,
         domainNote,
-        `Please provide the official invoice and activation steps. Thank you!`,
+        `Please provide the official invoice and onboarding steps. Thank you!`,
       ]
     : [
-        `Halo Tim GiLabs, saya ingin memesan website:`,
+        `Halo Tim GiLabs, saya ingin memesan website siap online (terima beres):`,
         ``,
-        `*FORM PEMESANAN WEBSITE*`,
+        `*FORM PEMESANAN WEBSITE SIAP ONLINE*`,
         `Nama: ${details.customerName || "[Nama Anda]"}`,
         `Perusahaan: ${details.companyName || "-"}`,
         `Email: ${details.customerEmail || "-"}`,
         ``,
-        `Template: ${details.templateTitle}`,
+        `Desain Referensi: ${details.templateTitle}`,
         `Paket Durasi: ${details.durationPlanName} (${details.durationYears} Tahun)`,
         domainLine,
         ...addonLines,
         `Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
         ``,
         domainNote,
-        `Mohon info invoice dan langkah aktivasinya. Terima kasih!`,
+        `Mohon info invoice dan langkah onboardingnya. Terima kasih!`,
       ];
 
   const message = lines.filter((line) => line !== null && line !== undefined).join("\n");

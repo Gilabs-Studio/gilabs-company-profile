@@ -1,7 +1,6 @@
 ---
 import type { TemplateItem } from '../../data/templatesData';
-import { tiersData, defaultIndustryAdaptations, templateAddons, addonUnitLabel, getAddonTierInfo } from '../../data/templatesData';
-import IndustryAdaptationGallery from './IndustryAdaptationGallery';
+import { tiersData, templateAddons, addonUnitLabel, getAddonTierInfo } from '../../data/templatesData';
 import { getWhatsAppLink } from '../../lib/utils';
 import { 
   ArrowLeft, 
@@ -37,10 +36,6 @@ const orderUrl = `${orderBaseUrl}&tier=${template.tier}`;
 
 const catalogUrl = lang === 'en' ? '/en/templates' : '/templates';
 const whatsappUrl = getWhatsAppLink('template', lang, `${title} (${tierTitle})`);
-
-const adaptations = template.industryAdaptations && template.industryAdaptations.length > 0
-  ? template.industryAdaptations
-  : defaultIndustryAdaptations;
 
 // Simple deliverables list
 const deliverables = lang === 'id' ? [
@@ -428,32 +423,6 @@ const specs = [
     </div>
   </section>
 
-  {/* Window 3: Adaptasi Industri / Galeri (1 Full Viewport Window) */}
-  <section class="min-h-screen flex flex-col justify-center py-16 sm:py-24">
-    <div class="container mx-auto px-4 sm:px-6">
-      
-      {/* TITLE ONLY - No eyebrow */}
-      <div class="max-w-2xl mb-10 sm:mb-14">
-        <h2 class="text-3xl sm:text-5xl font-bold tracking-tight text-foreground">
-          {lang === 'id' ? 'Adaptasi Bisnis' : 'Business Adaptations'}
-        </h2>
-        <p class="text-base sm:text-lg text-muted-foreground font-light mt-3 leading-relaxed">
-          {lang === 'id'
-            ? 'Satu tata letak, fleksibel untuk berbagai sektor usaha Anda.'
-            : 'One foundational layout, seamlessly tailored to your specific industry.'}
-        </p>
-      </div>
-
-      {/* Clean Interactive Showcase */}
-      <IndustryAdaptationGallery 
-        client:load 
-        adaptations={adaptations} 
-        lang={lang} 
-        orderUrl={orderUrl} 
-      />
-
-    </div>
-  </section>
 
   <script define:vars={{ baseTier: template.tier, templateTitle: title, templateId: template.id, lang, clientTiers }}>
     const tiersInfo = clientTiers;

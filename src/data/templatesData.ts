@@ -1,12 +1,3 @@
-export interface IndustryAdaptation {
-  id: string;
-  industry: { id: string; en: string };
-  title: { id: string; en: string };
-  description: { id: string; en: string };
-  image: string;
-  tags: string[];
-}
-
 export interface TemplateItem {
   id: string;
   slug: string;
@@ -26,7 +17,6 @@ export interface TemplateItem {
   gallery: string[];
   demoUrl: string;
   buyersCount: number;
-  industryAdaptations?: IndustryAdaptation[];
   hidden?: boolean;
 }
 
@@ -256,53 +246,6 @@ export const tiersData: TierInfo[] = [
 }
 ];
 
-export const defaultIndustryAdaptations: IndustryAdaptation[] = [
-  {
-    id: 'cafe',
-    industry: { id: 'Kafe & Resto (F&B)', en: 'Cafe & Restaurant (F&B)' },
-    title: { id: 'Artisan Cafe, Coffee Shop & Restoran', en: 'Artisan Cafe, Coffee Shop & Restaurant' },
-    description: {
-      id: 'Tata letak diubah menjadi etalase menu signature, foto ambience tempat yang estetik, jam operasional, lokasi Google Maps, dan tombol reservasi meja instan terhubung langsung ke WhatsApp.',
-      en: 'Adapted into signature menu showcases, warm ambient photography, business hours, Google Maps, and direct WhatsApp table reservation.'
-    },
-    image: '/templates/adaptations/cafe-preview.jpg',
-    tags: ['Menu Showcase', 'Reservasi WhatsApp', 'Lokasi Maps', 'Foto Ambience']
-  },
-  {
-    id: 'retail',
-    industry: { id: 'Fashion & Ritel', en: 'Fashion & Retail' },
-    title: { id: 'Butik Fashion, Toko Ritel & Brand Lokal', en: 'Fashion Boutique, Retail & Local Brand' },
-    description: {
-      id: 'Disesuaikan menjadi galeri lookbook koleksi musiman, highlight produk best seller, ulasan testimoni pembeli, dan integrasi tombol pemesanan instan tanpa perlu checkout ribet.',
-      en: 'Customized into seasonal lookbook galleries, best-seller product grids, customer reviews, and direct instant ordering buttons.'
-    },
-    image: '/templates/adaptations/boutique-preview.jpg',
-    tags: ['Lookbook Gallery', 'Best Seller Grid', 'Testimoni Pembeli', 'Order Instan']
-  },
-  {
-    id: 'workshop',
-    industry: { id: 'Manufaktur & Teknik', en: 'Manufacturing & Workshop' },
-    title: { id: 'Manufaktur Mesin, Bengkel Bubut & Pabrik', en: 'Machinery Manufacturing & CNC Workshop' },
-    description: {
-      id: 'Ditransformasikan menjadi katalog lini permesinan presisi, tabel spesifikasi teknis, sertifikasi standar mutu ISO, dan formulir permintaan quotation pengadaan B2B.',
-      en: 'Transformed into precision machinery showcases, technical specification tables, ISO quality certifications, and B2B RFQ quotation forms.'
-    },
-    image: '/templates/adaptations/workshop-preview.jpg',
-    tags: ['Katalog Mesin', 'Spesifikasi Teknis', 'Sertifikasi Mutu', 'Form RFQ']
-  },
-  {
-    id: 'corporate',
-    industry: { id: 'Konsultan & Korporat', en: 'Consulting & Corporate' },
-    title: { id: 'Konsultan Bisnis, Jasa Hukum & Korporasi', en: 'Corporate Consulting, Legal & Business Services' },
-    description: {
-      id: 'Dikonversi menjadi profil kantor kredibel, metrik pencapaian proyek klien, ringkasan paket jasa konsultasi, dan formulir booking jadwal meeting konsultasi online.',
-      en: 'Converted into credible corporate profiles, client success metrics, advisory package overviews, and online meeting booking forms.'
-    },
-    image: '/templates/adaptations/corporate-preview.jpg',
-    tags: ['Profil Perusahaan', 'Metrik Kinerja', 'Paket Layanan', 'Jadwal Konsultasi']
-  }
-];
-
 export function getTierInfoByNumber(tierNumber: number): TierInfo {
   return tiersData.find((t) => t.tierNumber === tierNumber) || tiersData[0];
 }
@@ -320,8 +263,8 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 3,
     description: {
-      id: 'Template website profil perusahaan pengembang kawasan industri, perkantoran Grade-A, dan real estate komersial dengan efek hero stack reveal, tipografi editorial Libre Baskerville, animasi scroll text reveal, dan sticky footer terpadu.',
-      en: 'High-end commercial and industrial real estate developer website template featuring hero stack reveal animations, Libre Baskerville editorial typography, scroll-driven word transitions, and an immersive sticky reveal footer.'
+      id: 'Desain website profil perusahaan pengembang kawasan industri, perkantoran Grade-A, dan real estate komersial dengan efek hero stack reveal, tipografi editorial Libre Baskerville, animasi scroll text reveal, dan sticky footer terpadu.',
+      en: 'High-end commercial and industrial real estate developer website featuring hero stack reveal animations, Libre Baskerville editorial typography, scroll-driven word transitions, and an immersive sticky reveal footer.'
     },
     previewImage: '/templates/vistaprops/preview.webp',
     gallery: [
@@ -332,8 +275,7 @@ export const templatesData: TemplateItem[] = [
       '/templates/vistaprops/project-serra.webp'
     ],
     demoUrl: '/templates/demo/vistaprops',
-    buyersCount: 156,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 156
   },
   {
     id: 'driveloop',
@@ -347,8 +289,8 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 2,
     description: {
-      id: 'Template website rental mobil premium, ekspedisi overland, dan petualangan road trip dengan visual cinematic, showcase armada modern, serta formulir pemesanan rute instan.',
-      en: 'Premium car rental and overland adventure website template featuring cinematic visuals, modern fleet showcases, and direct trip booking integration.'
+      id: 'Desain website rental mobil premium, ekspedisi overland, dan petualangan road trip dengan visual cinematic, showcase armada modern, serta formulir pemesanan rute instan.',
+      en: 'Premium car rental and overland adventure website featuring cinematic visuals, modern fleet showcases, and direct trip booking integration.'
     },
     previewImage: '/templates/driveloop/preview.webp',
     gallery: [
@@ -358,8 +300,7 @@ export const templatesData: TemplateItem[] = [
       '/templates/driveloop/real-stories-bg.webp'
     ],
     demoUrl: '/templates/demo/driveloop',
-    buyersCount: 172,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 172
   },
   {
     id: 'nusantara',
@@ -373,8 +314,8 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 2,
     description: {
-      id: 'Template website brand fashion, lookbook editorial, dan apparel minimalis kontemporer dengan tata letak multi-layer terpadu, tipografi brutalist berkelas, dan showcase koleksi berpresisi tinggi.',
-      en: 'Modern luxury fashion and minimalist apparel brand website template featuring unified multi-layer hero typography, editorial lookbooks, and high-precision product showcases.'
+      id: 'Desain website brand fashion, lookbook editorial, dan apparel minimalis kontemporer dengan tata letak multi-layer terpadu, tipografi brutalist berkelas, dan showcase koleksi berpresisi tinggi.',
+      en: 'Modern luxury fashion and minimalist apparel brand website featuring unified multi-layer hero typography, editorial lookbooks, and high-precision product showcases.'
     },
     previewImage: '/templates/nusantara/preview.webp',
     gallery: [
@@ -384,8 +325,7 @@ export const templatesData: TemplateItem[] = [
       '/templates/nusantara/journal-bg.webp'
     ],
     demoUrl: '/templates/demo/nusantara',
-    buyersCount: 194,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 194
   },
   {
     id: 'la-table-eternelle',
@@ -399,8 +339,8 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 1,
     description: {
-      id: 'Template website profil restoran fine dining mewah, lounge eksklusif, dan culinary hospitality dengan tipografi editorial klasik, showcase menu signature berkelas, dan sistem reservasi meja WhatsApp instan.',
-      en: 'Luxury fine dining restaurant and hospitality website template featuring timeless editorial typography, signature dish showcases, atmospheric ambience gallery, and direct table reservation.'
+      id: 'Desain website profil restoran fine dining mewah, lounge eksklusif, dan culinary hospitality dengan tipografi editorial klasik, showcase menu signature berkelas, dan sistem reservasi meja WhatsApp instan.',
+      en: 'Luxury fine dining restaurant and hospitality website featuring timeless editorial typography, signature dish showcases, atmospheric ambience gallery, and direct table reservation.'
     },
     previewImage: '/templates/la-table-eternelle/preview.webp',
     gallery: [
@@ -410,8 +350,7 @@ export const templatesData: TemplateItem[] = [
       '/templates/la-table-eternelle/dish-mousse.webp'
     ],
     demoUrl: '/templates/demo/la-table-eternelle',
-    buyersCount: 165,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 165
   },
   {
     id: 'buildly-property',
@@ -425,8 +364,8 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 1,
     description: {
-      id: 'Template website profil kontraktor bangunan, pengembang properti, renovasi & interior dengan visual modern, showcase portofolio proyek real estate, dan metrik kepercayaan.',
-      en: 'Modern website template for building contractors, property developers, and interior renovation firms featuring modern visuals, project showcases, and credible stats.'
+      id: 'Desain website profil kontraktor bangunan, pengembang properti, renovasi & interior dengan visual modern, showcase portofolio proyek real estate, dan metrik kepercayaan.',
+      en: 'Modern website for building contractors, property developers, and interior renovation firms featuring modern visuals, project showcases, and credible stats.'
     },
     previewImage: '/templates/buildly/preview.webp',
     gallery: [
@@ -436,8 +375,7 @@ export const templatesData: TemplateItem[] = [
       '/templates/buildly/project-lakeside.webp'
     ],
     demoUrl: '/templates/demo/buildly',
-    buyersCount: 178,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 178
   },
   {
     id: 'adiguna-machinery',
@@ -451,14 +389,13 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 1,
     description: {
-      id: 'Template website profil manufaktur mesin industri, workshop CNC, dan pabrik presisi berstandar internasional dengan nuansa profesional dan spesifikasi teknis mendalam.',
-      en: 'Modern website template for industrial machinery manufacturers, CNC workshops, and precision engineering plants.'
+      id: 'Desain website profil manufaktur mesin industri, workshop CNC, dan pabrik presisi berstandar internasional dengan nuansa profesional dan spesifikasi teknis mendalam.',
+      en: 'Modern website for industrial machinery manufacturers, CNC workshops, and precision engineering plants.'
     },
     previewImage: '/templates/adiguna-machinery/preview.webp',
     gallery: ['/templates/adiguna-machinery/preview.webp'],
     demoUrl: '/templates/demo/adiguna',
-    buyersCount: 142,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 142
   },
   {
     id: 'ticketing-events',
@@ -473,14 +410,13 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 1,
     description: {
-      id: 'Template website event festival musik, konser, dan seminar dengan dynamic live countdown timer, visual ambience rave modern, dan showcase tiket terintegrasi.',
-      en: 'High-energy event ticketing and festival website template featuring live countdown timers, glowing ambient visual aesthetics, and ticket tier showcases.'
+      id: 'Desain website event festival musik, konser, dan seminar dengan dynamic live countdown timer, visual ambience rave modern, dan showcase tiket terintegrasi.',
+      en: 'High-energy event ticketing and festival website featuring live countdown timers, glowing ambient visual aesthetics, and ticket tier showcases.'
     },
     previewImage: '/templates/ticketing-events/preview.webp',
     gallery: ['/templates/ticketing-events/preview.webp'],
     demoUrl: '/templates/demo/ticketing',
-    buyersCount: 204,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 204
   },
   {
     id: 'shipagency-maritime',
@@ -494,14 +430,13 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 3,
     description: {
-      id: 'Template website keagenan kapal pelabuhan, manajemen sertifikat perkapalan, dan logistik maritim terintegrasi dengan nuansa oceanic gelap dan metrik operasional terpercaya.',
-      en: 'Specialized website template for shipping agencies, vessel clearance operations, and maritime logistics companies.'
+      id: 'Desain website keagenan kapal pelabuhan, manajemen sertifikat perkapalan, dan logistik maritim terintegrasi dengan nuansa oceanic gelap dan metrik operasional terpercaya.',
+      en: 'Specialized website for shipping agencies, vessel clearance operations, and maritime logistics companies.'
     },
     previewImage: '/templates/shipagency-maritime/preview.webp',
     gallery: ['/templates/shipagency-maritime/preview.webp'],
     demoUrl: '/templates/demo/shipagency',
-    buyersCount: 129,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 129
   },
   {
     id: 'tastybite',
@@ -515,8 +450,8 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 2,
     description: {
-      id: 'Template website profil restoran, kafe artisan, dan studio kuliner modern dengan visual ilustratif yang playful, etalase menu signature pastel, integrasi pesanan instan, serta narasi brand yang memikat.',
-      en: 'Modern website template for restaurants, artisan cafes, and F&B studios featuring playful illustrative visuals, pastel signature menu showcases, instant ordering integration, and compelling brand storytelling.'
+      id: 'Desain website profil restoran, kafe artisan, dan studio kuliner modern dengan visual ilustratif yang playful, etalase menu signature pastel, integrasi pesanan instan, serta narasi brand yang memikat.',
+      en: 'Modern website for restaurants, artisan cafes, and F&B studios featuring playful illustrative visuals, pastel signature menu showcases, instant ordering integration, and compelling brand storytelling.'
     },
     previewImage: '/templates/tastybite/preview.webp',
     gallery: [
@@ -525,8 +460,7 @@ export const templatesData: TemplateItem[] = [
       '/templates/tastybite/app-banner-card.webp'
     ],
     demoUrl: '/templates/demo/tastybite',
-    buyersCount: 168,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 168
   },
   {
     id: 'sura-bay',
@@ -541,8 +475,8 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 1,
     description: {
-      id: 'Template website beach club mewah, restoran tepi pantai, dan dining eksklusif berkonsep tropical sunset dengan transisi torn-edge artistik, tipografi berkelas, etalase menu signature, dan reservasi meja instan.',
-      en: 'Luxury beachfront restaurant and beach club website template featuring artistic torn-edge transitions, editorial serif typography, signature dish showcases, and instant table reservation.'
+      id: 'Desain website beach club mewah, restoran tepi pantai, dan dining eksklusif berkonsep tropical sunset dengan transisi torn-edge artistik, tipografi berkelas, etalase menu signature, dan reservasi meja instan.',
+      en: 'Luxury beachfront restaurant and beach club website featuring artistic torn-edge transitions, editorial serif typography, signature dish showcases, and instant table reservation.'
     },
     previewImage: '/templates/sura-bay/preview.webp',
     gallery: [
@@ -555,8 +489,7 @@ export const templatesData: TemplateItem[] = [
       '/templates/sura-bay/dish-cocktail.webp'
     ],
     demoUrl: '/templates/demo/sura-bay',
-    buyersCount: 176,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 176
   },
   {
     id: 'gke-enterprise',
@@ -570,14 +503,13 @@ export const templatesData: TemplateItem[] = [
     },
     tier: 3,
     description: {
-      id: 'Template website profil perusahaan skala enterprise, supply chain, dan distributor suku cadang industri dengan tipografi editorial modern dan performa tinggi.',
-      en: 'Corporate profile website template for enterprise firms, industrial supply chains, and B2B engineering solutions.'
+      id: 'Desain website profil perusahaan skala enterprise, supply chain, dan distributor suku cadang industri dengan tipografi editorial modern dan performa tinggi.',
+      en: 'Corporate profile website for enterprise firms, industrial supply chains, and B2B engineering solutions.'
     },
     previewImage: '/templates/gke-enterprise/preview.webp',
     gallery: ['/templates/gke-enterprise/preview.webp'],
     demoUrl: '/templates/demo/gke',
-    buyersCount: 188,
-    industryAdaptations: defaultIndustryAdaptations
+    buyersCount: 188
   }
 ];
 
@@ -759,45 +691,45 @@ export function getAddonTierInfo(addon: AddonItem, tier: AddonTier) {
 
 export const templatesPageContent = {
   id: {
-    heroTag: 'Website Siap Pakai • Langsung Online Hari Ini',
-    heroTitle: 'Malas Cari Vendor? Website Siap Jadi Hari Ini!',
-    heroSubtitle: 'Pilih template siap pakai, langsung online hari ini lengkap dengan cloud hosting, SSL, dan setup teknis. Bisa kami bantu editkan konten atau custom sesuai kebutuhan.',
+    heroTag: 'Website Bisnis Siap Online • Terima Beres',
+    heroTitle: 'Masih Pakai Website Biasa?\nYuk, Tampil Luar Biasa!',
+    heroSubtitle: 'Tinggalkan proses pembuatan website berbulan-bulan yang melelahkan. Pilih referensi desain modern kelas dunia, kirimkan materi bisnis Anda, dan website profesional Anda siap online dalam hitungan hari lengkap dengan cloud hosting, SSL, dan bantuan setup domain.',
     valueProps: [
       {
-        badge: '01. Cepat & Hemat',
-        title: 'Tanpa Ribet Cari Vendor',
-        description: 'Tanpa meeting panjang atau biaya overbudget. Website profesional siap pakai dalam sekejap.'
+        badge: '01. Pilih Desain',
+        title: 'Katalog Desain Berkelas',
+        description: 'Eksplorasi referensi desain modern siap pakai yang dirancang untuk memperkuat identitas brand bisnis Anda.'
       },
       {
-        badge: '02. Instan',
-        title: 'Langsung Online Hari Ini',
-        description: 'Pilih desain, hubungkan domain dan hosting, website langsung aktif hari ini.'
+        badge: '02. Kirim Materi',
+        title: 'Bebas Pusing Teknis',
+        description: 'Cukup kirimkan logo, foto, dan profil usaha Anda via WhatsApp. Tim engineer kami yang memproses seluruh setup konten.'
       },
       {
         badge: '03. Terima Beres',
-        title: 'Bisa Dieditkan & Custom',
-        description: 'Malas edit sendiri? Tim kami bantu isi konten dan logo. Butuh fitur khusus juga bisa.'
+        title: 'Langsung Siap Online',
+        description: 'Website langsung tayang di nama domain bisnis Anda dengan cloud hosting kilat, SSL, dan maintenance berkala tanpa perlu pusing urusan teknis.'
       }
     ],
-    searchPlaceholder: 'Cari template website...',
+    searchPlaceholder: 'Cari referensi desain website...',
     sortOptions: {
       recommended: 'Rekomendasi',
       priceLow: 'Harga: Terendah ke Tertinggi',
       priceHigh: 'Harga: Tertinggi ke Terendah',
       popular: 'Paling Banyak Dipilih'
     },
-    showingResults: 'Menampilkan {count} template',
-    emptyStateTitle: 'Template tidak ditemukan',
+    showingResults: 'Menampilkan {count} desain website',
+    emptyStateTitle: 'Desain tidak ditemukan',
     emptyStateSubtitle: 'Coba ubah kata kunci pencarian atau pilih kategori lain.',
     card: {
       startingFrom: 'Mulai dari',
       perYear: '/ tahun',
-      includedNote: 'Termasuk Cloud Hosting + SSL + Maintenance',
+      includedNote: 'Termasuk Setup Konten + Cloud Hosting + SSL + Maintenance',
       oneTimePayment: 'Sekali bayar',
-      viewDetail: 'Detail',
-      buyNow: 'Beli Template Ini',
+      viewDetail: 'Detail Desain',
+      buyNow: 'Pilih Desain Ini',
       livePreview: 'Lihat Demo',
-      buyersNote: '{count} orang memilih ini'
+      buyersNote: '{count} bisnis memilih desain ini'
     },
     modal: {
       overview: 'Ringkasan',
@@ -805,84 +737,84 @@ export const templatesPageContent = {
       included: 'Sudah Termasuk dalam Paket',
       close: 'Tutup',
       priceLabel: 'Mulai dari',
-      buyNow: 'Pilih Paket & Konfigurasi',
+      buyNow: 'Pesan Website Berbasis Desain Ini',
       openDemo: 'Buka Live Demo',
-      guaranteeNote: 'Sudah termasuk cloud hosting cepat, SSL gratis, email bisnis, bantuan koneksi domain, dan tim teknis.'
+      guaranteeNote: 'Sudah termasuk kustomisasi materi, cloud hosting cepat, SSL gratis, email bisnis, bantuan koneksi domain, dan tim engineer.'
     },
     faqTitle: 'Pertanyaan Umum Seputar Pemesanan Website',
-    faqSubtitle: 'Jawaban seputar aktivasi instan, bantuan edit konten, opsi custom, dan hosting.',
+    faqSubtitle: 'Penjelasan lengkap seputar alur kerja terima beres, kustomisasi konten, hosting, dan domain.',
     faqs: [
       {
-        q: 'Berapa lama waktu yang dibutuhkan sampai website bisa langsung aktif?',
-        a: 'Website langsung aktif hari ini setelah domain terhubung. Jika menggunakan jasa editing konten, proses selesai dalam hitungan jam hingga maksimal 24 jam.'
+        q: 'Apakah saya membeli template mentah / source code untuk diedit sendiri?',
+        a: 'Tidak. Layanan kami adalah solusi Terima Beres (Turnkey Website). Anda tidak perlu mengedit file kode, menyewa hosting terpisah, atau repot secara teknis. Cukup pilih referensi desain yang Anda sukai, lalu tim engineer GiLabs yang memodifikasi teks, foto, warna, dan logo bisnis Anda sampai website online dan siap digunakan.'
       },
       {
-        q: 'Bagaimana jika saya malas atau tidak punya waktu mengedit konten sendiri?',
-        a: 'Pilih add-on "Jasa Editing Website". Cukup kirim materi via WhatsApp, tim kami yang menginput teks, foto, dan logo sampai siap tayang.'
+        q: 'Bagaimana alur pengerjaan website saya?',
+        a: 'Sangat praktis: (1) Anda memilih referensi desain di katalog ini, (2) Kirimkan materi bisnis (logo, teks profil, foto produk/jasa) melalui WhatsApp, (3) Tim engineer GiLabs melakukan penyesuaian desain, setup nama domain, dan konfigurasi cloud hosting, (4) Website resmi Anda langsung live dan siap menerima pengunjung.'
       },
       {
-        q: 'Apakah harga paket sudah termasuk domain dan hosting?',
-        a: 'Paket website sudah mencakup cloud hosting berkecepatan tinggi, SSL gratis, email bisnis, setup teknis, dan maintenance rutin. Untuk nama domain, Anda dapat me-request nama domain yang diinginkan dan biayanya dikonfirmasikan sesuai harga resmi registrar (belum termasuk dalam paket template).'
+        q: 'Berapa lama waktu yang dibutuhkan sampai website resmi bisa online?',
+        a: 'Setelah materi bisnis dan nama domain dikonfirmasi, website Anda biasanya siap online dalam 1–3 hari kerja tergantung kelengkapan konten dan tier paket yang Anda pilih.'
       },
       {
-        q: 'Apakah template ini bisa di-custom atau ditambah fitur baru di kemudian hari?',
-        a: 'Bisa. Dibuat dengan kode modern standar software house, Anda bisa menambahkan modul baru, integrasi API, atau custom fitur kapan saja.'
+        q: 'Apakah biaya paket sudah termasuk nama domain dan cloud hosting?',
+        a: 'Paket website sudah mencakup cloud hosting berkecepatan tinggi, sertifikat SSL gratis, email bisnis, konfigurasi server, serta maintenance rutin. Untuk nama domain, Anda dapat menggunakan domain yang sudah Anda miliki atau me-request domain baru yang kami bantu daftarkan sesuai harga resmi registrar.'
       },
       {
-        q: 'Apa bedanya beli template Gilabs dibanding membuat website custom dari nol ke vendor lain?',
-        a: 'Bikin website dari nol ke vendor butuh 1-3 bulan dan biaya tinggi. Template Gilabs hemat hingga 80% dengan kualitas setara, siap online hari ini.'
+        q: 'Apakah website ini bisa ditambah fitur atau custom modul di masa depan?',
+        a: 'Tentu saja! Website dibangun dengan teknologi modern berstandar enterprise (Next.js / Astro / Tailwind CSS), sehingga tim engineer GiLabs dapat menambahkan fitur baru, integrasi API, sistem booking, atau dashboard kustom kapan pun bisnis Anda berkembang.'
       },
       {
-        q: 'Bagaimana prosedur perpanjangan setelah masa paket habis?',
-        a: 'Kami akan kirimkan pengingat sebelum masa paket habis dengan biaya perpanjangan domain dan hosting yang transparan tanpa biaya tersembunyi.'
+        q: 'Apa bedanya memesan website di GiLabs dibanding membuat website dari nol ke vendor lain?',
+        a: 'Membuat website dari nol ke vendor agensi umumnya memakan waktu 1–3 bulan dengan biaya belasan hingga puluhan juta rupiah. Layanan GiLabs menghadirkan kualitas visual dan arsitektur berkelas dunia yang hemat hingga 80% dan langsung siap online dalam hitungan hari.'
       }
     ],
     customCta: {
-      title: 'Punya kebutuhan fitur khusus atau custom website?',
-      subtitle: 'Jika bisnis Anda membutuhkan modul spesifik, integrasi sistem, atau desain dari nol, tim software engineer Gilabs siap membantu.',
+      title: 'Punya kebutuhan fitur khusus atau custom website dari nol?',
+      subtitle: 'Jika bisnis Anda membutuhkan modul spesifik, integrasi sistem internal, atau arsitektur dari nol, tim software engineer GiLabs siap membantu.',
       buttonText: 'Konsultasi via WhatsApp'
     }
   },
   en: {
-    heroTag: 'Turnkey Website Templates • Go Live Today',
-    heroTitle: 'No Time for Vendors? Your Website Is Ready Today!',
-    heroSubtitle: 'Ready-to-use business templates, live today with cloud hosting, SSL, and technical setup included. We can edit content or build custom features for you.',
+    heroTag: 'Turnkey Business Websites • Fully Managed',
+    heroTitle: 'Ordinary Website?\nGo Extraordinary!',
+    heroSubtitle: 'Skip months of tedious web development. Choose a world-class modern design reference, send us your business materials, and your professional website will be live in days—complete with high-speed hosting, SSL, and custom domain setup.',
     valueProps: [
       {
-        badge: '01. Fast & Affordable',
-        title: 'Skip the Vendor Hassle',
-        description: 'No endless meetings or high costs. Launch a professional website in minutes.'
+        badge: '01. Choose Design',
+        title: 'World-Class Catalog',
+        description: 'Explore curated modern design references tailored to elevate your company brand identity.'
       },
       {
-        badge: '02. Instant Launch',
-        title: 'Launch Online Today',
-        description: 'Pick a design, connect your domain and hosting, and go live today.'
+        badge: '02. Send Content',
+        title: 'Zero Technical Hassle',
+        description: 'Simply send your logo, photos, and company profile via WhatsApp. Our software engineers handle the entire implementation.'
       },
       {
-        badge: '03. Turnkey',
-        title: 'We Edit & Customize for You',
-        description: 'No time to edit? We populate your content and logo, or build custom features on demand.'
+        badge: '03. Turnkey Launch',
+        title: 'Ready to Go Live',
+        description: 'Your website launches directly on your custom domain, backed by high-speed cloud hosting, SSL, and routine maintenance without technical headaches.'
       }
     ],
-    searchPlaceholder: 'Search website templates...',
+    searchPlaceholder: 'Search website design references...',
     sortOptions: {
       recommended: 'Recommended',
       priceLow: 'Price: Low to High',
       priceHigh: 'Price: High to Low',
       popular: 'Most Popular'
     },
-    showingResults: 'Showing {count} templates',
-    emptyStateTitle: 'No templates found',
+    showingResults: 'Showing {count} website designs',
+    emptyStateTitle: 'No designs found',
     emptyStateSubtitle: 'Try adjusting your search terms or select another category.',
     card: {
       startingFrom: 'Starting from',
       perYear: '/ year',
-      includedNote: 'Includes Cloud Hosting + SSL + Maintenance',
+      includedNote: 'Includes Content Setup + Cloud Hosting + SSL + Maintenance',
       oneTimePayment: 'One-time payment',
-      viewDetail: 'Details',
-      buyNow: 'Buy This Template',
+      viewDetail: 'Design Details',
+      buyNow: 'Select This Design',
       livePreview: 'Live Preview',
-      buyersNote: '{count} users chose this'
+      buyersNote: '{count} businesses chose this design'
     },
     modal: {
       overview: 'Overview',
@@ -890,41 +822,41 @@ export const templatesPageContent = {
       included: 'Included in the Package',
       close: 'Close',
       priceLabel: 'Starting from',
-      buyNow: 'Select Plan & Configure',
+      buyNow: 'Order Website Based on This Design',
       openDemo: 'Open Live Demo',
-      guaranteeNote: 'Includes high-speed cloud hosting, free SSL, business email, domain connection assistance, and engineering support.'
+      guaranteeNote: 'Includes content personalization, high-speed cloud hosting, free SSL, business email, domain connection assistance, and engineering support.'
     },
     faqTitle: 'Frequently Asked Questions',
-    faqSubtitle: 'Quick answers about instant setup, content editing, custom features, and hosting.',
+    faqSubtitle: 'Clear answers regarding turnkey execution, content setup, hosting, and domains.',
     faqs: [
       {
-        q: 'How fast can the website go live?',
-        a: 'Your website can go live today once the domain is connected. If you choose our editing service, content setup takes only a few hours up to 24 hours.'
+        q: 'Am I buying raw template files or source code to edit myself?',
+        a: 'No. Our service is a Done-For-You Turnkey Website solution. You never have to touch code, manage separate hosting, or deal with technical complexity. Simply choose your preferred design reference, and GiLabs software engineers will customize your copy, branding, photos, and logo until the website is live and production-ready.'
       },
       {
-        q: 'What if I do not have time or prefer not to edit content myself?',
-        a: 'Select the "Website Content Editing" add-on. Simply send your materials via WhatsApp, and our team will handle texts, images, and branding for you.'
+        q: 'What is the workflow for launching my website?',
+        a: 'The process is effortless: (1) Select your design reference from this catalog, (2) Send your business materials (logo, text, product photos) via WhatsApp, (3) Our engineers customize the design, connect your domain, and configure cloud hosting, (4) Your official website goes live and is ready for visitors.'
       },
       {
-        q: 'Is domain and hosting included in the price?',
-        a: 'The website package includes high-speed cloud hosting, free SSL, business email, technical setup, and routine maintenance. For the domain name, you can request your preferred domain and registration costs are confirmed according to official registrar pricing (not included in the template package).'
+        q: 'How long until my website goes live?',
+        a: 'Once your business materials and domain name are confirmed, your website typically goes live within 1 to 3 business days, depending on content volume and selected package tier.'
       },
       {
-        q: 'Can this template be customized or extended with new features later?',
-        a: 'Yes. Built with clean modern code, our engineering team can add custom features, integrations, or workflows whenever your business grows.'
+        q: 'Is domain registration and cloud hosting included?',
+        a: 'The package includes high-speed cloud hosting, free SSL certificate, business email, server setup, and routine maintenance. For the domain name, you can use your existing domain or request a new domain, which we help register at official registrar rates.'
       },
       {
-        q: 'How does a Gilabs template differ from hiring an agency to build from scratch?',
-        a: 'Agencies take 1-3 months with high overhead. Gilabs templates save you up to 80% with identical professional quality, ready today.'
+        q: 'Can this website be extended with custom features in the future?',
+        a: 'Absolutely! Built with clean modern technologies (Next.js / Astro / Tailwind CSS), our engineering team can integrate custom APIs, booking workflows, e-commerce, or dashboards whenever your business scales.'
       },
       {
-        q: 'How does renewal work after the period ends?',
-        a: 'We will send a renewal reminder before your plan expires with transparent rates and no hidden fees.'
+        q: 'How does GiLabs compare to traditional web agencies?',
+        a: 'Building from scratch with an agency typically takes 1–3 months and costs significantly more. GiLabs delivers identical or superior visual elegance and engineering quality at up to 80% lower cost, ready in just a few days.'
       }
     ],
     customCta: {
-      title: 'Need custom development or proprietary features?',
-      subtitle: 'If your business requires custom workflows or unique design, our engineering team is ready to build it for you.',
+      title: 'Need bespoke features or custom development from scratch?',
+      subtitle: 'If your business requires proprietary workflows, internal integrations, or custom architecture from scratch, our software engineering team is ready to build it.',
       buttonText: 'Discuss via WhatsApp'
     }
   }

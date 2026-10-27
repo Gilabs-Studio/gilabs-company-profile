@@ -320,8 +320,8 @@ function TemplateCard({ template, lang }: TemplateCardProps) {
   const title = lang === 'en' && template.titleEn ? template.titleEn : template.title;
 
   const imageAlt = lang === 'en'
-    ? `${title} - Ready-to-Use Business Website Template Gilabs`
-    : `${title} - Template Website Bisnis Siap Pakai Gilabs`;
+    ? `${title} - Ready-to-Use Business Website Design Gilabs`
+    : `${title} - Desain Website Bisnis Siap Online Gilabs`;
 
   return (
     <div className="bg-card border border-border/70 rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:border-foreground/40 hover:shadow-xs">

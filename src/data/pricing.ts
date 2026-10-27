@@ -192,10 +192,10 @@ export interface PricingData {
 export const pricingData: Record<string, PricingData> = {
   id: {
     hero: {
-      title: "Miliki Sistem\nMiliki Keunggulan",
+      title: "Tinggalkan Tampilan Biasa\nSaatnya Tampil Luar Biasa",
       eyebrow: "PT Griya Innovations Labs",
-      subtitle: "Kami membangun ERP, CRM, HRIS, finance system, workflow approval, dan dashboard operasional yang mengikuti proses bisnis perusahaan Anda.",
-      cta: "Bangun Aset Digital Anda",
+      subtitle: "Website modern dengan desain profesional yang dirancang untuk memperkuat identitas dan membawa bisnis kamu tampil lebih percaya diri di dunia digital.",
+      cta: "Pilih Desain Website",
     },
     features: {
       items: [
@@ -618,10 +618,10 @@ export const pricingData: Record<string, PricingData> = {
   },
   en: {
     hero: {
-      title: "Own the System\nOwn the Advantage",
+      title: "Leave the Ordinary Behind\nTime to Stand Out Exceptionally",
       eyebrow: "PT Griya Innovations Labs",
-      subtitle: "We build ERP, CRM, HRIS, finance systems, approval workflows, and operational dashboards tailored to your company's internal processes.",
-      cta: "Build Your Digital Asset",
+      subtitle: "Modern websites with professional design crafted to strengthen your brand identity and empower your business to stand out confidently in the digital world.",
+      cta: "Choose Website Design",
     },
     features: {
       items: [

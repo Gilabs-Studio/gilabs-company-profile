@@ -422,20 +422,20 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   // Localized texts
   const t = {
     id: {
-      backToCatalog: 'Kembali ke Katalog Template',
-      badge: 'Pemesanan Website',
-      pageTitle: 'Konfigurasi Pemesanan Website',
-      pageSubtitle: 'Solusi website bisnis profesional: sudah termasuk template siap pakai, cloud hosting cepat, SSL keamanan, email bisnis, bantuan setup domain, dan pemeliharaan berkala.',
+      backToCatalog: 'Kembali ke Katalog Desain',
+      badge: 'Pemesanan Website Siap Online',
+      pageTitle: 'Konfigurasi Website Siap Online',
+      pageSubtitle: 'Layanan pembuatan website profesional terima beres: berbasis referensi desain terpilih, termasuk kustomisasi konten & logo, cloud hosting cepat, SSL keamanan, email bisnis, bantuan setup domain, dan pemeliharaan berkala.',
       
       // Section 1
       sectionTemplateNum: '01',
-      sectionTemplateTitle: 'Desain Template Terpilih',
-      sectionTemplateDesc: 'Template yang Anda pilih dapat langsung disesuaikan dengan identitas brand Anda.',
-      changeTemplateBtn: 'Ganti Template',
+      sectionTemplateTitle: 'Referensi Desain Terpilih',
+      sectionTemplateDesc: 'Referensi desain yang Anda pilih akan kami modifikasi dan sesuaikan penuh dengan materi dan identitas brand Anda.',
+      changeTemplateBtn: 'Ganti Referensi Desain',
       closeChangeTemplateBtn: 'Tutup Pilihan',
       viewDemo: 'Lihat Demo Langsung',
       buyersCount: 'bisnis memilih desain ini',
-      searchTemplatePlaceholder: 'Cari template lain...',
+      searchTemplatePlaceholder: 'Cari referensi desain lain...',
       activeTemplateBadge: 'Aktif Terpilih',
       
       // Section 2
@@ -447,7 +447,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       
       // Add-on
       addonHeader: 'Layanan Tambahan Opsional',
-      addonDesc: 'Harga add-on menyesuaikan tier template yang Anda pilih. Pengisian teks, logo, dan foto sudah termasuk paket.',
+      addonDesc: 'Harga add-on menyesuaikan tier desain yang Anda pilih. Kustomisasi teks, logo, dan foto usaha sudah termasuk dalam paket dasar.',
       addonIncluded: 'Sudah termasuk',
       addonMax: 'Maks.',
       addonDecrease: 'Kurangi',
@@ -489,7 +489,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
 
       // Sidebar Summary
       summaryTitle: 'Ringkasan Pesanan',
-      summaryTemplate: 'Template',
+      summaryTemplate: 'Desain Referensi',
       summaryIncluded: 'Termasuk Paket',
       summaryDuration: 'Paket Durasi',
       summaryDomain: 'Request Domain',
@@ -497,7 +497,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       summaryDomainStatus: 'Belum Termasuk (via WA)',
       summaryAddon: 'Add-on',
       summaryTotalLabel: 'Total Investasi',
-      summaryTotalNote: 'Termasuk Template + Cloud Hosting + SSL + Setup + Maintenance (Belum termasuk biaya domain)',
+      summaryTotalNote: 'Termasuk Kustomisasi Desain + Cloud Hosting + SSL + Setup Konten + Maintenance (Belum termasuk biaya domain)',
       ctaWhatsapp: 'Pesan via WhatsApp',
       ctaNote: 'Terhubung langsung dengan tim engineer GiLabs untuk invoice resmi & aktivasi.',
       trustPoints: [
@@ -507,20 +507,20 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       ]
     },
     en: {
-      backToCatalog: 'Back to Template Catalog',
-      badge: 'Website Order',
-      pageTitle: 'Configure Your Website Package',
-      pageSubtitle: 'Turnkey business website solution: includes ready-to-use template, high-speed cloud hosting, SSL security, business email, custom domain setup, and routine maintenance.',
+      backToCatalog: 'Back to Design Catalog',
+      badge: 'Turnkey Website Order',
+      pageTitle: 'Configure Your Turnkey Website',
+      pageSubtitle: 'Fully-managed turnkey business website solution: based on your selected design reference, including content & branding setup, high-speed cloud hosting, SSL security, business email, custom domain setup, and routine maintenance.',
       
       // Section 1
       sectionTemplateNum: '01',
-      sectionTemplateTitle: 'Selected Template Design',
-      sectionTemplateDesc: 'The template you selected will be tailored to match your company branding.',
-      changeTemplateBtn: 'Switch Template',
+      sectionTemplateTitle: 'Selected Design Reference',
+      sectionTemplateDesc: 'The design reference you selected will be tailored to match your company branding and content.',
+      changeTemplateBtn: 'Switch Design Reference',
       closeChangeTemplateBtn: 'Close Selector',
       viewDemo: 'View Live Demo',
       buyersCount: 'businesses chose this design',
-      searchTemplatePlaceholder: 'Search other templates...',
+      searchTemplatePlaceholder: 'Search other design references...',
       activeTemplateBadge: 'Selected',
       
       // Section 2
@@ -532,7 +532,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       
       // Add-on
       addonHeader: 'Optional Add-ons',
-      addonDesc: 'Add-on pricing follows the tier of your selected template. Text, logo, and photo input are already included.',
+      addonDesc: 'Add-on pricing follows the tier of your selected design. Text, logo, and photo input are already included in the base package.',
       addonIncluded: 'Included',
       addonMax: 'Max.',
       addonDecrease: 'Decrease',
@@ -574,7 +574,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
 
       // Sidebar Summary
       summaryTitle: 'Order Summary',
-      summaryTemplate: 'Template',
+      summaryTemplate: 'Design Reference',
       summaryIncluded: 'Included',
       summaryDuration: 'Package Duration',
       summaryDomain: 'Domain Request',
@@ -582,7 +582,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       summaryDomainStatus: 'Not Included (via WA)',
       summaryAddon: 'Add-on',
       summaryTotalLabel: 'Total Investment',
-      summaryTotalNote: 'Includes Template + Cloud Hosting + SSL + Setup + Maintenance (Excludes domain registration fee)',
+      summaryTotalNote: 'Includes Design Customization + Cloud Hosting + SSL + Setup + Maintenance (Excludes domain registration fee)',
       ctaWhatsapp: 'Order via WhatsApp',
       ctaNote: 'Connect directly with GiLabs software engineers for official invoice & kickoff.',
       trustPoints: [
