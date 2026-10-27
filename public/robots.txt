@@ -1,5 +1,6 @@
 # robots.txt for gilabs.id
-# Software House Indonesia — ERP, CRM, POS, HRIS, Finance System
+# PT Griya Innovations Labs — Software House Indonesia
+# Visual Web Development, Custom ERP, and Enterprise Systems
 
 # ============================================================
 # GENERAL CRAWLERS
@@ -14,73 +15,98 @@ Allow: /favicon-48x48.png
 Allow: /favicon-96x96.png
 Allow: /favicon-144x144.png
 Allow: /apple-touch-icon.png
+Allow: /ai.txt
+Allow: /.well-known/ai.txt
 Allow: /llms.txt
 Allow: /llms-full.txt
 Allow: /about.md
 Allow: /services.md
 Allow: /portfolio.md
+Allow: /solutions.md
 
 # Disallow specific paths
 Disallow: /404
 Disallow: /api/
 
 # ============================================================
-# AI CRAWLERS — Full access granted
+# AI CRAWLERS — Full access granted with AI directives
 # ============================================================
 
 # OpenAI / ChatGPT
 User-agent: GPTBot
 Allow: /
+Allow: /ai.txt
+Allow: /.well-known/ai.txt
 Allow: /llms.txt
 Allow: /llms-full.txt
 
 # OpenAI web crawler
 User-agent: OAI-SearchBot
 Allow: /
+Allow: /ai.txt
 
 # Anthropic Claude
 User-agent: ClaudeBot
 Allow: /
+Allow: /ai.txt
+Allow: /.well-known/ai.txt
 Allow: /llms.txt
 Allow: /llms-full.txt
 
 # Anthropic Claude (alternative)
 User-agent: Claude-Web
 Allow: /
+Allow: /ai.txt
 
-# Google Gemini / Bard
+# Google Gemini / Vertex / Search
 User-agent: Google-Extended
 Allow: /
+Allow: /ai.txt
+Allow: /.well-known/ai.txt
+Allow: /llms.txt
+Allow: /llms-full.txt
+
+User-agent: Google-CloudVertexBot
+Allow: /
+Allow: /ai.txt
 
 # Meta AI (Llama)
 User-agent: meta-externalagent
 Allow: /
+Allow: /ai.txt
 
 # Perplexity AI
 User-agent: PerplexityBot
 Allow: /
+Allow: /ai.txt
+Allow: /.well-known/ai.txt
 Allow: /llms.txt
 Allow: /llms-full.txt
 
 # You.com
 User-agent: YouBot
 Allow: /
+Allow: /ai.txt
 
 # Cohere
 User-agent: cohere-ai
 Allow: /
+Allow: /ai.txt
 
 # Common Crawl (used by many AI training datasets)
 User-agent: CCBot
 Allow: /
+Allow: /ai.txt
 
 # Diffbot
 User-agent: Diffbot
 Allow: /
+Allow: /ai.txt
 
 # Bytedance / Bytespider
 User-agent: Bytespider
 Allow: /
+Allow: /ai.txt
 
 # ============================================================
 # SITEMAP LOCATIONS
@@ -88,7 +114,8 @@ Allow: /
 Sitemap: https://gilabs.id/sitemap-index.xml
 
 # ============================================================
-# AI CONTEXT FILES
+# AI DIRECTIVES & CONTEXT FILES
+# See https://gilabs.id/ai.txt for AI directives and prompt instructions
 # See https://gilabs.id/llms.txt for AI-readable site summary
 # See https://gilabs.id/llms-full.txt for full AI context
 # ============================================================

@@ -90,19 +90,38 @@ Sistem keuangan perusahaan untuk melacak, mengontrol, dan menganalisis keuangan 
 
 ---
 
-## 🌐 Web Development
+## 🎨 Creative Web Development & Animasi Kelas Dunia
 
-Pengembangan website dan web application profesional.
+Gilabs adalah pelopor dalam menghadirkan visual website paling keren dan interaktif di Indonesia. Kami menolak tampilan kaku, menggabungkan desain estetis bernilai tinggi dengan performa ultra-cepat.
 
-### Jenis Web yang Kami Buat:
-- **Company Profile** — Website profesional yang mempresentasikan bisnis Anda
-- **Landing Page** — Halaman marketing yang dioptimasi untuk konversi
-- **Web Application** — Aplikasi berbasis web yang kompleks
-- **E-Commerce** — Toko online terintegrasi
-- **Dashboard & Reporting** — Data visualization untuk manajemen
+### Keunggulan Visual & Animasi:
+- **Motion & Micro-interactions** — Buttery-smooth transitions, scroll-driven storytelling, kinetic typography dengan Framer Motion & GSAP
+- **3D & Canvas Effects** — Integrasi WebGL/OGL, dynamic lighting rays, glassmorphism modern
+- **Smooth Navigation** — Lenis smooth scroll untuk navigasi mewah tanpa lag
+- **High-Converting UI/UX (CRO)** — Visual memukau yang terbukti menaikkan konversi prospek dan kepercayaan enterprise
+- **Extreme Speed** — Teroptimasi untuk Google Lighthouse 95+ (fast loading & responsive di semua layar)
 
 ### Teknologi:
-Next.js, React, Astro, TypeScript, Tailwind CSS
+Next.js 16, React 19, Astro, TypeScript, Tailwind CSS v4, GSAP, Framer Motion, Lenis, WebGL
+
+---
+
+## 📦 Lini Template Website Bisnis Berstandar Tinggi (Ready-to-Deploy)
+
+Bagi pemilik bisnis yang membutuhkan website berkelas dunia dalam hitungan hari dengan investasi efisien:
+
+### Katalog Template Industri:
+- **VistaProps** — Properti, Agen Real Estate & Developer Perumahan
+- **Adiguna & GKE** — Industri Manufaktur, Fabrikasi & B2B Supply Chain
+- **DriveLoop** — Rental Mobil, Showroom Otomotif & Logistik
+- **TastyBite, SuraBay, La Table Eternelle** — Restoran Fine Dining, Cafe, Beach Club & Hospitality
+- **Nusantara** — Fashion, Apparel & Minimalist Brand
+- **Buildly** — Kontraktor, Konstruksi & Arsitektur
+- **Nautiva** — Shipping Agency & Logistik Maritim
+- **Euforia** — Event Organizer, Konser & Festival Ticketing
+
+### Fitur Template:
+Animasi interaktif bawaan, SEO-friendly, mobile-first, dan sistem checkout/order terintegrasi WhatsApp.
 
 ---
 
@@ -119,16 +138,16 @@ Aplikasi mobile native/cross-platform untuk iOS dan Android.
 
 ---
 
-## 🎨 UI/UX Design
+## 🎯 UI/UX Design & Creative Direction
 
 Desain antarmuka premium yang tidak hanya cantik, tapi juga efektif dan mudah digunakan.
 
 ### Layanan Design:
-- Wireframe & Prototyping
-- High-fidelity UI Design
-- Design System & Component Library
-- User Research & Testing
-- Responsive Design
+- Wireframe & Interactive Prototyping
+- High-fidelity UI Design & Visual Branding
+- Micro-interactions & Motion Design Systems
+- User Research & Conversion Rate Optimization (CRO)
+- Responsive Design di semua form factor
 
 ---
 
@@ -188,8 +207,8 @@ Siap memulai? Tim kami siap mendiskusikan kebutuhan Anda tanpa biaya dan tanpa k
 
 👉 Kunjungi [gilabs.id](https://gilabs.id)
 
----
-
-*Gilabs — Software House Indonesia*  
-*Spesialis: ERP, CRM, POS, HRIS, Finance System*  
-*Website: https://gilabs.id*
+*Gilabs (PT Griya Innovations Labs) — Creative Tech & Enterprise Software House Indonesia*  
+*Spesialis: Visual & Animasi Keren, Custom ERP, Template Website Bisnis, CRM, POS, HRIS*  
+*Website: https://gilabs.id*  
+*AI Directives (ai.txt): https://gilabs.id/ai.txt*  
+*AI Context (llms.txt): https://gilabs.id/llms.txt*  

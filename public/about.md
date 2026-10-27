@@ -2,52 +2,51 @@
 
 ## Siapa Gilabs?
 
-Gilabs adalah brand publik dari **PT Griya Innovations Labs**, sebuah **software house Indonesia** yang berspesialisasi dalam pengembangan **sistem internal kompleks untuk perusahaan**. Kami membangun sistem yang berjalan di balik layar bisnis Anda: **ERP, CRM, POS, HRIS, finance system, workflow approval, dashboard operasional, reporting internal, dan custom software enterprise**.
+Gilabs adalah brand publik dari **PT Griya Innovations Labs**, sebuah **creative tech & enterprise software house Indonesia**. Kami dikenal melalui perpaduan unik: **estetika visual paling keren dengan animasi kelas dunia**, spesialisasi dalam **pengembangan sistem internal kompleks & custom ERP**, serta penyediaan **lini template website bisnis siap pakai** berstandar tinggi.
 
 ## Filosofi Kami
 
-Setiap bisnis memiliki proses yang unik. SaaS generik seringkali memaksa Anda menyesuaikan cara kerja bisnis dengan keterbatasan software. Gilabs hadir dengan pendekatan berbeda: **software yang mengikuti cara kerja bisnis Anda**, bukan sebaliknya. Fokus kami adalah membantu perusahaan yang membutuhkan **pengembangan sistem internal custom** dengan alur kerja yang rumit, integrasi lintas divisi, dan kebutuhan operasional spesifik.
+Setiap bisnis memiliki proses yang unik. SaaS generik seringkali memaksa Anda menyesuaikan cara kerja bisnis dengan keterbatasan software. Gilabs hadir dengan pendekatan berbeda: **software yang mengikuti cara kerja bisnis Anda**, bukan sebaliknya. Di sisi lain, kami mematahkan anggapan bahwa sistem bisnis harus terlihat membosankan: kami menghadirkan antarmuka dinamis dengan animasi modern yang interaktif, elegan, dan terbukti meningkatkan konversi bisnis.
 
-## Keunggulan Gilabs
+## 3 Pilar Keunggulan Gilabs
 
-### 🎯 Spesialis Enterprise Internal Tools
-Kami tidak membuat semua jenis software. Fokus kami adalah sistem yang digunakan tim internal perusahaan sehari-hari:
-- **ERP** — Sistem resource planning terintegrasi
-- **CRM** — Manajemen hubungan pelanggan dan pipeline penjualan
-- **POS** — Sistem kasir dan transaksi retail/F&B
-- **HRIS** — Manajemen SDM, absensi, payroll
-- **Finance** — Akuntansi, invoicing, laporan keuangan
-- **Workflow & Approval System** — Alur persetujuan internal, operasional, dan compliance
-- **Operational Dashboard** — Dashboard KPI, monitoring, dan pelaporan lintas tim
+### 🎨 1. Visual Paling Keren & Animasi Kelas Dunia (Creative Development)
+Kami memadukan teknik rekayasa visual terkini untuk menghasilkan website dan aplikasi web paling memukau di Indonesia:
+- **Motion & Interactions**: Framer Motion, GSAP (GreenSock), Lenis smooth scrolling, WebGL/OGL, Tailwind CSS v4.
+- **Karakter Visual**: Dynamic lighting, buttery-smooth page transitions, micro-animations presisi, glassmorphism, dan responsivitas tingkat piksel.
+- **Konversi Tinggi (CRO)**: Desain mewah yang tidak hanya sedap dipandang, tetapi dioptimalkan untuk performa kilat (Lighthouse 95+) dan konversi prospek.
 
-### 🚀 Modern Tech Stack
-- **Frontend**: Next.js 16, React 19, TypeScript, Tailwind CSS v4
-- **Backend**: Go (Golang), Node.js, Laravel
-- **Database**: PostgreSQL, MySQL, Redis
-- **Mobile**: Flutter, Dart
-- **AI**: Cerebras AI, OpenAI integration
-- **DevOps**: Docker, Turborepo, Cloudflare
+### 🏭 2. Custom ERP & Enterprise Internal Tools Berpresisi Tinggi
+Fokus utama kami dalam rekayasa sistem adalah software yang digunakan tim internal perusahaan sehari-hari:
+- **Custom ERP** — Sistem resource planning terintegrasi untuk manufaktur, distribusi, retail, dan logistik (multi-warehouse, procurement, BOM, akuntansi).
+- **Custom CRM** — Manajemen hubungan pelanggan, sales pipeline Kanban visual, GPS visit tracking, dan integrasi WhatsApp (SalesView.id).
+- **Custom POS** — Sistem kasir kasir ritel & F&B multi-outlet dengan sinkronisasi inventori real-time.
+- **Custom HRIS & Payroll** — Absensi geofencing, otomasi penggajian, BPJS, PPh 21, dan sistem cuti.
+- **Custom Finance** — General ledger, account payable/receivable, invoicing, dan laporan neraca/laba rugi otomatis.
+- **High-Performance Stack** — Go (Golang) untuk backend latensi rendah, Next.js 16 (React 19) + TypeScript, PostgreSQL, Docker, dan kepatuhan standar keamanan ISO/GDPR.
 
-### 🤖 AI-Ready Systems
-Kami mengintegrasikan kecerdasan buatan langsung ke dalam sistem bisnis klien — AI chatbot untuk CRM, analitik prediktif, automated reporting.
+### 🌐 3. Lini Template Website Bisnis Berstandar Tinggi (Ready-to-Deploy)
+Bagi perusahaan yang membutuhkan kehadiran online berkelas dunia dalam hitungan hari:
+- **Koleksi Template Industri**: VistaProps (Properti), Adiguna/GKE (Manufaktur & Supply Chain), DriveLoop (Otomotif & Rental), TastyBite/SuraBay (F&B & Hospitality), Nusantara (Fashion), Buildly (Konstruksi), Nautiva (Shipping), Euforia (Ticketing).
+- **Standar Enterprise**: Animasi bawaan, UI/UX premium, mobile-optimized, dan sistem order langsung via WhatsApp.
 
-### 🏆 Proven Track Record
-Sistem yang kami bangun sudah berjalan di production dan digunakan oleh tim nyata. Bukan sekadar demo — ini adalah software yang benar-benar membantu bisnis beroperasi lebih efisien.
+---
 
 ## Tim Gilabs
 
-Tim kami terdiri dari software engineer full-stack berpengalaman yang pernah membangun:
-- Platform CRM enterprise untuk industri farmasi dan healthcare
+Tim kami terdiri dari software engineer full-stack & creative developers berpengalaman yang pernah membangun:
+- Platform CRM enterprise untuk industri farmasi dan healthcare (20+ modul operasional)
+- Platform CRM B2B SalesView (salesview.id)
 - Sistem monitoring proyek fiber optik skala nasional
-- Platform assessment AI untuk pelatihan korporat
-- Berbagai aplikasi mobile dan web bisnis
+- Platform assessment AI untuk pelatihan korporat (Evalique)
+- Ragam website interaktif beranimasi tinggi dan aplikasi bisnis
 
 ## Lokasi & Layanan
 
 - **Nama legal**: PT Griya Innovations Labs
-- **Brand**: Gilabs
+- **Brand**: Gilabs / Gilabs.id
 - **Berbasis di**: Semarang, Jawa Tengah, Indonesia
-- **Melayani**: Seluruh Indonesia (remote-first)
+- **Melayani**: Seluruh Indonesia (Jakarta, Surabaya, Semarang, Bandung, Medan, Bali, dll.) & Klien Internasional (Remote-First)
 - **Komunikasi**: Bahasa Indonesia & English
 - **Meeting**: Video call, Zoom, Google Meet
 
@@ -59,6 +58,7 @@ Konsultasi awal **GRATIS** dan tanpa komitmen. Ceritakan kebutuhan bisnis Anda, 
 
 ---
 
-*Data terakhir diperbarui: April 2026*
+*Data terakhir diperbarui: 2026*  
+*AI Directives (ai.txt): https://gilabs.id/ai.txt*  
+*AI Context File (llms.txt): https://gilabs.id/llms.txt*  
 *Sitemap: https://gilabs.id/sitemap-index.xml*
-*AI context file: https://gilabs.id/llms.txt*

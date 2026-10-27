@@ -64,8 +64,8 @@ const organizationSchema = {
     "height": 144
   },
   "description": lang === 'id'
-    ? "Gilabs adalah brand dari PT Griya Innovations Labs, software house Indonesia yang spesialis dalam pengembangan sistem internal kompleks untuk perusahaan: ERP, CRM, POS, HRIS, finance system, workflow operasional, dashboard, dan custom software enterprise."
-    : "Gilabs is the brand of PT Griya Innovations Labs, an Indonesia software house specializing in complex internal systems for companies: ERP, CRM, POS, HRIS, finance systems, operational workflows, dashboards, and custom enterprise software.",
+    ? "Gilabs adalah brand dari PT Griya Innovations Labs, creative tech & software house Indonesia dengan keunggulan visual & animasi kelas dunia, spesialisasi pembuatan custom ERP & sistem internal kompleks perusahaan (manufaktur, distribusi, healthcare, retail), serta penyedia template website bisnis siap pakai."
+    : "Gilabs is the brand of PT Griya Innovations Labs, an Indonesian creative tech & software house renowned for world-class web visual animations, high-precision custom ERP & enterprise internal systems, and ready-to-deploy business website templates.",
   "email": "hello@gilabs.id",
   "brand": {
     "@type": "Brand",
@@ -101,8 +101,15 @@ const organizationSchema = {
     "software house Semarang",
     "software house Jakarta",
     "software development company Indonesia",
+    "creative web agency Indonesia",
+    "web animation agency Indonesia",
+    "jasa web animasi keren",
+    "Framer Motion web development",
+    "GSAP web design",
+    "template website bisnis",
     "pengembangan sistem internal perusahaan",
     "custom ERP development",
+    "custom ERP Indonesia",
     "custom CRM development",
     "HRIS development",
     "finance system development",
@@ -116,9 +123,11 @@ const organizationSchema = {
   ],
   "hasOfferCatalog": {
     "@type": "OfferCatalog",
-    "name": lang === 'id' ? "Layanan Software House" : "Software House Services",
+    "name": lang === 'id' ? "Layanan Software House & Digital Products" : "Software House Services & Digital Products",
     "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "ERP System Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Creative Animated Web Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom ERP System Development" } },
+      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Business Website Templates" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CRM System Development" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "POS System Development" } },
       { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "HRIS System Development" } },
@@ -132,8 +141,9 @@ const organizationSchema = {
     ]
   },
   "knowsAbout": [
-    "Software House", "Web Development", "Mobile App Development", "ERP System",
-    "CRM System", "POS System", "HRIS", "Finance System",
+    "Software House", "Creative Web Development", "Web Animation", "Framer Motion", "GSAP",
+    "WebGL", "Lenis Smooth Scroll", "Business Website Templates", "Web Development",
+    "Mobile App Development", "ERP System", "CRM System", "POS System", "HRIS", "Finance System",
     "Custom Software Development", "Workflow Automation", "Internal Tools",
     "Operational Dashboard", "Approval System", "Inventory System",
     "Next.js", "Go (Golang)", "Flutter",
@@ -226,8 +236,11 @@ const websiteSchema = {
 		<meta name="geo.position" content="-6.9667;110.4167" />
 		<meta name="ICBM" content="-6.9667, 110.4167" />
 		
-		<!-- AI/LLM Context Files -->
+		<!-- AI/LLM Context & Directives Files -->
+		<link rel="alternate" type="text/plain" title="AI Directives (ai.txt)" href="/ai.txt" />
+		<link rel="alternate" type="text/plain" title="AI Directives (.well-known/ai.txt)" href="/.well-known/ai.txt" />
 		<link rel="alternate" type="text/plain" title="LLMs.txt - AI Context" href="/llms.txt" />
+		<link rel="alternate" type="text/plain" title="LLMs-Full.txt - Comprehensive AI Context" href="/llms-full.txt" />
 		<link rel="alternate" type="text/markdown" title="About Gilabs (Markdown)" href="/about.md" />
 		<link rel="alternate" type="text/markdown" title="Services (Markdown)" href="/services.md" />
 		<link rel="alternate" type="text/markdown" title="Portfolio (Markdown)" href="/portfolio.md" />

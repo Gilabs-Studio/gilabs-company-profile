@@ -93,11 +93,33 @@ export default defineConfig({
           allow: '/',
         },
         {
+          userAgent: 'Google-CloudVertexBot',
+          allow: '/',
+        },
+        {
           userAgent: 'PerplexityBot',
+          allow: '/',
+        },
+        {
+          userAgent: 'OAI-SearchBot',
+          allow: '/',
+        },
+        {
+          userAgent: 'CCBot',
           allow: '/',
         },
       ],
       sitemap: 'https://gilabs.id/sitemap-index.xml',
+      transform(content) {
+        return `${content}
+# ============================================================
+# AI DIRECTIVES & CONTEXT FILES
+# See https://gilabs.id/ai.txt for AI directives and prompt instructions
+# See https://gilabs.id/llms.txt for AI-readable site summary
+# See https://gilabs.id/llms-full.txt for full AI context
+# ============================================================
+`;
+      },
     }),
     compress({
       CSS: true,
