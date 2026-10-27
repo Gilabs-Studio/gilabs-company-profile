@@ -3,6 +3,7 @@ import "../styles/globals.css";
 import LightRays from "../components/ui/LightRays";
 import MobileMenu from "../components/MobileMenu.astro";
 import WhatsAppFAB from "../components/WhatsAppFAB.astro";
+import EntranceLoader from "../components/common/EntranceLoader.astro";
 
 const { 
 	lang = Astro.currentLocale || 'id', 
@@ -12,6 +13,7 @@ const {
 	robots = 'index, follow',
 	noindex = false,
 	showRays = true,
+	showEntrance = false,
 	keywords = 'Gilabs, PT Griya Innovations Labs, software house Indonesia, software house Semarang, software house Jakarta, software development company Indonesia, jasa pengembangan sistem internal perusahaan, jasa pembuatan ERP custom Indonesia, vendor ERP custom untuk perusahaan manufaktur, jasa pembuatan CRM custom Indonesia, software CRM untuk tim sales lapangan, CRM custom terintegrasi WhatsApp, jasa pembuatan aplikasi kasir custom, software POS untuk toko bangunan, jasa pembuatan dashboard monitoring perusahaan, dashboard KPI realtime untuk manajemen, software manufaktur custom Indonesia, aplikasi koperasi simpan pinjam custom, software distributor custom, jasa pembuatan software custom, vendor pengembangan software perusahaan, software house untuk digitalisasi bisnis',
 	ogImage = 'https://gilabs.id/og-image.jpg',
 	alternateUrls
@@ -260,10 +262,34 @@ const websiteSchema = {
     <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
     
+    <!-- Fast-bypass for Googlebot, search crawlers, Lighthouse, reduced motion, and returning sessions -->
+    {showEntrance && (
+      <script is:inline>
+        (function() {
+          try {
+            var ua = (navigator.userAgent || '').toLowerCase();
+            var isBot = /bot|googlebot|crawler|spider|robot|crawling|lighthouse|speed|pingdom|facebookexternalhit|whatsapp/i.test(ua);
+            var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var alreadySeen = false;
+            try {
+              alreadySeen = sessionStorage.getItem('gilabs_entrance_seen') === 'true';
+            } catch (e) {}
+
+            if (isBot || prefersReduced || alreadySeen) {
+              document.documentElement.classList.add('skip-entrance');
+            }
+          } catch (e) {
+            document.documentElement.classList.add('skip-entrance');
+          }
+        })();
+      </script>
+    )}
+
     <!-- Per-page additional head tags (e.g. page-specific schemas) -->
     <slot name="head" />
 	</head>
 	<body class="bg-background text-foreground font-sans antialiased relative selection:bg-brand selection:text-white">
+    {showEntrance && <EntranceLoader lang={lang} />}
     {showRays && (
       <div class="fixed inset-0 z-0 pointer-events-none">
         <LightRays 

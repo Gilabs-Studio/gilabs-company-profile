@@ -101,11 +101,12 @@ if (serviceMatch) {
   <div class="container mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between relative">
     <!-- Brand Logo (Left) -->
     <div class="flex items-center flex-1 justify-start">
-      <a href={pathPrefix} class="flex items-center relative z-50 cursor-pointer hover:opacity-90 transition-opacity" aria-label="Gilabs Home">
+      <a href={pathPrefix} id="navbar-brand-logo" class="flex items-center relative z-50 cursor-pointer hover:opacity-90 transition-opacity" aria-label="Gilabs Home">
         <img 
+          id="navbar-logo-img"
           src="/Logo Putih 3 crop.png" 
           alt="Gilabs" 
-          class="h-8 sm:h-9 w-auto object-contain" 
+          class="h-8 sm:h-9 w-auto object-contain transition-opacity duration-300" 
           width="125" 
           height="36" 
           loading="eager"

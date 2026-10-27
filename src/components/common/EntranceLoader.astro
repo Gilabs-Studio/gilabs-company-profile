@@ -1,0 +1,334 @@
+---
+interface Props {
+  lang?: string;
+}
+
+const { lang = "id" } = Astro.props;
+
+// Copywriting: Menusuk langsung ke pain point & aspirasi -> We Are [Logo]
+const wordsId = [
+  "Bosan Website Kaku & Biasa?",
+  "Ingin Visual Wah Kelas Dunia?",
+  "We Are"
+];
+
+const wordsEn = [
+  "Tired of Rigid & Boring Websites?",
+  "Want World-Class Visuals?",
+  "We Are"
+];
+
+const words = lang === "en" ? wordsEn : wordsId;
+---
+
+<div 
+  id="site-loader" 
+  class="fixed inset-0 z-[9999] pointer-events-none overflow-hidden select-none"
+  aria-hidden="true"
+  role="presentation"
+  data-words={JSON.stringify(words)}
+>
+  {/* 1. Backdrop Layer - Solid Light Platinum with subtle grain that smoothly fades out to reveal the page */}
+  <div 
+    id="loader-backdrop"
+    class="absolute inset-0 bg-[#E5E4E2] z-0 will-change-opacity pointer-events-auto transition-opacity"
+  >
+    <div class="absolute inset-0 opacity-[0.03] pointer-events-none bg-[radial-gradient(#000000_1px,transparent_1px)] [background-size:16px_16px]"></div>
+  </div>
+
+  {/* 2. Centered Content Container */}
+  <div class="relative z-20 flex flex-col items-center justify-center w-full h-full text-center px-4 sm:px-6 pointer-events-none">
+    
+    {/* Typewriter + Inline Logo Area: Hero title typography scale */}
+    <div class="flex items-center justify-center min-h-[90px] sm:min-h-[120px] md:min-h-[140px] max-w-5xl flex-wrap gap-2.5 sm:gap-4 md:gap-5" id="loader-typewriter-box">
+      
+      <div class="inline-flex items-center justify-center" id="loader-text-wrap">
+        <span 
+          class="font-heading font-bold text-foreground text-3xl sm:text-5xl md:text-6xl lg:text-7xl tracking-tighter" 
+          id="loader-typewriter-text"
+        ></span>
+        <span 
+          class="inline-block w-[3px] sm:w-[4px] md:w-[5px] h-8 sm:h-12 md:h-16 bg-brand ml-2 sm:ml-3 animate-pulse align-middle rounded-full" 
+          id="loader-typewriter-cursor"
+        ></span>
+      </div>
+
+      {/* 3. Logo Reveal (Smoothly fades in beside 'We Are', then gently glides to Navbar) */}
+      <div 
+        class="hidden opacity-0 pointer-events-none will-change-transform z-30 items-center justify-center" 
+        id="loader-logo-box"
+      >
+        <div class="flex items-center justify-center p-1">
+          <img 
+            id="loader-logo-img"
+            src="/Logo Putih 3 crop.png" 
+            alt="Gilabs" 
+            class="h-8 sm:h-11 md:h-13 lg:h-16 w-auto object-contain" 
+            width="220" 
+            height="64"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Safety hide when skip-entrance class is present on html */
+  :global(.skip-entrance) #site-loader {
+    display: none !important;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  const criticalImagesToPreload = [
+    // Tech Stack Logos
+    "/logo/go-svgrepo-com.svg",
+    "/logo/tailwind-svgrepo-com.svg",
+    "/logo/astro-svgrepo-com.svg",
+    "/logo/nextjs-icon-svgrepo-com.svg",
+    "/logo/typescript-svgrepo-com.svg",
+    "/logo/supabase-logo-icon.svg",
+    // Primary Showcase Templates
+    "/templates/driveloop/preview.webp",
+    "/templates/adiguna-machinery/preview.webp",
+    "/templates/tastybite/preview.webp",
+    "/templates/shipagency-maritime/preview.webp",
+    "/templates/la-table-eternelle/preview.webp",
+    "/templates/buildly/preview.webp",
+    "/templates/nusantara/preview.webp",
+    "/templates/sura-bay/preview.webp",
+    "/templates/gke-enterprise/preview.webp",
+    "/templates/ticketing-events/preview.webp",
+    "/templates/vistaprops/preview.webp",
+    "/templates/tier4/preview.webp"
+  ];
+
+  // 1. Background image preloader - loads assets while typewriter runs
+  const preloadImages = (urls: string[]) => {
+    urls.forEach((url) => {
+      const img = new Image();
+      img.src = url;
+      if (typeof img.decode === "function") {
+        img.decode().catch(() => {});
+      }
+    });
+  };
+
+  const runEntrance = async () => {
+    const loader = document.getElementById("site-loader");
+    const backdrop = document.getElementById("loader-backdrop");
+    const typeText = document.getElementById("loader-typewriter-text");
+    const textWrap = document.getElementById("loader-text-wrap");
+    const logoBox = document.getElementById("loader-logo-box");
+    const centerLogoImg = document.getElementById("loader-logo-img");
+    const navbarLogo = document.getElementById("navbar-brand-logo");
+    const navbarLogoImg = document.getElementById("navbar-logo-img");
+
+    if (!loader || !typeText) {
+      document.body.classList.add("is-loaded");
+      return;
+    }
+
+    let words: string[] = [
+      "Bosan Website Kaku & Biasa?",
+      "Ingin Visual Wah Kelas Dunia?",
+      "We Are"
+    ];
+
+    if (loader.dataset.words) {
+      try {
+        words = JSON.parse(loader.dataset.words);
+      } catch (e) {
+        // Fallback to default words
+      }
+    }
+
+    // Start background image loading immediately
+    preloadImages(criticalImagesToPreload);
+
+    // Initial state: hide navbar real logo image until morph arrives
+    if (navbarLogoImg) {
+      navbarLogoImg.style.opacity = "0";
+    }
+
+    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+    // Typewriter loop: type forward, pause, delete back (except last phrase "We Are")
+    for (let i = 0; i < words.length; i++) {
+      const word = words[i];
+
+      // Type forward (fluid: 30ms per char)
+      for (let c = 0; c <= word.length; c++) {
+        typeText.textContent = word.slice(0, c);
+        await sleep(30);
+      }
+
+      // If this is the last phrase ("We Are"), reveal the logo inline smoothly!
+      if (i === words.length - 1) {
+        if (logoBox) {
+          logoBox.classList.remove("hidden");
+          logoBox.classList.add("inline-flex");
+          // Smooth fade in without harsh scale pop
+          gsap.fromTo(
+            logoBox,
+            { opacity: 0 },
+            { opacity: 1, duration: 1.7, ease: "power2.out" }
+          );
+        }
+
+        // Jeda nyaman: beri waktu pengguna menikmati "We Are [Logo GiLabs]"
+        await sleep(950);
+        break;
+      }
+
+      // Jeda membaca nyaman untuk frasa 1 & 2 (cukup waktu untuk membaca dengan santai)
+      await sleep(1100);
+
+      // Delete back
+      for (let c = word.length; c >= 0; c--) {
+        typeText.textContent = word.slice(0, c);
+        await sleep(16);
+      }
+      await sleep(180); // jeda singkat sebelum kata berikutnya
+    }
+
+    // Final Logo Flight to Navbar & Smooth Fade-in of Page Content
+    if (navbarLogo && logoBox && centerLogoImg && navbarLogoImg && backdrop) {
+      const targetRect = navbarLogoImg.getBoundingClientRect();
+      const currentRect = centerLogoImg.getBoundingClientRect();
+
+      const targetCenterX = targetRect.left + targetRect.width / 2;
+      const targetCenterY = targetRect.top + targetRect.height / 2;
+      const currentCenterX = currentRect.left + currentRect.width / 2;
+      const currentCenterY = currentRect.top + currentRect.height / 2;
+
+      const deltaX = targetCenterX - currentCenterX;
+      const deltaY = targetCenterY - currentCenterY;
+      const scaleFactor = targetRect.height / currentRect.height;
+
+      const tl = gsap.timeline();
+
+      // Label "start" marking the beginning of the exit transition
+      tl.addLabel("start", 0);
+
+      // 1. Softly fade out "We Are" text and cursor
+      tl.to(
+        textWrap,
+        {
+          opacity: 0,
+          y: -10,
+          duration: 0.35,
+          ease: "power2.inOut",
+        },
+        "start"
+      );
+
+      // 2. Slow, graceful, buttery smooth glide of logo from center into navbar (1.3s)
+      tl.to(
+        logoBox,
+        {
+          x: deltaX,
+          y: deltaY,
+          scale: scaleFactor,
+          duration: 1.3, // slow and smooth
+          ease: "power3.inOut",
+        },
+        "start+=0.15"
+      );
+
+      // 3. Smooth backdrop fade-out: reveals landing page content underneath seamlessly ("fade in menampilkan content")
+      tl.to(
+        backdrop,
+        {
+          opacity: 0,
+          duration: 1.05,
+          ease: "power2.inOut",
+        },
+        "start+=0.35"
+      );
+
+      // Label "landing" exactly when logo reaches navbar (0.15 + 1.3 = 1.45s)
+      tl.addLabel("landing", "start+=1.45");
+
+      // 4. Exact landing moment: reveal navbar permanent logo seamlessly
+      tl.add(() => {
+        if (navbarLogoImg) {
+          navbarLogoImg.style.transition = "none";
+          navbarLogoImg.style.opacity = "1";
+        }
+      }, "landing");
+
+      // 5. Gently cross-fade out flying proxy logo right at landing
+      tl.to(
+        logoBox,
+        {
+          opacity: 0,
+          duration: 0.12,
+          ease: "power1.out",
+          onComplete: () => {
+            loader.style.display = "none";
+            document.body.classList.add("is-loaded");
+            try {
+              sessionStorage.setItem("gilabs_entrance_seen", "true");
+            } catch (e) {}
+
+            // Refresh scroll metrics (e.g. Lenis)
+            const win = window as any;
+            if (win.lenis) {
+              try {
+                win.lenis.resize();
+              } catch (e) {}
+            }
+            window.dispatchEvent(new CustomEvent("gilabs:entrance-complete"));
+          },
+        },
+        "landing"
+      );
+    } else {
+      // Fallback fade out if navbar logo is not in DOM
+      gsap.to(loader, {
+        opacity: 0,
+        duration: 0.6,
+        ease: "power2.inOut",
+        onComplete: () => {
+          if (navbarLogoImg) navbarLogoImg.style.opacity = "1";
+          loader.style.display = "none";
+          document.body.classList.add("is-loaded");
+          try {
+            sessionStorage.setItem("gilabs_entrance_seen", "true");
+          } catch (e) {}
+        },
+      });
+    }
+  };
+
+  // Run entrance animation if not skipped
+  if (!document.documentElement.classList.contains("skip-entrance")) {
+    // Run after DOM is ready
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", runEntrance);
+    } else {
+      runEntrance();
+    }
+
+    // Hard fallback timeout: guarantees user is never stuck if any script or layout shifts
+    setTimeout(() => {
+      const loader = document.getElementById("site-loader");
+      const navbarLogoImg = document.getElementById("navbar-logo-img");
+      if (loader && loader.style.display !== "none") {
+        if (navbarLogoImg) navbarLogoImg.style.opacity = "1";
+        loader.style.display = "none";
+        document.body.classList.add("is-loaded");
+      }
+    }, 14000);
+  } else {
+    // Immediately ensure navbar logo is visible and body is loaded
+    const navbarLogoImg = document.getElementById("navbar-logo-img");
+    if (navbarLogoImg) navbarLogoImg.style.opacity = "1";
+    document.body.classList.add("is-loaded");
+  }
+</script>
