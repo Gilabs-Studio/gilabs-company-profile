@@ -54,8 +54,8 @@ export function getWhatsAppLink(
       id: "Halo! Saya ingin konsultasi dengan Gilabs mengenai pembuatan software.",
     },
     template: {
-      en: "Hello! I'm interested in purchasing a software template from Gilabs. Can we discuss the details?",
-      id: "Halo! Saya tertarik untuk membeli template software dari Gilabs. Bisakah kita diskusikan detailnya?",
+      en: "Hello Gilabs! I'm interested in your turnkey website services. Can we discuss creating a website for my business?",
+      id: "Halo Gilabs! Saya tertarik dengan layanan website siap online terima beres dari Gilabs. Bisakah kita diskusikan pembuatan website untuk bisnis saya?",
     },
   };
 
@@ -73,12 +73,12 @@ export function getWhatsAppLink(
     }
   }
 
-  // If planName is provided and template is template (SaaS template purchase)
+  // If planName is provided and template is template (Turnkey website / custom tier consultation)
   if (planName && template === "template") {
     if (lang === "en") {
-      message = `Hello Gilabs! I'm interested in purchasing the template "${planName}". Can you guide me through the payment process and source code repository access?`;
+      message = `Hello Gilabs! I'm interested in the "${planName}" turnkey website package. I would like to consult and discuss my project requirements. Could we discuss the workflow and details?`;
     } else {
-      message = `Halo Gilabs! Saya tertarik untuk membeli template "${planName}". Bagaimana prosedur pembayaran dan pengiriman akses source code-nya?`;
+      message = `Halo Gilabs! Saya tertarik dengan paket website siap online "${planName}". Saya ingin berkonsultasi mengenai kebutuhan website bisnis saya. Bisakah kita diskusikan alur dan detail pengerjaannya?`;
     }
   }
 

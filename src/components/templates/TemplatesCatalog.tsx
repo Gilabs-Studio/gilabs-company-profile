@@ -151,6 +151,9 @@ interface TierInfoCardProps {
 function TierInfoCard({ tier, lang }: TierInfoCardProps) {
   const title = lang === 'en' ? tier.titleEn : tier.title;
   const whatsappUrl = getWhatsAppLink('template', lang, title);
+  const orderTierUrl = lang === 'en'
+    ? `/en/templates/order?tier=${tier.tierNumber}&template=custom`
+    : `/templates/order?tier=${tier.tierNumber}&template=custom`;
 
   // Classy, modern, clean minimalist tier accents (no tacky pill badges, no dots)
   const tierAccent = {
@@ -210,7 +213,7 @@ function TierInfoCard({ tier, lang }: TierInfoCardProps) {
             title={lang === 'id' ? `Konsultasi ${title}` : `Consult about ${title}`}
             className="text-xs font-medium text-muted-foreground hover:text-foreground flex items-center gap-1 transition-colors cursor-pointer"
           >
-            <span>{lang === 'id' ? 'Tanya' : 'Ask'}</span>
+            <span>{lang === 'id' ? 'Konsultasi' : 'Consult'}</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -273,7 +276,7 @@ function TierInfoCard({ tier, lang }: TierInfoCardProps) {
       </div>
 
       {/* Psychological Single Focal Pricing Box with Discount Anchor */}
-      <div className="mt-5 pt-3.5 border-t border-border/60 bg-secondary/35 rounded-lg p-3.5 relative z-10">
+      <div className="mt-5 pt-3.5 border-t border-border/60 bg-secondary/35 rounded-lg p-3.5 relative z-10 flex flex-col justify-between">
         <div className="flex items-center justify-between gap-2 mb-1">
           <div className="flex items-center gap-2">
             {tier.pricing.originalPrice && (
@@ -298,6 +301,29 @@ function TierInfoCard({ tier, lang }: TierInfoCardProps) {
           <span className="text-[10px] font-mono text-emerald-600/90 dark:text-emerald-400 font-medium">
             {lang === 'id' ? 'Siap Pakai' : 'Turnkey'}
           </span>
+        </div>
+
+        {/* Actions: Pilih Paket Tier Langsung & Konsultasi WA */}
+        <div className="mt-3.5 pt-3 border-t border-border/50 flex flex-col gap-2">
+          <a
+            href={orderTierUrl}
+            className="w-full py-2.5 px-3 rounded-lg bg-foreground text-background typography-small font-semibold text-center hover:opacity-90 transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 shadow-xs hover:-translate-y-0.5 active:translate-y-0"
+            title={lang === 'id' ? `Pilih Paket ${title}` : `Select ${title} Package`}
+          >
+            <span>{lang === 'id' ? 'Pilih Paket Tier Ini' : 'Select This Tier Package'}</span>
+            <ArrowRight className="w-3.5 h-3.5" />
+          </a>
+
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] text-center text-muted-foreground hover:text-foreground transition-colors cursor-pointer inline-flex items-center justify-center gap-1 py-0.5"
+            title={lang === 'id' ? `Konsultasi Desain Kustom ${title}` : `Consult Custom Design for ${title}`}
+          >
+            <span>{lang === 'id' ? 'Punya referensi sendiri? Konsultasi WA' : 'Have your own reference? Consult on WA'}</span>
+            <ArrowUpRight className="w-3 h-3 text-muted-foreground/70" />
+          </a>
         </div>
       </div>
     </div>

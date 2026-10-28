@@ -20,6 +20,7 @@ import {
   Minus,
   Plus,
   MessageCircle,
+  Sparkles,
 } from 'lucide-react';
 
 interface OrderFlowProps {
@@ -241,10 +242,16 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       const urlTemplate = params.get('template');
-      if (urlTemplate && templatesData.some(t => t.id === urlTemplate)) {
-        setSelectedTemplateId(urlTemplate);
-      }
       const urlTier = parseInt(params.get('tier') || '', 10);
+
+      if (urlTemplate === 'custom') {
+        setSelectedTemplateId('custom');
+      } else if (urlTemplate && templatesData.some(t => t.id === urlTemplate)) {
+        setSelectedTemplateId(urlTemplate);
+      } else if (!urlTemplate && [1, 2, 3].includes(urlTier)) {
+        setSelectedTemplateId('custom');
+      }
+
       if ([1, 2, 3].includes(urlTier)) {
         setCustomTier(urlTier as 1 | 2 | 3);
       }
@@ -252,9 +259,33 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   }, []);
 
   // Derived objects
+  const isCustomDesign = selectedTemplateId === 'custom';
+
   const selectedTemplate = useMemo(() => {
+    if (selectedTemplateId === 'custom') {
+      return {
+        id: 'custom',
+        slug: 'custom',
+        title: lang === 'en' ? 'Custom Design / Own Reference' : 'Desain Kustom / Referensi Sendiri',
+        titleEn: 'Custom Design / Own Reference',
+        category: 'service' as const,
+        categoryLabel: {
+          id: 'Kustom Sesuai Permintaan',
+          en: 'Custom on Demand',
+        },
+        tier: (customTier ?? 1) as 1 | 2 | 3,
+        description: {
+          id: 'Dibuat khusus mengikuti brand identity, preferensi gaya visual, dan materi bisnis Anda (atau referensi website yang Anda sukai) dengan spesifikasi paket ini.',
+          en: 'Crafted specifically to match your brand identity, visual style, and business materials (or website reference of your choice) following this tier’s feature specifications.',
+        },
+        previewImage: '',
+        gallery: [],
+        demoUrl: '',
+        buyersCount: 24,
+      };
+    }
     return templatesData.find(t => t.id === selectedTemplateId) || templatesData[0];
-  }, [selectedTemplateId]);
+  }, [selectedTemplateId, customTier, lang]);
 
   const activeTier = (customTier ?? selectedTemplate.tier) as 1 | 2 | 3;
   const activeTierInfo = useMemo(() => {
@@ -262,14 +293,16 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   }, [activeTier]);
   const activeTierTitle = lang === 'en' ? activeTierInfo.titleEn : activeTierInfo.title;
 
-  const templateDisplayTitle = lang === 'en' && selectedTemplate.titleEn 
-    ? selectedTemplate.titleEn 
-    : selectedTemplate.title;
+  const templateDisplayTitle = isCustomDesign
+    ? (lang === 'en' ? `Custom Design (${activeTierInfo.titleEn})` : `Desain Kustom (${activeTierInfo.title})`)
+    : (lang === 'en' && selectedTemplate.titleEn ? selectedTemplate.titleEn : selectedTemplate.title);
 
   // Upgrade / Downgrade status determination
-  const isUpgrade = activeTier > selectedTemplate.tier;
-  const isDowngrade = activeTier < selectedTemplate.tier;
-  const tierStatusBadge = isUpgrade
+  const isUpgrade = !isCustomDesign && activeTier > selectedTemplate.tier;
+  const isDowngrade = !isCustomDesign && activeTier < selectedTemplate.tier;
+  const tierStatusBadge = isCustomDesign
+    ? (lang === 'id' ? `Tier ${activeTier}` : `Tier ${activeTier}`)
+    : isUpgrade
     ? (lang === 'id' ? `Upgrade dari Tier ${selectedTemplate.tier}` : `Upgraded from Tier ${selectedTemplate.tier}`)
     : isDowngrade
     ? (lang === 'id' ? `Downgrade dari Tier ${selectedTemplate.tier}` : `Downgraded from Tier ${selectedTemplate.tier}`)
@@ -404,7 +437,9 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   // WhatsApp Checkout Link
   const whatsappUrl = useMemo(() => {
     return getWebsiteOrderWhatsAppLink({
-      templateTitle: `${templateDisplayTitle} (${activeTierTitle} • ${tierStatusBadge})`,
+      templateTitle: isCustomDesign
+        ? `${templateDisplayTitle} (Tier ${activeTier}) [Referensi / Materi Klien]`
+        : `${templateDisplayTitle} (${activeTierTitle} • ${tierStatusBadge})`,
       durationPlanName: selectedDuration.name[lang],
       durationYears: selectedDuration.years,
       durationPriceIdr: durationPrice,
@@ -417,7 +452,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       customerEmail: customerEmail.trim() || undefined,
       lang,
     });
-  }, [templateDisplayTitle, activeTierTitle, tierStatusBadge, selectedDuration, durationPrice, selectedDomain, formattedWhatsappAddons, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
+  }, [templateDisplayTitle, activeTierTitle, tierStatusBadge, isCustomDesign, activeTier, selectedDuration, durationPrice, selectedDomain, formattedWhatsappAddons, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
 
   // Localized texts
   const t = {
@@ -638,7 +673,9 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   {t.sectionTemplateNum}
                 </span>
                 <h2 className="text-sm font-bold text-foreground uppercase tracking-wider">
-                  {t.sectionTemplateTitle}
+                  {isCustomDesign 
+                    ? (lang === 'id' ? 'Paket Website Terpilih' : 'Selected Website Package')
+                    : t.sectionTemplateTitle}
                 </h2>
               </div>
 
@@ -655,7 +692,9 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                 ) : (
                   <>
                     <RotateCcw className="w-3.5 h-3.5" />
-                    <span>{t.changeTemplateBtn}</span>
+                    <span>{isCustomDesign
+                      ? (lang === 'id' ? 'Pilih Desain Siap Pakai' : 'Browse Turnkey Designs')
+                      : t.changeTemplateBtn}</span>
                   </>
                 )}
               </button>
@@ -665,33 +704,47 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
             <div className="bg-card border border-border rounded-xl p-4 sm:p-5 transition-all">
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-5">
                 {/* Thumbnail */}
-                <a
-                  href={selectedTemplate.demoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-44 aspect-16/10 bg-muted/40 rounded-lg overflow-hidden border border-border/60 shrink-0 block group relative cursor-pointer"
-                >
-                  {selectedTemplate.previewImage ? (
-                    <OrderTemplateImage
-                      src={selectedTemplate.previewImage}
-                      alt={templateDisplayTitle}
-                    />
-                  ) : (
-                    <OrderMiniPreview demoUrl={selectedTemplate.demoUrl} title={templateDisplayTitle} />
-                  )}
-                  <div className="absolute inset-0 z-20 bg-black/25 dark:bg-black/40 backdrop-blur-[1px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
-                    <span className="bg-background text-foreground text-[11px] font-semibold px-3 py-1.5 rounded-lg shadow-md flex items-center gap-1.5 transition-transform duration-200 group-hover:scale-105">
-                      <span>{t.viewDemo}</span>
-                      <ExternalLink className="w-3.5 h-3.5" />
+                {isCustomDesign ? (
+                  <div className="w-full sm:w-44 aspect-16/10 bg-gradient-to-br from-primary/10 via-brand/5 to-secondary/80 rounded-lg overflow-hidden border border-border/60 shrink-0 flex flex-col items-center justify-center p-3 text-center">
+                    <Sparkles className="w-6 h-6 text-primary mb-1.5" />
+                    <span className="text-xs font-semibold text-foreground">
+                      {lang === 'id' ? 'Desain Kustom' : 'Custom Design'}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground font-mono mt-0.5">
+                      Tier {activeTier} • {activeTierTitle}
                     </span>
                   </div>
-                </a>
+                ) : (
+                  <a
+                    href={selectedTemplate.demoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full sm:w-44 aspect-16/10 bg-muted/40 rounded-lg overflow-hidden border border-border/60 shrink-0 block group relative cursor-pointer"
+                  >
+                    {selectedTemplate.previewImage ? (
+                      <OrderTemplateImage
+                        src={selectedTemplate.previewImage}
+                        alt={templateDisplayTitle}
+                      />
+                    ) : (
+                      <OrderMiniPreview demoUrl={selectedTemplate.demoUrl} title={templateDisplayTitle} />
+                    )}
+                    <div className="absolute inset-0 z-20 bg-black/25 dark:bg-black/40 backdrop-blur-[1px] flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300">
+                      <span className="bg-background text-foreground text-[11px] font-semibold px-3 py-1.5 rounded-lg shadow-md flex items-center gap-1.5 transition-transform duration-200 group-hover:scale-105">
+                        <span>{t.viewDemo}</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </span>
+                    </div>
+                  </a>
+                )}
 
                 {/* Details */}
                 <div className="flex-1 space-y-1.5">
                   <div className="flex items-center gap-2">
                     <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-secondary text-secondary-foreground">
-                      {selectedTemplate.categoryLabel[lang]}
+                      {isCustomDesign 
+                        ? (lang === 'id' ? 'Kustom Sesuai Permintaan' : 'Custom on Demand')
+                        : selectedTemplate.categoryLabel[lang]}
                     </span>
                     <span className="text-[11px] text-muted-foreground">
                       {selectedTemplate.buyersCount} {t.buyersCount}
@@ -707,20 +760,49 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                   </p>
 
                   <div className="pt-1.5 flex items-center gap-4">
-                    <a
-                      href={selectedTemplate.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 cursor-pointer"
-                    >
-                      <span>{t.viewDemo}</span>
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
+                    {isCustomDesign ? (
+                      <a
+                        href={getWhatsAppLink('template', lang, activeTierTitle)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 cursor-pointer"
+                      >
+                        <MessageCircle className="w-3.5 h-3.5" />
+                        <span>{lang === 'id' ? 'Konsultasi Konsep via WhatsApp' : 'Discuss Concept on WhatsApp'}</span>
+                      </a>
+                    ) : (
+                      <a
+                        href={selectedTemplate.demoUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs font-semibold text-primary hover:underline inline-flex items-center gap-1 cursor-pointer"
+                      >
+                        <span>{t.viewDemo}</span>
+                        <ExternalLink className="w-3 h-3" />
+                      </a>
+                    )}
                   </div>
 
-                  {/* Upgrade / Downgrade Indicator Banner */}
+                  {/* Upgrade / Downgrade / Custom Indicator Banner */}
                   <div className="pt-2">
-                    {isUpgrade ? (
+                    {isCustomDesign ? (
+                      <div className="flex items-start gap-2.5 p-3 rounded-lg bg-primary/10 border border-primary/20 text-xs">
+                        <Sparkles className="w-4 h-4 text-primary shrink-0 mt-0.5" />
+                        <div className="space-y-0.5">
+                          <div className="font-bold text-primary flex items-center gap-1.5">
+                            <span>{lang === 'id' ? 'Status: Pemesanan Desain Kustom' : 'Status: Custom Design Order'}</span>
+                            <span className="text-[10px] font-mono px-1.5 py-0.2 rounded bg-primary/20 text-primary font-semibold uppercase">
+                              Tier {activeTier}
+                            </span>
+                          </div>
+                          <p className="text-[11px] text-muted-foreground leading-relaxed">
+                            {lang === 'id'
+                              ? `Website akan dirancang khusus dari nol mengikuti brand identity & preferensi Anda dengan spesifikasi ${activeTierInfo.title} (${activeTierInfo.specs.pages[lang]}, ${activeTierInfo.specs.animation[lang]}).`
+                              : `Website will be crafted from scratch following your brand identity & preferences with ${activeTierInfo.titleEn} specifications (${activeTierInfo.specs.pages[lang]}, ${activeTierInfo.specs.animation[lang]}).`}
+                          </p>
+                        </div>
+                      </div>
+                    ) : isUpgrade ? (
                       <div className="flex items-start gap-2.5 p-3 rounded-lg bg-success/10 border border-success/20 text-xs">
                         <ArrowUpRight className="w-4 h-4 text-success shrink-0 mt-0.5" />
                         <div className="space-y-0.5">
@@ -781,7 +863,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                       {([1, 2, 3] as const).map((tierNum) => {
                         const isSelected = activeTier === tierNum;
                         const tInfo = tiersData.find((t) => t.tierNumber === tierNum) || tiersData[0];
-                        const isBase = tierNum === selectedTemplate.tier;
+                        const isBase = !isCustomDesign && tierNum === selectedTemplate.tier;
                         return (
                           <button
                             key={tierNum}
@@ -850,6 +932,44 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                  {/* Option: Desain Kustom (Bebas Referensi) */}
+                  {(!templateSearchQuery || (lang === 'en' ? 'custom design reference' : 'desain kustom referensi').includes(templateSearchQuery.toLowerCase())) && (
+                    <div
+                      onClick={() => {
+                        setSelectedTemplateId('custom');
+                        setIsChangingTemplate(false);
+                      }}
+                      className={`bg-card border rounded-lg p-3 flex flex-col justify-between cursor-pointer transition-all hover:border-foreground/50 ${
+                        selectedTemplateId === 'custom' ? 'border-primary ring-2 ring-primary/20' : 'border-border'
+                      }`}
+                    >
+                      <div className="aspect-16/10 bg-gradient-to-br from-primary/10 via-brand/5 to-secondary/80 rounded flex flex-col items-center justify-center p-3 text-center mb-2.5 border border-border/50">
+                        <Sparkles className="w-6 h-6 text-primary mb-1" />
+                        <span className="text-xs font-semibold text-foreground">
+                          {lang === 'id' ? 'Desain Kustom' : 'Custom Design'}
+                        </span>
+                        <span className="text-[10px] text-muted-foreground font-mono">
+                          {lang === 'id' ? 'Gunakan Referensi Sendiri' : 'Use Your Own Reference'}
+                        </span>
+                      </div>
+                      <div className="space-y-1">
+                        <div className="flex items-center justify-between">
+                          <span className="text-xs font-bold text-foreground">
+                            {lang === 'id' ? 'Desain Kustom' : 'Custom Design'}
+                          </span>
+                          <span className="text-[10px] font-mono font-semibold text-primary">
+                            {lang === 'id' ? 'Bebas Referensi' : 'Any Reference'}
+                          </span>
+                        </div>
+                        <p className="text-[11px] text-muted-foreground line-clamp-2">
+                          {lang === 'id' 
+                            ? 'Pilih opsi ini jika Anda ingin website dirancang sesuai preferensi atau referensi bisnis Anda sendiri.' 
+                            : 'Choose this option if you want a custom website tailored to your own business references.'}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
                   {selectableTemplates.map((item) => {
                     const isChosen = item.id === selectedTemplateId;
                     const itemTitle = lang === 'en' && item.titleEn ? item.titleEn : item.title;
