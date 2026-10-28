@@ -513,9 +513,6 @@ export const templatesData: TemplateItem[] = [
   }
 ];
 
-const baseTier1Price = parseInt(tiersData[0].pricing.price.replace(/[^0-9]/g, ''), 10);
-const baseTier1OrigPrice = parseInt((tiersData[0].pricing.originalPrice || '').replace(/[^0-9]/g, ''), 10) || 959000;
-
 export const durationPlans: DurationPlan[] = [
   {
     id: '1-year',
@@ -524,12 +521,12 @@ export const durationPlans: DurationPlan[] = [
       id: 'Paket 1 Tahun',
       en: '1-Year Package'
     },
-    priceIdr: baseTier1Price,
-    originalPriceIdr: baseTier1OrigPrice,
-    monthlyEquivalentIdr: Math.round(baseTier1Price / 12),
+    priceIdr: 1000000,
+    originalPriceIdr: 1200000,
+    monthlyEquivalentIdr: 83333,
     savings: {
-      id: `Hemat Rp ${(baseTier1OrigPrice - baseTier1Price).toLocaleString('id-ID')}`,
-      en: `Save Rp ${(baseTier1OrigPrice - baseTier1Price).toLocaleString('id-ID')}`
+      id: 'Biaya maintenance & cloud hosting 1 thn',
+      en: '1-Year maintenance & cloud hosting fee'
     },
     features: {
       id: [
@@ -555,12 +552,12 @@ export const durationPlans: DurationPlan[] = [
       id: 'Paket 2 Tahun',
       en: '2-Year Package'
     },
-    priceIdr: 2250000,
-    originalPriceIdr: 2800000,
-    monthlyEquivalentIdr: 93750,
+    priceIdr: 1800000,
+    originalPriceIdr: 2000000,
+    monthlyEquivalentIdr: 75000,
     savings: {
-      id: 'Hemat Rp 550.000',
-      en: 'Save Rp 550.000'
+      id: 'Hemat Rp 200.000 (Rp 900rb/thn)',
+      en: 'Save Rp 200.000 (Rp 900k/yr)'
     },
     features: {
       id: [
@@ -588,16 +585,16 @@ export const durationPlans: DurationPlan[] = [
       id: 'Paket 3 Tahun',
       en: '3-Year Package'
     },
-    priceIdr: 2950000,
-    originalPriceIdr: 4200000,
-    monthlyEquivalentIdr: 81900,
+    priceIdr: 2400000,
+    originalPriceIdr: 3000000,
+    monthlyEquivalentIdr: 66667,
     badge: {
       id: 'HEMAT PALING BANYAK',
       en: 'BEST VALUE - SAVE MOST'
     },
     savings: {
-      id: 'Hemat Rp 1.250.000',
-      en: 'Save Rp 1.250.000'
+      id: 'Hemat Rp 600.000 (Rp 800rb/thn)',
+      en: 'Save Rp 600.000 (Rp 800k/yr)'
     },
     features: {
       id: [
@@ -614,11 +611,11 @@ export const durationPlans: DurationPlan[] = [
         '3-year cloud hosting & free SSL',
         'Hosting unlimited',
         'Custom domain setup & DNS connection',
-        'Business email accounts',
-        'Maximum savings',
+        'Business email account',
+        'Best value savings',
         'Priority support',
-        'Routine maintenance and updates',
-        '99.9% Uptime guarantee'
+        'Routine maintenance & security backups',
+        '99.9% Uptime guarantee & security protection'
       ]
     }
   }

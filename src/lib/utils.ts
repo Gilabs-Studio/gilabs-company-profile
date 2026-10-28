@@ -89,6 +89,7 @@ export function getWhatsAppLink(
 
 export interface WebsiteOrderDetails {
   templateTitle: string;
+  tierPriceIdr?: number;
   durationPlanName: string;
   durationYears: number;
   durationPriceIdr: number;
@@ -117,7 +118,7 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
           `Add-on:`,
           ...details.addons.map((a) => `- ${a.label} (+${formatIdr(a.subtotalIdr)})`),
         ]
-      : [`Add-on: Tidak ada`];
+      : [`Add-on: ${isEn ? "None" : "Tidak ada"}`];
 
   const domainLine = details.domainName
     ? (isEn
@@ -135,6 +136,12 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
         ? `Note: Domain recommendations will be discussed during setup.`
         : `Catatan: Rekomendasi nama domain akan dikonsultasikan saat aktivasi.`);
 
+  const templateLine = details.tierPriceIdr
+    ? `${isEn ? "Design & Website Setup" : "Desain & Setup Website"}: ${details.templateTitle} (${formatIdr(details.tierPriceIdr)})`
+    : `${isEn ? "Design Reference" : "Desain Referensi"}: ${details.templateTitle}`;
+
+  const durationLine = `${isEn ? "Hosting & Maintenance Plan" : "Paket Hosting & Maintenance"}: ${details.durationPlanName} (${details.durationYears} ${isEn ? (details.durationYears > 1 ? "Years" : "Year") : "Tahun"}) - ${formatIdr(details.durationPriceIdr)}`;
+
   const lines = isEn
     ? [
         `Hello GiLabs Team, I would like to order a turnkey website:`,
@@ -144,8 +151,8 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
         `Company: ${details.companyName || "-"}`,
         `Email: ${details.customerEmail || "-"}`,
         ``,
-        `Design Reference: ${details.templateTitle}`,
-        `Plan Duration: ${details.durationPlanName} (${details.durationYears} Year${details.durationYears > 1 ? "s" : ""})`,
+        templateLine,
+        durationLine,
         domainLine,
         ...addonLines,
         `Total Investment: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,
@@ -161,8 +168,8 @@ export function getWebsiteOrderWhatsAppLink(details: WebsiteOrderDetails): strin
         `Perusahaan: ${details.companyName || "-"}`,
         `Email: ${details.customerEmail || "-"}`,
         ``,
-        `Desain Referensi: ${details.templateTitle}`,
-        `Paket Durasi: ${details.durationPlanName} (${details.durationYears} Tahun)`,
+        templateLine,
+        durationLine,
         domainLine,
         ...addonLines,
         `Total Investasi: Rp ${details.totalPriceIdr.toLocaleString("id-ID")}`,

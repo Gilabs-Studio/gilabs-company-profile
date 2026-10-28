@@ -308,7 +308,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
     ? (lang === 'id' ? `Downgrade dari Tier ${selectedTemplate.tier}` : `Downgraded from Tier ${selectedTemplate.tier}`)
     : (lang === 'id' ? 'Sesuai Desain Asli' : 'Base Design');
 
-  // Dynamic duration plans synchronized with active tier base price
+  // Dynamic duration plans: 1jt for Year 1 across all tiers (annual maintenance & hosting), with discounted schemes for 2 & 3 years
   const tierBasePrice = useMemo(() => {
     return parseInt(activeTierInfo.pricing.price.replace(/[^0-9]/g, ''), 10);
   }, [activeTierInfo]);
@@ -319,38 +319,38 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
         id: '1-year' as const,
         years: 1,
         name: { id: 'Paket 1 Tahun', en: '1-Year Package' },
-        priceIdr: tierBasePrice,
-        monthlyEquivalentIdr: Math.round(tierBasePrice / 12),
-        savings: { id: 'Termasuk Cloud Hosting & Setup 1 Thn', en: 'Includes 1-Year Cloud Hosting & Setup' },
+        priceIdr: 1000000,
+        monthlyEquivalentIdr: 83333,
+        savings: { id: 'Biaya maintenance & hosting 1 thn', en: '1-Year maintenance & hosting fee' },
         features: durationPlans[0].features
       },
       {
         id: '2-year' as const,
         years: 2,
         name: { id: 'Paket 2 Tahun', en: '2-Year Package' },
-        priceIdr: tierBasePrice + 550000,
-        monthlyEquivalentIdr: Math.round((tierBasePrice + 550000) / 24),
-        savings: { id: 'Hemat Rp 250.000 Perpanjangan', en: 'Save Rp 250.000 on Renewal' },
+        priceIdr: 1800000,
+        monthlyEquivalentIdr: 75000,
+        savings: { id: 'Hemat Rp 200.000 (Rp 900rb/thn)', en: 'Save Rp 200.000 (Rp 900k/yr)' },
         features: durationPlans[1].features
       },
       {
         id: '3-year' as const,
         years: 3,
         name: { id: 'Paket 3 Tahun', en: '3-Year Package' },
-        priceIdr: tierBasePrice + 950000,
-        monthlyEquivalentIdr: Math.round((tierBasePrice + 950000) / 36),
+        priceIdr: 2400000,
+        monthlyEquivalentIdr: 66667,
         badge: { id: 'HEMAT PALING BANYAK', en: 'BEST VALUE - SAVE MOST' },
-        savings: { id: 'Hemat Rp 650.000 Perpanjangan', en: 'Save Rp 650.000 on Renewal' },
+        savings: { id: 'Hemat Rp 600.000 (Rp 800rb/thn)', en: 'Save Rp 600.000 (Rp 800k/yr)' },
         features: durationPlans[2].features
       }
     ];
-  }, [tierBasePrice]);
+  }, []);
 
   const selectedDuration = useMemo(() => {
     return dynamicDurationPlans.find((p) => p.id === selectedDurationId) || dynamicDurationPlans[0];
   }, [dynamicDurationPlans, selectedDurationId]);
 
-  // Pricing calculations
+  // Pricing calculations: Desain/Tier Website + Paket Durasi Maintenance + Add-on
   const {
     addons: addonOptions,
     quantities: addonQuantities,
@@ -361,7 +361,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
   } = useOrderAddons(activeTier, lang);
 
   const durationPrice = selectedDuration.priceIdr;
-  const totalPrice = durationPrice + addonPrice;
+  const totalPrice = tierBasePrice + durationPrice + addonPrice;
 
   // Track specific addon counts
   const multilingualQty = addonQuantities['multilingual'] ?? 0;
@@ -440,6 +440,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       templateTitle: isCustomDesign
         ? `${templateDisplayTitle} (Tier ${activeTier}) [Referensi / Materi Klien]`
         : `${templateDisplayTitle} (${activeTierTitle} • ${tierStatusBadge})`,
+      tierPriceIdr: tierBasePrice,
       durationPlanName: selectedDuration.name[lang],
       durationYears: selectedDuration.years,
       durationPriceIdr: durationPrice,
@@ -452,7 +453,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       customerEmail: customerEmail.trim() || undefined,
       lang,
     });
-  }, [templateDisplayTitle, activeTierTitle, tierStatusBadge, isCustomDesign, activeTier, selectedDuration, durationPrice, selectedDomain, formattedWhatsappAddons, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
+  }, [templateDisplayTitle, activeTierTitle, tierStatusBadge, isCustomDesign, activeTier, tierBasePrice, selectedDuration, durationPrice, selectedDomain, formattedWhatsappAddons, addonPrice, totalPrice, customerName, companyName, customerEmail, lang]);
 
   // Localized texts
   const t = {
@@ -476,7 +477,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       // Section 2
       sectionDurationNum: '02',
       sectionDurationTitle: 'Pilihan Durasi Paket & Layanan Tambahan',
-      sectionDurationDesc: 'Tentukan masa aktif cloud hosting dan pemeliharaan website. Semakin panjang durasi, semakin hemat investasinya.',
+      sectionDurationDesc: 'Biaya pemeliharaan rutin, cloud hosting kencang, email bisnis, dan keamanan SSL per tahun (Rp 1.000.000/tahun). Pilih paket multi-tahun untuk penghematan lebih besar.',
       perMonth: 'bln',
       includedHeader: 'Fitur sudah termasuk dalam',
       
@@ -524,15 +525,15 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
 
       // Sidebar Summary
       summaryTitle: 'Ringkasan Pesanan',
-      summaryTemplate: 'Desain Referensi',
+      summaryTemplate: 'Desain & Setup Website',
       summaryIncluded: 'Termasuk Paket',
-      summaryDuration: 'Paket Durasi',
+      summaryDuration: 'Paket Durasi Maintenance',
       summaryDomain: 'Request Domain',
       summaryDomainVal: 'Konsultasi Rekomendasi via WA',
       summaryDomainStatus: 'Belum Termasuk (via WA)',
       summaryAddon: 'Add-on',
       summaryTotalLabel: 'Total Investasi',
-      summaryTotalNote: 'Termasuk Kustomisasi Desain + Cloud Hosting + SSL + Setup Konten + Maintenance (Belum termasuk biaya domain)',
+      summaryTotalNote: 'Investasi awal mencakup Desain Website + Cloud Hosting & Maintenance + SSL + Setup Konten. Perpanjangan tahun berikutnya hanya biaya maintenance & hosting (Rp 1.000.000/thn).',
       ctaWhatsapp: 'Pesan via WhatsApp',
       ctaNote: 'Terhubung langsung dengan tim engineer GiLabs untuk invoice resmi & aktivasi.',
       trustPoints: [
@@ -561,7 +562,7 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
       // Section 2
       sectionDurationNum: '02',
       sectionDurationTitle: 'Plan Duration & Inclusions',
-      sectionDurationDesc: 'Choose your cloud hosting and maintenance duration. Longer plans provide the highest savings and uninterrupted service.',
+      sectionDurationDesc: 'Annual routine maintenance, fast cloud hosting, business email, and SSL security (Rp 1.000.000/year). Multi-year plans offer substantial savings.',
       perMonth: 'mo',
       includedHeader: "What's included in the",
       
@@ -609,15 +610,15 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
 
       // Sidebar Summary
       summaryTitle: 'Order Summary',
-      summaryTemplate: 'Design Reference',
+      summaryTemplate: 'Design & Website Setup',
       summaryIncluded: 'Included',
-      summaryDuration: 'Package Duration',
+      summaryDuration: 'Maintenance Plan Duration',
       summaryDomain: 'Domain Request',
       summaryDomainVal: 'Consult Recommendation via WA',
       summaryDomainStatus: 'Not Included (via WA)',
       summaryAddon: 'Add-on',
       summaryTotalLabel: 'Total Investment',
-      summaryTotalNote: 'Includes Design Customization + Cloud Hosting + SSL + Setup + Maintenance (Excludes domain registration fee)',
+      summaryTotalNote: 'Initial investment covers Website Design + Cloud Hosting & Maintenance + SSL + Content Setup. Subsequent renewal is only the maintenance & hosting fee (Rp 1.000.000/yr).',
       ctaWhatsapp: 'Order via WhatsApp',
       ctaNote: 'Connect directly with GiLabs software engineers for official invoice & kickoff.',
       trustPoints: [
@@ -1584,8 +1585,8 @@ export default function OrderFlow({ initialTemplateId, lang = 'id' }: OrderFlowP
                     {activeTierTitle} • {tierStatusBadge}
                   </div>
                 </div>
-                <div className="text-right text-[11px] text-muted-foreground whitespace-nowrap">
-                  {t.summaryIncluded}
+                <div className="text-right font-semibold text-foreground whitespace-nowrap">
+                  {formatPrice(tierBasePrice)}
                 </div>
               </div>
 
