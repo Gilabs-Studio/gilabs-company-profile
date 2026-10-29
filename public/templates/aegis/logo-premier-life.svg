@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" fill="none" class="w-auto h-full">
+  <!-- Crest Icon -->
+  <g transform="translate(6, 12)">
+    <circle cx="18" cy="18" r="17" stroke="#ffffff" stroke-width="2" stroke-opacity="0.9" fill="rgba(255,255,255,0.06)"/>
+    <path d="M18 7 L23 15 H13 L18 7 Z" fill="#ffffff"/>
+    <path d="M11 19 H25" stroke="#ffffff" stroke-width="1.5"/>
+    <path d="M13 23 H23" stroke="#ffffff" stroke-width="1.5"/>
+    <path d="M15 27 H21" stroke="#ffffff" stroke-width="1.5"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="54" y="32" fill="#ffffff" font-family="'Lora', Georgia, serif" font-size="18" font-weight="600" letter-spacing="2">IPSUM LIFE</text>
+  <text x="55" y="46" fill="rgba(255, 255, 255, 0.7)" font-family="'Inter', -apple-system, sans-serif" font-size="8.5" font-weight="500" letter-spacing="3.5">ASSURANCE</text>
+</svg>

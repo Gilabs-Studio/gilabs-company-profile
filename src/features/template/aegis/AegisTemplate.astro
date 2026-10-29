@@ -1,0 +1,253 @@
+---
+import TemplateDemoHeader from '../../../components/templates/TemplateDemoHeader.astro';
+import { templatesData } from '../../../data/templatesData';
+import '../../../styles/globals.css';
+
+import AegisNavbar from './components/AegisNavbar.astro';
+import AegisHero from './components/AegisHero.astro';
+import AegisStatementSection from './components/AegisStatementSection.astro';
+import AegisWorkListSection from './components/AegisWorkListSection.astro';
+import AegisMediaAccordionSection from './components/AegisMediaAccordionSection.astro';
+import AegisNumbersSection from './components/AegisNumbersSection.astro';
+import AegisCtaSection from './components/AegisCtaSection.astro';
+import AegisFooter from './components/AegisFooter.astro';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+
+const template = templatesData.find((t) => t.id === 'aegis-financial') || {
+  id: 'aegis-financial',
+  title: 'Lorem Financial',
+  titleEn: 'Lorem Financial'
+};
+const templateTitle = currentLang === 'en' && template.titleEn ? template.titleEn : template.title;
+---
+
+<!DOCTYPE html>
+<html lang={currentLang} class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+  <title>{templateTitle} - Live Demo</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  
+  <!-- Google Fonts: Inter (Sans) & Lora (Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&family=Lora:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&display=swap" rel="stylesheet">
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+  <!-- GSAP & ScrollTrigger -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script is:inline src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  
+  <!-- Swiper JS Bundle -->
+  <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <style is:global>
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+      background-color: #ffffff;
+      color: #1c1c1c;
+      overflow-x: clip;
+      margin: 0;
+      padding: 0;
+    }
+
+    .font-serif {
+      font-family: 'Lora', Georgia, serif !important;
+    }
+
+    ::selection {
+      background-color: #1E40AF;
+      color: #ffffff;
+    }
+
+    /* Force true pill radius for Aegis interactive elements */
+    .aegis-scope .rounded-full {
+      border-radius: 9999px !important;
+    }
+
+    /* Essential Swiper Layout Guarantee */
+    .swiper {
+      position: relative;
+      overflow: hidden;
+      list-style: none;
+      padding: 0;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+    .swiper-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      display: flex;
+      transition-property: transform;
+      box-sizing: content-box;
+    }
+    .swiper-slide {
+      flex-shrink: 0;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: block;
+    }
+
+    /* Animated Underline */
+    .animated-underline {
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .animated-underline::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 1px;
+      bottom: -2px;
+      left: 0;
+      background-color: currentColor;
+      transition: width 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .animated-underline:hover::after {
+      width: 100%;
+    }
+
+    /* Editorial Line Drawing System */
+    [data-line] {
+      position: relative;
+      --line-x: 1;
+      --line-y: 1;
+      --line-top: 0px;
+      --line-right: 0px;
+      --line-bottom: 0px;
+      --line-left: 0px;
+      --line-gap: 0px;
+      --line-color: rgba(0, 0, 0, 0.12);
+      background-image: 
+        linear-gradient(var(--line-color), var(--line-color)),
+        linear-gradient(var(--line-color), var(--line-color)),
+        linear-gradient(var(--line-color), var(--line-color)),
+        linear-gradient(var(--line-color), var(--line-color));
+      background-repeat: no-repeat;
+      background-size: 
+        calc(var(--line-x, 1) * 100%) var(--line-top, 0px),
+        var(--line-right, 0px) calc(var(--line-y, 1) * 100%),
+        calc(var(--line-x, 1) * 100%) var(--line-bottom, 0px),
+        var(--line-left, 0px) calc(var(--line-y, 1) * (100% - var(--line-gap, 0px)));
+      background-position: 
+        0 0,
+        100% 0,
+        100% 100%,
+        0 var(--line-gap, 0px);
+    }
+
+    .section_numbers [data-line] {
+      --line-color: rgba(255, 255, 255, 0.16);
+    }
+
+    /* Feed Button */
+    .feed_button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.65rem 1.4rem;
+      border-radius: 9999px !important;
+      background-color: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      color: #ffffff;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .feed_button:hover {
+      background-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+  </style>
+</head>
+<body class="aegis-scope bg-white text-[#1c1c1c] font-sans antialiased relative selection:bg-[#1E40AF] selection:text-white">
+
+  <!-- Floating Demo Action Dock (Bottom centered dock) -->
+  <TemplateDemoHeader templateId="aegis-financial" lang={currentLang} position="bottom" />
+
+  <!-- Page Loader / Entrance Curtain Animation in Deep Navy Blue -->
+  <div id="aegis-page-loader" class="fixed inset-0 z-[1000] flex items-center justify-center bg-[#0B1E36] transition-opacity duration-700 pointer-events-none">
+    <div class="flex flex-col items-center gap-6">
+      <img src="/templates/aegis/logo-aegis-white.svg" alt="Lorem Financial Group Logo" class="h-9 sm:h-10 w-auto object-contain animate-pulse" />
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <AegisNavbar lang={currentLang} />
+
+  <!-- Main Content Stage -->
+  <main id="aegis-main-root" class="relative w-full">
+    <AegisHero lang={currentLang} />
+    <AegisStatementSection lang={currentLang} />
+    <AegisWorkListSection lang={currentLang} />
+    <AegisMediaAccordionSection lang={currentLang} />
+    <AegisNumbersSection lang={currentLang} />
+    <AegisCtaSection lang={currentLang} />
+  </main>
+
+  <!-- Footer -->
+  <AegisFooter lang={currentLang} />
+
+  <!-- Global Scripts: Loader fade-out + Editorial line drawing trigger -->
+  <script is:inline>
+    window.addEventListener('load', function() {
+      var loader = document.getElementById('aegis-page-loader');
+      if (loader) {
+        loader.style.opacity = '0';
+        setTimeout(function() {
+          loader.style.display = 'none';
+        }, 700);
+      }
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+      if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      var lines = Array.from(document.querySelectorAll('[data-line]'));
+      lines.forEach(function (el) {
+        el.style.setProperty('--line-x', '0');
+        el.style.setProperty('--line-y', '0');
+
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 90%',
+          once: true,
+          onEnter: function () {
+            gsap.to(el, {
+              '--line-x': 1,
+              '--line-y': 1,
+              duration: 1.8,
+              ease: 'power3.out'
+            });
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

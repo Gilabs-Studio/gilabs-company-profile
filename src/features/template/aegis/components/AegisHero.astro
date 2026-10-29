@@ -1,0 +1,314 @@
+---
+import { siteContent } from '../data/content';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'en' | 'id';
+const t = siteContent[currentLang].hero;
+---
+
+<section id="hero-section" class="relative w-full min-h-screen h-screen overflow-hidden flex flex-col justify-between select-none">
+  <!-- Parallax Background Container -->
+  <div id="hero-parallax-bg" class="absolute -top-[10%] -left-[5%] -right-[5%] -bottom-[10%] z-0 will-change-transform">
+    <video
+      id="hero-video"
+      autoplay
+      loop
+      muted
+      playsinline
+      poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80"
+      class="w-full h-full object-cover scale-105"
+    >
+      <source src="/templates/aegis/video-bg.webm" type="video/webm" />
+    </video>
+    <!-- Cinematic Dark Gradient Overlays for Architectural Contrast -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/50 pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-black/60 pointer-events-none"></div>
+  </div>
+
+  <!-- Hero Content Area -->
+  <div class="relative z-10 w-full h-full flex flex-col justify-end max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 pt-24 pb-8 sm:pb-10">
+
+    <!-- Main Grid: Left Column Copy & Right Column Interactive Feed Cards -->
+    <div class="w-full flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 pb-2">
+      
+      <!-- Left Column: Giant Aegis Logo & Adjacent Centered Editorial Statement -->
+      <div id="hero-left-content" class="flex flex-col xl:flex-row items-start xl:items-center gap-6 xl:gap-8 max-w-3xl will-change-transform">
+        <!-- Massive Vector Aegis Logo -->
+        <div id="hero-aegis-logo" class="text-white will-change-transform flex-shrink-0">
+          <img 
+            src="/templates/aegis/logo-aegis-white.svg" 
+            alt="Lorem Financial Group" 
+            class="w-[clamp(260px,28vw,440px)] h-auto object-contain drop-shadow-2xl" 
+          />
+        </div>
+
+        <!-- Vertical Divider (visible on desktop) -->
+        <div id="hero-divider-line" class="hidden xl:block w-[1px] h-20 bg-white/30 flex-shrink-0 origin-top"></div>
+
+        <!-- Beside Aegis: Editorial Statement vertically centered with Aegis -->
+        <div class="max-w-md flex flex-col justify-center">
+          <div class="xl:hidden w-12 h-[1px] bg-white/40 mb-3 origin-left"></div>
+          <p id="hero-statement-text" class="font-sans text-base sm:text-lg text-white/90 leading-relaxed font-light drop-shadow-md">
+            {t.middleText}
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Interactive 3D Feed Cards -->
+      <div id="hero-feed-container" class="w-full lg:w-[460px] flex flex-col gap-3.5 z-20 will-change-transform">
+        
+        <!-- Top Card: Swiper 3D Creative Carousel -->
+        <div class="top-swiper swiper w-full h-[155px] rounded-xl overflow-hidden bg-black/75 backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-300 hover:border-white/20">
+          <div class="swiper-wrapper h-full">
+            
+            <!-- Slide 1: Proteksi Jiwa (Life Insurance) -->
+            <div class="swiper-slide h-full">
+              <a href="#work" class="flex gap-4 p-3.5 h-full w-full cursor-pointer group">
+                <div class="w-[48%] h-full rounded-lg overflow-hidden bg-black/40 flex-shrink-0">
+                  <img 
+                    src={t.cards.life.img} 
+                    alt={t.cards.life.title} 
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    loading="eager"
+                  />
+                </div>
+                <div class="w-[52%] flex flex-col justify-between py-0.5 pr-1">
+                  <div class="flex items-center justify-between text-white">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-white/90">{t.cards.life.title}</span>
+                    <svg class="w-4 h-4 text-white/70 group-hover:text-white transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                  <p class="text-[0.8rem] text-white/80 leading-relaxed font-light">
+                    {t.cards.life.desc}
+                  </p>
+                </div>
+              </a>
+            </div>
+
+            <!-- Slide 2: Asuransi Kesehatan (Health Insurance) -->
+            <div class="swiper-slide h-full">
+              <a href="#work" class="flex gap-4 p-3.5 h-full w-full cursor-pointer group">
+                <div class="w-[48%] h-full rounded-lg overflow-hidden bg-black/40 flex-shrink-0">
+                  <img 
+                    src={t.cards.health.img} 
+                    alt={t.cards.health.title} 
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    loading="lazy"
+                  />
+                </div>
+                <div class="w-[52%] flex flex-col justify-between py-0.5 pr-1">
+                  <div class="flex items-center justify-between text-white">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-white/90">{t.cards.health.title}</span>
+                    <svg class="w-4 h-4 text-white/70 group-hover:text-white transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                  <p class="text-[0.8rem] text-white/80 leading-relaxed font-light">
+                    {t.cards.health.desc}
+                  </p>
+                </div>
+              </a>
+            </div>
+
+            <!-- Slide 3: Unit Link & Pensiun -->
+            <div class="swiper-slide h-full">
+              <a href="#work" class="flex gap-4 p-3.5 h-full w-full cursor-pointer group">
+                <div class="w-[48%] h-full rounded-lg overflow-hidden bg-black/40 flex-shrink-0">
+                  <img 
+                    src={t.cards.unitlink.img} 
+                    alt={t.cards.unitlink.title} 
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    loading="lazy"
+                  />
+                </div>
+                <div class="w-[52%] flex flex-col justify-between py-0.5 pr-1">
+                  <div class="flex items-center justify-between text-white">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-white/90">{t.cards.unitlink.title}</span>
+                    <svg class="w-4 h-4 text-white/70 group-hover:text-white transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                  <p class="text-[0.8rem] text-white/80 leading-relaxed font-light">
+                    {t.cards.unitlink.desc}
+                  </p>
+                </div>
+              </a>
+            </div>
+
+            <!-- Slide 4: Solusi Syariah -->
+            <div class="swiper-slide h-full">
+              <a href="#work" class="flex gap-4 p-3.5 h-full w-full cursor-pointer group">
+                <div class="w-[48%] h-full rounded-lg overflow-hidden bg-black/40 flex-shrink-0">
+                  <img 
+                    src={t.cards.syariah.img} 
+                    alt={t.cards.syariah.title} 
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    loading="lazy"
+                  />
+                </div>
+                <div class="w-[52%] flex flex-col justify-between py-0.5 pr-1">
+                  <div class="flex items-center justify-between text-white">
+                    <span class="text-xs uppercase tracking-wider font-semibold text-white/90">{t.cards.syariah.title}</span>
+                    <svg class="w-4 h-4 text-white/70 group-hover:text-white transition-transform group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                  <p class="text-[0.8rem] text-white/80 leading-relaxed font-light">
+                    {t.cards.syariah.desc}
+                  </p>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Middle Action Pills: "Karier SMT" and "Konsultasi" -->
+        <div class="grid grid-cols-2 gap-3.5">
+          <a 
+            href="#criteria" 
+            class="feed_button w-full text-center py-2 bg-black/60 hover:bg-black/85 backdrop-blur-md rounded-xl text-white/90 hover:text-white border border-white/10 text-xs sm:text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+          >
+            {t.smtBtn}
+          </a>
+          <a 
+            href="#contact" 
+            class="feed_button w-full text-center py-2 bg-black/60 hover:bg-black/85 backdrop-blur-md rounded-xl text-white/90 hover:text-white border border-white/10 text-xs sm:text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 cursor-pointer"
+          >
+            {t.contactBtn}
+          </a>
+        </div>
+
+        <!-- Bottom Row: 2 Cards (Aegis Platform & Training + Kisah Aegis Group / SMT) -->
+        <div class="grid grid-cols-2 gap-3.5 h-[145px] w-full min-w-0">
+          <!-- Card Left: Aegis Platform & Training with Unsplash background & monogram shield icon -->
+          <a 
+            href="#work"
+            class="relative h-full w-full min-w-0 rounded-xl overflow-hidden border border-white/10 p-4 flex flex-col justify-between group transition-all duration-300 hover:border-white/25 cursor-pointer block"
+          >
+            <img 
+              src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+              alt="Aegis Platform & Training" 
+              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+              loading="eager"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/55 to-black/35 pointer-events-none"></div>
+
+            <div class="relative z-10 flex justify-end">
+              <!-- Monogram Shield Icon -->
+              <div class="w-10 h-10 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 p-2 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 shadow-lg">
+                <svg viewBox="0 0 40 40" fill="none" class="w-full h-full text-white">
+                  <path d="M20 4 L34 10 V20 C34 29 27 35 20 38 C13 35 6 29 6 20 V10 L20 4 Z" stroke="white" stroke-width="1.8" stroke-opacity="0.8" fill="rgba(255,255,255,0.08)"/>
+                  <path d="M16 14 V28 H26 V24 H20 V14 H16 Z" fill="white"/>
+                </svg>
+              </div>
+            </div>
+            <div class="relative z-10 text-xs sm:text-sm font-medium text-white tracking-wide drop-shadow-md">
+              {t.aiTitle}
+            </div>
+          </a>
+
+          <!-- Card Right: Bottom Swiper (Kisah Aegis Group / SMT) -->
+          <div class="bottom-swiper swiper h-full w-full min-w-0 rounded-xl overflow-hidden bg-black/70 backdrop-blur-xl border border-white/10 transition-all duration-300 hover:border-white/25">
+            <div class="swiper-wrapper h-full">
+              <!-- Slide 1: Kisah Aegis Group -->
+              <div class="swiper-slide h-full w-full min-w-0">
+                <a href="#statement" class="relative h-full w-full flex items-end p-4 group cursor-pointer">
+                  <img 
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80" 
+                    alt="Tim profesional Aegis Group" 
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    loading="eager"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
+                  <span class="relative z-10 text-xs sm:text-sm font-medium text-white tracking-wide drop-shadow-md">
+                    {t.storyTitle}
+                  </span>
+                </a>
+              </div>
+
+              <!-- Slide 2: Sales Management Trainee -->
+              <div class="swiper-slide h-full w-full min-w-0">
+                <a href="#criteria" class="relative h-full w-full flex items-end p-4 group cursor-pointer">
+                  <img 
+                    src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80" 
+                    alt="Sales Management Trainee" 
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                    loading="lazy"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-transparent"></div>
+                  <span class="relative z-10 text-xs sm:text-sm font-medium text-white tracking-wide drop-shadow-md">
+                    {t.careersTitle}
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Advanced Parallax & Swiper Scripts -->
+<script is:inline>
+  function initHeroScripts() {
+    // 1. Initialize Top Swiper
+    if (typeof Swiper !== 'undefined') {
+      try {
+        new Swiper('.top-swiper', {
+          loop: true,
+          autoplay: {
+            delay: 4000,
+            disableOnInteraction: false,
+          },
+          speed: 600,
+        });
+
+        // 2. Initialize Bottom Swiper
+        new Swiper('.bottom-swiper', {
+          loop: true,
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          speed: 700,
+        });
+      } catch (e) {
+        console.warn('Swiper init exception:', e);
+      }
+    }
+
+    // 3. GSAP Hero Scroll Parallax
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.to('#hero-parallax-bg', {
+        y: '20%',
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#hero-section',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initHeroScripts);
+  } else {
+    initHeroScripts();
+  }
+</script>

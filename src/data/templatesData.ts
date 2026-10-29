@@ -278,6 +278,52 @@ export const templatesData: TemplateItem[] = [
     buyersCount: 156
   },
   {
+    id: 'aegis-financial',
+    slug: 'aegis-financial-agency',
+    title: 'Lorem Financial',
+    titleEn: 'Lorem Financial',
+    category: 'company',
+    categoryLabel: {
+      id: 'Enterprise & Finansial',
+      en: 'Enterprise & Financial'
+    },
+    tier: 2,
+    description: {
+      id: 'Desain website agensi proteksi finansial, kemitraan asuransi resmi, dan pengembangan kepemimpinan bisnis dengan video background cinematic, etalase solusi 3D interaktif, pinned stage scroll, dan metrik kepercayaan.',
+      en: 'High-end corporate website for financial protection agencies and insurance networks featuring cinematic video backgrounds, interactive 3D solution carousels, pinned scroll storytelling, and trust metrics.'
+    },
+    previewImage: '/templates/aegis/preview.webp',
+    gallery: [
+      '/templates/aegis/preview.webp'
+    ],
+    demoUrl: '/templates/demo/aegis',
+    buyersCount: 184
+  },
+  {
+    id: 'tastybite',
+    slug: 'tastybite-fnb-studio',
+    title: 'Studio Kuliner',
+    titleEn: 'Culinary Studio',
+    category: 'service',
+    categoryLabel: {
+      id: 'Kafe, Resto & F&B',
+      en: 'Cafe, Restaurant & F&B'
+    },
+    tier: 2,
+    description: {
+      id: 'Desain website profil restoran, kafe artisan, dan studio kuliner modern dengan visual ilustratif yang playful, etalase menu signature pastel, integrasi pesanan instan, serta narasi brand yang memikat.',
+      en: 'Modern website for restaurants, artisan cafes, and F&B studios featuring playful illustrative visuals, pastel signature menu showcases, instant ordering integration, and compelling brand storytelling.'
+    },
+    previewImage: '/templates/tastybite/preview.webp',
+    gallery: [
+      '/templates/tastybite/preview.webp',
+      '/templates/tastybite/full-strip.webp',
+      '/templates/tastybite/app-banner-card.webp'
+    ],
+    demoUrl: '/templates/demo/tastybite',
+    buyersCount: 168
+  },
+  {
     id: 'driveloop',
     slug: 'driveloop-car-rental-adventure',
     title: 'Rental Mobil Adventure',
@@ -437,30 +483,6 @@ export const templatesData: TemplateItem[] = [
     gallery: ['/templates/shipagency-maritime/preview.webp'],
     demoUrl: '/templates/demo/shipagency',
     buyersCount: 129
-  },
-  {
-    id: 'tastybite',
-    slug: 'tastybite-fnb-studio',
-    title: 'Studio Kuliner',
-    titleEn: 'Culinary Studio',
-    category: 'service',
-    categoryLabel: {
-      id: 'Kafe, Resto & F&B',
-      en: 'Cafe, Restaurant & F&B'
-    },
-    tier: 2,
-    description: {
-      id: 'Desain website profil restoran, kafe artisan, dan studio kuliner modern dengan visual ilustratif yang playful, etalase menu signature pastel, integrasi pesanan instan, serta narasi brand yang memikat.',
-      en: 'Modern website for restaurants, artisan cafes, and F&B studios featuring playful illustrative visuals, pastel signature menu showcases, instant ordering integration, and compelling brand storytelling.'
-    },
-    previewImage: '/templates/tastybite/preview.webp',
-    gallery: [
-      '/templates/tastybite/preview.webp',
-      '/templates/tastybite/full-strip.webp',
-      '/templates/tastybite/app-banner-card.webp'
-    ],
-    demoUrl: '/templates/demo/tastybite',
-    buyersCount: 168
   },
   {
     id: 'sura-bay',

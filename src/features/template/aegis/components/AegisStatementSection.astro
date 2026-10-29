@@ -1,0 +1,44 @@
+---
+import { siteContent } from '../data/content';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'en' | 'id';
+const t = siteContent[currentLang].statement;
+---
+
+<section id="statement" class="relative py-20 sm:py-28 lg:py-36 bg-white text-[#1c1c1c] overflow-hidden">
+  <div class="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14">
+    <!-- Editorial Container -->
+    <div class="pt-10 pb-10 sm:pt-14 sm:pb-14">
+      <div class="max-w-4xl">
+        <!-- Main Minimal Statement -->
+        <h2 class="aegis-statement-heading font-sans text-2xl sm:text-3xl lg:text-[2.5rem] font-light leading-[1.32] tracking-tight text-[#1c1c1c]">
+          {t.text}
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Statement Scroll Reveal Animation -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    ScrollTrigger.create({
+      trigger: '#statement',
+      start: 'top 85%',
+      once: true,
+      onEnter: function () {
+        gsap.fromTo('.aegis-statement-heading', 
+          { opacity: 0, y: 30 }, 
+          { opacity: 1, y: 0, duration: 1.1, ease: 'power3.out' }
+        );
+      }
+    });
+  });
+</script>

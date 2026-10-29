@@ -4,7 +4,7 @@ import React, { useState, useMemo } from 'react';
 import type { TemplateItem, TierInfo } from '../../data/templatesData';
 import { tiersData, templatesPageContent } from '../../data/templatesData';
 import { getWhatsAppLink } from '../../lib/utils';
-import { ExternalLink, ArrowRight, MessageCircle, Monitor, ArrowUpRight } from 'lucide-react';
+import { ExternalLink, ArrowRight, MessageCircle, Monitor, ArrowUpRight, ChevronDown } from 'lucide-react';
 
 interface TemplatesCatalogProps {
   templates: TemplateItem[];
@@ -639,6 +639,7 @@ function TierCustomWideCard({ tier, lang }: TierCustomWideCardProps) {
 
 export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCatalogProps) {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [expandedTiers, setExpandedTiers] = useState<Record<number, boolean>>({});
   const t = templatesPageContent[lang];
 
   // Retrieve tiers
@@ -671,6 +672,19 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
     return templates.filter((item) => !item.hidden && item.tier === 3 && filterFn(item));
   }, [templates, query, lang]);
 
+  const toggleTierExpansion = (tierNum: number) => {
+    setExpandedTiers(prev => ({ ...prev, [tierNum]: !prev[tierNum] }));
+  };
+
+  const isTier1Expanded = Boolean(expandedTiers[1]);
+  const displayedTier1 = (query || isTier1Expanded) ? tier1Templates : tier1Templates.slice(0, 3);
+
+  const isTier2Expanded = Boolean(expandedTiers[2]);
+  const displayedTier2 = (query || isTier2Expanded) ? tier2Templates : tier2Templates.slice(0, 3);
+
+  const isTier3Expanded = Boolean(expandedTiers[3]);
+  const displayedTier3 = (query || isTier3Expanded) ? tier3Templates : tier3Templates.slice(0, 3);
+
   const totalFilteredCount = tier1Templates.length + tier2Templates.length + tier3Templates.length;
 
   return (
@@ -683,14 +697,30 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
           <TierInfoCard tier={tier1} lang={lang} />
           
           <div className="flex flex-col gap-4">
-            {tier1Templates.length > 0 ? (
-              tier1Templates.map((template) => (
+            {displayedTier1.length > 0 ? (
+              displayedTier1.map((template) => (
                 <TemplateCard key={template.id} template={template} lang={lang} />
               ))
             ) : (
               <div className="text-center py-6 px-3 border border-dashed border-border/60 rounded-lg text-xs text-muted-foreground">
                 {t.emptyStateTitle}
               </div>
+            )}
+
+            {tier1Templates.length > 3 && !query && (
+              <button
+                type="button"
+                onClick={() => toggleTierExpansion(1)}
+                className="w-full py-2.5 px-3 rounded-lg border border-cyan-500/30 hover:border-cyan-500/60 bg-secondary/40 hover:bg-secondary/70 text-foreground text-xs font-semibold transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 shadow-xs hover:-translate-y-0.5 active:translate-y-0"
+                aria-expanded={isTier1Expanded}
+              >
+                <span>
+                  {isTier1Expanded 
+                    ? (lang === 'id' ? 'Tampilkan Lebih Sedikit' : 'Show Less') 
+                    : (lang === 'id' ? `Muat Lebih Banyak (+${tier1Templates.length - 3} Desain)` : `Load More (+${tier1Templates.length - 3} More)`)}
+                </span>
+                <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform duration-200 ${isTier1Expanded ? 'rotate-180' : ''}`} />
+              </button>
             )}
           </div>
         </div>
@@ -700,14 +730,31 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
           <TierInfoCard tier={tier2} lang={lang} />
           
           <div className="flex flex-col gap-4">
-            {tier2Templates.length > 0 ? (
-              tier2Templates.map((template) => (
+            {displayedTier2.length > 0 ? (
+              displayedTier2.map((template) => (
                 <TemplateCard key={template.id} template={template} lang={lang} />
               ))
             ) : (
               <div className="text-center py-6 px-3 border border-dashed border-border/60 rounded-lg text-xs text-muted-foreground">
                 {t.emptyStateTitle}
               </div>
+            )}
+
+            {/* Load More Button for Tier 2 */}
+            {tier2Templates.length > 3 && !query && (
+              <button
+                type="button"
+                onClick={() => toggleTierExpansion(2)}
+                className="w-full py-2.5 px-3 rounded-lg border border-purple-500/30 hover:border-purple-500/60 bg-secondary/40 hover:bg-secondary/70 text-foreground text-xs font-semibold transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 shadow-xs hover:-translate-y-0.5 active:translate-y-0"
+                aria-expanded={isTier2Expanded}
+              >
+                <span>
+                  {isTier2Expanded 
+                    ? (lang === 'id' ? 'Tampilkan Lebih Sedikit' : 'Show Less') 
+                    : (lang === 'id' ? `Muat Lebih Banyak (+${tier2Templates.length - 3} Desain)` : `Load More (+${tier2Templates.length - 3} More)`)}
+                </span>
+                <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform duration-200 ${isTier2Expanded ? 'rotate-180' : ''}`} />
+              </button>
             )}
           </div>
         </div>
@@ -717,14 +764,30 @@ export default function TemplatesCatalog({ templates, lang = 'id' }: TemplatesCa
           <TierInfoCard tier={tier3} lang={lang} />
           
           <div className="flex flex-col gap-4">
-            {tier3Templates.length > 0 ? (
-              tier3Templates.map((template) => (
+            {displayedTier3.length > 0 ? (
+              displayedTier3.map((template) => (
                 <TemplateCard key={template.id} template={template} lang={lang} />
               ))
             ) : (
               <div className="text-center py-6 px-3 border border-dashed border-border/60 rounded-lg text-xs text-muted-foreground">
                 {t.emptyStateTitle}
               </div>
+            )}
+
+            {tier3Templates.length > 3 && !query && (
+              <button
+                type="button"
+                onClick={() => toggleTierExpansion(3)}
+                className="w-full py-2.5 px-3 rounded-lg border border-rose-500/30 hover:border-rose-500/60 bg-secondary/40 hover:bg-secondary/70 text-foreground text-xs font-semibold transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 shadow-xs hover:-translate-y-0.5 active:translate-y-0"
+                aria-expanded={isTier3Expanded}
+              >
+                <span>
+                  {isTier3Expanded 
+                    ? (lang === 'id' ? 'Tampilkan Lebih Sedikit' : 'Show Less') 
+                    : (lang === 'id' ? `Muat Lebih Banyak (+${tier3Templates.length - 3} Desain)` : `Load More (+${tier3Templates.length - 3} More)`)}
+                </span>
+                <ChevronDown className={`w-3.5 h-3.5 text-muted-foreground transition-transform duration-200 ${isTier3Expanded ? 'rotate-180' : ''}`} />
+              </button>
             )}
           </div>
         </div>

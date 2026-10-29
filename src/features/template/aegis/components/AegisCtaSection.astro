@@ -1,0 +1,121 @@
+---
+import { siteContent } from '../data/content';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'en' | 'id';
+const t = siteContent[currentLang].cta;
+---
+
+<section id="contact" class="section_cta w-full overflow-hidden p-0 m-0 border-0 bg-white">
+  <div class="grid grid-cols-1 lg:grid-cols-2 w-full gap-0">
+    
+    <!-- Card 1: Left (Proteksi & Finansial - Deep Navy Blue Background with Line Art Illustration) -->
+    <aside class="relative overflow-hidden w-full min-h-[500px] sm:min-h-[580px] lg:min-h-[660px] p-8 sm:p-14 lg:p-20 flex flex-col justify-between text-white rounded-none border-0 group bg-[#0D264A]">
+      
+      <!-- Static Background Layer in Deep Navy Blue -->
+      <div class="absolute inset-0 w-full h-full pointer-events-none select-none overflow-hidden bg-[#0D264A]">
+        <!-- Subtle Radial Glow -->
+        <div class="absolute inset-0 bg-radial from-[#1D4ED8]/30 via-transparent to-transparent pointer-events-none"></div>
+        
+        <!-- Continuous Line Art Vector Illustration of People in Conversation -->
+        <div class="absolute -bottom-2 -right-4 sm:bottom-0 sm:right-0 w-[clamp(300px,38vw,560px)] h-auto pointer-events-none select-none opacity-25 group-hover:opacity-35 transition-opacity duration-700">
+          <img 
+            src="/templates/aegis/illustration-people.svg" 
+            alt="Ilustrasi Proteksi & Finansial Lorem Group" 
+            class="w-full h-auto object-contain pointer-events-none" 
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Foreground Content -->
+      <div class="relative z-10">
+        <p class="text-xs uppercase tracking-widest text-white/70 font-semibold mb-3">
+          {currentLang === 'id' ? 'Proteksi & Finansial' : 'Financial Protection'}
+        </p>
+        <h2 class="font-sans text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-white max-w-md leading-tight">
+          {currentLang === 'id' ? 'Konsultasi Bersama Lorem Group' : 'Plan with Lorem Group'}
+        </h2>
+      </div>
+
+      <div class="relative z-10 pt-12">
+        <a 
+          href="#work" 
+          class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm font-medium transition-all group-hover:translate-x-0.5 cursor-pointer w-fit"
+        >
+          <span>{currentLang === 'id' ? 'Mulai Konsultasi' : 'Get Started'}</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </aside>
+
+    <!-- Card 2: Right (Karier & Kepemimpinan - Full Bleed Sensitive Y Parallax) -->
+    <aside class="relative overflow-hidden w-full min-h-[500px] sm:min-h-[580px] lg:min-h-[660px] p-8 sm:p-14 lg:p-20 flex flex-col justify-between text-white rounded-none border-0 group">
+      
+      <!-- Sensitive Y Parallax Background Layer -->
+      <div id="cta-parallax-bg-2" class="absolute inset-x-0 -top-[25%] h-[150%] w-full pointer-events-none will-change-transform">
+        <img 
+          src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=85" 
+          alt="Aegis Group leadership team"
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/35 pointer-events-none"></div>
+      </div>
+
+      <!-- Foreground Content -->
+      <div class="relative z-10">
+        <p class="text-xs uppercase tracking-widest text-white/80 font-semibold mb-3">
+          {currentLang === 'id' ? 'Karier & Kepemimpinan' : 'Leadership & Careers'}
+        </p>
+        <h2 class="font-sans text-3xl sm:text-4xl lg:text-5xl font-normal tracking-tight text-white max-w-md leading-tight">
+          {currentLang === 'id' ? 'Program Sales Management Trainee' : 'Sales Management Trainee'}
+        </h2>
+      </div>
+
+      <div class="relative z-10 pt-12">
+        <a 
+          href="#criteria" 
+          class="inline-flex items-center gap-3 px-6 py-3.5 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/25 text-white text-xs sm:text-sm font-medium transition-all group-hover:translate-x-0.5 cursor-pointer w-fit"
+        >
+          <span>{currentLang === 'id' ? 'Pelajari Program SMT' : 'Explore SMT Program'}</span>
+          <svg class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- Scroll-Based Parallax Script for CTA Background -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.fromTo('#cta-parallax-bg-2', 
+      { yPercent: -15 },
+      {
+        yPercent: 15,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: '#contact',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 0.2,
+        }
+      }
+    );
+  });
+</script>

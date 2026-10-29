@@ -1,0 +1,248 @@
+---
+import { siteContent } from '../data/content';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'en' | 'id';
+const t = siteContent[currentLang].nav;
+
+const currentPath = Astro.url.pathname;
+const switchLangPath = currentPath.includes('/en') 
+  ? currentPath.replace('/en', '/id') 
+  : currentPath.includes('/id')
+    ? currentPath.replace('/id', '/en')
+    : (currentLang === 'en' ? '/templates/demo/aegis' : '/en/templates/demo/aegis');
+---
+
+<!-- 1. Hero State Full Navbar (Visible at top, fades out on scroll) -->
+<header 
+  id="aegis-hero-nav-bar" 
+  class="fixed top-0 left-0 right-0 z-[90] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-auto opacity-100 translate-y-0"
+>
+  <div class="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 py-5 sm:py-6 flex items-center justify-between">
+    <!-- Left: Ipsum Life Corporate Partner Logo + Subtitle -->
+    <a href={`#`} class="flex items-center gap-3.5 group cursor-pointer" aria-label="Ipsum Life Agency Network">
+      <img src="/templates/aegis/logo-premier-life.svg" alt="Ipsum Life Logo" class="h-6 sm:h-7 w-auto object-contain group-hover:opacity-85 transition-opacity" />
+      <span class="hidden sm:inline-block text-[0.65rem] tracking-[0.25em] uppercase text-white/70 font-medium pl-3 border-l border-white/20">
+        Agency Network
+      </span>
+    </a>
+
+    <!-- Right Cluster: Visible Horizontal Menu Links, Lang Switcher, & Mobile Trigger -->
+    <div class="flex items-center gap-6 lg:gap-8">
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden md:flex items-center gap-6 lg:gap-8 text-sm font-light text-white/90">
+        <a href="#work" class="hover:text-white transition-colors animated-underline cursor-pointer">{t.work}</a>
+        <a href="#criteria" class="hover:text-white transition-colors animated-underline cursor-pointer">{t.partnership}</a>
+        <a href="#numbers" class="hover:text-white transition-colors animated-underline cursor-pointer">Track Record</a>
+        <a href="#contact" class="hover:text-white transition-colors animated-underline cursor-pointer">{t.careers}</a>
+        <a href="#contact" class="hover:text-white transition-colors animated-underline cursor-pointer">{t.contact}</a>
+      </nav>
+
+      <!-- Language Switcher Pill -->
+      <a 
+        href={switchLangPath} 
+        class="text-xs uppercase tracking-widest font-medium px-3 py-1.5 rounded-full border border-white/25 hover:border-white bg-black/30 backdrop-blur-md text-white/90 hover:text-white transition-all cursor-pointer"
+        aria-label="Switch Language"
+      >
+        {t.switchLang}
+      </a>
+
+      <!-- Mobile Top Menu Button (Visible only on mobile screen at top) -->
+      <button 
+        id="aegis-mobile-top-btn" 
+        class="md:hidden flex items-center justify-center p-2 rounded-full bg-black/40 border border-white/20 text-white cursor-pointer hover:bg-black/60 transition-colors"
+        aria-label="Open navigation menu"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- 2. Scrolled Floating Burger Pill (Top Right, morphs in on scroll past hero) -->
+<aside>
+  <button 
+    id="aegis-nav-toggle-btn"
+    class="fixed top-5 right-6 sm:right-10 lg:right-14 z-[99] h-10 px-4 py-2 flex items-center gap-3 bg-black/85 hover:bg-black backdrop-blur-md rounded-full text-white border border-white/15 transition-all duration-300 shadow-2xl group cursor-pointer opacity-0 pointer-events-none scale-90 -translate-y-2"
+    aria-label="Toggle navigation menu"
+    aria-expanded="false"
+  >
+    <!-- Aegis Mini Wordmark -->
+    <img src="/templates/aegis/logo-aegis-white.svg" alt="Lorem Financial Logo" class="h-4 sm:h-4.5 w-auto object-contain" />
+    <!-- Hamburger lines -->
+    <div class="relative w-5 h-3 flex flex-col justify-between">
+      <span id="aegis-burger-line-1" class="w-full h-[1.5px] bg-white transition-all duration-300 transform origin-center"></span>
+      <span id="aegis-burger-line-2" class="w-full h-[1.5px] bg-white transition-all duration-300 transform origin-center"></span>
+    </div>
+  </button>
+</aside>
+
+<!-- 3. Fullscreen Drawer Menu (Opened by Burger Pill) -->
+<nav 
+  id="aegis-nav-drawer" 
+  class="fixed inset-x-0 top-0 z-[95] bg-[#141414] text-white transform -translate-y-full transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] shadow-2xl overflow-hidden"
+  aria-hidden="true"
+>
+  <div class="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14 pt-24 pb-12">
+    <!-- Top Bar with Monogram & Language Switcher -->
+    <div class="flex items-center justify-between pb-8 border-b border-white/10">
+      <div class="flex items-center gap-4 text-white">
+        <!-- Lorem Logo -->
+        <img src="/templates/aegis/logo-aegis-white.svg" alt="Lorem Group Logo" class="h-6 sm:h-7 w-auto object-contain" />
+        <span class="text-xs uppercase tracking-widest text-white/60 font-medium pl-4 border-l border-white/20">
+          Ipsum Life Agency Network
+        </span>
+      </div>
+
+      <!-- Language Pill Switcher -->
+      <a 
+        href={switchLangPath} 
+        class="text-xs uppercase tracking-widest font-medium px-3.5 py-1.5 rounded-full border border-white/20 hover:border-white text-white/80 hover:text-white transition-colors"
+      >
+        {t.switchLang}
+      </a>
+    </div>
+
+    <!-- Multi-Column Links -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12 pt-10">
+      <!-- Proteksi & Solusi Finansial -->
+      <div class="flex flex-col gap-3">
+        <h3 class="text-xs uppercase tracking-widest text-white/40 font-semibold mb-2">{t.work}</h3>
+        <a href="#work" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">{t.life}</a>
+        <a href="#work" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">{t.health}</a>
+        <a href="#work" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">{t.investment}</a>
+        <a href="#work" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">{t.syariah}</a>
+      </div>
+
+      <!-- Tentang Agensi & Kemitraan -->
+      <div class="flex flex-col gap-3">
+        <h3 class="text-xs uppercase tracking-widest text-white/40 font-semibold mb-2">{t.about}</h3>
+        <a href="#statement" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">{t.ourStory}</a>
+        <a href="#criteria" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">{t.partnership}</a>
+        <a href="#criteria" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">{t.team}</a>
+        <a href="#numbers" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">Rekam Jejak</a>
+      </div>
+
+      <!-- Karier & Kepemimpinan -->
+      <div class="flex flex-col gap-3">
+        <h3 class="text-xs uppercase tracking-widest text-white/40 font-semibold mb-2">{t.careers}</h3>
+        <a href="#criteria" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">{t.smt}</a>
+        <a href="#contact" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">Kemitraan Bisnis</a>
+        <a href="#contact" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">Inkubasi Trainee</a>
+      </div>
+
+      <!-- Hubungi & Portal Nasabah -->
+      <div class="flex flex-col gap-3">
+        <h3 class="text-xs uppercase tracking-widest text-white/40 font-semibold mb-2">{t.contact}</h3>
+        <a href="#contact" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">Konsultasi Proteksi</a>
+        <a href="#contact" class="aegis-drawer-link text-sm text-white/80 hover:text-white transition-colors">{t.portal}</a>
+        <div class="pt-4 flex items-center gap-3">
+          <a href="#contact" class="px-4 py-2 rounded-full bg-white text-black text-xs font-medium hover:bg-white/90 transition-colors">
+            {currentLang === 'id' ? 'Mulai Konsultasi' : 'Get Consultation'}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Scripts: Dynamic Navbar Scroll, Burger Morph, and Drawer Handler -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function() {
+    var heroNav = document.getElementById('aegis-hero-nav-bar');
+    var toggleBtn = document.getElementById('aegis-nav-toggle-btn');
+    var mobileTopBtn = document.getElementById('aegis-mobile-top-btn');
+    var drawer = document.getElementById('aegis-nav-drawer');
+    var line1 = document.getElementById('aegis-burger-line-1');
+    var line2 = document.getElementById('aegis-burger-line-2');
+    var isOpen = false;
+
+    if (!heroNav || !toggleBtn || !drawer) return;
+
+    function showHeroNav() {
+      heroNav.classList.remove('opacity-0', '-translate-y-4', 'pointer-events-none');
+      heroNav.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+    }
+
+    function hideHeroNav() {
+      heroNav.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+      heroNav.classList.add('opacity-0', '-translate-y-4', 'pointer-events-none');
+    }
+
+    function showToggleBtn() {
+      toggleBtn.classList.remove('opacity-0', 'pointer-events-none', 'scale-90', '-translate-y-2');
+      toggleBtn.classList.add('opacity-100', 'pointer-events-auto', 'scale-100', 'translate-y-0');
+    }
+
+    function hideToggleBtn() {
+      toggleBtn.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100', 'translate-y-0');
+      toggleBtn.classList.add('opacity-0', 'pointer-events-none', 'scale-90', '-translate-y-2');
+    }
+
+    function handleScroll() {
+      var scrollY = window.scrollY;
+      if (scrollY > 80) {
+        hideHeroNav();
+        showToggleBtn();
+      } else {
+        if (!isOpen) {
+          showHeroNav();
+          hideToggleBtn();
+        }
+      }
+    }
+
+    function openMenu() {
+      isOpen = true;
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      drawer.setAttribute('aria-hidden', 'false');
+      drawer.classList.remove('-translate-y-full');
+      showToggleBtn();
+      hideHeroNav();
+      line1.classList.add('rotate-45', 'translate-y-[5px]');
+      line2.classList.add('-rotate-45', '-translate-y-[5px]');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenu() {
+      isOpen = false;
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      drawer.setAttribute('aria-hidden', 'true');
+      drawer.classList.add('-translate-y-full');
+      line1.classList.remove('rotate-45', 'translate-y-[5px]');
+      line2.classList.remove('-rotate-45', '-translate-y-[5px]');
+      document.body.style.overflow = '';
+      handleScroll();
+    }
+
+    function toggleMenu() {
+      if (isOpen) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    toggleBtn.addEventListener('click', toggleMenu);
+    if (mobileTopBtn) {
+      mobileTopBtn.addEventListener('click', openMenu);
+    }
+
+    var drawerLinks = drawer.querySelectorAll('.aegis-drawer-link, a');
+    drawerLinks.forEach(function(link) {
+      link.addEventListener('click', function() {
+        if (isOpen) closeMenu();
+      });
+    });
+
+    // Run on load
+    handleScroll();
+  });
+</script>

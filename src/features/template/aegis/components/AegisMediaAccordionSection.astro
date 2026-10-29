@@ -1,0 +1,339 @@
+---
+import { siteContent } from '../data/content';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'en' | 'id';
+const t = siteContent[currentLang].accordion;
+---
+
+<section id="criteria" class="relative w-full bg-[#f7f7f5] text-[rgb(38,37,29)] overflow-hidden select-none">
+  <!-- Fullscreen Pinned Stage -->
+  <div id="criteria-pinned-stage" class="w-full min-h-screen lg:h-[100dvh] max-h-[1080px] flex items-center justify-center px-6 sm:px-10 lg:px-14 xl:px-20 py-8 lg:py-12">
+    
+    <div class="w-full max-w-[1720px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 xl:gap-14 items-center">
+      
+      <!-- Left Column: Media Preview & Vertical Rail Indicator -->
+      <div class="lg:col-span-6 xl:col-span-6 w-full flex items-center justify-center lg:justify-start gap-4 sm:gap-6">
+        
+        <!-- Media Container -->
+        <div 
+          id="criteria-media-box" 
+          class="relative w-full max-w-[540px] aspect-[4/3] sm:aspect-square rounded-[4px] overflow-hidden bg-black/5 shadow-sm border border-[rgba(38,37,29,0.08)] transform origin-center transition-transform duration-700 ease-out"
+        >
+          {t.items.map((item, idx) => (
+            <div 
+              id={`criteria-img-wrap-${idx}`}
+              class={`criteria-img-item absolute inset-0 w-full h-full transition-all duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] ${idx === 0 ? 'opacity-100 scale-100 z-10 pointer-events-auto' : 'opacity-0 scale-95 z-0 pointer-events-none'}`}
+            >
+              <img 
+                id={`criteria-img-${idx}`}
+                src={item.img} 
+                alt={item.alt || item.title}
+                class="w-full h-full object-cover rounded-[4px]"
+                loading={idx === 0 ? "eager" : "lazy"}
+              />
+            </div>
+          ))}
+          <!-- Subtle corner vignette -->
+          <div class="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none z-20"></div>
+        </div>
+
+        <!-- Vertical Pill & Dots Indicator Rail -->
+        <div 
+          id="criteria-rail" 
+          class="flex flex-col items-center justify-center gap-3 py-2 cursor-pointer select-none" 
+          aria-label="Slide Indicators"
+        >
+          {t.items.map((_, idx) => (
+            <button 
+              type="button"
+              class="criteria-dot-btn p-1 flex items-center justify-center cursor-pointer group focus:outline-none"
+              data-slide-index={idx}
+              aria-label={`Go to slide ${idx + 1}`}
+            >
+              <div 
+                id={`criteria-indicator-${idx}`}
+                class={`transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full ${idx === 0 ? 'w-1 h-7 bg-[rgb(38,37,29)]' : 'w-1 h-1 bg-[rgba(38,37,29,0.25)] group-hover:bg-[rgba(38,37,29,0.5)]'}`}
+              ></div>
+            </button>
+          ))}
+        </div>
+
+      </div>
+
+      <!-- Right Column: Category Tag, Vertical Divider Line, Title & Editorial Content -->
+      <div class="lg:col-span-6 xl:col-span-6 w-full flex items-stretch">
+        
+        <!-- Category Column -->
+        <div class="pr-5 sm:pr-8 pt-1 flex-shrink-0 min-w-[90px] sm:min-w-[125px]">
+          <div class="relative h-full">
+            {t.items.map((item, idx) => (
+              <div 
+                id={`criteria-category-${idx}`}
+                class={`criteria-cat-item transition-all duration-500 ease-out text-sm sm:text-base font-normal text-[rgb(38,37,29)] tracking-tight ${idx === 0 ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 -translate-y-2 pointer-events-none absolute top-0 left-0'}`}
+              >
+                {item.category}
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- Vertical Divider Line -->
+        <div class="relative w-px bg-[rgba(38,37,29,0.12)] self-stretch min-h-[360px] sm:min-h-[440px] flex-shrink-0">
+          <div id="criteria-v-line" class="absolute inset-0 bg-[rgb(38,37,29)] origin-top transform scale-y-0 transition-transform duration-1000 ease-out"></div>
+        </div>
+
+        <!-- Content Column (Right of Vertical Line) -->
+        <div class="pl-6 sm:pl-10 lg:pl-12 flex-1 flex flex-col justify-between py-1 relative min-h-[380px] sm:min-h-[460px]">
+          
+          {t.items.map((item, idx) => (
+            <div 
+              id={`criteria-content-${idx}`}
+              class={`criteria-content-pane flex flex-col justify-between h-full transition-all duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] ${idx === 0 ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-6 pointer-events-none absolute inset-y-0 left-6 sm:left-10 lg:left-12 right-0'}`}
+            >
+              <!-- Big Main Title -->
+              <div class="mb-8 lg:mb-12">
+                <h3 class="criteria-title font-sans text-3xl sm:text-4xl lg:text-[2.75rem] xl:text-[3.25rem] font-medium tracking-tight text-[rgb(38,37,29)] leading-[1.08] text-balance">
+                  {item.title}
+                </h3>
+              </div>
+
+              <!-- Editorial Stack: Bottleneck & System with Horizontal Divider -->
+              <div class="flex-1 flex flex-col justify-end space-y-6 sm:space-y-8">
+                
+                <!-- Bottleneck / Challenge -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-baseline gap-2 sm:gap-6">
+                  <span class="text-xs uppercase tracking-widest text-[rgba(38,37,29,0.45)] font-semibold flex-shrink-0 sm:w-28">
+                    {item.bottleneckTitle}
+                  </span>
+                  <p class="text-sm sm:text-base text-[rgba(38,37,29,0.7)] font-light leading-relaxed max-w-xl">
+                    {item.bottleneckDesc}
+                  </p>
+                </div>
+
+                <!-- Thin Line Divider with Draw-in Transition -->
+                <div class="w-full h-px bg-[rgba(38,37,29,0.12)] overflow-hidden">
+                  <div class="criteria-h-line w-full h-full bg-[rgba(38,37,29,0.4)] origin-left transform scale-x-0 transition-transform duration-700 ease-out"></div>
+                </div>
+
+                <!-- System / Solution -->
+                <div class="flex flex-col sm:flex-row items-start sm:items-baseline gap-2 sm:gap-6">
+                  <span class="text-xs uppercase tracking-widest text-[#1D4ED8] font-semibold flex-shrink-0 sm:w-28">
+                    {item.systemTitle}
+                  </span>
+                  <p class="text-sm sm:text-base text-[rgb(38,37,29)] font-normal leading-relaxed max-w-xl">
+                    {item.systemDesc}
+                  </p>
+                </div>
+
+                <!-- Bottom CTA Action -->
+                <div class="pt-4">
+                  <a 
+                    href="#contact" 
+                    class="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1D4ED8] hover:bg-[#1E40AF] text-white text-xs sm:text-sm font-medium transition-colors cursor-pointer group w-fit"
+                  >
+                    <span>{t.button}</span>
+                    <svg class="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </a>
+                </div>
+
+              </div>
+
+            </div>
+          ))}
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- Advanced Pinned Stage & Rail Controller Script -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    var section = document.getElementById('criteria');
+    var vLine = document.getElementById('criteria-v-line');
+    var mediaBox = document.getElementById('criteria-media-box');
+    var imgWraps = document.querySelectorAll('.criteria-img-item');
+    var categories = document.querySelectorAll('.criteria-cat-item');
+    var contentPanes = document.querySelectorAll('.criteria-content-pane');
+    var dotBtns = document.querySelectorAll('.criteria-dot-btn');
+    var indicators = [];
+    for (var i = 0; i < 4; i++) {
+      var ind = document.getElementById('criteria-indicator-' + i);
+      if (ind) indicators.push(ind);
+    }
+
+    if (!section || !imgWraps.length) return;
+
+    var totalSlides = imgWraps.length;
+    var currentSlide = 0;
+    var isTransitioning = false;
+
+    // 1. Switch to specific slide index
+    function goToSlide(targetIdx) {
+      if (targetIdx < 0) targetIdx = 0;
+      if (targetIdx >= totalSlides) targetIdx = totalSlides - 1;
+      if (targetIdx === currentSlide && isTransitioning) return;
+
+      currentSlide = targetIdx;
+
+      // Update Image Wrappers
+      imgWraps.forEach(function (wrap, idx) {
+        if (idx === currentSlide) {
+          wrap.classList.remove('opacity-0', 'scale-95', 'z-0', 'pointer-events-none');
+          wrap.classList.add('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
+        } else {
+          wrap.classList.remove('opacity-100', 'scale-100', 'z-10', 'pointer-events-auto');
+          wrap.classList.add('opacity-0', 'scale-95', 'z-0', 'pointer-events-none');
+        }
+      });
+
+      // Update Vertical Pill Indicators
+      indicators.forEach(function (ind, idx) {
+        if (idx === currentSlide) {
+          ind.className = 'transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full w-1 h-7 bg-[rgb(38,37,29)]';
+        } else {
+          ind.className = 'transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-full w-1 h-1 bg-[rgba(38,37,29,0.25)] group-hover:bg-[rgba(38,37,29,0.5)]';
+        }
+      });
+
+      // Update Categories
+      categories.forEach(function (cat, idx) {
+        if (idx === currentSlide) {
+          cat.classList.remove('opacity-0', '-translate-y-2', 'pointer-events-none');
+          cat.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+        } else {
+          cat.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+          cat.classList.add('opacity-0', '-translate-y-2', 'pointer-events-none');
+        }
+      });
+
+      // Update Content Panes
+      contentPanes.forEach(function (pane, idx) {
+        var hLine = pane.querySelector('.criteria-h-line');
+        if (idx === currentSlide) {
+          pane.classList.remove('opacity-0', 'translate-y-6', 'pointer-events-none');
+          pane.classList.add('opacity-100', 'translate-y-0', 'pointer-events-auto');
+          if (hLine) {
+            hLine.style.transform = 'scaleX(1)';
+          }
+        } else {
+          pane.classList.remove('opacity-100', 'translate-y-0', 'pointer-events-auto');
+          pane.classList.add('opacity-0', 'translate-y-6', 'pointer-events-none');
+          if (hLine) {
+            hLine.style.transform = 'scaleX(0)';
+          }
+        }
+      });
+    }
+
+    // 2. Click on Indicator Buttons
+    dotBtns.forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        var idx = parseInt(btn.getAttribute('data-slide-index'), 10);
+        if (!isNaN(idx)) {
+          goToSlide(idx);
+        }
+      });
+    });
+
+    // 3. Touch Swipe Gestures
+    var touchStartX = 0;
+    var touchStartY = 0;
+
+    section.addEventListener('touchstart', function (e) {
+      if (e.touches.length === 1) {
+        touchStartX = e.touches[0].clientX;
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    section.addEventListener('touchend', function (e) {
+      if (!touchStartX || !touchStartY) return;
+      var touchEndX = e.changedTouches[0].clientX;
+      var touchEndY = e.changedTouches[0].clientY;
+
+      var diffX = touchStartX - touchEndX;
+      var diffY = touchStartY - touchEndY;
+
+      if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 45) {
+        if (diffX > 0) {
+          goToSlide(currentSlide + 1);
+        } else {
+          goToSlide(currentSlide - 1);
+        }
+      }
+
+      touchStartX = 0;
+      touchStartY = 0;
+    }, { passive: true });
+
+    // 4. Keyboard Arrow Navigation
+    window.addEventListener('keydown', function (e) {
+      var rect = section.getBoundingClientRect();
+      var isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+      if (!isVisible) return;
+
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        goToSlide(currentSlide + 1);
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        goToSlide(currentSlide - 1);
+      }
+    });
+
+    // 5. GSAP Entrance Animation & ScrollTrigger Pinned Scrub
+    if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+      gsap.registerPlugin(ScrollTrigger);
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top 85%',
+        once: true,
+        onEnter: function () {
+          if (vLine) {
+            vLine.style.transform = 'scaleY(1)';
+          }
+          if (mediaBox) {
+            gsap.fromTo(mediaBox, 
+              { opacity: 0, scale: 0.96 }, 
+              { opacity: 1, scale: 1, duration: 1.1, ease: 'power3.out' }
+            );
+          }
+          var initialHLine = contentPanes[0] ? contentPanes[0].querySelector('.criteria-h-line') : null;
+          if (initialHLine) {
+            setTimeout(function () {
+              initialHLine.style.transform = 'scaleX(1)';
+            }, 300);
+          }
+        }
+      });
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: 'top top',
+        end: '+=2400',
+        pin: true,
+        scrub: 0.4,
+        onUpdate: function (self) {
+          var progress = self.progress;
+          var stageIdx = Math.min(Math.floor(progress * totalSlides), totalSlides - 1);
+          goToSlide(stageIdx);
+        }
+      });
+    }
+
+    goToSlide(0);
+  });
+</script>

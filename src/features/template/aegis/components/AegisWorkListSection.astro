@@ -1,0 +1,122 @@
+---
+import { siteContent } from '../data/content';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'en' | 'id';
+const t = siteContent[currentLang].workList;
+---
+
+<section id="work" class="relative py-20 lg:py-32 bg-white text-[#1c1c1c] overflow-hidden">
+  <div class="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14">
+    <!-- Header -->
+    <div class="mb-14 lg:mb-20">
+      <p class="text-xs text-[#8c8c8c] font-normal mb-2">
+        {t.eyebrow}
+      </p>
+      <h2 class="font-sans text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-[#1c1c1c]">
+        {t.title}
+      </h2>
+    </div>
+
+    <!-- Work List Items -->
+    <div class="flex flex-col divide-y divide-black/10">
+      {t.items.map((item) => (
+        <article 
+          data-line 
+          class="work-list-item py-12 lg:py-16 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center"
+          style="--line-top: 1px;"
+        >
+          <!-- Number Col -->
+          <div class="lg:col-span-1 text-base font-sans text-[#999999] font-normal">
+            {item.number}
+          </div>
+
+          <!-- Content Col -->
+          <div class="lg:col-span-5 flex flex-col justify-between pr-0 lg:pr-6">
+            <div>
+              <h3 class="font-sans text-3xl sm:text-4xl lg:text-[2.75rem] font-normal tracking-tight text-[#1c1c1c] mb-4">
+                {item.title}
+              </h3>
+              <p class="text-[#666666] text-base leading-relaxed font-light mb-8 max-w-lg">
+                {item.desc}
+              </p>
+            </div>
+
+            <!-- Explore Button Matching Reference -->
+            <a 
+              href="#contact" 
+              class="inline-flex items-center gap-1.5 group cursor-pointer w-fit"
+            >
+              <span class="px-4 py-2 rounded-full bg-[#f2f2f2] group-hover:bg-[#e8e8e8] text-xs font-normal text-[#1c1c1c] transition-colors">
+                {t.explore}
+              </span>
+              <span class="w-8 h-8 rounded-full bg-[#f2f2f2] group-hover:bg-[#e8e8e8] flex items-center justify-center text-[#1c1c1c] transition-all group-hover:translate-x-0.5">
+                <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <path d="M5 12h14M12 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+
+          <!-- Media Col with Square-to-Wide Reveal Mask -->
+          <div class="lg:col-span-6 w-full">
+            <div 
+              data-expand 
+              class="work-list-item_media relative w-full aspect-[16/10] sm:aspect-[16/9] rounded-xl overflow-hidden bg-black/5 shadow-md"
+            >
+              <img 
+                src={item.img} 
+                alt={item.alt} 
+                class="work-list-item_image w-full h-full object-cover transition-transform duration-700 hover:scale-105" 
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- GSAP Script for data-expand (Square -> Wide Reveal) -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    var ZOOM = 1.15;
+    var DURATION = 1.6;
+    var EASE = 'expo.out';
+
+    document.querySelectorAll('[data-expand]').forEach(function (el) {
+      var img = el.querySelector('img');
+      var state = { p: 0 };
+      if (img) img.style.transformOrigin = 'left center';
+
+      function render() {
+        var r = el.getBoundingClientRect();
+        var square = r.width > r.height ? (1 - r.height / r.width) * 100 : 0;
+        el.style.clipPath = 'inset(0% ' + (square * (1 - state.p)) + '% 0% 0% round 0.75rem)';
+        if (img) img.style.transform = 'scale(' + (ZOOM + (1 - ZOOM) * state.p) + ')';
+      }
+      render();
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        once: true,
+        onEnter: function () {
+          gsap.to(state, {
+            p: 1,
+            duration: DURATION,
+            ease: EASE,
+            onUpdate: render,
+          });
+        },
+      });
+    });
+  });
+</script>

@@ -1,0 +1,15 @@
+---
+import AegisTemplate from '../../../../features/template/aegis/AegisTemplate.astro';
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: 'en' } },
+    { params: { locale: 'id' } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = locale === 'en' ? 'en' : 'id';
+---
+
+<AegisTemplate lang={lang} />

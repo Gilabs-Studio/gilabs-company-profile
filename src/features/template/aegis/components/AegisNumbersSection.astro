@@ -1,0 +1,108 @@
+---
+import { siteContent } from '../data/content';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'en' | 'id';
+const t = siteContent[currentLang].numbers;
+---
+
+<section id="numbers" class="section_numbers relative py-24 lg:py-36 bg-[#0D264A] text-white overflow-hidden">
+  
+  <div class="relative z-10 max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14">
+    
+    <!-- Section Header -->
+    <div class="mb-14 lg:mb-20">
+      <p class="text-xs text-white/60 tracking-wider uppercase font-semibold mb-2">
+        {t.eyebrow}
+      </p>
+      <h2 class="font-sans text-4xl sm:text-5xl lg:text-6xl font-normal tracking-tight text-white">
+        {t.title}
+      </h2>
+    </div>
+
+    <!-- 4 Metrics Grid with Editorial Line Borders -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+      {t.items.map((item) => (
+        <div 
+          data-line 
+          class="numbers_item pt-8 pb-8 flex flex-col justify-between border-t border-white/15 hover:border-white/35 transition-colors duration-300"
+          style="--line-top: 1px;"
+        >
+          <!-- Giant Impact Number with Scramble Animation -->
+          <div 
+            class="animate-scramble-number font-sans text-5xl sm:text-6xl lg:text-7xl font-light tracking-tight text-white mb-6 tabular-nums select-none"
+            data-target={item.value}
+          >
+            {item.value}
+          </div>
+
+          <!-- Description -->
+          <p class="text-white/80 text-sm sm:text-base leading-relaxed font-light">
+            {item.label}
+          </p>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<!-- Scramble Number Entrance Animation Script -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    var digits = '0123456789';
+    var numbers = document.querySelectorAll('.animate-scramble-number');
+
+    numbers.forEach(function (el) {
+      var targetText = el.getAttribute('data-target') || el.textContent.trim();
+      var isAnimated = false;
+
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 85%',
+        once: true,
+        onEnter: function () {
+          if (isAnimated) return;
+          isAnimated = true;
+
+          var duration = 1.4;
+          var fps = 30;
+          var totalFrames = Math.round(duration * fps);
+          var frame = 0;
+
+          var interval = setInterval(function () {
+            frame++;
+            var progress = frame / totalFrames;
+
+            var currentText = '';
+            for (var i = 0; i < targetText.length; i++) {
+              var char = targetText[i];
+              if (digits.indexOf(char) !== -1) {
+                if (progress >= (i + 1) / targetText.length) {
+                  currentText += char;
+                } else {
+                  currentText += digits[Math.floor(Math.random() * digits.length)];
+                }
+              } else {
+                currentText += char;
+              }
+            }
+
+            el.textContent = currentText;
+
+            if (frame >= totalFrames) {
+              clearInterval(interval);
+              el.textContent = targetText;
+            }
+          }, 1000 / fps);
+        }
+      });
+    });
+  });
+</script>

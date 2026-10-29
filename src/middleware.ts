@@ -75,7 +75,7 @@ function applyBaselineHeaders(headers: Headers): void {
 	if (!headers.has('Content-Security-Policy')) {
 		headers.set(
 			'Content-Security-Policy',
-			"default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; form-action 'self'"
+			"default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; img-src 'self' data: https:; media-src 'self' data: https: blob:; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' https:; connect-src 'self' https:; form-action 'self'"
 		);
 	}
 }

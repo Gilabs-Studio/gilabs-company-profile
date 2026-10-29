@@ -1,0 +1,87 @@
+---
+import { siteContent } from '../data/content';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'en' | 'id';
+const t = siteContent[currentLang];
+---
+
+<footer class="bg-[#07172B] text-white pt-16 sm:pt-20 pb-12 overflow-hidden select-none border-t border-white/10">
+  <div class="max-w-[1720px] mx-auto px-6 sm:px-10 lg:px-14">
+    
+    <!-- Top Simplified Navigation Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/15">
+      
+      <!-- Brand & Agency Description (Span 4) -->
+      <div class="lg:col-span-4 flex flex-col gap-5">
+        <div class="inline-block w-fit">
+          <img 
+            src="/templates/aegis/logo-aegis-white.svg" 
+            alt="Lorem Financial Group" 
+            class="h-7 sm:h-8 w-auto object-contain transition-opacity hover:opacity-85"
+          />
+        </div>
+        <p class="text-xs sm:text-sm text-white/70 leading-relaxed font-light max-w-sm">
+          {currentLang === 'id' 
+            ? 'Mitra agensi resmi Ipsum Life Assurance dan Ipsum Sharia Life Assurance. Berdedikasi mendampingi proteksi keluarga dan mengembangkan kepemimpinan bisnis SMT terdepan.' 
+            : 'Official agency partner of Ipsum Life Assurance and Ipsum Sharia Life Assurance. Committed to empowering family protection and developing industry-leading SMT business leadership.'}
+        </p>
+        <div class="flex items-center gap-2 text-[11px] text-white/50 tracking-wider uppercase font-mono">
+          <span>{currentLang === 'id' ? 'Terdaftar & Diawasi OJK' : 'Regulated by OJK & AAJI'}</span>
+        </div>
+      </div>
+
+      <!-- Solusi Proteksi (Span 3) -->
+      <div class="lg:col-span-3 flex flex-col gap-3">
+        <h4 class="text-xs uppercase tracking-widest text-white/50 font-semibold mb-1">{t.nav.work}</h4>
+        <a href="#work" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.nav.life}</a>
+        <a href="#work" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.nav.health}</a>
+        <a href="#work" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.nav.investment}</a>
+        <a href="#work" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.nav.syariah}</a>
+      </div>
+
+      <!-- Tentang Aegis & Karier (Span 3) -->
+      <div class="lg:col-span-3 flex flex-col gap-3">
+        <h4 class="text-xs uppercase tracking-widest text-white/50 font-semibold mb-1">{t.nav.about}</h4>
+        <a href="#statement" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.nav.ourStory}</a>
+        <a href="#criteria" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.nav.partnership}</a>
+        <a href="#criteria" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.nav.team}</a>
+        <a href="#numbers" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.numbers.title}</a>
+        <a href="#contact" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer mt-1 font-medium">{t.nav.smt}</a>
+      </div>
+
+      <!-- Legal & Kontak (Span 2) -->
+      <div class="lg:col-span-2 flex flex-col gap-3">
+        <h4 class="text-xs uppercase tracking-widest text-white/50 font-semibold mb-1">Connect & Legal</h4>
+        <a href="#contact" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.nav.contact}</a>
+        <a href="#contact" class="text-xs sm:text-sm text-white/80 hover:text-white animated-underline w-fit transition-colors cursor-pointer">{t.nav.portal}</a>
+        <span class="text-xs text-white/60 pt-2">{t.footer.privacyPolicy}</span>
+        <span class="text-xs text-white/60">{t.footer.terms}</span>
+      </div>
+
+    </div>
+
+    <!-- OJK & Regulatory Compliance Disclaimer -->
+    <div class="py-8 border-b border-white/10">
+      <p class="text-xs text-white/50 leading-relaxed font-light max-w-4xl">
+        {t.footer.disclaimer}
+      </p>
+    </div>
+
+    <!-- Bottom Simple Bar -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-white/50 font-light">
+      <p>{t.footer.rights}</p>
+      <div class="flex items-center gap-6">
+        <a href="#work" class="hover:text-white/80 transition-colors cursor-pointer">Solusi</a>
+        <a href="#criteria" class="hover:text-white/80 transition-colors cursor-pointer">Keunggulan</a>
+        <a href="#numbers" class="hover:text-white/80 transition-colors cursor-pointer">Pencapaian</a>
+        <a href="#contact" class="hover:text-white/80 transition-colors cursor-pointer">Konsultasi</a>
+      </div>
+    </div>
+
+  </div>
+</footer>

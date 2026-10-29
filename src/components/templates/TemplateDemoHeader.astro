@@ -4,9 +4,10 @@ import { templatesData, getTierInfoByNumber } from '../../data/templatesData';
 interface Props {
   templateId: string;
   lang?: 'id' | 'en';
+  position?: 'top' | 'bottom';
 }
 
-const { templateId, lang = 'id' } = Astro.props;
+const { templateId, lang = 'id', position = 'top' } = Astro.props;
 
 // Ambil template secara dinamis dari templatesData
 const template = templatesData.find((t) => t.id === templateId || t.slug === templateId) || templatesData[0];
@@ -18,29 +19,38 @@ const catalogUrl = lang === 'en' ? '/en/templates' : '/templates';
 const orderUrl = lang === 'en' 
   ? `/en/templates/order?template=${template.id}&tier=${template.tier}` 
   : `/templates/order?template=${template.id}&tier=${template.tier}`;
+
+const posClass = position === 'bottom' 
+  ? 'bottom-5 left-1/2 -translate-x-1/2' 
+  : 'top-3 left-1/2 -translate-x-1/2';
 ---
 
-<!-- Top Sticky Demo Header Bar -->
-<header class="sticky top-0 z-50 bg-[#0f172a] text-white px-4 py-2.5 text-xs flex items-center justify-between border-b border-slate-800 shadow-md">
-  <div class="flex items-center gap-3">
-    <a 
-      href={catalogUrl} 
-      class="text-slate-400 hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-medium"
-    >
-      <span>←</span>
-      <span>{lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}</span>
-    </a>
-    <span class="text-slate-600 hidden sm:inline">|</span>
-    <span class="font-semibold text-slate-200 hidden sm:inline">{templateTitle}</span>
-  </div>
+<!-- Floating Demo Header Overlay (Zero layout push, allows hero to be 100% full screen) -->
+<aside class={`fixed ${posClass} z-[100] max-w-[95vw] pointer-events-none transition-all duration-300`}>
+  <div class="pointer-events-auto flex items-center justify-between gap-3 sm:gap-4 px-3.5 py-1.5 sm:py-2 rounded-full bg-[#0f172a]/85 backdrop-blur-xl border border-white/15 text-white shadow-2xl text-xs">
+    <div class="flex items-center gap-2.5">
+      <a 
+        href={catalogUrl} 
+        class="text-slate-300 hover:text-white transition-colors flex items-center gap-1.5 cursor-pointer font-medium hover:-translate-x-0.5 duration-200"
+        title={lang === 'en' ? 'Back to Catalog' : 'Kembali ke Katalog'}
+      >
+        <span class="text-xs">←</span>
+        <span class="hidden sm:inline font-medium">{lang === 'en' ? 'Catalog' : 'Katalog'}</span>
+      </a>
+      <span class="w-px h-3 bg-white/20"></span>
+      <span class="font-medium text-slate-200 truncate max-w-[120px] sm:max-w-[200px]">{templateTitle}</span>
+    </div>
 
-  <div class="flex items-center gap-3">
-    <span class="text-slate-300 font-mono hidden md:inline">{templatePrice}</span>
-    <a
-      href={orderUrl}
-      class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3.5 py-1.5 rounded text-xs transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
-    >
-      {lang === 'en' ? 'Order This Website' : 'Pesan Website Ini'}
-    </a>
+    <div class="flex items-center gap-2.5">
+      <span class="text-slate-300 font-mono text-[0.7rem] px-2 py-0.5 rounded-full bg-white/10 hidden md:inline border border-white/10">
+        {templatePrice}
+      </span>
+      <a
+        href={orderUrl}
+        class="bg-[#2563EB] hover:bg-blue-600 text-white font-medium px-3 py-1 rounded-full text-[0.7rem] sm:text-xs transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-md whitespace-nowrap"
+      >
+        {lang === 'en' ? 'Order' : 'Pesan'}
+      </a>
+    </div>
   </div>
-</header>
+</aside>
