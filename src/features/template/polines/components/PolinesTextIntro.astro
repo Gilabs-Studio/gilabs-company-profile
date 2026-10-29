@@ -1,0 +1,28 @@
+---
+import PolinesTextIntroWordReveal from './PolinesTextIntroWordReveal';
+import { polinesContentData } from '../data/content';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+const t = polinesContentData[currentLang].textIntro;
+---
+
+<section id="profil" class="section_text-intro relative py-32 md:py-48 lg:py-56 bg-[#0E0C0A] text-white overflow-hidden">
+  <div class="max-w-[92rem] mx-auto px-6 md:px-14 flex flex-col items-start text-left">
+    
+    <!-- Subtitle / Eyebrow (Align Left) -->
+    <p class="text-xs md:text-sm font-medium uppercase tracking-[0.25em] text-[#FF5A1F] mb-8 select-none">
+      {t.eyebrow}
+    </p>
+
+    <!-- Word-by-Word Scroll Text Reveal with Stately Smooth Tempo -->
+    <div class="max-w-5xl w-full">
+      <PolinesTextIntroWordReveal client:load lang={currentLang} />
+    </div>
+
+  </div>
+</section>

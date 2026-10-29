@@ -1,0 +1,21 @@
+---
+import PolinesJourneyScrollFrame from './PolinesJourneyScrollFrame';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+---
+
+<section 
+  id="pmb" 
+  data-bg-section="light" 
+  data-theme-section="light" 
+  class="section_journey-scroll relative z-10 bg-[#F5F2EB] text-[#17130E] py-12 sm:py-16 md:py-24 overflow-clip"
+>
+  <div class="max-w-[98rem] mx-auto px-4 sm:px-6 md:px-10 flex justify-center">
+    <PolinesJourneyScrollFrame client:load lang={currentLang} />
+  </div>
+</section>

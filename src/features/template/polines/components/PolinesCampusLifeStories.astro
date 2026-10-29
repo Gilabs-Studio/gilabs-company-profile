@@ -1,0 +1,288 @@
+---
+import { polinesContentData } from '../data/content';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+const t = polinesContentData[currentLang].campusLife;
+---
+
+<section id="kehidupan-kampus" class="section_stories relative z-10 bg-[#F5F2EB] text-[#17130E] pt-32 sm:pt-40 md:pt-48 pb-28 md:pb-44 px-6 md:px-14 overflow-visible shadow-2xl">
+  <div id="campus-life-reveal-content" class="max-w-[96rem] mx-auto will-change-transform will-change-opacity">
+    
+    <!-- Heading Lockup & Slider Navigation Controls -->
+    <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-12 md:mb-16">
+      <div class="max-w-2xl text-left">
+        <p class="text-xs uppercase tracking-[0.25em] text-[#EA580C] font-semibold mb-3 select-none">
+          {t.eyebrow}
+        </p>
+        <h2 class="heading-h2 text-[#17130E] font-normal tracking-tight">
+          {t.title}
+        </h2>
+        <p class="text-base md:text-lg text-[#241E18]/80 font-light mt-3">
+          {t.desc}
+        </p>
+      </div>
+
+      <!-- Navigation Arrows (Sharp Lancip) -->
+      <div class="flex items-center gap-3">
+        <button 
+          id="deals-prev-btn" 
+          aria-label="Previous card"
+          class="slider_button text-[#17130E] border-[#17130E]/20 rounded-none hover:bg-[#FF5A1F] hover:border-[#FF5A1F] hover:text-white transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+          </svg>
+        </button>
+        <button 
+          id="deals-next-btn" 
+          aria-label="Next card"
+          class="slider_button text-[#17130E] border-[#17130E]/20 rounded-none hover:bg-[#FF5A1F] hover:border-[#FF5A1F] hover:text-white transition-colors cursor-pointer"
+        >
+          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Stepped Cards Slider Track with Dynamic Position-Anchored Parallax Y & Drag-to-Scroll -->
+    <div class="relative py-4 md:py-8 overflow-visible">
+      <div 
+        id="college-cards-track" 
+        class="flex gap-8 md:gap-10 overflow-x-auto no-scrollbar scroll-smooth px-2 sm:px-4 md:px-6 pt-36 sm:pt-40 md:pt-48 pb-20 md:pb-28 -mt-24 sm:-mt-28 md:-mt-36 items-start cursor-grab select-none"
+      >
+        {t.departments.map((dept) => (
+          <div 
+            class="college-card flex-shrink-0 w-[280px] sm:w-[340px] md:w-[380px] group rounded-none overflow-visible will-change-transform cursor-pointer"
+            style="scroll-snap-align: center;"
+            onclick={`if (!window.isDraggingCard) document.getElementById('modal-${dept.id}').showModal()`}
+          >
+            <!-- Image Card Box -->
+            <div class="relative aspect-[4/5] rounded-none overflow-hidden bg-[#0E0C0A] shadow-xl group-hover:shadow-2xl transition-all duration-300">
+              <img 
+                src={dept.image} 
+                alt={dept.title} 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 rounded-none" 
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-[#0E0C0A] via-[#0E0C0A]/40 to-transparent"></div>
+              
+              <!-- Tag Pill -->
+              <div class="absolute top-4 left-4">
+                <span class="text-[11px] uppercase tracking-wider font-medium text-white/95 bg-[#17130E]/85 backdrop-blur-md px-3 py-1 rounded-none border border-orange-500/30">
+                  {dept.tag}
+                </span>
+              </div>
+
+              <!-- Content Inside Card Bottom -->
+              <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end text-left">
+                <h3 class="text-xl sm:text-2xl text-white font-normal mb-2 tracking-tight group-hover:text-[#FF5A1F] transition-colors">
+                  {dept.title}
+                </h3>
+                <p class="text-xs sm:text-sm text-white/75 font-light line-clamp-2 leading-relaxed">
+                  {dept.description}
+                </p>
+                <div class="mt-4 flex items-center gap-2 text-xs uppercase tracking-wider text-[#FF5A1F] font-medium group-hover:translate-x-1 transition-transform">
+                  <span>{currentLang === 'en' ? 'Explore Facility' : 'Lihat Fasilitas'}</span>
+                  <span>&rarr;</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Native Modal Dialog for Each Department -->
+  {t.departments.map((dept) => (
+    <dialog id={`modal-${dept.id}`} class="rounded-none shadow-2xl p-0 overflow-hidden max-w-2xl w-full mx-auto my-auto backdrop:bg-black/75 backdrop:backdrop-blur-md">
+      <div class="bg-[#17130E] border border-white/20 text-white p-6 sm:p-10 flex flex-col text-left">
+        <div class="flex items-start justify-between gap-4 mb-6 pb-4 border-b border-white/15">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-[#FF5A1F] font-semibold">{dept.tag}</span>
+            <h3 class="text-2xl sm:text-3xl text-white font-normal mt-1">{dept.title}</h3>
+          </div>
+          <button 
+            type="button"
+            onclick={`document.getElementById('modal-${dept.id}').close()`}
+            class="text-white/60 hover:text-white p-2 text-2xl font-light cursor-pointer"
+            aria-label="Close modal"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div class="relative aspect-video w-full overflow-hidden mb-6 bg-black">
+          <img src={dept.image} alt={dept.title} class="w-full h-full object-cover" />
+        </div>
+
+        <p class="text-sm sm:text-base text-white/80 font-light leading-relaxed mb-6">
+          {dept.description}
+        </p>
+
+        <h4 class="text-xs uppercase tracking-wider text-[#FBBF24] font-semibold mb-3">
+          {currentLang === 'en' ? 'Featured Laboratories & Workshops:' : 'Fasilitas Laboratorium & Bengkel:'}
+        </h4>
+        <ul class="flex flex-col gap-2 mb-8">
+          {dept.details.map((detail) => (
+            <li class="flex items-start gap-2 text-xs sm:text-sm text-white/70">
+              <span class="text-[#FF5A1F]">•</span>
+              <span>{detail}</span>
+            </li>
+          ))}
+        </ul>
+
+        <div class="flex justify-end pt-4 border-t border-white/10">
+          <button 
+            type="button"
+            onclick={`document.getElementById('modal-${dept.id}').close()`}
+            class="px-6 py-2.5 bg-[#FF5A1F] hover:bg-[#FF7338] text-white text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer shadow-lg shadow-[#FF5A1F]/20"
+          >
+            {currentLang === 'en' ? 'Close Window' : 'Tutup'}
+          </button>
+        </div>
+      </div>
+    </dialog>
+  ))}
+</section>
+
+<script>
+  const section = document.getElementById('kehidupan-kampus');
+  const revealContent = document.getElementById('campus-life-reveal-content');
+  const track = document.getElementById('college-cards-track');
+  const cards = document.querySelectorAll('.college-card') as NodeListOf<HTMLElement>;
+  const prevBtn = document.getElementById('deals-prev-btn');
+  const nextBtn = document.getElementById('deals-next-btn');
+
+  let isTicking = false;
+
+  function updateDynamicParallax() {
+    if (!track || !section) return;
+
+    const sectionRect = section.getBoundingClientRect();
+    const windowH = window.innerHeight;
+    const windowW = window.innerWidth;
+    const viewportCenter = windowW / 2;
+
+    if (sectionRect.top < windowH && sectionRect.bottom > 0) {
+      const revealProgress = Math.min(1, Math.max(0, (windowH - sectionRect.top) / (windowH * 0.80)));
+      const revealOpacity = 0.15 + (revealProgress * 0.85);
+      const revealY = (1 - revealProgress) * -140;
+
+      if (revealContent) {
+        revealContent.style.opacity = revealOpacity.toFixed(3);
+        revealContent.style.transform = `translate3d(0, ${revealY.toFixed(1)}px, 0)`;
+      }
+
+      const scrollProgress = Math.max(0, Math.min(1, (windowH - sectionRect.top) / (windowH + sectionRect.height)));
+
+      cards.forEach((card) => {
+        const cardRect = card.getBoundingClientRect();
+        const cardCenter = cardRect.left + cardRect.width / 2;
+
+        const distFromCenter = Math.abs(viewportCenter - cardCenter);
+        const maxRange = windowW * 0.45;
+        const proximity = Math.max(0, 1 - (distFromCenter / maxRange));
+
+        const centerBonus = -110 * proximity;
+        const baseElevation = 20 * (1 - proximity);
+
+        const targetY = scrollProgress * (centerBonus + baseElevation);
+        card.style.transform = `translate3d(0, ${targetY}px, 0)`;
+      });
+    } else if (sectionRect.top >= windowH) {
+      if (revealContent) {
+        revealContent.style.opacity = '0.15';
+        revealContent.style.transform = 'translate3d(0, -140px, 0)';
+      }
+    } else if (sectionRect.bottom <= 0) {
+      if (revealContent) {
+        revealContent.style.opacity = '1';
+        revealContent.style.transform = 'translate3d(0, 0, 0)';
+      }
+    }
+
+    isTicking = false;
+  }
+
+  function requestParallaxUpdate() {
+    if (!isTicking) {
+      window.requestAnimationFrame(updateDynamicParallax);
+      isTicking = true;
+    }
+  }
+
+  window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+  track?.addEventListener('scroll', requestParallaxUpdate, { passive: true });
+  window.addEventListener('resize', requestParallaxUpdate);
+
+  // Mouse drag to scroll
+  let isDown = false;
+  let startX = 0;
+  let scrollLeftPos = 0;
+  (window as any).isDraggingCard = false;
+
+  track?.addEventListener('mousedown', (e) => {
+    isDown = true;
+    (window as any).isDraggingCard = false;
+    track.classList.add('cursor-grabbing');
+    track.classList.remove('cursor-grab');
+    startX = e.pageX - track.offsetLeft;
+    scrollLeftPos = track.scrollLeft;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (!isDown) return;
+    isDown = false;
+    track?.classList.remove('cursor-grabbing');
+    track?.classList.add('cursor-grab');
+    setTimeout(() => {
+      (window as any).isDraggingCard = false;
+    }, 60);
+  });
+
+  track?.addEventListener('mousemove', (e) => {
+    if (!isDown || !track) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    if (Math.abs(walk) > 6) {
+      (window as any).isDraggingCard = true;
+    }
+    track.scrollLeft = scrollLeftPos - walk;
+    requestParallaxUpdate();
+  });
+
+  track?.addEventListener('mouseleave', () => {
+    if (isDown) {
+      isDown = false;
+      track?.classList.remove('cursor-grabbing');
+      track?.classList.add('cursor-grab');
+    }
+  });
+
+  track?.addEventListener('touchmove', () => {
+    requestParallaxUpdate();
+  }, { passive: true });
+
+  prevBtn?.addEventListener('click', () => {
+    track?.scrollBy({ left: -360, behavior: 'smooth' });
+    setTimeout(requestParallaxUpdate, 150);
+    setTimeout(requestParallaxUpdate, 350);
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    track?.scrollBy({ left: 360, behavior: 'smooth' });
+    setTimeout(requestParallaxUpdate, 150);
+    setTimeout(requestParallaxUpdate, 350);
+  });
+
+  updateDynamicParallax();
+</script>

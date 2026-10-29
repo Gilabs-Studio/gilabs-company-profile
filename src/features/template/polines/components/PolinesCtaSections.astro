@@ -1,0 +1,222 @@
+---
+import { polinesContentData, polinesImages } from '../data/content';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+const cta1 = polinesContentData[currentLang].cta.cta1;
+const cta2 = polinesContentData[currentLang].cta.cta2;
+---
+
+<!-- ==========================================
+     CTA 1: SIAP MENGAMBIL LANGKAH BERIKUTNYA
+     ========================================== -->
+<!-- ==========================================
+     CTA 1: SIAP MENGAMBIL LANGKAH BERIKUTNYA
+     ========================================== -->
+<section class="section_cta relative bg-[#F5F2EB] text-white py-24 md:py-36 px-6 md:px-14 overflow-hidden">
+  <div class="max-w-[92rem] mx-auto">
+    
+    <div class="rounded-none overflow-hidden bg-[#17130E] border border-white/10 grid grid-cols-1 lg:grid-cols-12 shadow-2xl">
+      
+      <!-- Left Photo -->
+      <div class="lg:col-span-6 relative min-h-[360px] lg:min-h-full">
+        <img 
+          src={polinesImages.campusAerial} 
+          alt="Gedung Kampus Terpadu Lorem Polytechnic Institute" 
+          class="w-full h-full object-cover rounded-none" 
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#17130E] via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#17130E]"></div>
+      </div>
+
+      <!-- Right Content -->
+      <div class="lg:col-span-6 p-8 sm:p-14 md:p-20 flex flex-col justify-center items-start gap-6 text-left">
+        <h2 class="heading-h3 font-normal text-white leading-tight">
+          {cta1.title}
+        </h2>
+
+        <p class="text-base md:text-lg text-white/80 font-light leading-relaxed">
+          {cta1.desc}
+        </p>
+
+        <div class="pt-2">
+          <a 
+            href="#pmb" 
+            class="button_component is-gold group rounded-none"
+          >
+            <span class="button_content-wrapper">
+              <span class="text-sm md:text-base font-normal">
+                {cta1.buttonText}
+              </span>
+              <span class="button_icon-wrapper">
+                <svg class="w-4 h-4 text-white transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </span>
+            </span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ==========================================
+     CTA 2: UNDUH PANDUAN AKADEMIK RESMI
+     Reveals the Sticky Footer as user scrolls down!
+     Includes Exclusive Silk Curtain Background Effect
+     ========================================== -->
+<section id="unduh-brosur" class="section_lead-magnet relative bg-[#0E0C0A] text-white py-28 md:py-44 px-6 md:px-14 overflow-hidden">
+  
+  <!-- Exclusive Silk Curtain Background Effect -->
+  <div class="absolute inset-0 pointer-events-none select-none overflow-hidden">
+    <img
+      src={polinesImages.ctaCurtain}
+      alt="Curtain Texture"
+      class="w-full h-full object-cover object-right-top md:object-center opacity-25 mix-blend-screen filter contrast-125"
+      aria-hidden="true"
+    />
+    <div class="absolute inset-0 bg-gradient-to-r from-[#0E0C0A] via-[#0E0C0A]/85 to-transparent"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0E0C0A] via-transparent to-[#0E0C0A]"></div>
+  </div>
+
+  <div class="container relative z-10 max-w-[92rem] mx-auto">
+    
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Left Text -->
+      <div class="lg:col-span-7 flex flex-col gap-6 text-left">
+        <h3 class="heading-h2 font-normal text-white leading-tight">
+          {cta2.title}
+        </h3>
+
+        <p class="text-base md:text-lg text-white/80 font-light leading-relaxed max-w-2xl">
+          {cta2.desc}
+        </p>
+
+        <div class="pt-2">
+          <button 
+            type="button"
+            onclick="document.getElementById('brochure-modal').showModal()"
+            class="inline-flex items-center gap-3 px-8 py-4 border border-[#FF5A1F] text-[#FF5A1F] hover:bg-[#FF5A1F] hover:text-[#0E0C0A] transition-all duration-300 rounded-none text-xs uppercase tracking-[0.18em] font-medium cursor-pointer shadow-lg shadow-[#FF5A1F]/15"
+          >
+            <span>{cta2.buttonText}</span>
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Card Preview Lockup -->
+      <div class="lg:col-span-5 flex justify-center lg:justify-end">
+        <div class="relative w-full max-w-md aspect-[3/4] bg-[#17130E] border border-white/20 p-8 shadow-2xl flex flex-col justify-between text-left">
+          <div class="flex items-center justify-between pb-6 border-b border-white/10">
+            <div class="flex items-center gap-3">
+              <img src="/templates/polines/logo-lorem-white.svg" alt="LOREM Logo" class="h-8 w-auto" />
+            </div>
+            <span class="text-[11px] uppercase tracking-wider text-[#FBBF24] font-mono">
+              2026/2027
+            </span>
+          </div>
+
+          <div class="py-6 flex flex-col gap-3">
+            <span class="text-xs uppercase tracking-widest text-[#FF5A1F] font-semibold">
+              Edisi Resmi
+            </span>
+            <h4 class="text-2xl text-white font-normal leading-snug">
+              Buku Prospektus & Panduan Program Vokasi
+            </h4>
+            <p class="text-xs text-white/60 font-light leading-relaxed mt-1">
+              Memuat kurikulum 6 departemen rekayasa, profil laboratorium, dan alur pendaftaran terpadu.
+            </p>
+          </div>
+
+          <div class="pt-6 border-t border-white/10 flex items-center justify-between text-xs text-white/70">
+            <span>Format Digital PDF (18 MB)</span>
+            <span class="text-[#FF5A1F] font-semibold">Free Access</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Native Modal Dialog for Brochure Download -->
+  <dialog id="brochure-modal" class="rounded-none shadow-2xl p-0 overflow-hidden max-w-lg w-full mx-auto my-auto backdrop:bg-black/80 backdrop:backdrop-blur-md">
+    <div class="bg-[#17130E] border border-white/20 text-white p-8 flex flex-col text-left">
+      <div class="flex items-center justify-between mb-6 pb-3 border-b border-white/15">
+        <h4 class="text-lg font-normal text-white">{cta2.modalTitle}</h4>
+        <button 
+          type="button"
+          onclick="document.getElementById('brochure-modal').close()"
+          class="text-white/60 hover:text-white p-1 text-2xl font-light cursor-pointer"
+        >
+          ✕
+        </button>
+      </div>
+
+      <p class="text-xs sm:text-sm text-white/75 font-light mb-6 leading-relaxed">
+        {cta2.modalDesc}
+      </p>
+
+      <form 
+        onsubmit={`event.preventDefault(); alert('${cta2.formSuccess}'); document.getElementById('brochure-modal').close();`}
+        class="flex flex-col gap-4"
+      >
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5">{cta2.formNamePlaceholder}</label>
+          <input 
+            type="text" 
+            placeholder={cta2.formNamePlaceholder} 
+            required 
+            class="w-full bg-[#0E0C0A] border border-white/20 px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#FF5A1F] rounded-none"
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5">{cta2.formEmailPlaceholder}</label>
+          <input 
+            type="email" 
+            placeholder={cta2.formEmailPlaceholder} 
+            required 
+            class="w-full bg-[#0E0C0A] border border-white/20 px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#FF5A1F] rounded-none"
+          />
+        </div>
+
+        <div>
+          <label class="block text-[11px] uppercase tracking-wider text-white/70 mb-1.5">{cta2.formPhonePlaceholder}</label>
+          <input 
+            type="tel" 
+            placeholder={cta2.formPhonePlaceholder} 
+            required 
+            class="w-full bg-[#0E0C0A] border border-white/20 px-4 py-2.5 text-sm text-white focus:outline-none focus:border-[#FF5A1F] rounded-none"
+          />
+        </div>
+
+        <div class="pt-4 flex justify-end gap-3">
+          <button 
+            type="button"
+            onclick="document.getElementById('brochure-modal').close()"
+            class="px-5 py-2.5 border border-white/20 text-white/80 hover:text-white text-xs uppercase tracking-wider transition-colors cursor-pointer"
+          >
+            Batal
+          </button>
+          <button 
+            type="submit"
+            class="px-6 py-2.5 bg-[#FF5A1F] hover:bg-[#FF7338] text-white text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer shadow-lg shadow-[#FF5A1F]/20"
+          >
+            {cta2.formSubmit}
+          </button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+</section>

@@ -252,6 +252,32 @@ export function getTierInfoByNumber(tierNumber: number): TierInfo {
 
 export const templatesData: TemplateItem[] = [
   {
+    id: 'polines',
+    slug: 'polines-vocational-institute',
+    title: 'Lorem • Politeknik Vokasi',
+    titleEn: 'Lorem • Vocational Institute',
+    category: 'company',
+    categoryLabel: {
+      id: 'Institusi & Vokasi',
+      en: 'Institution & Vocational'
+    },
+    tier: 3,
+    description: {
+      id: 'Desain website profil perguruan tinggi vokasi terapan dan riset industri dengan efek aerial parallax Y, word-by-word scroll reveal, etalase fasilitas stepped card, frame scrub-scale dinamis, dan sticky reveal footer terpadu.',
+      en: 'Comprehensive higher education & vocational polytechnic website featuring aerial parallax scroll, word-by-word reveal transitions, stepped laboratory showcases, dynamic scrub-scale journey frame, and sticky reveal footer.'
+    },
+    previewImage: '/templates/polines/preview.webp',
+    gallery: [
+      '/templates/polines/preview.webp',
+      'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80'
+    ],
+    demoUrl: '/templates/demo/polines',
+    buyersCount: 162
+  },
+  {
     id: 'vistaprops',
     slug: 'vistaprops-real-estate-partner',
     title: 'Lorem • Real Estate Komersial',
@@ -276,6 +302,26 @@ export const templatesData: TemplateItem[] = [
     ],
     demoUrl: '/templates/demo/vistaprops',
     buyersCount: 156
+  },
+  {
+    id: 'gke-enterprise',
+    slug: 'gke-enterprise-supply',
+    title: 'Enterprise Logistik',
+    titleEn: 'Enterprise Logistics',
+    category: 'company',
+    categoryLabel: {
+      id: 'Enterprise & B2B',
+      en: 'Enterprise & Corporate'
+    },
+    tier: 3,
+    description: {
+      id: 'Desain website profil perusahaan skala enterprise, supply chain, dan distributor suku cadang industri dengan tipografi editorial modern dan performa tinggi.',
+      en: 'Corporate profile website for enterprise firms, industrial supply chains, and B2B engineering solutions.'
+    },
+    previewImage: '/templates/gke-enterprise/preview.webp',
+    gallery: ['/templates/gke-enterprise/preview.webp'],
+    demoUrl: '/templates/demo/gke',
+    buyersCount: 188
   },
   {
     id: 'aegis-financial',
@@ -512,26 +558,6 @@ export const templatesData: TemplateItem[] = [
     ],
     demoUrl: '/templates/demo/sura-bay',
     buyersCount: 176
-  },
-  {
-    id: 'gke-enterprise',
-    slug: 'gke-enterprise-supply',
-    title: 'Enterprise Logistik',
-    titleEn: 'Enterprise Logistics',
-    category: 'company',
-    categoryLabel: {
-      id: 'Enterprise & B2B',
-      en: 'Enterprise & Corporate'
-    },
-    tier: 3,
-    description: {
-      id: 'Desain website profil perusahaan skala enterprise, supply chain, dan distributor suku cadang industri dengan tipografi editorial modern dan performa tinggi.',
-      en: 'Corporate profile website for enterprise firms, industrial supply chains, and B2B engineering solutions.'
-    },
-    previewImage: '/templates/gke-enterprise/preview.webp',
-    gallery: ['/templates/gke-enterprise/preview.webp'],
-    demoUrl: '/templates/demo/gke',
-    buyersCount: 188
   }
 ];
 

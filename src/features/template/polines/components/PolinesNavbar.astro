@@ -1,0 +1,301 @@
+---
+import { polinesContentData } from '../data/content';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+const t = polinesContentData[currentLang].nav;
+
+const currentPath = Astro.url.pathname;
+const switchLangPath = currentPath.includes('/en') 
+  ? currentPath.replace('/en', '/id') 
+  : currentPath.includes('/id')
+    ? currentPath.replace('/id', '/en')
+    : (currentLang === 'en' ? '/templates/demo/polines' : '/en/templates/demo/polines');
+
+const topNavItems = [
+  { id: 'home', label: t.home, href: '#root' },
+  { id: 'profile', label: t.profile, href: '#profil' },
+  { id: 'academics', label: t.academics, href: '#kehidupan-kampus' },
+  { id: 'research', label: t.research, href: '#riset' },
+  { id: 'admissions', label: t.admissions, href: '#pmb' },
+];
+---
+
+<!-- Backdrop Blur when mega menu or mobile drawer is open -->
+<div 
+  id="polines-nav-backdrop" 
+  class="fixed inset-0 z-40 bg-black/60 backdrop-blur-md transition-all duration-300 opacity-0 pointer-events-none"
+></div>
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="polines-header">
+  <!-- Main Nav Bar -->
+  <div 
+    id="polines-nav-container"
+    class="relative z-50 transition-all duration-300 bg-transparent"
+  >
+    <div class="max-w-[92rem] mx-auto px-6 md:px-14 h-20 md:h-24 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#root" class="flex items-center group cursor-pointer z-50 py-1" aria-label="Beranda Lorem Polytechnic">
+        <img 
+          src="/templates/polines/logo-lorem-white.svg" 
+          alt="Lorem Polytechnic Institute" 
+          class="h-9 sm:h-10 md:h-11 w-auto object-contain transition-opacity duration-200 group-hover:opacity-90" 
+          loading="eager"
+        />
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav id="polines-desktop-nav" class="hidden lg:flex items-center gap-7 xl:gap-9 py-2">
+        {topNavItems.map((item) => (
+          <a
+            href={item.href}
+            data-el="nav-link"
+            class="text-xs uppercase tracking-[0.2em] font-medium text-white/80 hover:text-white transition-colors cursor-pointer py-1"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <!-- Right Action Items: Mega Menu Trigger, Lang Switcher & Mobile Toggle -->
+      <div class="flex items-center gap-3 sm:gap-4 z-50">
+        <!-- Explore Menu Button (Opens Mega Menu Tray) -->
+        <button
+          id="polines-menu-btn"
+          type="button"
+          class="hidden sm:inline-flex items-center gap-2.5 px-4 py-2 border border-white/20 hover:border-[#FF5A1F] bg-white/5 hover:bg-[#FF5A1F]/10 text-white text-xs uppercase tracking-widest font-medium transition-all duration-300 cursor-pointer"
+          aria-expanded="false"
+        >
+          <span id="polines-menu-btn-text">{currentLang === 'en' ? 'EXPLORE' : 'MENU'}</span>
+          <svg id="polines-menu-chevron" class="w-3.5 h-3.5 transition-transform duration-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+
+        <!-- Language Switcher -->
+        <a 
+          href={switchLangPath}
+          class="text-[11px] font-mono uppercase tracking-widest px-2.5 py-1.5 border border-white/20 hover:border-[#FF5A1F] text-white/90 hover:text-[#FF5A1F] transition-colors cursor-pointer"
+          title={currentLang === 'en' ? 'Ganti ke Bahasa Indonesia' : 'Switch to English'}
+        >
+          {currentLang === 'en' ? 'ID' : 'EN'}
+        </a>
+
+        <!-- Mobile Drawer Hamburger -->
+        <button
+          id="polines-mobile-toggle"
+          type="button"
+          class="lg:hidden p-2 text-white/90 hover:text-white focus:outline-none cursor-pointer"
+          aria-label="Toggle navigation drawer"
+        >
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Expandable Mega Menu Tray -->
+  <div
+    id="polines-mega-tray"
+    class="relative z-40 bg-[#17130E]/98 border-b border-orange-500/20 shadow-2xl overflow-hidden transition-all duration-500 max-h-0 opacity-0 pointer-events-none"
+  >
+    <div class="max-w-[92rem] mx-auto px-6 md:px-14 py-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        
+        <!-- Category 1: Profile -->
+        <div class="flex flex-col gap-4 text-left">
+          <h4 class="text-xs uppercase tracking-widest text-[#FF5A1F] font-semibold pb-2 border-b border-white/10">
+            {t.megaMenu.profile.title}
+          </h4>
+          <ul class="flex flex-col gap-2.5">
+            {t.megaMenu.profile.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-white/75 hover:text-[#FF5A1F] transition-colors duration-200">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Category 2: Academics -->
+        <div class="flex flex-col gap-4 text-left">
+          <h4 class="text-xs uppercase tracking-widest text-[#FF5A1F] font-semibold pb-2 border-b border-white/10">
+            {t.megaMenu.academics.title}
+          </h4>
+          <ul class="flex flex-col gap-2.5">
+            {t.megaMenu.academics.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-white/75 hover:text-[#FF5A1F] transition-colors duration-200">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Category 3: Research -->
+        <div class="flex flex-col gap-4 text-left">
+          <h4 class="text-xs uppercase tracking-widest text-[#FF5A1F] font-semibold pb-2 border-b border-white/10">
+            {t.megaMenu.research.title}
+          </h4>
+          <ul class="flex flex-col gap-2.5">
+            {t.megaMenu.research.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-white/75 hover:text-[#FF5A1F] transition-colors duration-200">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Category 4: Admissions -->
+        <div class="flex flex-col gap-4 text-left">
+          <h4 class="text-xs uppercase tracking-widest text-[#FF5A1F] font-semibold pb-2 border-b border-white/10">
+            {t.megaMenu.admissions.title}
+          </h4>
+          <ul class="flex flex-col gap-2.5">
+            {t.megaMenu.admissions.links.map((link) => (
+              <li>
+                <a href={link.href} class="text-sm text-white/75 hover:text-[#FF5A1F] transition-colors duration-200">
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+          
+          <div class="mt-4 pt-3 border-t border-white/10">
+            <a 
+              href="#unduh-brosur"
+              class="inline-flex items-center gap-2 text-xs uppercase tracking-wider text-[#FBBF24] hover:text-[#FF5A1F] font-medium transition-colors"
+            >
+              <span>{currentLang === 'en' ? 'Download Prospectus' : 'Unduh Prospektus'}</span>
+              <span>&rarr;</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Drawer -->
+  <div 
+    id="polines-mobile-drawer"
+    class="fixed inset-y-0 right-0 z-50 w-full max-w-sm bg-[#0E0C0A] border-l border-white/15 p-6 flex flex-col justify-between transform translate-x-full transition-transform duration-300 ease-in-out lg:hidden shadow-2xl"
+  >
+    <div class="flex flex-col gap-6">
+      <div class="flex items-center justify-between pb-4 border-b border-white/15">
+        <span class="text-xs uppercase tracking-widest text-[#FF5A1F] font-semibold">
+          Menu Navigasi
+        </span>
+        <button id="polines-mobile-close" type="button" class="text-white/80 hover:text-white p-2">
+          <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+
+      <nav class="flex flex-col gap-4 text-left">
+        {topNavItems.map((item) => (
+          <a
+            href={item.href}
+            class="text-base uppercase tracking-wider text-white/90 hover:text-[#FF5A1F] transition-colors py-2 border-b border-white/5 polines-mobile-link"
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+    </div>
+
+    <div class="pt-6 border-t border-white/15">
+      <a 
+        href="#unduh-brosur"
+        class="w-full inline-flex items-center justify-center py-3 bg-[#FF5A1F] text-white text-xs uppercase tracking-widest font-semibold hover:bg-[#FF7338] transition-colors polines-mobile-link cursor-pointer shadow-lg shadow-[#FF5A1F]/20"
+      >
+        {currentLang === 'en' ? 'Download Brochure' : 'Unduh Panduan'}
+      </a>
+    </div>
+  </div>
+</header>
+
+<script>
+  const navContainer = document.getElementById('polines-nav-container');
+  const menuBtn = document.getElementById('polines-menu-btn');
+  const megaTray = document.getElementById('polines-mega-tray');
+  const backdrop = document.getElementById('polines-nav-backdrop');
+  const chevron = document.getElementById('polines-menu-chevron');
+  const mobileToggle = document.getElementById('polines-mobile-toggle');
+  const mobileDrawer = document.getElementById('polines-mobile-drawer');
+  const mobileClose = document.getElementById('polines-mobile-close');
+  const mobileLinks = document.querySelectorAll('.polines-mobile-link');
+
+  let isMegaOpen = false;
+
+  function toggleMegaMenu() {
+    isMegaOpen = !isMegaOpen;
+    if (isMegaOpen) {
+      megaTray?.classList.remove('max-h-0', 'opacity-0', 'pointer-events-none');
+      megaTray?.classList.add('max-h-[800px]', 'opacity-100', 'pointer-events-auto');
+      backdrop?.classList.remove('opacity-0', 'pointer-events-none');
+      backdrop?.classList.add('opacity-100', 'pointer-events-auto');
+      chevron?.classList.add('rotate-180');
+      menuBtn?.setAttribute('aria-expanded', 'true');
+    } else {
+      megaTray?.classList.add('max-h-0', 'opacity-0', 'pointer-events-none');
+      megaTray?.classList.remove('max-h-[800px]', 'opacity-100', 'pointer-events-auto');
+      backdrop?.classList.add('opacity-0', 'pointer-events-none');
+      backdrop?.classList.remove('opacity-100', 'pointer-events-auto');
+      chevron?.classList.remove('rotate-180');
+      menuBtn?.setAttribute('aria-expanded', 'false');
+    }
+  }
+
+  menuBtn?.addEventListener('click', toggleMegaMenu);
+  backdrop?.addEventListener('click', () => {
+    if (isMegaOpen) toggleMegaMenu();
+    mobileDrawer?.classList.add('translate-x-full');
+  });
+
+  mobileToggle?.addEventListener('click', () => {
+    mobileDrawer?.classList.remove('translate-x-full');
+    backdrop?.classList.remove('opacity-0', 'pointer-events-none');
+    backdrop?.classList.add('opacity-100', 'pointer-events-auto');
+  });
+
+  mobileClose?.addEventListener('click', () => {
+    mobileDrawer?.classList.add('translate-x-full');
+    if (!isMegaOpen) {
+      backdrop?.classList.add('opacity-0', 'pointer-events-none');
+      backdrop?.classList.remove('opacity-100', 'pointer-events-auto');
+    }
+  });
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileDrawer?.classList.add('translate-x-full');
+      backdrop?.classList.add('opacity-0', 'pointer-events-none');
+      backdrop?.classList.remove('opacity-100', 'pointer-events-auto');
+    });
+  });
+
+  // Background solid on scroll
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+      navContainer?.classList.remove('bg-transparent');
+      navContainer?.classList.add('bg-[#0E0C0A]/95', 'backdrop-blur-md', 'shadow-lg');
+    } else {
+      navContainer?.classList.add('bg-transparent');
+      navContainer?.classList.remove('bg-[#0E0C0A]/95', 'backdrop-blur-md', 'shadow-lg');
+    }
+  }, { passive: true });
+</script>

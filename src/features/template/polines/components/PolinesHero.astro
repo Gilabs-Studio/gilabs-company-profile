@@ -1,0 +1,87 @@
+---
+import { polinesContentData, polinesImages } from '../data/content';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+const t = polinesContentData[currentLang].hero;
+---
+
+<div id="hero-section" class="section_hero relative min-h-screen flex flex-col justify-end overflow-hidden">
+  <!-- Cinematic Aerial Background Visual with Scroll Parallax Y -->
+  <div id="hero-bg-wrapper" class="absolute inset-0 z-0 will-change-transform">
+    <img 
+      id="hero-bg-img"
+      src={polinesImages.campusAerial} 
+      alt="Kampus Terpadu Lorem Polytechnic Institute" 
+      class="w-full h-[120%] -top-[10%] absolute object-cover object-center scale-105 will-change-transform"
+      loading="eager"
+    />
+    <!-- Ambient Overlays -->
+    <div class="absolute inset-0 bg-black/45"></div>
+    <div class="absolute -top-20 -right-20 w-[30rem] h-[30rem] bg-[#FF5A1F]/15 rounded-full blur-[100px] pointer-events-none"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-[#0E0C0A] via-[#0E0C0A]/35 to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-44 bg-gradient-to-t from-[#0E0C0A] to-transparent pointer-events-none"></div>
+  </div>
+
+  <!-- Hero Content (Tailored Minimalism: 2 Blok Teks + 1 Pembatas Halus) -->
+  <div id="hero-content" class="hero_component relative z-10 w-full max-w-[96rem] mx-auto px-6 md:px-14 pb-12 md:pb-20 flex flex-col justify-end will-change-transform">
+    <div class="hero_text-wrapper w-full flex flex-col items-start text-left">
+      
+      <!-- Tulisan Jargon (Refined & Sejajar Kiri) -->
+      <div class="hero_text-wrapper_paragraph max-w-[55ch] pb-4 md:pb-6">
+        <p class="text-base md:text-lg lg:text-xl text-white/90 font-light leading-relaxed">
+          {t.tagline}
+        </p>
+      </div>
+
+      <!-- Pembatas Garis 1px Halus Sejajar Full-Width -->
+      <div class="hero-text-divider w-full h-[1px] bg-white/25 my-2 md:my-3"></div>
+
+      <!-- Teks 2: Display Heading "Committed to Quality" Masif & Full-Width Sejajar Layout -->
+      <div class="hero_heading-wrapper w-full overflow-hidden pt-1 [container-type:inline-size]">
+        <h1 class="hero_heading text-white font-normal leading-[0.88] tracking-[-0.04em] text-[clamp(2.25rem,12.15cqi,11rem)] whitespace-nowrap select-none m-0 block">
+          {t.displayHeading}
+        </h1>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const heroBg = document.getElementById('hero-bg-img');
+  const heroContent = document.getElementById('hero-content');
+  const heroSection = document.getElementById('hero-section');
+
+  let ticking = false;
+
+  function updateHeroParallax() {
+    const scrollY = window.scrollY;
+    const heroHeight = heroSection?.offsetHeight || window.innerHeight;
+
+    if (scrollY <= heroHeight * 1.5) {
+      if (heroBg) {
+        heroBg.style.transform = `translate3d(0, ${scrollY * 0.35}px, 0)`;
+      }
+      if (heroContent) {
+        const opacity = Math.max(0, 1 - (scrollY / (heroHeight * 0.85)));
+        heroContent.style.transform = `translate3d(0, ${scrollY * 0.18}px, 0)`;
+        heroContent.style.opacity = `${opacity}`;
+      }
+    }
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(updateHeroParallax);
+      ticking = true;
+    }
+  }, { passive: true });
+
+  updateHeroParallax();
+</script>

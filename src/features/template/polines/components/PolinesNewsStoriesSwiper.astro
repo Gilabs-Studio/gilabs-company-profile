@@ -1,0 +1,199 @@
+---
+import { polinesContentData } from '../data/content';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+const t = polinesContentData[currentLang].news;
+---
+
+<section 
+  id="berita" 
+  data-bg-section="light"
+  data-theme-section="light"
+  class="relative z-10 bg-[#F5F2EB] text-[#17130E] py-24 md:py-36 px-5 sm:px-8 md:px-14 overflow-hidden"
+>
+  <div id="riset" class="absolute -top-24 left-0 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="max-w-[92rem] mx-auto">
+    
+    <!-- Section Header Lockup -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 md:mb-16">
+      <div class="max-w-2xl text-left">
+        <p class="text-xs uppercase tracking-[0.25em] text-[#EA580C] font-semibold mb-3 select-none">
+          {t.eyebrow}
+        </p>
+        <h2 class="heading-h2 text-[#17130E] font-normal tracking-tight">
+          {t.title}
+        </h2>
+        <p class="text-base md:text-lg text-[#241E18]/80 font-light mt-3 leading-relaxed">
+          {t.desc}
+        </p>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="flex flex-wrap items-center gap-2 select-none" id="story-filter-container">
+        {t.categories.map((cat, idx) => (
+          <button
+            type="button"
+            data-filter={cat.id}
+            class={`story-filter-btn px-4 py-2 text-xs uppercase tracking-wider font-medium transition-all duration-200 cursor-pointer rounded-none ${
+              idx === 0 
+                ? 'bg-[#FF5A1F] text-white border border-[#FF5A1F] shadow-sm' 
+                : 'bg-transparent text-[#17130E]/75 hover:text-[#FF5A1F] border border-[#17130E]/20 hover:border-[#FF5A1F]'
+            }`}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+    </div>
+
+    <!-- Stories Slider Track -->
+    <div class="relative">
+      <div 
+        id="news-slider-track"
+        class="flex gap-6 md:gap-8 overflow-x-auto no-scrollbar scroll-smooth pb-8"
+        style="scroll-snap-type: x mandatory;"
+      >
+        {t.stories.map((item) => (
+          <div 
+            data-group={item.filterGroup}
+            class="story-card flex-shrink-0 w-[290px] sm:w-[360px] md:w-[420px] flex flex-col group cursor-pointer transition-all duration-300"
+            style="scroll-snap-align: start;"
+          >
+            <!-- Image Frame -->
+            <div class="relative aspect-[16/10] rounded-none overflow-hidden bg-[#17130E]/5 mb-5 shadow-sm group-hover:shadow-xl transition-all duration-300 border border-black/5">
+              <img 
+                src={item.image} 
+                alt={item.title} 
+                class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 rounded-none" 
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-[#17130E]/10 group-hover:bg-transparent transition-colors"></div>
+              
+              <!-- Innovator Pill Overlay -->
+              <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                <span class="text-[11px] font-medium text-white bg-black/60 backdrop-blur-md px-2.5 py-1 rounded-none border border-white/20 truncate max-w-[90%]">
+                  {item.innovator}
+                </span>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="flex flex-col gap-2 text-left">
+              <div class="flex items-center gap-3">
+                <span class="text-[11px] font-semibold uppercase tracking-wider text-[#EA580C]">
+                  {item.category}
+                </span>
+                <span class="text-[11px] text-[#241E18]/50">
+                  {item.date}
+                </span>
+              </div>
+
+              <h3 class="text-lg sm:text-xl font-normal text-[#17130E] group-hover:text-[#FF5A1F] transition-colors leading-snug line-clamp-2">
+                {item.title}
+              </h3>
+
+              <p class="text-xs sm:text-sm text-[#241E18]/70 font-light line-clamp-2 leading-relaxed mt-1">
+                {item.excerpt}
+              </p>
+
+              <div class="pt-2 flex items-center gap-2 text-xs uppercase tracking-wider text-[#17130E] group-hover:text-[#FF5A1F] font-medium group-hover:translate-x-1 transition-transform">
+                <span>{item.readMore}</span>
+                <span>&rarr;</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- Navigation Arrows & View All Link -->
+      <div class="flex items-center justify-between pt-8 border-t border-[#17130E]/10 mt-6">
+        <div class="flex items-center gap-3">
+          <button 
+            id="news-prev-btn" 
+            aria-label="Previous story"
+            class="slider_button text-[#17130E] border-[#17130E]/20 hover:bg-[#FF5A1F] hover:border-[#FF5A1F] hover:text-white transition-colors cursor-pointer"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button 
+            id="news-next-btn" 
+            aria-label="Next story"
+            class="slider_button text-[#17130E] border-[#17130E]/20 hover:bg-[#FF5A1F] hover:border-[#FF5A1F] hover:text-white transition-colors cursor-pointer"
+          >
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <a 
+          href="#berita" 
+          class="button_component is-primary group rounded-none"
+        >
+          <span class="button_content-wrapper">
+            <span class="text-sm font-normal">
+              {t.viewArchive}
+            </span>
+            <span class="button_icon-wrapper rounded-none">
+              <svg class="w-4 h-4 text-[#0E0C0A] transition-transform duration-300 group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </span>
+          </span>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<script>
+  const track = document.getElementById('news-slider-track');
+  const prevBtn = document.getElementById('news-prev-btn');
+  const nextBtn = document.getElementById('news-next-btn');
+  const filterBtns = document.querySelectorAll('.story-filter-btn');
+  const cards = document.querySelectorAll('.story-card');
+
+  prevBtn?.addEventListener('click', () => {
+    track?.scrollBy({ left: -420, behavior: 'smooth' });
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    track?.scrollBy({ left: 420, behavior: 'smooth' });
+  });
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const targetFilter = btn.getAttribute('data-filter');
+
+      filterBtns.forEach((b) => {
+        b.classList.remove('bg-[#FF5A1F]', 'text-white', 'border-[#FF5A1F]');
+        b.classList.add('bg-transparent', 'text-[#17130E]/75', 'border', 'border-[#17130E]/20');
+      });
+      btn.classList.add('bg-[#FF5A1F]', 'text-white', 'border-[#FF5A1F]');
+      btn.classList.remove('bg-transparent', 'text-[#17130E]/75', 'border-[#17130E]/20');
+
+      cards.forEach((card) => {
+        const group = card.getAttribute('data-group');
+        if (targetFilter === 'all' || group === targetFilter) {
+          (card as HTMLElement).style.display = 'flex';
+        } else {
+          (card as HTMLElement).style.display = 'none';
+        }
+      });
+
+      if (track) {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+      }
+    });
+  });
+</script>

@@ -1,0 +1,194 @@
+---
+import { polinesContentData } from '../data/content';
+
+interface Props {
+  lang?: 'id' | 'en';
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+const p1 = polinesContentData[currentLang].purpose1;
+const p2 = polinesContentData[currentLang].purpose2;
+---
+
+<!-- ==========================================
+     PURPOSE SECTION 1: KEAHLIAN VOKASI (WARM CHARCOAL)
+     ========================================== -->
+<div id="purpose-section-1" class="section-full relative bg-[#0E0C0A] text-white py-28 md:py-40 overflow-hidden">
+  
+  <!-- Giant Outline Watermark Text -->
+  <div 
+    id="watermark-1"
+    class="absolute top-0 md:top-8 left-0 right-0 pointer-events-none select-none text-[8rem] sm:text-[14rem] md:text-[20rem] font-bold leading-none uppercase tracking-tighter opacity-20 overflow-visible whitespace-nowrap will-change-transform z-0 text-[#FF5A1F]"
+    aria-hidden="true"
+  >
+    <span class="watermark-outline">
+      {p1.watermark}
+    </span>
+  </div>
+
+  <div class="container relative z-10 max-w-[92rem] mx-auto px-6 md:px-14">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Image Col (Left, Parallax Y & Parallax X) -->
+      <div class="lg:col-span-7 flex justify-center lg:justify-start">
+        <div 
+          id="purpose-card-1"
+          class="relative w-full max-w-xl aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-[#17130E] border border-white/10 will-change-transform"
+        >
+          <img 
+            id="purpose-img-1"
+            src={p1.image} 
+            alt={p1.imageAlt} 
+            class="w-[130%] max-w-none h-full object-cover will-change-transform"
+            style="transform: translate3d(-15%, 0, 0);"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <!-- Content Col (Right) -->
+      <div class="lg:col-span-5 flex flex-col items-start text-left">
+        <div class="section-heading-wrapper mb-6">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-5.5xl text-white font-normal tracking-tight leading-tight">
+            {p1.title} <span class="font-light text-[#FF5A1F]">{p1.highlight}</span>
+          </h2>
+        </div>
+
+        <p class="text-base md:text-lg text-white/80 font-light leading-relaxed mb-8 max-w-lg">
+          {p1.desc}
+        </p>
+
+        <div>
+          <a 
+            href="#kehidupan-kampus" 
+            class="inline-flex items-center gap-3 px-7 py-3.5 border border-[#FF5A1F] text-[#FF5A1F] hover:bg-[#FF5A1F] hover:text-[#0E0C0A] transition-all duration-300 rounded-none text-xs uppercase tracking-[0.18em] font-medium cursor-pointer shadow-lg shadow-[#FF5A1F]/10"
+          >
+            <span>{p1.cta}</span>
+            <svg class="w-3.5 h-3.5 ml-1 fill-current" viewBox="0 0 13 13">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2539 6.11092L5.87125 0.728237L6.47607 0.123413L12.8768 6.52413L6.82855 12.5724L6.22373 11.9676L11.225 6.96627L0.61396 6.96627L0.61396 6.11092L11.2539 6.11092Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==========================================
+     PURPOSE SECTION 2: RISET & INOVASI (WARM CHARCOAL WITH ARCHITECTURAL CURVED BOTTOM)
+     ========================================== -->
+<div 
+  id="purpose-section-2" 
+  class="section-full relative z-20 bg-[#0E0C0A] text-white py-28 md:py-40 overflow-hidden shadow-2xl"
+  style="border-bottom-left-radius: clamp(3rem, 6vw, 6.25rem); border-bottom-right-radius: clamp(3rem, 6vw, 6.25rem);"
+>
+  
+  <!-- Giant Outline Watermark Text -->
+  <div 
+    id="watermark-2"
+    class="absolute top-0 md:top-8 left-0 right-0 pointer-events-none select-none text-[8rem] sm:text-[14rem] md:text-[20rem] font-bold leading-none uppercase tracking-tighter opacity-20 overflow-visible whitespace-nowrap will-change-transform z-0 text-[#FF5A1F]"
+    aria-hidden="true"
+  >
+    <span class="watermark-outline">
+      {p2.watermark}
+    </span>
+  </div>
+
+  <div class="container relative z-10 max-w-[92rem] mx-auto px-6 md:px-14">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Content Col (Left on Purpose 2) -->
+      <div class="lg:col-span-5 flex flex-col items-start text-left order-2 lg:order-1">
+        <div class="section-heading-wrapper mb-6">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-5.5xl text-white font-normal tracking-tight leading-tight">
+            {p2.title} <span class="font-light text-[#FF5A1F]">{p2.highlight}</span>
+          </h2>
+        </div>
+
+        <p class="text-base md:text-lg text-white/80 font-light leading-relaxed mb-8 max-w-lg">
+          {p2.desc}
+        </p>
+
+        <div>
+          <a 
+            href="#riset" 
+            class="inline-flex items-center gap-3 px-7 py-3.5 border border-[#FF5A1F] text-[#FF5A1F] hover:bg-[#FF5A1F] hover:text-[#0E0C0A] transition-all duration-300 rounded-none text-xs uppercase tracking-[0.18em] font-medium cursor-pointer shadow-lg shadow-[#FF5A1F]/10"
+          >
+            <span>{p2.cta}</span>
+            <svg class="w-3.5 h-3.5 ml-1 fill-current" viewBox="0 0 13 13">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M11.2539 6.11092L5.87125 0.728237L6.47607 0.123413L12.8768 6.52413L6.82855 12.5724L6.22373 11.9676L11.225 6.96627L0.61396 6.96627L0.61396 6.11092L11.2539 6.11092Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Image Col (Right on Purpose 2) -->
+      <div class="lg:col-span-7 flex justify-center lg:justify-end order-1 lg:order-2">
+        <div 
+          id="purpose-card-2"
+          class="relative w-full max-w-xl aspect-[16/10] rounded-none overflow-hidden shadow-2xl bg-[#17130E] border border-white/10 will-change-transform"
+        >
+          <img 
+            id="purpose-img-2"
+            src={p2.image} 
+            alt={p2.imageAlt} 
+            class="w-[130%] max-w-none h-full object-cover will-change-transform"
+            style="transform: translate3d(0, 0, 0);"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  const sec1 = document.getElementById('purpose-section-1');
+  const watermark1 = document.getElementById('watermark-1');
+  const card1 = document.getElementById('purpose-card-1');
+  const img1 = document.getElementById('purpose-img-1');
+
+  const sec2 = document.getElementById('purpose-section-2');
+  const watermark2 = document.getElementById('watermark-2');
+  const card2 = document.getElementById('purpose-card-2');
+  const img2 = document.getElementById('purpose-img-2');
+
+  function handlePurposeParallax() {
+    const windowH = window.innerHeight;
+
+    if (sec1) {
+      const rect1 = sec1.getBoundingClientRect();
+      if (rect1.top < windowH && rect1.bottom > 0) {
+        const progress1 = (windowH - rect1.top) / (windowH + rect1.height);
+        const watermarkX1 = -progress1 * 12;
+        const cardY1 = 100 - (progress1 * 225);
+        const imgX1 = -15 + (progress1 * 15);
+
+        if (watermark1) watermark1.style.transform = `translate3d(${watermarkX1}%, 0, 0)`;
+        if (card1) card1.style.transform = `translate3d(0, ${cardY1}px, 0)`;
+        if (img1) img1.style.transform = `translate3d(${imgX1}%, 0, 0)`;
+      }
+    }
+
+    if (sec2) {
+      const rect2 = sec2.getBoundingClientRect();
+      if (rect2.top < windowH && rect2.bottom > 0) {
+        const progress2 = (windowH - rect2.top) / (windowH + rect2.height);
+        const watermarkX2 = -8 + (progress2 * 12);
+        const cardY2 = 100 - (progress2 * 250);
+        const imgX2 = -(progress2 * 15);
+
+        if (watermark2) watermark2.style.transform = `translate3d(${watermarkX2}%, 0, 0)`;
+        if (card2) card2.style.transform = `translate3d(0, ${cardY2}px, 0)`;
+        if (img2) img2.style.transform = `translate3d(${imgX2}%, 0, 0)`;
+      }
+    }
+  }
+
+  window.addEventListener('scroll', handlePurposeParallax, { passive: true });
+  window.addEventListener('resize', handlePurposeParallax);
+  handlePurposeParallax();
+</script>

@@ -1,0 +1,304 @@
+---
+import TemplateDemoHeader from '../../../components/templates/TemplateDemoHeader.astro';
+import { templatesData } from '../../../data/templatesData';
+import '../../../styles/globals.css';
+
+import PolinesNavbar from './components/PolinesNavbar.astro';
+import PolinesHero from './components/PolinesHero.astro';
+import PolinesTextIntro from './components/PolinesTextIntro.astro';
+import PolinesPurposeSections from './components/PolinesPurposeSections.astro';
+import PolinesCampusLifeStories from './components/PolinesCampusLifeStories.astro';
+import PolinesJourneyCards from './components/PolinesJourneyCards.astro';
+import PolinesNewsStoriesSwiper from './components/PolinesNewsStoriesSwiper.astro';
+import PolinesCtaSections from './components/PolinesCtaSections.astro';
+import PolinesFooter from './components/PolinesFooter.astro';
+import SmoothScroll from './components/SmoothScroll';
+
+interface Props {
+  lang?: string;
+}
+
+const { lang = 'id' } = Astro.props;
+const currentLang = (lang === 'en' ? 'en' : 'id') as 'id' | 'en';
+
+const template = templatesData.find((t) => t.id === 'polines') || {
+  id: 'polines',
+  title: 'Lorem • Politeknik Vokasi',
+  titleEn: 'Lorem • Vocational Institute'
+};
+const templateTitle = currentLang === 'en' && template.titleEn ? template.titleEn : template.title;
+---
+
+<!DOCTYPE html>
+<html lang={currentLang} class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
+  <title>{templateTitle} - Live Demo</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+  <!-- Preconnect & Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style is:global>
+    @font-face {
+      font-family: "Neue Montreal";
+      src: url("/fonts/PPNeueMontreal-Regular.woff2") format("woff2");
+      font-weight: 400;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Neue Montreal";
+      src: url("/fonts/PPNeueMontreal-Medium.woff2") format("woff2");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: "Neue Montreal";
+      src: url("/fonts/PPNeueMontreal-Italic.woff2") format("woff2");
+      font-weight: 400;
+      font-style: italic;
+      font-display: swap;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0E0C0A;
+      color: #F5F2EB;
+      font-family: "Neue Montreal", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      overflow-x: clip;
+    }
+
+    ::selection {
+      background-color: #FF5A1F;
+      color: #0E0C0A;
+    }
+
+    /* Scoped styling for Polines Template */
+    .polines-scope {
+      --color-polines-navy-dark: #0e0c0a;
+      --color-polines-navy: #17130e;
+      --color-polines-navy-light: #262019;
+      --color-polines-orange: #ff5a1f;
+      --color-polines-orange-light: #ff7844;
+      --color-polines-orange-dark: #c2410c;
+      --color-polines-amber: #fbbf24;
+      --color-polines-gold: #ff5a1f;
+      --color-polines-gold-light: #ff7844;
+      --color-polines-gold-dark: #c2410c;
+      --color-polines-stone: #f5f2eb;
+      --color-polines-stone-dark: #e6e1d6;
+      --color-polines-slate: #241e18;
+      --color-polines-slate-muted: #786f63;
+      font-family: "Neue Montreal", "Inter", sans-serif;
+    }
+
+    .polines-scope .heading-hero {
+      font-size: clamp(3rem, 11vw, 12rem);
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      font-weight: 400;
+    }
+
+    .polines-scope .heading-h2 {
+      font-size: clamp(2.25rem, 5vw, 4.25rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      font-weight: 400;
+    }
+
+    .polines-scope .heading-h3 {
+      font-size: clamp(1.75rem, 3.5vw, 3rem);
+      line-height: 1.15;
+      letter-spacing: -0.025em;
+      font-weight: 400;
+    }
+
+    /* Animated Underline Navigation Link */
+    .polines-scope [data-el="nav-link"] {
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      transition: color 200ms ease;
+    }
+
+    .polines-scope [data-el="nav-link"]::after {
+      content: "";
+      position: absolute;
+      top: calc(100% + 4px);
+      height: 1.5px;
+      width: 100%;
+      left: 0;
+      right: 0;
+      background: currentColor;
+      transform: scaleX(0);
+      transform-origin: left center;
+      transition: transform 250ms cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    .polines-scope [data-el="nav-link"]:hover::after,
+    .polines-scope [data-el="nav-link"]:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    /* Button Component */
+    .polines-scope .button_component {
+      display: inline-flex;
+      align-items: center;
+      border-radius: 0px !important;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 250ms ease, background-color 200ms ease, border-color 200ms ease;
+      user-select: none;
+      font-weight: 400;
+    }
+
+    .polines-scope .button_component:active {
+      transform: scale(0.98);
+    }
+
+    .polines-scope .button_content-wrapper {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.875rem;
+      border-radius: 0px !important;
+    }
+
+    .polines-scope .button_icon-wrapper {
+      width: 2rem;
+      height: 2rem;
+      border-radius: 0px !important;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 300ms ease;
+      flex-shrink: 0;
+    }
+
+    .polines-scope .button_component:hover .button_icon-wrapper {
+      transform: translateX(3px);
+    }
+
+    .polines-scope .button_component.is-primary {
+      background-color: #17130e;
+      color: #ffffff;
+      padding: 0.6rem 0.75rem 0.6rem 1.4rem;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .polines-scope .button_component.is-primary .button_icon-wrapper {
+      background-color: #ff5a1f;
+      color: #0e0c0a;
+    }
+
+    .polines-scope .button_component.is-primary:hover {
+      background-color: #261c14;
+      border-color: #ff5a1f;
+    }
+
+    .polines-scope .button_component.is-gold {
+      background-color: #ff5a1f;
+      color: #ffffff;
+      padding: 0.6rem 0.75rem 0.6rem 1.4rem;
+      font-weight: 500;
+      border: 1px solid #ff5a1f;
+    }
+
+    .polines-scope .button_component.is-gold .button_icon-wrapper {
+      background-color: #0e0c0a;
+      color: #ffffff;
+    }
+
+    .polines-scope .button_component.is-gold:hover {
+      background-color: #ff7844;
+    }
+
+    /* Slider Button */
+    .polines-scope .slider_button {
+      width: 3rem;
+      height: 3rem;
+      border-radius: 0px !important;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(23, 19, 14, 0.25);
+      background-color: transparent;
+      cursor: pointer;
+      transition: all 250ms ease;
+    }
+
+    .polines-scope .slider_button:hover {
+      border-color: #ff5a1f;
+      background-color: #ff5a1f;
+      color: #ffffff;
+    }
+
+    /* Giant Outline Watermark Text */
+    .polines-scope .watermark-outline {
+      -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.85);
+      color: transparent;
+    }
+
+    /* Native Dialog styling */
+    .polines-scope dialog {
+      border: none;
+      border-radius: 0px !important;
+      padding: 0;
+      background: transparent;
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+
+    .polines-scope dialog::backdrop {
+      background-color: rgba(14, 12, 10, 0.88);
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-[#0E0C0A] text-[#F5F2EB] antialiased selection:bg-[#FF5A1F] selection:text-[#0E0C0A]">
+
+  <!-- Floating Demo Header Overlay -->
+  <TemplateDemoHeader templateId="polines" lang={currentLang} />
+
+  <!-- Smooth Scroll Provider -->
+  <SmoothScroll client:load />
+
+  <div class="polines-scope relative w-full" id="root">
+    <!-- Navbar -->
+    <PolinesNavbar lang={currentLang} />
+
+    <!-- Main Page Body (Relative Z-10 covering the Sticky Reveal Footer) -->
+    <main class="relative z-10 bg-[#0E0C0A] shadow-2xl">
+      <!-- 1. Hero Section -->
+      <PolinesHero lang={currentLang} />
+
+      <!-- 2. Animated Text Intro -->
+      <PolinesTextIntro lang={currentLang} />
+
+      <!-- 3. Dual Purpose Sections -->
+      <PolinesPurposeSections lang={currentLang} />
+
+      <!-- 4. Campus Life Stories -->
+      <PolinesCampusLifeStories lang={currentLang} />
+
+      <!-- 5. Mulai Perjalananmu (Journey Cards) -->
+      <PolinesJourneyCards lang={currentLang} />
+
+      <!-- 6. Kabar & Inovasi Swiper -->
+      <PolinesNewsStoriesSwiper lang={currentLang} />
+
+      <!-- 7. CTA Sections -->
+      <PolinesCtaSections lang={currentLang} />
+    </main>
+
+    <!-- Sticky Reveal Footer (Sticky Bottom-0 Z-0) -->
+    <PolinesFooter lang={currentLang} />
+  </div>
+
+</body>
+</html>
