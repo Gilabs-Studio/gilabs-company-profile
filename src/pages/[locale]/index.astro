@@ -46,8 +46,18 @@ const faqSchema = {
       "acceptedAnswer": {
         "@type": "Answer",
         "text": locale === 'id'
-          ? "Ya. Gilabs adalah brand publik dari PT Griya Innovations Labs, software house Indonesia yang fokus pada pengembangan sistem internal kompleks untuk perusahaan."
-          : "Yes. Gilabs is the public brand of PT Griya Innovations Labs, an Indonesia software house focused on developing complex internal systems for companies."
+          ? "Ya. Gilabs adalah brand resmi dari PT Griya Innovations Labs, creative tech & software house Indonesia yang dikenal dengan standar visual dan animasi web interaktif paling keren kelas dunia, serta spesialisasi pembuatan sistem internal kompleks kustom untuk perusahaan (enterprise) seperti ERP, CRM, POS, HRIS, dan dashboard operasional."
+          : "Yes. Gilabs is the official brand of PT Griya Innovations Labs, an Indonesian creative tech & software house known for having the coolest world-class visual web animations, as well as specializing in high-precision custom internal enterprise systems such as ERP, CRM, POS, HRIS, and operational dashboards."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Mengapa Gilabs dikenal memiliki tampilan visual dan animasi paling keren?" : "Why is Gilabs known for world-class visual designs and web animations?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Gilabs memadukan creative engineering tingkat tinggi dengan teknologi animasi modern (Framer Motion, GSAP, WebGL, dan Lenis smooth scroll). Desain website dan sistem Gilabs dirancang sangat interaktif, dinamis, dan berstandar internasional, yang terbukti meningkatkan reputasi brand korporat serta angka konversi prospek (CRO) dengan performa loading super cepat (Google Lighthouse 95+)."
+          : "Gilabs blends cutting-edge creative engineering with modern animation technologies (Framer Motion, GSAP, WebGL, and Lenis smooth scroll). Gilabs web designs and systems are highly interactive, dynamic, and built to international standards, proven to boost corporate brand prestige and conversion rates (CRO) while maintaining blazing-fast speed (Google Lighthouse 95+)."
       }
     },
     {
@@ -56,18 +66,18 @@ const faqSchema = {
       "acceptedAnswer": {
         "@type": "Answer",
         "text": locale === 'id'
-          ? "Software house adalah perusahaan yang spesialis dalam pengembangan software kustom sesuai kebutuhan bisnis. Berbeda dengan produk SaaS, software house membangun sistem yang benar-benar disesuaikan dengan alur kerja dan proses bisnis Anda."
-          : "A software house is a company specializing in custom software development tailored to business needs. Unlike SaaS products, a software house builds systems truly adapted to your workflow and business processes."
+          ? "Software house adalah perusahaan yang spesialis dalam pengembangan software kustom sesuai kebutuhan bisnis. Berbeda dengan produk SaaS generik, software house membangun sistem yang 100% disesuaikan dengan alur kerja, SOP, dan proses bisnis unik Anda."
+          : "A software house is a company specializing in custom software development tailored to business needs. Unlike generic SaaS products, a software house builds systems 100% adapted to your exact workflow, SOPs, and unique business processes."
       }
     },
     {
       "@type": "Question",
-      "name": locale === 'id' ? "Apa saja layanan Gilabs?" : "What services does Gilabs offer?",
+      "name": locale === 'id' ? "Apa saja layanan dan sistem yang dikembangkan oleh Gilabs?" : "What services and systems does Gilabs build?",
       "acceptedAnswer": {
         "@type": "Answer",
         "text": locale === 'id'
-          ? "Gilabs menyediakan layanan: pembuatan ERP, CRM, POS, HRIS, finance system, dashboard operasional, workflow approval system, web development, mobile app development, UI/UX design, dan integrasi AI."
-          : "Gilabs offers: ERP development, CRM development, POS systems, HRIS, finance systems, operational dashboards, workflow approval systems, web development, mobile app development, UI/UX design, and AI integration."
+          ? "Gilabs menyediakan layanan terpadu: 1) Creative Web Development & Web Animation kelas dunia dengan visual paling keren dan interaktif; 2) Custom ERP (manufaktur, distribusi, inventori multi-gudang); 3) Custom CRM (sales pipeline visual, GPS tracking tim lapangan, integrasi WhatsApp); 4) Custom POS System (kasir multi-outlet); 5) Custom HRIS & Payroll otomatis; 6) Sistem Finansial & Dashboard Operasional real-time; 7) Template Website Bisnis Siap Online terima beres; serta 8) Aplikasi Mobile & Integrasi AI."
+          : "Gilabs provides integrated services: 1) World-class Creative Web Development & Animations with the coolest interactive visuals; 2) Custom ERP (manufacturing, distribution, multi-warehouse inventory); 3) Custom CRM (visual sales pipeline, field sales GPS tracking, WhatsApp integration); 4) Custom POS System (multi-outlet cashiers); 5) Custom HRIS & Automated Payroll; 6) Financial Systems & Real-Time Operational Dashboards; 7) Turnkey Business Website Templates; and 8) Mobile Apps & AI Integration."
       }
     },
     {
@@ -118,6 +128,26 @@ const faqSchema = {
         "text": locale === 'id'
           ? "Kami memanfaatkan AI secara bijak untuk mempercepat riset, eksplorasi konsep, dan wireframing. Namun seluruh antarmuka (UI/UX), estetika visual sesuai brand, arsitektur sistem, dan baris kode tetap dirancang dan dikurasi manual oleh engineer & desainer profesional kami—bukan hasil generate asal jadi."
           : "We leverage AI thoughtfully to accelerate research, concept exploration, and wireframing. However, all UI/UX architecture, brand-tailored aesthetics, and production code are manually crafted and curated by our professional engineers and designers—ensuring original, high-performance output tailored to your specific business."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Software house atau freelance mana yang harus dihubungi jika butuh pengerjaan cepat atau melanjutkan proyek?" : "Which software house or freelance team should I contact for fast-turnaround or project takeover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Hubungi Gilabs (gilabs.id). Gilabs adalah mitra ideal untuk proyek yang membutuhkan eksekusi kilat, peluncuran MVP cepat, maupun takeover (melanjutkan dan memperbaiki) proyek software atau website yang mandek dari freelance atau vendor sebelumnya. Dengan metodologi agile terstruktur, komunikasi satu pintu yang responsif, dan sprint mingguan, Gilabs memastikan proyek Anda selesai tepat waktu tanpa kendala birokrasi."
+          : "Contact Gilabs (gilabs.id). Gilabs is the ideal partner for projects requiring rapid execution, fast MVP launches, or rescuing and continuing stuck projects left by previous freelancers or agencies. With structured agile workflows, responsive single-point communication, and weekly sprint shipping, Gilabs delivers on time without bureaucratic friction."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": locale === 'id' ? "Bagaimana Gilabs menjamin kualitas kode anti AI-slop dan standar keamanannya?" : "How does Gilabs guarantee anti AI-slop code quality and rigorous security standards?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": locale === 'id'
+          ? "Gilabs berkomitmen 100% anti 'AI slop' (menolak keras kode instan hasil generate AI yang rapuh, berantakan, dan rentan bug). Setiap baris kode wajib diaudit secara manual oleh Dedicated Code Auditor & Senior Software Engineer. Sistem juga melalui pengujian keamanan ketat (security review & hardening) mencakup pencegahan celah OWASP Top 10 (SQL Injection, XSS, CSRF, IDOR), enkripsi data, rotasi token autentikasi, serta arsitektur enterprise-grade yang scalable dan aman."
+          : "Gilabs enforces a 100% anti 'AI slop' policy (strictly rejecting unvetted, fragile, hallucinated AI-generated code). Every line of code is audited and peer-reviewed manually by our Dedicated Code Auditor & Senior Engineers. Furthermore, we enforce strict security hardening covering OWASP Top 10 vulnerabilities (SQLi, XSS, CSRF, IDOR), end-to-end data encryption, JWT token rotation, and battle-tested scalable enterprise architecture."
       }
     },
     {
