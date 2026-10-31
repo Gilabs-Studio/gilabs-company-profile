@@ -2,11 +2,10 @@
 import Layout from '../../layouts/Layout.astro';
 import Navbar from '../../components/Navbar.astro';
 import Footer from '../../components/sections/Footer.astro';
-import ServicesHero from '../../components/services/ServicesHero.astro';
-import ServicesGrid from '../../components/services/ServicesGrid.astro';
-import ServicesAiAddons from '../../components/services/ServicesAiAddons.astro';
-import FeaturedTemplates from '../../components/sections/FeaturedTemplates.astro';
-import ServicesCta from '../../components/services/ServicesCta.astro';
+import ServicesHeroMinimal from '../../components/services/ServicesHeroMinimal.astro';
+import ServicesCardsCatalog from '../../components/services/ServicesCardsCatalog.astro';
+import ServicesCtaMinimal from '../../components/services/ServicesCtaMinimal.astro';
+import { serviceSlugPairMap } from '../../data/services/index';
 
 export function getStaticPaths() {
   return [
@@ -21,30 +20,28 @@ const lang = locale as 'en' | 'id';
 const siteUrl = 'https://gilabs.id';
 const canonical = locale === 'en' ? `${siteUrl}/en/services` : `${siteUrl}/${locale}/services`;
 const pageTitle = locale === 'en'
-  ? `Gilabs Services | ERP, CRM, HRIS, Finance & Internal Systems Development`
-  : `Layanan Gilabs | ERP, CRM, HRIS, Finance & Pengembangan Sistem Internal`;
+  ? `Gilabs Services | Robust Software for Your Business Scale`
+  : `Layanan Gilabs | Software Tangguh untuk Skala Bisnis Anda`;
 const pageDescription = locale === 'id'
-  ? 'Gilabs by PT Griya Innovations Labs menyediakan jasa pengembangan ERP, CRM, POS, HRIS, finance system, dashboard operasional, workflow approval, web app, mobile app, dan custom software untuk perusahaan di Indonesia.'
-  : 'Gilabs by PT Griya Innovations Labs provides ERP, CRM, POS, HRIS, finance system, operational dashboard, workflow approval, web app, mobile app, and custom software development services for companies in Indonesia.';
+  ? 'Direktori lengkap layanan software house dan rekayasa web Gilabs: website bespoke, corporate, klinik, kontraktor, UMKM, toko online, mobile apps, ERP & CRM kustom, serta sistem informasi manajemen.'
+  : 'Comprehensive directory of Gilabs software engineering and bespoke web services: corporate web, healthcare, property, SME, e-commerce, mobile apps, ERP & CRM, and management information systems.';
 
 // Services ItemList Schema
 const serviceListSchema = {
   "@context": "https://schema.org",
   "@type": "ItemList",
-  "name": locale === 'id' ? "Layanan Gilabs Software House" : "Gilabs Software House Services",
+  "name": locale === 'id' ? "Layanan Gilabs Software House & Web Development" : "Gilabs Software House & Web Development Services",
   "description": pageDescription,
   "url": canonical,
-  "numberOfItems": 8,
+  "numberOfItems": 14,
   "itemListElement": [
     {
       "@type": "ListItem",
       "position": 1,
       "item": {
         "@type": "Service",
-        "name": "ERP System Development",
-        "description": locale === 'id'
-          ? "Pengembangan sistem ERP kustom untuk manufaktur, distribusi, dan retail"
-          : "Custom ERP system development for manufacturing, distribution, and retail",
+        "name": locale === 'id' ? "Jasa Website Premium Custom" : "Premium Bespoke Website Development",
+        "url": `${siteUrl}/${locale}/website-premium`,
         "provider": { "@id": "https://gilabs.id/#organization" }
       }
     },
@@ -53,10 +50,8 @@ const serviceListSchema = {
       "position": 2,
       "item": {
         "@type": "Service",
-        "name": "CRM System Development",
-        "description": locale === 'id'
-          ? "Platform CRM enterprise untuk manajemen sales pipeline, lead, dan pelanggan"
-          : "Enterprise CRM platform for sales pipeline, lead, and customer management",
+        "name": locale === 'id' ? "Jasa Pembuatan Website Corporate & Holding" : "Corporate & Enterprise Website Development",
+        "url": `${siteUrl}/${locale}/website-corporate`,
         "provider": { "@id": "https://gilabs.id/#organization" }
       }
     },
@@ -65,10 +60,8 @@ const serviceListSchema = {
       "position": 3,
       "item": {
         "@type": "Service",
-        "name": "POS System Development",
-        "description": locale === 'id'
-          ? "Sistem kasir dan penjualan untuk retail, F&B, dan multi-outlet"
-          : "Point of Sale system for retail, F&B, and multi-outlet businesses",
+        "name": locale === 'id' ? "Jasa Pembuatan Website Klinik & Rumah Sakit" : "Clinics & Hospitals Healthcare Website",
+        "url": `${siteUrl}/${locale}/website-klinik`,
         "provider": { "@id": "https://gilabs.id/#organization" }
       }
     },
@@ -77,10 +70,8 @@ const serviceListSchema = {
       "position": 4,
       "item": {
         "@type": "Service",
-        "name": "HRIS Development",
-        "description": locale === 'id'
-          ? "Sistem HR digital untuk absensi, payroll, rekrutmen, dan manajemen kinerja"
-          : "Digital HR system for attendance, payroll, recruitment, and performance management",
+        "name": locale === 'id' ? "Jasa Website Kontraktor & Properti" : "Contractor & Real Estate Website",
+        "url": `${siteUrl}/${locale}/website-kontraktor-properti`,
         "provider": { "@id": "https://gilabs.id/#organization" }
       }
     },
@@ -89,10 +80,8 @@ const serviceListSchema = {
       "position": 5,
       "item": {
         "@type": "Service",
-        "name": "Finance System Development",
-        "description": locale === 'id'
-          ? "Sistem keuangan perusahaan: akuntansi, invoicing, laporan keuangan"
-          : "Company finance systems: accounting, invoicing, financial reporting",
+        "name": locale === 'id' ? "Jasa Pembuatan Website UMKM" : "Affordable SME Business Website",
+        "url": `${siteUrl}/${locale}/website-umkm`,
         "provider": { "@id": "https://gilabs.id/#organization" }
       }
     },
@@ -101,10 +90,8 @@ const serviceListSchema = {
       "position": 6,
       "item": {
         "@type": "Service",
-        "name": "Web Development",
-        "description": locale === 'id'
-          ? "Pengembangan website dan web application dengan Next.js, React, TypeScript"
-          : "Website and web application development with Next.js, React, TypeScript",
+        "name": locale === 'id' ? "Jasa Pembuatan Website Toko Online" : "Independent E-Commerce Web Store",
+        "url": `${siteUrl}/${locale}/website-toko-online`,
         "provider": { "@id": "https://gilabs.id/#organization" }
       }
     },
@@ -113,10 +100,8 @@ const serviceListSchema = {
       "position": 7,
       "item": {
         "@type": "Service",
-        "name": "Mobile App Development",
-        "description": locale === 'id'
-          ? "Pengembangan aplikasi mobile iOS dan Android dengan Flutter"
-          : "iOS and Android mobile app development with Flutter",
+        "name": locale === 'id' ? "Software House untuk UMKM & Startup" : "Software House for Startups & SMEs",
+        "url": `${siteUrl}/${locale}/software-house`,
         "provider": { "@id": "https://gilabs.id/#organization" }
       }
     },
@@ -125,10 +110,68 @@ const serviceListSchema = {
       "position": 8,
       "item": {
         "@type": "Service",
-        "name": "AI Integration",
-        "description": locale === 'id'
-          ? "Integrasi AI/LLM ke dalam sistem bisnis untuk chatbot, analitik, dan otomasi"
-          : "AI/LLM integration into business systems for chatbots, analytics, and automation",
+        "name": locale === 'id' ? "Jasa Pembuatan Aplikasi Mobile Perusahaan" : "Enterprise Mobile App Development",
+        "url": `${siteUrl}/${locale}/aplikasi-custom`,
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "item": {
+        "@type": "Service",
+        "name": locale === 'id' ? "Jasa Pembuatan Sistem Informasi Manajemen" : "Management Information System (MIS) Development",
+        "url": `${siteUrl}/${locale}/sistem-informasi`,
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "item": {
+        "@type": "Service",
+        "name": locale === 'id' ? "Jasa Pembuatan Sistem ERP & CRM Custom" : "Custom ERP & CRM System Development",
+        "url": `${siteUrl}/${locale}/services/${serviceSlugPairMap["erp-crm"][locale]}`,
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "item": {
+        "@type": "Service",
+        "name": locale === 'id' ? "Jasa Pembuatan Aplikasi Kasir POS Multi-Cabang" : "Multi-Outlet POS / Cashier System Development",
+        "url": `${siteUrl}/${locale}/services/${serviceSlugPairMap["pos-system"][locale]}`,
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "item": {
+        "@type": "Service",
+        "name": locale === 'id' ? "Custom Software Engineering" : "Custom Software Development",
+        "url": `${siteUrl}/${locale}/services/${serviceSlugPairMap["custom-software"][locale]}`,
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "item": {
+        "@type": "Service",
+        "name": locale === 'id' ? "Jasa Pembuatan Website Kustom" : "Custom Web Development",
+        "url": `${siteUrl}/${locale}/services/${serviceSlugPairMap["web-development"][locale]}`,
+        "provider": { "@id": "https://gilabs.id/#organization" }
+      }
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "item": {
+        "@type": "Service",
+        "name": locale === 'id' ? "Jasa Pembuatan Web Company Profile" : "Company Profile Website Development",
+        "url": `${siteUrl}/${locale}/services/${serviceSlugPairMap["company-profile"][locale]}`,
         "provider": { "@id": "https://gilabs.id/#organization" }
       }
     }
@@ -171,12 +214,10 @@ const breadcrumbSchema = {
   
   <Navbar lang={lang} />
   
-  <main class="min-h-screen bg-background">
-    <ServicesHero lang={lang} />
-    <ServicesGrid lang={lang} />
-    <ServicesAiAddons lang={lang} />
-    <FeaturedTemplates lang={lang} />
-    <ServicesCta lang={lang} />
+  <main class="pt-24 sm:pt-28 pb-20 bg-background min-h-screen">
+    <ServicesHeroMinimal lang={lang} />
+    <ServicesCardsCatalog lang={lang} />
+    <ServicesCtaMinimal lang={lang} />
   </main>
   
   <Footer lang={lang} />

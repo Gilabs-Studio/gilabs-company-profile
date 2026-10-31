@@ -33,13 +33,21 @@ const productSublinks: NavLink[] = [
 ];
 
 const serviceSublinks = [
-  { href: `${pathPrefix}/services/${serviceSlugPairMap["web-development"][lang]}`, label: lang === "en" ? "Website Development" : "Jasa Pembuatan Website" },
-  { href: `${pathPrefix}/services/${serviceSlugPairMap["company-profile"][lang]}`, label: lang === "en" ? "Company Profile" : "Web Company Profile" },
-  { href: `${pathPrefix}/services/${serviceSlugPairMap["software-house"][lang]}`, label: lang === "en" ? "Software House" : "Software House Indonesia" },
-  { href: `${pathPrefix}/services/${serviceSlugPairMap["custom-software"][lang]}`, label: lang === "en" ? "Custom Software" : "Custom Software & Web App" },
-  { href: `${pathPrefix}/services/${serviceSlugPairMap["mobile-apps"][lang]}`, label: lang === "en" ? "Mobile Apps" : "Aplikasi Mobile (iOS/Android)" },
-  { href: `${pathPrefix}/services/${serviceSlugPairMap["erp-crm"][lang]}`, label: lang === "en" ? "ERP & CRM" : "Sistem ERP & CRM Custom" },
-  { href: `${pathPrefix}/services/${serviceSlugPairMap["pos-system"][lang]}`, label: lang === "en" ? "POS / Cashier" : "Aplikasi Kasir / POS" },
+  { href: `${pathPrefix}/website-premium`, label: lang === "en" ? "Premium Web" : "Website Premium" },
+  { href: `${pathPrefix}/website-corporate`, label: lang === "en" ? "Corporate Web" : "Website Corporate" },
+  { href: `${pathPrefix}/website-klinik`, label: lang === "en" ? "Clinic & Hospital" : "Website Klinik" },
+  { href: `${pathPrefix}/website-kontraktor-properti`, label: lang === "en" ? "Contractor & Property" : "Website Kontraktor" },
+  { href: `${pathPrefix}/website-umkm`, label: lang === "en" ? "SME Website" : "Website UMKM" },
+  { href: `${pathPrefix}/website-toko-online`, label: lang === "en" ? "E-Commerce" : "Toko Online" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["web-development"][lang]}`, label: lang === "en" ? "Web Dev" : "Web Development" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["company-profile"][lang]}`, label: lang === "en" ? "Company Profile" : "Company Profile" },
+  { href: `${pathPrefix}/software-house`, label: lang === "en" ? "Software House" : "Software House" },
+  { href: `${pathPrefix}/aplikasi-custom`, label: lang === "en" ? "Mobile Apps" : "Aplikasi Mobile" },
+  { href: `${pathPrefix}/sistem-informasi`, label: lang === "en" ? "Management System" : "Sistem Informasi" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["erp-crm"][lang]}`, label: lang === "en" ? "ERP & CRM" : "Sistem ERP & CRM" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["pos-system"][lang]}`, label: lang === "en" ? "POS / Cashier" : "Aplikasi POS" },
+  { href: `${pathPrefix}/services/${serviceSlugPairMap["custom-software"][lang]}`, label: lang === "en" ? "Custom Software" : "Custom Software" },
+  { href: `${pathPrefix}/jasa-website-jakarta`, label: lang === "en" ? "City Web (10 Cities)" : "Web 10 Kota" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -65,6 +73,8 @@ if (serviceMatch) {
   } else {
     if (currentPath === "/en" || currentPath === "/en/") {
       switchLangPath = "/";
+    } else if (currentPath.startsWith("/en/")) {
+      switchLangPath = currentPath.replace(/^\/en/, "/id");
     } else {
       switchLangPath = currentPath.replace(/^\/en/, "") || "/";
     }
@@ -138,6 +148,11 @@ if (serviceMatch) {
                   {sub.label}
                 </a>
               ))}
+              <div class="col-span-2 pt-1 border-t border-border/30 text-center">
+                <a href={`${pathPrefix}/services`} class="text-[11px] font-semibold text-brand hover:underline py-1 mobile-link inline-block">
+                  {lang === "en" ? "View Full Services Directory →" : "Lihat Direktori Lengkap Layanan →"}
+                </a>
+              </div>
             </div>
           </div>
         );

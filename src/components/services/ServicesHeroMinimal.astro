@@ -1,0 +1,21 @@
+---
+import { servicesDirectoryId, servicesDirectoryEn } from "../../data/services/directory";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+const data = lang === "en" ? servicesDirectoryEn : servicesDirectoryId;
+const { hero } = data;
+---
+
+<header class="pt-4 sm:pt-8 pb-4 text-center max-w-7xl mx-auto px-4 sm:px-6">
+  <h1 class="typography-hero-title mb-4 md:mb-6 lg:mb-8 animate-slide-up px-2 text-foreground max-w-7xl mx-auto whitespace-pre-line" style="animation-delay: 0.1s;">
+    {hero.title}
+  </h1>
+
+  <div class="typography-subtitle mb-6 md:mb-8 lg:mb-12 max-w-4xl mx-auto animate-slide-up px-4 text-foreground/80 font-light" style="animation-delay: 0.2s;">
+    <p>{hero.subtitle}</p>
+  </div>
+</header>

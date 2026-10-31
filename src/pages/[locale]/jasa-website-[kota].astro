@@ -1,0 +1,29 @@
+---
+import SeoLandingPage from "../../components/seo-landing/SeoLandingPage.astro";
+import { targetCitiesList, getCityLandingData } from "../../data/seoLanding/jasaWebsiteKota";
+
+export function getStaticPaths() {
+  const paths = [];
+  const locales = ["id", "en"] as const;
+
+  for (const locale of locales) {
+    for (const city of targetCitiesList) {
+      paths.push({
+        params: { locale, kota: city.cityKey },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { locale, kota } = Astro.params;
+const lang = (locale as "en" | "id") || "id";
+const cityData = getCityLandingData(kota, lang);
+
+if (!cityData) {
+  return Astro.redirect("/404");
+}
+---
+
+<SeoLandingPage data={cityData} lang={lang} />

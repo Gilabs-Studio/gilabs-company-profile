@@ -57,6 +57,23 @@ export default defineConfig({
           // @ts-ignore
           item.changefreq = 'weekly';
         }
+        // Strategic High-Intent SEO Landing Pages
+        else if (
+          item.url.includes('/aplikasi-custom') ||
+          item.url.includes('/sistem-informasi') ||
+          item.url.includes('/website-premium') ||
+          item.url.includes('/website-corporate') ||
+          item.url.includes('/website-klinik') ||
+          item.url.includes('/software-house') ||
+          item.url.includes('/website-kontraktor-properti') ||
+          item.url.includes('/website-umkm') ||
+          item.url.includes('/website-toko-online') ||
+          item.url.includes('/jasa-website-')
+        ) {
+          item.priority = 0.95;
+          // @ts-ignore
+          item.changefreq = 'weekly';
+        }
         // Portfolio page
         else if (item.url.includes('/portfolio')) {
           item.priority = 0.85;

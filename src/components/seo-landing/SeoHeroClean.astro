@@ -1,0 +1,72 @@
+---
+import { ArrowRight } from "lucide-react";
+import { getWhatsAppLink } from "../../lib/utils";
+import HeroParallaxImage from "../services/HeroParallaxImage.astro";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  heroIllustration: string;
+  heroImageAlt: string;
+  primaryCtaText: string;
+  secondaryCtaText: string;
+  secondaryCtaHref: string;
+  lang?: "id" | "en";
+}
+
+const {
+  title,
+  subtitle,
+  heroIllustration,
+  heroImageAlt,
+  primaryCtaText,
+  secondaryCtaText,
+  secondaryCtaHref,
+  lang = "id",
+} = Astro.props;
+---
+
+<section class="relative pt-24 sm:pt-28 md:pt-32 pb-16 md:pb-24 overflow-hidden bg-background">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl relative z-10 text-center">
+    
+    {/* Clean Title - Pure Headline without AI Badges or Pills */}
+    <h1 class="typography-hero-title mb-6 sm:mb-8 text-foreground max-w-6xl mx-auto">
+      {title}
+    </h1>
+
+    {/* Subtitle */}
+    <p class="typography-subtitle max-w-2xl mx-auto mb-8 sm:mb-10 text-foreground/80 leading-relaxed font-light">
+      {subtitle}
+    </p>
+
+    {/* Direct Action Buttons */}
+    <div class="flex flex-wrap items-center justify-center gap-4 mb-12 sm:mb-16">
+      {primaryCtaText && (
+        <a
+          href={getWhatsAppLink("seo-landing", lang)}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 typography-button text-white bg-brand rounded-full hover:bg-brand/90 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-md shadow-brand/20"
+        >
+          <span>{primaryCtaText}</span>
+          <ArrowRight className="w-4 h-4" />
+        </a>
+      )}
+
+      {secondaryCtaText && (
+        <a
+          href={secondaryCtaHref}
+          class="inline-flex items-center justify-center px-6 sm:px-8 py-3.5 sm:py-4 typography-button text-foreground bg-white hover:bg-secondary/40 border border-border/80 rounded-full transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-sm"
+        >
+          {secondaryCtaText}
+        </a>
+      )}
+    </div>
+
+    {/* High-Resolution Nano Banana Mockup with Parallax */}
+    <HeroParallaxImage
+      src={heroIllustration}
+      alt={heroImageAlt || title}
+    />
+  </div>
+</section>

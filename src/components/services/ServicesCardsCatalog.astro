@@ -1,0 +1,122 @@
+---
+import { servicesDirectoryId, servicesDirectoryEn } from "../../data/services/directory";
+import { getWhatsAppLink } from "../../lib/utils";
+import { ArrowRight, ExternalLink } from "lucide-react";
+
+interface Props {
+  lang?: "en" | "id";
+}
+
+const { lang = "id" } = Astro.props;
+const data = lang === "en" ? servicesDirectoryEn : servicesDirectoryId;
+const { groups } = data;
+---
+
+<section class="py-6 sm:py-10">
+  <div class="container mx-auto px-4 sm:px-6">
+    {groups.map((group) => (
+      <div class="mb-14 sm:mb-20">
+        {/* Category Header */}
+        <div class="flex items-center justify-between pb-3.5 mb-6 sm:mb-8 border-b border-border/60">
+          <div>
+            <div class="flex items-center gap-2.5 mb-1.5">
+              <span class="text-xs font-mono text-brand font-semibold tracking-wider">
+                {group.number}
+              </span>
+              <h2 class="text-xl sm:text-2xl font-bold tracking-tight text-foreground">
+                {group.title}
+              </h2>
+            </div>
+            <p class="text-xs sm:text-sm text-muted-foreground font-light max-w-3xl leading-relaxed">
+              {group.subtitle}
+            </p>
+          </div>
+        </div>
+
+        {/* 3-Column Card Grid Matching Templates */}
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
+          {group.items.map((item) => {
+            const detailUrl = item.href;
+            const whatsappUrl = getWhatsAppLink("service-card", lang, item.title);
+
+            return (
+              <div class="bg-card border border-border/70 rounded-lg overflow-hidden flex flex-col transition-all duration-200 hover:border-foreground/40 hover:shadow-xs group">
+                {/* Live Preview / Mockup Thumbnail (16:10 aspect ratio matching templates) */}
+                <a
+                  href={detailUrl}
+                  class="aspect-[16/10] bg-muted/20 relative overflow-hidden block group cursor-pointer border-b border-border/50"
+                  aria-label={`${lang === "id" ? "Pelajari Layanan" : "Learn Service"}: ${item.title}`}
+                  title={`${lang === "id" ? "Pelajari Layanan" : "Learn Service"}: ${item.title}`}
+                >
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    width="640"
+                    height="400"
+                    loading="lazy"
+                    decoding="async"
+                    class="relative z-10 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div class="absolute inset-0 z-20 bg-black/25 dark:bg-black/40 backdrop-blur-[1px] transition-all duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                    <span class="bg-background text-foreground text-xs font-semibold px-4 py-2 rounded-lg shadow-md flex items-center gap-1.5 transition-transform duration-200 group-hover:scale-105">
+                      <span>{lang === "id" ? "Pelajari Layanan" : "Explore Service"}</span>
+                      <ExternalLink className="w-3.5 h-3.5" />
+                    </span>
+                  </div>
+                </a>
+
+                {/* Card Content Matching Templates */}
+                <div class="p-4 sm:p-4.5 flex-1 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-2 mb-1.5">
+                      <span class="text-[10px] font-mono uppercase tracking-wider text-muted-foreground/80 font-medium">
+                        {item.tag}
+                      </span>
+                    </div>
+
+                    <h3 class="typography-body-large font-semibold text-foreground tracking-tight leading-snug">
+                      <a
+                        href={detailUrl}
+                        class="hover:text-brand transition-colors cursor-pointer inline-flex items-center gap-1.5"
+                        title={`${item.title}`}
+                      >
+                        <span>{item.title}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-muted-foreground flex-shrink-0" />
+                      </a>
+                    </h3>
+
+                    <p class="typography-small text-muted-foreground mt-1.5 line-clamp-2 leading-relaxed font-light">
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Action Buttons: Detail + Konsultasi WA */}
+                  <div class="mt-4 pt-3 border-t border-border/50 grid grid-cols-2 gap-2">
+                    <a
+                      href={detailUrl}
+                      aria-label={`${lang === "id" ? "Detail Layanan" : "Service Details"} ${item.title}`}
+                      class="typography-small font-medium py-2 px-2 rounded-lg border border-border/80 hover:bg-secondary text-foreground text-center cursor-pointer transition-colors inline-flex items-center justify-center gap-1.5"
+                    >
+                      <span>{lang === "id" ? "Detail Solusi" : "View Details"}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-muted-foreground" />
+                    </a>
+
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${lang === "id" ? "Konsultasi" : "Inquire"} ${item.title}`}
+                      class="typography-small font-semibold py-2 px-2 rounded-lg bg-foreground text-background hover:opacity-90 text-center cursor-pointer transition-opacity inline-flex items-center justify-center"
+                    >
+                      {lang === "id" ? "Konsultasi" : "Inquire"}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

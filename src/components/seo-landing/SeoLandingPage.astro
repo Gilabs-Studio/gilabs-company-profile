@@ -1,0 +1,126 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Navbar from "../Navbar.astro";
+import Footer from "../sections/Footer.astro";
+import WorkResultDrawer from "../ui/WorkResultDrawer";
+import SeoHeroClean from "./SeoHeroClean.astro";
+import SeoProblems from "./SeoProblems.astro";
+import SeoSolutions from "./SeoSolutions.astro";
+import SeoFeatures from "./SeoFeatures.astro";
+import SeoFAQ from "./SeoFAQ.astro";
+import SeoCTA from "./SeoCTA.astro";
+import type { SeoLandingPageData } from "../../data/seoLanding/types";
+
+interface Props {
+  data: SeoLandingPageData;
+  lang?: "id" | "en";
+}
+
+const { data, lang = "id" } = Astro.props;
+
+// Service Schema JSON-LD
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": data.heroTitle,
+  "serviceType": data.primaryKeyword,
+  "description": data.metaDescription,
+  "url": data.canonicalUrl,
+  "provider": {
+    "@id": "https://gilabs.id/#organization"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Indonesia"
+  }
+};
+
+// Breadcrumb Schema
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Gilabs",
+      "item": "https://gilabs.id"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": data.heroTitle,
+      "item": data.canonicalUrl
+    }
+  ]
+};
+---
+
+<Layout
+  lang={lang}
+  title={data.metaTitle}
+  description={data.metaDescription}
+  canonical={data.canonicalUrl}
+  alternateUrls={data.alternateUrls}
+  keywords={data.allKeywords.join(", ")}
+  showRays={true}
+  showEntrance={false}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} slot="head" />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} slot="head" />
+
+  <Navbar lang={lang} />
+  <WorkResultDrawer client:idle lang={lang} />
+
+  <main>
+    {/* 1. Hero Minimalis Bebas AI-Slop */}
+    <SeoHeroClean
+      title={data.heroTitle}
+      subtitle={data.heroSubtitle}
+      heroIllustration={data.heroIllustration}
+      heroImageAlt={data.heroImageAlt}
+      primaryCtaText={data.primaryCtaText}
+      secondaryCtaText={data.secondaryCtaText}
+      secondaryCtaHref={data.secondaryCtaHref}
+      lang={lang}
+    />
+
+    {/* 2. Tantangan & Masalah Industri */}
+    <SeoProblems
+      title={data.problemsTitle}
+      subtitle={data.problemsSubtitle}
+      problems={data.problems}
+    />
+
+    {/* 3. Arsitektur Solusi Gilabs */}
+    <SeoSolutions
+      title={data.solutionsTitle}
+      subtitle={data.solutionsSubtitle}
+      solutions={data.solutions}
+    />
+
+    {/* 4. Kapabilitas & Fitur Bernomor */}
+    <SeoFeatures
+      title={data.featuresTitle}
+      subtitle={data.featuresSubtitle}
+      features={data.features}
+    />
+
+    {/* 5. Tanya Jawab (FAQ) & Schema.org FAQPage */}
+    <SeoFAQ
+      title={data.faqTitle}
+      subtitle={data.faqSubtitle}
+      faqs={data.faqs}
+    />
+
+    {/* 6. Penutup & Konversi WhatsApp */}
+    <SeoCTA
+      title={data.ctaTitle}
+      subtitle={data.ctaSubtitle}
+      buttonText={data.ctaButtonText}
+      lang={lang}
+    />
+  </main>
+
+  <Footer lang={lang} />
+</Layout>

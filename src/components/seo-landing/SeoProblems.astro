@@ -1,0 +1,53 @@
+---
+import type { SeoProblemItem } from "../../data/seoLanding/types";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  problems: SeoProblemItem[];
+}
+
+const { title, subtitle, problems } = Astro.props;
+---
+
+<section class="py-20 md:py-28 bg-white border-y border-border/60 relative">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    
+    {/* Section Header: Title & Subtitle Only */}
+    <div class="max-w-3xl mx-auto text-center mb-14 md:mb-20">
+      <h2 class="typography-section-title mb-4 text-foreground">
+        {title}
+      </h2>
+      <p class="typography-subtitle text-foreground/80 leading-relaxed font-light">
+        {subtitle}
+      </p>
+    </div>
+
+    {/* Problems Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      {problems.map((item, index) => (
+        <div class="bg-background border border-border/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-brand/40 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+          <div class="space-y-4">
+            <span class="text-xs font-mono font-medium text-foreground/50 tracking-wider">
+              KENDALA {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 class="typography-card-title text-foreground">
+              {item.pain}
+            </h3>
+            <p class="typography-body text-foreground/80 leading-relaxed font-light">
+              {item.solution}
+            </p>
+          </div>
+
+          {item.metric && (
+            <div class="pt-6 mt-6 border-t border-border/50">
+              <p class="text-xs font-medium text-brand/90 leading-normal">
+                {item.metric}
+              </p>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

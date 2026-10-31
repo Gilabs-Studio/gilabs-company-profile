@@ -1,0 +1,40 @@
+---
+import { ArrowRight } from "lucide-react";
+import { getWhatsAppLink } from "../../lib/utils";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  lang?: "id" | "en";
+}
+
+const {
+  title,
+  subtitle,
+  buttonText,
+  lang = "id",
+} = Astro.props;
+---
+
+<section class="py-20 md:py-28 bg-white text-center relative overflow-hidden">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl relative z-10">
+    <h2 class="typography-section-title mb-6 text-foreground max-w-3xl mx-auto">
+      {title}
+    </h2>
+    <p class="typography-subtitle text-foreground/80 leading-relaxed font-light max-w-2xl mx-auto mb-10">
+      {subtitle}
+    </p>
+    <div>
+      <a
+        href={getWhatsAppLink("seo-cta-final", lang)}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center gap-2 px-8 sm:px-10 py-4 typography-button text-white bg-brand rounded-full hover:bg-brand/90 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer shadow-lg shadow-brand/25"
+      >
+        <span>{buttonText}</span>
+        <ArrowRight className="w-5 h-5" />
+      </a>
+    </div>
+  </div>
+</section>

@@ -35,24 +35,42 @@ const productLinks = [
 
 const serviceLinks = [
   {
-    category: lang === "en" ? "Website & UMKM" : "Jasa Website & UMKM",
+    category: lang === "en" ? "Bespoke Web & Industry Solutions" : "Website Khusus & Industri",
     items: [
-      { href: `${pathPrefix}/services/${serviceSlugPairMap["web-development"][lang]}`, label: lang === "en" ? "Website Development" : "Jasa Pembuatan Website" },
-      { href: `${pathPrefix}/services/${serviceSlugPairMap["company-profile"][lang]}`, label: lang === "en" ? "Company Profile Website" : "Web Company Profile" },
-      { href: `${pathPrefix}/services/${serviceSlugPairMap["landing-page"][lang]}`, label: lang === "en" ? "High-Converting Landing Page" : "Jasa Landing Page" },
-      { href: `${pathPrefix}/services/${serviceSlugPairMap["ecommerce"][lang]}`, label: lang === "en" ? "E-Commerce Online Store" : "Toko Online E-Commerce" },
+      { href: `${pathPrefix}/website-premium`, label: lang === "en" ? "Premium Bespoke Web" : "Website Premium Custom", desc: lang === "en" ? "High-end without templates" : "Desain eksklusif tanpa template" },
+      { href: `${pathPrefix}/website-corporate`, label: lang === "en" ? "Corporate & Enterprise" : "Website Corporate & Holding", desc: lang === "en" ? "Multi-branch & investor ready" : "Standar holding & tata kelola" },
+      { href: `${pathPrefix}/website-klinik`, label: lang === "en" ? "Clinics & Hospitals" : "Website Klinik & Rumah Sakit", desc: lang === "en" ? "Doctor schedule & booking" : "Jadwal dokter & registrasi" },
+      { href: `${pathPrefix}/website-kontraktor-properti`, label: lang === "en" ? "Contractor & Property" : "Website Kontraktor & Properti", desc: lang === "en" ? "Project catalog & spec sheets" : "Katalog proyek & listing unit" },
+      { href: `${pathPrefix}/website-umkm`, label: lang === "en" ? "Affordable SME Website" : "Website UMKM Cepat Online", desc: lang === "en" ? "Fast go-live for local business" : "Solusi go-digital cepat & terjangkau" },
+      { href: `${pathPrefix}/website-toko-online`, label: lang === "en" ? "E-Commerce Online Store" : "Website Toko Online Mandiri", desc: lang === "en" ? "Direct checkout without marketplace fee" : "Katalog & checkout tanpa potongan fee" },
+      { href: `${pathPrefix}/services/${serviceSlugPairMap["web-development"][lang]}`, label: lang === "en" ? "Web Development (Core)" : "Jasa Pembuatan Website", desc: lang === "en" ? "Modern high-speed web apps" : "Web modern Next.js & React" },
+      { href: `${pathPrefix}/services/${serviceSlugPairMap["company-profile"][lang]}`, label: lang === "en" ? "Web Company Profile" : "Web Company Profile", desc: lang === "en" ? "Professional company branding" : "Reputasi kredibel & konversi tinggi" },
     ]
   },
   {
-    category: lang === "en" ? "Software House & B2B" : "Software House & Sistem B2B",
+    category: lang === "en" ? "Software House & Enterprise Systems" : "Software House & Sistem Internal",
     items: [
-      { href: `${pathPrefix}/services/${serviceSlugPairMap["software-house"][lang]}`, label: lang === "en" ? "Software Development Company" : "Software House Indonesia" },
-      { href: `${pathPrefix}/services/${serviceSlugPairMap["custom-software"][lang]}`, label: lang === "en" ? "Custom Software & Web App" : "Custom Software & Web App" },
-      { href: `${pathPrefix}/services/${serviceSlugPairMap["mobile-apps"][lang]}`, label: lang === "en" ? "Mobile App (iOS & Android)" : "Aplikasi Mobile Android & iOS" },
-      { href: `${pathPrefix}/services/${serviceSlugPairMap["erp-crm"][lang]}`, label: lang === "en" ? "Custom ERP & CRM System" : "Sistem ERP & CRM Custom" },
-      { href: `${pathPrefix}/services/${serviceSlugPairMap["pos-system"][lang]}`, label: lang === "en" ? "Custom POS / Cashier App" : "Aplikasi Kasir / POS Custom" },
+      { href: `${pathPrefix}/software-house`, label: lang === "en" ? "Software House for Startups" : "Software House Startup & UMKM", desc: lang === "en" ? "Agile sprint & technical partner" : "Partner teknologi terpercaya" },
+      { href: `${pathPrefix}/aplikasi-custom`, label: lang === "en" ? "Enterprise Mobile Apps" : "Aplikasi Mobile Perusahaan", desc: lang === "en" ? "iOS & Android enterprise app" : "Aplikasi iOS & Android khusus internal" },
+      { href: `${pathPrefix}/sistem-informasi`, label: lang === "en" ? "Management Information System" : "Sistem Informasi Manajemen (SIM)", desc: lang === "en" ? "Operational centralized dashboards" : "Otomasi alur kerja & pelaporan" },
+      { href: `${pathPrefix}/services/${serviceSlugPairMap["erp-crm"][lang]}`, label: lang === "en" ? "Custom ERP & CRM" : "Sistem ERP & CRM Custom", desc: lang === "en" ? "Warehouse, inventory & pipeline" : "Integrasi stok gudang & sales pipeline" },
+      { href: `${pathPrefix}/services/${serviceSlugPairMap["pos-system"][lang]}`, label: lang === "en" ? "Multi-Branch POS" : "Aplikasi Kasir / POS Custom", desc: lang === "en" ? "Real-time sync retail & F&B" : "Kasir cabang & inventaris terpadu" },
+      { href: `${pathPrefix}/services/${serviceSlugPairMap["custom-software"][lang]}`, label: lang === "en" ? "Custom Software Engineering" : "Custom Software & Web App", desc: lang === "en" ? "Bespoke internal systems & API" : "Arsitektur database & API kustom" },
     ]
   }
+];
+
+const cityLinks = [
+  { href: `${pathPrefix}/jasa-website-jakarta`, name: "Jakarta" },
+  { href: `${pathPrefix}/jasa-website-surabaya`, name: "Surabaya" },
+  { href: `${pathPrefix}/jasa-website-bandung`, name: "Bandung" },
+  { href: `${pathPrefix}/jasa-website-semarang`, name: "Semarang" },
+  { href: `${pathPrefix}/jasa-website-yogyakarta`, name: "Yogyakarta" },
+  { href: `${pathPrefix}/jasa-website-bali`, name: "Bali" },
+  { href: `${pathPrefix}/jasa-website-medan`, name: "Medan" },
+  { href: `${pathPrefix}/jasa-website-makassar`, name: "Makassar" },
+  { href: `${pathPrefix}/jasa-website-malang`, name: "Malang" },
+  { href: `${pathPrefix}/jasa-website-solo`, name: "Solo" },
 ];
 
 const currentPath = Astro.url.pathname;
@@ -78,6 +96,8 @@ if (serviceMatch) {
   } else {
     if (currentPath === "/en" || currentPath === "/en/") {
       switchLangPath = "/";
+    } else if (currentPath.startsWith("/en/")) {
+      switchLangPath = currentPath.replace(/^\/en/, "/id");
     } else {
       switchLangPath = currentPath.replace(/^\/en/, "") || "/";
     }
@@ -167,36 +187,98 @@ if (serviceMatch) {
                 <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-hover:rotate-180 opacity-70" />
               </a>
 
-              {/* Hover Dropdown Menu */}
-              <div class="absolute top-full left-1/2 -translate-x-1/2 w-[540px] pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50">
-                <div class="bg-background/98 backdrop-blur-xl border border-border/60 rounded-xl p-5 shadow-xl shadow-black/5">
-                  <div class="grid grid-cols-2 gap-6">
-                    {serviceLinks.map((cat) => (
-                      <div class="space-y-2">
-                        <div class="text-[11px] font-bold uppercase tracking-wider text-muted-foreground/70 pb-1 border-b border-border/40">
-                          {cat.category}
-                        </div>
-                        <ul class="space-y-1">
-                          {cat.items.map((item) => (
-                            <li>
-                              <a
-                                href={item.href}
-                                class="block py-1.5 px-2 rounded-lg text-xs font-medium text-foreground hover:text-brand hover:bg-secondary/60 transition-colors cursor-pointer"
-                              >
-                                {item.label}
-                              </a>
-                            </li>
-                          ))}
-                        </ul>
+              {/* Hover Dropdown Mega Menu */}
+              <div class="absolute top-full left-1/2 -translate-x-1/2 w-[940px] max-w-[95vw] pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 pointer-events-none group-hover:pointer-events-auto z-50">
+                <div class="bg-background/98 backdrop-blur-xl border border-border/60 rounded-xl p-6 shadow-2xl shadow-black/10">
+                  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    {/* Column 1: Websites (5 cols) */}
+                    <div class="lg:col-span-5 space-y-2">
+                      <div class="text-[11px] font-bold uppercase tracking-wider text-muted-foreground/70 pb-1.5 border-b border-border/40 flex items-center justify-between">
+                        <span>{serviceLinks[0].category}</span>
+                        <span class="text-[10px] font-mono text-muted-foreground/50">01</span>
                       </div>
-                    ))}
+                      <ul class="space-y-0.5">
+                        {serviceLinks[0].items.map((item) => (
+                          <li>
+                            <a
+                              href={item.href}
+                              class="group/item block py-1.5 px-2.5 rounded-lg hover:bg-secondary/70 transition-colors cursor-pointer"
+                            >
+                              <div class="text-xs font-semibold text-foreground group-hover/item:text-brand transition-colors">
+                                {item.label}
+                              </div>
+                              <div class="text-[11px] text-muted-foreground/80 leading-snug">
+                                {item.desc}
+                              </div>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Column 2: Software & Systems (4 cols) */}
+                    <div class="lg:col-span-4 space-y-2">
+                      <div class="text-[11px] font-bold uppercase tracking-wider text-muted-foreground/70 pb-1.5 border-b border-border/40 flex items-center justify-between">
+                        <span>{serviceLinks[1].category}</span>
+                        <span class="text-[10px] font-mono text-muted-foreground/50">02</span>
+                      </div>
+                      <ul class="space-y-0.5">
+                        {serviceLinks[1].items.map((item) => (
+                          <li>
+                            <a
+                              href={item.href}
+                              class="group/item block py-1.5 px-2.5 rounded-lg hover:bg-secondary/70 transition-colors cursor-pointer"
+                            >
+                              <div class="text-xs font-semibold text-foreground group-hover/item:text-brand transition-colors">
+                                {item.label}
+                              </div>
+                              <div class="text-[11px] text-muted-foreground/80 leading-snug">
+                                {item.desc}
+                              </div>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Column 3: Regional Hubs (3 cols) */}
+                    <div class="lg:col-span-3 space-y-2">
+                      <div class="text-[11px] font-bold uppercase tracking-wider text-muted-foreground/70 pb-1.5 border-b border-border/40 flex items-center justify-between">
+                        <span>{lang === "en" ? "Local City Hubs" : "Layanan Per Kota"}</span>
+                        <span class="text-[10px] font-mono text-muted-foreground/50">03</span>
+                      </div>
+                      <p class="text-[11px] text-muted-foreground leading-relaxed pt-0.5">
+                        {lang === "en" ? "Dedicated localized engineering for key business cities:" : "Layanan rekayasa web lokal untuk pusat bisnis utama di Indonesia:"}
+                      </p>
+                      <div class="grid grid-cols-2 gap-1 pt-1">
+                        {cityLinks.map((city) => (
+                          <a
+                            href={city.href}
+                            class="px-2 py-1.5 rounded-md text-xs font-medium text-foreground/85 hover:text-brand hover:bg-secondary/70 transition-colors cursor-pointer text-center border border-border/30 hover:border-brand/30"
+                          >
+                            {city.name}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
                   </div>
-                  <div class="mt-4 pt-3 border-t border-border/40 flex items-center justify-between text-xs">
+
+                  {/* Bottom Footer Row */}
+                  <div class="mt-4 pt-3.5 border-t border-border/40 flex items-center justify-between text-xs">
                     <a
                       href={`${pathPrefix}/services`}
                       class="font-semibold text-brand hover:underline inline-flex items-center gap-1 cursor-pointer"
                     >
-                      {lang === "en" ? "View All Services" : "Lihat Semua Layanan"} →
+                      {lang === "en" ? "View Full Services Directory" : "Buka Direktori Lengkap Semua Layanan"} →
+                    </a>
+                    <a
+                      href={getWhatsAppLink("navbar-mega", lang)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="text-muted-foreground hover:text-foreground font-medium inline-flex items-center gap-1 cursor-pointer"
+                    >
+                      <span>{lang === "en" ? "Free Architecture Consultation" : "Konsultasi & Estimasi Arsitektur"}</span>
+                      <span class="text-[11px]">↗</span>
                     </a>
                   </div>
                 </div>

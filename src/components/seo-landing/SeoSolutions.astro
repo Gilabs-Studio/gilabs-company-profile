@@ -1,0 +1,56 @@
+---
+import type { SeoSolutionItem } from "../../data/seoLanding/types";
+import { Check } from "lucide-react";
+
+interface Props {
+  title: string;
+  subtitle: string;
+  solutions: SeoSolutionItem[];
+}
+
+const { title, subtitle, solutions } = Astro.props;
+---
+
+<section id="solusi" class="py-20 md:py-28 bg-background border-b border-border/60 relative">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+    
+    {/* Section Header */}
+    <div class="max-w-3xl mx-auto text-center mb-14 md:mb-20">
+      <h2 class="typography-section-title mb-4 text-foreground">
+        {title}
+      </h2>
+      <p class="typography-subtitle text-foreground/80 leading-relaxed font-light">
+        {subtitle}
+      </p>
+    </div>
+
+    {/* Solutions Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+      {solutions.map((item) => (
+        <div class="bg-white border border-border/80 rounded-2xl p-6 sm:p-8 flex flex-col justify-between hover:border-brand/40 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5">
+          <div class="space-y-4">
+            <h3 class="typography-card-title text-foreground">
+              {item.title}
+            </h3>
+            <p class="typography-body text-foreground/80 leading-relaxed font-light">
+              {item.description}
+            </p>
+          </div>
+
+          {item.highlights && item.highlights.length > 0 && (
+            <div class="pt-6 mt-6 border-t border-border/60">
+              <ul class="space-y-2">
+                {item.highlights.map((point) => (
+                  <li class="flex items-center gap-2 text-xs sm:text-sm text-foreground/80 font-normal">
+                    <Check className="w-3.5 h-3.5 text-brand shrink-0" />
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

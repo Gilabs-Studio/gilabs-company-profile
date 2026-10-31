@@ -1,0 +1,17 @@
+---
+import SeoLandingPage from "../../components/seo-landing/SeoLandingPage.astro";
+import { websiteKontraktorPropertiId, websiteKontraktorPropertiEn } from "../../data/seoLanding/websiteKontraktorProperti";
+
+export function getStaticPaths() {
+  return [
+    { params: { locale: "id" } },
+    { params: { locale: "en" } },
+  ];
+}
+
+const { locale } = Astro.params;
+const lang = (locale as "en" | "id") || "id";
+const data = lang === "en" ? websiteKontraktorPropertiEn : websiteKontraktorPropertiId;
+---
+
+<SeoLandingPage data={data} lang={lang} />

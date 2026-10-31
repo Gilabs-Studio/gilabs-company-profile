@@ -74,12 +74,48 @@ const words = lang === "en" ? wordsEn : wordsId;
 
     </div>
   </div>
+
+  {/* 3. Bottom Center Skip Hint / Button */}
+  <div class="absolute bottom-6 sm:bottom-8 inset-x-0 z-30 flex justify-center pointer-events-none">
+    <button
+      type="button"
+      id="loader-skip-btn"
+      class="animate-loader-fade-in inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-normal text-foreground/60 hover:text-foreground bg-black/[0.04] hover:bg-black/[0.08] border border-black/10 transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer pointer-events-auto select-none shadow-xs group"
+      title={lang === "en" ? "Skip intro animation (Esc or Click)" : "Lewati animasi intro (Esc atau Klik)"}
+      aria-label={lang === "en" ? "Skip intro animation" : "Lewati animasi intro"}
+    >
+      <span class="text-[11px] sm:text-xs text-foreground/60 group-hover:text-foreground/90 transition-colors">
+        {lang === "en" ? "Press" : "Tekan"}
+      </span>
+      <kbd class="px-1.5 py-0.5 text-[10px] font-semibold font-mono tracking-wider bg-black/5 group-hover:bg-black/10 text-foreground rounded border border-black/10 shadow-2xs transition-colors">
+        ESC
+      </kbd>
+      <span class="text-[11px] sm:text-xs text-foreground/60 group-hover:text-foreground/90 transition-colors">
+        {lang === "en" ? "to skip" : "untuk lewati"}
+      </span>
+    </button>
+  </div>
 </div>
 
 <style>
   /* Safety hide when skip-entrance class is present on html */
   :global(.skip-entrance) #site-loader {
     display: none !important;
+  }
+
+  @keyframes loaderFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-loader-fade-in {
+    animation: loaderFadeIn 0.5s ease-out 0.25s both;
   }
 </style>
 
