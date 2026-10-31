@@ -160,7 +160,120 @@ const words = lang === "en" ? wordsEn : wordsId;
     });
   };
 
+  // State guards for seamless cancellation & completion
+  let isFinished = false;
+  let activeTimeline: gsap.core.Timeline | null = null;
+  let abortSleep: (() => void) | null = null;
+
+  const sleep = (ms: number) => {
+    return new Promise<void>((resolve) => {
+      if (isFinished) {
+        resolve();
+        return;
+      }
+      const timer = setTimeout(() => {
+        abortSleep = null;
+        resolve();
+      }, ms);
+      abortSleep = () => {
+        clearTimeout(timer);
+        resolve();
+      };
+    });
+  };
+
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Escape" || e.key === "Esc") {
+      e.preventDefault();
+      completeEntrance(true);
+    }
+  };
+
+  const completeEntrance = (immediate = false) => {
+    if (isFinished) return;
+    isFinished = true;
+
+    // Immediately remove keydown listener
+    window.removeEventListener("keydown", handleKeyDown);
+
+    // Abort pending sleeps immediately
+    if (abortSleep) {
+      abortSleep();
+      abortSleep = null;
+    }
+
+    // Kill active GSAP timeline and tweens
+    if (activeTimeline) {
+      activeTimeline.kill();
+      activeTimeline = null;
+    }
+
+    const loader = document.getElementById("site-loader");
+    const backdrop = document.getElementById("loader-backdrop");
+    const textWrap = document.getElementById("loader-text-wrap");
+    const logoBox = document.getElementById("loader-logo-box");
+    const centerLogoImg = document.getElementById("loader-logo-img");
+    const cursor = document.getElementById("loader-typewriter-cursor");
+    const skipBtn = document.getElementById("loader-skip-btn");
+    const navbarLogoImg = document.getElementById("navbar-logo-img");
+
+    gsap.killTweensOf([loader, backdrop, textWrap, logoBox, centerLogoImg, cursor, skipBtn]);
+
+    // Ensure navbar real logo is immediately visible
+    if (navbarLogoImg) {
+      navbarLogoImg.style.transition = "";
+      navbarLogoImg.style.opacity = "1";
+    }
+
+    const finalize = () => {
+      const loaderEl = loader || document.getElementById("site-loader");
+      if (loaderEl) {
+        loaderEl.style.display = "none";
+      }
+      const navLogoEl = navbarLogoImg || document.getElementById("navbar-logo-img");
+      if (navLogoEl) {
+        navLogoEl.style.transition = "";
+        navLogoEl.style.opacity = "1";
+      }
+      if (document.body) {
+        document.body.classList.add("is-loaded");
+      }
+      try {
+        sessionStorage.setItem("gilabs_entrance_seen", "true");
+      } catch (e) {}
+
+      // Refresh scroll metrics (e.g. Lenis)
+      const win = window as any;
+      if (win.lenis) {
+        try {
+          win.lenis.resize();
+        } catch (e) {}
+      }
+      window.dispatchEvent(new CustomEvent("gilabs:entrance-complete"));
+    };
+
+    if (immediate) {
+      // Rapid smooth fade out (0.15s) so it doesn't jarringly snap, but feels instant
+      if (loader && loader.style.display !== "none") {
+        gsap.to(loader, {
+          opacity: 0,
+          duration: 0.15,
+          ease: "power2.out",
+          onComplete: finalize,
+        });
+        // Safety guard: guarantee finalize is executed even if GSAP is throttled
+        setTimeout(finalize, 200);
+      } else {
+        finalize();
+      }
+    } else {
+      finalize();
+    }
+  };
+
   const runEntrance = async () => {
+    if (isFinished) return;
+
     const loader = document.getElementById("site-loader");
     const backdrop = document.getElementById("loader-backdrop");
     const typeText = document.getElementById("loader-typewriter-text");
@@ -169,10 +282,20 @@ const words = lang === "en" ? wordsEn : wordsId;
     const centerLogoImg = document.getElementById("loader-logo-img");
     const navbarLogo = document.getElementById("navbar-brand-logo");
     const navbarLogoImg = document.getElementById("navbar-logo-img");
+    const cursor = document.getElementById("loader-typewriter-cursor");
+    const skipBtn = document.getElementById("loader-skip-btn");
 
     if (!loader || !typeText) {
-      document.body.classList.add("is-loaded");
+      completeEntrance(false);
       return;
+    }
+
+    // Attach click listener to skip button
+    if (skipBtn) {
+      skipBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        completeEntrance(true);
+      });
     }
 
     let words: string[] = [
@@ -197,22 +320,21 @@ const words = lang === "en" ? wordsEn : wordsId;
       navbarLogoImg.style.opacity = "0";
     }
 
-    const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
-
     // Typewriter loop: type forward, pause, delete back (except last phrase "We Are")
     for (let i = 0; i < words.length; i++) {
+      if (isFinished) return;
       const word = words[i];
 
       // Type forward (fluid: 30ms per char)
       for (let c = 0; c <= word.length; c++) {
+        if (isFinished) return;
         typeText.textContent = word.slice(0, c);
         await sleep(30);
       }
+      if (isFinished) return;
 
       // If this is the last phrase ("We Are"), reveal the logo inline smoothly via masked slide (Left to Right)
       if (i === words.length - 1) {
-        const cursor = document.getElementById("loader-typewriter-cursor");
-
         if (logoBox && centerLogoImg) {
           // 1. Softly fade out blinking typewriter cursor so visual focus shifts to emerging logo
           if (cursor) {
@@ -241,6 +363,8 @@ const words = lang === "en" ? wordsEn : wordsId;
 
           // 4. Orchestrated slide reveal: width expands smoothly while logo slides out from behind text
           const revealTl = gsap.timeline();
+          activeTimeline = revealTl;
+
           revealTl.to(
             logoBox,
             {
@@ -263,7 +387,11 @@ const words = lang === "en" ? wordsEn : wordsId;
           );
 
           // Wait for the slide reveal animation to complete
-          await new Promise((resolve) => revealTl.eventCallback("onComplete", resolve));
+          await new Promise<void>((resolve) => {
+            revealTl.eventCallback("onComplete", () => resolve());
+          });
+
+          if (isFinished) return;
 
           // Ensure overflow is visible so the exit flight to navbar is completely unclipped
           logoBox.style.overflow = "visible";
@@ -271,19 +399,27 @@ const words = lang === "en" ? wordsEn : wordsId;
 
         // Jeda nyaman: beri waktu pengguna menikmati "We Are [Logo GiLabs]"
         await sleep(850);
+        if (isFinished) return;
         break;
       }
 
       // Jeda membaca nyaman untuk frasa 1 & 2 (cukup waktu untuk membaca dengan santai)
       await sleep(200);
+      if (isFinished) return;
 
       // Delete back
       for (let c = word.length; c >= 0; c--) {
+        if (isFinished) return;
         typeText.textContent = word.slice(0, c);
         await sleep(16);
       }
+      if (isFinished) return;
+
       await sleep(180); // jeda singkat sebelum kata berikutnya
+      if (isFinished) return;
     }
+
+    if (isFinished) return;
 
     // Final Logo Flight to Navbar & Smooth Fade-in of Page Content
     if (navbarLogo && logoBox && centerLogoImg && navbarLogoImg && backdrop) {
@@ -297,12 +433,26 @@ const words = lang === "en" ? wordsEn : wordsId;
 
       const deltaX = targetCenterX - currentCenterX;
       const deltaY = targetCenterY - currentCenterY;
-      const scaleFactor = targetRect.height / currentRect.height;
+      const scaleFactor = currentRect.height > 0 ? targetRect.height / currentRect.height : 1;
 
       const tl = gsap.timeline();
+      activeTimeline = tl;
 
       // Label "start" marking the beginning of the exit transition
       tl.addLabel("start", 0);
+
+      // Fade out skip hint smoothly
+      if (skipBtn) {
+        tl.to(
+          skipBtn,
+          {
+            opacity: 0,
+            duration: 0.25,
+            ease: "power2.out",
+          },
+          "start"
+        );
+      }
 
       // 1. Softly fade out "We Are" text and cursor
       tl.to(
@@ -329,7 +479,7 @@ const words = lang === "en" ? wordsEn : wordsId;
         "start+=0.15"
       );
 
-      // 3. Smooth backdrop fade-out: reveals landing page content underneath seamlessly ("fade in menampilkan content")
+      // 3. Smooth backdrop fade-out: reveals landing page content underneath seamlessly
       tl.to(
         backdrop,
         {
@@ -359,65 +509,44 @@ const words = lang === "en" ? wordsEn : wordsId;
           duration: 0.12,
           ease: "power1.out",
           onComplete: () => {
-            loader.style.display = "none";
-            document.body.classList.add("is-loaded");
-            try {
-              sessionStorage.setItem("gilabs_entrance_seen", "true");
-            } catch (e) {}
-
-            // Refresh scroll metrics (e.g. Lenis)
-            const win = window as any;
-            if (win.lenis) {
-              try {
-                win.lenis.resize();
-              } catch (e) {}
-            }
-            window.dispatchEvent(new CustomEvent("gilabs:entrance-complete"));
+            completeEntrance(false);
           },
         },
         "landing"
       );
     } else {
       // Fallback fade out if navbar logo is not in DOM
-      gsap.to(loader, {
+      const fallbackTl = gsap.timeline();
+      activeTimeline = fallbackTl;
+      fallbackTl.to(loader, {
         opacity: 0,
         duration: 0.6,
         ease: "power2.inOut",
         onComplete: () => {
-          if (navbarLogoImg) navbarLogoImg.style.opacity = "1";
-          loader.style.display = "none";
-          document.body.classList.add("is-loaded");
-          try {
-            sessionStorage.setItem("gilabs_entrance_seen", "true");
-          } catch (e) {}
+          completeEntrance(false);
         },
       });
     }
   };
 
+  // Register keyboard listener immediately
+  window.addEventListener("keydown", handleKeyDown);
+
   // Run entrance animation if not skipped
   if (!document.documentElement.classList.contains("skip-entrance")) {
     // Run after DOM is ready
     if (document.readyState === "loading") {
-      document.addEventListener("DOMContentLoaded", runEntrance);
+      document.addEventListener("DOMContentLoaded", runEntrance, { once: true });
     } else {
       runEntrance();
     }
 
     // Hard fallback timeout: guarantees user is never stuck if any script or layout shifts
     setTimeout(() => {
-      const loader = document.getElementById("site-loader");
-      const navbarLogoImg = document.getElementById("navbar-logo-img");
-      if (loader && loader.style.display !== "none") {
-        if (navbarLogoImg) navbarLogoImg.style.opacity = "1";
-        loader.style.display = "none";
-        document.body.classList.add("is-loaded");
-      }
+      completeEntrance(true);
     }, 14000);
   } else {
     // Immediately ensure navbar logo is visible and body is loaded
-    const navbarLogoImg = document.getElementById("navbar-logo-img");
-    if (navbarLogoImg) navbarLogoImg.style.opacity = "1";
-    document.body.classList.add("is-loaded");
+    completeEntrance(false);
   }
 </script>
